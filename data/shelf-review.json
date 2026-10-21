@@ -3,7 +3,7 @@
  "title": "Raf taramasından okuma önerileri",
  "short": "Raf taraması",
  "description": "Fotoğraflanan kitap raflarında okunabilen kitaplar arasından seçilenler: öncelikli okumalar, uzun vadeli bir okuma, belirli bir ihtiyaç doğduğunda alınacaklar ve 10 yaşındaki bir çocukla birlikte okunabilecekler.",
- "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+ "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
  "checkedAt": "2026-10-04",
  "context": {
   "purpose": "Fotoğraflanan raflardan kendin için ve 10 yaşındaki kızın için hangi kitapların alınacağına karar vermek.",

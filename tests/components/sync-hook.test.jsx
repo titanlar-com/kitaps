@@ -102,9 +102,9 @@ describe('useGitHubStateSync on a device that has never synced', () => {
     const { result } = renderHook(() => useHarness({}, { queue: [], reading: {} }));
     await waitFor(() => expect(result.current.sync.status).toBe('ready'));
     const [[apiUrl, apiInit], [cdnUrl, cdnInit]] = fetch.mock.calls;
-    expect(apiUrl).toMatch(/^https:\/\/api\.github\.com\/repos\/karacaismail\/kitaps-state\/contents\/state\.json/);
+    expect(apiUrl).toMatch(/^https:\/\/api\.github\.com\/repos\/titanlar-com\/kitaps-state\/contents\/state\.json/);
     expect(apiInit.headers.Authorization).toBeUndefined();
-    expect(cdnUrl).toBe('https://raw.githubusercontent.com/karacaismail/kitaps-state/main/state.json');
+    expect(cdnUrl).toBe('https://raw.githubusercontent.com/titanlar-com/kitaps-state/main/state.json');
     expect(cdnInit.headers).toBeUndefined();
   });
 });

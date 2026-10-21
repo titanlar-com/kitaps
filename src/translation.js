@@ -1,8 +1,9 @@
 import {publicationUrl,workFormat} from './workFormat.js';
+import {SOURCE_URL} from './site.js';
 
 // A missing search result never proves that a translation does not exist.
 const TURKISH_ONLY_LETTERS=/[ğĞşŞıİ]/;
-const SOURCE_NOTES_URL='https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md';
+const SOURCE_NOTES_URL=`${SOURCE_URL}/blob/main/data/kitaplar.md`;
 const text=value=>typeof value==='string'&&value.trim()?value.trim():'';
 const names=values=>Array.isArray(values)?values.map(text).filter(Boolean):[];
 // Source notes append printings to publishers: "Optimist Yayınları (2008)".

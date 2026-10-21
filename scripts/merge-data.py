@@ -134,7 +134,7 @@ for lc in local['collections']:
  c['roles']=[r['role'] for r in local['roles'] if r['setId']==lc['id']]
 sectionCats={'A':['strategy'],'B':['strategy'],'C':['psychology'],'D':['systems','management'],'E':['children'],'F':[],'G':['literature'],'H':['biography','history'],'K':['strategy','philosophy'],'M':[],'N':[],'P':['children'],'R':['children']}
 for sec in kitaps['sections']:
- cid='kitaps-'+sec['key'];collections.append({'id':cid,'title':sec['label'],'short':sec['label'],'description':'Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.','origin':'kitaps','source':'https://karacaismail.github.io/kitaps/','mark':sec['key'],'tag':'Kişisel kitaplık','note':'Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.'})
+ cid='kitaps-'+sec['key'];collections.append({'id':cid,'title':sec['label'],'short':sec['label'],'description':'Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.','origin':'kitaps','source':'https://titanlar-com.github.io/kitaps/','mark':sec['key'],'tag':'Kişisel kitaplık','note':'Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.'})
 for old in kitaps['books']:
  b=getbook(old['original'] or old['turkish'],old['author'],'kitaps',legacy=old['key'],extraTitles=[old['turkish']])
  mapping['kitaps:'+old['id']]=b['id'];mapping['kitaps:'+old['section']+':'+old['id']]=b['id'];offer_original(b,foreign_title(old['original'],old['turkish']),1)
@@ -143,13 +143,13 @@ for old in kitaps['books']:
  for sec in list(dict.fromkeys([old['section'],*old.get('alsoIn',[])])):
   cid='kitaps-'+sec;gid=cid+':'+(old.get('sub') or 'liste')
   if not any(g['id']==gid for g in groups):groups.append({'id':gid,'collectionId':cid,'title':old.get('sub') or 'Kitap listesi'})
-  member(b,cid,gid,source='https://karacaismail.github.io/kitaps/',note=old['note'])
+  member(b,cid,gid,source='https://titanlar-com.github.io/kitaps/',note=old['note'])
   addcat(b,*sectionCats.get(sec,[]))
 # Preserve every translation from two standalone studies omitted by the old parser.
 extras=[('I','Oscar Wilde · Reading Zindanı Baladı','The Ballad of Reading Gaol','Reading Zindanı Baladı',1898,[('Oğuz Baykara','Everest Yayınları (2017)','İngilizce aslından; kaynak notunda şiirsel okuma için öneriliyor.'),('Piyale Perver','Dedalus Kitap (2014)','İngilizce-Türkçe karşılaştırmalı basım.'),('Özdemir Asaf','Yuvarlak Masa / Kırmızı Yayınları (1968)','Fransızca üzerinden çeviri; kaynaktaki baskı uyarısına bakın.'),('Tozan Alkan','Bordo Siyah (2003) / Artshop (2006)','Kaynak dil ve güncel bulunurluk kaynakta kesinleştirilmemiş.')]),('L','Oscar Wilde · Dorian Gray','The Picture of Dorian Gray','Dorian Gray’in Portresi',1891,[('Nihal Yeğinobalı','Can Yayınları (2003)','Kaynakta edebî okuma için öneriliyor.'),('Didar Zeynep Batumlu','Türkiye İş Bankası Kültür Yayınları','Hasan Âli Yücel Klasikler Dizisi.'),('Ferit Burak Aydar','','Yayınevi kaynakta doğrulanmamış.'),('İlknur Özdemir','','Yayınevi kaynakta doğrulanmamış.')])]
 for sec,label,title,tr,year,editions in extras:
  b=getbook(title,'Oscar Wilde','kitaps',extraTitles=[tr]);b['titleTr']=tr;b['years'].append(year);addcat(b,'literature');offer_original(b,title,1)
- cid='kitaps-'+sec;collections.append({'id':cid,'title':label,'short':label,'origin':'kitaps','description':'Kaynak dosyadaki ayrıntılı çeviri karşılaştırması.','mark':sec,'tag':'Çeviri karşılaştırması','source':'https://karacaismail.github.io/kitaps/','note':'Kitaps kaynak dosyasındaki bağımsız kitap incelemesi.'});gid=cid+':liste';groups.append({'id':gid,'collectionId':cid,'title':'Çeviri karşılaştırması'});member(b,cid,gid,source='https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md')
+ cid='kitaps-'+sec;collections.append({'id':cid,'title':label,'short':label,'origin':'kitaps','description':'Kaynak dosyadaki ayrıntılı çeviri karşılaştırması.','mark':sec,'tag':'Çeviri karşılaştırması','source':'https://titanlar-com.github.io/kitaps/','note':'Kitaps kaynak dosyasındaki bağımsız kitap incelemesi.'});gid=cid+':liste';groups.append({'id':gid,'collectionId':cid,'title':'Çeviri karşılaştırması'});member(b,cid,gid,source='https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md')
  for translator,publisher,nt in editions:b['editions'].append({'id':sec,'translator':translator,'publisher':publisher,'note':nt,'status':['unverified'] if not publisher else [],'trust':None,'alt':None})
 # Specific subjects take priority over mixed-purpose section headings.
 recordCats={
@@ -164,7 +164,7 @@ cross={'M':['A3','A7','A8','A9','B9'],'N':['A8','B5','B3','A9','M3','M2','M1','M
 for sec,ids in cross.items():
  gid='kitaps-'+sec+':cross';groups.append({'id':gid,'collectionId':'kitaps-'+sec,'title':'Notlarda ilişkilendirilen kitaplar'})
  for oldid in ids:
-  b=books[mapping['kitaps:'+oldid]];member(b,'kitaps-'+sec,gid,source='https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md',note='Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir.');addcat(b,*sectionCats[sec])
+  b=books[mapping['kitaps:'+oldid]];member(b,'kitaps-'+sec,gid,source='https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md',note='Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir.');addcat(b,*sectionCats[sec])
 # Editorial topic assignments, independent from source collection membership.
 ftcats=read('data/ft-categories.json')
 for g in next(c for c in atlas['collections'] if c['id']=='ft')['groups']:
@@ -340,7 +340,7 @@ review_links.extend(('foundations',link) for link in foundations.get('links',[])
 # This source contains ten ordered recommendations. Two already exist in the
 # foundational collection, so membership is merged instead of duplicating the
 # work. The supplied order remains editorial metadata, never a fixed score.
-collections.append({'id':'preparation','title':'Ön hazırlık okuma rotası','short':'Ön hazırlık','description':'Temel okuma, düşünme, sayısal hazırlık ve alan bağlamı için doğrulanmış Türkçe baskılar.','origin':'preparation','source':'https://github.com/karacaismail/kitaps','mark':'Ö','tag':'Başlangıç rafı','note':'Okuma sırası danışmanlık önerisidir; zorunlu önkoşul veya doğrudan puan değildir.'})
+collections.append({'id':'preparation','title':'Ön hazırlık okuma rotası','short':'Ön hazırlık','description':'Temel okuma, düşünme, sayısal hazırlık ve alan bağlamı için doğrulanmış Türkçe baskılar.','origin':'preparation','source':'https://github.com/titanlar-com/kitaps','mark':'Ö','tag':'Başlangıç rafı','note':'Okuma sırası danışmanlık önerisidir; zorunlu önkoşul veya doğrudan puan değildir.'})
 preparation_groups={}
 preparation_categories={
  'hazirlik-01':['science'],'hazirlik-02':['philosophy','psychology'],'hazirlik-03':['science'],'hazirlik-04':['economy'],

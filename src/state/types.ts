@@ -1,6 +1,10 @@
 export const STATE_SCHEMA_VERSION = 2 as const;
 export const LEGACY_STATE_SCHEMA_VERSION = 1 as const;
 export const MAX_QUEUE_LENGTH = 5;
+/** The public repository that holds state.json. A write token must name this
+ * owner (an organisation) as its resource owner, or it cannot reach the repository. */
+export const GITHUB_STATE_OWNER = 'titanlar-com';
+export const GITHUB_STATE_REPOSITORY = 'kitaps-state';
 export const GITHUB_STATE_TOKEN_KEY = 'kitapatlasi:github-state:token:v1';
 export const GITHUB_STATE_PENDING_KEY = 'kitapatlasi:github-state:pending:v2';
 export const LEGACY_GITHUB_STATE_PENDING_KEY = 'kitapatlasi:github-state:pending:v1';

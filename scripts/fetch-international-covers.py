@@ -12,7 +12,7 @@ books=json.loads((ROOT/'src/catalog.json').read_text())['books']
 turkish=json.loads((ROOT/'data/turkish-covers.json').read_text())
 out=ROOT/'data/international-covers.json'; found=json.loads(out.read_text()) if out.exists() else {}
 cache=WORK/'international-cache';cache.mkdir(exist_ok=True)
-s=requests.Session();s.headers['User-Agent']='KitapAtlasi/1.0 (https://github.com/karacaismail/kitaps; public bibliography)'
+s=requests.Session();s.headers['User-Agent']='KitapAtlasi/1.0 (https://github.com/titanlar-com/kitaps; public bibliography)'
 def norm(v):return re.sub(r'[^a-z0-9]','',unicodedata.normalize('NFKD',v).encode('ascii','ignore').decode().lower())
 def title(v):return norm(re.split(r'[:：]',v)[0].removeprefix('The ').removeprefix('A '))
 def author(v):return {x for x in re.findall(r'[a-z]{3,}',unicodedata.normalize('NFKD',v).encode('ascii','ignore').decode().lower()) if x not in ['and','the']}

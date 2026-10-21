@@ -4,7 +4,7 @@
   "short": "Girişimcilik rotası",
   "description": "Müşteri keşfinden sermaye dağıtımına uzanan 35 kitap. Sabit bir müfredat yerine güncel işletme darboğazına göre kullanılır.",
   "origin": "editorial-research",
-  "source": "https://github.com/karacaismail/kitaps/blob/main/reports/Giri%C5%9Fimcilik%20kitapl%C4%B1%C4%9F%C4%B1%20geni%C5%9Fletme.md",
+  "source": "https://github.com/titanlar-com/kitaps/blob/main/reports/Giri%C5%9Fimcilik%20kitapl%C4%B1%C4%9F%C4%B1%20geni%C5%9Fletme.md",
   "groups": [
     {"id":"customer","title":"İşletme haritası, müşteri ve kanıt","books":[
       {"title":"The Personal MBA: Master the Art of Business","author":"Josh Kaufman","existingId":"personalmbamastertheartofbusiness","reason":"İşletmenin temel mekanizmalarını tek haritada görmek.","sourceUrl":"https://personalmba.com/"},

@@ -49,7 +49,7 @@ Kaynak veride hiçbir kitaba doğrudan puan yazılmaz.
 
 ## Durum deposu (şema 2)
 
-`karacaismail/kitaps-state` ikinci ve zorunlu uzak durum deposudur. Proje ve kullanıcı durumu bilinçli olarak herkese açıktır. Favoriler, sahiplik ve okuma durumları, okuma sırası, tarihler, sayfa ilerlemesi ve okuma notları `state.json` içinde tutulur ve GitHub geçmişinde görünür.
+`titanlar-com/kitaps-state` ikinci ve zorunlu uzak durum deposudur (21 Ekim 2026'da kişisel hesaptan `titanlar-com` kuruluşuna taşındı; adres `src/state/types.ts` içindedir). Proje ve kullanıcı durumu bilinçli olarak herkese açıktır. Favoriler, sahiplik ve okuma durumları, okuma sırası, tarihler, sayfa ilerlemesi ve okuma notları `state.json` içinde tutulur ve GitHub geçmişinde görünür.
 
 - **Okuma:** Anahtarlı cihazlar API'yi `If-None-Match` ile koşullu okur.
 - **Anahtarsız okuma:** Anahtarsız cihazlar periyodik okumada dosyayı `raw.githubusercontent.com` üzerinden, özel başlık göndermeden okur. Bu basit bir CORS isteğidir ve API sınırına takılmaz. Ancak CDN kopyası en fazla beş dakika gecikebilir; sorgu parametresi bu önbelleği aşmaz (5 Ekim 2026'da denendi).
@@ -82,13 +82,15 @@ Kaynak veride hiçbir kitaba doğrudan puan yazılmaz.
 ### Yazma anahtarı
 
 - Yalnızca ince ayarlı (fine-grained) kişisel erişim anahtarı (`github_pat_`) kabul edilir. Klasik ve OAuth anahtarları istek gönderilmeden reddedilir. GitHub'ın yanıtında klasik kapsam (`X-OAuth-Scopes`) görünen anahtar da kaydedilmez.
-- Anahtar oluşturma bağlantısı sahibi, Contents yazma iznini ve 90 günlük süreyi önceden doldurur; depo seçimi (yalnız `kitaps-state`) arayüzde adım adım belirtilir.
+- Anahtar oluşturma bağlantısı sahibi (`target_name=titanlar-com`), Contents yazma iznini ve 90 günlük süreyi önceden doldurur; depo seçimi (yalnız `kitaps-state`) arayüzde adım adım belirtilir.
+- İnce ayarlı anahtar yalnız seçtiği sahibin depolarına erişir: kişisel hesaba bağlı anahtar kuruluş deposuna yazamaz. Kuruluş anahtarları onaya bağlıysa (GitHub'ın varsayılanı) onay bekleyen anahtar yalnız herkese açık içeriği okuyabilir; yazma denetiminden geçemez. Kuruluş sahiplerinin anahtarları kendiliğinden onaylanır.
 - **Yazma denetimi:** Depo herkese açık olduğundan her geçerli anahtar dosyayı okuyabilir; okuma, yazma izni olduğunu kanıtlamaz.
-  - Kaydetmeden önce anahtarla `POST /repos/karacaismail/kitaps-state/git/blobs` ile küçük, hep aynı içerikte bir blob oluşturulur. Bu istek kaydetmeyle aynı Contents yazma iznini ister, ama hiçbir dalı değiştirmez ve commit oluşturmaz.
-  - Bu denetim Git nesnelerine yazma iznini kanıtlar; `main` dalına doğrudan commit'i engelleyen bir kural (yalnız PR ile birleştirme) olsaydı denetim geçer ama kayıtlar reddedilirdi. `kitaps-state` deposunda böyle bir kural yoktur.
+  - Kaydetmeden önce anahtarla `POST /repos/titanlar-com/kitaps-state/git/blobs` ile küçük, hep aynı içerikte bir blob oluşturulur. Bu istek kaydetmeyle aynı Contents yazma iznini ister, ama hiçbir dalı değiştirmez ve commit oluşturmaz.
+  - Bu denetim Git nesnelerine yazma iznini kanıtlar; `main` dalına doğrudan commit'i engelleyen bir kural (yalnız PR ile birleştirme) olsaydı denetim geçer ama kayıtlar reddedilirdi. `kitaps-state` deposunda böyle bir kural yoktur (taşımadan sonra, 21 Ekim 2026'da yeniden denetlendi: depoya ya da kuruluştan gelen kural seti ve dal koruması yok).
   - İkincil istek sınırı (`Retry-After` ile 403) yazamayan anahtar sayılmaz, istek sınırı olarak bildirilir.
   - Yazamayan anahtar ("Bu anahtar kitaps-state deposuna yazamıyor") kaydedilmez. Önceki sürüm yalnız okumayı denetlediği için yazamayan bir anahtarı "doğrulandı" diye kabul edebiliyordu.
-- Anahtar tarayıcının `localStorage` alanında tutulur ve istek gövdesine yazılmaz. `karacaismail.github.io` altındaki bütün Pages siteleri aynı kaynağı paylaştığından, bu alan o sitelerdeki betiklerce okunabilir. Bu yüzden anahtarın yetkisi tek depo ve tek izinle sınırlandırılır. Tam yalıtım için uygulama ayrı bir kaynağa (özel alan adı) taşınmalıdır.
+- Anahtar tarayıcının `localStorage` alanında tutulur ve istek gövdesine yazılmaz. `titanlar-com` kuruluşunun özel alan adı kullanmayan bütün Pages siteleri `https://titanlar-com.github.io` kaynağını paylaştığından, bu alan o sitelerdeki betiklerce okunabilir. Kişisel hesapta bu alana yalnız hesap sahibi yayın yapabiliyordu; kuruluşta Pages yayımlayabilen her üye ve Pages'a yayın yapan her iş akışı yapabilir (21 Ekim 2026'da kuruluşun tek üyesi sahibiydi ve üyelerin Pages oluşturma izni açıktı). Bu yüzden anahtarın yetkisi tek depo ve tek izinle sınırlandırılır. Yeni üye eklenirse üyelerin Pages oluşturma izni kısıtlanmalıdır. Tam yalıtım için uygulama ayrı bir kaynağa (özel alan adı) taşınmalıdır.
+- `localStorage` kaynağa bağlıdır. Site yeni kaynağa taşındığında anahtar, kuyruk ve diğer yerel kayıtlar yeni adrese geçmez; her cihaz yeniden bağlanır. Anahtar adları (`kitapatlasi:github-state:*`) bu yüzden değiştirilmedi.
 
 ### Görünürlük
 

@@ -5068,13 +5068,13 @@
         {
           "collectionId": "kitaps-B",
           "groupId": "kitaps-B:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Akademik literatürün standart atıf ettiği çeviri."
         },
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         },
         {
@@ -5753,7 +5753,7 @@
         {
           "collectionId": "kitaps-M",
           "groupId": "kitaps-M:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -6081,13 +6081,13 @@
         {
           "collectionId": "kitaps-M",
           "groupId": "kitaps-M:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         },
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         },
         {
@@ -6882,7 +6882,7 @@
         {
           "collectionId": "kitaps-D",
           "groupId": "kitaps-D:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Sutherland'ın Scrum'da atıf verdiği kaynak. Muda / Mura / Muri buradan gelir."
         },
         {
@@ -8641,13 +8641,13 @@
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:N.1 — Bireysel irade ve öz-strateji",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Bu listenin temel kitabı. İrade sorununun kaynağı istek eksikliği değil, Sistem 1'in Sistem 2'yi ele geçirmesi. Kendi kararlarındaki sistematik hataları görmeden strateji kuramazsın."
         },
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:uzun-vadeli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Değerli ama yoğun: daha fazla dikkat ayrılacak, uzun vadeli bir okuma. Okuma düzenini yeniden kurmak için ilk kitap olarak önerilmiyor."
         }
       ],
@@ -10138,13 +10138,13 @@
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Karşılıklılık, tutarlılık, sosyal kanıt, otorite, beğeni, kıtlık. Hem ikna etmek hem ikna edilmemek için."
         },
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "İkna üzerine tek kitap alınacaksa ilk seçim ve konunun genel temeli. Sihirli Kelimeler ile Stratejik İkna’yı başlangıçta birlikte almak gerekmiyor."
         }
       ],
@@ -10324,7 +10324,7 @@
         {
           "collectionId": "kitaps-A",
           "groupId": "kitaps-A:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İlk baskı 2000, 2023'te 32. baskı."
         }
       ],
@@ -11682,7 +11682,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Drucker’a ilk kez başlanacaksa önce bu ana eser okunmalı; rafta duran Etkin Yönetici, bunun uygulama defteridir ve ardından gelir. Ana eserin Türkçe baskısı şu anda kitapçılarda satışta bulunamadı."
         }
       ],
@@ -11954,19 +11954,19 @@
         {
           "collectionId": "kitaps-A",
           "groupId": "kitaps-A:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Şemalar ağırlıklı olduğu için çeviri riski düşük."
         },
         {
           "collectionId": "kitaps-M",
           "groupId": "kitaps-M:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         },
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         },
         {
@@ -13021,7 +13021,7 @@
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 1
         }
@@ -16571,7 +16571,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Yeniden taramada iş ve yönetim için seçilen kitap. Amaç işletmeyi ve ekip yönetimini geliştirmekse Her Zamanki Gibi ile Mor İnek’in önüne geçiyor."
         }
       ],
@@ -27537,19 +27537,19 @@
         {
           "collectionId": "kitaps-A",
           "groupId": "kitaps-A:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Çeviri ağır eleştiri alıyor (makine çevirisine benzetiliyor). İngilizcesini oku."
         },
         {
           "collectionId": "kitaps-M",
           "groupId": "kitaps-M:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         },
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         },
         {
@@ -30451,7 +30451,7 @@
         {
           "collectionId": "kitaps-C",
           "groupId": "kitaps-C:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Çeviri ciddi eleştiri alıyor; teknik dil ve argümanlar kayboluyor. Önerilen: Nudge: The Final Edition (Penguin, 2021) — yazarların baştan yazdığı sürüm, Türkçesi yok."
         }
       ],
@@ -35094,13 +35094,13 @@
         {
           "collectionId": "kitaps-M",
           "groupId": "kitaps-M:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         },
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         }
       ],
@@ -36019,7 +36019,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "İknanın Psikolojisi ile birlikte iki kitaplık seçimin ikincisi. Araştırmaları düzenli yazıya dönüştürmek öncelikse yerine Turabian’ın el kitabı alınabilir."
         }
       ],
@@ -36648,7 +36648,7 @@
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Roman biçiminde. Güven yokluğu → çatışma korkusu → bağlılık eksikliği → hesap verebilirlikten kaçınma → sonuçlara kayıtsızlık zinciri. Ekip teşhisi için hızlı araç."
         }
       ],
@@ -38375,7 +38375,7 @@
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 2
         }
@@ -39934,7 +39934,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Pazarlama bilgisini geliştirmek öncelikse Her Zamanki Gibi’nin yerine alınacak kitap; serinin birinci kitabıyla başlanmalı."
         }
       ],
@@ -40028,7 +40028,7 @@
         {
           "collectionId": "kitaps-A",
           "groupId": "kitaps-A:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Çince aslından. Diğer baskılar İngilizce üzerinden."
         }
       ],
@@ -40121,7 +40121,7 @@
         {
           "collectionId": "kitaps-A",
           "groupId": "kitaps-A:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İtalyanca aslından, açıklamalı. Alternatif: Betül Parlak çevirisi."
         }
       ],
@@ -40205,13 +40205,13 @@
         {
           "collectionId": "kitaps-A",
           "groupId": "kitaps-A:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Tam metin şart. Şiar Yalçın / Spartaküs (1997): 4-5-6-7. Kitaplar eksik. Dorlion \"Savaş Üzerine & Savaşın Esasları\" birleştirilmiş baskı tam Vom Kriege değil."
         },
         {
           "collectionId": "kitaps-M",
           "groupId": "kitaps-M:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         }
       ],
@@ -40334,19 +40334,19 @@
         {
           "collectionId": "kitaps-A",
           "groupId": "kitaps-A:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Japonca aslından, 216 s. Diğerleri (Anahtar, Urzeni, Kopernik, Dorlion) ara dilden ve kısaltılmış."
         },
         {
           "collectionId": "kitaps-K",
           "groupId": "kitaps-K:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "K1'in yalnız Go Rin no Sho içeren, daha ince sürümü. Sadece Beş Çember istiyorsan bu."
         },
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         }
       ],
@@ -40532,13 +40532,13 @@
         {
           "collectionId": "kitaps-A",
           "groupId": "kitaps-A:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Japonca aslından. Arion \"Hagakure – Savaşçının Yüreği\" (çev. \"kolektif\")."
         },
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         }
       ],
@@ -40620,7 +40620,7 @@
         {
           "collectionId": "kitaps-A",
           "groupId": "kitaps-A:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "888 s. L. N. Rangarajan'ın İngilizce edisyonu üzerinden — Sanskritçe aslından değil."
         }
       ],
@@ -40698,13 +40698,13 @@
         {
           "collectionId": "kitaps-A",
           "groupId": "kitaps-A:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Alternatif: Cemal Enginsoy, ASAM (2002, 349 s.). Doruk baskısı daha kapsamlı ve satışta."
         },
         {
           "collectionId": "kitaps-M",
           "groupId": "kitaps-M:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         }
       ],
@@ -40801,7 +40801,7 @@
         {
           "collectionId": "kitaps-A",
           "groupId": "kitaps-A:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "A10'un devamı ve stratejik olarak daha ağırı: Clausewitz, Sun Tzu, Musashi ve Napolyon'u tek çerçevede toplar. A3/A4/A7 ile doğrudan konuşur."
         }
       ],
@@ -40880,7 +40880,7 @@
         {
           "collectionId": "kitaps-B",
           "groupId": "kitaps-B:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Antik Yunanca aslından, çeviri iyi; editörlük/dizgi zayıf."
         }
       ],
@@ -40958,7 +40958,7 @@
         {
           "collectionId": "kitaps-B",
           "groupId": "kitaps-B:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Sade ve akıcı ama metne müdahale/ekleme var. Alt.: Zakir Kadiri Ugan, MEB (1954-57, 3 c.) — dili eski, bulması zor. Turan Dursun (Onur) yarım. Sevim Belli: Fransızcadan (Monteil üzerinden)."
         }
       ],
@@ -41046,7 +41046,7 @@
         {
           "collectionId": "kitaps-B",
           "groupId": "kitaps-B:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "B3'ün tamamlayıcısı."
         }
       ],
@@ -41129,13 +41129,13 @@
         {
           "collectionId": "kitaps-B",
           "groupId": "kitaps-B:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         },
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         },
         {
@@ -41230,7 +41230,7 @@
         {
           "collectionId": "kitaps-B",
           "groupId": "kitaps-B:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Türkçe baskısı teyit edilemedi. İngilizce oku."
         }
       ],
@@ -41307,7 +41307,7 @@
         {
           "collectionId": "kitaps-B",
           "groupId": "kitaps-B:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İngilizce okunacak."
         }
       ],
@@ -41382,7 +41382,7 @@
         {
           "collectionId": "kitaps-B",
           "groupId": "kitaps-B:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Luttwak'ın Türkçedeki mevcut kitapları: Bizans İmparatorluğu'nun Büyük Stratejisi (648 s.) ve Doruk'tan bir başlık daha. Çevirmenleri doğrulanmadı."
         }
       ],
@@ -41468,19 +41468,19 @@
         {
           "collectionId": "kitaps-B",
           "groupId": "kitaps-B:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Clausewitz–Jomini–Liddell Hart–Luttwak hattını tek ciltte veren Türkçe kaynak."
         },
         {
           "collectionId": "kitaps-M",
           "groupId": "kitaps-M:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         },
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 11
         }
@@ -41575,7 +41575,7 @@
         {
           "collectionId": "kitaps-C",
           "groupId": "kitaps-C:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "En yaygın atıf alan baskı bu; ancak Fransızca aslından mı olduğu . Dorlion (2020) baskısı çeviri kalitesi nedeniyle eleştiriliyor."
         }
       ],
@@ -41659,7 +41659,7 @@
         {
           "collectionId": "kitaps-C",
           "groupId": "kitaps-C:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Almanca aslından. Piyasada M. Sezai Durgun–Adnan Gümüş çevirisi de var."
         }
       ],
@@ -41752,7 +41752,7 @@
         {
           "collectionId": "kitaps-C",
           "groupId": "kitaps-C:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -41841,7 +41841,7 @@
         {
           "collectionId": "kitaps-C",
           "groupId": "kitaps-C:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Eski baskı: çev. Şahin Cüceloğlu, Sistem Yayıncılık (1997). Bilimsel bir kitap değil — C1 (Thaler/Sunstein) ve C4 (Goffman) gibi araştırmaya dayanmıyor; 1952 tarihli, dinî tonlu popüler bir telkin kitabı. Amerikan \"olumlu düşünme\" kültürünün kurucu belgesi olarak okunur; davranış bilimi kaynağı olarak değil."
         }
       ],
@@ -41927,7 +41927,7 @@
         {
           "collectionId": "kitaps-D",
           "groupId": "kitaps-D:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         },
         {
@@ -42032,7 +42032,7 @@
         {
           "collectionId": "kitaps-D",
           "groupId": "kitaps-D:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İngilizce okunacak."
         }
       ],
@@ -42110,19 +42110,19 @@
         {
           "collectionId": "kitaps-E",
           "groupId": "kitaps-E:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İsveççe aslından."
         },
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "9+"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Bağımsızlık, aile otoritesi ve dostluk; güçlü bir kız kahraman."
         }
       ],
@@ -42252,19 +42252,19 @@
         {
           "collectionId": "kitaps-E",
           "groupId": "kitaps-E:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Devamı: Şamatalı Köy'de Eğlence, Şamatalı Köy'de Neler Oluyor. Lindgren'in Türkçedeki tamamı İthaki + Ali Arda."
         },
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "7+"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Çocukluk, oyun ve topluluk."
         },
         {
@@ -42393,7 +42393,7 @@
         {
           "collectionId": "kitaps-E",
           "groupId": "kitaps-E:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Resimleyen: Mert Tugen. 9 yaş+."
         }
       ],
@@ -42481,13 +42481,13 @@
         {
           "collectionId": "kitaps-E",
           "groupId": "kitaps-E:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Newbery Ödüllü."
         },
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "9+"
         }
       ],
@@ -42604,19 +42604,19 @@
         {
           "collectionId": "kitaps-E",
           "groupId": "kitaps-E:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Resimleyen: Gözde Bitir. Yayın editörü: Müren Beykan."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Fabrikada üretilmiş kusursuz uslu bir çocuğun yanlış adrese teslim edilmesi; iyi çocuk olmak her söyleneni yapmak mıdır?"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Fabrikada üretilmiş kusursuz uslu bir çocuğun yanlış adrese teslim edilmesi; iyi çocuk olmak her söyleneni yapmak mıdır?"
         }
       ],
@@ -42716,13 +42716,13 @@
         {
           "collectionId": "kitaps-E",
           "groupId": "kitaps-E:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "9-12 yaş."
         },
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "10+"
         }
       ],
@@ -42831,7 +42831,7 @@
         {
           "collectionId": "kitaps-E",
           "groupId": "kitaps-E:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Tekil kitabın yazar/çevirmen künyesi doğrulanamadı."
         }
       ],
@@ -42897,7 +42897,7 @@
         {
           "collectionId": "kitaps-F",
           "groupId": "kitaps-F:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Otobiyografik üçlemenin 2. kitabı. Rusça aslından."
         }
       ],
@@ -42977,7 +42977,7 @@
         {
           "collectionId": "kitaps-F",
           "groupId": "kitaps-F:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Klasik ve en çok övülen çeviri. Yeni alternatif: Mehmet Hakkı Suçin, Kırmızı Yayınları (2016) — Cibran'ın kendi çizimleri renkli basımlı."
         }
       ],
@@ -43060,7 +43060,7 @@
         {
           "collectionId": "kitaps-F",
           "groupId": "kitaps-F:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Tek kanonik yayıncı Remzi."
         }
       ],
@@ -43137,7 +43137,7 @@
         {
           "collectionId": "kitaps-F",
           "groupId": "kitaps-F:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Aradığın infografik kitap bu."
         }
       ],
@@ -43230,7 +43230,7 @@
         {
           "collectionId": "kitaps-F",
           "groupId": "kitaps-F:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Atwood önsözü + Huxley'nin 14 yıl sonra yazdığı önsöz + Bradshaw sonsözü ile. Alt.: Orhan Burian (MEB) — dili Osmanlıca ağırlıklı."
         }
       ],
@@ -43325,7 +43325,7 @@
         {
           "collectionId": "kitaps-F",
           "groupId": "kitaps-F:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Patrick Parrinder'ın makalesiyle zenginleştirilmiş."
         }
       ],
@@ -43405,7 +43405,7 @@
         {
           "collectionId": "kitaps-F",
           "groupId": "kitaps-F:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "1934 Sorbonne konferansları; Fransızca 1935, Türkçesi 1959."
         }
       ],
@@ -43481,7 +43481,7 @@
         {
           "collectionId": "kitaps-F",
           "groupId": "kitaps-F:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Sert kapak baskısı mevcut, 7. baskıda."
         }
       ],
@@ -43556,7 +43556,7 @@
         {
           "collectionId": "kitaps-F",
           "groupId": "kitaps-F:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İlk baskı Metis (1990'lar); güncel hakları Everest'te."
         }
       ],
@@ -43633,13 +43633,13 @@
         {
           "collectionId": "kitaps-F",
           "groupId": "kitaps-F:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Ayrıntı için aşağıdaki Bölüm I'e bak."
         },
         {
           "collectionId": "kitaps-I",
           "groupId": "kitaps-I:liste",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md"
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md"
         }
       ],
       "notes": [],
@@ -43754,7 +43754,7 @@
         {
           "collectionId": "kitaps-G",
           "groupId": "kitaps-G:Dostoyevski",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Alt.: Ergin Altay, İletişim."
         }
       ],
@@ -43850,7 +43850,7 @@
         {
           "collectionId": "kitaps-G",
           "groupId": "kitaps-G:Dostoyevski",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Okur karşılaştırmalarında Ergin Altay (İletişim, 795 s.) çevirisinin bir tık önünde."
         }
       ],
@@ -43944,7 +43944,7 @@
         {
           "collectionId": "kitaps-G",
           "groupId": "kitaps-G:Dostoyevski",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Alt.: Ergin Altay, İletişim."
         }
       ],
@@ -44037,7 +44037,7 @@
         {
           "collectionId": "kitaps-G",
           "groupId": "kitaps-G:Dostoyevski",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İş Bankası baskısı (Mazlum Beyhan) da güçlü — künyeden teyit et."
         }
       ],
@@ -44133,7 +44133,7 @@
         {
           "collectionId": "kitaps-G",
           "groupId": "kitaps-G:Tolstoy",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Tolstoy'un üslubunu koruma stratejisiyle yapılmış. Alt.: Tanju Akgün (İş Bankası), Leyla Soykut (Cem, 1968 — anlamı üsluba tercih eder)."
         }
       ],
@@ -44216,7 +44216,7 @@
         {
           "collectionId": "kitaps-G",
           "groupId": "kitaps-G:Tolstoy",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İş Bankası baskısı da yaygın — künyeden teyit et."
         }
       ],
@@ -44309,7 +44309,7 @@
         {
           "collectionId": "kitaps-G",
           "groupId": "kitaps-G:Tolstoy",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Çevirmen künyeden teyit edilmeli."
         }
       ],
@@ -44399,7 +44399,7 @@
         {
           "collectionId": "kitaps-G",
           "groupId": "kitaps-G:Tolstoy",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Çevirmen doğrulanamadı."
         }
       ],
@@ -44471,7 +44471,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -44580,7 +44580,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -44690,7 +44690,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -44803,7 +44803,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -44915,7 +44915,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -45031,7 +45031,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -45139,7 +45139,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -45227,7 +45227,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -45312,7 +45312,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -45424,7 +45424,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -45513,7 +45513,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -45625,7 +45625,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -45712,7 +45712,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -45818,7 +45818,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -45926,7 +45926,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -46038,7 +46038,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -46146,7 +46146,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -46233,7 +46233,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -46321,7 +46321,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -46408,7 +46408,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -46497,7 +46497,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -46584,7 +46584,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -46692,7 +46692,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -46804,7 +46804,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -46912,7 +46912,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -47028,7 +47028,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -47140,7 +47140,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -47252,7 +47252,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -47360,7 +47360,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -47467,7 +47467,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -47554,7 +47554,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -47641,7 +47641,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -47749,7 +47749,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -47838,7 +47838,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -47944,7 +47944,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -48050,7 +48050,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -48158,7 +48158,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -48266,7 +48266,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -48374,7 +48374,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -48461,7 +48461,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -48569,7 +48569,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -48681,7 +48681,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -48793,7 +48793,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -48880,7 +48880,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -48990,7 +48990,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -49102,7 +49102,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:H.2 — Eklenmeliydi: eksik isimler ve başka yayınevlerinden alınabilecek karşılıkları",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -49212,7 +49212,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:H.2 — Eklenmeliydi: eksik isimler ve başka yayınevlerinden alınabilecek karşılıkları",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -49327,7 +49327,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:H.2 — Eklenmeliydi: eksik isimler ve başka yayınevlerinden alınabilecek karşılıkları",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -49417,7 +49417,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:H.2 — Eklenmeliydi: eksik isimler ve başka yayınevlerinden alınabilecek karşılıkları",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -49527,7 +49527,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:H.2 — Eklenmeliydi: eksik isimler ve başka yayınevlerinden alınabilecek karşılıkları",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -49636,7 +49636,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:H.2 — Eklenmeliydi: eksik isimler ve başka yayınevlerinden alınabilecek karşılıkları",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -49755,7 +49755,7 @@
         {
           "collectionId": "kitaps-H",
           "groupId": "kitaps-H:H.2 — Eklenmeliydi: eksik isimler ve başka yayınevlerinden alınabilecek karşılıkları",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -49865,7 +49865,7 @@
         {
           "collectionId": "kitaps-K",
           "groupId": "kitaps-K:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İngilizce için en iyi tek alım. Japonya'nın önde gelen Musashi uzmanının yeniden kurduğu metinden; mevcut nüshalar arasındaki farkları saptayıp 150'den fazla hatalı karakteri düzeltiyor. Dokkōdō dâhil Musashi'nin diğer yazıları da içinde."
         }
       ],
@@ -49945,7 +49945,7 @@
         {
           "collectionId": "kitaps-K",
           "groupId": "kitaps-K:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Aradığın \"illustrated\" baskı bu. Metin sadık ama damıtılmış — ana metnin yerine değil, yanına."
         }
       ],
@@ -50023,7 +50023,7 @@
         {
           "collectionId": "kitaps-K",
           "groupId": "kitaps-K:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Dikkat: buradaki \"The Way of the Samurai\" Hagakure DEĞİL — Inazo Nitobe'nin Bushido: The Soul of Japan kitabı. Yani A5'in İngilizcesi değil, ayrı bir eser. Ayrıca Five Rings çevirisi eskimiş Harris sürümü. Hediyelik/dekoratif olarak iyi, çalışma metni olarak zayıf — üç metnin de daha iyi Türkçesi zaten A1, A4, A5'te. Kutu seti sürümü: The Path of the Warrior Ornate Box Set (Arcturus)."
         }
       ],
@@ -50102,13 +50102,13 @@
         {
           "collectionId": "kitaps-K",
           "groupId": "kitaps-K:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Musashi'nin ölümünden bir hafta önce yazdığı 21 ilke. Müstakil kitap olarak alınmaz; K1 The Complete Musashi içinde tam metin var — en temiz yol bu. Yorumlu müstakil baskı: Musashi's Dokkodo (The Way of Walking Alone): Half Crazy, Half Genius (Burrese, Kane, Wilder v.d.). İthaki baskısının (A4) Dokkōdō'yu ek olarak içerip içermediği künyeden kontrol edilmeli."
         },
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         }
       ],
@@ -50189,7 +50189,7 @@
         {
           "collectionId": "kitaps-K",
           "groupId": "kitaps-K:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Türkçesi var. Çok ciltli: Musashi I. Kitap: Kılıç ve Delikanlı ile başlıyor. Musashi'yi bir karakter olarak tanımanın yolu; Beş Çember'in tarihsel-duygusal arka planı. İngilizce: Charles S. Terry çevirisi (Kodansha, tek cilt ~970 s.) veya yeni kısaltmasız Alexander Bennett çevirisi (Tuttle)."
         }
       ],
@@ -50285,13 +50285,13 @@
         {
           "collectionId": "kitaps-M",
           "groupId": "kitaps-M:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         },
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         }
       ],
@@ -50386,7 +50386,7 @@
         {
           "collectionId": "kitaps-M",
           "groupId": "kitaps-M:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -50477,13 +50477,13 @@
         {
           "collectionId": "kitaps-M",
           "groupId": "kitaps-M:liste",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         },
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:cross",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
         }
       ],
@@ -50603,7 +50603,7 @@
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:N.1 — Bireysel irade ve öz-strateji",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Motivasyonun üç ayağı: özerklik, ustalık, amaç. Hem kendine hem ekibine uygulanır — bu yüzden N.1 ile N.3 arasında köprü."
         }
       ],
@@ -50696,7 +50696,7 @@
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:N.1 — Bireysel irade ve öz-strateji",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İrade edebiyatının kurucu metni ve M6'nın (Holiday) kaynağı. Alternatif: Düşünceler, çev. Şadan Karadeniz, Yapı Kredi Yayınları."
         }
       ],
@@ -50792,13 +50792,13 @@
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:N.1 — Bireysel irade ve öz-strateji",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İradeyi sisteme çeviren pratik kitap. Teorik derinliği yok ama uygulama tarafı listedeki en somut olanı."
         },
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Önceki güçlü öneriler arasında kalıyor; alışkanlık kurmak için Küçük Alışkanlıklar ile aynı ihtiyaca yanıt verir."
         }
       ],
@@ -50897,13 +50897,13 @@
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Çalışanla zor konuşmanın en sağlam yöntemi: gözlem → duygu → ihtiyaç → rica. Suçlamadan sonuç almanın tekniği. Eski baskı: çev. Mahmut Tuna, Sistem Yayıncılık."
         },
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Raflardan yalnızca iki kitap alınacaksa ilk seçim: günlük hayata ve işe hemen uygulanabilecek bir iletişim yöntemi."
         }
       ],
@@ -51039,7 +51039,7 @@
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "FBI rehine müzakerecisinin yöntemi. Üst yönetimle konuşurken en işe yarayanı — \"taktiksel empati\", etiketleme, kalibre edilmiş sorular."
         },
         {
@@ -51135,7 +51135,7 @@
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Doğrudan geri bildirim ile kişisel ilgiyi aynı anda tutmak. Yıkıcı empati (söyleyememe) ile saldırgan samimiyet (kırıcı olma) arasındaki dar yol."
         },
         {
@@ -51241,7 +51241,7 @@
         {
           "collectionId": "kitaps-N",
           "groupId": "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Harvard müzakere yönteminin klasiği: pozisyon değil çıkar üzerinden pazarlık, BATNA kavramı. Türkçe ad ve künye baskıya göre değişiyor — kontrol et."
         }
       ],
@@ -51330,19 +51330,19 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "7+"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Dostluk, sevgi ve yetişkinlerin önem verdiği şeyler üzerine; ilk okumada bütün katmanları çözmesi beklenmeden tanışılıp ileride dönülecek bir kitap."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Dostluk, sevgi ve yetişkinlerin önem verdiği şeyler üzerine; ilk okumada bütün katmanları çözmesi beklenmeden tanışılıp ileride dönülecek bir kitap."
         },
         {
@@ -51494,13 +51494,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "8+"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Hayal gücü, mizah ve davranışların sonuçları."
         },
         {
@@ -51605,19 +51605,19 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "8+"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kitapları seven, zekâsını kullanan ve haksızlığa karşı duran bir kız kahraman; yetişkinlerin her zaman haklı olmadığını konuşturur."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kitapları seven, zekâsını kullanan ve haksızlığa karşı duran bir kız kahraman; yetişkinlerin her zaman haklı olmadığını konuşturur."
         },
         {
@@ -51726,13 +51726,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "8+"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Merak edip dünyayı görmek isteyen küçük balığın yolculuğu; cesaret ve özgürlük üzerine."
         }
       ],
@@ -51832,7 +51832,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "9+"
         }
       ],
@@ -51920,19 +51920,19 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "9+"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Charlotte ile Wilbur'un dostluğu; sevgi, sadakat ve başka bir canlının yaşamını önemsemek üzerine."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Charlotte ile Wilbur'un dostluğu; sevgi, sadakat ve başka bir canlının yaşamını önemsemek üzerine."
         },
         {
@@ -52054,13 +52054,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "10+"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:12-13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Zezé'nin yoksulluk, sevgi arayışı ve hayal dünyası; edebî tanışma listesinin önemli kitaplarından."
         },
         {
@@ -52166,13 +52166,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.1 — Çekirdek 12: bunlar bitmeden gerisine geçme",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "9+"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Hikâyenin içine girme ve bir sonraki bölümü merak etme zevki için; önce yalnızca ilk kitap."
         },
         {
@@ -52294,13 +52294,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.2 — Klasik çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Künye doğrulanmadı"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Macera, cesaret, akıl ve aidiyet; yolculuk boyunca her karakter aradığının kendinde olduğunu keşfeder."
         },
         {
@@ -52408,13 +52408,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.2 — Klasik çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Can Çocuk ve İş Bankası baskıları var; kelime oyunları yüzünden çevirmen kritik — künyeye mutlaka bak"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Dil oyunları, mantık ve absürt düşünme."
         },
         {
@@ -52528,13 +52528,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.2 — Klasik çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Doğa, aidiyet ve arkadaşlık."
         },
         {
@@ -52642,7 +52642,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.2 — Klasik çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -52728,13 +52728,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.2 — Klasik çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Mizah, nezaket, yabancılık ve bir yere ait olma üzerine."
         },
         {
@@ -52844,7 +52844,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.2 — Klasik çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Uyarlama al, tam metin 10 yaş için ağır"
         }
       ],
@@ -52911,13 +52911,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.2 — Klasik çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Aynı uyarı"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Macera edebiyatına güçlü bir giriş."
         },
         {
@@ -53026,7 +53026,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.2 — Klasik çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -53116,13 +53116,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.3 — Türk çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Türk çocuk edebiyatının klasiği"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Türk çocuk edebiyatının klasiği."
         }
       ],
@@ -53210,7 +53210,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.3 — Türk çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -53303,13 +53303,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.3 — Türk çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Sözlü gelenek girişi"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Türk sözlü anlatı geleneğiyle ilk tanışma."
         },
         {
@@ -53411,7 +53411,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.3 — Türk çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -53472,7 +53472,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.3 — Türk çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -53533,7 +53533,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.3 — Türk çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Cahit Uçuk daha çok Türk İkizleri ile bilinir — künye kontrol et"
         }
       ],
@@ -53594,7 +53594,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.3 — Türk çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Yazar-eser eşleşmesi doğrulanmadı"
         }
       ],
@@ -53655,7 +53655,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.3 — Türk çocuk edebiyatı",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Aynı uyarı"
         }
       ],
@@ -53716,7 +53716,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.4 — Duygusal gelişim ve hayat dersleri",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -53801,7 +53801,7 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.4 — Duygusal gelişim ve hayat dersleri",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         }
       ],
@@ -53886,13 +53886,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.5 — Masal ve mitoloji",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İş Bankası'nın baskısı var"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kısa fabllarla sonuç ve karakter üzerine ilk sohbetler."
         },
         {
@@ -54000,13 +54000,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.5 — Masal ve mitoloji",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Kısaltılmamış baskılar 8 yaş için sert olabilir — yaşa uygun derlemeyi seç"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Masal geleneğinin temeli."
         }
       ],
@@ -54142,13 +54142,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.5 — Masal ve mitoloji",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Masal geleneğinin temeli."
         },
         {
@@ -54252,13 +54252,13 @@
         {
           "collectionId": "kitaps-P",
           "groupId": "kitaps-P:P.5 — Masal ve mitoloji",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": ""
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Dünya mitolojilerinden iyi bir uyarlama."
         }
       ],
@@ -54346,7 +54346,7 @@
         {
           "collectionId": "kitaps-R",
           "groupId": "kitaps-R:R.1 — Kitaplar",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Bu listedeki en değerli kitap. Sapiens'in kısaltması değil, çocuklar için baştan yazılmış. \"Neden biz?\" sorusunun cevabı."
         }
       ],
@@ -54433,7 +54433,7 @@
         {
           "collectionId": "kitaps-R",
           "groupId": "kitaps-R:R.1 — Kitaplar",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Astrofizik + macera. Devamı: George'un Kozmik Hazine Avı."
         }
       ],
@@ -54523,7 +54523,7 @@
         {
           "collectionId": "kitaps-R",
           "groupId": "kitaps-R:R.1 — Kitaplar",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Merak duygusunu besleyen resimli seri; 5-8 yaş"
         }
       ],
@@ -54608,7 +54608,7 @@
         {
           "collectionId": "kitaps-R",
           "groupId": "kitaps-R:R.1 — Kitaplar",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Çocuk sorularına uzmanların cevabı"
         }
       ],
@@ -54691,7 +54691,7 @@
         {
           "collectionId": "kitaps-R",
           "groupId": "kitaps-R:R.1 — Kitaplar",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Türkçe baskısı doğrulanmadı"
         }
       ],
@@ -54765,7 +54765,7 @@
         {
           "collectionId": "kitaps-R",
           "groupId": "kitaps-R:R.1 — Kitaplar",
-          "source": "https://karacaismail.github.io/kitaps/",
+          "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Çevre farkındalığı"
         }
       ],
@@ -54831,7 +54831,7 @@
         {
           "collectionId": "kitaps-L",
           "groupId": "kitaps-L:liste",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md"
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/kitaplar.md"
         }
       ],
       "notes": [],
@@ -55966,7 +55966,7 @@
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 3
         }
@@ -56156,7 +56156,7 @@
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 4
         }
@@ -56861,7 +56861,7 @@
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 5
         }
@@ -57017,7 +57017,7 @@
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 6
         }
@@ -57172,7 +57172,7 @@
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 12
         }
@@ -57415,7 +57415,7 @@
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 7
         },
@@ -57960,14 +57960,14 @@
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 8
         },
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Fotoğraftaki iki kitaptan önce okunacak olan ve sosyolojiye iyi bir giriş: gündelik hayatta doğal ve kişisel sandığımız davranışların arkasındaki toplumsal ilişkileri sorgulatır. Yönetici için değeri, kişiyi suçlamadan önce sınanacak alternatif açıklamalar üretmesi: yeni sisteme direnç, zamanında bitmeyen işler, karşılık bulmayan iyi bir ürün, uygulanmayan kararlar."
         }
       ],
@@ -58239,7 +58239,7 @@
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 9
         },
@@ -58683,7 +58683,7 @@
         {
           "collectionId": "foundations",
           "groupId": "foundations:baslangic",
-          "source": "https://github.com/karacaismail/kitaps",
+          "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 10
         }
@@ -60147,13 +60147,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kurallara sığmayan, bağımsız ve hayal gücü güçlü bir kız kahraman; \"herkes gibi olmak zorunda mıyım?\" sorusunu öğütle değil mizahla açar."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kurallara sığmayan, bağımsız ve hayal gücü güçlü bir kız kahraman; \"herkes gibi olmak zorunda mıyım?\" sorusunu öğütle değil mizahla açar."
         },
         {
@@ -60246,13 +60246,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Zackarina ile Kumkurdu'nun kısa öyküleri çocuğun sorularını ciddiye alır; gündelik olaylardan büyük düşüncelere açılır. Birlikte okuyup konuşmaya uygun."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Zackarina ile Kumkurdu'nun kısa öyküleri çocuğun sorularını ciddiye alır; gündelik olaylardan büyük düşüncelere açılır. Birlikte okuyup konuşmaya uygun."
         }
       ],
@@ -60326,13 +60326,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kaleme yeni bir ad veren çocuğun hikâyesi; dil, kurallar, yaratıcılık ve bir fikrin nasıl yayıldığı üzerine düşündürür."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kaleme yeni bir ad veren çocuğun hikâyesi; dil, kurallar, yaratıcılık ve bir fikrin nasıl yayıldığı üzerine düşündürür."
         },
         {
@@ -60413,13 +60413,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Okulu, arkadaşlığı ve yetişkinleri çocuğun gözünden anlatan mizah; yalnızca gülmek için de okunabilir."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Okulu, arkadaşlığı ve yetişkinleri çocuğun gözünden anlatan mizah; yalnızca gülmek için de okunabilir."
         }
       ],
@@ -60492,13 +60492,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Soyadına yanlışlıkla eklenen bir harf üzerinden kimlik, sosyal medya ve tüketimi mizahla sorgulatır; bugünün dünyası üzerine konuşmak için."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Soyadına yanlışlıkla eklenen bir harf üzerinden kimlik, sosyal medya ve tüketimi mizahla sorgulatır; bugünün dünyası üzerine konuşmak için."
         }
       ],
@@ -60568,13 +60568,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Bir balina ile bir mandalinanın dostluğunu anlatan şiirler; çocuk olayın yanında kelimelerin sesini ve ritmini de tadar. Sesli okumaya uygun."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Bir balina ile bir mandalinanın dostluğunu anlatan şiirler; çocuk olayın yanında kelimelerin sesini ve ritmini de tadar. Sesli okumaya uygun."
         }
       ],
@@ -60644,13 +60644,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "İki çocuğun mektuplarıyla aileyi, okulu ve yetişkinlerin söyledikleriyle yaptıkları arasındaki farkı çocuk gözünden anlatır."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "İki çocuğun mektuplarıyla aileyi, okulu ve yetişkinlerin söyledikleriyle yaptıkları arasındaki farkı çocuk gözünden anlatır."
         }
       ],
@@ -60723,13 +60723,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Sade anlatım ve güçlü resimlerle günler, sayılar ve dönüşüm; kitapla keyifli ilk ilişki için."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Sade anlatım ve güçlü resimlerle günler, sayılar ve dönüşüm; kitapla keyifli ilk ilişki için."
         },
         {
@@ -60828,13 +60828,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Küçük bir farenin kendinden güçlü hayvanları zekâsıyla atlatması; kafiyeli ve oyunlu bir dil."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Küçük bir farenin kendinden güçlü hayvanları zekâsıyla atlatması; kafiyeli ve oyunlu bir dil."
         },
         {
@@ -60920,13 +60920,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kış için yiyecek yerine renk, ışık ve sözcük toplayan fare; sanata ve farklı katkılara yer açar."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kış için yiyecek yerine renk, ışık ve sözcük toplayan fare; sanata ve farklı katkılara yer açar."
         }
       ],
@@ -60995,13 +60995,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kendini başka birinin parçası sanan kahramanın arayışı; kendini tanıma ve kabul üzerine konuşturur."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kendini başka birinin parçası sanan kahramanın arayışı; kendini tanıma ve kabul üzerine konuşturur."
         }
       ],
@@ -61074,7 +61074,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Tekrarlı, ritimli ve sesli okunmaya çok uygun bir aile macerası."
         },
         {
@@ -61129,7 +61129,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Sevgiyi ölçmeye çalışan iki tavşanın yumuşak ve sade oyunu; uyku öncesi okuma için."
         }
       ],
@@ -61198,7 +61198,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Rengârenk bir filin herkese benzemeye çalışması; farklılığın değeri üzerine."
         },
         {
@@ -61277,7 +61277,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Parlak pullarını paylaşmayı öğrenen balık; paylaşma ve arkadaşlık üzerine konuşmak için."
         }
       ],
@@ -61323,7 +61323,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Tekrar ve yapı duygusu kazandıran klasik bir halk masalı; iyi hazırlanmış bir uyarlama seçilmeli."
         }
       ],
@@ -61371,7 +61371,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "İki arkadaşın kısa, sıcak ve komik öyküleri; kendi başına okumaya geçişte ideal."
         },
         {
@@ -61461,7 +61461,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Heykel prensle kırlangıcın fedakârlık öyküsü; merhamet ve başkasının derdini görmek üzerine."
         },
         {
@@ -61542,7 +61542,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Çocukluk, büyüme ve hayal gücü üzerine."
         },
         {
@@ -61629,7 +61629,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Hayvanlarla konuşan doktorun maceraları; merak ve doğa sevgisi."
         }
       ],
@@ -61703,7 +61703,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Nehir kıyısındaki hayvan dostlarının maceraları; dostluk ve doğa, zengin bir dille."
         },
         {
@@ -61783,7 +61783,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Çatıda yaşayan pervaneli Karlsson ile yalnız bir çocuğun dostluğu; mizah ve hayal gücü."
         }
       ],
@@ -61854,7 +61854,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Rıfat Ilgaz'ın doğduğu Cide'yi ve Karadeniz kıyısını anlattığı romanlarından; Türkçenin yöresel diliyle tanışmak için."
         },
         {
@@ -61931,13 +61931,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:11-12",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "İnsanların zamanını çalan duman adamlar ve onları durdurmaya çalışan, başkalarını gerçekten dinleyebilen bir çocuk; zamanı verimli kullanmakla hayatı anlamlı yaşamak aynı mı?"
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "İnsanların zamanını çalan duman adamlar ve onları durdurmaya çalışan, başkalarını gerçekten dinleyebilen bir çocuk; zamanı verimli kullanmakla hayatı anlamlı yaşamak aynı mı?"
         },
         {
@@ -62018,7 +62018,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:11-12",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Bir arsa için verilen çocuk savaşı; bağlılık, onur ve kayıp."
         }
       ],
@@ -62092,7 +62092,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Yaramazlık, macera ve Mississippi kıyısında çocukluk."
         },
         {
@@ -62173,7 +62173,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Dostluk, dil oyunları ve karakter çeşitliliği; ince bir mizah."
         },
         {
@@ -62264,7 +62264,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Çocuğun gündelik dünyasını küçümsemeden anlatan kısa kitaplar."
         }
       ],
@@ -62312,7 +62312,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Yaramazlık, yaratıcılık ve bağımsızlık; köy hayatında komik maceralar."
         }
       ],
@@ -62385,7 +62385,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Zekâ, problem çözme ve mizah; kısa ve hızlı okunur."
         }
       ],
@@ -62458,7 +62458,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Fantastik düşünme ve macera."
         }
       ],
@@ -62533,7 +62533,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Fantastik macera, cesaret ve sevgi."
         }
       ],
@@ -62607,7 +62607,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kararların sonuçları, büyüme ve bağımsızlaşma."
         },
         {
@@ -62688,7 +62688,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Farklılık, aile, güvenlik, yalnızlık ve belirsizlik üzerine."
         },
         {
@@ -62766,7 +62766,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Fantastik düşünce ve yetişkin ile çocuk dünyalarının çatışması."
         }
       ],
@@ -62813,7 +62813,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Aile, dayanışma ve sorumluluk."
         }
       ],
@@ -62886,7 +62886,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Değişim, arkadaşlık ve doğa; güçlü bir kız kahraman."
         },
         {
@@ -62972,7 +62972,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Coğrafya, macera ve merak."
         },
         {
@@ -63052,7 +63052,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Bilimsel merak ve macera."
         }
       ],
@@ -63125,7 +63125,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:11-12",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Fantastik edebiyat, cesaret ve yolculuk; güçlü okur için."
         },
         {
@@ -63211,7 +63211,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:12-13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Hayal gücü, kimlik ve hikâyelerin gücü; güçlü okur için."
         },
         {
@@ -63292,7 +63292,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Fantastik bir dünya, ahlaki çatışmalar ve fedakârlık."
         },
         {
@@ -63382,7 +63382,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Gülten Dayıoğlu'nun bilimkurgu dünyasına giriş; okuma düzeyi uygunsa."
         }
       ],
@@ -63451,7 +63451,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Muzaffer İzgü'nün mizahla anlattığı çocukluk dünyası."
         }
       ],
@@ -63518,7 +63518,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Yoksul bir ailede büyüyen çocuğun acı-tatlı hikâyesi; birlikte konuşarak okunmalı."
         }
       ],
@@ -63588,7 +63588,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Behiç Ak'ın yalın dili ve kendi resimleriyle İstanbul'a ve hayale açılan bir hikâye."
         }
       ],
@@ -63655,7 +63655,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kent, doğa ve hayal gücü üzerine resimli bir Behiç Ak öyküsü."
         }
       ],
@@ -63722,7 +63722,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Mizah ve çizgiyle düşünmeye davet."
         }
       ],
@@ -63791,7 +63791,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Sevim Ak'ın sıcak ve oyunlu dili."
         }
       ],
@@ -63860,7 +63860,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Mektuplarla kurulan bir dostluk; duyguları ifade etmek üzerine."
         }
       ],
@@ -63931,7 +63931,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Türkçenin ritmi ve oyunuyla yazılmış çocuk şiirleri."
         }
       ],
@@ -64000,7 +64000,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Çocuk şiirinde Türkçenin sesini ve imgesini tanıtan seçki."
         }
       ],
@@ -64071,7 +64071,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kısa fabllarla karakter ve sonuç üzerine konuşma."
         },
         {
@@ -64149,7 +64149,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Türk mizah geleneğinin temeli; kısa, sesli okunup konuşulacak fıkralar."
         },
         {
@@ -64225,7 +64225,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Anadolu masal geleneğinin zeki ve iyi kalpli kahramanı."
         },
         {
@@ -64303,7 +64303,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Türk çocuk edebiyatının üretken yazarlarından Aytül Akal'ın ilk okuma çağına uygun kısa öyküleri."
         }
       ],
@@ -64374,7 +64374,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Gülsüm Cengiz'in ilk okuma çağındaki çocuk için yazdığı kısa öyküler."
         }
       ],
@@ -64445,7 +64445,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Parası çalınan Emil'in çocuklardan kurulu bir dedektif ekibiyle hırsızın peşine düşmesi; dayanışma ve cesaret."
         },
         {
@@ -64525,7 +64525,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Rıfat Ilgaz'ın mizahla anlattığı Bacaksız dizisinden; dizinin ilk kitabıyla başlanır."
         }
       ],
@@ -64594,7 +64594,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kaşağı ve Falaka ile başlayıp 10–13 yaşta Pembe İncili Kaftan, Forsa ve Diyet'e uzanan bir seçki; Türk öykücülüğünün temeli."
         }
       ],
@@ -64665,7 +64665,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Uyarlamasından sonra, 10–11 yaşta tam metniyle; macera edebiyatının temel kitabı."
         },
         {
@@ -64745,7 +64745,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Nautilus'la okyanusların derinliklerinde bir yolculuk; bilimsel merak ve macera."
         }
       ],
@@ -64816,7 +64816,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Her durumda sevinecek bir şey bulmaya çalışan bir kız kahraman; iyimserlik ve dayanıklılık üzerine konuşturur."
         },
         {
@@ -64893,7 +64893,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Dış görünüşü nedeniyle önyargıyla karşılaşan bir çocuğun hikâyesi; birini ilk izlenimden ibaret görmemek üzerine."
         },
         {
@@ -64980,7 +64980,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:11-12",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Uyarlamasından sonra, 11–12 yaşta tam metniyle; yalnızlık, emek ve kendi kendine yetmek üzerine."
         }
       ],
@@ -65052,7 +65052,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:11-12",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Yarı kurt yarı köpek Beyaz Diş'in vahşi doğadan insan dünyasına uzanan hayatı; doğa ve sadakat."
         }
       ],
@@ -65126,7 +65126,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:11-12",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Dört kız kardeşin büyüme hikâyesi; aile, bağımsızlık ve kendi yolunu seçmek üzerine."
         },
         {
@@ -65206,7 +65206,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:11-12",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kısa polisiye öykülerle gözlem ve akıl yürütme; uzun romana geçişte de kolay."
         }
       ],
@@ -65277,7 +65277,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:11-12",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Türk mizahının klasiği; okul, arkadaşlık ve otoriteyle ilişki."
         }
       ],
@@ -65346,7 +65346,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Göçün çocuklar üzerindeki etkisini anlatan bir Gülten Dayıoğlu romanı."
         }
       ],
@@ -65419,19 +65419,19 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:12-13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Güç ve eşitlik üzerine bir alegori; bir yetişkinle konuşarak okunacak ağır temalı bir klasik."
         },
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Önceki güçlü öneriler arasında kalıyor."
         },
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:kizim-icin",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Çok değerli; ancak siyasi anlamları, şiddet ve ölüm sahneleri nedeniyle 12–13 yaş civarında, üzerine konuşarak okunması öneriliyor."
         }
       ],
@@ -65518,7 +65518,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:12-13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Saklandığı evde tuttuğu günlükle savaşın bir çocuğun hayatına etkisini anlatan tanıklık."
         },
         {
@@ -65605,7 +65605,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:12-13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Uçmayı sıradanlığın ötesine taşımak isteyen bir martının kısa alegorisi; kendi yolunu aramak üzerine."
         }
       ],
@@ -65677,7 +65677,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:12-13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Anadolu'ya öğretmen olarak giden Feride'nin romanı; Türk edebiyatının en sevilen klasiklerinden."
         }
       ],
@@ -65748,7 +65748,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:12-13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Bir kasabada adalet ve önyargıyı çocuk gözünden anlatan klasik."
         }
       ],
@@ -65822,7 +65822,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Çizgi roman klasikleri gerçek okumadır; okumaya direnç gösteren çocuk için uzun romana geçişte köprü."
         }
       ],
@@ -65895,7 +65895,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Mizah ve kelime oyunlarıyla dolu çizgi roman klasiği; uzun romana geçişte köprü."
         }
       ],
@@ -65966,13 +65966,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kitap okumayı sevmeyen İlhami'nin bir telefon kulübesinden tuhaf hikâyeler dinlemesi; iç içe öyküler ve gizem. Okumaya mesafeli çocuğa ilk sunulacaklardan."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Kitap okumayı sevmeyen İlhami'nin bir telefon kulübesinden tuhaf hikâyeler dinlemesi; iç içe öyküler ve gizem. Okumaya mesafeli çocuğa ilk sunulacaklardan."
         },
         {
@@ -66050,7 +66050,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Sude'nin tabletle ilişkisi üzerinden dijital dünya, gerçek ilişkiler ve doğayla bağ; bir şeyi yaşamakla kaydetmek aynı mı?"
         }
       ],
@@ -66121,7 +66121,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Harita üzerindeki bilmeceleri çözmek zorunda kalan iki kardeş; coğrafya, araştırma ve ipuçlarından sonuç çıkarmak."
         }
       ],
@@ -66194,13 +66194,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:11-12",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Haksız yere suçlanan Stanley'nin çukur kazdırılan bir kampa gönderilmesi; geçmişle bugünün bağlandığı bir gizem. Adalet ve arkadaşlık üzerine."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Haksız yere suçlanan Stanley'nin çukur kazdırılan bir kampa gönderilmesi; geçmişle bugünün bağlandığı bir gizem. Adalet ve arkadaşlık üzerine."
         },
         {
@@ -66294,13 +66294,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:11-12",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Konuşamayan Melody'nin zengin iç dünyası; bir insanın kendini ifade etme biçimiyle zihni hakkında hüküm vermemek."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Konuşamayan Melody'nin zengin iç dünyası; bir insanın kendini ifade etme biçimiyle zihni hakkında hüküm vermemek."
         },
         {
@@ -66381,7 +66381,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:12-13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Ölümsüzlük veren bir pınar ve bundan memnun olmayan bir aile; sonsuza kadar yaşamak iyi olur muydu?"
         },
         {
@@ -66474,13 +66474,13 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Çıtır Çıtır Felsefe dizisinden; bilginin ve öğrenmenin ne işe yaradığını gündelik örneklerle tartışır. Bir bölüm okuyup konuşmak için."
         },
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:cekirdek13",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Çıtır Çıtır Felsefe dizisinden; bilginin ve öğrenmenin ne işe yaradığını gündelik örneklerle tartışır. Bir bölüm okuyup konuşmak için."
         }
       ],
@@ -66554,7 +66554,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Çıtır Çıtır Felsefe dizisinden; paylaşmak ve adil davranmak gibi gündelik durumları sorgular."
         }
       ],
@@ -66627,7 +66627,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Çıtır Çıtır Felsefe dizisinden; gerçek, yalan ve doğruyu söylemenin ikilemleri üzerine."
         }
       ],
@@ -66698,7 +66698,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:10-11",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Şiiri oyun, yorum ve yaratıcılıkla buluşturan bir kitap; şiire mesafeli çocuk için de giriş."
         }
       ],
@@ -66769,7 +66769,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "SLJ anketinde 1. sırada olan ve BookTrust, TIME ile Scholastic'in de seçtiği bu kitapta Max öfkesini hayal gücüyle yatıştırır; duyguları konuşmak için güçlü bir başlangıçtır."
         },
         {
@@ -66868,7 +66868,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Scholastic listesinde 2., SLJ anketinde 4. sırada olan ve TIME'ın da seçtiği bu kitap, SLJ'ye göre ritmik ve yatıştırıcı diliyle en sevilen uyku öncesi kitaplarındandır."
         },
         {
@@ -66960,7 +66960,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "TIME, SLJ ve Scholastic (9. sıra, 4–7 yaş) listelerinde; bir çocukla ağacın ömür boyu süren ilişkisi, vermek ve sevgi üzerine birlikte konuşmaya açar."
         },
         {
@@ -67052,7 +67052,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "SLJ anketinde 3., Scholastic'te 28. sırada olan ve TIME'ın da seçtiği bu kitapta okura doğrudan seslenen inatçı güvercin, çocuğa 'hayır' deme gücü verir."
         },
         {
@@ -67144,7 +67144,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "BookTrust (0–5), TIME ve SLJ listelerinde; şapkasını arayan ayının az sözcüklü, kuru mizahlı öyküsü, çocuğa resimlerden ipucu okumayı öğretir."
         },
         {
@@ -67236,7 +67236,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:8-10",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "BookTrust 6–8 bandında ve SLJ roman anketinde (88.) yer alır; Sophie ile dost dev, Dahl'ın uydurduğu sözcüklerle dil oyununa ve cesarete açılır."
         },
         {
@@ -67322,7 +67322,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "TIME listesinde ve SLJ roman anketinde (49.) ortak; ejderhayı kurtarmaya giden Elmer'in kısa bölümlü macerası, zekâyla engel aşmayı eğlenceli anlatır."
         },
         {
@@ -67408,7 +67408,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "TIME ve SLJ (16. sıra) listelerinde; mor tebeşiriyle yolunu ve dünyasını kendisi çizen Harold, hayal gücünün nasıl bir dünya kurabildiğini gösterir."
         },
         {
@@ -67492,7 +67492,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "TIME ve SLJ (19. sıra) listelerinde; söz dinlemeyip Bay McGregor'un bahçesine giren tavşanın küçük macerası, merak ve sonuçları üzerine klasik bir başlangıç."
         },
         {
@@ -67578,7 +67578,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Scholastic listesinde (4–7, bilim) ve 2004 Caldecott Onur Kitabı; hayvanların kuyruk, burun, kulak gibi organlarını ne için kullandığını soru-cevapla keşfettirir."
         },
         {
@@ -67656,7 +67656,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "BookTrust'ın 100 en iyi kitap listesinde (9–11 bandı); gezegenleri, yıldızları ve galaksileri müze salonları gibi düzenlenmiş büyük resimlerle gezdirir."
         },
         {
@@ -67733,7 +67733,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "MEB 100 temel eser listesinde; Nâzım Hikmet'in Boratav'ın derlediği Anadolu masallarından uyarladığı bu metin, Türkçe masal diliyle tanışmak için klasik bir seçim."
         },
         {
@@ -67809,7 +67809,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "MEB 100 temel eser listesinde; Cahit Zarifoğlu'nun Türkiye Yazarlar Birliği çocuk edebiyatı ödülünü alan masalı, Türk çocuk edebiyatının şiirli dilini tanıtır."
         },
         {
@@ -67883,7 +67883,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:3-5",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "IBBY Onur Listesi 2006'da Türkiye'nin yazarlık adayı olarak yer aldı; Ayla Çınaroğlu'nun küçük çocuklar için kısa resimli öyküsü, Türkçe resimli kitap açığını kapatır."
         },
         {
@@ -67961,7 +67961,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "2015 Kate Greenaway Madalyası'nı kazandı; Shackleton'ın Antarktika yolculuğunu ayrıntılı çizimlerle anlatarak keşif tarihini, hazırlığı ve ekip dayanışmasını gösterir."
         }
       ],
@@ -68034,7 +68034,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:5-7",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "2012 Caldecott Onur Kitabı; oyuncak şempanzesiyle doğayı gözlemleyen küçük Jane Goodall'ın öyküsü, merakın bilime nasıl dönüştüğünü gösterir."
         }
       ],
@@ -68107,7 +68107,7 @@
         {
           "collectionId": "temel-kutuphane",
           "groupId": "temel-kutuphane:7-8",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
           "note": "Scholastic 2012 listesi seriden 'At the Waterworks'u (8–10, bilim) seçer; bu kitapta Bayan Frizzle'ın sınıfı vücudun içinde dolaşarak organları ve sindirimi öğrenir."
         }
       ],
@@ -68180,7 +68180,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Raflardan yalnızca iki kitap alınacaksa Şiddetsiz İletişim’in yanındaki ikinci seçim: günlük hayata ve işe uygulamak için."
         }
       ],
@@ -68253,7 +68253,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Kendi rafından tek kitap alınacaksa seçilen kitap. Şiddetsiz İletişim ve İkinci Beyninizi Kurun ile farklı ihtiyaçlara yanıt veren güçlü bir üçlü oluşturur."
         }
       ],
@@ -68325,7 +68325,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Yeni fotoğraflarla önceki önerilere güçlü biçimde eklenen kitap: iletişim sorunlarını günlük yaşamdan, edebiyattan ve kendi kültürümüzden örneklerle ele alır."
         }
       ],
@@ -68397,7 +68397,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Yeniden taramada seçilen üç yeni kitaptan biri: iletişim için. Günlük yazılı ve sözlü iletişimde tercih edilecek ikna kitabı."
         }
       ],
@@ -68470,7 +68470,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Yeniden taramada seçilen üç yeni kitaptan biri: kişisel yaşam için. Süreç geliştirme öncelikse bunun yerine Dünyayı Değiştiren Makine seçilir."
         }
       ],
@@ -68547,7 +68547,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Her Zamanki Gibi ile birlikte iki kitaplık seçimin ilki ve Harvard serisinde başlanacak cilt. Serinin tamamını almak gerekmiyor: diğer ciltler o sırada çözülmek istenen soruna göre seçilmeli; kapaktaki “mutlaka okunmalı” ifadesi her cildin aynı ölçüde gerekli olduğu anlamına gelmiyor."
         }
       ],
@@ -68621,7 +68621,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Kendinizi Yönetmek ile birlikte iki kitaplık seçimin ikincisi. Pazarlama öncelikse yerine Markalar Nasıl Büyür?; amaç işletme ve ekip yönetimiyse İyi İşler Uygulaması önce gelir."
         }
       ],
@@ -68695,7 +68695,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Aynı raftaki dört kitaptan bugün alınacak olan."
         }
       ],
@@ -68771,7 +68771,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:oncelikli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Atomik Alışkanlıklar ile birlikte anılan ve güçlü öneriler arasında kalan alışkanlık kitabı."
         }
       ],
@@ -68844,7 +68844,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Koşula bağlı bir seçenek: “tam istediğim gibi olmayacaksa başlamayayım” ya da “henüz yeterince iyi değil” düşüncesi işleri bitirmeni engelliyorsa önceliği yükselir. Herkes için zorunlu bir okuma değil."
         }
       ],
@@ -68915,7 +68915,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Kendini anlamak için bu raftan seçilen kitap. İşi ve hedefleri sorgulamak öncelikse yerine Hayalini Yorganına Göre Uzat."
         }
       ],
@@ -68986,7 +68986,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "İşi ve hedefleri sorgulamak için bu raftan seçilen kitap. Kendini anlamak öncelikse yerine Bana Ne Oluyor?"
         }
       ],
@@ -69057,7 +69057,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Çalışma düzenini değiştirmek isteyene."
         }
       ],
@@ -69134,7 +69134,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Kısa bölümlerle başlayıp okuduğunu işte denemek isteyene. HBR seçkileri farklı uzmanların kısa yazılarını toplar ama bütünlüklü bir kitap kadar derinleşmez; seriden yalnızca ihtiyaç duyulan bir iki cilt seçilmeli. İkna için tek kitap alınacaksa İknanın Psikolojisi."
         }
       ],
@@ -69208,7 +69208,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Drucker ve Maciariello’nun sorular ve not alanları içeren uygulama defteri. Drucker’a ilk kez başlanacaksa önce ana eser Etkin Yöneticilik okunmalı."
         }
       ],
@@ -69285,7 +69285,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Zaman, ilişkiler, zihinsel yaşam, fiziksel sağlık ve para arasında öncelikleri düşünmek için okunabilir; ilk satın alma önceliği değil."
         }
       ],
@@ -69359,7 +69359,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Hayır deme ve sorumlulukları ayırma ihtiyacın varsa yararlı olabilir. Özgün kitap Hristiyan bir yayınevinden çıktı ve İncil’e dayanan bir yaklaşımı var; bunu bilerek seçilmeli."
         }
       ],
@@ -69432,7 +69432,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Yazılım geliştirme pratiğini derinleştirmek için; yönetim veya girişimcilik için ilk kitap değil."
         }
       ],
@@ -69506,7 +69506,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Araştırmaları düzenli yazıya dönüştürmek öncelikse Mor İnek’in yerine alınacak el kitabı."
         }
       ],
@@ -69580,7 +69580,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Yeniden taramada önceki listelere girmesi gerektiği belirtilen kitap. Süreç geliştirme öncelikse İçsel Yaşam’ın yerine seçilir."
         }
       ],
@@ -69653,7 +69653,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Retorikte derinleşmek için. İknanın Psikolojisi ve Sihirli Kelimeler ile üçünü başlangıçta birlikte almak gerekmiyor."
         }
       ],
@@ -69727,7 +69727,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:kizim-icin",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Resimli, düşünmeye yönelten bir hikâye; birlikte okuyup konuşmak için. Zorunlu bir çocuk klasiği sayılmıyor ve Türkçe baskısı çocuk kitabı olarak değil, genel okur için yayımlanıyor."
         }
       ],
@@ -69802,7 +69802,7 @@
         {
           "collectionId": "raf-degerlendirmesi",
           "groupId": "raf-degerlendirmesi:uzun-vadeli",
-          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Ufuk açıcı ama öncelikli bir yönetici kitabı değil: büyük teknolojik değişimleri birlikte düşünmeye zorlar. Ancak bir teknolojideki hızlanmadan bütün toplumsal ve biyolojik dönüşümlerin aynı hızla geleceği sonucu çıkmaz; teknik olanak, güvenilir ürün, ekonomik uygulanabilirlik ve toplumsal benimsenme ayrı aşamalardır. Önce Sosyolojik Düşünmek, sonra bu kitap."
         },
         {
@@ -72705,7 +72705,7 @@
       "short": "Strateji klasikleri",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "A",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72720,7 +72720,7 @@
       "short": "Strateji: eklenecek",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "B",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72735,7 +72735,7 @@
       "short": "Davranış bilimi",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "C",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72750,7 +72750,7 @@
       "short": "Scrum / yalın üretim",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "D",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72765,7 +72765,7 @@
       "short": "Çocuk: alınacaklar",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "E",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72780,7 +72780,7 @@
       "short": "Tarih ve edebiyat",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "F",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72795,7 +72795,7 @@
       "short": "Rus klasikleri",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "G",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72811,7 +72811,7 @@
       "short": "Dünyaya Yön Verenler",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "H",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72827,7 +72827,7 @@
       "short": "Musashi külliyatı",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "K",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72842,7 +72842,7 @@
       "short": "Kriz stratejisi",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "M",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72858,7 +72858,7 @@
       "short": "İrade ve iletişim",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "N",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72875,7 +72875,7 @@
       "short": "Çocuk: 10 yaş programı",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "P",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72894,7 +72894,7 @@
       "short": "Geleceğe hazırlık",
       "description": "Kitaps okuma listesinden; çeviri, yayınevi ve baskı notlarıyla.",
       "origin": "kitaps",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "mark": "R",
       "tag": "Kişisel kitaplık",
       "note": "Künye ve değerlendirme notları verilen Kitaps kaynağından aktarıldı. Güven puanları kaynağın kendi notlarından türetilmiştir.",
@@ -72911,7 +72911,7 @@
       "description": "Kaynak dosyadaki ayrıntılı çeviri karşılaştırması.",
       "mark": "I",
       "tag": "Çeviri karşılaştırması",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "note": "Kitaps kaynak dosyasındaki bağımsız kitap incelemesi.",
       "count": 1,
       "groupIds": [
@@ -72926,7 +72926,7 @@
       "description": "Kaynak dosyadaki ayrıntılı çeviri karşılaştırması.",
       "mark": "L",
       "tag": "Çeviri karşılaştırması",
-      "source": "https://karacaismail.github.io/kitaps/",
+      "source": "https://titanlar-com.github.io/kitaps/",
       "note": "Kitaps kaynak dosyasındaki bağımsız kitap incelemesi.",
       "count": 1,
       "groupIds": [
@@ -72939,7 +72939,7 @@
       "short": "Girişimcilik rotası",
       "description": "Müşteri keşfinden sermaye dağıtımına uzanan 35 kitap. Sabit bir müfredat yerine güncel işletme darboğazına göre kullanılır.",
       "origin": "editorial-research",
-      "source": "https://github.com/karacaismail/kitaps/blob/main/reports/Giri%C5%9Fimcilik%20kitapl%C4%B1%C4%9F%C4%B1%20geni%C5%9Fletme.md",
+      "source": "https://github.com/titanlar-com/kitaps/blob/main/reports/Giri%C5%9Fimcilik%20kitapl%C4%B1%C4%9F%C4%B1%20geni%C5%9Fletme.md",
       "mark": "G",
       "tag": "Editoryal rota",
       "note": "Liste 100 kitaba doldurulmadı; yalnızca araştırmayla gerekçelendirilen eserler alındı.",
@@ -72957,7 +72957,7 @@
       "title": "Temel okumalar ve küme anahtarları",
       "short": "Temel okumalar",
       "description": "Katalogdaki belirli eserleri daha verimli okumak için önerilen giriş, bağlam ve eşlik kitapları. İlişkiler zorunlu önkoşul değil, editoryal öğrenme sırasıdır.",
-      "source": "https://github.com/karacaismail/kitaps",
+      "source": "https://github.com/titanlar-com/kitaps",
       "context": {
         "purpose": "Katalogdaki kümeleri daha verimli okumak için dışarıdan gelen giriş, bağlam ve eşlik kitapları.",
         "criterion": "Her kitap, katalogdaki belirli kitapları açan bir anahtar olmalı; “genel kültür için iyi olur” diye hiçbir şey eklenmedi. Türkçe baskısı doğrulanamayanlar özgün adıyla gösterilir.",
@@ -72989,7 +72989,7 @@
       "title": "13 yaşına kadar temel kütüphane",
       "short": "13 yaşına kadar",
       "description": "Bir çocuğun 13 yaşına kadar tanışması önerilen kitaplar: resimli kitaplardan ilk romanlara, maceradan ağır temalı klasiklere. İlk dört yaş bandı 10 yaşına kadar olanlardır. Yaşlar yaklaşıktır; bir kitabı rahat okuyabilmek, duygusal içeriğine hazır olmak demek değildir.",
-      "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+      "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
       "origin": "children",
       "mark": "10",
       "tag": "Çocuk kütüphanesi",
@@ -73012,7 +73012,7 @@
       "title": "Çocuk kitabı listeleri",
       "short": "Çocuk listeleri",
       "description": "BookTrust, TIME, School Library Journal, Scholastic ve MEB 100 Temel Eser listelerinde yer alan katalog kitapları. Listeler bu kütüphane için tek bir araştırma adımında birlikte incelendiğinden okuma önceliğinde tek seçki sayılır.",
-      "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+      "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
       "origin": "children",
       "mark": "L",
       "tag": "Çocuk kitabı listesi",
@@ -73033,7 +73033,7 @@
       "title": "Raf taramasından okuma önerileri",
       "short": "Raf taraması",
       "description": "Fotoğraflanan kitap raflarında okunabilen kitaplar arasından seçilenler: öncelikli okumalar, uzun vadeli bir okuma, belirli bir ihtiyaç doğduğunda alınacaklar ve 10 yaşındaki bir çocukla birlikte okunabilecekler.",
-      "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+      "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
       "context": {
         "purpose": "Fotoğraflanan raflardan kendin için ve 10 yaşındaki kızın için hangi kitapların alınacağına karar vermek.",
         "criterion": "Günlük hayata ve işe uygulanabilirlik. Her kitaba “mutlaka okunmalı” denmedi: bazıları yalnızca belirli bir ihtiyaç doğduğunda öneriliyor. Yeniden taramada yönetim ve süreç kitaplarına daha çok ağırlık verildi.",
@@ -73087,7 +73087,7 @@
       "short": "Ön hazırlık",
       "description": "Temel okuma, düşünme, sayısal hazırlık ve alan bağlamı için doğrulanmış Türkçe baskılar.",
       "origin": "preparation",
-      "source": "https://github.com/karacaismail/kitaps",
+      "source": "https://github.com/titanlar-com/kitaps",
       "mark": "Ö",
       "tag": "Başlangıç rafı",
       "note": "Okuma sırası danışmanlık önerisidir; zorunlu önkoşul veya doğrudan puan değildir.",

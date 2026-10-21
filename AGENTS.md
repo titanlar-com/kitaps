@@ -11,6 +11,10 @@ Bu kurallar yalnızca proje sahibinin açık talimatıyla değişir. Hiçbir aja
    - Sütun sayısını `src/styles.css` içindeki `--books-columns` belirler. İzin verilen değerler `src/library.js` içindeki `GRID_COLUMNS` listesindedir.
    - Sütun sayısını tarayıcıya bırakan düzenler kullanılmaz: `auto-fill`, `auto-fit`, `grid` ve `grid-template` kısaltmaları, çok sütunlu metin düzeni (`columns`).
 3. **Dolu son satır:** Her sayfa boyutu her sütun sayısına tam bölünür; dolu bir sayfanın son satırında boşluk kalmaz. Sonuçların son sayfası daha az kitap içerebilir.
+4. **Esas adresler (proje sahibinin 21 Ekim 2026 kararı):** Esas depo `titanlar-com/kitaps`, eşitleme deposu `titanlar-com/kitaps-state`, canlı site https://titanlar-com.github.io/kitaps/ adresidir. Depolar kişisel hesaptan bu kuruluşa taşındı; eski adreslere geri dönüş ya da yedek seçenek bırakılmaz.
+   - Site ve kaynak adresleri `src/site.js` (`SITE_URL`, `SOURCE_URL`), eşitleme deposu `src/state/types.ts` (`GITHUB_STATE_OWNER`, `GITHUB_STATE_REPOSITORY`) içindedir.
+   - Adresi elle tekrarlayan yerler: `index.html`, `public/robots.txt`, `scripts/merge-data.py` (kaynak bağlantıları), `data/*.json` dosyalarının `source` alanları, `scripts/upgrade-covers.py` ve `scripts/fetch-international-covers.py` (User-Agent). `src/catalog.json` ve `public/sitemap.xml` üretilir (`npm run data`, `npm run seo`).
+   - Yazma anahtarının sahibi (Resource owner) `titanlar-com` olmalıdır; kişisel hesaba bağlı anahtarlar kuruluş deposuna yazamaz.
 
 Bu kuralları koruyan testler:
 
@@ -18,6 +22,8 @@ Bu kuralları koruyan testler:
 - `tests/catalog-grid.test.js`: stil dosyasının sütun sayısını yalnız `--books-columns` ile verdiği
 - `tests/e2e/catalog-grid.spec.js`: 320–2560 px arasında 15 genişlikte gerçek sütun sayısı, dolu son satır ve yatay telefonda 2 sütun (Chromium, WebKit, Firefox ve iPhone görünümü)
 - `tests/e2e/site.spec.js`: ilk sayfadaki 24 kitap ve beş sayfa boyutu seçeneği
+- `tests/seo.test.js`: canonical, sitemap, `robots.txt`, katalogdaki kaynak bağlantıları ve baskı kaynak notu bağlantısının `titanlar-com` altında olduğu
+- `tests/github-state-repository.test.js`, `tests/components/sync.test.jsx` ve `tests/e2e/sync.spec.js`: eşitleme isteklerinin yalnız `titanlar-com/kitaps-state` deposuna gittiği ve anahtar formunun sahip alanını `titanlar-com` olarak doldurduğu
 
 Bu testleri kuralı gevşetmek için değiştirme.
 
@@ -42,7 +48,7 @@ Bu testleri kuralı gevşetmek için değiştirme.
 
 ## Kişisel durum deposu
 
-Okuma durumları, sahiplik, favoriler ve okuma sırası herkese açık `karacaismail/kitaps-state` deposundaki `state.json` dosyasında tutulur. Tasarım ve yazma anahtarı kuralları `docs/ADR-001-reading-priority-and-state.md` içindedir. Anahtar, token veya başka bir sır depoya yazılmaz.
+Okuma durumları, sahiplik, favoriler ve okuma sırası herkese açık `titanlar-com/kitaps-state` deposundaki `state.json` dosyasında tutulur. Tasarım ve yazma anahtarı kuralları `docs/ADR-001-reading-priority-and-state.md` içindedir. Anahtar, token veya başka bir sır depoya yazılmaz.
 
 ## Arayüz
 

@@ -6,14 +6,15 @@ import { displayTitle,recommendedTranslation,translationStatus,turkishEdition } 
 import { readingGuide } from '../src/recommendations.js';
 import { splitAuthors } from '../src/authors.js';
 import { publicationLine,publicationLinkLabel,publicationUrl,workFormat } from '../src/workFormat.js';
+import { SITE_URL } from '../src/site.js';
 
 const projectRoot=fileURLToPath(new URL('../',import.meta.url));
 const catalog=JSON.parse(fs.readFileSync(path.join(projectRoot,'src/catalog.json'),'utf8'));
 const outputRoot=path.resolve(process.argv[2]||path.join(projectRoot,'dist'));
 if(path.basename(outputRoot)!=='dist')throw new Error(`Static SEO output must be a dist directory: ${outputRoot}`);
 const catalogRoot=path.join(outputRoot,'catalog');
-const publicBase='https://karacaismail.github.io/kitaps/catalog/';
-const appBase='https://karacaismail.github.io/kitaps/';
+const publicBase=`${SITE_URL}catalog/`;
+const appBase=SITE_URL;
 const pageSize=DEFAULT_PAGE_SIZE;
 const collator=new Intl.Collator('tr',{sensitivity:'base',numeric:true});
 const byTitle=[...catalog.books].sort((a,b)=>collator.compare(displayTitle(a),displayTitle(b))||collator.compare(a.author,b.author));

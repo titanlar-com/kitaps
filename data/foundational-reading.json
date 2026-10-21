@@ -3,7 +3,7 @@
   "title": "Temel okumalar ve küme anahtarları",
   "short": "Temel okumalar",
   "description": "Katalogdaki belirli eserleri daha verimli okumak için önerilen giriş, bağlam ve eşlik kitapları. İlişkiler zorunlu önkoşul değil, editoryal öğrenme sırasıdır.",
-  "source": "https://github.com/karacaismail/kitaps",
+  "source": "https://github.com/titanlar-com/kitaps",
   "context": {
     "purpose": "Katalogdaki kümeleri daha verimli okumak için dışarıdan gelen giriş, bağlam ve eşlik kitapları.",
     "criterion": "Her kitap, katalogdaki belirli kitapları açan bir anahtar olmalı; “genel kültür için iyi olur” diye hiçbir şey eklenmedi. Türkçe baskısı doğrulanamayanlar özgün adıyla gösterilir.",

@@ -1,6 +1,6 @@
 # Kitaplık
 
-[Canlı site](https://karacaismail.github.io/kitaps/) · [JavaScript gerektirmeyen katalog](https://karacaismail.github.io/kitaps/catalog/)
+[Canlı site](https://titanlar-com.github.io/kitaps/) · [JavaScript gerektirmeyen katalog](https://titanlar-com.github.io/kitaps/catalog/)
 
 Kitap kimliklerini, Türkçe baskıları, kitaplar arasındaki hazırlık ve eşlik ilişkilerini ve açıklanabilir bir okuma önceliğini bir araya getiren okuma kataloğu. Ekim 2026 itibarıyla 956 eser (makale ve denemeler dahil), 30 küme, 152 alt küme ve 21 kategori içerir. Güncel sayılar sitede ve `src/catalog.json` içinde katalogdan hesaplanır.
 
@@ -21,18 +21,22 @@ Kitap kimliklerini, Türkçe baskıları, kitaplar arasındaki hazırlık ve eş
 
 ## Cihazlar arası eşitleme
 
-Kişisel kayıtlar önce tarayıcıda tutulur, ardından herkese açık [`karacaismail/kitaps-state`](https://github.com/karacaismail/kitaps-state) deposundaki `state.json` dosyasıyla eşitlenir. Bu kayıtlar ve GitHub geçmişi herkes tarafından görülebilir.
+Kişisel kayıtlar önce tarayıcıda tutulur, ardından herkese açık [`titanlar-com/kitaps-state`](https://github.com/titanlar-com/kitaps-state) deposundaki `state.json` dosyasıyla eşitlenir. Bu kayıtlar ve GitHub geçmişi herkes tarafından görülebilir.
 
 - **Bağlantı:** Bir cihazdaki işaret ancak o cihaz bağlıysa diğer cihazlara ulaşır. Bağlı olmayan cihazda bekleyen değişiklik varsa sayfanın başında uyarı ve "Bu cihazı bağla" düğmesi çıkar. Aynı pencere altbilgideki "Cihaz eşitleme" ile de açılır.
 - **Anahtar:** Bağlamak için ince ayarlı (fine-grained) bir GitHub anahtarı girilir.
-  - Anahtar yalnız `kitaps-state` deposunda Contents: Read and write izni taşımalı ve süreli olmalıdır.
+  - Anahtarın sahibi (Resource owner) `titanlar-com` olmalıdır. Kişisel hesaba bağlı anahtarlar, depolar kuruluşa taşınmadan önce oluşturulanlar da, bu depoya yazamaz.
+  - Anahtar yalnız `kitaps-state` deposunda (Only select repositories) Contents: Read and write izni taşımalı ve süreli olmalıdır.
+  - Kuruluş yeni anahtarları onaya bağlıyorsa (GitHub'ın varsayılanı), anahtar bir kuruluş sahibi onaylayana kadar yalnız okuyabilir. Kuruluş sahiplerinin kendi anahtarları kendiliğinden onaylanır.
   - Kaydetmeden önce yazma izni GitHub'da denenir; yazamayan anahtar kaydedilmez.
   - Klasik ve OAuth anahtarları kabul edilmez.
 - **Okuma:** Anahtarsız cihazlar ortak durumu salt okunur görür. Sayfa açılırken ve sayfaya dönülünce taze kopya istenir; arada CDN kopyası en fazla beş dakika gecikebilir.
 - **Gönderim:** Bağlı cihaz değişiklikleri tek güncellemeyle gönderir: sayfadan ayrılırken ya da ilk değişiklikten 120 saniye sonra. Bağlanınca, o cihazda bekleyen değişiklikler hemen gönderilir.
 - Bir cihaz bağlandığında, bağlı değilken yaptığı değişiklikler ortak kayıtla karşılaştırılır. Aynı kitabı bu arada başka bir cihaz farklı kaydettiyse önce yedek alınır ve hangisinin kalacağı sorulur.
 
-Anahtar tarayıcıda saklanır. `karacaismail.github.io` altındaki bütün Pages siteleri aynı tarayıcı alanını paylaştığı için anahtarın yetkisi tek depo ve tek izinle sınırlı tutulmalıdır.
+Anahtar tarayıcıda saklanır. Kuruluşun özel alan adı kullanmayan bütün Pages siteleri, ileride açılacaklar da, `titanlar-com.github.io` altında aynı tarayıcı alanını paylaştığı için anahtarın yetkisi tek depo ve tek izinle sınırlı tutulmalıdır. Kuruluşta Pages yayımlayabilen her üye ve Pages'a yayın yapan her iş akışı bu alanda betik çalıştırıp anahtarı okuyabilir. Kuruluşa yeni üye eklenecekse kuruluş ayarlarında (Member privileges → Pages creation) Pages oluşturma iznini kısıtla ya da siteyi özel bir alan adına taşı.
+
+**Adres değişikliği (21 Ekim 2026):** Site ve depolar `titanlar-com` kuruluşuna taşındı. Tarayıcı kayıtları adrese bağlı olduğundan eski adreste kalan anahtar, işaretler ve gönderilmemiş değişiklikler yeni adrese geçmez. Eski site artık açılmadığı için bu kayıtlar yeni siteden kurtarılamaz. Ortak kayıtlar `state.json` ile birlikte taşındı. Her cihaz yeni adreste `titanlar-com` sahipli bir anahtarla bir kez yeniden bağlanır. Eski anahtarlar GitHub'da (Settings → Developer settings → Fine-grained tokens) iptal edilmelidir.
 
 ## Veri doğruluğu
 
@@ -57,7 +61,7 @@ Anahtar tarayıcıda saklanır. `karacaismail.github.io` altındaki bütün Page
 
 ## Arama motorları
 
-Uygulama sayfaları `noindex` olarak işaretlidir. Arama motorları için her kitabın, kategorinin ve kümenin statik sayfası `/kitaps/catalog/` altında üretilir; `sitemap.xml` bu sayfaları listeler. GitHub Pages proje siteleri alan adının kökündeki `robots.txt` dosyasını değiştiremediği için sitemap Google Search Console ve Bing Webmaster Tools'a elle gönderilmelidir: `https://karacaismail.github.io/kitaps/sitemap.xml`.
+Uygulama sayfaları `noindex` olarak işaretlidir. Arama motorları için her kitabın, kategorinin ve kümenin statik sayfası `/kitaps/catalog/` altında üretilir; `sitemap.xml` bu sayfaları listeler. GitHub Pages proje siteleri alan adının kökündeki `robots.txt` dosyasını değiştiremediği için sitemap Google Search Console ve Bing Webmaster Tools'a elle gönderilmelidir: `https://titanlar-com.github.io/kitaps/sitemap.xml`. Adres değiştiği için bu araçlarda `https://titanlar-com.github.io/kitaps/` için yeni bir site (URL öneki) kaydı gerekir.
 
 ## Geliştirme
 
@@ -87,7 +91,7 @@ Geliştirme ortamında Control+Alt+A ile erişilebilirlik denetimi açılabilir.
 
 ## Korunan eski sürüm
 
-Önceki uygulamanın bütün izlenen dosyaları `legacy/b1d060c/` altında korunur. Git geçmişi değiştirilmemiştir. Özgün Markdown ve kapak listesi `data/kitaplar.md` ve `data/covers.json` yollarında da durur. Birleştirilen girdiler `data/sources/` altındadır. Eski Kitaps işaretleri aynı tarayıcıda otomatik taşınır.
+Önceki uygulamanın bütün izlenen dosyaları `legacy/b1d060c/` altında korunur. Git geçmişi değiştirilmemiştir. Özgün Markdown ve kapak listesi `data/kitaplar.md` ve `data/covers.json` yollarında da durur. Birleştirilen girdiler `data/sources/` altındadır. Eski Kitaps işaretleri aynı tarayıcıda ve aynı site adresinde otomatik taşınır; adres değişikliğinden önceki tarayıcı kayıtları yeni adrese geçmez.
 
 ## Lisanslar
 

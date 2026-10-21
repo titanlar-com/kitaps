@@ -7,6 +7,8 @@
 **Uygulama deposu:** https://github.com/karacaismail/kitaps
 **Paylaşılan durum deposu:** https://github.com/karacaismail/kitaps-state
 
+> **Adres notu (21 Ekim 2026):** Bu rapor yazıldığı günün adreslerini korur. Depolar sonradan `titanlar-com` kuruluşuna taşındı: canlı ürün https://titanlar-com.github.io/kitaps/, uygulama deposu https://github.com/titanlar-com/kitaps, durum deposu https://github.com/titanlar-com/kitaps-state.
+
 ## 1. Yönetici özeti
 
 Müşterinin istediği ürün basit bir kitap listesi değildir. Ürün; kitap kimliklerinin doğru tutulduğu, Türkçe baskıların ayırt edildiği, kitaplar arasındaki hazırlık ve eşlik ilişkilerinin görülebildiği, neden önce okunması gerektiğini açıklayan ve kişisel kullanım verilerini cihazlar arasında taşıyan bir okuma karar sistemi olmalıdır.

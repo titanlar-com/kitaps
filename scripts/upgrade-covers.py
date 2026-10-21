@@ -64,7 +64,7 @@ LARGE, SMALL = 720, 400
 DETAIL = 1.2
 # 64-bit difference hash: a larger copy of the same image stays within a few bits.
 SAME_IMAGE_BITS = 6
-USER_AGENT = 'KitaplikCoverCheck/1.0 (+https://github.com/karacaismail/kitaps)'
+USER_AGENT = 'KitaplikCoverCheck/1.0 (+https://github.com/titanlar-com/kitaps)'
 # Kitapyurdu stamps "kitapyurdu.com" across the lower cover at every size.
 WATERMARKED = ('img.kitapyurdu.com',)
 

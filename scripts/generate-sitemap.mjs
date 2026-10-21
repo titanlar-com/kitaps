@@ -1,9 +1,10 @@
 import fs from 'node:fs';
 import { DEFAULT_PAGE_SIZE, bookSlug } from '../src/library.js';
+import { SITE_URL } from '../src/site.js';
 
 const root=new URL('../',import.meta.url);
 const catalog=JSON.parse(fs.readFileSync(new URL('src/catalog.json',root),'utf8'));
-const base='https://karacaismail.github.io/kitaps/catalog/';
+const base=`${SITE_URL}catalog/`;
 const pageSize=DEFAULT_PAGE_SIZE;
 const urls=new Set();
 const addListing=(path,count)=>{

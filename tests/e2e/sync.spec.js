@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-// The shared state lives in the public karacaismail/kitaps-state repository. Every request to
+// The shared state lives in the public titanlar-com/kitaps-state repository. Every request to
 // it is answered here, so no test reads or writes the real file. The token is a test value.
 const TOKEN = 'github_pat_TEST_ONLY_not_a_real_token_for_e2e_checks';
 const TOKEN_KEY = 'kitapatlasi:github-state:token:v1';
@@ -14,13 +14,26 @@ const CORS = {
 };
 const base64 = value => Buffer.from(JSON.stringify(value), 'utf8').toString('base64');
 
+const fakes = [];
+// The state repository has one address. A request anywhere else on GitHub (an old owner's
+// path, say) is refused before it reaches the real service, and fails the test.
+test.afterEach(() => {
+  for (const github of fakes.splice(0)) expect(github.elsewhere, 'GitHub requests outside titanlar-com/kitaps-state').toEqual([]);
+});
+
 /** One fake GitHub shared by every device in a test. The CDN copy can be made to lag,
  * as the real one does for up to five minutes. */
 function fakeGitHub({ canWrite = true, cdnLags = false } = {}) {
-  const github = { file: structuredClone(EMPTY), sha: 'sha-0', puts: [], probes: 0 };
+  const github = { file: structuredClone(EMPTY), sha: 'sha-0', puts: [], probes: 0, elsewhere: [] };
+  fakes.push(github);
   github.attach = async context => {
-    await context.route('https://raw.githubusercontent.com/karacaismail/kitaps-state/**', route => route.fulfill({ headers: CORS, json: cdnLags ? EMPTY : github.file }));
-    await context.route('https://api.github.com/repos/karacaismail/kitaps-state/**', async route => {
+    // Registered first, so the state repository's own routes below take precedence.
+    await context.route(/^https:\/\/(api\.github\.com|raw\.githubusercontent\.com)\//, route => {
+      github.elsewhere.push(`${route.request().method()} ${route.request().url()}`);
+      return route.abort();
+    });
+    await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.fulfill({ headers: CORS, json: cdnLags ? EMPTY : github.file }));
+    await context.route('https://api.github.com/repos/titanlar-com/kitaps-state/**', async route => {
       const request = route.request();
       if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: CORS });
       if (request.url().endsWith('/git/blobs')) {

@@ -1,10 +1,16 @@
 import React,{useEffect,useRef,useState} from 'react';
 import {Alert,Anchor,Badge,Button,Group,List,Paper,PasswordInput,Stack,Text,Title} from '@mantine/core';
 import {IconArrowUpRight,IconBrandGithub,IconRefresh} from '@tabler/icons-react';
+import {GITHUB_STATE_OWNER,GITHUB_STATE_REPOSITORY} from '../state/types.ts';
+import {SITE_URL} from '../site';
 
-// Pre-filled creation form: one owner, Contents read and write, 90 days.
-// GitHub cannot pre-select the repository, so the steps below name it.
-const TOKEN_FORM='https://github.com/settings/personal-access-tokens/new?'+new URLSearchParams({name:'Kitaplık eşitleme',description:'Yalnız karacaismail/kitaps-state: Contents read and write',target_name:'karacaismail',expires_in:'90',contents:'write'});
+// The token is kept in this origin's storage, which every Pages site on the same host can read.
+const SITE_HOST=new URL(SITE_URL).host;
+
+// Pre-filled creation form: the organisation that owns the state repository as
+// resource owner, Contents read and write, 90 days. GitHub cannot pre-select the
+// repository, so the steps below name it.
+const TOKEN_FORM='https://github.com/settings/personal-access-tokens/new?'+new URLSearchParams({name:'Kitaplık eşitleme',description:`Yalnız ${GITHUB_STATE_OWNER}/${GITHUB_STATE_REPOSITORY}: Contents read and write`,target_name:GITHUB_STATE_OWNER,expires_in:'90',contents:'write'});
 
 /** Connects this browser to the shared state file. Inside a dialog that already
  * carries the title, `framed={false}` drops the panel's own frame and heading. */
@@ -20,10 +26,11 @@ export default function GitHubSyncPanel({sync,framed=true}){
   {sync.hasToken?<Group mt="md"><Button variant="light" leftSection={<IconRefresh size={18}/>} onClick={()=>void sync.flush().catch(()=>undefined)}>Şimdi gönder</Button><Button variant="default" onClick={()=>void sync.load()}>GitHub’dan yenile</Button><Button variant="subtle" color="red" onClick={sync.clearToken}>Anahtarı kaldır</Button></Group>:<form onSubmit={submit}><Stack mt="md" gap="sm">
    <Text fw={600}>Bu cihazı bağla</Text>
    <List size="sm" spacing={4} className="token-steps" type="ordered">
-    <List.Item><Anchor href={TOKEN_FORM} target="_blank" rel="noreferrer">Anahtarı hazır ayarlarla oluştur <IconArrowUpRight size={15}/></Anchor> (Contents yazma, 90 gün).</List.Item>
-    <List.Item>Repository access bölümünde “Only select repositories” seçip yalnız kitaps-state deposunu işaretle; Contents iznini “Read and write” bırak, başka izin ekleme.</List.Item>
+    <List.Item><Anchor href={TOKEN_FORM} target="_blank" rel="noreferrer">Anahtarı hazır ayarlarla oluştur <IconArrowUpRight size={15}/></Anchor> (sahibi {GITHUB_STATE_OWNER}, Contents yazma, 90 gün).</List.Item>
+    <List.Item>Resource owner olarak {GITHUB_STATE_OWNER} seçili kalsın: kişisel hesabına bağlı bir anahtar, önceki anahtarın da, bu depoya yazamaz. Kuruluş yeni anahtarları onaya bağlıyorsa anahtar, bir kuruluş sahibi onaylayınca yazabilir; onaydan sonra anahtarı yeniden yapıştır.</List.Item>
+    <List.Item>Repository access bölümünde “Only select repositories” seçip yalnız {GITHUB_STATE_REPOSITORY} deposunu işaretle; Contents iznini “Read and write” bırak, başka izin ekleme.</List.Item>
     <List.Item>Anahtarı aşağıya yapıştır. Aynı anahtarı telefonda da kullanabilirsin; e-posta ya da mesajla gönderme, telefonda yeniden oluştur veya cihazlar arası güvenli kopyala-yapıştır kullan.</List.Item>
-    <List.Item>Anahtar bu tarayıcıda saklanır. karacaismail.github.io altındaki diğer sayfalar aynı tarayıcı alanını paylaştığı için yalnız bu depoya yetkili, süreli bir anahtar kullan.</List.Item>
+    <List.Item>Anahtar bu tarayıcıda saklanır. {SITE_HOST} altındaki diğer sayfalar aynı tarayıcı alanını paylaştığı için yalnız bu depoya yetkili, süreli bir anahtar kullan.</List.Item>
    </List>
    <PasswordInput label="İnce ayarlı (fine-grained) GitHub anahtarı" description="github_pat_ ile başlar. Klasik ve OAuth anahtarları kabul edilmez; anahtar kaydedilmeden önce GitHub ile okuma ve yazma izni denetlenir." value={token} onChange={event=>setToken(event.currentTarget.value)} autoComplete="off" required/>
    <Button type="submit" loading={submitting} disabled={!token.trim()}>Bu cihazda bağla</Button>

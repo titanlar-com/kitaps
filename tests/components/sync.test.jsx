@@ -15,7 +15,11 @@ describe('GitHubSyncPanel', () => {
     const link = screen.getByRole('link', { name: /hazır ayarlarla oluştur/ });
     const url = new URL(link.getAttribute('href'));
     expect(url.origin + url.pathname).toBe('https://github.com/settings/personal-access-tokens/new');
-    expect(url.searchParams.get('target_name')).toBe('karacaismail');
+    expect(url.searchParams.get('target_name')).toBe('titanlar-com');
+    expect(url.searchParams.get('description')).toContain('titanlar-com/kitaps-state');
+    // A token owned by a personal account cannot reach the organisation's repository.
+    expect(screen.getByText(/Resource owner olarak titanlar-com seçili kalsın/)).toBeTruthy();
+    expect(screen.getByText(/titanlar-com\.github\.io altındaki diğer sayfalar/)).toBeTruthy();
     expect(url.searchParams.get('contents')).toBe('write');
     expect(Number(url.searchParams.get('expires_in'))).toBeLessThanOrEqual(90);
     expect(screen.getByText(/Only select repositories/)).toBeTruthy();

@@ -8,8 +8,8 @@ const EMPTY_STATE = { schemaVersion: 2, updatedAt: '1970-01-01T00:00:00.000Z', b
 
 // The live shared reading state must not decide what these tests see.
 async function isolate(context) {
-  await context.route('https://raw.githubusercontent.com/karacaismail/kitaps-state/**', route => route.fulfill({ json: EMPTY_STATE }));
-  await context.route('https://api.github.com/repos/karacaismail/kitaps-state/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
+  await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.fulfill({ json: EMPTY_STATE }));
+  await context.route('https://api.github.com/repos/titanlar-com/kitaps-state/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
 }
 
 test.beforeEach(async ({ context }) => { await isolate(context); });

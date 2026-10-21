@@ -13,8 +13,8 @@ const consoleErrors = page => {
 // The live shared reading state must not decide what a test sees. Pages read it from the
 // CDN and, on opening, from the API; both answer with an empty state here.
 const isolate = context => Promise.all([
-  context.route('https://raw.githubusercontent.com/karacaismail/kitaps-state/**', route => route.fulfill({ json: EMPTY_STATE })),
-  context.route('https://api.github.com/repos/karacaismail/kitaps-state/**', route => route.fulfill({ json: { sha: 'empty', encoding: 'base64', content: Buffer.from(JSON.stringify(EMPTY_STATE)).toString('base64') } })),
+  context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.fulfill({ json: EMPTY_STATE })),
+  context.route('https://api.github.com/repos/titanlar-com/kitaps-state/**', route => route.fulfill({ json: { sha: 'empty', encoding: 'base64', content: Buffer.from(JSON.stringify(EMPTY_STATE)).toString('base64') } })),
 ]);
 const pageFits = page => page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth);
 // The matches of `roots`, and every element inside them, whose content runs out of their own box.

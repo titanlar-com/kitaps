@@ -35,11 +35,11 @@ test('anonymous devices read the CDN copy with a simple request; connected devic
  let request;
  const anonymous=new GitHubStateRepository({storage:storage(),fetch:async(url,init)=>{request={url,init};return raw(remote);}});
  assert.deepEqual(await anonymous.load(),remote);
- assert.equal(request.url,'https://raw.githubusercontent.com/karacaismail/kitaps-state/main/state.json');
+ assert.equal(request.url,'https://raw.githubusercontent.com/titanlar-com/kitaps-state/main/state.json');
  assert.equal(Object.keys(request.init.headers||{}).length,0,'no custom headers means no preflight');
  const connected=new GitHubStateRepository({storage:withToken(),fetch:async(url,init)=>{request={url,init};return contents(remote);}});
  await connected.load();
- assert.match(request.url,/api\.github\.com\/repos\/karacaismail\/kitaps-state\/contents\/state\.json/);
+ assert.match(request.url,/api\.github\.com\/repos\/titanlar-com\/kitaps-state\/contents\/state\.json/);
  assert.equal(request.init.headers.Authorization,`Bearer ${TOKEN}`);
 });
 
@@ -286,7 +286,7 @@ test('a token must prove it can write before it is stored, without committing an
  const writable=new GitHubStateRepository({storage:storage(),fetch:async(url,init)=>{requests.push({url,init});return init.method==='POST'?new Response('{"sha":"e69de29"}',{status:201}):contents(emptyStateDocument());}});
  await writable.validateToken(TOKEN);
  const probe=requests.find(item=>item.init.method==='POST');
- assert.equal(probe.url,'https://api.github.com/repos/karacaismail/kitaps-state/git/blobs');
+ assert.equal(probe.url,'https://api.github.com/repos/titanlar-com/kitaps-state/git/blobs');
  // Non-empty content: GitHub's documented case, and the same blob (sha) every time.
  assert.deepEqual(JSON.parse(probe.init.body),{content:'Kitaplık yazma denetimi',encoding:'utf-8'});
  assert.equal(probe.init.headers.Authorization,`Bearer ${TOKEN}`);
@@ -305,7 +305,7 @@ test('an anonymous device asks the API for a fresh copy when it matters, at most
  const requests=[];let now=Date.parse(timestamp(10));
  const repository=new GitHubStateRepository({storage:storage(),clock:()=>new Date(now),fetch:async(url,init)=>{requests.push({url,init});return url.startsWith('https://raw.')?raw(remote):contents(remote,'sha',{ETag:'"v1"'});}});
  assert.deepEqual(await repository.load({fresh:true}),remote);
- assert.match(requests.at(-1).url,/^https:\/\/api\.github\.com\/repos\/karacaismail\/kitaps-state\/contents\/state\.json/);
+ assert.match(requests.at(-1).url,/^https:\/\/api\.github\.com\/repos\/titanlar-com\/kitaps-state\/contents\/state\.json/);
  assert.equal(requests.at(-1).init.headers.Authorization,undefined,'an anonymous device sends no token');
  assertCorsSafe(requests.at(-1).init,'anonymous API read');
  await repository.load({fresh:true});

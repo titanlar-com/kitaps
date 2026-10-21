@@ -10,6 +10,7 @@ import GitHubSyncPanel from './GitHubSyncPanel';
 import SourceBadge from './SourceBadge';
 import {download} from '../download';
 import {cleanPersonal,restorePersonal} from '../reading';
+import {SOURCE_URL} from '../site';
 import {ORIGIN_LABELS,STATE_LABELS,plainTextMarkers} from '../library';
 
 const bookIds=catalog.books.map(book=>book.id);
@@ -66,7 +67,7 @@ export default function NotesPage({states,setStates,personal,setPersonal,sync}) 
   </Paper>
   <Paper withBorder p="lg" radius="lg"><Title order={3}>Kişisel kitaplığını yedekle</Title><Group mt="md"><Button variant="light" leftSection={<IconDownload size={19}/>} onClick={()=>download('kitaplik-kisisel-yedek.json',{version:3,exportedAt:new Date().toISOString(),states,...personal})}>Kişisel yedeğimi indir</Button><FileButton onChange={importStates} accept="application/json">{props=><Button {...props} variant="default" leftSection={<IconUpload size={19}/>}>Yedekten aktar</Button>}</FileButton></Group>{message&&<Text mt="md" role="status">{message}</Text>}</Paper>
   <GitHubSyncPanel sync={sync}/>
-  <div><Title order={3}>Tam veri ve kaynaklar</Title><Group mt="md"><Button variant="light" leftSection={<IconDownload size={19}/>} onClick={()=>void downloadEverything()}>Tüm kataloğu indir</Button><Button variant="default" leftSection={<IconDownload size={19}/>} onClick={()=>download('kitaps-kaynak-notlari.md',plainTextMarkers(readingNotes),'text/markdown')}>Kaynak notlarını indir</Button></Group><Group mt="md"><Anchor href="https://github.com/karacaismail/kitaps" target="_blank" rel="noreferrer">Kaynak kod ve veri arşivi</Anchor></Group></div>
+  <div><Title order={3}>Tam veri ve kaynaklar</Title><Group mt="md"><Button variant="light" leftSection={<IconDownload size={19}/>} onClick={()=>void downloadEverything()}>Tüm kataloğu indir</Button><Button variant="default" leftSection={<IconDownload size={19}/>} onClick={()=>download('kitaps-kaynak-notlari.md',plainTextMarkers(readingNotes),'text/markdown')}>Kaynak notlarını indir</Button></Group><Group mt="md"><Anchor href={SOURCE_URL} target="_blank" rel="noreferrer">Kaynak kod ve veri arşivi</Anchor></Group></div>
   <Divider/>
   <Title order={2}>Kaynak dosyanın tamamı</Title>
   <Accordion variant="separated" radius="lg">{sections.map((s,i)=>{const title=i===0?'Dosyaya giriş':s.split('\n')[0].replace(/^## /,'').replace(/\*/g,'');return <Accordion.Item value={String(i)} key={i}><Accordion.Control>{title}</Accordion.Control><Accordion.Panel><div className="markdown"><ReactMarkdown remarkPlugins={[remarkGfm]} components={{table:NoteCards,a:({href,children})=><Anchor href={href} target="_blank" rel="noreferrer">{children}</Anchor>}}>{i===0?s:s.slice(s.indexOf('\n')+1)}</ReactMarkdown></div></Accordion.Panel></Accordion.Item>})}</Accordion>

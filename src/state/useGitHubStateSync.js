@@ -2,7 +2,7 @@ import {useCallback,useEffect,useRef,useState} from 'react';
 import {GitHubStateRepository} from './GitHubStateRepository.ts';
 import {GitHubStateBatcher} from './GitHubStateBatcher.ts';
 import {planConnect,planFirstSync,projectPublicState} from './syncModel.ts';
-import {GITHUB_STATE_BACKUP_KEY} from './types.ts';
+import {GITHUB_STATE_BACKUP_KEY,GITHUB_STATE_OWNER,GITHUB_STATE_REPOSITORY} from './types.ts';
 
 const readingPayload=(personal,id)=>{
  const source=personal.reading[id];if(!source||typeof source!=='object')return null;
@@ -272,7 +272,7 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
    // comparison has run, whatever asks to send (the batcher, leaving the page, a reload).
    repository.beginConnectReview();
    try{repository.setToken(token)}catch(error){try{repository.clearConnectReview()}catch{/* Nothing more to undo. */}throw error;}
-  }catch(error){setSync(value=>({...value,status:'error',hasToken:tokenPresent(),message:error.code==='read-only'?'Bu anahtar kitaps-state deposuna yazamıyor. Anahtarın Repository access bölümünde kitaps-state seçili, Contents izni Read and write olmalı; anahtar kaydedilmedi.':error.code==='token-type'?'Yalnız ince ayarlı (fine-grained) ve yalnız karacaismail/kitaps-state deposuna yetkili bir anahtar kabul edilir; anahtar kaydedilmedi.':error.code==='storage'?'Anahtar bu tarayıcıya kaydedilemedi.':error.code==='rate-limited'?readMessage(error):'GitHub anahtarı doğrulanamadı; anahtar kaydedilmedi.'}));throw error;}
+  }catch(error){setSync(value=>({...value,status:'error',hasToken:tokenPresent(),message:error.code==='read-only'?`Bu anahtar ${GITHUB_STATE_REPOSITORY} deposuna yazamıyor. Anahtarın sahibi (Resource owner) ${GITHUB_STATE_OWNER} olmalı, Repository access bölümünde ${GITHUB_STATE_REPOSITORY} seçili ve Contents izni Read and write olmalı; kuruluş onayı bekleyen anahtar da yazamaz. Anahtar kaydedilmedi.`:error.code==='token-type'?`Yalnız ince ayarlı (fine-grained) ve yalnız ${GITHUB_STATE_OWNER}/${GITHUB_STATE_REPOSITORY} deposuna yetkili bir anahtar kabul edilir; anahtar kaydedilmedi.`:error.code==='storage'?'Anahtar bu tarayıcıya kaydedilemedi.':error.code==='rate-limited'?readMessage(error):'GitHub anahtarı doğrulanamadı; anahtar kaydedilmedi.'}));throw error;}
   setSync(value=>({...value,status:'loading',hasToken:true,writeError:null,message:'Anahtar doğrulandı; bu cihazın kayıtları GitHub’dakiyle karşılaştırılıyor.'}));
   if(!repository.hasCompletedInitialMigration()&&!firstSyncRemote.current)await refresh(true,true);
   else if(loading.current)await refreshing.current;

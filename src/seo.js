@@ -1,6 +1,7 @@
 import { DEFAULT_PAGE_SIZE, bookSlug, emptyFilters, encodeRoute } from './library.js';
 import { displayTitle } from './translation.js';
 import { workFormat } from './workFormat.js';
+import { SITE_URL } from './site.js';
 
 const SITE_NAME='Kitaplık';
 const baseDescription=catalog=>`${catalog.books.length} kitap; araştırılmış seçkiler, konu rotaları, çeviri, çevirmen ve baskı bilgileriyle tek katalogda.`;
@@ -15,8 +16,9 @@ function publicListing(route) {
 const cleanRoute=(route,book=null)=>({filters:emptyFilters(),view:'books',sort:'reading',book,page:1,pageSize:DEFAULT_PAGE_SIZE});
 
 function siteBase() {
- const origin=globalThis.location?.origin||'https://karacaismail.github.io';
- const pathname=globalThis.location?.pathname||'/kitaps/';
+ const site=new URL(SITE_URL);
+ const origin=globalThis.location?.origin||site.origin;
+ const pathname=globalThis.location?.pathname||site.pathname;
  const root=pathname.endsWith('/')?pathname:pathname.slice(0,pathname.lastIndexOf('/')+1);
  return `${origin}${root}`;
 }

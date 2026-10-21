@@ -5,7 +5,9 @@ import {
   GITHUB_STATE_BASE_KEY,
   GITHUB_STATE_CONNECT_REVIEW_KEY,
   GITHUB_STATE_MIGRATION_KEY,
+  GITHUB_STATE_OWNER,
   GITHUB_STATE_PENDING_KEY,
+  GITHUB_STATE_REPOSITORY,
   GITHUB_STATE_TOKEN_KEY,
   LEGACY_GITHUB_STATE_PENDING_KEY,
   type BookField,
@@ -116,8 +118,8 @@ export class GitHubStateRepository {
   private nextAnonymousApiRead = 0;
 
   constructor(options: GitHubStateRepositoryOptions = {}) {
-    this.owner = options.owner ?? 'karacaismail';
-    this.repository = options.repository ?? 'kitaps-state';
+    this.owner = options.owner ?? GITHUB_STATE_OWNER;
+    this.repository = options.repository ?? GITHUB_STATE_REPOSITORY;
     this.path = options.path ?? 'state.json';
     this.branch = options.branch ?? 'main';
     this.storage = options.storage ?? (typeof localStorage === 'undefined' ? memoryStorage() : localStorage);

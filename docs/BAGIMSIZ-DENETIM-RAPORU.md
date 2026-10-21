@@ -5,6 +5,8 @@
 **Ek kapsam:** canlı site (https://karacaismail.github.io/kitaps/), `karacaismail/kitaps-state` deposu, Codex'in [müşteri ihtiyaçları ve süreç raporu](MUSTERI-IHTIYACLARI-VE-SUREC-RAPORU.md)
 **Denetleyen:** Claude (Codex'ten bağımsız)
 
+> **Adres notu (21 Ekim 2026):** Bu rapor denetim günündeki adresleri olduğu gibi korur. Depolar sonradan `titanlar-com` kuruluşuna taşındı: uygulama https://github.com/titanlar-com/kitaps, durum deposu https://github.com/titanlar-com/kitaps-state, canlı site https://titanlar-com.github.io/kitaps/. Aşağıdaki eski site bağlantıları artık açılmaz; yeniden denemek için aynı yolu yeni sitede kullan.
+
 ## Yöntem
 
 - **Kod incelemesi:** sıralama motoru, durum eşitleme katmanı, arayüz bileşenleri, SEO ve veri betikleri.

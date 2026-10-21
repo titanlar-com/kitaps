@@ -3,7 +3,7 @@
  "title": "13 yaşına kadar temel kütüphane",
  "short": "13 yaşına kadar",
  "description": "Bir çocuğun 13 yaşına kadar tanışması önerilen kitaplar: resimli kitaplardan ilk romanlara, maceradan ağır temalı klasiklere. İlk dört yaş bandı 10 yaşına kadar olanlardır. Yaşlar yaklaşıktır; bir kitabı rahat okuyabilmek, duygusal içeriğine hazır olmak demek değildir.",
- "source": "https://github.com/karacaismail/kitaps/blob/main/data/children-library.json",
+ "source": "https://github.com/titanlar-com/kitaps/blob/main/data/children-library.json",
  "note": "Ebeveynin seçtiği kitaplar bağımsız çocuk kitabı listelerinin kesişimiyle karşılaştırıldı. Her yeni Türkçe baskı iki ayrı sitede ISBN, yayınevi ve çevirmen üzerinden doğrulandı. Puanlar diğer kitaplarla aynı motordan gelir.",
  "checkedAt": "2026-09-28",
  "groups": [
