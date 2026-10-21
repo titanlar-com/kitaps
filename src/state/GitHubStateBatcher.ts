@@ -88,7 +88,9 @@ export class GitHubStateBatcher {
     this.timer = this.scheduleTimer(() => {
       this.timer = undefined;
       void this.flush().then(() => { this.retryAttempt = 0; }).catch((error: unknown) => {
-        if (!this.repository.getPendingCount() || isPermanentSyncError(error)) return;
+        let pending = 0;
+        try { pending = this.repository.getPendingCount(); } catch { /* Storage the reader must fix: nothing to retry. */ }
+        if (!pending || isPermanentSyncError(error)) return;
         const step = Math.max(0, this.retryDelaysMs[Math.min(this.retryAttempt, this.retryDelaysMs.length - 1)]);
         this.retryAttempt += 1;
         // A rate limit names when GitHub accepts requests again; nothing is sent before then.

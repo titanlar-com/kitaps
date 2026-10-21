@@ -476,3 +476,47 @@ describe('useGitHubStateSync when GitHub refuses the key or asks to wait', () =>
     expect(result.current.sync.message).not.toBe('GitHub ile eşitlendi.');
   });
 });
+
+describe('useGitHubStateSync with a pending queue it cannot read in full', () => {
+  beforeEach(() => { localStorage.clear(); localStorage.setItem('kitapatlasi:github-state:migrated:v1', '1'); });
+  afterEach(() => vi.unstubAllGlobals());
+
+  it('keeps the readable edits on screen, says a copy is kept, and removes the copy only when asked', async () => {
+    const good = { id: 'g', kind: 'book', bookId: 'a', updatedAt: '2026-09-28T09:00:00.000Z', value: { states: ['okunuyor'] } };
+    const damaged = JSON.stringify({ since: good.updatedAt, mutations: [good, { id: 'x', kind: 'book', bookId: 'b', updatedAt: 'dün', value: { states: ['okundu'] } }] });
+    localStorage.setItem('kitapatlasi:github-state:pending:v2', damaged);
+    vi.stubGlobal('fetch', github(remoteDocument({})).fetch);
+    const { result } = renderHook(() => useHarness({ a: ['okunuyor'] }, { queue: [], reading: {} }));
+    await waitFor(() => expect(result.current.sync.status).toBe('queued'));
+    // The shared file does not have the edit yet; reading it does not undo the mark.
+    expect(result.current.states.a).toEqual(['okunuyor']);
+    expect(result.current.sync.pending).toBe(1);
+    expect(result.current.sync.recovery).toEqual({ copies: 1, kept: 1, stored: true });
+    expect(result.current.sync.recoveryCopies().map(copy => copy.raw)).toEqual([damaged]);
+    act(() => result.current.sync.clearRecovery());
+    expect(result.current.sync.recovery).toBeNull();
+    expect(pending()).toEqual([good]);
+  });
+
+  it('with no room for the copy, still shows the shared file and the readable edits, and says why nothing new is queued', async () => {
+    const good = { id: 'g', kind: 'book', bookId: 'a', updatedAt: '2026-09-28T09:00:00.000Z', value: { states: ['okunuyor'] } };
+    const damaged = JSON.stringify({ since: good.updatedAt, mutations: [good, { id: 'x', kind: 'book', bookId: 'b', updatedAt: 'dün', value: { states: ['okundu'] } }] });
+    localStorage.setItem('kitapatlasi:github-state:pending:v2', damaged);
+    const setItem = Storage.prototype.setItem;
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function (key, value) {
+      if (key === 'kitapatlasi:github-state:pending-recovery:v1') throw new DOMException('full', 'QuotaExceededError');
+      return setItem.call(this, key, value);
+    });
+    vi.stubGlobal('fetch', github(remoteDocument({ c: record({ states: ['alindi'] }) })).fetch);
+    const { result } = renderHook(() => useHarness({ a: ['okunuyor'] }, { queue: [], reading: {} }));
+    await waitFor(() => expect(result.current.sync.status).toBe('queued'));
+    expect(result.current.states).toEqual({ a: ['okunuyor'], c: ['alindi'] });
+    expect(result.current.sync.pending).toBe(1);
+    expect(result.current.sync.recovery).toEqual({ copies: 1, kept: 1, stored: false });
+    expect(result.current.sync.recoveryCopies().map(copy => copy.raw)).toEqual([damaged]);
+    act(() => result.current.setStates(states => ({ ...states, b: ['onemli'] })));
+    await waitFor(() => expect(result.current.sync.message).toBe('Tarayıcının yerel eşitleme alanına yazılamadı.'));
+    expect(localStorage.getItem('kitapatlasi:github-state:pending:v2')).toBe(damaged);
+    vi.restoreAllMocks();
+  });
+});

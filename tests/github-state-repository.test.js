@@ -219,6 +219,21 @@ test('version 1 files and pending queues are read as version 2',()=>{
  const repository=new GitHubStateRepository({storage:local,fetch:async()=>raw(emptyStateDocument())});
  assert.equal(repository.getPendingCount(),1,'queue-only legacy entries are dropped; the device queue is re-sent whole');
  assert.equal(local.getItem(GitHubStateRepository.LEGACY_PENDING_KEY),null);
+ assert.equal(repository.hasPendingRecovery(),false);
+ // A legacy queue that cannot be read in full is rescued like the current one: its
+ // readable edits stay queued and the whole record is kept aside before its key goes.
+ const text=JSON.stringify([{id:'old-1',bookId:'a',updatedAt:'dün',value:{states:['okundu']}},{id:'old-2',bookId:'b',updatedAt:timestamp(4),value:{states:['onemli']}}]);
+ const damaged=storage();damaged.setItem(GitHubStateRepository.LEGACY_PENDING_KEY,text);
+ const migrated=new GitHubStateRepository({storage:damaged,fetch:async()=>raw(emptyStateDocument())});
+ assert.deepEqual(migrated.pendingMutations().map(item=>item.bookId),['b']);
+ assert.deepEqual(migrated.pendingRecovery().map(copy=>[copy.raw,copy.kept]),[[text,1]]);
+ assert.equal(damaged.getItem(GitHubStateRepository.LEGACY_PENDING_KEY),null);
+ // Without room for the copy the legacy record stays where it is.
+ const legacyValues=new Map([[GitHubStateRepository.LEGACY_PENDING_KEY,text]]);
+ const cramped=new GitHubStateRepository({storage:{getItem:key=>legacyValues.get(key)??null,removeItem:key=>legacyValues.delete(key),setItem:(key,value)=>{if(key===GitHubStateRepository.RECOVERY_KEY)throw new DOMException('full','QuotaExceededError');legacyValues.set(key,value);}},fetch:async()=>raw(emptyStateDocument())});
+ assert.equal(cramped.getPendingCount(),1);
+ assert.equal(cramped.recoveryStatus().stored,false);
+ assert.equal(legacyValues.get(GitHubStateRepository.LEGACY_PENDING_KEY),text);
 });
 
 test('a first sync adds device-only records, and asks only where both sides disagree',()=>{
@@ -259,6 +274,7 @@ test('corrupt pending storage is quarantined and storage quota failures are type
  const local=storage();local.setItem(GitHubStateRepository.PENDING_KEY,'{broken');
  const repository=new GitHubStateRepository({storage:local,fetch:async()=>raw(emptyStateDocument())});
  assert.equal(repository.getPendingCount(),0);assert.equal(local.getItem(GitHubStateRepository.PENDING_KEY),null);
+ assert.deepEqual(repository.pendingRecovery().map(copy=>copy.raw),['{broken'],'the unreadable queue is kept aside, not deleted');
  const full={getItem:()=>null,removeItem:()=>{},setItem:()=>{throw new DOMException('full','QuotaExceededError')}};
  const unavailable=new GitHubStateRepository({storage:full,fetch:async()=>raw(emptyStateDocument())});
  assert.throws(()=>unavailable.queueBookState('a',{states:['onemli']}),error=>error instanceof GitHubStateRepositoryError&&error.code==='storage');
@@ -516,4 +532,167 @@ test('a read that must use the key never falls back, and a 403 is not taken as a
  assert.equal(forbidden.lastReadInfo(),undefined);
  const {info}=await new GitHubStateRepository({storage:withToken(),fetch:async()=>contents(emptyStateDocument())}).loadRead();
  assert.equal(info.authenticated,true);
+});
+
+test('a reopened page never goes back to an older CDN copy than the file it last saw',async()=>{
+ const local=storage();
+ const newer=document({a:record(9,{states:['alindi']})},timestamp(9));
+ let served=newer;
+ const fetch=async()=>raw(served);
+ await new GitHubStateRepository({storage:local,fetch}).load();
+ served=document({},timestamp(1));
+ const reopened=new GitHubStateRepository({storage:local,fetch});
+ assert.deepEqual(await reopened.load(),newer,'a stale CDN edge does not undo a mark after a reload');
+ // The kept copy is the shared file alone: unsent edits and bases live elsewhere.
+ reopened.queueBookState('b',{states:['okundu']});
+ reopened.recordBases(newer);
+ await reopened.load();
+ assert.deepEqual(JSON.parse(local.getItem(GitHubStateRepository.REMOTE_KEY)).document,newer);
+ // A file this device wrote is kept too, so its own marks survive a reload behind a stale edge.
+ const written=storage();written.setItem(GitHubStateRepository.TOKEN_KEY,TOKEN);
+ let file=document({},timestamp(1));
+ const writer=new GitHubStateRepository({storage:written,clock:()=>new Date(timestamp(20)),fetch:async(url,init)=>init.method==='PUT'?new Response('{}',{status:200}):contents(file)});
+ writer.queueBookState('c',{states:['onemli']});
+ const saved=await writer.flushPending();
+ writer.clearToken();
+ const behind=new GitHubStateRepository({storage:written,clock:()=>new Date(timestamp(21)),fetch:async()=>raw(file)});
+ assert.deepEqual(await behind.load(),saved);
+ // The API answers for the file as it is now: it replaces a copy kept from an earlier visit
+ // (the shared file was reset, say), but within one visit nothing older replaces what was seen.
+ const reset=document({},timestamp(2));
+ const api=new GitHubStateRepository({storage:local,clock:()=>new Date(timestamp(30)),fetch:async url=>url.startsWith('https://raw.')?raw(reset):contents(reset)});
+ assert.deepEqual(await api.load({fresh:true}),reset);
+ assert.deepEqual(await api.load(),reset);
+ // A copy kept for another repository is never shown.
+ const elsewhere=new GitHubStateRepository({storage:written,owner:'someone-else',fetch:async()=>raw(document({},timestamp(1)))});
+ assert.deepEqual(await elsewhere.load(),document({},timestamp(1)));
+ // A damaged copy is ignored.
+ const damaged=storage();damaged.setItem(GitHubStateRepository.REMOTE_KEY,'{broken');
+ assert.deepEqual(await new GitHubStateRepository({storage:damaged,fetch:async()=>raw(reset)}).load(),reset);
+ // Storage that cannot keep the copy does not stop the read.
+ const full={getItem:()=>null,removeItem:()=>{},setItem:()=>{throw new DOMException('full','QuotaExceededError');}};
+ assert.deepEqual(await new GitHubStateRepository({storage:full,fetch:async()=>raw(reset)}).load(),reset);
+});
+
+test('within a visit nothing older replaces what was seen; another tab’s newer copy counts; a copy long kept yields to a reset file',async()=>{
+ const minute=60_000,start=Date.parse(timestamp(0));
+ const d1=document({a:record(1,{states:['onemli']})},timestamp(1)),d2=document({a:record(2,{states:['alindi']})},timestamp(2));
+ // Within one visit, even the API cannot take back a file this device saw.
+ let served=d2;
+ const visit=new GitHubStateRepository({storage:storage(),clock:()=>new Date(start),fetch:async url=>url.startsWith('https://raw.')?raw(served):contents(served)});
+ assert.deepEqual(await visit.load({fresh:true}),d2);
+ served=d1;
+ assert.deepEqual(await visit.load({fresh:true}),d2,'an older API answer within the visit');
+ // Two tabs: the one that saw less never takes the browser's kept copy back.
+ const shared=storage();let now=start;
+ const tabA=new GitHubStateRepository({storage:shared,clock:()=>new Date(now),fetch:async()=>raw(d1)});
+ await tabA.load();
+ const tabB=new GitHubStateRepository({storage:shared,clock:()=>new Date(now),fetch:async()=>raw(d2)});
+ await tabB.load();
+ assert.deepEqual(await tabA.load(),d2,'tab A takes the newer copy tab B kept');
+ assert.equal(JSON.parse(shared.getItem(GitHubStateRepository.REMOTE_KEY)).document.updatedAt,timestamp(2));
+ // A later visit: the CDN may lag five minutes, so an older copy soon after is refused…
+ now=start+4*minute;
+ assert.deepEqual(await new GitHubStateRepository({storage:shared,clock:()=>new Date(now),fetch:async()=>raw(d1)}).load(),d2);
+ // …but long after, an older copy means the shared file itself went back.
+ now=start+11*minute;
+ assert.deepEqual(await new GitHubStateRepository({storage:shared,clock:()=>new Date(now),fetch:async()=>raw(d1)}).load(),d1);
+});
+
+test('a new edit is stamped after the newest shared stamp seen for its fields, even when this clock runs behind',async()=>{
+ // Another device, its clock ahead, set the marks at second 50; this device's clock says second 10.
+ const remote=document({a:record(50,{states:['okundu'],reading:{why:'Uzak not'}},{states:timestamp(50),reading:timestamp(5)})},timestamp(50),{updatedAt:timestamp(40),value:['a']});
+ const local=storage();let now=Date.parse(timestamp(10));
+ const repository=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:async()=>raw(remote)});
+ const early=repository.queueBookState('a',{states:['alindi']});
+ assert.equal(early.updatedAt,timestamp(10));
+ await repository.load();
+ assert.equal(repository.pendingMutations()[0].updatedAt,timestamp(10),'reading the file never re-stamps an unsent edit');
+ const edit=repository.queueBookState('a',{states:['okunuyor']});
+ assert.equal(edit.updatedAt,'2026-09-28T10:00:50.001Z');
+ assert.deepEqual(applyPendingMutations(remote,[edit]).books.a.value.states,['okunuyor'],'the new edit wins over the value it was made on');
+ assert.equal(repository.getPendingSince(),timestamp(10),'the 30 second window still counts from the change, on this clock');
+ const timers=[];
+ new GitHubStateBatcher(repository,async()=>{},{now:()=>now,setTimeout:(callback,delay)=>{timers.push(delay);return timers.length;},clearTimeout:()=>{}}).schedule();
+ assert.equal(timers.at(-1),MIN_GITHUB_SYNC_DELAY_MS,'the window does not stretch');
+ const queue=repository.queueQueueState(['a']);
+ assert.ok(Date.parse(queue.updatedAt)>Date.parse(timestamp(40)));
+ // Only the fields an edit carries count: the note was set at second 5.
+ const fresh=new GitHubStateRepository({storage:storage(),clock:()=>new Date(timestamp(10)),fetch:async()=>raw(remote)});
+ await fresh.load();
+ assert.equal(fresh.queueBookState('a',{reading:{why:'Bu cihaz'}}).updatedAt,timestamp(10));
+ // Clearing a book has to be newer than the whole record.
+ const cleared=fresh.queueBookState('a',null);
+ assert.ok(Date.parse(cleared.updatedAt)>Date.parse(timestamp(50)));
+ assert.equal(applyPendingMutations(remote,[cleared]).books.a.value,null);
+ // "Bu cihazdakini kullan": the kept edit is stamped anew after the shared value.
+ const kept=new GitHubStateRepository({storage:storage(),clock:()=>new Date(timestamp(10)),fetch:async()=>raw(remote)});
+ kept.queueBookState('a',{states:['alindi']});
+ await kept.load();
+ kept.requeuePendingFor(['a'],false);
+ assert.deepEqual(applyPendingMutations(remote,kept.pendingMutations()).books.a.value.states,['alindi']);
+ // After a reload the kept copy of the file still sets the floor.
+ const reopened=storage();reopened.setItem(GitHubStateRepository.REMOTE_KEY,local.getItem(GitHubStateRepository.REMOTE_KEY));
+ const later=new GitHubStateRepository({storage:reopened,clock:()=>new Date(timestamp(10)),fetch:async()=>raw(remote)});
+ assert.ok(Date.parse(later.queueBookState('a',{states:['okundu']}).updatedAt)>Date.parse(timestamp(50)));
+ assert.equal(later.getPendingSince(),timestamp(10));
+ // A record without field stamps sets the floor with its own time; a stamped record that
+ // never set a field sets none for it.
+ const legacy=document({old:record(50,{states:['okundu']}),partial:record(50,{states:['okundu']},{states:timestamp(50)})},timestamp(50));
+ const mixed=new GitHubStateRepository({storage:storage(),clock:()=>new Date(timestamp(10)),fetch:async()=>raw(legacy)});
+ await mixed.load();
+ assert.ok(Date.parse(mixed.queueBookState('old',{reading:{why:'not'}}).updatedAt)>Date.parse(timestamp(50)));
+ const partly=new GitHubStateRepository({storage:storage(),clock:()=>new Date(timestamp(10)),fetch:async()=>raw(legacy)});
+ await partly.load();
+ assert.equal(partly.queueBookState('partial',{reading:{why:'not'}}).updatedAt,timestamp(10));
+ // A stored queue without its start time counts it on this clock, never in the future.
+ const stored=storage();
+ stored.setItem(GitHubStateRepository.PENDING_KEY,JSON.stringify({mutations:[{id:'f',kind:'book',bookId:'a',updatedAt:timestamp(50),value:{states:['onemli']}}]}));
+ assert.equal(new GitHubStateRepository({storage:stored,clock:()=>new Date(timestamp(10)),fetch:async()=>raw(remote)}).getPendingSince(),timestamp(10));
+});
+
+test('a damaged pending queue keeps its readable edits queued and a copy of the whole record',()=>{
+ const local=storage();
+ const good={id:'g',kind:'book',bookId:'a',updatedAt:timestamp(1),value:{states:['onemli']}};
+ const damaged=JSON.stringify({since:timestamp(1),mutations:[good,{id:'x',kind:'book',bookId:'b',updatedAt:'dün',value:{states:['okundu']}}]});
+ local.setItem(GitHubStateRepository.PENDING_KEY,damaged);
+ const repository=new GitHubStateRepository({storage:local,clock:()=>new Date(timestamp(30)),fetch:async()=>raw(emptyStateDocument())});
+ assert.deepEqual(repository.pendingMutations(),[good],'the readable edit stays queued');
+ assert.equal(repository.getPendingSince(),timestamp(1));
+ assert.equal(repository.hasPendingRecovery(),true);
+ assert.deepEqual(repository.pendingRecovery(),[{at:timestamp(30),kept:1,raw:damaged}]);
+ repository.getPendingCount();
+ assert.equal(repository.pendingRecovery().length,1,'one copy per damaged record');
+ assert.deepEqual(repository.recoveryStatus(),{copies:1,kept:1,stored:true});
+ // A copy that cannot be stored leaves the damaged record where it is: its readable edits
+ // are used and shown, nothing new is written over it, and the reader can still take it.
+ let room=false;
+ const values=new Map([[GitHubStateRepository.PENDING_KEY,damaged]]);
+ const full={getItem:key=>values.get(key)??null,removeItem:key=>values.delete(key),setItem:(key,value)=>{if(key===GitHubStateRepository.RECOVERY_KEY&&!room)throw new DOMException('full','QuotaExceededError');values.set(key,value);}};
+ const unavailable=new GitHubStateRepository({storage:full,clock:()=>new Date(timestamp(30)),fetch:async()=>raw(emptyStateDocument())});
+ assert.equal(unavailable.getPendingCount(),1);
+ assert.deepEqual(applyPendingMutations(emptyStateDocument(),unavailable.pendingMutations()).books.a.value.states,['onemli']);
+ assert.deepEqual(unavailable.recoveryStatus(),{copies:1,kept:1,stored:false});
+ assert.deepEqual(unavailable.pendingRecovery().map(copy=>copy.raw),[damaged]);
+ assert.throws(()=>unavailable.queueBookState('c',{states:['onemli']}),error=>error instanceof GitHubStateRepositoryError&&error.code==='storage');
+ assert.equal(values.get(GitHubStateRepository.PENDING_KEY),damaged);
+ // Once there is room, the copy is stored first and the queue moves on.
+ room=true;
+ unavailable.queueBookState('c',{states:['alindi']});
+ assert.deepEqual(unavailable.pendingRecovery().map(copy=>copy.raw),[damaged]);
+ assert.deepEqual(unavailable.pendingMutations().map(item=>item.bookId),['a','c']);
+ // Deleting a record whose copy could not be stored keeps its readable edits queued.
+ const lost=new Map([[GitHubStateRepository.PENDING_KEY,damaged]]);
+ const tight=new GitHubStateRepository({storage:{getItem:key=>lost.get(key)??null,removeItem:key=>lost.delete(key),setItem:(key,value)=>{if(key===GitHubStateRepository.RECOVERY_KEY)throw new DOMException('full','QuotaExceededError');lost.set(key,value);}},fetch:async()=>raw(emptyStateDocument())});
+ tight.getPendingCount();
+ tight.clearPendingRecovery();
+ assert.equal(tight.hasPendingRecovery(),false);
+ assert.deepEqual(JSON.parse(lost.get(GitHubStateRepository.PENDING_KEY)).mutations,[good]);
+ // A damaged list of copies is still handed over as its text.
+ const list=storage();list.setItem(GitHubStateRepository.RECOVERY_KEY,'[{broken');
+ assert.deepEqual(new GitHubStateRepository({storage:list,fetch:async()=>raw(emptyStateDocument())}).pendingRecovery().map(copy=>copy.raw),['[{broken']);
+ // The reader removes the copy once it is no longer needed.
+ repository.clearPendingRecovery();
+ assert.equal(repository.hasPendingRecovery(),false);
+ assert.deepEqual(repository.pendingRecovery(),[]);
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MantineProvider } from '@mantine/core';
 import GitHubSyncPanel from '../../src/components/GitHubSyncPanel';
@@ -48,6 +48,69 @@ describe('GitHubSyncPanel', () => {
     expect(screen.getByRole('button', { name: 'Şimdi gönder' })).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Anahtarı kaldır' })).toBeTruthy();
     expect(screen.queryByLabelText(/GitHub anahtarı/)).toBeNull();
+  });
+});
+
+describe('GitHubSyncPanel with a damaged queue', () => {
+  const copies = [{ at: '2026-10-22T09:00:00.000Z', kept: 1, raw: '{"since":"2026-10-22T08:00:00.000Z","mutations":[{"id":"x"}]}' }];
+  const recovering = (recovery = { copies: 1, kept: 1, stored: true }) => sync({ recovery, recoveryCopies: vi.fn(() => copies), clearRecovery: vi.fn() });
+  const created = URL.createObjectURL, revoked = URL.revokeObjectURL;
+  afterEach(() => { URL.createObjectURL = created; URL.revokeObjectURL = revoked; vi.restoreAllMocks(); });
+
+  it('says a copy of the damaged record is kept and downloads it as it was', async () => {
+    const value = recovering();
+    let file;
+    // jsdom has no object URLs.
+    URL.createObjectURL = vi.fn(blob => { file = blob; return 'blob:recovery'; });
+    URL.revokeObjectURL = vi.fn();
+    const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {});
+    renderWithTheme(<GitHubSyncPanel sync={value}/>);
+    const note = document.querySelector('.sync-recovery');
+    expect(note.getAttribute('role')).toBe('note');
+    expect(note.textContent).toContain('Bekleyen değişikliklerin kaydı tam okunamadı');
+    expect(note.textContent).toContain('Okunabilen 1 değişiklik kuyrukta kaldı');
+    expect(note.textContent).toContain('bir kopyası bu tarayıcıda saklanıyor');
+    fireEvent.click(screen.getByRole('button', { name: 'Kopyayı indir' }));
+    expect(click).toHaveBeenCalledTimes(1);
+    expect(click.mock.contexts[0].download).toBe('kitaplik-bekleyen-degisiklikler.json');
+    expect(JSON.parse(await file.text())).toEqual({ version: 1, copies });
+    // The address outlives the click, so Safari can still read the file.
+    expect(URL.revokeObjectURL).not.toHaveBeenCalled();
+    expect(value.clearRecovery).not.toHaveBeenCalled();
+  });
+
+  it('asks before deleting the copy, and moves focus with the question and after it', () => {
+    const value = recovering();
+    renderWithTheme(<GitHubSyncPanel sync={value}/>);
+    fireEvent.click(screen.getByRole('button', { name: 'Kopyayı sil' }));
+    expect(value.clearRecovery).not.toHaveBeenCalled();
+    expect(screen.getByRole('group', { name: 'Kopya bu tarayıcıdan kalıcı olarak silinir.' })).toBeTruthy();
+    expect(document.activeElement.textContent).toBe('Vazgeç');
+    fireEvent.click(screen.getByRole('button', { name: 'Vazgeç' }));
+    expect(document.activeElement.textContent).toBe('Kopyayı sil');
+    fireEvent.click(screen.getByRole('button', { name: 'Kopyayı sil' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Evet, sil' }));
+    expect(value.clearRecovery).toHaveBeenCalledTimes(1);
+    // The alert and the button that had focus go; the status takes focus.
+    expect(document.activeElement.getAttribute('role')).toBe('status');
+  });
+
+  it('words a record with nothing readable, and one whose copy could not be stored, as what they are', () => {
+    const { unmount } = renderWithTheme(<GitHubSyncPanel sync={recovering({ copies: 1, kept: 0, stored: true })}/>);
+    expect(document.querySelector('.sync-recovery').textContent).toContain('kayıttaki değişikliklerin hiçbiri okunamadı');
+    expect(document.querySelector('.sync-recovery').textContent).not.toContain('kuyrukta kaldı');
+    unmount();
+    renderWithTheme(<GitHubSyncPanel sync={recovering({ copies: 1, kept: 2, stored: false })}/>);
+    expect(document.querySelector('.sync-recovery').textContent).toContain('kopya ayrıca saklanamadı; kayıt olduğu yerde duruyor');
+    fireEvent.click(screen.getByRole('button', { name: 'Kaydı sil' }));
+    expect(screen.getByRole('group', { name: 'Kayıt bu tarayıcıdan kalıcı olarak silinir; okunabilen değişiklikler kuyrukta kalır.' })).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Vazgeç' }));
+    expect(screen.getByRole('button', { name: 'Kaydı indir' })).toBeTruthy();
+  });
+
+  it('shows nothing about recovery when no copy is kept', () => {
+    renderWithTheme(<GitHubSyncPanel sync={sync()}/>);
+    expect(document.querySelector('.sync-recovery')).toBeNull();
   });
 });
 
@@ -101,6 +164,35 @@ describe('SyncNotice', () => {
     expect(noticeTitle()).toBe('Değişiklikler GitHub’a gönderilemedi');
     expect(screen.getByText(/GitHub anahtarı reddetti\. 1 değişiklik bu cihazda bekliyor/)).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Eşitleme ayrıntıları' })).toBeTruthy();
+  });
+
+  it('points to the kept copy of a damaged queue, after the warnings about sending', () => {
+    const onOpen = vi.fn();
+    const recovery = { copies: 1, kept: 1, stored: true };
+    const { unmount } = renderWithTheme(<SyncNotice sync={sync({ hasToken: true, pending: 1, recovery })} onOpen={onOpen}/>);
+    expect(noticeTitle()).toBe('Bekleyen değişikliklerin kaydı tam okunamadı');
+    expect(screen.getByText(/kaydın bir kopyası bu tarayıcıda saklanıyor/)).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Eşitleme ayrıntıları' }));
+    expect(onOpen).toHaveBeenCalledTimes(1);
+    unmount();
+    renderWithTheme(<SyncNotice sync={sync({ pending: 1, recovery })} onOpen={vi.fn()}/>);
+    expect(noticeTitle()).toBe(TITLE);
+  });
+
+  it('keeps a dismissed recovery notice hidden while marks are made, until another copy is kept', () => {
+    const view = value => <MantineProvider><main id="main-content" tabIndex={-1}><SyncNotice sync={value} onOpen={vi.fn()}/></main></MantineProvider>;
+    const connected = { hasToken: true, recovery: { copies: 1, kept: 0, stored: true } };
+    const { rerender } = render(view(sync({ ...connected, pending: 0 })));
+    fireEvent.click(screen.getByRole('button', { name: 'Şimdilik gizle' }));
+    rerender(view(sync({ ...connected, pending: 3 })));
+    expect(noticeTitle()).toBeUndefined();
+    rerender(view(sync({ ...connected, pending: 3, recovery: { copies: 2, kept: 0, stored: true } })));
+    expect(noticeTitle()).toBe('Bekleyen değişikliklerin kaydı tam okunamadı');
+  });
+
+  it('says when the copy could not be stored', () => {
+    renderWithTheme(<SyncNotice sync={sync({ hasToken: true, recovery: { copies: 1, kept: 1, stored: false } })} onOpen={vi.fn()}/>);
+    expect(screen.getByText(/Tarayıcının alanı dolu; kayıt olduğu yerde duruyor/)).toBeTruthy();
   });
 
   it('hides for the visit when dismissed, moves focus to the main content, and comes back when more changes wait', () => {

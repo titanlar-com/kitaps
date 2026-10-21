@@ -8,6 +8,8 @@ import {
   GITHUB_STATE_MIGRATION_KEY,
   GITHUB_STATE_OWNER,
   GITHUB_STATE_PENDING_KEY,
+  GITHUB_STATE_RECOVERY_KEY,
+  GITHUB_STATE_REMOTE_KEY,
   GITHUB_STATE_REPOSITORY,
   GITHUB_STATE_TOKEN_KEY,
   LEGACY_GITHUB_STATE_PENDING_KEY,
@@ -15,6 +17,7 @@ import {
   type BookStatePayload,
   type StateBases,
   type GitHubStateRepositoryOptions,
+  type PendingRecoveryCopy,
   type PendingStateMutation,
   type PendingStore,
   type StateDocument,
@@ -54,6 +57,20 @@ export const ANONYMOUS_FRESH_READ_INTERVAL_MS = 60_000;
 /** A request that hangs (a network change while a phone resumes, say) gives up
  * after this long, so it cannot hold every later write behind it. */
 export const REQUEST_TIMEOUT_MS = 20_000;
+
+/** The CDN serves a copy at most five minutes old. A copy older than the one this device
+ * kept, read this long after it was kept, means the shared file itself went back (it was
+ * reset or restored), so it is taken. */
+export const KEPT_COPY_TRUST_MS = 10 * 60_000;
+
+/** What a damaged pending queue left: how many copies are kept, how many of their edits
+ * stayed queued, and whether every copy is stored (false while storage is too full for
+ * the copy, when the damaged record stays where it is). */
+export interface PendingRecoveryStatus {
+  copies: number;
+  kept: number;
+  stored: boolean;
+}
 
 /** Browsers cap the bodies of in-flight keepalive requests at 64 KiB. */
 const KEEPALIVE_BODY_LIMIT = 60_000;
@@ -113,6 +130,8 @@ export class GitHubStateRepository {
   static readonly PENDING_KEY = GITHUB_STATE_PENDING_KEY;
   static readonly LEGACY_PENDING_KEY = LEGACY_GITHUB_STATE_PENDING_KEY;
   static readonly MIGRATION_KEY = GITHUB_STATE_MIGRATION_KEY;
+  static readonly REMOTE_KEY = GITHUB_STATE_REMOTE_KEY;
+  static readonly RECOVERY_KEY = GITHUB_STATE_RECOVERY_KEY;
 
   private readonly owner: string;
   private readonly repository: string;
@@ -124,8 +143,15 @@ export class GitHubStateRepository {
   private readonly maxConflictRetries: number;
   private lastMutationTime = 0;
   private cached?: { etag: string; file: RemoteFile };
-  /** The newest file this device has read or written in this session. */
+  /** The newest file this device has read or written, kept across visits. */
   private newest?: StateDocument;
+  /** Whether `newest` was read or written in this visit, rather than kept from an earlier one. */
+  private newestSeen = false;
+  /** When this device kept `newest` (on its own clock). */
+  private newestKeptAt = 0;
+  /** A damaged pending record whose copy could not be stored yet: it stays where it is,
+   * its readable edits are used, and nothing overwrites it until the copy is stored. */
+  private uncopied?: { raw: string; store: PendingStore; legacy: boolean; at: string };
   private nextAnonymousApiRead = 0;
   private lastRead?: ReadInfo;
 
@@ -139,6 +165,9 @@ export class GitHubStateRepository {
     this.fetcher = options.fetch ?? globalThis.fetch.bind(globalThis);
     this.clock = options.clock ?? (() => new Date());
     this.maxConflictRetries = Math.max(0, options.maxConflictRetries ?? 1);
+    const kept = this.readKeptRemote();
+    this.newest = kept?.document;
+    this.newestKeptAt = kept?.keptAt ?? 0;
   }
 
   setToken(token: string): void {
@@ -269,7 +298,7 @@ export class GitHubStateRepository {
    * instead of falling back to an anonymous read. */
   async loadRead(options: { fresh?: boolean; requireToken?: boolean } = {}): Promise<{ document: StateDocument; info: ReadInfo }> {
     const { file, info } = await this.readCurrent(options.fresh === true, options.requireToken === true);
-    return { document: this.keepNewest(file.document), info };
+    return { document: this.keepNewest(file.document, info.source), info };
   }
 
   /** This device's unsent edits, oldest first. */
@@ -286,14 +315,14 @@ export class GitHubStateRepository {
     if (!bookId.trim()) throw new TypeError('bookId is required.');
     if (value !== null) assertBookStatePayload(value, bookId);
     const store = this.readPending();
-    const updatedAt = this.nextTimestamp(store, suppliedUpdatedAt);
-    const previous = store.mutations.find(item => item.kind === 'book' && item.bookId === bookId);
     const safeValue = publicStatePayload(value);
+    const updatedAt = this.nextTimestamp(store, suppliedUpdatedAt, this.seenBookStamp(bookId, safeValue));
+    const previous = store.mutations.find(item => item.kind === 'book' && item.bookId === bookId);
     const previousValue = previous?.kind === 'book' ? publicStatePayload(previous.value) : null;
     const coalesced = safeValue === null ? null : { ...(previousValue ?? {}), ...safeValue };
     const mutation: PendingStateMutation = { id: this.mutationId(updatedAt), kind: 'book', bookId, updatedAt, value: structuredClone(coalesced) };
     this.writePending({
-      since: store.mutations.length ? store.since ?? updatedAt : updatedAt,
+      since: this.windowStart(store, updatedAt),
       mutations: [...store.mutations.filter(item => !(item.kind === 'book' && item.bookId === bookId)), mutation],
     });
     return mutation;
@@ -303,10 +332,11 @@ export class GitHubStateRepository {
     const value = [...queue];
     assertQueue(value);
     const store = this.readPending();
-    const updatedAt = this.nextTimestamp(store, suppliedUpdatedAt);
+    const seen = this.newest?.queue ? Date.parse(this.newest.queue.updatedAt) : 0;
+    const updatedAt = this.nextTimestamp(store, suppliedUpdatedAt, seen);
     const mutation: PendingStateMutation = { id: this.mutationId(updatedAt), kind: 'queue', updatedAt, value };
     this.writePending({
-      since: store.mutations.length ? store.since ?? updatedAt : updatedAt,
+      since: this.windowStart(store, updatedAt),
       mutations: [...store.mutations.filter(item => item.kind !== 'queue'), mutation],
     });
     return mutation;
@@ -319,7 +349,7 @@ export class GitHubStateRepository {
     const mutations = store.mutations.filter(item => item.kind === 'queue' ? !includeQueue : !drop.has(item.bookId));
     if (mutations.length === store.mutations.length) return;
     if (mutations.length) this.writePending({ since: store.since, mutations });
-    else this.removeStorage(GITHUB_STATE_PENDING_KEY);
+    else this.clearPending();
   }
 
   getPendingCount(): number {
@@ -340,9 +370,9 @@ export class GitHubStateRepository {
     const remaining = this.readPending().mutations.filter(item => !completed.has(item.id));
     if (remaining.length) {
       const oldest = remaining.reduce((result, item) => Date.parse(item.updatedAt) < Date.parse(result) ? item.updatedAt : result, remaining[0].updatedAt);
-      this.writePending({ since: oldest, mutations: remaining });
+      this.writePending({ since: this.onThisClock(oldest), mutations: remaining });
     } else {
-      this.removeStorage(GITHUB_STATE_PENDING_KEY);
+      this.clearPending();
     }
     return applyPendingMutations(saved, remaining);
   }
@@ -383,7 +413,7 @@ export class GitHubStateRepository {
       const sha = typeof written?.content?.sha === 'string' ? written.content.sha : undefined;
       // No ETag: the next read is unconditional, but the next write can start here.
       this.cached = sha ? { etag: '', file: { document: structuredClone(merged), sha } } : undefined;
-      this.newest = structuredClone(merged);
+      this.remember(merged);
       return merged;
     }
     throw new GitHubStateRepositoryError('conflict', 'GitHub state changed during save. Reload and try again.', 409);
@@ -426,11 +456,56 @@ export class GitHubStateRepository {
   }
 
   /** The CDN can serve a copy older than a file this device has already read
-   * or written; an older copy never replaces a newer one. */
-  private keepNewest(document: StateDocument): StateDocument {
-    if (this.newest && Date.parse(document.updatedAt) < Date.parse(this.newest.updatedAt)) return structuredClone(this.newest);
-    this.newest = structuredClone(document);
+   * or written, also in an earlier visit; an older copy never replaces a newer one.
+   * The API answers for the file as it is now, so it replaces a copy kept from an
+   * earlier visit (the file may have been reset since); within one visit nothing
+   * older replaces what was seen. */
+  private keepNewest(document: StateDocument, source: ReadInfo['source']): StateDocument {
+    // Another tab of this browser may have kept a newer file meanwhile.
+    const kept = this.readKeptRemote();
+    if (kept && (!this.newest || Date.parse(kept.document.updatedAt) > Date.parse(this.newest.updatedAt))) {
+      this.newest = kept.document;
+      this.newestKeptAt = kept.keptAt;
+      this.newestSeen = false;
+    }
+    const older = this.newest && Date.parse(document.updatedAt) < Date.parse(this.newest.updatedAt);
+    const reset = !this.newestSeen && this.clock().getTime() - this.newestKeptAt > KEPT_COPY_TRUST_MS;
+    if (older && !reset && (source === 'cdn' || this.newestSeen)) return structuredClone(this.newest!);
+    this.remember(document);
     return document;
+  }
+
+  private remember(document: StateDocument): void {
+    this.newest = structuredClone(document);
+    this.newestSeen = true;
+    this.newestKeptAt = this.clock().getTime();
+    try { this.writeStorage(GITHUB_STATE_REMOTE_KEY, JSON.stringify({ file: this.fileId(), keptAt: this.newestKeptAt, document })); } catch { /* This visit still keeps it. */ }
+  }
+
+  private readKeptRemote(): { document: StateDocument; keptAt: number } | undefined {
+    try {
+      const kept = JSON.parse(this.readStorage(GITHUB_STATE_REMOTE_KEY) ?? 'null') as { file?: unknown; keptAt?: unknown; document?: unknown } | null;
+      if (kept?.file !== this.fileId()) return undefined;
+      return { document: this.parseDocument(kept.document), keptAt: typeof kept.keptAt === 'number' && Number.isFinite(kept.keptAt) ? kept.keptAt : 0 };
+    } catch {
+      return undefined;
+    }
+  }
+
+  private fileId(): string {
+    return `${this.owner}/${this.repository}/${this.branch}/${this.path}`;
+  }
+
+  /** The newest stamp this device has seen in the shared file for the fields an edit
+   * carries, by the rule merge.ts applies: a clear must be newer than the whole record. */
+  private seenBookStamp(bookId: string, value: BookStatePayload | null): number {
+    const record = this.newest?.books[bookId];
+    if (!record) return 0;
+    if (value === null) return Date.parse(record.updatedAt);
+    return BOOK_FIELDS.filter(field => field in value).reduce((latest, field) => {
+      const stamp = record.stamps ? record.stamps[field] : record.updatedAt;
+      return stamp ? Math.max(latest, Date.parse(stamp)) : latest;
+    }, 0);
   }
 
   private async readApi(conditional: boolean, allowMissing = false, anonymous = false): Promise<RemoteFile> {
@@ -473,13 +548,26 @@ export class GitHubStateRepository {
     return publicStateDocument(document);
   }
 
-  private nextTimestamp(store: PendingStore, supplied?: string): string {
+  /** A new edit's stamp: never earlier than this device's own earlier edits, and
+   * after `seen`, the newest shared stamp for what it changes, so an edit made on a
+   * clock that runs behind still wins over the value it was made on. */
+  private nextTimestamp(store: PendingStore, supplied?: string, seen = 0): string {
     const pendingTime = store.mutations.reduce((latest, item) => Math.max(latest, Date.parse(item.updatedAt)), 0);
-    const generated = Math.max(this.clock().getTime(), this.lastMutationTime + 1, pendingTime + 1);
+    const generated = Math.max(this.clock().getTime(), this.lastMutationTime + 1, pendingTime + 1, seen ? seen + 1 : 0);
     const updatedAt = supplied ?? new Date(generated).toISOString();
     if (!Number.isFinite(Date.parse(updatedAt))) throw new TypeError('A valid updatedAt is required.');
     this.lastMutationTime = Math.max(this.lastMutationTime, Date.parse(updatedAt));
     return updatedAt;
+  }
+
+  /** The 30 second window counts from the first unsent change on this device's own
+   * clock: a stamp lifted past a shared one never moves it into the future. */
+  private windowStart(store: PendingStore, updatedAt: string): string {
+    return store.mutations.length && store.since ? store.since : this.onThisClock(updatedAt);
+  }
+
+  private onThisClock(stamp: string): string {
+    return new Date(Math.min(Date.parse(stamp), this.clock().getTime())).toISOString();
   }
 
   private mutationId(updatedAt: string): string {
@@ -494,16 +582,109 @@ export class GitHubStateRepository {
       return { since: null, mutations: [] };
     }
     if (!raw) return this.migrateLegacyPending();
+    let value: unknown;
+    try { value = JSON.parse(raw); } catch { value = undefined; }
+    const store = value && typeof value === 'object' ? value as Partial<PendingStore> : undefined;
+    const listed = Array.isArray(store?.mutations) ? store.mutations as unknown[] : [];
+    const mutations = listed.filter((mutation): mutation is PendingStateMutation => {
+      try { assertPendingMutation(mutation); return true; } catch { return false; }
+    });
+    const since = typeof store?.since === 'string' && Number.isFinite(Date.parse(store.since)) ? store.since : this.oldestOnThisClock(mutations);
+    if (store && Array.isArray(store.mutations) && mutations.length === listed.length) return { since, mutations };
+    return this.rescue(raw, { since, mutations }, false);
+  }
+
+  /** Unsent edits are never thrown away: a record that cannot be read in full is copied
+   * aside as it was, and the edits that can still be read stay queued. When storage is
+   * too full for the copy, the record stays where it is and its readable edits are used
+   * from memory; nothing overwrites it until the copy is stored or the reader deletes it. */
+  private rescue(raw: string, store: PendingStore, legacy: boolean): PendingStore {
     try {
-      const value = JSON.parse(raw) as PendingStore;
-      if (!value || typeof value !== 'object' || !Array.isArray(value.mutations)) throw new Error('Pending state is not a store.');
-      for (const mutation of value.mutations) assertPendingMutation(mutation);
-      const since = typeof value.since === 'string' && Number.isFinite(Date.parse(value.since)) ? value.since : value.mutations[0]?.updatedAt ?? null;
-      return { since, mutations: value.mutations };
+      this.keepForRecovery(raw, store.mutations.length);
     } catch {
-      try { this.removeStorage(GITHUB_STATE_PENDING_KEY); } catch { /* Storage can be unavailable. */ }
-      return { since: null, mutations: [] };
+      this.uncopied = { raw, store, legacy, at: this.uncopied?.raw === raw ? this.uncopied.at : this.clock().toISOString() };
+      return store;
     }
+    this.uncopied = undefined;
+    try {
+      if (store.mutations.length) this.writeStorage(GITHUB_STATE_PENDING_KEY, JSON.stringify(store));
+      else if (!legacy) this.removeStorage(GITHUB_STATE_PENDING_KEY);
+      if (legacy) this.removeStorage(LEGACY_GITHUB_STATE_PENDING_KEY);
+    } catch { /* The copy is kept; the next read finds the same record. */ }
+    return store;
+  }
+
+  /** Before anything replaces a damaged record whose copy is not stored yet, the copy is
+   * stored; while storage is too full for it, this throws and the record stays. */
+  private ensureCopied(): void {
+    if (!this.uncopied) return;
+    this.keepForRecovery(this.uncopied.raw, this.uncopied.store.mutations.length);
+    if (this.uncopied.legacy) this.removeStorage(LEGACY_GITHUB_STATE_PENDING_KEY);
+    this.uncopied = undefined;
+  }
+
+  private oldestOnThisClock(mutations: readonly PendingStateMutation[]): string | null {
+    if (!mutations.length) return null;
+    return this.onThisClock(new Date(Math.min(...mutations.map(item => Date.parse(item.updatedAt)))).toISOString());
+  }
+
+  /** Copies of pending queues that could not be read in full, oldest first, with a
+   * damaged record whose copy could not be stored yet last. */
+  pendingRecovery(): PendingRecoveryCopy[] {
+    const stored = this.readStorage(GITHUB_STATE_RECOVERY_KEY);
+    let copies: PendingRecoveryCopy[] = [];
+    if (stored !== null) {
+      try {
+        const parsed = JSON.parse(stored) as unknown;
+        if (!Array.isArray(parsed)) throw new Error('Not a list.');
+        copies = parsed.filter((copy): copy is PendingRecoveryCopy => typeof (copy as PendingRecoveryCopy | null)?.raw === 'string');
+      } catch {
+        // A damaged list is still handed over, as the text it is.
+        copies = [{ at: '', kept: 0, raw: stored }];
+      }
+    }
+    const uncopied = this.uncopied;
+    if (uncopied && !copies.some(copy => copy.raw === uncopied.raw)) copies.push({ at: uncopied.at, kept: uncopied.store.mutations.length, raw: uncopied.raw });
+    return copies;
+  }
+
+  hasPendingRecovery(): boolean {
+    return Boolean(this.uncopied) || this.readStorage(GITHUB_STATE_RECOVERY_KEY) !== null;
+  }
+
+  recoveryStatus(): PendingRecoveryStatus | null {
+    if (!this.hasPendingRecovery()) return null;
+    const copies = this.pendingRecovery();
+    return { copies: copies.length, kept: copies.reduce((total, copy) => total + (Number.isInteger(copy.kept) ? copy.kept : 0), 0), stored: !this.uncopied };
+  }
+
+  /** The reader no longer needs the copies (they downloaded them, say). A damaged record
+   * whose copy could not be stored is deleted with them; its readable edits stay queued. */
+  clearPendingRecovery(): void {
+    this.removeStorage(GITHUB_STATE_RECOVERY_KEY);
+    const uncopied = this.uncopied;
+    if (!uncopied) return;
+    const { store } = uncopied;
+    if (store.mutations.length) this.writeStorage(GITHUB_STATE_PENDING_KEY, JSON.stringify(store));
+    else this.removeStorage(GITHUB_STATE_PENDING_KEY);
+    if (uncopied.legacy) this.removeStorage(LEGACY_GITHUB_STATE_PENDING_KEY);
+    this.uncopied = undefined;
+  }
+
+  private keepForRecovery(raw: string, kept: number): void {
+    const existing = this.readStorage(GITHUB_STATE_RECOVERY_KEY);
+    // A damaged list of copies is itself kept, as text, rather than overwritten.
+    const damaged = (): unknown[] => [{ at: this.clock().toISOString(), kept: 0, raw: existing ?? '' } satisfies PendingRecoveryCopy];
+    let copies: unknown[];
+    try {
+      const parsed = JSON.parse(existing ?? '[]') as unknown;
+      copies = Array.isArray(parsed) ? parsed : damaged();
+    } catch {
+      copies = damaged();
+    }
+    if (copies.some(copy => (copy as PendingRecoveryCopy | null)?.raw === raw)) return;
+    copies.push({ at: this.clock().toISOString(), kept, raw } satisfies PendingRecoveryCopy);
+    this.writeStorage(GITHUB_STATE_RECOVERY_KEY, JSON.stringify(copies));
   }
 
   /** Version 1 queued per-book payloads that also carried queue positions.
@@ -513,18 +694,20 @@ export class GitHubStateRepository {
     try { raw = this.readStorage(LEGACY_GITHUB_STATE_PENDING_KEY); } catch { return { since: null, mutations: [] }; }
     if (!raw) return { since: null, mutations: [] };
     const mutations: PendingStateMutation[] = [];
-    try {
-      for (const item of JSON.parse(raw) as Array<Record<string, unknown>>) {
-        const value = item?.value && typeof item.value === 'object' ? Object.fromEntries(Object.entries(item.value).filter(([key]) => key !== 'queuePosition')) : null;
-        if (!value || !Object.keys(value).length || typeof item.bookId !== 'string' || typeof item.updatedAt !== 'string') continue;
-        const mutation: PendingStateMutation = { id: String(item.id), kind: 'book', bookId: item.bookId, updatedAt: item.updatedAt, value: value as BookStatePayload };
-        assertPendingMutation(mutation);
-        mutations.push(mutation);
-      }
-    } catch {
-      mutations.length = 0;
+    let items: unknown;
+    try { items = JSON.parse(raw); } catch { items = undefined; }
+    let damaged = !Array.isArray(items);
+    for (const item of Array.isArray(items) ? items as unknown[] : []) {
+      const entry = item && typeof item === 'object' ? item as Record<string, unknown> : {};
+      const value = entry.value && typeof entry.value === 'object' ? Object.fromEntries(Object.entries(entry.value).filter(([key]) => key !== 'queuePosition')) : null;
+      // An entry that only held a queue position is dropped on purpose.
+      if (value && !Object.keys(value).length) continue;
+      const mutation = { id: String(entry.id), kind: 'book', bookId: entry.bookId, updatedAt: entry.updatedAt, value } as PendingStateMutation;
+      try { assertPendingMutation(mutation); mutations.push(mutation); } catch { damaged = true; }
     }
-    const store: PendingStore = { since: mutations[0]?.updatedAt ?? null, mutations };
+    const store: PendingStore = { since: this.oldestOnThisClock(mutations), mutations };
+    // A queue that cannot be read in full is rescued like the current one.
+    if (damaged) return this.rescue(raw, store, true);
     try {
       if (mutations.length) this.writePending(store);
       this.removeStorage(LEGACY_GITHUB_STATE_PENDING_KEY);
@@ -533,7 +716,13 @@ export class GitHubStateRepository {
   }
 
   private writePending(store: PendingStore): void {
+    this.ensureCopied();
     this.writeStorage(GITHUB_STATE_PENDING_KEY, JSON.stringify(store));
+  }
+
+  private clearPending(): void {
+    this.ensureCopied();
+    this.removeStorage(GITHUB_STATE_PENDING_KEY);
   }
 
   private contentsUrl(): string {

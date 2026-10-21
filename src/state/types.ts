@@ -12,6 +12,12 @@ export const GITHUB_STATE_MIGRATION_KEY = 'kitapatlasi:github-state:migrated:v1'
 export const GITHUB_STATE_BACKUP_KEY = 'kitapatlasi:github-state:pre-sync-backup:v1';
 /** Field stamps of the shared file as this device last took them over. */
 export const GITHUB_STATE_BASE_KEY = 'kitapatlasi:github-state:base:v1';
+/** The newest shared file this device has read or written, kept across visits so a
+ * reopened page never goes back to an older CDN copy. The shared file alone: unsent
+ * edits and bases are kept under their own keys. */
+export const GITHUB_STATE_REMOTE_KEY = 'kitapatlasi:github-state:remote:v1';
+/** Copies of pending queues that could not be read in full, kept for the reader. */
+export const GITHUB_STATE_RECOVERY_KEY = 'kitapatlasi:github-state:pending-recovery:v1';
 /** Set while a newly connected device has not yet compared its unsent edits with the shared file. */
 export const GITHUB_STATE_CONNECT_REVIEW_KEY = 'kitapatlasi:github-state:connect-review:v1';
 /** Writes through the API bypass the local Git author guard, so every state commit
@@ -66,6 +72,14 @@ export interface PendingStore {
   /** When the oldest unsent change was made; the 30 second window counts from here. */
   since: string | null;
   mutations: PendingStateMutation[];
+}
+
+/** A pending queue that could not be read in full: when it was found, how many of
+ * its edits stayed queued, and the stored text exactly as it was. */
+export interface PendingRecoveryCopy {
+  at: string;
+  kept: number;
+  raw: string;
 }
 
 export interface StorageLike {

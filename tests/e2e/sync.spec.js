@@ -284,3 +284,56 @@ test('the notice and the connect dialog keep their content inside at 320 px with
     await context.close();
   }
 });
+
+test('a damaged pending queue is kept aside: the notice points to its copy, which downloads and goes only when asked', async ({ browser }) => {
+  const damaged = JSON.stringify({ since: '2026-10-22T08:00:00.000Z', mutations: [{ id: 'x', kind: 'book', bookId: BOOK.id, updatedAt: 'dün', value: { states: ['alindi'] } }] });
+  const spills = (page, root) => page.locator(root).evaluate(container => {
+    const edge = container.getBoundingClientRect().right + 1;
+    return [...container.querySelectorAll('*')].filter(element => element.getBoundingClientRect().right > edge
+      || (element.scrollWidth > element.clientWidth + 2 && getComputedStyle(element).overflowX !== 'visible')).map(element => element.className || element.tagName);
+  });
+  // Ubuntu CI draws the interface in a font much wider than macOS's; Verdana stands in for it.
+  for (const wide of [false, true]) {
+    const context = await browser.newContext({ viewport: { width: 320, height: 720 } });
+    await enlargeBeforeOpening(context, wide);
+    // Seeded once: a reload must find what the page itself left behind.
+    await context.addInitScript(([key, value]) => {
+      if (sessionStorage.getItem('seeded')) return;
+      localStorage.setItem(key, value);
+      localStorage.setItem('kitapatlasi:github-state:migrated:v1', '1');
+      sessionStorage.setItem('seeded', '1');
+    }, ['kitapatlasi:github-state:pending:v2', damaged]);
+    await fakeGitHub().attach(context);
+    const page = await context.newPage();
+    await page.goto('./');
+    const notice = page.locator('.sync-notice');
+    await expect(notice.locator('.mantine-Alert-title')).toHaveText('Bekleyen değişikliklerin kaydı tam okunamadı');
+    expect(await spills(page, '.sync-notice'), `notice${wide ? ', wide font' : ''}`).toEqual([]);
+    await notice.getByRole('button', { name: 'Eşitleme ayrıntıları' }).focus();
+    await page.keyboard.press('Enter');
+    const warning = page.locator('.sync-modal .sync-recovery');
+    await expect(warning).toBeVisible();
+    expect(await spills(page, '.sync-modal .mantine-Modal-content'), `dialog${wide ? ', wide font' : ''}`).toEqual([]);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await expect(warning).toContainText('kayıttaki değişikliklerin hiçbiri okunamadı');
+    const [download] = await Promise.all([page.waitForEvent('download'), warning.getByRole('button', { name: 'Kopyayı indir' }).click()]);
+    expect(download.suggestedFilename()).toBe('kitaplik-bekleyen-degisiklikler.json');
+    const { readFile } = await import('node:fs/promises');
+    expect(JSON.parse(await readFile(await download.path(), 'utf8')).copies.map(copy => copy.raw)).toEqual([damaged]);
+    // The copy survives a reload, once, until the reader removes it.
+    await page.reload();
+    await expect(notice.locator('.mantine-Alert-title')).toHaveText('Bekleyen değişikliklerin kaydı tam okunamadı');
+    expect(JSON.parse(await page.evaluate(() => localStorage.getItem('kitapatlasi:github-state:pending-recovery:v1'))).map(copy => copy.raw)).toEqual([damaged]);
+    await notice.getByRole('button', { name: 'Eşitleme ayrıntıları' }).focus();
+    await page.keyboard.press('Enter');
+    await warning.getByRole('button', { name: 'Kopyayı sil' }).click();
+    // Deleting asks first; the question keeps to the screen too.
+    await expect(warning.getByRole('button', { name: 'Vazgeç' })).toBeFocused();
+    expect(await spills(page, '.sync-modal .mantine-Modal-content'), `question${wide ? ', wide font' : ''}`).toEqual([]);
+    await warning.getByRole('button', { name: 'Evet, sil' }).click();
+    await expect(warning).toHaveCount(0);
+    await expect(page.locator('.sync-modal [role="status"]').first()).toBeFocused();
+    expect(await page.evaluate(() => localStorage.getItem('kitapatlasi:github-state:pending-recovery:v1'))).toBeNull();
+    await context.close();
+  }
+});

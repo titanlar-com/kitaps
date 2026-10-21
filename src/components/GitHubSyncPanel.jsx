@@ -1,6 +1,7 @@
 import React,{useEffect,useRef,useState} from 'react';
 import {Alert,Anchor,Badge,Button,Group,List,Paper,PasswordInput,Stack,Text,Title} from '@mantine/core';
 import {IconArrowUpRight,IconBrandGithub,IconRefresh} from '@tabler/icons-react';
+import SyncRecoveryAlert from './SyncRecovery';
 import {GITHUB_STATE_OWNER,GITHUB_STATE_REPOSITORY} from '../state/types.ts';
 import {SITE_URL} from '../site';
 
@@ -31,6 +32,7 @@ export default function GitHubSyncPanel({sync,framed=true}){
  const content=<><Group justify="space-between" align="flex-start"><div>{framed&&<Title order={3}>Cihazlar arası eşitleme</Title>}<Text c="dimmed" mt={framed?4:0}>Favoriler, kitaplık, okuma durumları, sıra, tarihler, ilerleme ve notlar herkese açık kitaps-state deposunda ve onun GitHub geçmişinde görünür. Bir cihazdaki değişiklik ancak o cihaz bağlıysa diğer cihazlara ulaşır. Bağlı cihaz değişiklikleri sayfadan ayrılırken ya da ilk değişiklikten 30 saniye sonra tek güncellemeyle gönderir. Açık sayfa ortak kaydı 30 saniyede bir yeniden okur.</Text></div><Badge variant="light" color={sync.status==='error'?'red':sync.status==='saving'||sync.status==='queued'?'yellow':sync.hasToken?'green':'gray'}>{badge}</Badge></Group>
   <Alert ref={status} tabIndex={-1} mt="md" role="status" icon={<IconBrandGithub size={20}/>} color={sync.status==='error'?'red':'brand'}>{sync.message}{sync.pending?` · ${sync.pending} bekleyen değişiklik`:''}</Alert>
   {lastActivity(sync)&&<Text c="dimmed" mt="xs" className="sync-activity">{lastActivity(sync)}</Text>}
+  {sync.recovery&&<SyncRecoveryAlert sync={sync} onRemoved={()=>status.current?.focus()}/>}
   {sync.hasToken?<Group mt="md"><Button variant="light" leftSection={<IconRefresh size={18}/>} onClick={()=>void sync.flush().catch(()=>undefined)}>Şimdi gönder</Button><Button variant="default" onClick={()=>void sync.load()}>GitHub’dan yenile</Button><Button variant="subtle" color="red" onClick={sync.clearToken}>Anahtarı kaldır</Button></Group>:<form onSubmit={submit}><Stack mt="md" gap="sm">
    <Group><Button type="button" variant="default" leftSection={<IconRefresh size={18}/>} onClick={()=>void sync.load()}>GitHub’dan yenile</Button></Group>
    <Text fw={600}>Bu cihazı bağla</Text>

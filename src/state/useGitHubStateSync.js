@@ -30,7 +30,7 @@ const REFRESH_CHECK_MS=5_000;
 const RETURN_REFRESH_MS=30_000;
 
 const clock=ms=>new Date(ms).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
-const readMessage=error=>error?.code==='rate-limited'?`GitHub istek sınırına ulaşıldı; ${clock(error.retryAt)} sonrasında yeniden denenecek.`:error?.code==='not-found'?'Durum deposu henüz hazırlanmadı.':error?.code==='invalid-data'?'GitHub durum dosyası güvenli biçimde okunamadı.':'GitHub durumu okunamadı.';
+const readMessage=error=>error?.code==='storage'?'Tarayıcının yerel eşitleme alanı okunamadı ya da dolu; GitHub’dan okunan durum gösterilemedi.':error?.code==='rate-limited'?`GitHub istek sınırına ulaşıldı; ${clock(error.retryAt)} sonrasında yeniden denenecek.`:error?.code==='not-found'?'Durum deposu henüz hazırlanmadı.':error?.code==='invalid-data'?'GitHub durum dosyası güvenli biçimde okunamadı.':'GitHub durumu okunamadı.';
 const REVIEW_FAILED='Bu cihazın kayıtları GitHub’dakiyle karşılaştırılamadı; sayfaya dönünce yeniden denenecek. O zamana kadar hiçbir şey gönderilmez.';
 const writeMessage=error=>error?.code==='unauthorized'?'GitHub anahtarı reddetti: süresi dolmuş ya da kitaps-state için yazma izni kaldırılmış olabilir. Anahtarı kaldırıp yeni bir anahtarla bu cihazı yeniden bağla.':error?.code==='storage'?'Tarayıcının yerel eşitleme alanına yazılamadı.':error?.code==='rate-limited'?`GitHub istek sınırına ulaşıldı; değişiklikler kuyrukta, ${clock(error.retryAt)} sonrasında gönderilecek.`:error?.code==='not-found'?'Durum deposu ya da dosyası bulunamadı; değişiklikler cihazda bekliyor.':error?.code==='invalid-data'?'GitHub durum dosyası güvenli biçimde okunamadı; değişiklikler cihazda bekliyor.':'Eşitleme tamamlanamadı; değişiklikler cihazda kuyrukta ve otomatik olarak yeniden denenecek.';
 
@@ -97,6 +97,10 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
  // Why the merge dialog is open: 'first-sync' (a device's first read) or 'connect'.
  const mergeReason=useRef(null);
  const reviewPending=()=>{try{return repository.hasConnectReviewPending()}catch{return false}};
+ // A pending queue that could not be read in full was kept aside; the reader decides what happens to the copy.
+ const recovery=()=>{try{return repository.recoveryStatus()}catch{return null}};
+ const recoveryCopies=useCallback(()=>{try{return repository.pendingRecovery()}catch{return []}},[repository]);
+ const clearRecovery=useCallback(()=>{try{repository.clearPendingRecovery()}catch{/* The copy stays; so does the warning. */}setSync(value=>({...value}))},[repository]);
  const backupBeforeChoice=()=>{try{localStorage.setItem(GITHUB_STATE_BACKUP_KEY,JSON.stringify({version:1,createdAt:new Date().toISOString(),states:latest.current.states,...latest.current.personal,pending:repository.pendingMutations()}))}catch{/* The dialog still offers both choices. */}};
 
  const refresh=useCallback((silent=false,fresh=false)=>{
@@ -385,6 +389,7 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
   }catch{setSync(value=>({...value,status:'error',message:'Tarayıcının yerel eşitleme alanına yazılamadı.',pending:pendingCount()}));}
  },[bookIds,states,personal,repository,sync.hasToken,sync.tokenRejected]);
  useEffect(()=>()=>batcher.current?.dispose(),[]);
- // reviewPending: this device's unsent edits wait for their comparison; retryAt: GitHub asked to wait until then.
- return {...sync,reviewPending:reviewPending(),retryAt:backoffUntil.current>Date.now()?backoffUntil.current:null,hydrated:hydrated.current,mergePrompt,resolveMerge,load,flush,saveToken,clearToken};
+ // reviewPending: this device's unsent edits wait for their comparison; recovery: what a damaged
+ // pending queue left ({copies, kept, stored}) or null; retryAt: GitHub asked to wait until then.
+ return {...sync,reviewPending:reviewPending(),recovery:recovery(),recoveryCopies,clearRecovery,retryAt:backoffUntil.current>Date.now()?backoffUntil.current:null,hydrated:hydrated.current,mergePrompt,resolveMerge,load,flush,saveToken,clearToken};
 }
