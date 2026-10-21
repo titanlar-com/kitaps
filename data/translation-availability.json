@@ -6300,6 +6300,778 @@
         ],
         "year": 2015
       }
+    },
+    "organizationalbehavior": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/orgutsel-davranis-organizational-behavior/269493.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://katalog.bilecik.edu.tr/bib/42870",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.nadirkitap.com/orgutsel-davranis-organizational-behavior-14-basimdan-ceviri-stephen-p-robbins-timothy-a-judge-kitap48375974.html",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786051331423",
+            "type": "retailer"
+          },
+          {
+            "url": "https://acikders.ankara.edu.tr/mod/resource/view.php?id=123719",
+            "type": "official"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Örgütsel Davranış",
+        "publisher": "Nobel Akademik Yayıncılık",
+        "isbn": "9786051331423",
+        "translators": [
+          "İnci Erdem"
+        ],
+        "year": 2012
+      }
+    },
+    "artofstrategy": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/strateji-sanati-oyun-kurami-ile-is-hayatinda-basari/369307.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.goodreads.com/work/editions/2430604-the-art-of-strategy-a-game-theorist-s-guide-to-success-in-business-and?page=2",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://catalog.tedu.edu.tr/client/rss/hitlist/defaulttr/qu=Decision+making.&qf=AUTHOR%09Yazar%09Dixit%2C+Avinash+K.%09Dixit%2C+Avinash+K.&isd=true",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786053324652",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Strateji Sanatı: Oyun Kuramı ile İş Hayatında Başarı",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9786053324652",
+        "translators": [
+          "Ümit Şensoy"
+        ],
+        "year": 2015
+      }
+    },
+    "marketingmanagement": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/pazarlama-yonetimi/470320.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://acikders.ankara.edu.tr/mod/resource/view.php?id=114021",
+            "type": "official"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/isbn/9786053337997",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://1000kitap.com/kitap/pazarlama-yonetimi--18996",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Pazarlama Yönetimi",
+        "publisher": "Beta Basım Yayım",
+        "isbn": "9786053337997",
+        "translators": [],
+        "year": 2018
+      }
+    },
+    "interpretationofcultures": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/kulturlerin-yorumlanmasi/563791.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786257005784",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/kulturlerin-yorumlanmasi/240124.html",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.besirkitabevi.com.tr/urun/kulturlerin-yorumlanmasi-9786257005784",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/K%C3%BClt%C3%BCrlerin-Yorumlanmas%C4%B1-Clifford-Geertz/dp/6257005787",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.trendyol.com/dergah-yayinlari/kulturlerin-yorumlanmasi-clifford-geertz-9786257005784-p-716205402",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Kültürlerin Yorumlanması",
+        "publisher": "Dergah Yayınları",
+        "isbn": "9786257005784",
+        "translators": [
+          "Hakan Gür"
+        ],
+        "year": 2020
+      }
+    },
+    "industryandempire": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/sanayi-ve-imparatorluk/7253.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/kitap/sanayi-ve-imparatorluk/e-j-hobsbawn/arastirma-tarih/tarih/dunya-tarihi/urunno=0000000052270",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.akbanksanat.com/en/book/sanayi-ve-imparatorluk-e-j-hobsbawm-ingilizceden-ceviren-abdullah-ersoy/3117",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://dostkitabevi.com/sanayi-ve-imparatorluk",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.imge.com.tr/urun/sanayi-ve-imparatorluk-eric-j-hobsbawm-9789757501350",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Sanayi-ve-%C4%B0mparatorluk-Eric-Hobsbawm/dp/9757501352",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Sanayi ve İmparatorluk",
+        "publisher": "Dost Kitabevi",
+        "isbn": "9789757501350",
+        "translators": [
+          "Abdullah Ersoy"
+        ]
+      }
+    },
+    "whatishistory": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/tarih-nedir/61275.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789750508097",
+            "type": "retailer"
+          },
+          {
+            "url": "https://katalog.bilecik.edu.tr/bib/55347",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://catalog.khas.edu.tr/bib/73410",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://iletisim.com.tr/kitap/tarih-nedir/7260",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.pandora.com.tr/kitap/tarih-nedir/1279",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.co.uk/Tarih-Nedir-Edward-Hallett-Carr/dp/9750508092",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Tarih Nedir?",
+        "publisher": "İletişim Yayınları",
+        "isbn": "9789750508097",
+        "translators": [
+          "Misket Gizem Gürtürk"
+        ]
+      }
+    },
+    "problemsofphilosophy": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/felsefe-sorunlari/416535.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/kitap/felsefe-sorunlari/bertrand-russell/felsefe/felsefe-bilimi/urunno=0001688660001",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.istanbulkitapcisi.com/arama?q=felsefe+sorunlar%C4%B1+russell",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/felsefe-sorunlari/2046.html",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://saykitap.com/urun/felsefe-sorunlari/",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.imge.com.tr/urun/felsefe-sorunlari-bertrand-russell-9786050205695",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Felsefe-Sorunlar%C4%B1-Bertrand-Russell/dp/6050205698",
+            "type": "retailer"
+          },
+          {
+            "url": "https://1000kitap.com/kitap/felsefe-sorunlari--15039",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Felsefe Sorunları",
+        "publisher": "Say Yayınları",
+        "isbn": "9786050205695",
+        "translators": [
+          "Vehbi Hacıkadiroğlu"
+        ],
+        "year": 2017
+      }
+    },
+    "logikderforschung": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/bilimsel-arastirmanin-mantigi/12596.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789753634397",
+            "type": "retailer"
+          },
+          {
+            "url": "https://catalog.khas.edu.tr/bib/67975",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://catalog.khas.edu.tr/bib/25039",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.imge.com.tr/urun/bilimsel-arastirmanin-mantigi-karl-popper-9789753634397",
+            "type": "retailer"
+          },
+          {
+            "url": "https://books.google.com.tr/books/about/Bilimsel_ara%C5%9Ftirmanin_manti%C4%9Fi.html?id=lnOqnAEACAAJ&redir_esc=y",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.yapikrediyayinlari.com.tr/bilimsel-arastirmanin-mantigi.aspx",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Bilimsel-Ara%C5%9Ft%C4%B1rman%C4%B1n-Mant%C4%B1%C4%9F%C4%B1-Ta%C5%9Fkent-Yap%C4%B1tlar/dp/9753634390",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Bilimsel Araştırmanın Mantığı",
+        "publisher": "Yapı Kredi Yayınları",
+        "isbn": "9789753634397",
+        "translators": [
+          "İlknur Aka",
+          "İbrahim Turan"
+        ]
+      }
+    },
+    "bedenyuzyapisivekarakter": {
+      "status": "original",
+      "stage1": {
+        "decision": "original",
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/beden-ve-yuz-yapisi-ile-karakter-analizi/22549.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786051511054",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/insani-tanima-sanati-beden-ve-yuz-yapisi-ile-karakter-analizi-p-217751",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "original",
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.bkmkitap.com/beden-ve-yuz-yapisi-ile-karakter-analizi",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Beden-Y%C3%BCz-Yap%C4%B1s%C4%B1-Karakter-Analizi/dp/6051511059",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.ikrakitap.com/beden-yuz-yapisi-karakter",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.anadiliegitimi.com/en/download/article-file/329152",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "originalLanguage": "tr"
+    },
+    "ilmodernoprincipe": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.iskultur.com.tr/modern-prens",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/modern-prens-karton-kapak/697013.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786254298851",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.pandora.com.tr/kitap/modern-prens/909110",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.imge.com.tr/urun/modern-prens-ciltli-antonio-gramsci-9786254298868",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/modern-prens-hasan-ali-yucel-klasikler-p-4562900",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Modern Prens",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9786254298851",
+        "translators": [
+          "Betül Parlak"
+        ],
+        "year": 2024
+      }
+    },
+    "atomichabitsworkbook": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/atomik-aliskanliklar-calisma-kitabi-istediginiz-hayati-insa-etmeniz-icin-basit-egzersizler/740853.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786254106415",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/atomik-aliskanliklar-calisma-kitabi-istediginiz-hayati-insa-etmeniz-icin-basit-egzersizler-p-17958208",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.pandora.com.tr/kitap/atomik-aliskanliklar-calisma-kitabi/960806",
+            "type": "retailer"
+          },
+          {
+            "url": "https://alinino.az/product/atomik-aliskanliklar-calisma-kitabi-istediginiz-hayati-insa-etmeniz-icin-basit-egzersizler?lang=ru",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Atomik Alışkanlıklar Çalışma Kitabı: İstediğiniz Hayatı İnşa Etmeniz İçin Basit Egzersizler",
+        "publisher": "Pegasus Yayınları",
+        "isbn": "9786254106415",
+        "translators": [
+          "Sevinç Seyla Tezcan"
+        ],
+        "year": 2025
+      }
+    },
+    "hbrs10mustreadsonstrategy": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/strateji/309970.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786052202708",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/strateji-p-193353",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.goodreads.com/work/editions/14499698-hbr-s-10-must-reads-on-strategy",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://optimistkitap.com/kitap/strateji/",
+            "type": "publisher"
+          },
+          {
+            "url": "https://books.google.com.tr/books/about/Strateji.html?id=aA_tzgEACAAJ&redir_esc=y",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Strateji-Harvard-Business-Review/dp/605220270X",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Strateji",
+        "publisher": "Optimist Kitap",
+        "isbn": "9786052202708",
+        "translators": [
+          "Melis İnan"
+        ],
+        "year": 2017
+      }
+    },
+    "careermanagementsecrets": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/kariyer-yonetimi-sirlari/352237.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786055056384",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.goodreads.com/book/show/8880878",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.sondakika.com/kultur-sanat/haber-kariyer-yonetimi-sirlari-kitabi-6620874/",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Kitap-Rana-Alp%C3%B6z/s?rh=n:12466380031,p_27:Rana%2BAlp%25C3%25B6z",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Kariyer Yönetimi Sırları",
+        "publisher": "NTV Yayınları",
+        "isbn": "9786055056384",
+        "translators": [
+          "Rana Alpöz"
+        ],
+        "year": 2014
+      }
+    },
+    "ρητορικη": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.iskultur.com.tr/retorik",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786257999144",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.pandora.com.tr/kitap/retorik/719550",
+            "type": "retailer"
+          },
+          {
+            "url": "https://1000kitap.com/kitap/retorik--190598",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Retorik",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9786257999144",
+        "translators": [
+          "Ari Çokona"
+        ],
+        "year": 2019
+      }
+    },
+    "saleseffectivenesstraining": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/etkili-satis-egitimi/346745.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789759964948",
+            "type": "retailer"
+          },
+          {
+            "url": "https://katalog.bilecik.edu.tr/bib/19557",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.pandora.com.tr/kitap/etkili-satis-egitimi-musterilerinizle-cigir-acacak-ortak-olma-yontemi/370607",
+            "type": "retailer"
+          },
+          {
+            "url": "https://neokuyorsun.com/kitap/etkili-satis-egitimi-musterilerinizle-cigir-acacak-ortak-olma-yontemi-profil-yayincilik-9789759964948",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Etkili Satış Eğitimi",
+        "publisher": "Profil Kitap",
+        "isbn": "9789759964948",
+        "translators": [
+          "Türkan Çolak"
+        ],
+        "year": 2014
+      }
+    },
+    "marketingsecrets": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/pazarlama-sirlari/372114.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786055056674",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://1000kitap.com/kitap/pazarlama-sirlari--122933",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://dergipark.org.tr/tr/pub/asstudies/issue/57140/806418",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.amazon.com/Books-Peter-Spalton/s?rh=n%3A283155%2Cp_27%3APeter%2BSpalton",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Pazarlama Sırları",
+        "publisher": "NTV Yayınları",
+        "isbn": "9786055056674",
+        "translators": [
+          "Aysun Babacan"
+        ],
+        "year": 2015
+      }
     }
   }
 }

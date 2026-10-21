@@ -380,6 +380,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "artofstrategy": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "artofthestart20": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -433,6 +439,12 @@
    "repository": "kitaps",
    "commit": "8f6190d",
    "matchedBy": "first-kitaps-id"
+  },
+  "atomichabitsworkbook": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "attentionmerchants": {
    "date": "2026-09-28",
@@ -523,6 +535,12 @@
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "bedenyuzyapisivekarakter": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "beethoven": {
    "date": "2026-09-02",
@@ -872,6 +890,12 @@
    "commit": "521ff1d",
    "matchedBy": "id"
   },
+  "careermanagementsecrets": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "carguysvsbeancounters": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -1217,8 +1241,8 @@
   "decisive": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "fa30237",
+   "matchedBy": "id"
   },
   "dedekorkutcocukuyarlamasi": {
    "date": "2026-09-02",
@@ -1805,8 +1829,8 @@
   "finansciolmayanlaricinfinans": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "fa30237",
+   "matchedBy": "id"
   },
   "firefighting": {
    "date": "2026-09-26",
@@ -2300,6 +2324,12 @@
    "commit": "4e63728",
    "matchedBy": "id"
   },
+  "hbrs10mustreadsonstrategy": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "hedgehogging": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -2552,6 +2582,12 @@
    "commit": "4e63728",
    "matchedBy": "id"
   },
+  "ilmodernoprincipe": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "ilprincipe": {
    "date": "2026-09-02",
    "repository": "kitaps",
@@ -2587,6 +2623,12 @@
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "industryandempire": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "infedwetrust": {
    "date": "2026-09-26",
@@ -2675,6 +2717,12 @@
   "intelligentthinking": {
    "date": "2026-10-22",
    "repository": "kitaplik",
+   "commit": "fa30237",
+   "matchedBy": "id"
+  },
+  "interpretationofcultures": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
    "commit": null,
    "matchedBy": "working-tree"
   },
@@ -2687,8 +2735,8 @@
   "invitationtosociology": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "fa30237",
+   "matchedBy": "id"
   },
   "irakkraliifaysal": {
    "date": "2026-09-02",
@@ -3050,6 +3098,12 @@
    "commit": "2d35e9c",
    "matchedBy": "id"
   },
+  "logikderforschung": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "longevityimperative": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -3242,11 +3296,23 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "marketingmanagement": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "marketingmetrics": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "marketingsecrets": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "marypoppins": {
    "date": "2026-09-28",
@@ -3734,6 +3800,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "organizationalbehavior": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "orneklerlekolayekonomi": {
    "date": "2026-09-28",
    "repository": "kitaplik",
@@ -4070,6 +4142,12 @@
    "commit": "1176650",
    "matchedBy": "id"
   },
+  "problemsofphilosophy": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "profiteers": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -4364,6 +4442,12 @@
    "commit": "8f6190d",
    "matchedBy": "first-kitaps-id"
   },
+  "saleseffectivenesstraining": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "sameasever": {
    "date": "2026-10-04",
    "repository": "kitaplik",
@@ -4651,6 +4735,12 @@
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "sociologicalimagination": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "sociology": {
    "date": "2026-09-28",
@@ -5402,6 +5492,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "whatishistory": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "whatmoneycantbuy": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -5707,6 +5803,12 @@
    "repository": "kitaps",
    "commit": "8f6190d",
    "matchedBy": "first-kitaps-id"
+  },
+  "ρητορικη": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "аннакаренина": {
    "date": "2026-09-02",

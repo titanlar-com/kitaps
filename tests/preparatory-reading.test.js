@@ -16,7 +16,7 @@ test('ten preparation recommendations merge as ten memberships and eight new wor
  assert.equal(catalog.collections.find(item=>item.id==='preparation')?.count,10);
  assert.equal(catalog.books.filter(book=>book.origins.includes('preparation')).length,10);
  // Collections added later may point at these books by existingId; they stay the same eight new works.
- const later=new Set(['managerprep']);
+ const later=new Set(['managerprep','managerareas','shelfphotos']);
  assert.equal(source.books.filter(item=>mapped(item).origins.filter(origin=>!later.has(origin)).length===1).length,8);
  for(const item of source.books)assert.ok(mapped(item)?.collectionIds.includes('preparation'),item.id);
 });

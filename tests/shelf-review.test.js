@@ -8,6 +8,8 @@ import {readingGraphFor} from '../src/ranking/readingGraph.ts';
 const read=path=>JSON.parse(fs.readFileSync(new URL(path,import.meta.url)));
 const shelf=read('../data/shelf-review.json');
 const originals=read('../data/original-sources.json');
+// Later reviews that may list a shelf book again, by naming it with existingId.
+const laterReviews={originals,founders:read('../data/management-founders.json'),managerprep:read('../data/manager-foundations.json'),managerareas:read('../data/manager-reading-areas.json'),shelfphotos:read('../data/shelf-photos.json')};
 const catalog=read('../src/catalog.json');
 const byId=Object.fromEntries(catalog.books.map(book=>[book.id,book]));
 const resolve=reference=>catalog.mapping[`shelf:${reference}`]||reference;
@@ -24,11 +26,12 @@ test('every shelf recommendation is one catalog book in the shelf collection',()
   const book=mapped(item.key);
   assert.ok(book.groupIds.includes(`${shelf.id}:${item.group}`),item.key);
   // Books already in the catalog keep their identity; new ones never merge into another work.
-  // A later review may list it too, but only by naming it (İnsanlık 2.0 among the original sources).
+  // A later review may list it too, but only by naming it (İnsanlık 2.0 among the original sources,
+  // the Effective Executive workbook among the reading areas).
   if(item.existingId)assert.equal(book.id,item.existingId,item.key);
   else{
    assert.equal(book.origins[0],'shelf',item.key);
-   for(const origin of book.origins.slice(1))assert.ok(origin==='originals'&&originals.books.some(entry=>entry.existingId===book.id),`${item.key}: ${origin}`);
+   for(const origin of book.origins.slice(1))assert.ok(laterReviews[origin]?.books.some(entry=>entry.existingId===book.id),`${item.key}: ${origin}`);
   }
  }
 });

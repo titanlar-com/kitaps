@@ -1,0 +1,716 @@
+{
+ "id": "yoneticinin-okuma-alanlari",
+ "title": "Yöneticinin okuma alanları",
+ "short": "Okuma alanları",
+ "description": "Doğrudan yönetim sorumlulukları için on üç temel okuma alanı (strateji, yöneticilik, örgütsel davranış, karar, veri, ekonomi, finans, pazarlama, müzakere, operasyon, sistem, değişim, etik) ve yöneticinin düşünsel derinliği için altı alan (sosyoloji, tarih, siyaset, felsefe, edebiyat, biyografi); her alanda önce okunacak bir kitap.",
+ "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+ "checkedAt": "2026-10-22",
+ "context": {
+  "purpose": "Yönetici yalnız insanları değil, insanların içinde çalıştığı yapıları, teşvikleri ve değişen koşulları da anlamalı. Bu küme her okuma alanına bir başlangıç kitabı verir ve kitabın hangi yönetim sorusuna yardım ettiğini yazar.",
+  "criterion": "Çerçeve Harvard ve Stanford’un yönetim programlarının kapsamıyla karşılaştırılarak kuruldu: strateji, pazarlama, muhasebe, finans, örgütsel davranış, operasyon ve liderlik birlikte ele alınır. Kitap seçimleri önerinin kendisine aittir. Pazarlama, müzakere ve değişim yönetimi temel listeye girdi; psikoloji yalnız düşünme hatalarıyla sınırlı tutulmadı, motivasyon, grup davranışı, çatışma ve kurum kültürü de örgütsel davranışla kapsandı. Popper, Geertz ve Mills değerli, ama çoğu yönetici için ilk başlangıç kitabı değil; derinleşme okuması olarak tutuldu. Türkçe baskı yalnız iki ayrı sitede doğrulandığında gösterilir.",
+  "verdict": "Dijital dönüşüm ve üst yönetim çalışmaları için ilk öncelik: İyi Strateji / Kötü Strateji, Sistemlerle Düşünmek, Değişime Liderlik Etmek, Örgütsel Davranış, “Evet” ve Amaç; finans ve pazarlamada birikim azsa ilgili kitaplar bu sıranın önüne alınır. Önerinin önceki bir sürümündeki ilk altı: İyi Strateji / Kötü Strateji, Amaç, Sistemlerle Düşünmek, Etkin Yöneticinin Seyir Defteri, Hızlı ve Yavaş Düşünme ve Finansı Anlamak; stratejik seçimi, işlerin tamamlanmasını, süreçler arası bağlantıları, yönetici etkinliğini, karar hatalarını ve finansal değerlendirmeyi birlikte karşılar. E-ticaret ve dijital dönüşümde özellikle verimli üçlü sosyoloji, sistem düşüncesi ve davranışsal ekonomidir: biri değişime direnci, biri süreçler arasındaki bağlantıları, öteki insanların gerçekte neye tepki verdiğini anlamaya yardım eder."
+ },
+ "note": "Biyografi bir okuma biçimidir: strateji, tarih ve yönetimi somut vakalarla destekler. Yalnız başarılı kişileri değil başarısız girişimleri, çöken şirketleri ve yanlış kararları da okumak gerekir; başarı anlatıları şansın ve koşulların payını görünmez kılabilir. Hukuk, kurumsal yönetişim ve sektörel düzenlemeler için göreve ve ülkeye uygun güncel kaynaklar gerekir; bu klasikler o ihtiyacı tek başına karşılamaz. Roller ve sıralar not ve alt küme olarak tutulur, puana eklenmez.",
+ "groups": [
+  {
+   "id": "strateji",
+   "title": "Strateji ve rekabet"
+  },
+  {
+   "id": "yoneticilik",
+   "title": "Yöneticilik ve uygulama disiplini"
+  },
+  {
+   "id": "orgutsel-davranis",
+   "title": "Örgütsel davranış ve insan yönetimi"
+  },
+  {
+   "id": "karar",
+   "title": "Bilişsel psikoloji ve karar verme"
+  },
+  {
+   "id": "veri",
+   "title": "Veri, olasılık ve istatistik"
+  },
+  {
+   "id": "ekonomi",
+   "title": "Ekonomi ve teşvikler"
+  },
+  {
+   "id": "finans",
+   "title": "Muhasebe ve finansal okuryazarlık"
+  },
+  {
+   "id": "pazarlama",
+   "title": "Pazarlama ve müşteri değeri"
+  },
+  {
+   "id": "muzakere",
+   "title": "Müzakere ve çatışma çözümü"
+  },
+  {
+   "id": "operasyon",
+   "title": "Operasyon ve süreç yönetimi"
+  },
+  {
+   "id": "sistem",
+   "title": "Sistem düşüncesi"
+  },
+  {
+   "id": "degisim",
+   "title": "Değişim ve yenilik yönetimi"
+  },
+  {
+   "id": "etik",
+   "title": "Etik ve yönetsel sorumluluk"
+  },
+  {
+   "id": "sosyoloji",
+   "title": "Sosyoloji, kültür ve antropoloji"
+  },
+  {
+   "id": "tarih",
+   "title": "Toplumsal ve ekonomik tarih"
+  },
+  {
+   "id": "siyaset",
+   "title": "Siyaset, kurumlar ve güç"
+  },
+  {
+   "id": "felsefe",
+   "title": "Felsefe, eleştirel ve bilimsel düşünme"
+  },
+  {
+   "id": "edebiyat",
+   "title": "Edebiyat ve insan deneyimi"
+  },
+  {
+   "id": "biyografi",
+   "title": "Biyografi ve kurum tarihi"
+  },
+  {
+   "id": "ilk-oncelik",
+   "title": "Dijital dönüşüm ve üst yönetim için ilk öncelik"
+  },
+  {
+   "id": "ilk-alti",
+   "title": "İlk altı, sırasıyla (önerinin önceki sürümü)"
+  }
+ ],
+ "books": [
+  {
+   "key": "goodstrategybadstrategy",
+   "group": "strateji",
+   "role": "Başlangıç kitabı",
+   "existingId": "goodstrategybadstrategy",
+   "reason": "Hedef belirlemekle strateji kurmak arasındaki farkı gösterir: sorunu teşhis etmek, önceliği seçmek, kaynakları belirli bir noktada yoğunlaştırmak ve birbirini destekleyen eylemler kurmak.",
+   "extraGroups": [
+    {
+     "id": "ilk-oncelik",
+     "reason": "Stratejik seçim: dijital dönüşüm ve üst yönetimde ilk okunacak."
+    },
+    {
+     "id": "ilk-alti",
+     "order": 1,
+     "reason": "İlk altıda 1.: stratejik seçim."
+    }
+   ]
+  },
+  {
+   "key": "effectiveexecutiveinaction",
+   "group": "yoneticilik",
+   "role": "Başlangıç kitabı",
+   "existingId": "effectiveexecutiveinaction",
+   "reason": "Zamanı, katkıyı, güçlü yanları, öncelikleri ve kararları çalışmak için Etkin Yöneticilik’in uygulama defteri; öneride Optimist’in daha eski Türkçe baskısının adıyla, Etkin Yöneticinin Seyir Defteri olarak geçer. Kapsamlı bir örgüt kuramı kitabının yerini tutmaz.",
+   "extraGroups": [
+    {
+     "id": "ilk-alti",
+     "order": 4,
+     "reason": "İlk altıda 4.: yönetici etkinliği."
+    }
+   ]
+  },
+  {
+   "key": "organizationalbehavior",
+   "group": "orgutsel-davranis",
+   "role": "Başlangıç kitabı",
+   "title": "Organizational Behavior",
+   "author": "Stephen P. Robbins and Timothy A. Judge",
+   "originalLanguage": "en",
+   "categories": [
+    "management",
+    "psychology"
+   ],
+   "reason": "Motivasyonu, liderliği, ekipleri, gücü, çatışmayı ve kurum kültürünü birlikte görmek için. Bir ders kitabı; gereken bölümler seçilerek okunur. Yardım ettiği soru: “Sorun çalışanda mı, rolün ve işleyişin tasarımında mı?”",
+   "year": 1979,
+   "titleTr": "Örgütsel Davranış",
+   "edition": {
+    "title": "Örgütsel Davranış",
+    "isbn": "9786051331423",
+    "publisher": "Nobel Akademik Yayıncılık",
+    "translators": [
+     "İnci Erdem"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/orgutsel-davranis-organizational-behavior/269493.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9786051331423",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786051331423) ve Nobel Akademik Yayıncılık yayınevini gösteriyor; çevirmen: İnci Erdem. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/areas-organizationalbehavior.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:10114328/wi:500/wh:217b10e3b",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/orgutsel-davranis-organizational-behavior/269493.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Örgütsel Davranış",
+    "author": "Stephen P. Robbins and Timothy A. Judge",
+    "publisher": "Nobel Akademik Yayıncılık",
+    "isbn": "9786051331423",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "extraGroups": [
+    {
+     "id": "ilk-oncelik",
+     "reason": "İnsan ve örgüt: değişimi taşıyacak ekipleri anlamak için."
+    }
+   ]
+  },
+  {
+   "key": "thinkingfastandslow",
+   "group": "karar",
+   "role": "Başlangıç kitabı",
+   "existingId": "thinkingfastandslow",
+   "reason": "Sezgiyi, zihinsel kestirmeleri, risk değerlendirmesini ve aşırı güvenin kararları nasıl etkilediğini düşünmek için. Psikolojinin tamamını temsil eden bir kitap değil.",
+   "extraGroups": [
+    {
+     "id": "ilk-alti",
+     "order": 5,
+     "reason": "İlk altıda 5.: karar hataları."
+    }
+   ]
+  },
+  {
+   "key": "nakedstatistics",
+   "group": "veri",
+   "role": "Başlangıç kitabı",
+   "existingId": "nakedstatisticsstrippingthedreadfromthedata",
+   "reason": "Sayısal iddiaları, örneklemleri ve araştırma sonuçlarını sorgulayabilmek; veriyle yorumu ayırmak için. Yardım ettiği soru: “Sonuç kötü olduğu için karar da mı kötüydü, yoksa risk mi gerçekleşti?”"
+  },
+  {
+   "key": "economicstheusersguide",
+   "group": "ekonomi",
+   "role": "Başlangıç kitabı",
+   "existingId": "economicstheusersguide",
+   "reason": "Ekonomiye farklı düşünce okulları üzerinden giriş: piyasaları, kıt kaynakları, fırsat maliyetini ve teşviklerin davranışa etkisini değerlendirecek bir temel. Yardım ettiği soru: “Koyduğumuz prim sistemi gerçekte hangi davranışı ödüllendiriyor?”"
+  },
+  {
+   "key": "artofstrategy",
+   "group": "ekonomi",
+   "role": "Ardından",
+   "title": "The Art of Strategy",
+   "author": "Avinash K. Dixit and Barry J. Nalebuff",
+   "originalLanguage": "en",
+   "categories": [
+    "strategy",
+    "economy"
+   ],
+   "reason": "Karşılıklı hamleleri ve teşvikleri oyun kuramıyla düşünmek için; yazarların Stratejik Düşünme kitabının yeniden yazılmış devamı.",
+   "year": 2008,
+   "titleTr": "Strateji Sanatı: Oyun Kuramı ile İş Hayatında Başarı",
+   "edition": {
+    "title": "Strateji Sanatı: Oyun Kuramı ile İş Hayatında Başarı",
+    "isbn": "9786053324652",
+    "publisher": "Türkiye İş Bankası Kültür Yayınları",
+    "translators": [
+     "Ümit Şensoy"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji-sanati-oyun-kurami-ile-is-hayatinda-basari/369307.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9786053324652",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786053324652) ve Türkiye İş Bankası Kültür Yayınları yayınevini gösteriyor; çevirmen: Ümit Şensoy. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/areas-artofstrategy.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:1030550/wi:500/wh:810f005f0",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji-sanati-oyun-kurami-ile-is-hayatinda-basari/369307.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Strateji Sanatı: Oyun Kuramı ile İş Hayatında Başarı",
+    "author": "Avinash K. Dixit and Barry J. Nalebuff",
+    "publisher": "Türkiye İş Bankası Kültür Yayınları",
+    "isbn": "9786053324652",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "financialintelligence",
+   "group": "finans",
+   "role": "Başlangıç kitabı",
+   "existingId": "financialintelligence",
+   "reason": "Mali tabloları, bütçeyi ve yatırım değerlendirmelerini okuyabilecek bir başlangıç temeli. Öneride Türkçe adı Finansı Anlamak diye geçiyor; ancak Optimist’in 112 sayfalık Finansı Anlamak’ı Harvard’ın Understanding Finance kitapçığıyla eşleşiyor, bu kitabın Türkçe baskısı bulunamadı. Yardım ettiği soru: “Satışlar artarken neden nakit sıkışıklığı yaşıyoruz?”",
+   "extraGroups": [
+    {
+     "id": "ilk-alti",
+     "order": 6,
+     "reason": "İlk altıda 6.: finansal değerlendirme."
+    }
+   ]
+  },
+  {
+   "key": "marketingmanagement",
+   "group": "pazarlama",
+   "role": "Başlangıç kitabı",
+   "title": "Marketing Management",
+   "author": "Philip Kotler and Kevin Lane Keller",
+   "originalLanguage": "en",
+   "categories": [
+    "marketing"
+   ],
+   "reason": "Müşteri ihtiyacını, pazar bölümlendirmeyi, konumlandırmayı ve değer önerisini sistemli biçimde ele almak için. Bir başvuru kitabı; bölüm seçerek okunur.",
+   "year": 1967,
+   "titleTr": "Pazarlama Yönetimi",
+   "edition": {
+    "title": "Pazarlama Yönetimi",
+    "isbn": "9786053337997",
+    "publisher": "Beta Basım Yayım",
+    "translators": [],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/pazarlama-yonetimi/470320.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://1000kitap.com/kitap/pazarlama-yonetimi--18996",
+    "secondSourceType": "bibliographic",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve 1000kitap.com aynı ISBN'i (9786053337997) ve Beta Basım Yayım yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/areas-marketingmanagement.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:6668875/mh:1000/wh:176ad0ae3",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/pazarlama-yonetimi/470320.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Pazarlama Yönetimi",
+    "author": "Philip Kotler and Kevin Lane Keller",
+    "publisher": "Beta Basım Yayım",
+    "isbn": "9786053337997",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "gettingtoyes",
+   "group": "muzakere",
+   "role": "Başlangıç kitabı",
+   "existingId": "gettingtoyes",
+   "reason": "Çıkarları anlamak, seçenek geliştirmek ve anlaşmazlıkları çözmek için. Öneride Bilgi Yayınevi’nin eski baskısının adıyla geçer: “Evet”: Boyun Eğmeden Anlaşmaya Varmak.",
+   "extraGroups": [
+    {
+     "id": "ilk-oncelik",
+     "reason": "Müzakere: değişimin paydaşlarıyla anlaşmak için."
+    }
+   ]
+  },
+  {
+   "key": "goal",
+   "group": "operasyon",
+   "role": "Başlangıç kitabı",
+   "existingId": "goal",
+   "reason": "Darboğazları bulmak; bölümlerin verimliliğiyle işletmenin toplam çıktısı arasındaki ilişkiyi görmek için. Roman biçimi kavramları somutlaştırır. Yardım ettiği soru: “Herkes çok çalışıyor ama işler neden tamamlanmıyor?”",
+   "extraGroups": [
+    {
+     "id": "ilk-oncelik",
+     "reason": "İşlerin tamamlanması: darboğazı görmek için."
+    },
+    {
+     "id": "ilk-alti",
+     "order": 2,
+     "reason": "İlk altıda 2.: işlerin tamamlanması."
+    }
+   ]
+  },
+  {
+   "key": "thinkinginsystems",
+   "group": "sistem",
+   "role": "Başlangıç kitabı",
+   "existingId": "thinkinginsystems",
+   "reason": "Geri beslemeleri, gecikmeleri, müdahale noktalarını ve müdahalelerin dolaylı sonuçlarını görmek için; operasyonun ötesinde örgüt ve pazar sorunlarına da uygulanır. Yardım ettiği soru: “Bir bölümün performansını artırırken şirketin bütününe zarar veriyor muyuz?”",
+   "extraGroups": [
+    {
+     "id": "ilk-oncelik",
+     "reason": "Süreçler arası bağlantılar: dönüşümün dolaylı sonuçlarını görmek için."
+    },
+    {
+     "id": "ilk-alti",
+     "order": 3,
+     "reason": "İlk altıda 3.: süreçler arası bağlantılar."
+    }
+   ]
+  },
+  {
+   "key": "leadingchange",
+   "group": "degisim",
+   "role": "Başlangıç kitabı",
+   "existingId": "leadingchange",
+   "reason": "Örgütün değişimi benimsemesini ve uygulamasını düşünmek için.",
+   "extraGroups": [
+    {
+     "id": "ilk-oncelik",
+     "reason": "Değişim: dönüşümü örgüte benimsetmek için."
+    }
+   ]
+  },
+  {
+   "key": "innovatorsdilemma",
+   "group": "degisim",
+   "role": "Ardından",
+   "existingId": "innovatorsdilemma",
+   "reason": "Yerleşik şirketlerin yeni teknolojiler karşısındaki sorunlarını incelemek için, Değişime Liderlik Etmek’ten sonra."
+  },
+  {
+   "key": "justice",
+   "group": "etik",
+   "role": "Başlangıç kitabı",
+   "existingId": "justicewhatstherightthingtodo",
+   "reason": "Hak, fayda, adalet ve ortak iyi arasında gerekçeli değerlendirme yapabilmek için; etik okumayı yalnız kişisel disiplinle sınırlamamak gerekir."
+  },
+  {
+   "key": "thinkingsociologically",
+   "group": "sosyoloji",
+   "role": "Başlangıç kitabı",
+   "existingId": "thinkingsociologically",
+   "reason": "Grup davranışlarını, kurum kültürünü, statüyü ve yazılı olmayan kuralları anlamaya giriş. Yardım ettiği soru: “İnsanlar bire bir konuşurken kabul ettikleri değişime ekip içinde neden direniyor?”"
+  },
+  {
+   "key": "sociologicalimagination",
+   "group": "sosyoloji",
+   "role": "Derinleşme okuması",
+   "title": "The Sociological Imagination",
+   "author": "C. Wright Mills",
+   "originalLanguage": "en",
+   "categories": [
+    "politics",
+    "philosophy"
+   ],
+   "reason": "Kişisel görünen sorunların toplumsal ve yapısal nedenlerini araştırmak; her sorunu çalışanın karakterine bağlamamak için. Sosyolojik Düşünmek’ten sonra derinleşme okuması.",
+   "year": 1959,
+   "issue": "Türkçe baskı adayı: Sosyolojik Tahayyül (Hil Yayın, çeviren Ömer Küçük, ISBN 9786057017574). İkinci, bağımsız bir kaynakta görülemediği için doğrulanmış sayılmadı."
+  },
+  {
+   "key": "interpretationofcultures",
+   "group": "sosyoloji",
+   "role": "Derinleşme okuması",
+   "title": "The Interpretation of Cultures",
+   "author": "Clifford Geertz",
+   "originalLanguage": "en",
+   "categories": [
+    "philosophy",
+    "history"
+   ],
+   "reason": "İnsanların davranışlarına yükledikleri anlamları kendi bağlamında incelemek; müşterinin ve çalışanın dünyasını anlamaya çalışmak için. Yoğun bir derinleşme okuması. Yardım ettiği soru: “Müşteri bu ürünü gerçekte hayatının neresine yerleştiriyor?”",
+   "year": 1973,
+   "titleTr": "Kültürlerin Yorumlanması",
+   "edition": {
+    "title": "Kültürlerin Yorumlanması",
+    "isbn": "9786257005784",
+    "publisher": "Dergah Yayınları",
+    "translators": [
+     "Hakan Gür"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kulturlerin-yorumlanmasi/563791.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.besirkitabevi.com.tr/urun/kulturlerin-yorumlanmasi-9786257005784",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve besirkitabevi.com.tr aynı ISBN'i (9786257005784) ve Dergah Yayınları yayınevini gösteriyor; çevirmen: Hakan Gür. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/areas-interpretationofcultures.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11317637/wi:500/wh:e683ba50b",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kulturlerin-yorumlanmasi/563791.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Kültürlerin Yorumlanması",
+    "author": "Clifford Geertz",
+    "publisher": "Dergah Yayınları",
+    "isbn": "9786257005784",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "industryandempire",
+   "group": "tarih",
+   "role": "Başlangıç kitabı",
+   "title": "Industry and Empire",
+   "author": "Eric J. Hobsbawm",
+   "originalLanguage": "en",
+   "categories": [
+    "history",
+    "economy"
+   ],
+   "reason": "Sanayi Devrimi’nden başlayarak Britanya’nın toplumsal ve ekonomik dönüşümünü somut olarak incelemek için. Yardım ettiği soru: “Bugünkü başarıyı sağlayan yapı yarının engeline dönüşebilir mi?”",
+   "year": 1968,
+   "titleTr": "Sanayi ve İmparatorluk",
+   "edition": {
+    "title": "Sanayi ve İmparatorluk",
+    "isbn": "9789757501350",
+    "publisher": "Dost Kitabevi",
+    "translators": [
+     "Abdullah Ersoy"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/sanayi-ve-imparatorluk/7253.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://dostkitabevi.com/sanayi-ve-imparatorluk",
+    "secondSourceType": "publisher",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dostkitabevi.com aynı ISBN'i (9789757501350) ve Dost Kitabevi yayınevini gösteriyor; çevirmen: Abdullah Ersoy. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/areas-industryandempire.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11967525/wi:500/wh:a00359a12",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/sanayi-ve-imparatorluk/7253.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Sanayi ve İmparatorluk",
+    "author": "Eric J. Hobsbawm",
+    "publisher": "Dost Kitabevi",
+    "isbn": "9789757501350",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "whatishistory",
+   "group": "tarih",
+   "role": "Tamamlayıcı klasik",
+   "title": "What Is History?",
+   "author": "E. H. Carr",
+   "originalLanguage": "en",
+   "categories": [
+    "history",
+    "philosophy"
+   ],
+   "reason": "Olay, kanıt ve yorum arasındaki ilişkiyi; geçmişten çıkarılan derslerin hangi varsayımlara dayandığını sorgulamak için. Tarihin nasıl yazıldığını düşündüren tamamlayıcı okuma.",
+   "year": 1961,
+   "titleTr": "Tarih Nedir?",
+   "edition": {
+    "title": "Tarih Nedir?",
+    "isbn": "9789750508097",
+    "publisher": "İletişim Yayınları",
+    "translators": [
+     "Misket Gizem Gürtürk"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/tarih-nedir/61275.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://iletisim.com.tr/kitap/tarih-nedir/7260",
+    "secondSourceType": "publisher",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve iletisim.com.tr aynı ISBN'i (9789750508097) ve İletişim Yayınları yayınevini gösteriyor; çevirmen: Misket Gizem Gürtürk. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/areas-whatishistory.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:5554325/wi:500/wh:a741bb5dc",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/tarih-nedir/61275.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Tarih Nedir?",
+    "author": "E. H. Carr",
+    "publisher": "İletişim Yayınları",
+    "isbn": "9789750508097",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "whynationsfail",
+   "group": "siyaset",
+   "role": "Başlangıç kitabı",
+   "existingId": "whynationsfail",
+   "reason": "Kurumların güç dağılımı ve refah üzerindeki etkisini düşünmek için; gücü, çıkar çatışmalarını, koalisyonları ve meşruiyeti okumayı öne alır. Yardım ettiği soru: “Karar verme yetkim var; uygulamayı sağlayacak desteğim var mı?”"
+  },
+  {
+   "key": "ilprincipe",
+   "group": "siyaset",
+   "role": "Tamamlayıcı klasik",
+   "existingId": "ilprincipe",
+   "reason": "İktidarın kurulmasını ve sürdürülmesini anlatan klasik; tarihsel bağlamıyla okunacak tamamlayıcı bir eser. Öneride İş Bankası Kültür Yayınları baskısının adıyla, Hükümdar olarak geçer."
+  },
+  {
+   "key": "problemsofphilosophy",
+   "group": "felsefe",
+   "role": "Başlangıç kitabı",
+   "title": "The Problems of Philosophy",
+   "author": "Bertrand Russell",
+   "originalLanguage": "en",
+   "categories": [
+    "philosophy"
+   ],
+   "reason": "Bilgiyi, gerekçeyi ve varsayımları sorgulamaya başlangıç.",
+   "year": 1912,
+   "titleTr": "Felsefe Sorunları",
+   "edition": {
+    "title": "Felsefe Sorunları",
+    "isbn": "9786050205695",
+    "publisher": "Say Yayınları",
+    "translators": [
+     "Vehbi Hacıkadiroğlu"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/felsefe-sorunlari/416535.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://saykitap.com/urun/felsefe-sorunlari/",
+    "secondSourceType": "publisher",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve saykitap.com aynı ISBN'i (9786050205695) ve Say Yayınları yayınevini gösteriyor; çevirmen: Vehbi Hacıkadiroğlu. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/areas-problemsofphilosophy.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:3141689/wi:500/wh:e9a713d0f",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/felsefe-sorunlari/416535.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Felsefe Sorunları",
+    "author": "Bertrand Russell",
+    "publisher": "Say Yayınları",
+    "isbn": "9786050205695",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "meditations",
+   "group": "felsefe",
+   "role": "Ardından",
+   "existingId": "meditations",
+   "reason": "Kendi tepkilerini, sorumluluğunu ve davranışlarını değerlendirmek; kişisel muhasebe için, Felsefe Sorunları’ndan sonra."
+  },
+  {
+   "key": "logicofscientificdiscovery",
+   "group": "felsefe",
+   "role": "Derinleşme okuması",
+   "title": "Logik der Forschung",
+   "author": "Karl R. Popper",
+   "originalLanguage": "de",
+   "categories": [
+    "philosophy",
+    "science"
+   ],
+   "reason": "İddiaları sınanabilir hâle getirmek ve onları çürütebilecek kanıtı aramak için; ileri düzey bir okuma, sonraki aşamaya bırakılır. Yardım ettiği soru: “Bu açıklamanın yanlış olduğunu hangi bulgu gösterirdi?”",
+   "year": 1934,
+   "titleTr": "Bilimsel Araştırmanın Mantığı",
+   "edition": {
+    "title": "Bilimsel Araştırmanın Mantığı",
+    "isbn": "9789753634397",
+    "publisher": "Yapı Kredi Yayınları",
+    "translators": [
+     "İlknur Aka",
+     "İbrahim Turan"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/bilimsel-arastirmanin-mantigi/12596.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.yapikrediyayinlari.com.tr/bilimsel-arastirmanin-mantigi.aspx",
+    "secondSourceType": "publisher",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve yapikrediyayinlari.com.tr aynı ISBN'i (9789753634397) ve Yapı Kredi Yayınları yayınevini gösteriyor; çevirmen: İlknur Aka, İbrahim Turan. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/areas-logicofscientificdiscovery.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:112231/wi:500/wh:9a84861d5",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/bilimsel-arastirmanin-mantigi/12596.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Bilimsel Araştırmanın Mantığı",
+    "author": "Karl R. Popper",
+    "publisher": "Yapı Kredi Yayınları",
+    "isbn": "9789753634397",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "ivanilyich",
+   "group": "edebiyat",
+   "role": "Başlangıç kitabı",
+   "existingId": "смертьиванаильича",
+   "reason": "Başarıyı, statüyü, saygınlığı ve hayatın anlamını sorgulayan kısa bir başlangıç; çelişkili motivasyonları ve bakış açılarını düşünmek için. Yardım ettiği soru: “Benim mantıksız bulduğum davranış karşımdakinin dünyasında neden anlamlı?”"
+  },
+  {
+   "key": "whosayselephantscantdance",
+   "group": "biyografi",
+   "role": "Vaka okuması",
+   "existingId": "whosayselephantscantdance",
+   "reason": "IBM’in dönüşümünü süreci yöneten kişinin anlatısından incelemek; strateji ve örgüt değişimini somut bir vakada değerlendirmek için. Türkçesi Altın Kitaplar’ın Kim Demiş Filler Dans Edemez’i (çeviren Füsun Doruker); bu baskı ikinci, bağımsız bir sitede doğrulanamadı. Başarı anlatısı olduğu için şansın ve koşulların payı ayrıca düşünülmeli."
+  }
+ ],
+ "links": [
+  {
+   "type": "sequence",
+   "first": "economicstheusersguide",
+   "then": "artofstrategy",
+   "why": "Önce ekonomiye farklı yaklaşımlarla giriş; ardından karşılıklı hamleleri ve teşvikleri oyun kuramıyla düşünmek.",
+   "next": "Ekonomik teşvikleri karşılıklı hamleler ve oyun kuramıyla düşünmek için."
+  },
+  {
+   "type": "sequence",
+   "first": "leadingchange",
+   "then": "innovatorsdilemma",
+   "why": "Önce örgütün değişimi nasıl benimseyip uyguladığını düşünmek; ardından yerleşik şirketlerin yeni teknolojiler karşısındaki sorununu incelemek.",
+   "next": "Değişimden sonra yerleşik şirketlerin yeni teknolojiler karşısındaki ikilemini incelemek için."
+  },
+  {
+   "type": "sequence",
+   "first": "problemsofphilosophy",
+   "then": "meditations",
+   "why": "Önce bilgiyi ve varsayımları sorgulamak; ardından kişisel muhasebe.",
+   "next": "Kendi tepkilerini ve sorumluluğunu değerlendirmek için."
+  },
+  {
+   "type": "sequence",
+   "first": "problemsofphilosophy",
+   "then": "logicofscientificdiscovery",
+   "why": "Felsefeye başlangıç Felsefe Sorunları ile; bilimsel yöntem üzerine bu ileri düzey eser sonraki aşamadadır.",
+   "next": "İleri düzeyde: iddiaları sınanabilir kılmak ve çürütme ölçütü için."
+  },
+  {
+   "type": "sequence",
+   "first": "thinkingsociologically",
+   "then": "sociologicalimagination",
+   "why": "Sosyolojiye giriş Sosyolojik Düşünmek ile; Mills derinleşme okumasıdır.",
+   "next": "Kişisel sorunların yapısal nedenlerine derinleşmek için."
+  },
+  {
+   "type": "sequence",
+   "first": "thinkingsociologically",
+   "then": "interpretationofcultures",
+   "why": "Sosyolojiye giriş Sosyolojik Düşünmek ile; Geertz yoğun bir derinleşme okumasıdır.",
+   "next": "Kültürü ve davranışlara yüklenen anlamları derinlemesine incelemek için."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "industryandempire",
+    "whatishistory"
+   ],
+   "reason": "Biri tarihsel dönüşümü somut olarak inceler, öteki tarihin nasıl yazıldığını sorgular."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "whynationsfail",
+    "ilprincipe"
+   ],
+   "reason": "Biri kurumların güç dağılımı ve refah üzerindeki etkisini, öteki iktidarın kurulmasını ve sürdürülmesini anlatır; Hükümdar tarihsel bağlamıyla okunur."
+  }
+ ]
+}

@@ -992,6 +992,10 @@
           {
             "id": "thinkinginsystems",
             "reason": "Yönetici adayı programı: kararları, piyasaları ve sistemleri önce öğrenmek, Christensen’in yenilik ve dönüşüm çözümlemesini daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "leadingchange",
+            "reason": "Önce örgütün değişimi nasıl benimseyip uyguladığını düşünmek; ardından yerleşik şirketlerin yeni teknolojiler karşısındaki sorununu incelemek."
           }
         ],
         "after": [
@@ -1064,6 +1068,12 @@
             "id": "principlesofscientificmanagement",
             "reason": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
           }
+        ],
+        "companions": [
+          {
+            "id": "toyotaproductionsystem",
+            "reason": "İkisi de işletmenin toplam akışını iyileştirmeyi ele alır: Ohno Toyota üretim sistemini, Goldratt darboğazları ve kısıtlar teorisini anlatır."
+          }
         ]
       },
       "scrumtheartofdoingtwicetheworkinhalfthetime": {
@@ -1113,6 +1123,10 @@
           {
             "id": "machinethatchangedtheworld",
             "reason": "Ohno, Toyota üretim sistemini onu kuran kişi olarak içeriden anlatır; MIT araştırması aynı sistemi dışarıdan, fabrikaları karşılaştırarak inceler."
+          },
+          {
+            "id": "goal",
+            "reason": "İkisi de işletmenin toplam akışını iyileştirmeyi ele alır: Ohno Toyota üretim sistemini, Goldratt darboğazları ve kısıtlar teorisini anlatır."
           }
         ]
       },
@@ -1274,6 +1288,10 @@
           {
             "id": "epistulaemoralesadlucilium",
             "reason": "Stoacı etiği gündelik sorunlar üzerinden pedagojik biçimde işler."
+          },
+          {
+            "id": "problemsofphilosophy",
+            "reason": "Önce bilgiyi ve varsayımları sorgulamak; ardından kişisel muhasebe."
           }
         ],
         "after": [
@@ -1353,6 +1371,10 @@
           {
             "id": "capitalinthetwentyfirstcentury",
             "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "artofstrategy",
+            "reason": "Ekonomik teşvikleri karşılıklı hamleler ve oyun kuramıyla düşünmek için."
           }
         ]
       },
@@ -1367,7 +1389,13 @@
             "reason": "Coğrafya ve kurum açıklamalarını karşılaştırmak için güçlü bir karşı tez oluşturur."
           }
         ],
-        "after": []
+        "after": [],
+        "companions": [
+          {
+            "id": "ilprincipe",
+            "reason": "Biri kurumların güç dağılımı ve refah üzerindeki etkisini, öteki iktidarın kurulmasını ve sürdürülmesini anlatır; Hükümdar tarihsel bağlamıyla okunur."
+          }
+        ]
       },
       "capitalinthetwentyfirstcentury": {
         "before": [
@@ -2126,7 +2154,18 @@
             "reason": "Roma Cumhuriyeti ve İmparatorluğu için bağlam sağlayarak Caesar ve Machiavelli okumalarını açar."
           }
         ],
-        "after": []
+        "after": [
+          {
+            "id": "ilmodernoprincipe",
+            "reason": "Machiavelli’nin Gramsci tarafından yeniden okunuşu: siyaset ve modern devlet üzerine notlar."
+          }
+        ],
+        "companions": [
+          {
+            "id": "whynationsfail",
+            "reason": "Biri kurumların güç dağılımı ve refah üzerindeki etkisini, öteki iktidarın kurulmasını ve sürdürülmesini anlatır; Hükümdar tarihsel bağlamıyla okunur."
+          }
+        ]
       },
       "caesar": {
         "before": [
@@ -2411,6 +2450,14 @@
           {
             "id": "singularityisnear",
             "reason": "Toplumsal bakışı kazandıktan sonra teknolojik tekillik iddialarını tek tek sorgulayarak okumak için."
+          },
+          {
+            "id": "sociologicalimagination",
+            "reason": "Kişisel sorunların yapısal nedenlerine derinleşmek için."
+          },
+          {
+            "id": "interpretationofcultures",
+            "reason": "Kültürü ve davranışlara yüklenen anlamları derinlemesine incelemek için."
           },
           {
             "id": "corrosionofcharacter",
@@ -3869,6 +3916,10 @@
           {
             "id": "influenceandpersuasion",
             "reason": "İkisi de etkileme ve ikna üzerine. HBR seçkisi Cialdini’nin ikna bilimi üzerine bir makalesini de içerir; İknanın Psikolojisi aynı ilkeleri bütünlüklü bir kitapta işler."
+          },
+          {
+            "id": "ρητορικη",
+            "reason": "İkisi de ikna üzerine: Aristoteles ikna yollarını konuşmacının karakteri, dinleyicinin duyguları ve kanıt üzerinden temellendirir; Cialdini iknanın psikolojik ilkelerini deneylerle anlatır."
           }
         ]
       },
@@ -4036,7 +4087,12 @@
       },
       "atomichabits": {
         "before": [],
-        "after": [],
+        "after": [
+          {
+            "id": "atomichabitsworkbook",
+            "reason": "Kitaptaki yöntemi alıştırmalarla kendi alışkanlıklarına uygulamak için."
+          }
+        ],
         "companions": [
           {
             "id": "tinyhabits",
@@ -4659,6 +4715,112 @@
           {
             "id": "innovatorsdilemma",
             "reason": "Bu temelden sonra geçilecek yönetim klasiği: Christensen’in yenilik, rekabet ve dönüşüm üzerine eseri."
+          }
+        ]
+      },
+      "artofstrategy": {
+        "before": [
+          {
+            "id": "economicstheusersguide",
+            "reason": "Önce ekonomiye farklı yaklaşımlarla giriş; ardından karşılıklı hamleleri ve teşvikleri oyun kuramıyla düşünmek."
+          }
+        ],
+        "after": []
+      },
+      "leadingchange": {
+        "before": [],
+        "after": [
+          {
+            "id": "innovatorsdilemma",
+            "reason": "Değişimden sonra yerleşik şirketlerin yeni teknolojiler karşısındaki ikilemini incelemek için."
+          }
+        ]
+      },
+      "problemsofphilosophy": {
+        "before": [],
+        "after": [
+          {
+            "id": "meditations",
+            "reason": "Kendi tepkilerini ve sorumluluğunu değerlendirmek için."
+          },
+          {
+            "id": "logikderforschung",
+            "reason": "İleri düzeyde: iddiaları sınanabilir kılmak ve çürütme ölçütü için."
+          }
+        ]
+      },
+      "logikderforschung": {
+        "before": [
+          {
+            "id": "problemsofphilosophy",
+            "reason": "Felsefeye başlangıç Felsefe Sorunları ile; bilimsel yöntem üzerine bu ileri düzey eser sonraki aşamadadır."
+          }
+        ],
+        "after": []
+      },
+      "sociologicalimagination": {
+        "before": [
+          {
+            "id": "thinkingsociologically",
+            "reason": "Sosyolojiye giriş Sosyolojik Düşünmek ile; Mills derinleşme okumasıdır."
+          }
+        ],
+        "after": []
+      },
+      "interpretationofcultures": {
+        "before": [
+          {
+            "id": "thinkingsociologically",
+            "reason": "Sosyolojiye giriş Sosyolojik Düşünmek ile; Geertz yoğun bir derinleşme okumasıdır."
+          }
+        ],
+        "after": []
+      },
+      "industryandempire": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "whatishistory",
+            "reason": "Biri tarihsel dönüşümü somut olarak inceler, öteki tarihin nasıl yazıldığını sorgular."
+          }
+        ]
+      },
+      "whatishistory": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "industryandempire",
+            "reason": "Biri tarihsel dönüşümü somut olarak inceler, öteki tarihin nasıl yazıldığını sorgular."
+          }
+        ]
+      },
+      "ilmodernoprincipe": {
+        "before": [
+          {
+            "id": "ilprincipe",
+            "reason": "Gramsci bu notlarda Machiavelli’yi yeniden okur; önce Hükümdar okunmalı."
+          }
+        ],
+        "after": []
+      },
+      "atomichabitsworkbook": {
+        "before": [
+          {
+            "id": "atomichabits",
+            "reason": "Çalışma kitabı Atomik Alışkanlıklar’daki yöntemi alıştırmalarla uygular; önce kitabın kendisi okunmalı."
+          }
+        ],
+        "after": []
+      },
+      "ρητορικη": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "influence",
+            "reason": "İkisi de ikna üzerine: Aristoteles ikna yollarını konuşmacının karakteri, dinleyicinin duyguları ve kanıt üzerinden temellendirir; Cialdini iknanın psikolojik ilkelerini deneylerle anlatır."
           }
         ]
       },
@@ -5950,6 +6112,35 @@
           "note": "Programda 11. kitap: operasyon ve darboğaz yönetimi.",
           "role": "Operasyon ve darboğaz yönetimi",
           "order": 11
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:operasyon",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Darboğazları bulmak; bölümlerin verimliliğiyle işletmenin toplam çıktısı arasındaki ilişkiyi görmek için. Roman biçimi kavramları somutlaştırır. Yardım ettiği soru: “Herkes çok çalışıyor ama işler neden tamamlanmıyor?”",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-oncelik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "İşlerin tamamlanması: darboğazı görmek için.",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-alti",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "İlk altıda 2.: işlerin tamamlanması.",
+          "role": "Başlangıç kitabı",
+          "order": 2
+        },
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Rafta Optimist baskısıyla: darboğazlar ve sürekli iyileştirme süreci.",
+          "role": "Raf"
         }
       ],
       "notes": [
@@ -5984,6 +6175,22 @@
         {
           "text": "Programda 11. kitap: operasyon ve darboğaz yönetimi.",
           "source": "Yönetici adayı · Operasyon ve darboğaz yönetimi"
+        },
+        {
+          "text": "Darboğazları bulmak; bölümlerin verimliliğiyle işletmenin toplam çıktısı arasındaki ilişkiyi görmek için. Roman biçimi kavramları somutlaştırır. Yardım ettiği soru: “Herkes çok çalışıyor ama işler neden tamamlanmıyor?”",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "İşlerin tamamlanması: darboğazı görmek için.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "İlk altıda 2.: işlerin tamamlanması.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "Rafta Optimist baskısıyla: darboğazlar ve sürekli iyileştirme süreci.",
+          "source": "Raftaki kitaplar · Raf"
         }
       ],
       "editions": [],
@@ -5991,7 +6198,9 @@
         "atlas",
         "local",
         "entrepreneurship",
-        "managerprep"
+        "managerprep",
+        "managerareas",
+        "shelfphotos"
       ],
       "legacyKeys": [],
       "tags": [
@@ -6033,7 +6242,9 @@
         "core",
         "next",
         "entrepreneurship-curriculum",
-        "yonetici-adayi"
+        "yonetici-adayi",
+        "yoneticinin-okuma-alanlari",
+        "raf-fotograflari"
       ],
       "groupIds": [
         "time:0",
@@ -6043,7 +6254,11 @@
         "next:local",
         "entrepreneurship-curriculum:operations",
         "yonetici-adayi:asama-3",
-        "yonetici-adayi:program"
+        "yonetici-adayi:program",
+        "yoneticinin-okuma-alanlari:operasyon",
+        "yoneticinin-okuma-alanlari:ilk-oncelik",
+        "yoneticinin-okuma-alanlari:ilk-alti",
+        "raf-fotograflari:2026-10-22"
       ]
     },
     {
@@ -6474,6 +6689,13 @@
           "note": "Başarılı bir şirketin gelecekte neden başarısız olabileceğini anlatır.",
           "role": "Birinci tercih",
           "order": 3
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:degisim",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Yerleşik şirketlerin yeni teknolojiler karşısındaki sorunlarını incelemek için, Değişime Liderlik Etmek’ten sonra.",
+          "role": "Ardından"
         }
       ],
       "notes": [
@@ -6500,6 +6722,10 @@
         {
           "text": "Başarılı bir şirketin gelecekte neden başarısız olabileceğini anlatır.",
           "source": "Yönetim kurucuları · Birinci tercih"
+        },
+        {
+          "text": "Yerleşik şirketlerin yeni teknolojiler karşısındaki sorunlarını incelemek için, Değişime Liderlik Etmek’ten sonra.",
+          "source": "Okuma alanları · Ardından"
         }
       ],
       "editions": [
@@ -6532,7 +6758,8 @@
         "local",
         "kitaps",
         "entrepreneurship",
-        "founders"
+        "founders",
+        "managerareas"
       ],
       "legacyKeys": [
         "the-innovator-s-dilemma-clayton-m-christensen"
@@ -6577,7 +6804,8 @@
         "kitaps-M",
         "kitaps-N",
         "entrepreneurship-curriculum",
-        "yonetim-kuruculari"
+        "yonetim-kuruculari",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
         "time:0",
@@ -6589,7 +6817,8 @@
         "entrepreneurship-curriculum:strategy",
         "yonetim-kuruculari:yenilik",
         "yonetim-kuruculari:okuma-sirasi",
-        "yonetim-kuruculari:ilk-uc"
+        "yonetim-kuruculari:ilk-uc",
+        "yoneticinin-okuma-alanlari:degisim"
       ]
     },
     {
@@ -6620,13 +6849,37 @@
           "source": "https://toddsattersten.com/what-to-read/",
           "award": null,
           "awardYear": null
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:degisim",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Örgütün değişimi benimsemesini ve uygulamasını düşünmek için.",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-oncelik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Değişim: dönüşümü örgüte benimsetmek için.",
+          "role": "Başlangıç kitabı"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Örgütün değişimi benimsemesini ve uygulamasını düşünmek için.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "Değişim: dönüşümü örgüte benimsetmek için.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        }
+      ],
       "editions": [],
       "origins": [
         "atlas",
-        "local"
+        "local",
+        "managerareas"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -6661,11 +6914,14 @@
       "addedAt": "2026-09-26",
       "collectionIds": [
         "time",
-        "hundred"
+        "hundred",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
         "time:0",
-        "hundred:1"
+        "hundred:1",
+        "yoneticinin-okuma-alanlari:degisim",
+        "yoneticinin-okuma-alanlari:ilk-oncelik"
       ]
     },
     {
@@ -7314,12 +7570,23 @@
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
           "note": "Yalın düşüncenin kaynağı: Toyota üretim sistemini kuran Ohno’nun kendi anlatımı. Yalın girişimdeki israfı azaltma ve akış fikirleri buradan gelir.",
           "role": "Özgün kaynak"
+        },
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Toyota üretim sistemini onu kuran kişinin anlatısından tanır; Amaç’ın yanında operasyon ve süreç okuması.",
+          "role": "Raf"
         }
       ],
       "notes": [
         {
           "text": "Yalın düşüncenin kaynağı: Toyota üretim sistemini kuran Ohno’nun kendi anlatımı. Yalın girişimdeki israfı azaltma ve akış fikirleri buradan gelir.",
           "source": "Özgün kaynaklar · Özgün kaynak"
+        },
+        {
+          "text": "Toyota üretim sistemini onu kuran kişinin anlatısından tanır; Amaç’ın yanında operasyon ve süreç okuması.",
+          "source": "Raftaki kitaplar · Raf"
         }
       ],
       "editions": [
@@ -7353,7 +7620,8 @@
         "atlas",
         "local",
         "kitaps",
-        "originals"
+        "originals",
+        "shelfphotos"
       ],
       "legacyKeys": [
         "toyota-production-system-taiichi-ohno"
@@ -7390,13 +7658,15 @@
         "time",
         "hundred",
         "kitaps-D",
-        "ozgun-kaynaklar"
+        "ozgun-kaynaklar",
+        "raf-fotograflari"
       ],
       "groupIds": [
         "time:0",
         "hundred:5",
         "kitaps-D:liste",
-        "ozgun-kaynaklar:cevik-yalin"
+        "ozgun-kaynaklar:cevik-yalin",
+        "raf-fotograflari:2026-10-22"
       ]
     },
     {
@@ -9086,6 +9356,21 @@
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
           "note": "Kararlardaki sistemli hataların araştırma temeli: Doğru Karar’ın yanında.",
           "role": "Programa eklenen"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:karar",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Sezgiyi, zihinsel kestirmeleri, risk değerlendirmesini ve aşırı güvenin kararları nasıl etkilediğini düşünmek için. Psikolojinin tamamını temsil eden bir kitap değil.",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-alti",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "İlk altıda 5.: karar hataları.",
+          "role": "Başlangıç kitabı",
+          "order": 5
         }
       ],
       "notes": [
@@ -9100,6 +9385,14 @@
         {
           "text": "Kararlardaki sistemli hataların araştırma temeli: Doğru Karar’ın yanında.",
           "source": "Yönetici adayı · Programa eklenen"
+        },
+        {
+          "text": "Sezgiyi, zihinsel kestirmeleri, risk değerlendirmesini ve aşırı güvenin kararları nasıl etkilediğini düşünmek için. Psikolojinin tamamını temsil eden bir kitap değil.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "İlk altıda 5.: karar hataları.",
+          "source": "Okuma alanları · Başlangıç kitabı"
         }
       ],
       "editions": [
@@ -9133,7 +9426,8 @@
         "atlas",
         "kitaps",
         "shelf",
-        "managerprep"
+        "managerprep",
+        "managerareas"
       ],
       "legacyKeys": [
         "thinking-fast-and-slow-daniel-kahneman"
@@ -9172,7 +9466,8 @@
         "hundred",
         "kitaps-N",
         "raf-degerlendirmesi",
-        "yonetici-adayi"
+        "yonetici-adayi",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
         "pmba:6",
@@ -9180,7 +9475,9 @@
         "kitaps-N:N.1 — Bireysel irade ve öz-strateji",
         "raf-degerlendirmesi:uzun-vadeli",
         "yonetici-adayi:ekler",
-        "yonetici-adayi:asama-1"
+        "yonetici-adayi:asama-1",
+        "yoneticinin-okuma-alanlari:karar",
+        "yoneticinin-okuma-alanlari:ilk-alti"
       ]
     },
     {
@@ -11654,6 +11951,28 @@
           "note": "Kısa yolda 6. kitap. Ardından Drucker’ın Yönetim Uygulaması’na geçilebilir; Porter ve Deming sonraki aşamada gelir.",
           "role": "Sistem düşüncesi",
           "order": 6
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:sistem",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Geri beslemeleri, gecikmeleri, müdahale noktalarını ve müdahalelerin dolaylı sonuçlarını görmek için; operasyonun ötesinde örgüt ve pazar sorunlarına da uygulanır. Yardım ettiği soru: “Bir bölümün performansını artırırken şirketin bütününe zarar veriyor muyuz?”",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-oncelik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Süreçler arası bağlantılar: dönüşümün dolaylı sonuçlarını görmek için.",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-alti",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "İlk altıda 3.: süreçler arası bağlantılar.",
+          "role": "Başlangıç kitabı",
+          "order": 3
         }
       ],
       "notes": [
@@ -11684,13 +12003,26 @@
         {
           "text": "Kısa yolda 6. kitap. Ardından Drucker’ın Yönetim Uygulaması’na geçilebilir; Porter ve Deming sonraki aşamada gelir.",
           "source": "Yönetici adayı · Sistem düşüncesi"
+        },
+        {
+          "text": "Geri beslemeleri, gecikmeleri, müdahale noktalarını ve müdahalelerin dolaylı sonuçlarını görmek için; operasyonun ötesinde örgüt ve pazar sorunlarına da uygulanır. Yardım ettiği soru: “Bir bölümün performansını artırırken şirketin bütününe zarar veriyor muyuz?”",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "Süreçler arası bağlantılar: dönüşümün dolaylı sonuçlarını görmek için.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "İlk altıda 3.: süreçler arası bağlantılar.",
+          "source": "Okuma alanları · Başlangıç kitabı"
         }
       ],
       "editions": [],
       "origins": [
         "atlas",
         "local",
-        "managerprep"
+        "managerprep",
+        "managerareas"
       ],
       "legacyKeys": [],
       "tags": [
@@ -11733,7 +12065,8 @@
         "pmba",
         "core",
         "next",
-        "yonetici-adayi"
+        "yonetici-adayi",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
         "pmba:17",
@@ -11741,7 +12074,10 @@
         "next:0",
         "yonetici-adayi:asama-3",
         "yonetici-adayi:program",
-        "yonetici-adayi:kisa-yol"
+        "yonetici-adayi:kisa-yol",
+        "yoneticinin-okuma-alanlari:sistem",
+        "yoneticinin-okuma-alanlari:ilk-oncelik",
+        "yoneticinin-okuma-alanlari:ilk-alti"
       ]
     },
     {
@@ -27301,12 +27637,25 @@
           "source": "https://ig.ft.com/sites/business-book-award/books/2012/shortlist/why-nations-fail-by-daron-acemoglu-and-james-robinson",
           "award": "Kısa liste",
           "awardYear": 2012
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:siyaset",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Kurumların güç dağılımı ve refah üzerindeki etkisini düşünmek için; gücü, çıkar çatışmalarını, koalisyonları ve meşruiyeti okumayı öne alır. Yardım ettiği soru: “Karar verme yetkim var; uygulamayı sağlayacak desteğim var mı?”",
+          "role": "Başlangıç kitabı"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Kurumların güç dağılımı ve refah üzerindeki etkisini düşünmek için; gücü, çıkar çatışmalarını, koalisyonları ve meşruiyeti okumayı öne alır. Yardım ettiği soru: “Karar verme yetkim var; uygulamayı sağlayacak desteğim var mı?”",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        }
+      ],
       "editions": [],
       "origins": [
-        "atlas"
+        "atlas",
+        "managerareas"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -27366,10 +27715,12 @@
       "originalTitle": "Why Nations Fail",
       "addedAt": "2026-09-26",
       "collectionIds": [
-        "ft"
+        "ft",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
-        "ft:14"
+        "ft:14",
+        "yoneticinin-okuma-alanlari:siyaset"
       ]
     },
     {
@@ -28161,6 +28512,28 @@
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
           "note": "Hem yeni hem derin olan istisna: iyi stratejinin çekirdeğini, yani teşhisi, yol gösterici ilkeyi ve birbirini destekleyen eylemleri anlatır.",
           "role": "Hem yeni hem derin"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:strateji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Hedef belirlemekle strateji kurmak arasındaki farkı gösterir: sorunu teşhis etmek, önceliği seçmek, kaynakları belirli bir noktada yoğunlaştırmak ve birbirini destekleyen eylemler kurmak.",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-oncelik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Stratejik seçim: dijital dönüşüm ve üst yönetimde ilk okunacak.",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-alti",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "İlk altıda 1.: stratejik seçim.",
+          "role": "Başlangıç kitabı",
+          "order": 1
         }
       ],
       "notes": [
@@ -28191,6 +28564,18 @@
         {
           "text": "Hem yeni hem derin olan istisna: iyi stratejinin çekirdeğini, yani teşhisi, yol gösterici ilkeyi ve birbirini destekleyen eylemleri anlatır.",
           "source": "Özgün kaynaklar · Hem yeni hem derin"
+        },
+        {
+          "text": "Hedef belirlemekle strateji kurmak arasındaki farkı gösterir: sorunu teşhis etmek, önceliği seçmek, kaynakları belirli bir noktada yoğunlaştırmak ve birbirini destekleyen eylemler kurmak.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "Stratejik seçim: dijital dönüşüm ve üst yönetimde ilk okunacak.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "İlk altıda 1.: stratejik seçim.",
+          "source": "Okuma alanları · Başlangıç kitabı"
         }
       ],
       "editions": [
@@ -28225,7 +28610,8 @@
         "local",
         "kitaps",
         "entrepreneurship",
-        "originals"
+        "originals",
+        "managerareas"
       ],
       "legacyKeys": [
         "good-strategy-bad-strategy-richard-p-rumelt"
@@ -28274,7 +28660,8 @@
         "kitaps-M",
         "kitaps-N",
         "entrepreneurship-curriculum",
-        "ozgun-kaynaklar"
+        "ozgun-kaynaklar",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
         "ft:15",
@@ -28284,7 +28671,10 @@
         "kitaps-M:cross",
         "kitaps-N:cross",
         "entrepreneurship-curriculum:strategy",
-        "ozgun-kaynaklar:strateji"
+        "ozgun-kaynaklar:strateji",
+        "yoneticinin-okuma-alanlari:strateji",
+        "yoneticinin-okuma-alanlari:ilk-oncelik",
+        "yoneticinin-okuma-alanlari:ilk-alti"
       ]
     },
     {
@@ -34177,13 +34567,26 @@
           "source": "https://fivebooks.com/best-books/marketing-seth-godin/",
           "award": null,
           "awardYear": null
+        },
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Rafta Spalton’ın Pazarlama Sırları’nın yanında, pazarlamaya müşteri gözünden bakan kısa bir kitap.",
+          "role": "Raf"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Rafta Spalton’ın Pazarlama Sırları’nın yanında, pazarlamaya müşteri gözünden bakan kısa bir kitap.",
+          "source": "Raftaki kitaplar · Raf"
+        }
+      ],
       "editions": [],
       "origins": [
         "atlas",
-        "local"
+        "local",
+        "shelfphotos"
       ],
       "legacyKeys": [],
       "tags": [
@@ -34219,10 +34622,12 @@
       "originalTitle": "This Is Marketing",
       "addedAt": "2026-09-26",
       "collectionIds": [
-        "five"
+        "five",
+        "raf-fotograflari"
       ],
       "groupIds": [
-        "five:1"
+        "five:1",
+        "raf-fotograflari:2026-10-22"
       ]
     },
     {
@@ -35906,12 +36311,25 @@
           "source": "https://toddsattersten.com/what-to-read/",
           "award": null,
           "awardYear": null
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:biyografi",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "IBM’in dönüşümünü süreci yöneten kişinin anlatısından incelemek; strateji ve örgüt değişimini somut bir vakada değerlendirmek için. Türkçesi Altın Kitaplar’ın Kim Demiş Filler Dans Edemez’i (çeviren Füsun Doruker); bu baskı ikinci, bağımsız bir sitede doğrulanamadı. Başarı anlatısı olduğu için şansın ve koşulların payı ayrıca düşünülmeli.",
+          "role": "Vaka okuması"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "IBM’in dönüşümünü süreci yöneten kişinin anlatısından incelemek; strateji ve örgüt değişimini somut bir vakada değerlendirmek için. Türkçesi Altın Kitaplar’ın Kim Demiş Filler Dans Edemez’i (çeviren Füsun Doruker); bu baskı ikinci, bağımsız bir sitede doğrulanamadı. Başarı anlatısı olduğu için şansın ve koşulların payı ayrıca düşünülmeli.",
+          "source": "Okuma alanları · Vaka okuması"
+        }
+      ],
       "editions": [],
       "origins": [
-        "atlas"
+        "atlas",
+        "managerareas"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -35933,10 +36351,12 @@
       "originalTitle": "Who Says Elephants Can’t Dance?",
       "addedAt": "2026-09-26",
       "collectionIds": [
-        "hundred"
+        "hundred",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
-        "hundred:2"
+        "hundred:2",
+        "yoneticinin-okuma-alanlari:biyografi"
       ]
     },
     {
@@ -37119,12 +37539,37 @@
           "source": "https://toddsattersten.com/what-to-read/",
           "award": null,
           "awardYear": null
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:finans",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Mali tabloları, bütçeyi ve yatırım değerlendirmelerini okuyabilecek bir başlangıç temeli. Öneride Türkçe adı Finansı Anlamak diye geçiyor; ancak Optimist’in 112 sayfalık Finansı Anlamak’ı Harvard’ın Understanding Finance kitapçığıyla eşleşiyor, bu kitabın Türkçe baskısı bulunamadı. Yardım ettiği soru: “Satışlar artarken neden nakit sıkışıklığı yaşıyoruz?”",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-alti",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "İlk altıda 6.: finansal değerlendirme.",
+          "role": "Başlangıç kitabı",
+          "order": 6
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Mali tabloları, bütçeyi ve yatırım değerlendirmelerini okuyabilecek bir başlangıç temeli. Öneride Türkçe adı Finansı Anlamak diye geçiyor; ancak Optimist’in 112 sayfalık Finansı Anlamak’ı Harvard’ın Understanding Finance kitapçığıyla eşleşiyor, bu kitabın Türkçe baskısı bulunamadı. Yardım ettiği soru: “Satışlar artarken neden nakit sıkışıklığı yaşıyoruz?”",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "İlk altıda 6.: finansal değerlendirme.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        }
+      ],
       "editions": [],
       "origins": [
-        "atlas"
+        "atlas",
+        "managerareas"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -37146,10 +37591,13 @@
       "originalTitle": "Financial Intelligence",
       "addedAt": "2026-09-26",
       "collectionIds": [
-        "hundred"
+        "hundred",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
-        "hundred:4"
+        "hundred:4",
+        "yoneticinin-okuma-alanlari:finans",
+        "yoneticinin-okuma-alanlari:ilk-alti"
       ]
     },
     {
@@ -40987,9 +41435,32 @@
           "groupId": "kitaps-A:liste",
           "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İtalyanca aslından, açıklamalı. Alternatif: Betül Parlak çevirisi."
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:siyaset",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "İktidarın kurulmasını ve sürdürülmesini anlatan klasik; tarihsel bağlamıyla okunacak tamamlayıcı bir eser. Öneride İş Bankası Kültür Yayınları baskısının adıyla, Hükümdar olarak geçer.",
+          "role": "Tamamlayıcı klasik"
+        },
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Rafta iki baskısı var: Prens ve İş Bankası Kültür Yayınları’nın Hasan Âli Yücel Klasikler Dizisi’ndeki Hükümdar.",
+          "role": "Raf"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "İktidarın kurulmasını ve sürdürülmesini anlatan klasik; tarihsel bağlamıyla okunacak tamamlayıcı bir eser. Öneride İş Bankası Kültür Yayınları baskısının adıyla, Hükümdar olarak geçer.",
+          "source": "Okuma alanları · Tamamlayıcı klasik"
+        },
+        {
+          "text": "Rafta iki baskısı var: Prens ve İş Bankası Kültür Yayınları’nın Hasan Âli Yücel Klasikler Dizisi’ndeki Hükümdar.",
+          "source": "Raftaki kitaplar · Raf"
+        }
+      ],
       "editions": [
         {
           "id": "A2",
@@ -41022,7 +41493,9 @@
         }
       ],
       "origins": [
-        "kitaps"
+        "kitaps",
+        "managerareas",
+        "shelfphotos"
       ],
       "legacyKeys": [
         "il-principe-niccolo-machiavelli"
@@ -41045,10 +41518,14 @@
       "originalTitle": "Il Principe",
       "addedAt": "2026-09-02",
       "collectionIds": [
-        "kitaps-A"
+        "kitaps-A",
+        "yoneticinin-okuma-alanlari",
+        "raf-fotograflari"
       ],
       "groupIds": [
-        "kitaps-A:liste"
+        "kitaps-A:liste",
+        "yoneticinin-okuma-alanlari:siyaset",
+        "raf-fotograflari:2026-10-22"
       ]
     },
     {
@@ -45228,9 +45705,21 @@
           "groupId": "kitaps-G:Tolstoy",
           "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Çevirmen künyeden teyit edilmeli."
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:edebiyat",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Başarıyı, statüyü, saygınlığı ve hayatın anlamını sorgulayan kısa bir başlangıç; çelişkili motivasyonları ve bakış açılarını düşünmek için. Yardım ettiği soru: “Benim mantıksız bulduğum davranış karşımdakinin dünyasında neden anlamlı?”",
+          "role": "Başlangıç kitabı"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Başarıyı, statüyü, saygınlığı ve hayatın anlamını sorgulayan kısa bir başlangıç; çelişkili motivasyonları ve bakış açılarını düşünmek için. Yardım ettiği soru: “Benim mantıksız bulduğum davranış karşımdakinin dünyasında neden anlamlı?”",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        }
+      ],
       "editions": [
         {
           "id": "G7",
@@ -45259,7 +45748,8 @@
         }
       ],
       "origins": [
-        "kitaps"
+        "kitaps",
+        "managerareas"
       ],
       "legacyKeys": [
         "lev-nikolayevic-tolstoy-3"
@@ -45294,10 +45784,12 @@
       "originalTitle": "Смерть Ивана Ильича",
       "addedAt": "2026-09-02",
       "collectionIds": [
-        "kitaps-G"
+        "kitaps-G",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
-        "kitaps-G:Tolstoy"
+        "kitaps-G:Tolstoy",
+        "yoneticinin-okuma-alanlari:edebiyat"
       ]
     },
     {
@@ -51615,9 +52107,21 @@
           "groupId": "kitaps-N:N.1 — Bireysel irade ve öz-strateji",
           "source": "https://titanlar-com.github.io/kitaps/",
           "note": "İrade edebiyatının kurucu metni ve M6'nın (Holiday) kaynağı. Alternatif: Düşünceler, çev. Şadan Karadeniz, Yapı Kredi Yayınları."
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:felsefe",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Kendi tepkilerini, sorumluluğunu ve davranışlarını değerlendirmek; kişisel muhasebe için, Felsefe Sorunları’ndan sonra.",
+          "role": "Ardından"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Kendi tepkilerini, sorumluluğunu ve davranışlarını değerlendirmek; kişisel muhasebe için, Felsefe Sorunları’ndan sonra.",
+          "source": "Okuma alanları · Ardından"
+        }
+      ],
       "editions": [
         {
           "id": "N3",
@@ -51650,7 +52154,8 @@
         }
       ],
       "origins": [
-        "kitaps"
+        "kitaps",
+        "managerareas"
       ],
       "legacyKeys": [
         "meditations-marcus-aurelius"
@@ -51684,10 +52189,12 @@
       "originalTitle": "Τὰ εἰς ἑαυτόν (Meditations)",
       "addedAt": "2026-09-02",
       "collectionIds": [
-        "kitaps-N"
+        "kitaps-N",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
-        "kitaps-N:N.1 — Bireysel irade ve öz-strateji"
+        "kitaps-N:N.1 — Bireysel irade ve öz-strateji",
+        "yoneticinin-okuma-alanlari:felsefe"
       ]
     },
     {
@@ -51717,12 +52224,23 @@
           "groupId": "raf-degerlendirmesi:oncelikli",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Önceki güçlü öneriler arasında kalıyor; alışkanlık kurmak için Küçük Alışkanlıklar ile aynı ihtiyaca yanıt verir."
+        },
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Rafta çalışma kitabıyla birlikte duruyor.",
+          "role": "Raf"
         }
       ],
       "notes": [
         {
           "text": "Önceki güçlü öneriler arasında kalıyor; alışkanlık kurmak için Küçük Alışkanlıklar ile aynı ihtiyaca yanıt verir.",
           "source": "Raf taraması"
+        },
+        {
+          "text": "Rafta çalışma kitabıyla birlikte duruyor.",
+          "source": "Raftaki kitaplar · Raf"
         }
       ],
       "editions": [
@@ -51754,7 +52272,8 @@
       ],
       "origins": [
         "kitaps",
-        "shelf"
+        "shelf",
+        "shelfphotos"
       ],
       "legacyKeys": [
         "atomic-habits-james-clear"
@@ -51789,11 +52308,13 @@
       "addedAt": "2026-09-02",
       "collectionIds": [
         "kitaps-N",
-        "raf-degerlendirmesi"
+        "raf-degerlendirmesi",
+        "raf-fotograflari"
       ],
       "groupIds": [
         "kitaps-N:N.1 — Bireysel irade ve öz-strateji",
-        "raf-degerlendirmesi:oncelikli"
+        "raf-degerlendirmesi:oncelikli",
+        "raf-fotograflari:2026-10-22"
       ]
     },
     {
@@ -52227,6 +52748,20 @@
           "note": "Programda 9. kitap: müzakere.",
           "role": "Müzakere",
           "order": 9
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:muzakere",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Çıkarları anlamak, seçenek geliştirmek ve anlaşmazlıkları çözmek için. Öneride Bilgi Yayınevi’nin eski baskısının adıyla geçer: “Evet”: Boyun Eğmeden Anlaşmaya Varmak.",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-oncelik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Müzakere: değişimin paydaşlarıyla anlaşmak için.",
+          "role": "Başlangıç kitabı"
         }
       ],
       "notes": [
@@ -52237,6 +52772,14 @@
         {
           "text": "Programda 9. kitap: müzakere.",
           "source": "Yönetici adayı · Müzakere"
+        },
+        {
+          "text": "Çıkarları anlamak, seçenek geliştirmek ve anlaşmazlıkları çözmek için. Öneride Bilgi Yayınevi’nin eski baskısının adıyla geçer: “Evet”: Boyun Eğmeden Anlaşmaya Varmak.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "Müzakere: değişimin paydaşlarıyla anlaşmak için.",
+          "source": "Okuma alanları · Başlangıç kitabı"
         }
       ],
       "editions": [
@@ -52266,7 +52809,8 @@
       ],
       "origins": [
         "kitaps",
-        "managerprep"
+        "managerprep",
+        "managerareas"
       ],
       "legacyKeys": [
         "getting-to-yes-roger-fisher-william-ury-bruce-patton"
@@ -52303,12 +52847,15 @@
       "addedAt": "2026-09-02",
       "collectionIds": [
         "kitaps-N",
-        "yonetici-adayi"
+        "yonetici-adayi",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
         "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
         "yonetici-adayi:asama-2",
-        "yonetici-adayi:program"
+        "yonetici-adayi:program",
+        "yoneticinin-okuma-alanlari:muzakere",
+        "yoneticinin-okuma-alanlari:ilk-oncelik"
       ]
     },
     {
@@ -56980,17 +57527,29 @@
           "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 3
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ekonomi",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Ekonomiye farklı düşünce okulları üzerinden giriş: piyasaları, kıt kaynakları, fırsat maliyetini ve teşviklerin davranışa etkisini değerlendirecek bir temel. Yardım ettiği soru: “Koyduğumuz prim sistemi gerçekte hangi davranışı ödüllendiriyor?”",
+          "role": "Başlangıç kitabı"
         }
       ],
       "notes": [
         {
           "text": "İktisat okullarını karşılaştırmalı tanıtarak ekonomi tartışmalarının varsayımlarını görünür kılar.",
           "source": "Temel okumalar araştırması"
+        },
+        {
+          "text": "Ekonomiye farklı düşünce okulları üzerinden giriş: piyasaları, kıt kaynakları, fırsat maliyetini ve teşviklerin davranışa etkisini değerlendirecek bir temel. Yardım ettiği soru: “Koyduğumuz prim sistemi gerçekte hangi davranışı ödüllendiriyor?”",
+          "source": "Okuma alanları · Başlangıç kitabı"
         }
       ],
       "editions": [],
       "origins": [
-        "foundations"
+        "foundations",
+        "managerareas"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -57044,11 +57603,13 @@
       "originalPublisher": "Pelican Books",
       "addedAt": "2026-09-28",
       "collectionIds": [
-        "foundations"
+        "foundations",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
         "foundations:economy",
-        "foundations:baslangic"
+        "foundations:baslangic",
+        "yoneticinin-okuma-alanlari:ekonomi"
       ]
     },
     {
@@ -58814,17 +59375,29 @@
           "groupId": "foundations:philosophy",
           "source": "https://openlibrary.org/search?title=Justice%3A+What%27s+the+Right+Thing+to+Do%3F&author=Michael+J.+Sandel",
           "note": "Başlıca adalet yaklaşımlarını örneklerle karşılaştırır; ahlaki ekonomi tartışmalarını çerçeveler."
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:etik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Hak, fayda, adalet ve ortak iyi arasında gerekçeli değerlendirme yapabilmek için; etik okumayı yalnız kişisel disiplinle sınırlamamak gerekir.",
+          "role": "Başlangıç kitabı"
         }
       ],
       "notes": [
         {
           "text": "Başlıca adalet yaklaşımlarını örneklerle karşılaştırır; ahlaki ekonomi tartışmalarını çerçeveler.",
           "source": "Temel okumalar araştırması"
+        },
+        {
+          "text": "Hak, fayda, adalet ve ortak iyi arasında gerekçeli değerlendirme yapabilmek için; etik okumayı yalnız kişisel disiplinle sınırlamamak gerekir.",
+          "source": "Okuma alanları · Başlangıç kitabı"
         }
       ],
       "editions": [],
       "origins": [
-        "foundations"
+        "foundations",
+        "managerareas"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -58844,10 +59417,12 @@
       "originalPublisher": "Farrar, Straus and Giroux",
       "addedAt": "2026-09-28",
       "collectionIds": [
-        "foundations"
+        "foundations",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
-        "foundations:philosophy"
+        "foundations:philosophy",
+        "yoneticinin-okuma-alanlari:etik"
       ]
     },
     {
@@ -58980,6 +59555,13 @@
           "groupId": "raf-degerlendirmesi:oncelikli",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Fotoğraftaki iki kitaptan önce okunacak olan ve sosyolojiye iyi bir giriş: gündelik hayatta doğal ve kişisel sandığımız davranışların arkasındaki toplumsal ilişkileri sorgulatır. Yönetici için değeri, kişiyi suçlamadan önce sınanacak alternatif açıklamalar üretmesi: yeni sisteme direnç, zamanında bitmeyen işler, karşılık bulmayan iyi bir ürün, uygulanmayan kararlar."
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:sosyoloji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Grup davranışlarını, kurum kültürünü, statüyü ve yazılı olmayan kuralları anlamaya giriş. Yardım ettiği soru: “İnsanlar bire bir konuşurken kabul ettikleri değişime ekip içinde neden direniyor?”",
+          "role": "Başlangıç kitabı"
         }
       ],
       "notes": [
@@ -58990,12 +59572,17 @@
         {
           "text": "Fotoğraftaki iki kitaptan önce okunacak olan ve sosyolojiye iyi bir giriş: gündelik hayatta doğal ve kişisel sandığımız davranışların arkasındaki toplumsal ilişkileri sorgulatır. Yönetici için değeri, kişiyi suçlamadan önce sınanacak alternatif açıklamalar üretmesi: yeni sisteme direnç, zamanında bitmeyen işler, karşılık bulmayan iyi bir ürün, uygulanmayan kararlar.",
           "source": "Raf taraması"
+        },
+        {
+          "text": "Grup davranışlarını, kurum kültürünü, statüyü ve yazılı olmayan kuralları anlamaya giriş. Yardım ettiği soru: “İnsanlar bire bir konuşurken kabul ettikleri değişime ekip içinde neden direniyor?”",
+          "source": "Okuma alanları · Başlangıç kitabı"
         }
       ],
       "editions": [],
       "origins": [
         "foundations",
-        "shelf"
+        "shelf",
+        "managerareas"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -59014,12 +59601,14 @@
       "addedAt": "2026-09-28",
       "collectionIds": [
         "foundations",
-        "raf-degerlendirmesi"
+        "raf-degerlendirmesi",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
         "foundations:sociology",
         "foundations:baslangic",
-        "raf-degerlendirmesi:oncelikli"
+        "raf-degerlendirmesi:oncelikli",
+        "yoneticinin-okuma-alanlari:sosyoloji"
       ]
     },
     {
@@ -60708,17 +61297,29 @@
           "groupId": "foundations:literature",
           "source": "https://openlibrary.org/works/OL43370W",
           "note": "Nihilist genç tipini kurarak Dostoyevski'nin buna verdiği edebî cevapları görünür kılar."
+        },
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Rafta İş Bankası Kültür Yayınları’nın Hasan Âli Yücel Klasikler Dizisi baskısıyla.",
+          "role": "Raf"
         }
       ],
       "notes": [
         {
           "text": "Nihilist genç tipini kurarak Dostoyevski'nin buna verdiği edebî cevapları görünür kılar.",
           "source": "Temel okumalar araştırması"
+        },
+        {
+          "text": "Rafta İş Bankası Kültür Yayınları’nın Hasan Âli Yücel Klasikler Dizisi baskısıyla.",
+          "source": "Raftaki kitaplar · Raf"
         }
       ],
       "editions": [],
       "origins": [
-        "foundations"
+        "foundations",
+        "shelfphotos"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -60768,10 +61369,12 @@
       },
       "addedAt": "2026-09-28",
       "collectionIds": [
-        "foundations"
+        "foundations",
+        "raf-fotograflari"
       ],
       "groupIds": [
-        "foundations:literature"
+        "foundations:literature",
+        "raf-fotograflari:2026-10-22"
       ]
     },
     {
@@ -70221,17 +70824,41 @@
           "groupId": "raf-degerlendirmesi:ihtiyaca-gore",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Drucker ve Maciariello’nun sorular ve not alanları içeren uygulama defteri. Drucker’a ilk kez başlanacaksa önce ana eser Etkin Yöneticilik okunmalı."
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:yoneticilik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Zamanı, katkıyı, güçlü yanları, öncelikleri ve kararları çalışmak için Etkin Yöneticilik’in uygulama defteri; öneride Optimist’in daha eski Türkçe baskısının adıyla, Etkin Yöneticinin Seyir Defteri olarak geçer. Kapsamlı bir örgüt kuramı kitabının yerini tutmaz.",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-alti",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "İlk altıda 4.: yönetici etkinliği.",
+          "role": "Başlangıç kitabı",
+          "order": 4
         }
       ],
       "notes": [
         {
           "text": "Drucker ve Maciariello’nun sorular ve not alanları içeren uygulama defteri. Drucker’a ilk kez başlanacaksa önce ana eser Etkin Yöneticilik okunmalı.",
           "source": "Raf taraması"
+        },
+        {
+          "text": "Zamanı, katkıyı, güçlü yanları, öncelikleri ve kararları çalışmak için Etkin Yöneticilik’in uygulama defteri; öneride Optimist’in daha eski Türkçe baskısının adıyla, Etkin Yöneticinin Seyir Defteri olarak geçer. Kapsamlı bir örgüt kuramı kitabının yerini tutmaz.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "İlk altıda 4.: yönetici etkinliği.",
+          "source": "Okuma alanları · Başlangıç kitabı"
         }
       ],
       "editions": [],
       "origins": [
-        "shelf"
+        "shelf",
+        "managerareas"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -70271,10 +70898,13 @@
       "originalPublisher": "Collins",
       "addedAt": "2026-10-04",
       "collectionIds": [
-        "raf-degerlendirmesi"
+        "raf-degerlendirmesi",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
-        "raf-degerlendirmesi:ihtiyaca-gore"
+        "raf-degerlendirmesi:ihtiyaca-gore",
+        "yoneticinin-okuma-alanlari:yoneticilik",
+        "yoneticinin-okuma-alanlari:ilk-alti"
       ]
     },
     {
@@ -74388,6 +75018,2027 @@
       ]
     },
     {
+      "id": "organizationalbehavior",
+      "title": "Organizational Behavior",
+      "titleTr": "Örgütsel Davranış",
+      "author": "Stephen P. Robbins and Timothy A. Judge",
+      "aliases": [
+        "Örgütsel Davranış"
+      ],
+      "years": [
+        1979
+      ],
+      "categories": [
+        "management",
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:orgutsel-davranis",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Motivasyonu, liderliği, ekipleri, gücü, çatışmayı ve kurum kültürünü birlikte görmek için. Bir ders kitabı; gereken bölümler seçilerek okunur. Yardım ettiği soru: “Sorun çalışanda mı, rolün ve işleyişin tasarımında mı?”",
+          "role": "Başlangıç kitabı"
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ilk-oncelik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "İnsan ve örgüt: değişimi taşıyacak ekipleri anlamak için.",
+          "role": "Başlangıç kitabı"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Motivasyonu, liderliği, ekipleri, gücü, çatışmayı ve kurum kültürünü birlikte görmek için. Bir ders kitabı; gereken bölümler seçilerek okunur. Yardım ettiği soru: “Sorun çalışanda mı, rolün ve işleyişin tasarımında mı?”",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        },
+        {
+          "text": "İnsan ve örgüt: değişimi taşıyacak ekipleri anlamak için.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerareas"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Örgütsel Davranış",
+        "isbn": "9786051331423",
+        "publisher": "Nobel Akademik Yayıncılık",
+        "translators": [
+          "İnci Erdem"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/orgutsel-davranis-organizational-behavior/269493.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.dr.com.tr/search?q=9786051331423",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786051331423) ve Nobel Akademik Yayıncılık yayınevini gösteriyor; çevirmen: İnci Erdem. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/areas-organizationalbehavior.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:10114328/wi:500/wh:217b10e3b",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/orgutsel-davranis-organizational-behavior/269493.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Örgütsel Davranış",
+        "author": "Stephen P. Robbins and Timothy A. Judge",
+        "publisher": "Nobel Akademik Yayıncılık",
+        "isbn": "9786051331423",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-002",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/orgutsel-davranis-organizational-behavior/269493.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://katalog.bilecik.edu.tr/bib/42870",
+              "type": "library-catalog"
+            },
+            {
+              "url": "https://www.nadirkitap.com/orgutsel-davranis-organizational-behavior-14-basimdan-ceviri-stephen-p-robbins-timothy-a-judge-kitap48375974.html",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-002",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.dr.com.tr/search?q=9786051331423",
+              "type": "retailer"
+            },
+            {
+              "url": "https://acikders.ankara.edu.tr/mod/resource/view.php?id=123719",
+              "type": "official"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Örgütsel Davranış",
+          "publisher": "Nobel Akademik Yayıncılık",
+          "isbn": "9786051331423",
+          "translators": [
+            "İnci Erdem"
+          ],
+          "year": 2012
+        }
+      },
+      "originalPublisher": "Prentice-Hall",
+      "originalTitle": "Organizational Behavior",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yoneticinin-okuma-alanlari"
+      ],
+      "groupIds": [
+        "yoneticinin-okuma-alanlari:orgutsel-davranis",
+        "yoneticinin-okuma-alanlari:ilk-oncelik"
+      ]
+    },
+    {
+      "id": "artofstrategy",
+      "title": "The Art of Strategy",
+      "titleTr": "Strateji Sanatı: Oyun Kuramı ile İş Hayatında Başarı",
+      "author": "Avinash K. Dixit and Barry J. Nalebuff",
+      "aliases": [
+        "Strateji Sanatı: Oyun Kuramı ile İş Hayatında Başarı"
+      ],
+      "years": [
+        2008
+      ],
+      "categories": [
+        "strategy",
+        "economy"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:ekonomi",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Karşılıklı hamleleri ve teşvikleri oyun kuramıyla düşünmek için; yazarların Stratejik Düşünme kitabının yeniden yazılmış devamı.",
+          "role": "Ardından"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Karşılıklı hamleleri ve teşvikleri oyun kuramıyla düşünmek için; yazarların Stratejik Düşünme kitabının yeniden yazılmış devamı.",
+          "source": "Okuma alanları · Ardından"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerareas"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Strateji Sanatı: Oyun Kuramı ile İş Hayatında Başarı",
+        "isbn": "9786053324652",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "translators": [
+          "Ümit Şensoy"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji-sanati-oyun-kurami-ile-is-hayatinda-basari/369307.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.dr.com.tr/search?q=9786053324652",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786053324652) ve Türkiye İş Bankası Kültür Yayınları yayınevini gösteriyor; çevirmen: Ümit Şensoy. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/areas-artofstrategy.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:1030550/wi:500/wh:810f005f0",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji-sanati-oyun-kurami-ile-is-hayatinda-basari/369307.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Strateji Sanatı: Oyun Kuramı ile İş Hayatında Başarı",
+        "author": "Avinash K. Dixit and Barry J. Nalebuff",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9786053324652",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-002",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/strateji-sanati-oyun-kurami-ile-is-hayatinda-basari/369307.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.goodreads.com/work/editions/2430604-the-art-of-strategy-a-game-theorist-s-guide-to-success-in-business-and?page=2",
+              "type": "bibliographic"
+            },
+            {
+              "url": "https://catalog.tedu.edu.tr/client/rss/hitlist/defaulttr/qu=Decision+making.&qf=AUTHOR%09Yazar%09Dixit%2C+Avinash+K.%09Dixit%2C+Avinash+K.&isd=true",
+              "type": "library-catalog"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-002",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.dr.com.tr/search?q=9786053324652",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Strateji Sanatı: Oyun Kuramı ile İş Hayatında Başarı",
+          "publisher": "Türkiye İş Bankası Kültür Yayınları",
+          "isbn": "9786053324652",
+          "translators": [
+            "Ümit Şensoy"
+          ],
+          "year": 2015
+        }
+      },
+      "originalPublisher": "W. W. Norton & Company",
+      "originalTitle": "The Art of Strategy",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yoneticinin-okuma-alanlari"
+      ],
+      "groupIds": [
+        "yoneticinin-okuma-alanlari:ekonomi"
+      ]
+    },
+    {
+      "id": "marketingmanagement",
+      "title": "Marketing Management",
+      "titleTr": "Pazarlama Yönetimi",
+      "author": "Philip Kotler and Kevin Lane Keller",
+      "aliases": [
+        "Pazarlama Yönetimi"
+      ],
+      "years": [
+        1967
+      ],
+      "categories": [
+        "marketing"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:pazarlama",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Müşteri ihtiyacını, pazar bölümlendirmeyi, konumlandırmayı ve değer önerisini sistemli biçimde ele almak için. Bir başvuru kitabı; bölüm seçerek okunur.",
+          "role": "Başlangıç kitabı"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Müşteri ihtiyacını, pazar bölümlendirmeyi, konumlandırmayı ve değer önerisini sistemli biçimde ele almak için. Bir başvuru kitabı; bölüm seçerek okunur.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerareas"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Pazarlama Yönetimi",
+        "isbn": "9786053337997",
+        "publisher": "Beta Basım Yayım",
+        "translators": [],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/pazarlama-yonetimi/470320.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://1000kitap.com/kitap/pazarlama-yonetimi--18996",
+        "secondSourceType": "bibliographic",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve 1000kitap.com aynı ISBN'i (9786053337997) ve Beta Basım Yayım yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/areas-marketingmanagement.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:6668875/mh:1000/wh:176ad0ae3",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/pazarlama-yonetimi/470320.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Pazarlama Yönetimi",
+        "author": "Philip Kotler and Kevin Lane Keller",
+        "publisher": "Beta Basım Yayım",
+        "isbn": "9786053337997",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-002",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/pazarlama-yonetimi/470320.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://acikders.ankara.edu.tr/mod/resource/view.php?id=114021",
+              "type": "official"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-002",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://openlibrary.org/isbn/9786053337997",
+              "type": "bibliographic"
+            },
+            {
+              "url": "https://1000kitap.com/kitap/pazarlama-yonetimi--18996",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Pazarlama Yönetimi",
+          "publisher": "Beta Basım Yayım",
+          "isbn": "9786053337997",
+          "translators": [],
+          "year": 2018
+        }
+      },
+      "originalPublisher": "Prentice-Hall",
+      "originalTitle": "Marketing Management",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yoneticinin-okuma-alanlari"
+      ],
+      "groupIds": [
+        "yoneticinin-okuma-alanlari:pazarlama"
+      ]
+    },
+    {
+      "id": "sociologicalimagination",
+      "title": "The Sociological Imagination",
+      "titleTr": "",
+      "author": "C. Wright Mills",
+      "aliases": [],
+      "years": [
+        1959
+      ],
+      "categories": [
+        "politics",
+        "philosophy"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:sosyoloji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Kişisel görünen sorunların toplumsal ve yapısal nedenlerini araştırmak; her sorunu çalışanın karakterine bağlamamak için. Sosyolojik Düşünmek’ten sonra derinleşme okuması.",
+          "role": "Derinleşme okuması"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Kişisel görünen sorunların toplumsal ve yapısal nedenlerini araştırmak; her sorunu çalışanın karakterine bağlamamak için. Sosyolojik Düşünmek’ten sonra derinleşme okuması.",
+          "source": "Okuma alanları · Derinleşme okuması"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerareas"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "sourceIssue": {
+        "note": "Türkçe baskı adayı: Sosyolojik Tahayyül (Hil Yayın, çeviren Ömer Küçük, ISBN 9786057017574). İkinci, bağımsız bir kaynakta görülemediği için doğrulanmış sayılmadı."
+      },
+      "originalPublisher": "Oxford University Press",
+      "originalTitle": "The Sociological Imagination",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yoneticinin-okuma-alanlari"
+      ],
+      "groupIds": [
+        "yoneticinin-okuma-alanlari:sosyoloji"
+      ]
+    },
+    {
+      "id": "interpretationofcultures",
+      "title": "The Interpretation of Cultures",
+      "titleTr": "Kültürlerin Yorumlanması",
+      "author": "Clifford Geertz",
+      "aliases": [
+        "Kültürlerin Yorumlanması"
+      ],
+      "years": [
+        1973
+      ],
+      "categories": [
+        "philosophy",
+        "history"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:sosyoloji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "İnsanların davranışlarına yükledikleri anlamları kendi bağlamında incelemek; müşterinin ve çalışanın dünyasını anlamaya çalışmak için. Yoğun bir derinleşme okuması. Yardım ettiği soru: “Müşteri bu ürünü gerçekte hayatının neresine yerleştiriyor?”",
+          "role": "Derinleşme okuması"
+        }
+      ],
+      "notes": [
+        {
+          "text": "İnsanların davranışlarına yükledikleri anlamları kendi bağlamında incelemek; müşterinin ve çalışanın dünyasını anlamaya çalışmak için. Yoğun bir derinleşme okuması. Yardım ettiği soru: “Müşteri bu ürünü gerçekte hayatının neresine yerleştiriyor?”",
+          "source": "Okuma alanları · Derinleşme okuması"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerareas"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Kültürlerin Yorumlanması",
+        "isbn": "9786257005784",
+        "publisher": "Dergah Yayınları",
+        "translators": [
+          "Hakan Gür"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/kulturlerin-yorumlanmasi/563791.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.besirkitabevi.com.tr/urun/kulturlerin-yorumlanmasi-9786257005784",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve besirkitabevi.com.tr aynı ISBN'i (9786257005784) ve Dergah Yayınları yayınevini gösteriyor; çevirmen: Hakan Gür. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/areas-interpretationofcultures.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11317637/wi:500/wh:e683ba50b",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/kulturlerin-yorumlanmasi/563791.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Kültürlerin Yorumlanması",
+        "author": "Clifford Geertz",
+        "publisher": "Dergah Yayınları",
+        "isbn": "9786257005784",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-003",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/kulturlerin-yorumlanmasi/563791.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9786257005784",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.kitapyurdu.com/kitap/kulturlerin-yorumlanmasi/240124.html",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-003",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.besirkitabevi.com.tr/urun/kulturlerin-yorumlanmasi-9786257005784",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.amazon.com.tr/K%C3%BClt%C3%BCrlerin-Yorumlanmas%C4%B1-Clifford-Geertz/dp/6257005787",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.trendyol.com/dergah-yayinlari/kulturlerin-yorumlanmasi-clifford-geertz-9786257005784-p-716205402",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Kültürlerin Yorumlanması",
+          "publisher": "Dergah Yayınları",
+          "isbn": "9786257005784",
+          "translators": [
+            "Hakan Gür"
+          ],
+          "year": 2020
+        }
+      },
+      "originalPublisher": "Basic Books",
+      "originalTitle": "The Interpretation of Cultures",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yoneticinin-okuma-alanlari"
+      ],
+      "groupIds": [
+        "yoneticinin-okuma-alanlari:sosyoloji"
+      ]
+    },
+    {
+      "id": "industryandempire",
+      "title": "Industry and Empire",
+      "titleTr": "Sanayi ve İmparatorluk",
+      "author": "Eric J. Hobsbawm",
+      "aliases": [
+        "Sanayi ve İmparatorluk"
+      ],
+      "years": [
+        1968
+      ],
+      "categories": [
+        "history",
+        "economy"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:tarih",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Sanayi Devrimi’nden başlayarak Britanya’nın toplumsal ve ekonomik dönüşümünü somut olarak incelemek için. Yardım ettiği soru: “Bugünkü başarıyı sağlayan yapı yarının engeline dönüşebilir mi?”",
+          "role": "Başlangıç kitabı"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Sanayi Devrimi’nden başlayarak Britanya’nın toplumsal ve ekonomik dönüşümünü somut olarak incelemek için. Yardım ettiği soru: “Bugünkü başarıyı sağlayan yapı yarının engeline dönüşebilir mi?”",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerareas"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Sanayi ve İmparatorluk",
+        "isbn": "9789757501350",
+        "publisher": "Dost Kitabevi",
+        "translators": [
+          "Abdullah Ersoy"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/sanayi-ve-imparatorluk/7253.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://dostkitabevi.com/sanayi-ve-imparatorluk",
+        "secondSourceType": "publisher",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve dostkitabevi.com aynı ISBN'i (9789757501350) ve Dost Kitabevi yayınevini gösteriyor; çevirmen: Abdullah Ersoy. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/areas-industryandempire.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11967525/wi:500/wh:a00359a12",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/sanayi-ve-imparatorluk/7253.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Sanayi ve İmparatorluk",
+        "author": "Eric J. Hobsbawm",
+        "publisher": "Dost Kitabevi",
+        "isbn": "9789757501350",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-003",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/sanayi-ve-imparatorluk/7253.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/kitap/sanayi-ve-imparatorluk/e-j-hobsbawn/arastirma-tarih/tarih/dunya-tarihi/urunno=0000000052270",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.akbanksanat.com/en/book/sanayi-ve-imparatorluk-e-j-hobsbawm-ingilizceden-ceviren-abdullah-ersoy/3117",
+              "type": "library-catalog"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-003",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://dostkitabevi.com/sanayi-ve-imparatorluk",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.imge.com.tr/urun/sanayi-ve-imparatorluk-eric-j-hobsbawm-9789757501350",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.amazon.com.tr/Sanayi-ve-%C4%B0mparatorluk-Eric-Hobsbawm/dp/9757501352",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Sanayi ve İmparatorluk",
+          "publisher": "Dost Kitabevi",
+          "isbn": "9789757501350",
+          "translators": [
+            "Abdullah Ersoy"
+          ]
+        }
+      },
+      "originalPublisher": "Weidenfeld & Nicolson",
+      "originalTitle": "Industry and Empire",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yoneticinin-okuma-alanlari"
+      ],
+      "groupIds": [
+        "yoneticinin-okuma-alanlari:tarih"
+      ]
+    },
+    {
+      "id": "whatishistory",
+      "title": "What Is History?",
+      "titleTr": "Tarih Nedir?",
+      "author": "E. H. Carr",
+      "aliases": [
+        "Tarih Nedir?"
+      ],
+      "years": [
+        1961
+      ],
+      "categories": [
+        "history",
+        "philosophy"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:tarih",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Olay, kanıt ve yorum arasındaki ilişkiyi; geçmişten çıkarılan derslerin hangi varsayımlara dayandığını sorgulamak için. Tarihin nasıl yazıldığını düşündüren tamamlayıcı okuma.",
+          "role": "Tamamlayıcı klasik"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Olay, kanıt ve yorum arasındaki ilişkiyi; geçmişten çıkarılan derslerin hangi varsayımlara dayandığını sorgulamak için. Tarihin nasıl yazıldığını düşündüren tamamlayıcı okuma.",
+          "source": "Okuma alanları · Tamamlayıcı klasik"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerareas"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Tarih Nedir?",
+        "isbn": "9789750508097",
+        "publisher": "İletişim Yayınları",
+        "translators": [
+          "Misket Gizem Gürtürk"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/tarih-nedir/61275.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://iletisim.com.tr/kitap/tarih-nedir/7260",
+        "secondSourceType": "publisher",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve iletisim.com.tr aynı ISBN'i (9789750508097) ve İletişim Yayınları yayınevini gösteriyor; çevirmen: Misket Gizem Gürtürk. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/areas-whatishistory.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:5554325/wi:500/wh:a741bb5dc",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/tarih-nedir/61275.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Tarih Nedir?",
+        "author": "E. H. Carr",
+        "publisher": "İletişim Yayınları",
+        "isbn": "9789750508097",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-003",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/tarih-nedir/61275.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9789750508097",
+              "type": "retailer"
+            },
+            {
+              "url": "https://katalog.bilecik.edu.tr/bib/55347",
+              "type": "library-catalog"
+            },
+            {
+              "url": "https://catalog.khas.edu.tr/bib/73410",
+              "type": "library-catalog"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-003",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://iletisim.com.tr/kitap/tarih-nedir/7260",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.pandora.com.tr/kitap/tarih-nedir/1279",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.amazon.co.uk/Tarih-Nedir-Edward-Hallett-Carr/dp/9750508092",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Tarih Nedir?",
+          "publisher": "İletişim Yayınları",
+          "isbn": "9789750508097",
+          "translators": [
+            "Misket Gizem Gürtürk"
+          ]
+        }
+      },
+      "originalPublisher": "Macmillan",
+      "originalTitle": "What Is History?",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yoneticinin-okuma-alanlari"
+      ],
+      "groupIds": [
+        "yoneticinin-okuma-alanlari:tarih"
+      ]
+    },
+    {
+      "id": "problemsofphilosophy",
+      "title": "The Problems of Philosophy",
+      "titleTr": "Felsefe Sorunları",
+      "author": "Bertrand Russell",
+      "aliases": [
+        "Felsefe Sorunları"
+      ],
+      "years": [
+        1912
+      ],
+      "categories": [
+        "philosophy"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:felsefe",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Bilgiyi, gerekçeyi ve varsayımları sorgulamaya başlangıç.",
+          "role": "Başlangıç kitabı"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Bilgiyi, gerekçeyi ve varsayımları sorgulamaya başlangıç.",
+          "source": "Okuma alanları · Başlangıç kitabı"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerareas"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Felsefe Sorunları",
+        "isbn": "9786050205695",
+        "publisher": "Say Yayınları",
+        "translators": [
+          "Vehbi Hacıkadiroğlu"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/felsefe-sorunlari/416535.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://saykitap.com/urun/felsefe-sorunlari/",
+        "secondSourceType": "publisher",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve saykitap.com aynı ISBN'i (9786050205695) ve Say Yayınları yayınevini gösteriyor; çevirmen: Vehbi Hacıkadiroğlu. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/areas-problemsofphilosophy.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:3141689/wi:500/wh:e9a713d0f",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/felsefe-sorunlari/416535.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Felsefe Sorunları",
+        "author": "Bertrand Russell",
+        "publisher": "Say Yayınları",
+        "isbn": "9786050205695",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-003",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/felsefe-sorunlari/416535.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/kitap/felsefe-sorunlari/bertrand-russell/felsefe/felsefe-bilimi/urunno=0001688660001",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.istanbulkitapcisi.com/arama?q=felsefe+sorunlar%C4%B1+russell",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.kitapyurdu.com/kitap/felsefe-sorunlari/2046.html",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-003",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://saykitap.com/urun/felsefe-sorunlari/",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.imge.com.tr/urun/felsefe-sorunlari-bertrand-russell-9786050205695",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.amazon.com.tr/Felsefe-Sorunlar%C4%B1-Bertrand-Russell/dp/6050205698",
+              "type": "retailer"
+            },
+            {
+              "url": "https://1000kitap.com/kitap/felsefe-sorunlari--15039",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Felsefe Sorunları",
+          "publisher": "Say Yayınları",
+          "isbn": "9786050205695",
+          "translators": [
+            "Vehbi Hacıkadiroğlu"
+          ],
+          "year": 2017
+        }
+      },
+      "originalPublisher": "Williams and Norgate",
+      "originalTitle": "The Problems of Philosophy",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yoneticinin-okuma-alanlari"
+      ],
+      "groupIds": [
+        "yoneticinin-okuma-alanlari:felsefe"
+      ]
+    },
+    {
+      "id": "logikderforschung",
+      "title": "Logik der Forschung",
+      "titleTr": "Bilimsel Araştırmanın Mantığı",
+      "author": "Karl R. Popper",
+      "aliases": [
+        "Bilimsel Araştırmanın Mantığı"
+      ],
+      "years": [
+        1934
+      ],
+      "categories": [
+        "philosophy",
+        "science"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:felsefe",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "İddiaları sınanabilir hâle getirmek ve onları çürütebilecek kanıtı aramak için; ileri düzey bir okuma, sonraki aşamaya bırakılır. Yardım ettiği soru: “Bu açıklamanın yanlış olduğunu hangi bulgu gösterirdi?”",
+          "role": "Derinleşme okuması"
+        }
+      ],
+      "notes": [
+        {
+          "text": "İddiaları sınanabilir hâle getirmek ve onları çürütebilecek kanıtı aramak için; ileri düzey bir okuma, sonraki aşamaya bırakılır. Yardım ettiği soru: “Bu açıklamanın yanlış olduğunu hangi bulgu gösterirdi?”",
+          "source": "Okuma alanları · Derinleşme okuması"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerareas"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "de",
+      "verifiedEdition": {
+        "title": "Bilimsel Araştırmanın Mantığı",
+        "isbn": "9789753634397",
+        "publisher": "Yapı Kredi Yayınları",
+        "translators": [
+          "İlknur Aka",
+          "İbrahim Turan"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/bilimsel-arastirmanin-mantigi/12596.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.yapikrediyayinlari.com.tr/bilimsel-arastirmanin-mantigi.aspx",
+        "secondSourceType": "publisher",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve yapikrediyayinlari.com.tr aynı ISBN'i (9789753634397) ve Yapı Kredi Yayınları yayınevini gösteriyor; çevirmen: İlknur Aka, İbrahim Turan. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/areas-logicofscientificdiscovery.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:112231/wi:500/wh:9a84861d5",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/bilimsel-arastirmanin-mantigi/12596.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Bilimsel Araştırmanın Mantığı",
+        "author": "Karl R. Popper",
+        "publisher": "Yapı Kredi Yayınları",
+        "isbn": "9789753634397",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-003",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/bilimsel-arastirmanin-mantigi/12596.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9789753634397",
+              "type": "retailer"
+            },
+            {
+              "url": "https://catalog.khas.edu.tr/bib/67975",
+              "type": "library-catalog"
+            },
+            {
+              "url": "https://catalog.khas.edu.tr/bib/25039",
+              "type": "library-catalog"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-003",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.imge.com.tr/urun/bilimsel-arastirmanin-mantigi-karl-popper-9789753634397",
+              "type": "retailer"
+            },
+            {
+              "url": "https://books.google.com.tr/books/about/Bilimsel_ara%C5%9Ftirmanin_manti%C4%9Fi.html?id=lnOqnAEACAAJ&redir_esc=y",
+              "type": "bibliographic"
+            },
+            {
+              "url": "https://www.yapikrediyayinlari.com.tr/bilimsel-arastirmanin-mantigi.aspx",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.amazon.com.tr/Bilimsel-Ara%C5%9Ft%C4%B1rman%C4%B1n-Mant%C4%B1%C4%9F%C4%B1-Ta%C5%9Fkent-Yap%C4%B1tlar/dp/9753634390",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Bilimsel Araştırmanın Mantığı",
+          "publisher": "Yapı Kredi Yayınları",
+          "isbn": "9789753634397",
+          "translators": [
+            "İlknur Aka",
+            "İbrahim Turan"
+          ]
+        }
+      },
+      "originalPublisher": "Julius Springer",
+      "originalTitle": "Logik der Forschung",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yoneticinin-okuma-alanlari"
+      ],
+      "groupIds": [
+        "yoneticinin-okuma-alanlari:felsefe"
+      ]
+    },
+    {
+      "id": "ilmodernoprincipe",
+      "title": "Il moderno Principe",
+      "titleTr": "Modern Prens",
+      "author": "Antonio Gramsci",
+      "aliases": [
+        "Modern Prens"
+      ],
+      "years": [
+        1949
+      ],
+      "categories": [
+        "politics",
+        "philosophy"
+      ],
+      "memberships": [
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Gramsci’nin hapishane defterlerinden Machiavelli, siyaset ve modern devlet üzerine notlar; Hükümdar’ın yanında okunur. İş Bankası Kültür Yayınları, Hasan Âli Yücel Klasikler Dizisi.",
+          "role": "Raf"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Gramsci’nin hapishane defterlerinden Machiavelli, siyaset ve modern devlet üzerine notlar; Hükümdar’ın yanında okunur. İş Bankası Kültür Yayınları, Hasan Âli Yücel Klasikler Dizisi.",
+          "source": "Raftaki kitaplar · Raf"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "shelfphotos"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "it",
+      "verifiedEdition": {
+        "title": "Modern Prens",
+        "isbn": "9786254298851",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "translators": [
+          "Betül Parlak"
+        ],
+        "sourceUrl": "https://www.iskultur.com.tr/modern-prens",
+        "sourceType": "publisher",
+        "secondSourceUrl": "https://www.pandora.com.tr/kitap/modern-prens/909110",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "iskultur.com.tr ve pandora.com.tr aynı ISBN'i (9786254298851) ve Türkiye İş Bankası Kültür Yayınları yayınevini gösteriyor; çevirmen: Betül Parlak. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/shelf-modernprens.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11957150/wi:500/wh:569785d29",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/modern-prens-karton-kapak/697013.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Modern Prens",
+        "author": "Antonio Gramsci",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9786254298851",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.iskultur.com.tr/modern-prens",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.kitapyurdu.com/kitap/modern-prens-karton-kapak/697013.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9786254298851",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.pandora.com.tr/kitap/modern-prens/909110",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.imge.com.tr/urun/modern-prens-ciltli-antonio-gramsci-9786254298868",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.idefix.com/modern-prens-hasan-ali-yucel-klasikler-p-4562900",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Modern Prens",
+          "publisher": "Türkiye İş Bankası Kültür Yayınları",
+          "isbn": "9786254298851",
+          "translators": [
+            "Betül Parlak"
+          ],
+          "year": 2024
+        }
+      },
+      "originalTitle": "Il moderno Principe",
+      "originalPublisher": "Einaudi",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "raf-fotograflari"
+      ],
+      "groupIds": [
+        "raf-fotograflari:2026-10-22"
+      ]
+    },
+    {
+      "id": "bedenyuzyapisivekarakter",
+      "title": "Beden-Yüz Yapısı ve Karakter",
+      "titleTr": "Beden ve Yüz Yapısı ile Karakter Analizi",
+      "author": "Tuncel Altınköprü",
+      "aliases": [
+        "Beden ve Yüz Yapısı ile Karakter Analizi"
+      ],
+      "years": [],
+      "categories": [
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Beden ve yüz yapısından karakter çıkarmayı anlatan bir kitap. Bu tür çıkarımlar bilimsel araştırmalarla desteklenmez; eleştirel okunmalı.",
+          "role": "Raf"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Beden ve yüz yapısından karakter çıkarmayı anlatan bir kitap. Bu tür çıkarımlar bilimsel araştırmalarla desteklenmez; eleştirel okunmalı.",
+          "source": "Raftaki kitaplar · Raf"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "shelfphotos"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "tr",
+      "verifiedEdition": {
+        "title": "Beden ve Yüz Yapısı ile Karakter Analizi",
+        "isbn": "9786051511054",
+        "publisher": "Hayat Yayınları",
+        "translators": [],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/beden-ve-yuz-yapisi-ile-karakter-analizi/22549.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.bkmkitap.com/beden-ve-yuz-yapisi-ile-karakter-analizi",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve bkmkitap.com aynı ISBN'i (9786051511054) ve Hayat Yayınları yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı.",
+        "originalLanguage": "tr"
+      },
+      "cover": {
+        "src": "covers/shelf-bedenyuzyapisivekarakter.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:1009236/wi:500/wh:cdf72ad64",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/beden-ve-yuz-yapisi-ile-karakter-analizi/22549.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Beden ve Yüz Yapısı ile Karakter Analizi",
+        "author": "Tuncel Altınköprü",
+        "publisher": "Hayat Yayınları",
+        "isbn": "9786051511054",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "sourceIssue": {
+        "note": "Raftaki kitap Hayat Yayınları’nın eski bir baskısı (sırtındaki adı Beden-Yüz Yapısı ve Karakter; 1999 civarı, ISBN 9789758243600 olabilir). Gösterilen baskı aynı yayınevinin 2015 baskısı."
+      },
+      "translationResearch": {
+        "status": "original",
+        "stage1": {
+          "decision": "original",
+          "reviewer": "claude-stage1-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/beden-ve-yuz-yapisi-ile-karakter-analizi/22549.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9786051511054",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.idefix.com/insani-tanima-sanati-beden-ve-yuz-yapisi-ile-karakter-analizi-p-217751",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "original",
+          "reviewer": "claude-stage2-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.bkmkitap.com/beden-ve-yuz-yapisi-ile-karakter-analizi",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.amazon.com.tr/Beden-Y%C3%BCz-Yap%C4%B1s%C4%B1-Karakter-Analizi/dp/6051511059",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.ikrakitap.com/beden-yuz-yapisi-karakter",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.anadiliegitimi.com/en/download/article-file/329152",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "originalLanguage": "tr"
+      },
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "raf-fotograflari"
+      ],
+      "groupIds": [
+        "raf-fotograflari:2026-10-22"
+      ]
+    },
+    {
+      "id": "atomichabitsworkbook",
+      "title": "The Atomic Habits Workbook",
+      "titleTr": "Atomik Alışkanlıklar Çalışma Kitabı: İstediğiniz Hayatı İnşa Etmeniz İçin Basit Egzersizler",
+      "author": "James Clear",
+      "aliases": [
+        "Atomik Alışkanlıklar Çalışma Kitabı: İstediğiniz Hayatı İnşa Etmeniz İçin Basit Egzersizler"
+      ],
+      "years": [
+        2025
+      ],
+      "categories": [
+        "productivity",
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Atomik Alışkanlıklar’ın uygulama kitabı: kitaptaki yöntemi alıştırmalarla kendi alışkanlıklarına uygulamak için, kitaptan sonra.",
+          "role": "Raf"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Atomik Alışkanlıklar’ın uygulama kitabı: kitaptaki yöntemi alıştırmalarla kendi alışkanlıklarına uygulamak için, kitaptan sonra.",
+          "source": "Raftaki kitaplar · Raf"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "shelfphotos"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Atomik Alışkanlıklar Çalışma Kitabı: İstediğiniz Hayatı İnşa Etmeniz İçin Basit Egzersizler",
+        "isbn": "9786254106415",
+        "publisher": "Pegasus Yayınları",
+        "translators": [
+          "Sevinç Seyla Tezcan"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/atomik-aliskanliklar-calisma-kitabi-istediginiz-hayati-insa-etmeniz-icin-basit-egzersizler/740853.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.pandora.com.tr/kitap/atomik-aliskanliklar-calisma-kitabi/960806",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve pandora.com.tr aynı ISBN'i (9786254106415) ve Pegasus Yayınları yayınevini gösteriyor; çevirmen: Sevinç Seyla Tezcan. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/shelf-atomichabitsworkbook.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12151618/mh:1000/wh:a209d5b89",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/atomik-aliskanliklar-calisma-kitabi-istediginiz-hayati-insa-etmeniz-icin-basit-egzersizler/740853.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Atomik Alışkanlıklar Çalışma Kitabı: İstediğiniz Hayatı İnşa Etmeniz İçin Basit Egzersizler",
+        "author": "James Clear",
+        "publisher": "Pegasus Yayınları",
+        "isbn": "9786254106415",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/atomik-aliskanliklar-calisma-kitabi-istediginiz-hayati-insa-etmeniz-icin-basit-egzersizler/740853.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9786254106415",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.idefix.com/atomik-aliskanliklar-calisma-kitabi-istediginiz-hayati-insa-etmeniz-icin-basit-egzersizler-p-17958208",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.pandora.com.tr/kitap/atomik-aliskanliklar-calisma-kitabi/960806",
+              "type": "retailer"
+            },
+            {
+              "url": "https://alinino.az/product/atomik-aliskanliklar-calisma-kitabi-istediginiz-hayati-insa-etmeniz-icin-basit-egzersizler?lang=ru",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Atomik Alışkanlıklar Çalışma Kitabı: İstediğiniz Hayatı İnşa Etmeniz İçin Basit Egzersizler",
+          "publisher": "Pegasus Yayınları",
+          "isbn": "9786254106415",
+          "translators": [
+            "Sevinç Seyla Tezcan"
+          ],
+          "year": 2025
+        }
+      },
+      "originalPublisher": "Avery",
+      "originalTitle": "The Atomic Habits Workbook",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "raf-fotograflari"
+      ],
+      "groupIds": [
+        "raf-fotograflari:2026-10-22"
+      ]
+    },
+    {
+      "id": "hbrs10mustreadsonstrategy",
+      "title": "HBR’s 10 Must Reads on Strategy",
+      "titleTr": "Strateji",
+      "author": "Harvard Business Review",
+      "aliases": [
+        "Strateji"
+      ],
+      "years": [
+        2011
+      ],
+      "categories": [
+        "strategy"
+      ],
+      "memberships": [
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Harvard Business Review’dan strateji üzerine seçilmiş makaleler; İyi Strateji / Kötü Strateji’nin yanında kısa okumalar.",
+          "role": "Raf"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Harvard Business Review’dan strateji üzerine seçilmiş makaleler; İyi Strateji / Kötü Strateji’nin yanında kısa okumalar.",
+          "source": "Raftaki kitaplar · Raf"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "shelfphotos"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Strateji",
+        "isbn": "9786052202708",
+        "publisher": "Optimist Kitap",
+        "translators": [
+          "Melis İnan"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji/309970.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://optimistkitap.com/kitap/strateji/",
+        "secondSourceType": "publisher",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve optimistkitap.com aynı ISBN'i (9786052202708) ve Optimist Kitap yayınevini gösteriyor; çevirmen: Melis İnan. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/shelf-hbrstrategy.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:129748/wi:500/wh:53e586eee",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji/309970.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Strateji",
+        "author": "Harvard Business Review",
+        "publisher": "Optimist Kitap",
+        "isbn": "9786052202708",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/strateji/309970.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9786052202708",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.idefix.com/strateji-p-193353",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.goodreads.com/work/editions/14499698-hbr-s-10-must-reads-on-strategy",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://optimistkitap.com/kitap/strateji/",
+              "type": "publisher"
+            },
+            {
+              "url": "https://books.google.com.tr/books/about/Strateji.html?id=aA_tzgEACAAJ&redir_esc=y",
+              "type": "bibliographic"
+            },
+            {
+              "url": "https://www.amazon.com.tr/Strateji-Harvard-Business-Review/dp/605220270X",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Strateji",
+          "publisher": "Optimist Kitap",
+          "isbn": "9786052202708",
+          "translators": [
+            "Melis İnan"
+          ],
+          "year": 2017
+        }
+      },
+      "originalPublisher": "Harvard Business Review Press",
+      "originalTitle": "HBR’s 10 Must Reads on Strategy",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "raf-fotograflari"
+      ],
+      "groupIds": [
+        "raf-fotograflari:2026-10-22"
+      ]
+    },
+    {
+      "id": "careermanagementsecrets",
+      "title": "Career Management Secrets",
+      "titleTr": "Kariyer Yönetimi Sırları",
+      "author": "Carolyn Boyes",
+      "aliases": [
+        "Kariyer Yönetimi Sırları"
+      ],
+      "years": [
+        2010
+      ],
+      "categories": [
+        "productivity",
+        "management"
+      ],
+      "memberships": [
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Kariyer planlaması üzerine kısa bir iş kılavuzu, Collins’in Business Secrets dizisinden; rafta NTV Yayınları baskısıyla.",
+          "role": "Raf"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Kariyer planlaması üzerine kısa bir iş kılavuzu, Collins’in Business Secrets dizisinden; rafta NTV Yayınları baskısıyla.",
+          "source": "Raftaki kitaplar · Raf"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "shelfphotos"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Kariyer Yönetimi Sırları",
+        "isbn": "9786055056384",
+        "publisher": "NTV Yayınları",
+        "translators": [
+          "Rana Alpöz"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/kariyer-yonetimi-sirlari/352237.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.sondakika.com/kultur-sanat/haber-kariyer-yonetimi-sirlari-kitabi-6620874/",
+        "secondSourceType": "bibliographic",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve sondakika.com aynı ISBN'i (9786055056384) ve NTV Yayınları yayınevini gösteriyor; çevirmen: Rana Alpöz. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/shelf-kariyeryonetimi.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:983120/wi:500/wh:030ce7ca2",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/kariyer-yonetimi-sirlari/352237.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Kariyer Yönetimi Sırları",
+        "author": "Carolyn Boyes",
+        "publisher": "NTV Yayınları",
+        "isbn": "9786055056384",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/kariyer-yonetimi-sirlari/352237.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9786055056384",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.goodreads.com/book/show/8880878",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.sondakika.com/kultur-sanat/haber-kariyer-yonetimi-sirlari-kitabi-6620874/",
+              "type": "bibliographic"
+            },
+            {
+              "url": "https://www.amazon.com.tr/Kitap-Rana-Alp%C3%B6z/s?rh=n:12466380031,p_27:Rana%2BAlp%25C3%25B6z",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Kariyer Yönetimi Sırları",
+          "publisher": "NTV Yayınları",
+          "isbn": "9786055056384",
+          "translators": [
+            "Rana Alpöz"
+          ],
+          "year": 2014
+        }
+      },
+      "originalTitle": "Career Management Secrets",
+      "originalPublisher": "Collins",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "raf-fotograflari"
+      ],
+      "groupIds": [
+        "raf-fotograflari:2026-10-22"
+      ]
+    },
+    {
+      "id": "ρητορικη",
+      "title": "Ῥητορική",
+      "titleTr": "Retorik",
+      "author": "Aristoteles",
+      "aliases": [
+        "Retorik"
+      ],
+      "years": [],
+      "categories": [
+        "philosophy",
+        "communication"
+      ],
+      "memberships": [
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "İknanın klasik temeli: konuşmacının karakteri, dinleyicinin duyguları ve kanıtın kendisi üzerinden ikna yolları. İş Bankası Kültür Yayınları, Hasan Âli Yücel Klasikler Dizisi.",
+          "role": "Raf"
+        }
+      ],
+      "notes": [
+        {
+          "text": "İknanın klasik temeli: konuşmacının karakteri, dinleyicinin duyguları ve kanıtın kendisi üzerinden ikna yolları. İş Bankası Kültür Yayınları, Hasan Âli Yücel Klasikler Dizisi.",
+          "source": "Raftaki kitaplar · Raf"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "shelfphotos"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "el",
+      "verifiedEdition": {
+        "title": "Retorik",
+        "isbn": "9786257999144",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "translators": [
+          "Ari Çokona"
+        ],
+        "sourceUrl": "https://www.iskultur.com.tr/retorik",
+        "sourceType": "publisher",
+        "secondSourceUrl": "https://www.pandora.com.tr/kitap/retorik/719550",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "iskultur.com.tr ve pandora.com.tr aynı ISBN'i (9786257999144) ve Türkiye İş Bankası Kültür Yayınları yayınevini gösteriyor; çevirmen: Ari Çokona. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/shelf-retorik.jpg",
+        "imageUrl": "https://img.iskultur.com.tr/webp/2019/12/retorik-6.jpg",
+        "sourceUrl": "https://www.iskultur.com.tr/retorik",
+        "sourceName": "iskultur.com.tr",
+        "title": "Retorik",
+        "author": "Aristoteles",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9786257999144",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.iskultur.com.tr/retorik",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9786257999144",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.pandora.com.tr/kitap/retorik/719550",
+              "type": "retailer"
+            },
+            {
+              "url": "https://1000kitap.com/kitap/retorik--190598",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Retorik",
+          "publisher": "Türkiye İş Bankası Kültür Yayınları",
+          "isbn": "9786257999144",
+          "translators": [
+            "Ari Çokona"
+          ],
+          "year": 2019
+        }
+      },
+      "originalTitle": "Ῥητορική",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "raf-fotograflari"
+      ],
+      "groupIds": [
+        "raf-fotograflari:2026-10-22"
+      ]
+    },
+    {
+      "id": "saleseffectivenesstraining",
+      "title": "Sales Effectiveness Training",
+      "titleTr": "Etkili Satış Eğitimi",
+      "author": "Thomas Gordon and Carl D. Zaiss",
+      "aliases": [
+        "Etkili Satış Eğitimi"
+      ],
+      "years": [
+        1993
+      ],
+      "categories": [
+        "marketing",
+        "communication"
+      ],
+      "memberships": [
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Etkin dinleme ve sorun çözme üzerine kurulu, müşteriyle ilişkiye dayalı bir satış yaklaşımı; Profil Kitap.",
+          "role": "Raf"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Etkin dinleme ve sorun çözme üzerine kurulu, müşteriyle ilişkiye dayalı bir satış yaklaşımı; Profil Kitap.",
+          "source": "Raftaki kitaplar · Raf"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "shelfphotos"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Etkili Satış Eğitimi",
+        "isbn": "9789759964948",
+        "publisher": "Profil Kitap",
+        "translators": [
+          "Türkan Çolak"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/etkili-satis-egitimi/346745.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.pandora.com.tr/kitap/etkili-satis-egitimi-musterilerinizle-cigir-acacak-ortak-olma-yontemi/370607",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve pandora.com.tr aynı ISBN'i (9789759964948) ve Profil Kitap yayınevini gösteriyor; çevirmen: Türkan Çolak. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/shelf-salestraining.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:962937/wi:500/wh:f319e9050",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/etkili-satis-egitimi/346745.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Etkili Satış Eğitimi",
+        "author": "Thomas Gordon and Carl D. Zaiss",
+        "publisher": "Profil Kitap",
+        "isbn": "9789759964948",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/etkili-satis-egitimi/346745.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9789759964948",
+              "type": "retailer"
+            },
+            {
+              "url": "https://katalog.bilecik.edu.tr/bib/19557",
+              "type": "library-catalog"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.pandora.com.tr/kitap/etkili-satis-egitimi-musterilerinizle-cigir-acacak-ortak-olma-yontemi/370607",
+              "type": "retailer"
+            },
+            {
+              "url": "https://neokuyorsun.com/kitap/etkili-satis-egitimi-musterilerinizle-cigir-acacak-ortak-olma-yontemi-profil-yayincilik-9789759964948",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Etkili Satış Eğitimi",
+          "publisher": "Profil Kitap",
+          "isbn": "9789759964948",
+          "translators": [
+            "Türkan Çolak"
+          ],
+          "year": 2014
+        }
+      },
+      "originalTitle": "Sales Effectiveness Training",
+      "originalPublisher": "Dutton",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "raf-fotograflari"
+      ],
+      "groupIds": [
+        "raf-fotograflari:2026-10-22"
+      ]
+    },
+    {
+      "id": "marketingsecrets",
+      "title": "Marketing Secrets",
+      "titleTr": "Pazarlama Sırları",
+      "author": "Peter Spalton",
+      "aliases": [
+        "Pazarlama Sırları"
+      ],
+      "years": [
+        2010
+      ],
+      "categories": [
+        "marketing"
+      ],
+      "memberships": [
+        {
+          "collectionId": "raf-fotograflari",
+          "groupId": "raf-fotograflari:2026-10-22",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+          "note": "Pazarlamanın temel kavramlarına kısa bir iş kılavuzu, Kariyer Yönetimi Sırları ile aynı Business Secrets dizisinden; rafta NTV Yayınları baskısıyla.",
+          "role": "Raf"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Pazarlamanın temel kavramlarına kısa bir iş kılavuzu, Kariyer Yönetimi Sırları ile aynı Business Secrets dizisinden; rafta NTV Yayınları baskısıyla.",
+          "source": "Raftaki kitaplar · Raf"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "shelfphotos"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Pazarlama Sırları",
+        "isbn": "9786055056674",
+        "publisher": "NTV Yayınları",
+        "translators": [
+          "Aysun Babacan"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/pazarlama-sirlari/372114.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://1000kitap.com/kitap/pazarlama-sirlari--122933",
+        "secondSourceType": "bibliographic",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve 1000kitap.com aynı ISBN'i (9786055056674) ve NTV Yayınları yayınevini gösteriyor; çevirmen: Aysun Babacan. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/shelf-spaltonpazarlama.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:1035258/wi:500/wh:50f3ade61",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/pazarlama-sirlari/372114.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Pazarlama Sırları",
+        "author": "Peter Spalton",
+        "publisher": "NTV Yayınları",
+        "isbn": "9786055056674",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/pazarlama-sirlari/372114.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9786055056674",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-004",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://1000kitap.com/kitap/pazarlama-sirlari--122933",
+              "type": "bibliographic"
+            },
+            {
+              "url": "https://dergipark.org.tr/tr/pub/asstudies/issue/57140/806418",
+              "type": "bibliographic"
+            },
+            {
+              "url": "https://www.amazon.com/Books-Peter-Spalton/s?rh=n%3A283155%2Cp_27%3APeter%2BSpalton",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Pazarlama Sırları",
+          "publisher": "NTV Yayınları",
+          "isbn": "9786055056674",
+          "translators": [
+            "Aysun Babacan"
+          ],
+          "year": 2015
+        }
+      },
+      "originalTitle": "Marketing Secrets",
+      "originalPublisher": "Collins",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "raf-fotograflari"
+      ],
+      "groupIds": [
+        "raf-fotograflari:2026-10-22"
+      ]
+    },
+    {
       "id": "elestirelokuma",
       "title": "Eleştirel Okuma",
       "titleTr": "Eleştirel Okuma",
@@ -75002,6 +77653,13 @@
           "note": "Programda 5. kitap: veri ve istatistik okuryazarlığı.",
           "role": "Veri ve istatistik okuryazarlığı",
           "order": 5
+        },
+        {
+          "collectionId": "yoneticinin-okuma-alanlari",
+          "groupId": "yoneticinin-okuma-alanlari:veri",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+          "note": "Sayısal iddiaları, örneklemleri ve araştırma sonuçlarını sorgulayabilmek; veriyle yorumu ayırmak için. Yardım ettiği soru: “Sonuç kötü olduğu için karar da mı kötüydü, yoksa risk mi gerçekleşti?”",
+          "role": "Başlangıç kitabı"
         }
       ],
       "notes": [
@@ -75016,12 +77674,17 @@
         {
           "text": "Programda 5. kitap: veri ve istatistik okuryazarlığı.",
           "source": "Yönetici adayı · Veri ve istatistik okuryazarlığı"
+        },
+        {
+          "text": "Sayısal iddiaları, örneklemleri ve araştırma sonuçlarını sorgulayabilmek; veriyle yorumu ayırmak için. Yardım ettiği soru: “Sonuç kötü olduğu için karar da mı kötüydü, yoksa risk mi gerçekleşti?”",
+          "source": "Okuma alanları · Başlangıç kitabı"
         }
       ],
       "editions": [],
       "origins": [
         "preparation",
-        "managerprep"
+        "managerprep",
+        "managerareas"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -75068,12 +77731,14 @@
       "addedAt": "2026-09-28",
       "collectionIds": [
         "preparation",
-        "yonetici-adayi"
+        "yonetici-adayi",
+        "yoneticinin-okuma-alanlari"
       ],
       "groupIds": [
         "preparation:3",
         "yonetici-adayi:asama-1",
-        "yonetici-adayi:program"
+        "yonetici-adayi:program",
+        "yoneticinin-okuma-alanlari:veri"
       ]
     }
   ],
@@ -75822,6 +78487,66 @@
         "yonetici-adayi:ilk-kez-yonetecekler",
         "yonetici-adayi:kisa-yol",
         "yonetici-adayi:ekler"
+      ]
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari",
+      "title": "Yöneticinin okuma alanları",
+      "short": "Okuma alanları",
+      "description": "Doğrudan yönetim sorumlulukları için on üç temel okuma alanı (strateji, yöneticilik, örgütsel davranış, karar, veri, ekonomi, finans, pazarlama, müzakere, operasyon, sistem, değişim, etik) ve yöneticinin düşünsel derinliği için altı alan (sosyoloji, tarih, siyaset, felsefe, edebiyat, biyografi); her alanda önce okunacak bir kitap.",
+      "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-reading-areas.json",
+      "context": {
+        "purpose": "Yönetici yalnız insanları değil, insanların içinde çalıştığı yapıları, teşvikleri ve değişen koşulları da anlamalı. Bu küme her okuma alanına bir başlangıç kitabı verir ve kitabın hangi yönetim sorusuna yardım ettiğini yazar.",
+        "criterion": "Çerçeve Harvard ve Stanford’un yönetim programlarının kapsamıyla karşılaştırılarak kuruldu: strateji, pazarlama, muhasebe, finans, örgütsel davranış, operasyon ve liderlik birlikte ele alınır. Kitap seçimleri önerinin kendisine aittir. Pazarlama, müzakere ve değişim yönetimi temel listeye girdi; psikoloji yalnız düşünme hatalarıyla sınırlı tutulmadı, motivasyon, grup davranışı, çatışma ve kurum kültürü de örgütsel davranışla kapsandı. Popper, Geertz ve Mills değerli, ama çoğu yönetici için ilk başlangıç kitabı değil; derinleşme okuması olarak tutuldu. Türkçe baskı yalnız iki ayrı sitede doğrulandığında gösterilir.",
+        "verdict": "Dijital dönüşüm ve üst yönetim çalışmaları için ilk öncelik: İyi Strateji / Kötü Strateji, Sistemlerle Düşünmek, Değişime Liderlik Etmek, Örgütsel Davranış, “Evet” ve Amaç; finans ve pazarlamada birikim azsa ilgili kitaplar bu sıranın önüne alınır. Önerinin önceki bir sürümündeki ilk altı: İyi Strateji / Kötü Strateji, Amaç, Sistemlerle Düşünmek, Etkin Yöneticinin Seyir Defteri, Hızlı ve Yavaş Düşünme ve Finansı Anlamak; stratejik seçimi, işlerin tamamlanmasını, süreçler arası bağlantıları, yönetici etkinliğini, karar hatalarını ve finansal değerlendirmeyi birlikte karşılar. E-ticaret ve dijital dönüşümde özellikle verimli üçlü sosyoloji, sistem düşüncesi ve davranışsal ekonomidir: biri değişime direnci, biri süreçler arasındaki bağlantıları, öteki insanların gerçekte neye tepki verdiğini anlamaya yardım eder."
+      },
+      "origin": "managerareas",
+      "mark": "OA",
+      "tag": "Okuma alanları",
+      "note": "Biyografi bir okuma biçimidir: strateji, tarih ve yönetimi somut vakalarla destekler. Yalnız başarılı kişileri değil başarısız girişimleri, çöken şirketleri ve yanlış kararları da okumak gerekir; başarı anlatıları şansın ve koşulların payını görünmez kılabilir. Hukuk, kurumsal yönetişim ve sektörel düzenlemeler için göreve ve ülkeye uygun güncel kaynaklar gerekir; bu klasikler o ihtiyacı tek başına karşılamaz. Roller ve sıralar not ve alt küme olarak tutulur, puana eklenmez.",
+      "count": 27,
+      "groupIds": [
+        "yoneticinin-okuma-alanlari:strateji",
+        "yoneticinin-okuma-alanlari:yoneticilik",
+        "yoneticinin-okuma-alanlari:orgutsel-davranis",
+        "yoneticinin-okuma-alanlari:karar",
+        "yoneticinin-okuma-alanlari:veri",
+        "yoneticinin-okuma-alanlari:ekonomi",
+        "yoneticinin-okuma-alanlari:finans",
+        "yoneticinin-okuma-alanlari:pazarlama",
+        "yoneticinin-okuma-alanlari:muzakere",
+        "yoneticinin-okuma-alanlari:operasyon",
+        "yoneticinin-okuma-alanlari:sistem",
+        "yoneticinin-okuma-alanlari:degisim",
+        "yoneticinin-okuma-alanlari:etik",
+        "yoneticinin-okuma-alanlari:sosyoloji",
+        "yoneticinin-okuma-alanlari:tarih",
+        "yoneticinin-okuma-alanlari:siyaset",
+        "yoneticinin-okuma-alanlari:felsefe",
+        "yoneticinin-okuma-alanlari:edebiyat",
+        "yoneticinin-okuma-alanlari:biyografi",
+        "yoneticinin-okuma-alanlari:ilk-oncelik",
+        "yoneticinin-okuma-alanlari:ilk-alti"
+      ]
+    },
+    {
+      "id": "raf-fotograflari",
+      "title": "Raftaki kitaplar",
+      "short": "Raftaki kitaplar",
+      "description": "Kitaplığın sahibinin raflarından fotoğrafladığı kitaplar, fotoğrafın günüyle. Sırtında okunan baskı, araştırmada iki ayrı sitede doğrulandığında kitap sayfasında gösterilir.",
+      "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+      "context": {
+        "purpose": "Rafta duran kitapları katalogda bulmak ve aynı konudaki öteki kitaplarla ilişkilendirmek.",
+        "criterion": "Fotoğrafta sırtı okunan her kitap alındı; adı okunmayan kitaplar alınmadı. Katalogda zaten olan bir eser yeni bir kayıt olmaz, bu kümeye katılır. Türkçe baskı yalnız iki ayrı sitede doğrulandığında gösterilir.",
+        "verdict": "Bu küme bir okuma önerisi değil, rafın kaydıdır; öncelikler öteki kümelerden ve okuma önceliğinden gelir."
+      },
+      "origin": "shelfphotos",
+      "mark": "RF",
+      "tag": "Raf fotoğrafı",
+      "note": "Rafta bulunmak satın alındı işareti değildir; işaretler kitap sayfasından konur. Raftaki iki Machiavelli baskısı (Prens ve İş Bankası Kültür Yayınları’nın Hükümdar’ı) aynı eserdir, katalogda tek kayıttır.",
+      "count": 14,
+      "groupIds": [
+        "raf-fotograflari:2026-10-22"
       ]
     },
     {
@@ -76875,6 +79600,138 @@
       "count": 3
     },
     {
+      "id": "yoneticinin-okuma-alanlari:strateji",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Strateji ve rekabet",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:yoneticilik",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Yöneticilik ve uygulama disiplini",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:orgutsel-davranis",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Örgütsel davranış ve insan yönetimi",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:karar",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Bilişsel psikoloji ve karar verme",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:veri",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Veri, olasılık ve istatistik",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:ekonomi",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Ekonomi ve teşvikler",
+      "count": 2
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:finans",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Muhasebe ve finansal okuryazarlık",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:pazarlama",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Pazarlama ve müşteri değeri",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:muzakere",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Müzakere ve çatışma çözümü",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:operasyon",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Operasyon ve süreç yönetimi",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:sistem",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Sistem düşüncesi",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:degisim",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Değişim ve yenilik yönetimi",
+      "count": 2
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:etik",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Etik ve yönetsel sorumluluk",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:sosyoloji",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Sosyoloji, kültür ve antropoloji",
+      "count": 3
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:tarih",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Toplumsal ve ekonomik tarih",
+      "count": 2
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:siyaset",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Siyaset, kurumlar ve güç",
+      "count": 2
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:felsefe",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Felsefe, eleştirel ve bilimsel düşünme",
+      "count": 3
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:edebiyat",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Edebiyat ve insan deneyimi",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:biyografi",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Biyografi ve kurum tarihi",
+      "count": 1
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:ilk-oncelik",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "Dijital dönüşüm ve üst yönetim için ilk öncelik",
+      "count": 6
+    },
+    {
+      "id": "yoneticinin-okuma-alanlari:ilk-alti",
+      "collectionId": "yoneticinin-okuma-alanlari",
+      "title": "İlk altı, sırasıyla (önerinin önceki sürümü)",
+      "count": 6
+    },
+    {
+      "id": "raf-fotograflari:2026-10-22",
+      "collectionId": "raf-fotograflari",
+      "title": "22 Ekim 2026 fotoğrafları",
+      "count": 14
+    },
+    {
       "id": "preparation:1",
       "collectionId": "preparation",
       "title": "1 — Temel okuma ve düşünme becerileri",
@@ -76897,12 +79754,12 @@
     {
       "id": "strategy",
       "label": "Strateji ve rekabet",
-      "count": 81
+      "count": 83
     },
     {
       "id": "management",
       "label": "Yönetim ve liderlik",
-      "count": 137
+      "count": 139
     },
     {
       "id": "enterprise",
@@ -76912,22 +79769,22 @@
     {
       "id": "marketing",
       "label": "Pazarlama ve satış",
-      "count": 34
+      "count": 37
     },
     {
       "id": "communication",
       "label": "İletişim ve müzakere",
-      "count": 38
+      "count": 40
     },
     {
       "id": "psychology",
       "label": "Psikoloji ve davranış",
-      "count": 84
+      "count": 87
     },
     {
       "id": "productivity",
       "label": "Üretkenlik ve alışkanlıklar",
-      "count": 38
+      "count": 40
     },
     {
       "id": "systems",
@@ -76942,7 +79799,7 @@
     {
       "id": "economy",
       "label": "Ekonomi ve toplum",
-      "count": 156
+      "count": 158
     },
     {
       "id": "technology",
@@ -76957,7 +79814,7 @@
     {
       "id": "history",
       "label": "Tarih",
-      "count": 118
+      "count": 121
     },
     {
       "id": "biography",
@@ -76967,7 +79824,7 @@
     {
       "id": "politics",
       "label": "Siyaset ve jeopolitik",
-      "count": 57
+      "count": 59
     },
     {
       "id": "ethics",
@@ -76987,7 +79844,7 @@
     {
       "id": "philosophy",
       "label": "Felsefe",
-      "count": 27
+      "count": 34
     },
     {
       "id": "children",
@@ -76997,7 +79854,7 @@
     {
       "id": "science",
       "label": "Bilim ve öğrenme",
-      "count": 31
+      "count": 32
     }
   ],
   "sourceTags": {
@@ -78231,6 +81088,46 @@
     "managerprep:influence": "influence",
     "managerprep:thinkingfastandslow": "thinkingfastandslow",
     "managerprep:akillikararlaricinstratejikdusunmeyontemleri": "intelligentthinking",
+    "managerareas:goodstrategybadstrategy": "goodstrategybadstrategy",
+    "managerareas:effectiveexecutiveinaction": "effectiveexecutiveinaction",
+    "managerareas:organizationalbehavior": "organizationalbehavior",
+    "managerareas:thinkingfastandslow": "thinkingfastandslow",
+    "managerareas:economicstheusersguide": "economicstheusersguide",
+    "managerareas:artofstrategy": "artofstrategy",
+    "managerareas:financialintelligence": "financialintelligence",
+    "managerareas:marketingmanagement": "marketingmanagement",
+    "managerareas:gettingtoyes": "gettingtoyes",
+    "managerareas:goal": "goal",
+    "managerareas:thinkinginsystems": "thinkinginsystems",
+    "managerareas:leadingchange": "leadingchange",
+    "managerareas:innovatorsdilemma": "innovatorsdilemma",
+    "managerareas:justice": "justicewhatstherightthingtodo",
+    "managerareas:thinkingsociologically": "thinkingsociologically",
+    "managerareas:sociologicalimagination": "sociologicalimagination",
+    "managerareas:interpretationofcultures": "interpretationofcultures",
+    "managerareas:industryandempire": "industryandempire",
+    "managerareas:whatishistory": "whatishistory",
+    "managerareas:whynationsfail": "whynationsfail",
+    "managerareas:ilprincipe": "ilprincipe",
+    "managerareas:problemsofphilosophy": "problemsofphilosophy",
+    "managerareas:meditations": "meditations",
+    "managerareas:logicofscientificdiscovery": "logikderforschung",
+    "managerareas:ivanilyich": "смертьиванаильича",
+    "managerareas:whosayselephantscantdance": "whosayselephantscantdance",
+    "shelfphotos:ilprincipe": "ilprincipe",
+    "shelfphotos:modernprens": "ilmodernoprincipe",
+    "shelfphotos:bedenyuzyapisivekarakter": "bedenyuzyapisivekarakter",
+    "shelfphotos:toyotaproductionsystem": "toyotaproductionsystem",
+    "shelfphotos:atomichabits": "atomichabits",
+    "shelfphotos:atomichabitsworkbook": "atomichabitsworkbook",
+    "shelfphotos:hbrstrategy": "hbrs10mustreadsonstrategy",
+    "shelfphotos:thisismarketing": "thisismarketing",
+    "shelfphotos:goal": "goal",
+    "shelfphotos:kariyeryonetimi": "careermanagementsecrets",
+    "shelfphotos:retorik": "ρητορικη",
+    "shelfphotos:fathersandsons": "отцыидети",
+    "shelfphotos:salestraining": "saleseffectivenesstraining",
+    "shelfphotos:spaltonpazarlama": "marketingsecrets",
     "preparation:hazirlik-01": "elestirelokuma",
     "preparation:hazirlik-02": "dusunmeninalfabesi",
     "preparation:hazirlik-03": "adimadimmatematikessizbirgorselrehber",
@@ -78241,7 +81138,8 @@
     "preparation:hazirlik-08": "littlehistoryofscience",
     "preparation:hazirlik-09": "makeitstickthescienceofsuccessfullearning",
     "preparation:hazirlik-10": "nakedstatisticsstrippingthedreadfromthedata",
-    "managerprep:nakedstatistics": "nakedstatisticsstrippingthedreadfromthedata"
+    "managerprep:nakedstatistics": "nakedstatisticsstrippingthedreadfromthedata",
+    "managerareas:nakedstatistics": "nakedstatisticsstrippingthedreadfromthedata"
   },
   "sourceCounts": {
     "atlasEntries": 619,
@@ -78254,6 +81152,8 @@
     "shelfReviewBooks": 33,
     "originalSourceWorks": 39,
     "managementFounderWorks": 25,
-    "managerProgramBooks": 15
+    "managerProgramBooks": 15,
+    "managerAreaBooks": 27,
+    "shelfPhotoBooks": 14
   }
 }

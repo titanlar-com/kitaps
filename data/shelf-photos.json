@@ -1,0 +1,434 @@
+{
+ "id": "raf-fotograflari",
+ "title": "Raftaki kitaplar",
+ "short": "Raftaki kitaplar",
+ "description": "Kitaplığın sahibinin raflarından fotoğrafladığı kitaplar, fotoğrafın günüyle. Sırtında okunan baskı, araştırmada iki ayrı sitede doğrulandığında kitap sayfasında gösterilir.",
+ "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-photos.json",
+ "checkedAt": "2026-10-22",
+ "context": {
+  "purpose": "Rafta duran kitapları katalogda bulmak ve aynı konudaki öteki kitaplarla ilişkilendirmek.",
+  "criterion": "Fotoğrafta sırtı okunan her kitap alındı; adı okunmayan kitaplar alınmadı. Katalogda zaten olan bir eser yeni bir kayıt olmaz, bu kümeye katılır. Türkçe baskı yalnız iki ayrı sitede doğrulandığında gösterilir.",
+  "verdict": "Bu küme bir okuma önerisi değil, rafın kaydıdır; öncelikler öteki kümelerden ve okuma önceliğinden gelir."
+ },
+ "note": "Rafta bulunmak satın alındı işareti değildir; işaretler kitap sayfasından konur. Raftaki iki Machiavelli baskısı (Prens ve İş Bankası Kültür Yayınları’nın Hükümdar’ı) aynı eserdir, katalogda tek kayıttır.",
+ "groups": [
+  {
+   "id": "2026-10-22",
+   "title": "22 Ekim 2026 fotoğrafları"
+  }
+ ],
+ "books": [
+  {
+   "key": "ilprincipe",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "existingId": "ilprincipe",
+   "reason": "Rafta iki baskısı var: Prens ve İş Bankası Kültür Yayınları’nın Hasan Âli Yücel Klasikler Dizisi’ndeki Hükümdar."
+  },
+  {
+   "key": "modernprens",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "title": "Il moderno Principe",
+   "author": "Antonio Gramsci",
+   "originalLanguage": "it",
+   "categories": [
+    "politics",
+    "philosophy"
+   ],
+   "reason": "Gramsci’nin hapishane defterlerinden Machiavelli, siyaset ve modern devlet üzerine notlar; Hükümdar’ın yanında okunur. İş Bankası Kültür Yayınları, Hasan Âli Yücel Klasikler Dizisi.",
+   "year": 1949,
+   "titleTr": "Modern Prens",
+   "edition": {
+    "title": "Modern Prens",
+    "isbn": "9786254298851",
+    "publisher": "Türkiye İş Bankası Kültür Yayınları",
+    "translators": [
+     "Betül Parlak"
+    ],
+    "sourceUrl": "https://www.iskultur.com.tr/modern-prens",
+    "sourceType": "publisher",
+    "secondSourceUrl": "https://www.pandora.com.tr/kitap/modern-prens/909110",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "iskultur.com.tr ve pandora.com.tr aynı ISBN'i (9786254298851) ve Türkiye İş Bankası Kültür Yayınları yayınevini gösteriyor; çevirmen: Betül Parlak. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/shelf-modernprens.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11957150/wi:500/wh:569785d29",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/modern-prens-karton-kapak/697013.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Modern Prens",
+    "author": "Antonio Gramsci",
+    "publisher": "Türkiye İş Bankası Kültür Yayınları",
+    "isbn": "9786254298851",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "bedenyuzyapisivekarakter",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "title": "Beden-Yüz Yapısı ve Karakter",
+   "author": "Tuncel Altınköprü",
+   "originalLanguage": "tr",
+   "categories": [
+    "psychology"
+   ],
+   "reason": "Beden ve yüz yapısından karakter çıkarmayı anlatan bir kitap. Bu tür çıkarımlar bilimsel araştırmalarla desteklenmez; eleştirel okunmalı.",
+   "titleTr": "Beden ve Yüz Yapısı ile Karakter Analizi",
+   "edition": {
+    "title": "Beden ve Yüz Yapısı ile Karakter Analizi",
+    "isbn": "9786051511054",
+    "publisher": "Hayat Yayınları",
+    "translators": [],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/beden-ve-yuz-yapisi-ile-karakter-analizi/22549.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.bkmkitap.com/beden-ve-yuz-yapisi-ile-karakter-analizi",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve bkmkitap.com aynı ISBN'i (9786051511054) ve Hayat Yayınları yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/shelf-bedenyuzyapisivekarakter.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:1009236/wi:500/wh:cdf72ad64",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/beden-ve-yuz-yapisi-ile-karakter-analizi/22549.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Beden ve Yüz Yapısı ile Karakter Analizi",
+    "author": "Tuncel Altınköprü",
+    "publisher": "Hayat Yayınları",
+    "isbn": "9786051511054",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "issue": "Raftaki kitap Hayat Yayınları’nın eski bir baskısı (sırtındaki adı Beden-Yüz Yapısı ve Karakter; 1999 civarı, ISBN 9789758243600 olabilir). Gösterilen baskı aynı yayınevinin 2015 baskısı."
+  },
+  {
+   "key": "toyotaproductionsystem",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "existingId": "toyotaproductionsystem",
+   "reason": "Toyota üretim sistemini onu kuran kişinin anlatısından tanır; Amaç’ın yanında operasyon ve süreç okuması."
+  },
+  {
+   "key": "atomichabits",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "existingId": "atomichabits",
+   "reason": "Rafta çalışma kitabıyla birlikte duruyor."
+  },
+  {
+   "key": "atomichabitsworkbook",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "title": "The Atomic Habits Workbook",
+   "author": "James Clear",
+   "originalLanguage": "en",
+   "categories": [
+    "productivity",
+    "psychology"
+   ],
+   "reason": "Atomik Alışkanlıklar’ın uygulama kitabı: kitaptaki yöntemi alıştırmalarla kendi alışkanlıklarına uygulamak için, kitaptan sonra.",
+   "year": 2025,
+   "titleTr": "Atomik Alışkanlıklar Çalışma Kitabı: İstediğiniz Hayatı İnşa Etmeniz İçin Basit Egzersizler",
+   "edition": {
+    "title": "Atomik Alışkanlıklar Çalışma Kitabı: İstediğiniz Hayatı İnşa Etmeniz İçin Basit Egzersizler",
+    "isbn": "9786254106415",
+    "publisher": "Pegasus Yayınları",
+    "translators": [
+     "Sevinç Seyla Tezcan"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/atomik-aliskanliklar-calisma-kitabi-istediginiz-hayati-insa-etmeniz-icin-basit-egzersizler/740853.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.pandora.com.tr/kitap/atomik-aliskanliklar-calisma-kitabi/960806",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve pandora.com.tr aynı ISBN'i (9786254106415) ve Pegasus Yayınları yayınevini gösteriyor; çevirmen: Sevinç Seyla Tezcan. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/shelf-atomichabitsworkbook.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12151618/mh:1000/wh:a209d5b89",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/atomik-aliskanliklar-calisma-kitabi-istediginiz-hayati-insa-etmeniz-icin-basit-egzersizler/740853.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Atomik Alışkanlıklar Çalışma Kitabı: İstediğiniz Hayatı İnşa Etmeniz İçin Basit Egzersizler",
+    "author": "James Clear",
+    "publisher": "Pegasus Yayınları",
+    "isbn": "9786254106415",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "hbrstrategy",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "title": "HBR’s 10 Must Reads on Strategy",
+   "author": "Harvard Business Review",
+   "originalLanguage": "en",
+   "categories": [
+    "strategy"
+   ],
+   "reason": "Harvard Business Review’dan strateji üzerine seçilmiş makaleler; İyi Strateji / Kötü Strateji’nin yanında kısa okumalar.",
+   "year": 2011,
+   "titleTr": "Strateji",
+   "edition": {
+    "title": "Strateji",
+    "isbn": "9786052202708",
+    "publisher": "Optimist Kitap",
+    "translators": [
+     "Melis İnan"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji/309970.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://optimistkitap.com/kitap/strateji/",
+    "secondSourceType": "publisher",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve optimistkitap.com aynı ISBN'i (9786052202708) ve Optimist Kitap yayınevini gösteriyor; çevirmen: Melis İnan. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/shelf-hbrstrategy.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:129748/wi:500/wh:53e586eee",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji/309970.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Strateji",
+    "author": "Harvard Business Review",
+    "publisher": "Optimist Kitap",
+    "isbn": "9786052202708",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "thisismarketing",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "existingId": "thisismarketing",
+   "reason": "Rafta Spalton’ın Pazarlama Sırları’nın yanında, pazarlamaya müşteri gözünden bakan kısa bir kitap."
+  },
+  {
+   "key": "goal",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "existingId": "goal",
+   "reason": "Rafta Optimist baskısıyla: darboğazlar ve sürekli iyileştirme süreci."
+  },
+  {
+   "key": "kariyeryonetimi",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "title": "Career Management Secrets",
+   "author": "Carolyn Boyes",
+   "originalLanguage": "en",
+   "categories": [
+    "productivity",
+    "management"
+   ],
+   "reason": "Kariyer planlaması üzerine kısa bir iş kılavuzu, Collins’in Business Secrets dizisinden; rafta NTV Yayınları baskısıyla.",
+   "year": 2010,
+   "titleTr": "Kariyer Yönetimi Sırları",
+   "edition": {
+    "title": "Kariyer Yönetimi Sırları",
+    "isbn": "9786055056384",
+    "publisher": "NTV Yayınları",
+    "translators": [
+     "Rana Alpöz"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kariyer-yonetimi-sirlari/352237.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.sondakika.com/kultur-sanat/haber-kariyer-yonetimi-sirlari-kitabi-6620874/",
+    "secondSourceType": "bibliographic",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve sondakika.com aynı ISBN'i (9786055056384) ve NTV Yayınları yayınevini gösteriyor; çevirmen: Rana Alpöz. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/shelf-kariyeryonetimi.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:983120/wi:500/wh:030ce7ca2",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kariyer-yonetimi-sirlari/352237.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Kariyer Yönetimi Sırları",
+    "author": "Carolyn Boyes",
+    "publisher": "NTV Yayınları",
+    "isbn": "9786055056384",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "retorik",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "title": "Ῥητορική",
+   "author": "Aristoteles",
+   "originalLanguage": "el",
+   "categories": [
+    "philosophy",
+    "communication"
+   ],
+   "reason": "İknanın klasik temeli: konuşmacının karakteri, dinleyicinin duyguları ve kanıtın kendisi üzerinden ikna yolları. İş Bankası Kültür Yayınları, Hasan Âli Yücel Klasikler Dizisi.",
+   "titleTr": "Retorik",
+   "edition": {
+    "title": "Retorik",
+    "isbn": "9786257999144",
+    "publisher": "Türkiye İş Bankası Kültür Yayınları",
+    "translators": [
+     "Ari Çokona"
+    ],
+    "sourceUrl": "https://www.iskultur.com.tr/retorik",
+    "sourceType": "publisher",
+    "secondSourceUrl": "https://www.pandora.com.tr/kitap/retorik/719550",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "iskultur.com.tr ve pandora.com.tr aynı ISBN'i (9786257999144) ve Türkiye İş Bankası Kültür Yayınları yayınevini gösteriyor; çevirmen: Ari Çokona. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/shelf-retorik.jpg",
+    "imageUrl": "https://img.iskultur.com.tr/webp/2019/12/retorik-6.jpg",
+    "sourceUrl": "https://www.iskultur.com.tr/retorik",
+    "sourceName": "iskultur.com.tr",
+    "title": "Retorik",
+    "author": "Aristoteles",
+    "publisher": "Türkiye İş Bankası Kültür Yayınları",
+    "isbn": "9786257999144",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "fathersandsons",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "existingId": "отцыидети",
+   "reason": "Rafta İş Bankası Kültür Yayınları’nın Hasan Âli Yücel Klasikler Dizisi baskısıyla."
+  },
+  {
+   "key": "salestraining",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "title": "Sales Effectiveness Training",
+   "author": "Thomas Gordon and Carl D. Zaiss",
+   "originalLanguage": "en",
+   "categories": [
+    "marketing",
+    "communication"
+   ],
+   "reason": "Etkin dinleme ve sorun çözme üzerine kurulu, müşteriyle ilişkiye dayalı bir satış yaklaşımı; Profil Kitap.",
+   "year": 1993,
+   "titleTr": "Etkili Satış Eğitimi",
+   "edition": {
+    "title": "Etkili Satış Eğitimi",
+    "isbn": "9789759964948",
+    "publisher": "Profil Kitap",
+    "translators": [
+     "Türkan Çolak"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/etkili-satis-egitimi/346745.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.pandora.com.tr/kitap/etkili-satis-egitimi-musterilerinizle-cigir-acacak-ortak-olma-yontemi/370607",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve pandora.com.tr aynı ISBN'i (9789759964948) ve Profil Kitap yayınevini gösteriyor; çevirmen: Türkan Çolak. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/shelf-salestraining.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:962937/wi:500/wh:f319e9050",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/etkili-satis-egitimi/346745.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Etkili Satış Eğitimi",
+    "author": "Thomas Gordon and Carl D. Zaiss",
+    "publisher": "Profil Kitap",
+    "isbn": "9789759964948",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "spaltonpazarlama",
+   "group": "2026-10-22",
+   "role": "Raf",
+   "title": "Marketing Secrets",
+   "author": "Peter Spalton",
+   "originalLanguage": "en",
+   "categories": [
+    "marketing"
+   ],
+   "reason": "Pazarlamanın temel kavramlarına kısa bir iş kılavuzu, Kariyer Yönetimi Sırları ile aynı Business Secrets dizisinden; rafta NTV Yayınları baskısıyla.",
+   "year": 2010,
+   "titleTr": "Pazarlama Sırları",
+   "edition": {
+    "title": "Pazarlama Sırları",
+    "isbn": "9786055056674",
+    "publisher": "NTV Yayınları",
+    "translators": [
+     "Aysun Babacan"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/pazarlama-sirlari/372114.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://1000kitap.com/kitap/pazarlama-sirlari--122933",
+    "secondSourceType": "bibliographic",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve 1000kitap.com aynı ISBN'i (9786055056674) ve NTV Yayınları yayınevini gösteriyor; çevirmen: Aysun Babacan. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/shelf-spaltonpazarlama.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:1035258/wi:500/wh:50f3ade61",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/pazarlama-sirlari/372114.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Pazarlama Sırları",
+    "author": "Peter Spalton",
+    "publisher": "NTV Yayınları",
+    "isbn": "9786055056674",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  }
+ ],
+ "links": [
+  {
+   "type": "sequence",
+   "first": "ilprincipe",
+   "then": "modernprens",
+   "why": "Gramsci bu notlarda Machiavelli’yi yeniden okur; önce Hükümdar okunmalı.",
+   "next": "Machiavelli’nin Gramsci tarafından yeniden okunuşu: siyaset ve modern devlet üzerine notlar."
+  },
+  {
+   "type": "sequence",
+   "first": "atomichabits",
+   "then": "atomichabitsworkbook",
+   "why": "Çalışma kitabı Atomik Alışkanlıklar’daki yöntemi alıştırmalarla uygular; önce kitabın kendisi okunmalı.",
+   "next": "Kitaptaki yöntemi alıştırmalarla kendi alışkanlıklarına uygulamak için."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "retorik",
+    "influence"
+   ],
+   "reason": "İkisi de ikna üzerine: Aristoteles ikna yollarını konuşmacının karakteri, dinleyicinin duyguları ve kanıt üzerinden temellendirir; Cialdini iknanın psikolojik ilkelerini deneylerle anlatır."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "toyotaproductionsystem",
+    "goal"
+   ],
+   "reason": "İkisi de işletmenin toplam akışını iyileştirmeyi ele alır: Ohno Toyota üretim sistemini, Goldratt darboğazları ve kısıtlar teorisini anlatır."
+  }
+ ]
+}

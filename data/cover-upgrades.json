@@ -5692,6 +5692,92 @@
     "hashDistance": 2
    }
   },
+  "covers/areas-artofstrategy.jpg": {
+   "bookId": "artofstrategy",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/areas-industryandempire.jpg": {
+   "bookId": "industryandempire",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/areas-interpretationofcultures.jpg": {
+   "bookId": "interpretationofcultures",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1600,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:11317637/wi:1600",
+    "hashDistance": 2
+   }
+  },
+  "covers/areas-logicofscientificdiscovery.jpg": {
+   "bookId": "logikderforschung",
+   "from": {
+    "width": 500,
+    "effective": 425,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/areas-marketingmanagement.jpg": {
+   "bookId": "marketingmanagement",
+   "from": {
+    "width": 784,
+    "effective": 784,
+    "watermark": true
+   },
+   "status": "kept"
+  },
+  "covers/areas-organizationalbehavior.jpg": {
+   "bookId": "organizationalbehavior",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/areas-problemsofphilosophy.jpg": {
+   "bookId": "problemsofphilosophy",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/areas-whatishistory.jpg": {
+   "bookId": "whatishistory",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 800,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:5554325/wi:1600",
+    "hashDistance": 0
+   }
+  },
   "covers/b0098ced7c5cb71f.jpg": {
    "bookId": "artofexceptionalliving",
    "from": {
@@ -10422,6 +10508,15 @@
     "hashDistance": 3
    }
   },
+  "covers/shelf-atomichabitsworkbook.jpg": {
+   "bookId": "atomichabitsworkbook",
+   "from": {
+    "width": 594,
+    "effective": 594,
+    "watermark": true
+   },
+   "status": "kept"
+  },
   "covers/shelf-bana-ne-oluyor.jpg": {
    "bookId": "bananeoluyor",
    "from": {
@@ -10430,6 +10525,22 @@
     "watermark": true
    },
    "status": "kept-no-larger-copy"
+  },
+  "covers/shelf-bedenyuzyapisivekarakter.jpg": {
+   "bookId": "bedenyuzyapisivekarakter",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 672,
+    "effective": 672,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:1009236/wi:1600",
+    "hashDistance": 2
+   }
   },
   "covers/shelf-dunyayi-degistiren-makine.jpg": {
    "bookId": "machinethatchangedtheworld",
@@ -10492,6 +10603,22 @@
     "hashDistance": 3
    }
   },
+  "covers/shelf-hbrstrategy.jpg": {
+   "bookId": "hbrs10mustreadsonstrategy",
+   "from": {
+    "width": 500,
+    "effective": 300,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1600,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:129748/wi:1600",
+    "hashDistance": 2
+   }
+  },
   "covers/shelf-her-zamanki-gibi.jpg": {
    "bookId": "sameasever",
    "from": {
@@ -10528,6 +10655,22 @@
    },
    "status": "kept"
   },
+  "covers/shelf-kariyeryonetimi.jpg": {
+   "bookId": "careermanagementsecrets",
+   "from": {
+    "width": 500,
+    "effective": 350,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1600,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:983120/wi:1600",
+    "hashDistance": 2
+   }
+  },
   "covers/shelf-kucuk-aliskanliklar.jpg": {
    "bookId": "tinyhabits",
    "from": {
@@ -10536,6 +10679,15 @@
     "watermark": true
    },
    "status": "kept"
+  },
+  "covers/shelf-modernprens.jpg": {
+   "bookId": "ilmodernoprincipe",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
   },
   "covers/shelf-mukemmelin-pesinde.jpg": {
    "bookId": "pursuitofperfect",
@@ -10554,6 +10706,30 @@
     "watermark": true
    },
    "status": "kept"
+  },
+  "covers/shelf-retorik.jpg": {
+   "bookId": "ρητορικη",
+   "from": {
+    "width": 1105,
+    "effective": 1105
+   },
+   "status": "kept"
+  },
+  "covers/shelf-salestraining.jpg": {
+   "bookId": "saleseffectivenesstraining",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 672,
+    "effective": 672,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:962937/wi:1600",
+    "hashDistance": 2
+   }
   },
   "covers/shelf-sihirli-kelimeler.jpg": {
    "bookId": "magicwords",
@@ -10604,6 +10780,22 @@
     "watermark": true
    },
    "status": "kept"
+  },
+  "covers/shelf-spaltonpazarlama.jpg": {
+   "bookId": "marketingsecrets",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1120,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:1035258/wi:1600",
+    "hashDistance": 0
+   }
   },
   "covers/shelf-stratejik-ikna.jpg": {
    "bookId": "thankyouforarguing",

@@ -20848,6 +20848,575 @@
           }
         ]
       }
+    },
+    "organizationalbehavior": {
+      "firstPublicationYear": 1979,
+      "firstPublisher": "Prentice-Hall",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://find.library.upenn.edu/catalog/991406963503681",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://libcat.library.tamu.edu/Record/in00000261865",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/9780134729664",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.abebooks.com/9780136414643/Organizational-Behavior-Concepts-Controversies-Applications-0136414648/plp",
+            "type": "retailer"
+          },
+          {
+            "url": "https://opac.uibe.edu.cn/opac/book/5f32668330230e7f7ac91ac39e0b95f1",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "artofstrategy": {
+      "firstPublicationYear": 2008,
+      "firstPublisher": "W. W. Norton & Company",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.abebooks.com/9780393062434/Art-Strategy-Game-Theorist%E2%80%B2s-Guide-0393062430/plp",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.harvard.com/book/9780393337174",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://opac.iub.edu.bd/bib/13072",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://ahml.info/catalog/record/1892036",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "marketingmanagement": {
+      "firstPublicationYear": 1967,
+      "firstPublisher": "Prentice-Hall",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://libraries.escp.eu/Default/doc/SYRACUSE/58751/marketing-management-analysis-planning-and-control-kotler-philip",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://libcat.library.tamu.edu/Record/in00000209543",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://kutuphane.sbb.gov.tr/vufind/Record/56584/Details",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://link.springer.com/article/10.1177/0092070303031002008",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "sociologicalimagination": {
+      "firstPublicationYear": 1959,
+      "firstPublisher": "Oxford University Press",
+      "stage1": {
+        "reviewer": "claude-stage1-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Sociological_Imagination",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://cclib.ucsd.edu/Library/details.aspx?ID=4821",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.science.org/doi/10.1126/science.130.3366.33",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://academic.oup.com/jah/article-abstract/46/2/355/740251",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "interpretationofcultures": {
+      "firstPublicationYear": 1973,
+      "firstPublisher": "Basic Books",
+      "stage1": {
+        "reviewer": "claude-stage1-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Interpretation_of_Cultures",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://catalog.lib.kyushu-u.ac.jp/ja/recordID/1001310204",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.hachettebookgroup.com/titles/clifford-geertz/the-interpretation-of-cultures/9780465093557/",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://search.library.wisc.edu/catalog/9910006648402121",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.commoncrowbooks.com/pages/books/s00035646/clifford-geertz/the-interpretation-of-cultures-selected-essays",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "industryandempire": {
+      "firstPublicationYear": 1968,
+      "firstPublisher": "Weidenfeld & Nicolson",
+      "stage1": {
+        "reviewer": "claude-stage1-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://resolve.cambridge.org/core/journals/irish-historical-studies/article/industry-and-empire-an-economic-history-of-britain-since-1750-by-e-j-hobsbawm-pp-xiii-336-diagrams-and-maps-london-weidenfeld-and-nicolson-1968-50s/44F3B9FCA46AF4C8BEA7918F525D77F7",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://store.maggs.com/products/industry-empire-economic-history-britain-since-1750-xzmt9tau",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://hobsbawm.shca.ed.ac.uk/bibl/industry-and-empire",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://academic.oup.com/ej/article-abstract/78/312/947/5235814",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "whatishistory": {
+      "firstPublicationYear": 1961,
+      "firstPublisher": "Macmillan",
+      "stage1": {
+        "reviewer": "claude-stage1-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://wellcomecollection.org/works/e9txd3d2",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://katalog.lib.cas.cz/Record/001859583",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.abebooks.com/9780333043516/What-History-George-Macaulay-Trevelyan-0333043510/plp",
+            "type": "retailer"
+          },
+          {
+            "url": "https://books.google.com/books/about/What_is_History.html?id=vJRmAAAAMAAJ",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.penguin.co.uk/books/13521/what-is-history-by-carr-e-h/9780141010205",
+            "type": "publisher"
+          }
+        ]
+      }
+    },
+    "problemsofphilosophy": {
+      "firstPublicationYear": 1912,
+      "firstPublisher": "Williams and Norgate",
+      "stage1": {
+        "reviewer": "claude-stage1-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://catalogue.nli.ie/Record/vtls000478705",
+            "type": "national-bibliography"
+          },
+          {
+            "url": "https://mulpress.mcmaster.ca/russelljournal/article/download/1368/1395/1683",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Problems_of_Philosophy",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://ndpr.nd.edu/reviews/acquaintance-knowledge-and-logic-new-essays-on-bertrand-russells-the-problems-of-philosophy/",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "logikderforschung": {
+      "firstPublicationYear": 1934,
+      "firstPublisher": "Julius Springer",
+      "originalLanguage": "de",
+      "stage1": {
+        "reviewer": "claude-stage1-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Logic_of_Scientific_Discovery",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://digitalcollections.mcmaster.ca/node/3199",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://voewood-books.myshopify.com/products/logik-der-forschung",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://plato.stanford.edu/archives/spr2013/entries/popper/",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.britannica.com/topic/The-Logic-of-Scientific-Discovery",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.manhattanrarebooks.com/pages/books/2675/karl-popper/logik-der-forschung-the-logic-of-scientific-discovery",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "bedenyuzyapisivekarakter": {
+      "originalLanguage": "tr",
+      "stage1": {
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/beden-ve-yuz-yapisi-ile-karakter-analizi/22549.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://katalog.bilecik.edu.tr/bib/22846",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.bkmkitap.com/beden-ve-yuz-yapisi-ile-karakter-analizi",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.anadiliegitimi.com/en/download/article-file/329152",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.ikrakitap.com/beden-yuz-yapisi-karakter",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "ilmodernoprincipe": {
+      "firstPublicationYear": 1949,
+      "firstPublisher": "Einaudi",
+      "originalLanguage": "it",
+      "originalTitle": "Il moderno Principe",
+      "stage1": {
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.iskultur.com.tr/modern-prens",
+            "type": "publisher"
+          },
+          {
+            "url": "https://openlibrary.org/works/OL77367W",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://cle.ens-lyon.fr/italien/fichiers/textes-gramsci-quaderno-13",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.marxists.org/archive/gramsci/prison_notebooks/modern_prince/index.htm",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "atomichabitsworkbook": {
+      "firstPublicationYear": 2025,
+      "firstPublisher": "Avery",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://global.penguinrandomhouse.com/?p=32892",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.porchlightbooks.com/products/atomic-habits-workbook-james-clear-9798217180509",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://betterread.com.au/book/untitled-0509.do",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.penguin.com.au/books/the-atomic-habits-workbook-9781529981230",
+            "type": "publisher"
+          }
+        ]
+      }
+    },
+    "hbrs10mustreadsonstrategy": {
+      "firstPublicationYear": 2011,
+      "firstPublisher": "Harvard Business Review Press",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.goodreads.com/work/editions/14499698-hbr-s-10-must-reads-on-strategy",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://librarycatalogue.taylors.edu.my/bib/141510",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://bookshare.org/browse/book/968029",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "careermanagementsecrets": {
+      "firstPublicationYear": 2010,
+      "firstPublisher": "Collins",
+      "originalLanguage": "en",
+      "originalTitle": "Career Management Secrets",
+      "stage1": {
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.w-ilmu.intan.my/neuseal/Record/0000013143/Description",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.goodreads.com/book/show/8880878",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://secure.combinedbook.com/collinsbusinesssecrets-careermanagement_127293.html",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "ρητορικη": {
+      "originalLanguage": "el",
+      "originalTitle": "Ῥητορική",
+      "stage1": {
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Rhetoric_(Aristotle)",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.iskultur.com.tr/retorik",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://plato.stanford.edu/entries/aristotle-rhetoric/",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://capone.mtsu.edu/jcomas/rhetoric/aristotle_terms.html",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "saleseffectivenesstraining": {
+      "firstPublicationYear": 1993,
+      "firstPublisher": "Dutton",
+      "originalLanguage": "en",
+      "originalTitle": "Sales Effectiveness Training",
+      "stage1": {
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://qcpl.quezoncity.gov.ph/catalog/17846",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.gordontraining.com/saleseffectivenessbook.html",
+            "type": "rights-holder"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/search.json?q=sales+effectiveness+training+zaiss&fields=title,author_name,publisher,first_publish_year,isbn,publish_year",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "marketingsecrets": {
+      "firstPublicationYear": 2010,
+      "firstPublisher": "Collins",
+      "originalLanguage": "en",
+      "originalTitle": "Marketing Secrets",
+      "stage1": {
+        "reviewer": "claude-stage1-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://lib.ktech.edu.kw/bib/1147",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://williamcollinsbooks.co.uk/?p=7282",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://secure.combinedbook.com/collinsbusinesssecrets-marketing_127295.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://lehmanns.de/shop/wirtschaft/11078349-9780007328116-marketing",
+            "type": "retailer"
+          }
+        ]
+      }
     }
   }
 }
