@@ -150,8 +150,14 @@ test('the catalog reflows at 320 px with 200% text', async ({ browser }) => {
   await page.goto('./');
   await expect(page.locator('.book-card')).toHaveCount(24);
   await page.addStyleTag({ content: LARGE_TEXT });
-  expect(await pageFits(page), 'horizontal overflow').toBe(true);
-  expect(await spilling(page.locator('.catalog-pagination, .books-grid'))).toEqual([]);
+  // The cards are checked in the wide font too: CI draws them in a font much wider than macOS's.
+  await page.addStyleTag({ content: WIDE_FONT });
+  for (const [font, wide] of Object.entries(fonts)) {
+    await useFont(page, wide);
+    expect(await pageFits(page), `horizontal overflow in the ${font}`).toBe(true);
+    expect(await spilling(page.locator('.catalog-pagination, .books-grid')), font).toEqual([]);
+  }
+  await useFont(page, false);
   expect(await page.locator('.main-tabs').evaluate(list => list.scrollWidth <= list.clientWidth), 'a section tab is out of view').toBe(true);
   // The per-page control is as wide as its label, and every pagination control keeps a 44 px target.
   const perPage = page.getByRole('combobox', { name: 'Sayfa başına kitap' });
@@ -215,7 +221,7 @@ test.describe('the Kümeler tab', () => {
     .filter(button => Math.min(button.offsetWidth, button.offsetHeight) < 44)
     .map(button => `${button.textContent.trim()} ${button.offsetWidth}×${button.offsetHeight}`));
 
-  // Each collection is opened in turn and checked in both fonts. With 29 collections this is slow on
+  // Each collection is opened in turn and checked in both fonts. With 30 collections this is slow on
   // CI's WebKit phone profile, hence the longer time limit.
   test('the collections reflow at 320 px with 200% text', async ({ browser }) => {
     test.slow();
