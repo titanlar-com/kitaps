@@ -57,8 +57,8 @@ test('a larger page of 48 books also ends on a full row', async ({ page }) => {
 const EMPTY_STATE = { schemaVersion: 2, updatedAt: '1970-01-01T00:00:00.000Z', books: {}, queue: null };
 const COVER_WIDTHS = [320, 360, 375, 390, 768, 1280];
 const isolate = page => Promise.all([
-  page.route('https://raw.githubusercontent.com/karacaismail/kitaps-state/**', route => route.fulfill({ json: EMPTY_STATE })),
-  page.route('https://api.github.com/repos/karacaismail/kitaps-state/**', route => route.fulfill({ status: 404, json: {} })),
+  page.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.fulfill({ json: EMPTY_STATE })),
+  page.route('https://api.github.com/repos/titanlar-com/kitaps-state/**', route => route.fulfill({ status: 404, json: {} })),
 ]);
 // Each frame that is not 2:3, or whose cover reaches past it, and how many covers taller
 // than 2:3 fill the frame from edge to edge.
