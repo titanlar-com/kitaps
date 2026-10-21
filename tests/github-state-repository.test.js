@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {FINE_GRAINED_TOKEN,GITHUB_REQUEST_HEADERS,GitHubStateBatcher,GitHubStateRepository,GitHubStateRepositoryError,MIN_GITHUB_SYNC_DELAY_MS,applyPendingMutations,assertStateDocument,emptyStateDocument,fieldStamp,planConnect,planFirstSync,projectPublicState,upgradeStateDocument} from '../src/state/index.ts';
+import {EXCLUSIVE_STATE_GROUPS,FINE_GRAINED_TOKEN,GITHUB_REQUEST_HEADERS,GitHubStateBatcher,GitHubStateRepository,GitHubStateRepositoryError,MIN_GITHUB_SYNC_DELAY_MS,applyPendingMutations,assertStateDocument,emptyStateDocument,fieldStamp,mergeQueue,mergeReading,mergeStates,planConnect,planFirstSync,projectPublicState,upgradeStateDocument} from '../src/state/index.ts';
+import {toggleState} from '../src/library.js';
 
 // Copied from GitHub's live preflight response (Access-Control-Allow-Headers).
 const GITHUB_CORS_ALLOWED=['authorization','content-type','if-match','if-modified-since','if-none-match','if-unmodified-since','accept-encoding','x-github-otp','x-requested-with','user-agent','graphql-features','x-github-next-global-id','x-github-api-version','x-fetch-nonce','copilot-integration-id','dd-client-token','x-client-application'];
@@ -228,6 +229,13 @@ test('version 1 files and pending queues are read as version 2',()=>{
  assert.deepEqual(migrated.pendingMutations().map(item=>item.bookId),['b']);
  assert.deepEqual(migrated.pendingRecovery().map(copy=>[copy.raw,copy.kept]),[[text,1]]);
  assert.equal(damaged.getItem(GitHubStateRepository.LEGACY_PENDING_KEY),null);
+ // An entry without an edit object is damage, never a clear of the book.
+ for(const value of [null,'okundu',5,['okundu']]){
+  const odd=storage();odd.setItem(GitHubStateRepository.LEGACY_PENDING_KEY,JSON.stringify([{id:'odd',bookId:'a',updatedAt:timestamp(4),value}]));
+  const reader=new GitHubStateRepository({storage:odd,fetch:async()=>raw(emptyStateDocument())});
+  assert.equal(reader.getPendingCount(),0,JSON.stringify(value));
+  assert.equal(reader.recoveryStatus().copies,1);
+ }
  // Without room for the copy the legacy record stays where it is.
  const legacyValues=new Map([[GitHubStateRepository.LEGACY_PENDING_KEY,text]]);
  const cramped=new GitHubStateRepository({storage:{getItem:key=>legacyValues.get(key)??null,removeItem:key=>legacyValues.delete(key),setItem:(key,value)=>{if(key===GitHubStateRepository.RECOVERY_KEY)throw new DOMException('full','QuotaExceededError');legacyValues.set(key,value);}},fetch:async()=>raw(emptyStateDocument())});
@@ -695,4 +703,198 @@ test('a damaged pending queue keeps its readable edits queued and a copy of the 
  repository.clearPendingRecovery();
  assert.equal(repository.hasPendingRecovery(),false);
  assert.deepEqual(repository.pendingRecovery(),[]);
+});
+
+// Two devices edit the same book or the queue before either has seen the other's edit.
+// Each edit keeps the value it was made on (its base), so both sides' edits are kept.
+const basisOf=local=>new Map(Object.entries(JSON.parse(local.getItem(GitHubStateRepository.BASIS_KEY)??'{}')));
+
+test('marks merge three-way: removals go, additions come, and of two exclusive marks the later stays',()=>{
+ assert.deepEqual(mergeStates([],['alindi'],['onemli'],false),['onemli','alindi']);
+ assert.deepEqual(mergeStates(['onemli','alinacak'],['alinacak'],['onemli','alinacak','okunuyor'],false),['alinacak','okunuyor'],'a mark this device took off stays off');
+ assert.deepEqual(mergeStates(['alinacak'],['alindi'],['alinacak','onemli'],false),['onemli','alindi'],'bought replaces to-buy');
+ assert.deepEqual(mergeStates([],['okundu'],['okunuyor'],false),['okundu'],'this device set its mark later');
+ assert.deepEqual(mergeStates([],['okundu'],['okunuyor'],true),['okunuyor'],'the other device set its mark later');
+ // The groups are the ones the mark buttons apply.
+ for(const group of EXCLUSIVE_STATE_GROUPS)for(const mark of group)for(const other of group)if(other!==mark)assert.deepEqual(toggleState([other],mark),[mark]);
+ assert.deepEqual(toggleState(['onemli','alindi'],'okundu').sort(),['alindi','okundu','onemli']);
+});
+
+test('the reading record merges part by part, and the queue keeps both devices’ books',()=>{
+ assert.deepEqual(mergeReading(null,{page:50},{why:'Bilgisayardan'},false),{page:50,why:'Bilgisayardan'});
+ assert.deepEqual(mergeReading({why:'eski',page:5},{page:5},{why:'eski',page:5,apply:'yeni'},false),{page:5,apply:'yeni'},'a part this device cleared stays cleared');
+ assert.equal(mergeReading({page:10},{page:20},{page:30},false).page,20);
+ assert.equal(mergeReading({page:10},{page:20},{page:30},true).page,30);
+ assert.equal(mergeReading({why:'x'},null,{why:'x'},false),null);
+ assert.deepEqual(mergeQueue(['a'],['a','b'],['a','c'],false),['a','c','b'],'the other device’s book keeps its place after the book it followed');
+ assert.deepEqual(mergeQueue(['a','b'],['b'],['a','b','c'],false),['b','c']);
+ assert.deepEqual(mergeQueue(['a','b'],['b','a'],['x','a','b'],false),['x','b','a'],'a reorder survives a book this device does not show');
+ assert.deepEqual(mergeQueue(['a','b'],['b','a'],['a','b','c'],true),['a','b','c'],'the side that changed the queue later leads its order');
+ // Five books at most: the later side's books stay.
+ assert.deepEqual(mergeQueue([],['f'],['a','b','c','d','e'],false),['a','b','c','d','f']);
+ assert.deepEqual(mergeQueue([],['f'],['a','b','c','d','e'],true),['a','b','c','d','e']);
+});
+
+test('an edit is written exactly as made when the shared value is still the one it was made on, and merged when it is not',async()=>{
+ const local=storage();
+ const seen=document({a:record(1,{states:['onemli','alinacak'],reading:{why:'not',page:5}},{states:timestamp(1),reading:timestamp(1)})},timestamp(1),{updatedAt:timestamp(1),value:['a','b']});
+ const repository=new GitHubStateRepository({storage:local,clock:()=>new Date(timestamp(20)),fetch:async()=>raw(seen)});
+ await repository.load();
+ repository.queueBookState('a',{states:[]},undefined,{states:['onemli','alinacak']});
+ repository.queueBookState('a',{reading:{page:5}},undefined,{reading:{why:'not',page:5}});
+ repository.queueQueueState(['b','a'],undefined,['a','b']);
+ const exact=applyPendingMutations(seen,repository.pendingMutations(),basisOf(local));
+ assert.deepEqual(exact.books.a.value,{states:[],reading:{page:5}},'removals and a cleared note travel');
+ assert.deepEqual(exact.queue.value,['b','a'],'a reorder travels');
+ // Meanwhile another device added a mark, a part of the record and a book to the queue.
+ const changed=document({a:record(10,{states:['onemli','alinacak','okunuyor'],reading:{why:'not',page:5,totalPages:300}},{states:timestamp(10),reading:timestamp(10)})},timestamp(10),{updatedAt:timestamp(10),value:['a','b','c']});
+ const both=applyPendingMutations(changed,repository.pendingMutations(),basisOf(local));
+ assert.deepEqual(both.books.a.value,{states:['okunuyor'],reading:{page:5,totalPages:300}});
+ assert.deepEqual(both.queue.value,['b','c','a'],'this later reorder leads; the other device’s book keeps its place after b');
+ assert.ok(Date.parse(both.books.a.stamps.states)>=Date.parse(timestamp(20)));
+ // The queue's stored format is the one older pages read; the basis lives beside it.
+ for(const mutation of JSON.parse(local.getItem(GitHubStateRepository.PENDING_KEY)).mutations)assert.deepEqual(Object.keys(mutation).sort(),mutation.kind==='book'?['bookId','id','kind','updatedAt','value']:['id','kind','updatedAt','value']);
+});
+
+test('folded edits keep their first base and each field its own time, so an edit that lost stays lost',async()=>{
+ const local=storage();let now=Date.parse(timestamp(10));
+ const empty=document({},timestamp(0));
+ const repository=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:async()=>raw(served)});
+ let served=empty;
+ await repository.load();
+ repository.queueBookState('a',{states:['onemli']},undefined,{states:[]});
+ now+=1000;
+ // The view now shows the first edit; the second is folded into it.
+ repository.queueBookState('a',{states:['onemli','alindi']},undefined,{states:['onemli']});
+ const other=document({a:record(5,{states:['okundu']},{states:timestamp(5)})},timestamp(5));
+ assert.deepEqual(applyPendingMutations(other,repository.pendingMutations(),basisOf(local)).books.a.value.states,['okundu','onemli','alindi'],'both of this device’s marks and the other device’s');
+ // A note edited on a clock that runs behind loses to a newer note; a later edit to the
+ // marks, stamped after what was seen, must not carry the old note past it.
+ const slow=storage();now=Date.parse(timestamp(10));
+ const behind=new GitHubStateRepository({storage:slow,clock:()=>new Date(now),fetch:async()=>raw(served)});
+ behind.queueBookState('b',{reading:{why:'v1'}});
+ served=document({b:record(50,{states:['okundu'],reading:{why:'v2'}},{states:timestamp(50),reading:timestamp(50)})},timestamp(50));
+ await behind.load();
+ behind.queueBookState('b',{states:['okunuyor']},undefined,{states:['okundu']});
+ const result=applyPendingMutations(served,behind.pendingMutations(),basisOf(slow));
+ assert.deepEqual(result.books.b.value.reading,{why:'v2'},'the newer note the reader saw stays');
+ assert.deepEqual(result.books.b.value.states,['okunuyor'],'the new mark wins');
+});
+
+test('keeping this device’s edits bases them on the file decided against; a send clears the basis; a damaged basis merges as before',async()=>{
+ const local=storage();
+ const decided=document({a:record(10,{states:['onemli']},{states:timestamp(10)})},timestamp(10));
+ const keeper=new GitHubStateRepository({storage:local,clock:()=>new Date(timestamp(20)),fetch:async()=>raw(decided)});
+ keeper.queueBookState('a',{states:['alindi']},undefined,{states:[]});
+ keeper.requeuePendingFor(['a'],false,decided);
+ assert.deepEqual(applyPendingMutations(decided,keeper.pendingMutations(),basisOf(local)).books.a.value.states,['alindi'],'the reader’s choice, exactly');
+ const after=document({a:record(30,{states:['onemli','okundu']},{states:timestamp(30)})},timestamp(30));
+ assert.deepEqual([...applyPendingMutations(after,keeper.pendingMutations(),basisOf(local)).books.a.value.states].sort(),['alindi','okundu'],'what another device saves after the decision is merged');
+ // A send clears the basis with the queue.
+ const written=withToken();let file=emptyStateDocument();
+ const sender=new GitHubStateRepository({storage:written,clock:()=>new Date(timestamp(20)),fetch:async(url,init)=>{if(init.method==='PUT'){file=JSON.parse(Buffer.from(JSON.parse(init.body).content,'base64').toString('utf8'));return new Response('{}',{status:200});}return contents(file);}});
+ sender.queueBookState('a',{states:['onemli']},undefined,{states:[]});
+ assert.ok(written.getItem(GitHubStateRepository.BASIS_KEY));
+ await sender.flushPending();
+ assert.equal(written.getItem(GitHubStateRepository.BASIS_KEY),null);
+ // A damaged basis, or none (an edit queued by older code), merges by the later stamp.
+ const damaged=storage();
+ const old=new GitHubStateRepository({storage:damaged,clock:()=>new Date(timestamp(20)),fetch:async()=>raw(emptyStateDocument())});
+ old.queueBookState('a',{states:['alindi']},undefined,{states:[]});
+ damaged.setItem(GitHubStateRepository.BASIS_KEY,'{broken');
+ const other=document({a:record(5,{states:['onemli']},{states:timestamp(5)})},timestamp(5));
+ assert.deepEqual((await old.loadWithPending(other)).books.a.value.states,['alindi']);
+ assert.deepEqual(applyPendingMutations(other,old.pendingMutations()).books.a.value.states,['alindi']);
+});
+
+// A fake GitHub for writes: `gate` holds the next write until released; `lose` stores the
+// next write but answers as if it failed, as when a phone page closes or the network drops.
+function writableGitHub(start=emptyStateDocument()){
+ const server={file:start,sha:'sha-0',puts:0,gate:null,lose:false};
+ server.fetch=async(url,init={})=>{
+  if(init.method==='PUT'){
+   if(server.gate){const gate=server.gate;server.gate=null;await gate;}
+   const body=JSON.parse(init.body);
+   if(body.sha!==server.sha)return new Response('{}',{status:409});
+   server.file=JSON.parse(Buffer.from(body.content,'base64').toString('utf8'));server.sha=`sha-${++server.puts}`;
+   if(server.lose){server.lose=false;return new Response('{}',{status:500});}
+   return new Response(JSON.stringify({content:{sha:server.sha}}),{status:200});
+  }
+  return contents(server.file,server.sha,{ETag:`"${server.sha}"`});
+ };
+ return server;
+}
+
+test('an undo made while the first edit is being sent is not lost',async()=>{
+ const server=writableGitHub();let now=Date.parse(timestamp(10));
+ const repository=new GitHubStateRepository({storage:withToken(),clock:()=>new Date(now),fetch:server.fetch});
+ await repository.load();
+ repository.queueBookState('a',{states:['onemli']},undefined,{states:[]});
+ let open;server.gate=new Promise(resolve=>{open=resolve;});
+ const sending=repository.flushPending();
+ await new Promise(resolve=>setImmediate(resolve));
+ now+=1000;
+ // The reader takes the mark off while the write is under way.
+ repository.queueBookState('a',{states:[]},undefined,{states:['onemli']});
+ open();await sending;
+ assert.deepEqual(server.file.books.a.value.states,['onemli']);
+ await repository.flushPending();
+ assert.deepEqual(server.file.books.a.value.states,[],'the undo reaches GitHub');
+});
+
+test('an undo after a write whose answer never came is not lost, and resending that write changes nothing',async()=>{
+ const server=writableGitHub();let now=Date.parse(timestamp(10));
+ const local=withToken();
+ const repository=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:server.fetch});
+ await repository.load();
+ repository.queueBookState('a',{states:['onemli','alinacak']},undefined,{states:[]});
+ server.lose=true;
+ await assert.rejects(()=>repository.flushPending());
+ assert.deepEqual(server.file.books.a.value.states,['onemli','alinacak'],'the write reached GitHub');
+ assert.equal(repository.getPendingCount(),1,'the device never heard back');
+ // A reload: the same edit is still waiting, and the reader takes one mark off.
+ now+=1000;
+ const reopened=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:server.fetch});
+ await reopened.load();
+ reopened.queueBookState('a',{states:['alinacak']},undefined,{states:['onemli','alinacak']});
+ await reopened.flushPending();
+ assert.deepEqual(server.file.books.a.value.states,['alinacak'],'the undo reaches GitHub');
+ // Resending a write that already reached GitHub keeps what is there.
+ const resend=withToken();
+ const twice=new GitHubStateRepository({storage:resend,clock:()=>new Date(now),fetch:server.fetch});
+ await twice.load();
+ twice.queueQueueState(['a','b'],undefined,[]);
+ server.lose=true;
+ await assert.rejects(()=>twice.flushPending());
+ await twice.flushPending();
+ assert.deepEqual(server.file.queue.value,['a','b']);
+});
+
+test('edits a damaged record still holds are not sent twice while it cannot be replaced',async()=>{
+ const good={id:'g',kind:'book',bookId:'a',updatedAt:timestamp(1),value:{states:['onemli']}};
+ const damaged=JSON.stringify({since:timestamp(1),mutations:[good,{id:'x',kind:'book',bookId:'b',updatedAt:'dün',value:{}}]});
+ const values=new Map([[GitHubStateRepository.PENDING_KEY,damaged],[GitHubStateRepository.TOKEN_KEY,TOKEN]]);
+ const full={getItem:key=>values.get(key)??null,removeItem:key=>values.delete(key),setItem:(key,value)=>{if(key===GitHubStateRepository.RECOVERY_KEY)throw new DOMException('full','QuotaExceededError');values.set(key,value);}};
+ const server=writableGitHub();
+ const repository=new GitHubStateRepository({storage:full,clock:()=>new Date(timestamp(30)),fetch:server.fetch});
+ await assert.rejects(()=>repository.flushPending(),error=>error.code==='storage');
+ assert.equal(server.puts,1);
+ assert.equal(repository.getPendingCount(),0,'what was sent is not waiting any more');
+ await repository.flushPending();
+ assert.equal(server.puts,1,'nothing is written again');
+ assert.equal(values.get(GitHubStateRepository.PENDING_KEY),damaged,'the record stays until its copy is stored');
+});
+
+test('an edit queued by older code, without a basis, merges as before when a new edit is folded into it',()=>{
+ const local=storage();
+ local.setItem(GitHubStateRepository.PENDING_KEY,JSON.stringify({since:timestamp(5),mutations:[{id:'old',kind:'book',bookId:'a',updatedAt:timestamp(5),value:{states:['alindi']}}]}));
+ const repository=new GitHubStateRepository({storage:local,clock:()=>new Date(timestamp(20)),fetch:async()=>raw(emptyStateDocument())});
+ repository.queueBookState('a',{reading:{why:'not'}},undefined,{reading:null});
+ const basis=basisOf(local).get(repository.pendingMutations()[0].id);
+ assert.deepEqual(basis.base,{reading:null},'the old field keeps no base');
+ assert.equal(basis.stamps.states,timestamp(5),'and its own time');
+ const remote=document({a:record(10,{states:['onemli'],reading:{page:3}},{states:timestamp(10),reading:timestamp(10)})},timestamp(10));
+ const result=applyPendingMutations(remote,repository.pendingMutations(),basisOf(local));
+ assert.deepEqual(result.books.a.value.states,['onemli'],'the newer shared marks win over the old edit');
+ assert.deepEqual(result.books.a.value.reading,{page:3,why:'not'},'the new edit merges');
 });

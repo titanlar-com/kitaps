@@ -16,6 +16,8 @@ const publicPayload=(id,states,personal)=>({states:states[id]||[],reading:readin
 // value, or it would overwrite another device's note or marks.
 const setFields=view=>({...(view.states.length?{states:view.states}:{}),...(view.reading?{reading:view.reading}:{})});
 const signature=value=>JSON.stringify(value);
+// What an edit was made on: the fields it carries, as the view showed them before it.
+const baseOf=(view,patch)=>Object.fromEntries(Object.keys(patch).map(field=>[field,field==='states'?[...(view?.states||[])]:view?.reading??null]));
 const emptySignature=signature({states:[],reading:null});
 const modelSnapshot=(bookIds,states,personal)=>new Map(bookIds.map(id=>[id,publicPayload(id,states,personal)]));
 const queueSignature=personal=>JSON.stringify(personal.queue);
@@ -120,9 +122,10 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
     if(!repository.hasCompletedInitialMigration()&&!firstSyncRemote.current){
      // A device that has never synced adds what only it knows. Where both sides
      // disagree, nothing is overwritten until the reader decides.
-     const plan=planFirstSync(baseline,latest.current.personal.queue,projectPublicState(remoteDocument,bookIds));
-     for(const id of plan.localOnly)repository.queueBookState(id,setFields(baseline.get(id)));
-     if(plan.queue==='local-only')repository.queueQueueState(latest.current.personal.queue);
+     const shared=projectPublicState(remoteDocument,bookIds);
+     const plan=planFirstSync(baseline,latest.current.personal.queue,shared);
+     for(const id of plan.localOnly){const fields=setFields(baseline.get(id));repository.queueBookState(id,fields,undefined,baseOf(shared.records[id],fields));}
+     if(plan.queue==='local-only')repository.queueQueueState(latest.current.personal.queue,undefined,shared.queue);
      // These were compared with the file as it is now; a later connect asks only about what changes after.
      repository.recordBases(remoteDocument,{skipBooks:plan.conflicts,skipQueue:plan.queue==='conflict',forceBooks:plan.localOnly,forceQueue:plan.queue==='local-only'});
      if(plan.conflicts.length||plan.queue==='conflict'){
@@ -240,11 +243,13 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
   if(choice==='device'){
    if(reason==='connect'){
     // Exactly the fields this device changed win; fields it never touched keep the shared value.
-    repository.requeuePendingFor(decision.books,decision.queue);
+    repository.requeuePendingFor(decision.books,decision.queue,remote);
    }else{
-    const snapshot=modelSnapshot(bookIds,latest.current.states,latest.current.personal);
-    for(const id of decision.books){const view=snapshot.get(id);if(view&&(view.states.length||view.reading))repository.queueBookState(id,setFields(view));}
-    if(decision.queue)repository.queueQueueState(latest.current.personal.queue);
+    // Based on the file the reader decided against: only what another device saves after
+    // the decision is merged with these values.
+    const snapshot=modelSnapshot(bookIds,latest.current.states,latest.current.personal),shared=projectPublicState(remote,bookIds);
+    for(const id of decision.books){const view=snapshot.get(id);if(view&&(view.states.length||view.reading)){const fields=setFields(view);repository.queueBookState(id,fields,undefined,baseOf(shared.records[id],fields));}}
+    if(decision.queue)repository.queueQueueState(latest.current.personal.queue,undefined,shared.queue);
    }
   }
   blocked.current=noSkip();firstSyncRemote.current=null;mergeReason.current=null;repository.markInitialMigrationComplete();setMergePrompt(null);
@@ -371,10 +376,12 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
     const before=previous??{states:[],reading:null};
     if(signature(before.states||[])!==signature(payload.states))patch.states=payload.states;
     if(signature(before.reading??null)!==signature(payload.reading))patch.reading=payload.reading;
-    batcher.current.queueBookState(id,patch,undefined,false);known.current.set(id,payload);
+    // The edit is based on what this device showed before it, so it can be merged with
+    // what another device saved meanwhile rather than replace it.
+    batcher.current.queueBookState(id,patch,undefined,false,baseOf(before,patch));known.current.set(id,payload);
    }
    const queue=queueSignature(personal);
-   if(!skip.queue&&queue!==knownQueue.current){batcher.current.queueQueueState(personal.queue,undefined,false);knownQueue.current=queue;}
+   if(!skip.queue&&queue!==knownQueue.current){batcher.current.queueQueueState(personal.queue,undefined,false,knownQueue.current===null?[]:JSON.parse(knownQueue.current));knownQueue.current=queue;}
    const pending=repository.getPendingCount();
    // Returning the same object when nothing changed keeps this effect from
    // re-rendering the app on every pass.

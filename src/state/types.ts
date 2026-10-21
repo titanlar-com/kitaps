@@ -16,6 +16,8 @@ export const GITHUB_STATE_BASE_KEY = 'kitapatlasi:github-state:base:v1';
  * reopened page never goes back to an older CDN copy. The shared file alone: unsent
  * edits and bases are kept under their own keys. */
 export const GITHUB_STATE_REMOTE_KEY = 'kitapatlasi:github-state:remote:v1';
+/** Beside the pending queue, by mutation id: what its format cannot hold (see MutationBasis). */
+export const GITHUB_STATE_PENDING_BASIS_KEY = 'kitapatlasi:github-state:pending-basis:v1';
 /** Copies of pending queues that could not be read in full, kept for the reader. */
 export const GITHUB_STATE_RECOVERY_KEY = 'kitapatlasi:github-state:pending-recovery:v1';
 /** Set while a newly connected device has not yet compared its unsent edits with the shared file. */
@@ -25,6 +27,9 @@ export const GITHUB_STATE_CONNECT_REVIEW_KEY = 'kitapatlasi:github-state:connect
 export const GITHUB_STATE_COMMIT_IDENTITY = { name: 'karacaismail', email: '35493655+karacaismail@users.noreply.github.com' } as const;
 
 export type ReadingState = 'onemli' | 'alinacak' | 'alindi' | 'okunuyor' | 'araverildi' | 'birakildi' | 'okundu';
+
+/** Marks that exclude each other on a book, as the mark buttons set them (toggleState). */
+export const EXCLUSIVE_STATE_GROUPS: readonly (readonly ReadingState[])[] = [['alinacak', 'alindi'], ['okunuyor', 'okundu', 'araverildi', 'birakildi']];
 
 export interface ReadingProgress {
   startedAt?: string;
@@ -67,6 +72,25 @@ export interface StateDocument {
 export type PendingStateMutation =
   | { id: string; kind: 'book'; bookId: string; updatedAt: string; value: BookStatePayload | null }
   | { id: string; kind: 'queue'; updatedAt: string; value: string[] };
+
+/** What an unsent edit was made on, kept beside the pending queue by mutation id, so the
+ * queue's own format stays the one pages already open on older code read.
+ * - `stamps`: when this device last edited each field the edit carries. Edits to one book
+ *   are folded into one mutation; each field keeps its own time.
+ * - `base`: the value of each field the edit is relative to: as this device showed it
+ *   before its first unsent edit, or what this device last sent of it. With a base, the
+ *   edit is merged with what another device saved meanwhile (three-way); without one (an
+ *   edit queued by older code), the later stamp wins.
+ * - `sent`: what this device tried to send since the base, newest last. A write can reach
+ *   GitHub without the page hearing back (a phone page closing); when the shared field
+ *   still carries one of these stamps, that version is the base. */
+export type MutationBasis =
+  | { kind: 'book'; stamps: Partial<Record<BookField, string>>; base: BookStatePayload; sent?: SentBookVersion[] }
+  | { kind: 'queue'; base: string[]; sent?: SentQueueVersion[] };
+export interface SentBookVersion { stamps: Partial<Record<BookField, string>>; value: BookStatePayload }
+export interface SentQueueVersion { stamp: string; value: string[] }
+/** At most this many unconfirmed sends are remembered per edit. */
+export const MAX_SENT_VERSIONS = 10;
 
 export interface PendingStore {
   /** When the oldest unsent change was made; the 30 second window counts from here. */

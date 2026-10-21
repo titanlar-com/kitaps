@@ -56,14 +56,15 @@ export class GitHubStateBatcher {
     value: BookStatePayload | null,
     updatedAt?: string,
     schedule = true,
+    base?: BookStatePayload,
   ): PendingStateMutation {
-    const mutation = this.repository.queueBookState(bookId, value, updatedAt);
+    const mutation = this.repository.queueBookState(bookId, value, updatedAt, base);
     if (schedule) this.schedule();
     return mutation;
   }
 
-  queueQueueState(queue: readonly string[], updatedAt?: string, schedule = true): PendingStateMutation {
-    const mutation = this.repository.queueQueueState(queue, updatedAt);
+  queueQueueState(queue: readonly string[], updatedAt?: string, schedule = true, base?: readonly string[]): PendingStateMutation {
+    const mutation = this.repository.queueQueueState(queue, updatedAt, base);
     if (schedule) this.schedule();
     return mutation;
   }

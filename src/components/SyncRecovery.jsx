@@ -38,7 +38,7 @@ export default function SyncRecoveryAlert({sync,onRemoved}){
   {confirming
    ?<div role="group" aria-labelledby={warning}>
      <Text id={warning} mt="sm" fw={600}>{stored?'Kopya bu tarayıcıdan kalıcı olarak silinir.':'Kayıt bu tarayıcıdan kalıcı olarak silinir; okunabilen değişiklikler kuyrukta kalır.'}</Text>
-     <Group gap="xs" mt="xs"><Button color="red" onClick={()=>{sync.clearRecovery();onRemoved?.()}}>Evet, sil</Button><Button ref={cancel} variant="default" onClick={()=>{back.current=true;setConfirming(false)}}>Vazgeç</Button></Group>
+     <Group gap="xs" mt="xs"><Button color="red" onClick={()=>{sync.clearRecovery();setConfirming(false);onRemoved?.()}}>Evet, sil</Button><Button ref={cancel} variant="default" onClick={()=>{back.current=true;setConfirming(false)}}>Vazgeç</Button></Group>
     </div>
    :<Group gap="xs" mt="sm"><Button variant="light" leftSection={<IconDownload size={18}/>} onClick={()=>downloadRecovery(sync.recoveryCopies())}>{thing==='Kopya'?'Kopyayı indir':'Kaydı indir'}</Button><Button ref={remove} variant="subtle" color="red" onClick={()=>setConfirming(true)}>{thing==='Kopya'?'Kopyayı sil':'Kaydı sil'}</Button></Group>}
  </Alert>;

@@ -1,5 +1,5 @@
 import { fieldStamp } from './syncModel.ts';
-import { applyPendingMutations, assertBookStatePayload, assertPendingMutation, assertQueue, assertStateDocument, emptyStateDocument, publicStateDocument, publicStatePayload, upgradeStateDocument } from './merge.ts';
+import { applyPendingMutations, assertBookStatePayload, assertMutationBasis, assertPendingMutation, assertQueue, assertStateDocument, emptyStateDocument, publicStateDocument, publicStatePayload, upgradeStateDocument } from './merge.ts';
 import {
   BOOK_FIELDS,
   GITHUB_STATE_BASE_KEY,
@@ -7,16 +7,19 @@ import {
   GITHUB_STATE_CONNECT_REVIEW_KEY,
   GITHUB_STATE_MIGRATION_KEY,
   GITHUB_STATE_OWNER,
+  GITHUB_STATE_PENDING_BASIS_KEY,
   GITHUB_STATE_PENDING_KEY,
   GITHUB_STATE_RECOVERY_KEY,
   GITHUB_STATE_REMOTE_KEY,
   GITHUB_STATE_REPOSITORY,
   GITHUB_STATE_TOKEN_KEY,
   LEGACY_GITHUB_STATE_PENDING_KEY,
+  MAX_SENT_VERSIONS,
   type BookField,
   type BookStatePayload,
   type StateBases,
   type GitHubStateRepositoryOptions,
+  type MutationBasis,
   type PendingRecoveryCopy,
   type PendingStateMutation,
   type PendingStore,
@@ -132,6 +135,7 @@ export class GitHubStateRepository {
   static readonly MIGRATION_KEY = GITHUB_STATE_MIGRATION_KEY;
   static readonly REMOTE_KEY = GITHUB_STATE_REMOTE_KEY;
   static readonly RECOVERY_KEY = GITHUB_STATE_RECOVERY_KEY;
+  static readonly BASIS_KEY = GITHUB_STATE_PENDING_BASIS_KEY;
 
   private readonly owner: string;
   private readonly repository: string;
@@ -151,7 +155,7 @@ export class GitHubStateRepository {
   private newestKeptAt = 0;
   /** A damaged pending record whose copy could not be stored yet: it stays where it is,
    * its readable edits are used, and nothing overwrites it until the copy is stored. */
-  private uncopied?: { raw: string; store: PendingStore; legacy: boolean; at: string };
+  private uncopied?: { raw: string; store: PendingStore; legacy: boolean; at: string; sent: Set<string> };
   private nextAnonymousApiRead = 0;
   private lastRead?: ReadInfo;
 
@@ -249,12 +253,16 @@ export class GitHubStateRepository {
   }
 
   /** The reader kept this device's unsent edits over another device's: they are
-   * stamped anew, so they win for exactly the fields they carry. */
-  requeuePendingFor(bookIds: Iterable<string>, includeQueue: boolean): void {
+   * stamped anew and based on `remote`, the shared file the reader decided against, so
+   * they win for exactly the fields they carry; only what another device saves after
+   * the decision is merged with them. */
+  requeuePendingFor(bookIds: Iterable<string>, includeQueue: boolean, remote?: StateDocument): void {
     const ids = new Set(bookIds);
     for (const mutation of this.readPending().mutations) {
-      if (mutation.kind === 'book' && ids.has(mutation.bookId)) this.queueBookState(mutation.bookId, mutation.value);
-      else if (mutation.kind === 'queue' && includeQueue) this.queueQueueState(mutation.value);
+      if (mutation.kind === 'book' && ids.has(mutation.bookId)) {
+        const record = remote?.books[mutation.bookId];
+        this.queueBook(mutation.bookId, mutation.value, undefined, remote ? { states: record?.value?.states ?? [], reading: record?.value?.reading ?? null } : undefined, true);
+      } else if (mutation.kind === 'queue' && includeQueue) this.queueQueue(mutation.value, undefined, remote ? remote.queue?.value ?? [] : undefined, true);
     }
   }
 
@@ -308,38 +316,112 @@ export class GitHubStateRepository {
 
   async loadWithPending(remote?: StateDocument): Promise<StateDocument> {
     const base = remote ?? await this.load();
-    return applyPendingMutations(base, this.readPending().mutations);
+    const pending = this.readPending().mutations;
+    return applyPendingMutations(base, pending, this.readBasis(pending));
   }
 
-  queueBookState(bookId: string, value: BookStatePayload | null, suppliedUpdatedAt?: string): PendingStateMutation {
+  /** Queues an edit to a book. `base`: the value of the fields it carries as this
+   * device showed them before the edit, so the edit can later be merged with what
+   * another device saved meanwhile. Edits to one book are folded into one: each field
+   * keeps the time of its own last edit and the base of its first unsent one. */
+  queueBookState(bookId: string, value: BookStatePayload | null, suppliedUpdatedAt?: string, base?: BookStatePayload): PendingStateMutation {
+    return this.queueBook(bookId, value, suppliedUpdatedAt, base, false);
+  }
+
+  /** Queues the reading queue; `base` as for queueBookState. */
+  queueQueueState(queue: readonly string[], suppliedUpdatedAt?: string, base?: readonly string[]): PendingStateMutation {
+    return this.queueQueue(queue, suppliedUpdatedAt, base, false);
+  }
+
+  /** `rebase`: every field is stamped anew and takes `base` (a decision about these edits). */
+  private queueBook(bookId: string, value: BookStatePayload | null, suppliedUpdatedAt: string | undefined, base: BookStatePayload | undefined, rebase: boolean): PendingStateMutation {
     if (!bookId.trim()) throw new TypeError('bookId is required.');
     if (value !== null) assertBookStatePayload(value, bookId);
     const store = this.readPending();
+    const bases = this.readBasis(store.mutations);
     const safeValue = publicStatePayload(value);
     const updatedAt = this.nextTimestamp(store, suppliedUpdatedAt, this.seenBookStamp(bookId, safeValue));
     const previous = store.mutations.find(item => item.kind === 'book' && item.bookId === bookId);
     const previousValue = previous?.kind === 'book' ? publicStatePayload(previous.value) : null;
     const coalesced = safeValue === null ? null : { ...(previousValue ?? {}), ...safeValue };
     const mutation: PendingStateMutation = { id: this.mutationId(updatedAt), kind: 'book', bookId, updatedAt, value: structuredClone(coalesced) };
-    this.writePending({
-      since: this.windowStart(store, updatedAt),
-      mutations: [...store.mutations.filter(item => !(item.kind === 'book' && item.bookId === bookId)), mutation],
-    });
+    const earlierBasis = previous ? bases.get(previous.id) : undefined;
+    const earlier = earlierBasis?.kind === 'book' ? earlierBasis : undefined;
+    if (previous) bases.delete(previous.id);
+    if (coalesced) {
+      const before = this.validBookBase(base, bookId);
+      const stamps: Partial<Record<BookField, string>> = {};
+      const fieldBase: Record<string, unknown> = {};
+      for (const field of BOOK_FIELDS) {
+        if (!(field in coalesced)) continue;
+        const carried = !rebase && previousValue !== null && field in previousValue;
+        stamps[field] = rebase || field in safeValue! ? updatedAt : earlier?.stamps[field] ?? previous!.updatedAt;
+        // A field an edit queued by older code carried keeps no base: it merges as before.
+        const from = carried ? (earlier && field in earlier.base ? earlier.base : undefined) : before && field in before ? before : undefined;
+        if (from) fieldBase[field] = structuredClone(from[field]);
+      }
+      // Sends of the folded edit whose answer never came stay known (see MutationBasis).
+      const sent = !rebase && earlier?.sent?.length ? { sent: structuredClone(earlier.sent) } : {};
+      bases.set(mutation.id, { kind: 'book', stamps, base: fieldBase as BookStatePayload, ...sent });
+    }
+    const mutations = [...store.mutations.filter(item => !(item.kind === 'book' && item.bookId === bookId)), mutation];
+    this.writePending({ since: this.windowStart(store, updatedAt), mutations });
+    this.writeBasis(bases, mutations);
     return mutation;
   }
 
-  queueQueueState(queue: readonly string[], suppliedUpdatedAt?: string): PendingStateMutation {
+  private queueQueue(queue: readonly string[], suppliedUpdatedAt: string | undefined, base: readonly string[] | undefined, rebase: boolean): PendingStateMutation {
     const value = [...queue];
     assertQueue(value);
     const store = this.readPending();
+    const bases = this.readBasis(store.mutations);
     const seen = this.newest?.queue ? Date.parse(this.newest.queue.updatedAt) : 0;
     const updatedAt = this.nextTimestamp(store, suppliedUpdatedAt, seen);
     const mutation: PendingStateMutation = { id: this.mutationId(updatedAt), kind: 'queue', updatedAt, value };
-    this.writePending({
-      since: this.windowStart(store, updatedAt),
-      mutations: [...store.mutations.filter(item => item.kind !== 'queue'), mutation],
-    });
+    const previous = store.mutations.find(item => item.kind === 'queue');
+    const earlier = previous ? bases.get(previous.id) : undefined;
+    if (previous) bases.delete(previous.id);
+    const before = previous && !rebase ? (earlier?.kind === 'queue' ? earlier.base : undefined) : this.validQueueBase(base);
+    const sent = !rebase && earlier?.kind === 'queue' && earlier.sent?.length ? { sent: structuredClone(earlier.sent) } : {};
+    if (before) bases.set(mutation.id, { kind: 'queue', base: [...before], ...sent });
+    const mutations = [...store.mutations.filter(item => item.kind !== 'queue'), mutation];
+    this.writePending({ since: this.windowStart(store, updatedAt), mutations });
+    this.writeBasis(bases, mutations);
     return mutation;
+  }
+
+  private validBookBase(base: BookStatePayload | undefined, bookId: string): BookStatePayload | undefined {
+    if (!base) return undefined;
+    try { assertBookStatePayload(base, bookId); return publicStatePayload(base) ?? undefined; } catch { return undefined; }
+  }
+
+  private validQueueBase(base: readonly string[] | undefined): string[] | undefined {
+    if (!base) return undefined;
+    try { const queue = [...base]; assertQueue(queue); return queue; } catch { return undefined; }
+  }
+
+  /** Each unsent edit's basis, by mutation id. An entry that does not fit its edit is
+   * left out, and that edit merges as one queued by older code. */
+  private readBasis(mutations: readonly PendingStateMutation[]): Map<string, MutationBasis> {
+    const result = new Map<string, MutationBasis>();
+    let stored: unknown;
+    try { stored = JSON.parse(this.readStorage(GITHUB_STATE_PENDING_BASIS_KEY) ?? '{}'); } catch { return result; }
+    if (!stored || typeof stored !== 'object' || Array.isArray(stored)) return result;
+    for (const mutation of mutations) {
+      const entry = (stored as Record<string, unknown>)[mutation.id];
+      if (entry === undefined) continue;
+      try { assertMutationBasis(entry, mutation); result.set(mutation.id, entry); } catch { /* Merged without a basis. */ }
+    }
+    return result;
+  }
+
+  /** Written after the queue itself, for the edits it now holds only. */
+  private writeBasis(bases: ReadonlyMap<string, MutationBasis>, mutations: readonly PendingStateMutation[]): void {
+    const kept = Object.fromEntries(mutations.filter(item => bases.has(item.id)).map(item => [item.id, bases.get(item.id)]));
+    try {
+      if (Object.keys(kept).length) this.writeStorage(GITHUB_STATE_PENDING_BASIS_KEY, JSON.stringify(kept));
+      else this.removeStorage(GITHUB_STATE_PENDING_BASIS_KEY);
+    } catch { /* Without a basis these edits merge as before: the later stamp wins. */ }
   }
 
   /** Drops unsent edits the reader chose to replace with the shared values. */
@@ -348,8 +430,9 @@ export class GitHubStateRepository {
     const store = this.readPending();
     const mutations = store.mutations.filter(item => item.kind === 'queue' ? !includeQueue : !drop.has(item.bookId));
     if (mutations.length === store.mutations.length) return;
-    if (mutations.length) this.writePending({ since: store.since, mutations });
-    else this.clearPending();
+    if (!mutations.length) return this.clearPending();
+    this.writePending({ since: store.since, mutations });
+    this.writeBasis(this.readBasis(mutations), mutations);
   }
 
   getPendingCount(): number {
@@ -365,16 +448,59 @@ export class GitHubStateRepository {
   async flushPending(options: SaveOptions = {}): Promise<StateDocument> {
     const snapshot = this.readPending().mutations;
     if (!snapshot.length) return this.load();
+    this.noteSending(snapshot);
     const saved = await this.save(snapshot, options);
     const completed = new Set(snapshot.map(item => item.id));
     const remaining = this.readPending().mutations.filter(item => !completed.has(item.id));
-    if (remaining.length) {
-      const oldest = remaining.reduce((result, item) => Date.parse(item.updatedAt) < Date.parse(result) ? item.updatedAt : result, remaining[0].updatedAt);
-      this.writePending({ since: this.onThisClock(oldest), mutations: remaining });
-    } else {
-      this.clearPending();
+    const bases = this.readBasis(remaining);
+    // Edits made while this write ran were folded into the ones it sent: GitHub now has
+    // what was sent, so they are relative to that.
+    const sentFor = new Map(snapshot.map(item => [item.kind === 'queue' ? 'queue' : `book:${item.bookId}`, item]));
+    for (const item of remaining) {
+      const sent = sentFor.get(item.kind === 'queue' ? 'queue' : `book:${item.bookId}`), basis = bases.get(item.id);
+      if (!sent || !basis) continue;
+      if (basis.kind === 'queue' && sent.kind === 'queue') bases.set(item.id, { kind: 'queue', base: [...sent.value] });
+      else if (basis.kind === 'book' && sent.kind === 'book' && sent.value) {
+        const base: Record<string, unknown> = { ...basis.base };
+        for (const field of BOOK_FIELDS) if (field in sent.value && field in item.value!) base[field] = structuredClone(sent.value[field] ?? (field === 'states' ? [] : null));
+        bases.set(item.id, { kind: 'book', stamps: basis.stamps, base: base as BookStatePayload });
+      }
     }
-    return applyPendingMutations(saved, remaining);
+    try {
+      if (remaining.length) {
+        const oldest = remaining.reduce((result, item) => Date.parse(item.updatedAt) < Date.parse(result) ? item.updatedAt : result, remaining[0].updatedAt);
+        this.writePending({ since: this.onThisClock(oldest), mutations: remaining });
+        this.writeBasis(bases, remaining);
+      } else {
+        this.clearPending();
+      }
+    } catch (error) {
+      // A damaged record that cannot be replaced yet (no room for its copy) still holds
+      // the edits just sent; they are not sent again.
+      if (this.uncopied) for (const id of completed) this.uncopied.sent.add(id);
+      throw error;
+    }
+    return applyPendingMutations(saved, remaining, bases);
+  }
+
+  /** Before a write, what it sends is remembered with its edits (see MutationBasis.sent). */
+  private noteSending(mutations: readonly PendingStateMutation[]): void {
+    const bases = this.readBasis(mutations);
+    let changed = false;
+    for (const item of mutations) {
+      const basis = bases.get(item.id);
+      if (!basis) continue;
+      if (basis.kind === 'queue' && item.kind === 'queue') {
+        bases.set(item.id, { ...basis, sent: [...(basis.sent ?? []), { stamp: item.updatedAt, value: [...item.value] }].slice(-MAX_SENT_VERSIONS) });
+        changed = true;
+      } else if (basis.kind === 'book' && item.kind === 'book' && item.value) {
+        const stamps: Partial<Record<BookField, string>> = {};
+        for (const field of BOOK_FIELDS) if (field in item.value) stamps[field] = basis.stamps[field] ?? item.updatedAt;
+        bases.set(item.id, { ...basis, sent: [...(basis.sent ?? []), { stamps, value: structuredClone(item.value) }].slice(-MAX_SENT_VERSIONS) });
+        changed = true;
+      }
+    }
+    if (changed) this.writeBasis(bases, this.readPending().mutations);
   }
 
   async save(mutations: readonly PendingStateMutation[], options: SaveOptions = {}): Promise<StateDocument> {
@@ -388,9 +514,10 @@ export class GitHubStateRepository {
     // changed answers 409/422, and the next attempt starts from a fresh read.
     let remote: RemoteFile | undefined = this.cached?.file.sha ? structuredClone(this.cached.file) : undefined;
     const attempts = this.maxConflictRetries + (remote ? 2 : 1);
+    const bases = this.readBasis(mutations);
     for (let attempt = 0; attempt < attempts; attempt += 1) {
       remote ??= await this.readApi(true, true);
-      const merged = publicStateDocument(applyPendingMutations(remote.document, mutations));
+      const merged = publicStateDocument(applyPendingMutations(remote.document, mutations, bases));
       // The file's own time always moves forward, so any copy from before this
       // write is recognisably older (see keepNewest).
       merged.updatedAt = new Date(Math.max(Date.parse(merged.updatedAt), Date.parse(remote.document.updatedAt) + 1, this.clock().getTime())).toISOString();
@@ -594,6 +721,11 @@ export class GitHubStateRepository {
     return this.rescue(raw, { since, mutations }, false);
   }
 
+  private withoutSent(store: PendingStore): PendingStore {
+    const sent = this.uncopied?.sent;
+    return sent?.size ? { since: store.since, mutations: store.mutations.filter(item => !sent.has(item.id)) } : store;
+  }
+
   /** Unsent edits are never thrown away: a record that cannot be read in full is copied
    * aside as it was, and the edits that can still be read stay queued. When storage is
    * too full for the copy, the record stays where it is and its readable edits are used
@@ -602,8 +734,9 @@ export class GitHubStateRepository {
     try {
       this.keepForRecovery(raw, store.mutations.length);
     } catch {
-      this.uncopied = { raw, store, legacy, at: this.uncopied?.raw === raw ? this.uncopied.at : this.clock().toISOString() };
-      return store;
+      const same = this.uncopied?.raw === raw ? this.uncopied : undefined;
+      this.uncopied = { raw, store, legacy, at: same?.at ?? this.clock().toISOString(), sent: same?.sent ?? new Set() };
+      return this.withoutSent(store);
     }
     this.uncopied = undefined;
     try {
@@ -664,7 +797,7 @@ export class GitHubStateRepository {
     this.removeStorage(GITHUB_STATE_RECOVERY_KEY);
     const uncopied = this.uncopied;
     if (!uncopied) return;
-    const { store } = uncopied;
+    const store = this.withoutSent(uncopied.store);
     if (store.mutations.length) this.writeStorage(GITHUB_STATE_PENDING_KEY, JSON.stringify(store));
     else this.removeStorage(GITHUB_STATE_PENDING_KEY);
     if (uncopied.legacy) this.removeStorage(LEGACY_GITHUB_STATE_PENDING_KEY);
@@ -699,9 +832,11 @@ export class GitHubStateRepository {
     let damaged = !Array.isArray(items);
     for (const item of Array.isArray(items) ? items as unknown[] : []) {
       const entry = item && typeof item === 'object' ? item as Record<string, unknown> : {};
-      const value = entry.value && typeof entry.value === 'object' ? Object.fromEntries(Object.entries(entry.value).filter(([key]) => key !== 'queuePosition')) : null;
+      // Only an object is an edit; anything else is damage, never a clear of the book.
+      if (!entry.value || typeof entry.value !== 'object' || Array.isArray(entry.value)) { damaged = true; continue; }
+      const value = Object.fromEntries(Object.entries(entry.value).filter(([key]) => key !== 'queuePosition'));
       // An entry that only held a queue position is dropped on purpose.
-      if (value && !Object.keys(value).length) continue;
+      if (!Object.keys(value).length) continue;
       const mutation = { id: String(entry.id), kind: 'book', bookId: entry.bookId, updatedAt: entry.updatedAt, value } as PendingStateMutation;
       try { assertPendingMutation(mutation); mutations.push(mutation); } catch { damaged = true; }
     }
@@ -723,6 +858,7 @@ export class GitHubStateRepository {
   private clearPending(): void {
     this.ensureCopied();
     this.removeStorage(GITHUB_STATE_PENDING_KEY);
+    try { this.removeStorage(GITHUB_STATE_PENDING_BASIS_KEY); } catch { /* Pruned with the next queued edit. */ }
   }
 
   private contentsUrl(): string {

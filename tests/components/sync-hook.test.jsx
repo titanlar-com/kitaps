@@ -162,6 +162,28 @@ describe('useGitHubStateSync getting changes off the device', () => {
     expect(read).toBeLessThan(SHARED_REFRESH_MS + 10_000);
   });
 
+  it('an undo made while the first change is being sent reaches GitHub', async () => {
+    localStorage.setItem('kitapatlasi:github-state:token:v1', TOKEN);
+    const server = github(remoteDocument({}));
+    vi.stubGlobal('fetch', server.fetch);
+    const { result } = renderHook(() => useHarness({}, { queue: [], reading: {} }));
+    await waitFor(() => expect(result.current.sync.status).toBe('ready'));
+    act(() => result.current.setStates({ a: ['onemli'] }));
+    await waitFor(() => expect(result.current.sync.pending).toBe(1));
+    const release = server.hold();
+    let sending;
+    act(() => { sending = result.current.sync.flush(); });
+    await waitFor(() => expect(putsOf(server)).toHaveLength(1));
+    // The reader takes the mark off while the write is under way.
+    act(() => result.current.setStates({}));
+    release();
+    await act(() => sending);
+    expect(server.current().books.a.value.states).toEqual(['onemli']);
+    await act(() => result.current.sync.flush());
+    expect(server.current().books.a.value.states).toEqual([]);
+    expect(result.current.states.a).toBeUndefined();
+  });
+
   it('connecting a device sends the changes that waited on it right away', async () => {
     const server = github(remoteDocument({}));
     vi.stubGlobal('fetch', server.fetch);
@@ -479,7 +501,7 @@ describe('useGitHubStateSync when GitHub refuses the key or asks to wait', () =>
 
 describe('useGitHubStateSync with a pending queue it cannot read in full', () => {
   beforeEach(() => { localStorage.clear(); localStorage.setItem('kitapatlasi:github-state:migrated:v1', '1'); });
-  afterEach(() => vi.unstubAllGlobals());
+  afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
   it('keeps the readable edits on screen, says a copy is kept, and removes the copy only when asked', async () => {
     const good = { id: 'g', kind: 'book', bookId: 'a', updatedAt: '2026-09-28T09:00:00.000Z', value: { states: ['okunuyor'] } };
@@ -517,6 +539,5 @@ describe('useGitHubStateSync with a pending queue it cannot read in full', () =>
     act(() => result.current.setStates(states => ({ ...states, b: ['onemli'] })));
     await waitFor(() => expect(result.current.sync.message).toBe('Tarayıcının yerel eşitleme alanına yazılamadı.'));
     expect(localStorage.getItem('kitapatlasi:github-state:pending:v2')).toBe(damaged);
-    vi.restoreAllMocks();
   });
 });

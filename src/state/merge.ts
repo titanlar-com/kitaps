@@ -1,12 +1,16 @@
 import {
   BOOK_FIELDS,
+  EXCLUSIVE_STATE_GROUPS,
   LEGACY_STATE_SCHEMA_VERSION,
   MAX_QUEUE_LENGTH,
   STATE_SCHEMA_VERSION,
   type BookField,
   type BookStatePayload,
   type BookStateRecord,
+  type MutationBasis,
+  MAX_SENT_VERSIONS,
   type PendingStateMutation,
+  type ReadingProgress,
   type QueueRecord,
   type ReadingState,
   type StateDocument,
@@ -117,10 +121,106 @@ export function assertPendingMutation(value: unknown): asserts value is PendingS
   }
 }
 
-/** Applies this device's unsent edits to the newest remote file with
- * last-writer-wins per field: a field another device changed after the local
- * edit keeps the other device's value; untouched fields are never disturbed. */
-export function applyPendingMutations(base: StateDocument, mutations: readonly PendingStateMutation[]): StateDocument {
+const canonical = (value: unknown): string => {
+  if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+  if (value && typeof value === 'object') return `{${Object.keys(value).sort().filter(key => (value as Record<string, unknown>)[key] !== undefined).map(key => `${JSON.stringify(key)}:${canonical((value as Record<string, unknown>)[key])}`).join(',')}}`;
+  return JSON.stringify(value ?? null);
+};
+const same = (left: unknown, right: unknown): boolean => canonical(left) === canonical(right);
+const sameMarks = (left: readonly string[], right: readonly string[]): boolean => same([...left].sort(), [...right].sort());
+
+/** Marks, three-way: what this device removed since its base goes, what it added comes,
+ * everything else is the shared file's. Two marks that exclude each other (alinacak and
+ * alindi; okunuyor, okundu, araverildi and birakildi) leave the one set later. */
+export function mergeStates(base: readonly ReadingState[], local: readonly ReadingState[], remote: readonly ReadingState[], remoteLater: boolean): ReadingState[] {
+  const added = local.filter(state => !base.includes(state));
+  const removed = new Set(base.filter(state => !local.includes(state)));
+  const result = [...remote.filter(state => !removed.has(state)), ...added.filter(state => !remote.includes(state))];
+  const remoteAdded = remote.filter(state => !base.includes(state));
+  for (const group of EXCLUSIVE_STATE_GROUPS) {
+    const present = result.filter(state => group.includes(state));
+    if (present.length < 2) continue;
+    const mine = present.find(state => added.includes(state));
+    const theirs = present.find(state => remoteAdded.includes(state));
+    const keep = mine && theirs ? (remoteLater ? theirs : mine) : mine ?? theirs ?? present[0];
+    for (const state of present) if (state !== keep) result.splice(result.indexOf(state), 1);
+  }
+  return result;
+}
+
+/** The reading record, three-way and part by part (dates, pages, notes): a part this
+ * device changed takes its value, a part only the shared file changed keeps that one;
+ * where both changed the same part differently, the one changed later stays. */
+export function mergeReading(base: ReadingProgress | null, local: ReadingProgress | null, remote: ReadingProgress | null, remoteLater: boolean): ReadingProgress | null {
+  const before = (base ?? {}) as Record<string, unknown>, mine = (local ?? {}) as Record<string, unknown>, theirs = (remote ?? {}) as Record<string, unknown>;
+  const result: Record<string, unknown> = {};
+  for (const key of new Set([...Object.keys(before), ...Object.keys(mine), ...Object.keys(theirs)])) {
+    const changedHere = !same(mine[key], before[key]), changedThere = !same(theirs[key], before[key]);
+    const value = changedHere && changedThere && !same(mine[key], theirs[key]) ? (remoteLater ? theirs[key] : mine[key]) : changedHere ? mine[key] : theirs[key];
+    if (value !== undefined) result[key] = structuredClone(value);
+  }
+  return Object.keys(result).length ? result as ReadingProgress : null;
+}
+
+/** The reading queue, three-way: the books either side took out go, the books either side
+ * put in come. The side that changed the queue later leads: its order holds for the books
+ * it shows, the other side's own books keep their place after the book they followed, and
+ * where more than MAX_QUEUE_LENGTH books remain, the other side's own books go first. */
+export function mergeQueue(base: readonly string[], local: readonly string[], remote: readonly string[], remoteLater: boolean): string[] {
+  const removedHere = new Set(base.filter(id => !local.includes(id)));
+  const kept = new Set([...remote.filter(id => !removedHere.has(id)), ...local.filter(id => !base.includes(id))]);
+  const [lead, follow] = remoteLater ? [remote, local] : [local, remote];
+  const result = lead.filter(id => kept.has(id));
+  const followOnly: string[] = [];
+  follow.forEach((id, index) => {
+    if (!kept.has(id) || result.includes(id)) return;
+    const before = follow.slice(0, index).reverse().find(other => result.includes(other));
+    result.splice(before === undefined ? 0 : result.indexOf(before) + 1, 0, id);
+    followOnly.push(id);
+  });
+  while (result.length > MAX_QUEUE_LENGTH) result.splice(result.lastIndexOf(followOnly.pop() ?? result.at(-1)!), 1);
+  return result;
+}
+
+/** Checks a mutation's basis before it is trusted; a basis that does not fit its
+ * mutation is not used, and the edit merges as one without a basis. */
+export function assertMutationBasis(value: unknown, mutation: PendingStateMutation): asserts value is MutationBasis {
+  if (!isObject(value) || value.kind !== mutation.kind) throw new TypeError('Invalid mutation basis.');
+  if (!(value.sent === undefined || (Array.isArray(value.sent) && value.sent.length <= MAX_SENT_VERSIONS))) throw new TypeError('Invalid sent versions.');
+  if (mutation.kind === 'queue') {
+    if (!exactKeys(value, ['kind', 'base', 'sent'])) throw new TypeError('Invalid queue basis.');
+    assertQueue(value.base, 'queue basis');
+    for (const version of (value.sent ?? []) as unknown[]) {
+      if (!isObject(version) || !exactKeys(version, ['stamp', 'value']) || !validTimestamp(version.stamp)) throw new TypeError('Invalid sent queue.');
+      assertQueue(version.value, 'sent queue');
+    }
+    return;
+  }
+  const stampsOf = (stamps: unknown): void => {
+    if (!isObject(stamps) || !exactKeys(stamps, [...BOOK_FIELDS])) throw new TypeError('Invalid basis stamps.');
+    for (const stamp of Object.values(stamps)) if (!validTimestamp(stamp)) throw new TypeError('Invalid basis stamp.');
+  };
+  if (!exactKeys(value, ['kind', 'stamps', 'base', 'sent'])) throw new TypeError('Invalid book basis.');
+  stampsOf(value.stamps);
+  assertBookStatePayload(value.base, mutation.kind === 'book' ? mutation.bookId : undefined);
+  for (const version of (value.sent ?? []) as unknown[]) {
+    if (!isObject(version) || !exactKeys(version, ['stamps', 'value'])) throw new TypeError('Invalid sent version.');
+    stampsOf(version.stamps);
+    assertBookStatePayload(version.value, mutation.kind === 'book' ? mutation.bookId : undefined);
+  }
+}
+
+/** Applies this device's unsent edits to the newest remote file.
+ *
+ * With a basis (what each edit was made on, by mutation id), a field the shared file has
+ * not changed since takes this device's value exactly; one it has changed is merged
+ * three-way (mergeStates, mergeReading, mergeQueue), so two devices that edited the same
+ * book or the queue before seeing each other both keep their edits.
+ *
+ * Without one (an edit queued by older code), each field is last-writer-wins: a field
+ * another device changed after the local edit keeps the other device's value. Fields an
+ * edit does not carry are never disturbed, and clearing a book stays whole-record. */
+export function applyPendingMutations(base: StateDocument, mutations: readonly PendingStateMutation[], bases: ReadonlyMap<string, MutationBasis> = new Map()): StateDocument {
   assertStateDocument(base);
   const books: Record<string, BookStateRecord> = structuredClone(base.books);
   let queue: QueueRecord | null = base.queue ? structuredClone(base.queue) : null;
@@ -128,9 +228,20 @@ export function applyPendingMutations(base: StateDocument, mutations: readonly P
 
   for (const mutation of mutations) {
     assertPendingMutation(mutation);
+    const basis = bases.get(mutation.id);
     if (mutation.kind === 'queue') {
-      if (queue && Date.parse(queue.updatedAt) > Date.parse(mutation.updatedAt)) continue;
-      queue = { updatedAt: mutation.updatedAt, value: [...mutation.value] };
+      const shared = queue?.value ?? [];
+      const remoteLater = Boolean(queue) && Date.parse(queue!.updatedAt) > Date.parse(mutation.updatedAt);
+      if (basis?.kind === 'queue') {
+        // A send whose answer never came, which the shared queue still carries, is the base.
+        const landed = queue ? [...(basis.sent ?? [])].reverse().find(version => Date.parse(version.stamp) === Date.parse(queue!.updatedAt)) : undefined;
+        const before = landed?.value ?? basis.base;
+        const value = same(shared, before) ? [...mutation.value] : mergeQueue(before, mutation.value, shared, remoteLater);
+        queue = { updatedAt: later(queue?.updatedAt, mutation.updatedAt)!, value };
+      } else {
+        if (remoteLater) continue;
+        queue = { updatedAt: mutation.updatedAt, value: [...mutation.value] };
+      }
       updatedAt = later(updatedAt, mutation.updatedAt)!;
       continue;
     }
@@ -143,23 +254,38 @@ export function applyPendingMutations(base: StateDocument, mutations: readonly P
       continue;
     }
 
+    const book = basis?.kind === 'book' ? basis : undefined;
     const value: BookStatePayload = { ...structuredClone(current?.value ?? {}) };
     const stamps: Partial<Record<BookField, string>> = { ...(current?.stamps ?? {}) };
     let applied = false;
     for (const field of BOOK_FIELDS) {
       if (!(field in mutation.value)) continue;
+      // Each field keeps the time of its own last edit on this device.
+      const editedAt = book?.stamps[field] ?? mutation.updatedAt;
       // Records written before field stamps existed fall back to their record time.
       const remoteStamp = stamps[field] ?? (current && !current.stamps ? current.updatedAt : undefined);
-      if (remoteStamp && Date.parse(remoteStamp) > Date.parse(mutation.updatedAt)) continue;
-      if (field === 'states') value.states = [...(mutation.value.states ?? [])];
-      else value.reading = mutation.value.reading === null || mutation.value.reading === undefined ? null : structuredClone(mutation.value.reading);
-      stamps[field] = mutation.updatedAt;
+      const remoteLater = Boolean(remoteStamp) && Date.parse(remoteStamp!) > Date.parse(editedAt);
+      const hasBase = Boolean(book) && field in book!.base;
+      if (!hasBase && remoteLater) continue;
+      // A send whose answer never came, which the shared field still carries, is the base.
+      const landed = hasBase && remoteStamp ? [...(book!.sent ?? [])].reverse().find(version => version.stamps[field] && Date.parse(version.stamps[field]!) === Date.parse(remoteStamp) && field in version.value) : undefined;
+      const basePayload = landed?.value ?? book?.base;
+      if (field === 'states') {
+        const mine = mutation.value.states ?? [], theirs = current?.value?.states ?? [];
+        const before = hasBase ? basePayload!.states ?? [] : theirs;
+        value.states = !hasBase || sameMarks(theirs, before) ? [...mine] : mergeStates(before, mine, theirs, remoteLater);
+      } else {
+        const mine = mutation.value.reading ?? null, theirs = current?.value?.reading ?? null;
+        const before = hasBase ? basePayload!.reading ?? null : theirs;
+        value.reading = !hasBase || same(theirs, before) ? structuredClone(mine) : mergeReading(before, mine, theirs, remoteLater);
+      }
+      stamps[field] = later(remoteStamp, editedAt)!;
       applied = true;
     }
     if (!applied) continue;
     const newest = Object.values(stamps).reduce<string | undefined>((result, stamp) => later(result, stamp), current?.updatedAt);
     books[mutation.bookId] = { updatedAt: newest ?? mutation.updatedAt, value, stamps };
-    updatedAt = later(updatedAt, mutation.updatedAt)!;
+    updatedAt = later(updatedAt, newest ?? mutation.updatedAt)!;
   }
 
   return { schemaVersion: STATE_SCHEMA_VERSION, updatedAt, books, queue };
