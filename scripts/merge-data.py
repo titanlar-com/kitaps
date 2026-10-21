@@ -298,7 +298,7 @@ if children:
 # popular versions. New Turkish editions are verified on two websites.
 # Priorities and roles stay notes and group names; the engine scores these
 # books like every other, and look-alike warnings become notes on the real work.
-REVIEWS=[('data/shelf-review.json','shelf','RAF','Raf taraması'),('data/original-sources.json','originals','ÖZ','Özgün kaynak')]
+REVIEWS=[('data/shelf-review.json','shelf','RAF','Raf taraması'),('data/original-sources.json','originals','ÖZ','Özgün kaynak'),('data/management-founders.json','founders','YD','Kurucu eserler')]
 reviews={};review_links=[];review_purposes={}
 for path,origin,mark,tag in REVIEWS:
  if not (ROOT/path).exists():continue
@@ -486,7 +486,7 @@ def checked_dates():
 # The catalog date follows its newest verified evidence, never the build clock.
 latest=max(value for value in checked_dates() if isinstance(value,str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}',value))
 updated=f"{int(latest[8:10])} {MONTHS[int(latest[5:7])-1]} {latest[:4]}"
-result={'updated':updated,'readingGuides':readingGuides,'books':list(books.values()),'collections':collections,'groups':groups,'categories':[{'id':k,'label':v,'count':sum(k in b['categories'] for b in books.values())} for k,v in categoryNames.items()],'sourceTags':local['tags'],'mapping':mapping,'sourceCounts':{'atlasEntries':sum(len(g['books']) for c in atlas['collections'] for g in c['groups']),'localBooks':len(local['books']),'kitapsRecords':len(kitaps['books']),'foundationalBooks':sum(len(group['books']) for group in foundations['groups']),'preparationRecommendations':len(preparation['books']),'entrepreneurshipBooks':sum(len(group['books']) for group in entrepreneurship['groups']),'childrenLibraryBooks':len(children['books']) if children else 0,'shelfReviewBooks':len(shelf['books']) if shelf else 0,'originalSourceWorks':len(reviews['originals']['books']) if 'originals' in reviews else 0}}
+result={'updated':updated,'readingGuides':readingGuides,'books':list(books.values()),'collections':collections,'groups':groups,'categories':[{'id':k,'label':v,'count':sum(k in b['categories'] for b in books.values())} for k,v in categoryNames.items()],'sourceTags':local['tags'],'mapping':mapping,'sourceCounts':{'atlasEntries':sum(len(g['books']) for c in atlas['collections'] for g in c['groups']),'localBooks':len(local['books']),'kitapsRecords':len(kitaps['books']),'foundationalBooks':sum(len(group['books']) for group in foundations['groups']),'preparationRecommendations':len(preparation['books']),'entrepreneurshipBooks':sum(len(group['books']) for group in entrepreneurship['groups']),'childrenLibraryBooks':len(children['books']) if children else 0,'shelfReviewBooks':len(shelf['books']) if shelf else 0,'originalSourceWorks':len(reviews['originals']['books']) if 'originals' in reviews else 0,'managementFounderWorks':len(reviews['founders']['books']) if 'founders' in reviews else 0}}
 (ROOT/'src/catalog.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
 print(len(books),'books',len(collections),'collections',len(groups),'groups')
 print('Edition records',sum(len(b['editions']) for b in books.values()))

@@ -40,6 +40,7 @@
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/page/38/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/page/39/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/page/40/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/page/41/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/category/strategy/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/category/strategy/page/2/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/category/strategy/page/3/</loc></url>
@@ -180,6 +181,8 @@
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/collection/raf-degerlendirmesi/page/2/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/collection/ozgun-kaynaklar/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/collection/ozgun-kaynaklar/page/2/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/collection/yonetim-kuruculari/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/collection/yonetim-kuruculari/page/2/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/collection/preparation/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/time%3A0/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/pmba%3A0/</loc></url>
@@ -332,6 +335,14 @@
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/ozgun-kaynaklar%3Apsikoloji/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/ozgun-kaynaklar%3Atekillik/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/ozgun-kaynaklar%3Ailk-uc/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetim-kuruculari%3Anasil-yonetilir/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetim-kuruculari%3Akalite/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetim-kuruculari%3Aotorite/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetim-kuruculari%3Arekabet/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetim-kuruculari%3Akultur/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetim-kuruculari%3Ayenilik/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetim-kuruculari%3Aokuma-sirasi/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetim-kuruculari%3Ailk-uc/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/preparation%3A1/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/preparation%3A2/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/preparation%3A3/</loc></url>
@@ -1283,6 +1294,17 @@
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/willpower-by-roy-f-baumeister-and-john-tierney/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/a-multilab-preregistered-replication-of-the-ego-depletion-effect-by-martin-s-hagger-and-nikos-l-d-chatzisarantis/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/the-coming-technological-singularity-by-vernor-vinge/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/management-by-peter-f-drucker/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/administration-industrielle-et-generale-by-henri-fayol/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/the-principles-of-scientific-management-by-frederick-winslow-taylor/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/shop-management-by-frederick-winslow-taylor/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/wirtschaft-und-gesellschaft-by-max-weber/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/die-protestantische-ethik-und-der-geist-des-kapitalismus-by-max-weber/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/burokrasi-ve-otorite-by-max-weber/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/great-by-choice-by-jim-collins-and-morten-t-hansen/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/thriving-on-chaos-by-tom-peters/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/re-imagine-by-tom-peters/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/the-little-big-things-by-tom-peters/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/elestirel-okuma-by-emin-ozdemir/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/dusunmenin-alfabesi-by-yasin-ramazan/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/adim-adim-matematik-essiz-bir-gorsel-rehber-by-unknown/</loc></url>

@@ -1,6 +1,6 @@
 {
  "note": "Each cover's real resolution and, where one existed, the larger copy of the same image from the same source that replaced it. Written by scripts/upgrade-covers.py.",
- "checkedAt": "2026-10-21",
+ "checkedAt": "2026-10-22",
  "target": 540,
  "covers": {
   "covers/00300821ba7a54b2.jpg": {
@@ -1249,21 +1249,6 @@
     "effective": 320,
     "source": "kaynağın büyük kopyası",
     "url": "https://asset.kitapsepeti.com/ekmegimi-kazanirken-98443-204111-98-B.png",
-    "hashDistance": 0
-   }
-  },
-  "covers/24b0a7af327f9905.jpg": {
-   "bookId": "oncompetition",
-   "from": {
-    "width": 180,
-    "effective": 180
-   },
-   "status": "upgraded",
-   "to": {
-    "width": 332,
-    "effective": 332,
-    "source": "kaynağın büyük kopyası",
-    "url": "https://covers.openlibrary.org/b/id/668127-L.jpg?default=false",
     "hashDistance": 0
    }
   },
@@ -10037,6 +10022,86 @@
    },
    "status": "kept-no-larger-copy"
   },
+  "covers/founders-administrationindustrielleetgenerale.jpg": {
+   "bookId": "administrationindustrielleetgenerale",
+   "from": {
+    "width": 417,
+    "effective": 417
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/founders-burokrasiveotorite.jpg": {
+   "bookId": "burokrasiveotorite",
+   "from": {
+    "width": 422,
+    "effective": 422
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/founders-dieprotestantischeethikunddergeistdeskapitalismu.jpg": {
+   "bookId": "dieprotestantischeethikunddergeistdeskapitalismus",
+   "from": {
+    "width": 500,
+    "effective": 300,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1600,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:12046079/wi:1600",
+    "hashDistance": 2
+   }
+  },
+  "covers/founders-greatbychoice.jpg": {
+   "bookId": "greatbychoice",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 672,
+    "effective": 672,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:68700/wi:1600",
+    "hashDistance": 4
+   }
+  },
+  "covers/founders-managementtasksresponsibilitiespractices.jpg": {
+   "bookId": "managementtasksresponsibilitiespractices",
+   "from": {
+    "width": 128,
+    "effective": 128
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/founders-principlesofscientificmanagement.jpg": {
+   "bookId": "principlesofscientificmanagement",
+   "from": {
+    "width": 422,
+    "effective": 422
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/founders-reimagine.jpg": {
+   "bookId": "reimagine",
+   "from": {
+    "width": 363,
+    "effective": 363
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/founders-thrivingonchaos.jpg": {
+   "bookId": "thrivingonchaos",
+   "from": {
+    "width": 332,
+    "effective": 332
+   },
+   "status": "kept-no-larger-copy"
+  },
   "covers/originals-boyd.jpg": {
    "bookId": "boyd",
    "from": {
@@ -10144,10 +10209,18 @@
   "covers/originals-practiceofmanagement.jpg": {
    "bookId": "practiceofmanagement",
    "from": {
-    "width": 323,
-    "effective": 323
+    "width": 500,
+    "effective": 250,
+    "watermark": true
    },
-   "status": "kept-no-larger-copy"
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1600,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:200172/wi:1600",
+    "hashDistance": 0
+   }
   },
   "covers/originals-reflectivepractitioner.jpg": {
    "bookId": "reflectivepractitioner",
@@ -10533,6 +10606,22 @@
     "watermark": true
    },
    "status": "kept"
+  },
+  "covers/tr-oncompetition.jpg": {
+   "bookId": "oncompetition",
+   "from": {
+    "width": 200,
+    "effective": 200,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 480,
+    "effective": 480,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:67165/wi:1600",
+    "hashDistance": 2
+   }
   }
  }
 }

@@ -1,0 +1,591 @@
+{
+ "id": "yonetim-kuruculari",
+ "title": "Yönetim düşüncesinin dokuz kurucusu",
+ "short": "Yönetim kurucuları",
+ "description": "Drucker, Deming, Fayol, Taylor, Weber, Porter, Collins, Peters ve Christensen: yönetim biliminin temellerini atan, işletmelerin çalışma biçimini değiştiren ve stratejik düşünceye yeni modeller kazandıran eserler, her biri cevap verdiği soruya göre.",
+ "source": "https://github.com/titanlar-com/kitaps/blob/main/data/management-founders.json",
+ "checkedAt": "2026-10-22",
+ "context": {
+  "purpose": "Yönetim düşüncesinin kurucu eserlerini, her birinin hangi soruya cevap verdiğine göre okumak; hepsi aynı amaçla okunmaz.",
+  "criterion": "Eserler tarihsel etkileri, gerçek bilgi değerleri ve bugün bir yöneticiye sağlayacakları faydaya göre ayrıldı. Her düşünürün birinci tercihi ayrıca belirtildi. Türkçe baskı yalnız iki ayrı sitede doğrulandığında gösterilir.",
+  "verdict": "Tarihsel etki ile bugünkü fayda aynı değildir: Taylor ve Fayol yönetim düşüncesinin tarihini anlamak için vazgeçilmezdir, ama bugün hangi stratejinin izleneceği konusunda Porter ya da Christensen daha doğrudan kullanılır. Yalnız üç kitap seçilecekse Rekabet Stratejisi, Yönetim Uygulaması ve Yenilikçinin İkilemi: ilk ikisi şirketin nasıl yönetileceğini ve nasıl rekabet edeceğini, üçüncüsü başarılı bir şirketin gelecekte neden başarısız olabileceğini anlatır. Baskı karışıklığına dikkat: Drucker’ın Etkin Yöneticilik (The Effective Executive, 1966) kitabı ile Etkin Yönetici: Doğru Olanı Başarmak İçin Bir Rehber (The Effective Executive in Action, 2006) aynı kitap değildir."
+ },
+ "note": "Roller (birinci tercih, diğer etkili eser, kısa alternatif) not ve alt küme olarak tutulur, puana eklenmez. Önerilen okuma sırası stratejik planlama, dijital dönüşüm ve üst düzey işletme yönetimi içindir.",
+ "groups": [
+  {
+   "id": "nasil-yonetilir",
+   "title": "Bir işletme nasıl yönetilir, iş nasıl örgütlenir? Drucker, Fayol, Taylor"
+  },
+  {
+   "id": "kalite",
+   "title": "Kalite, verimlilik ve sürekli iyileştirme: Deming"
+  },
+  {
+   "id": "otorite",
+   "title": "Örgütlerde otorite, bürokrasi ve güç: Weber"
+  },
+  {
+   "id": "rekabet",
+   "title": "Şirketler neden ve nasıl rekabet eder? Porter"
+  },
+  {
+   "id": "kultur",
+   "title": "Başarılı şirketleri farklılaştıran nedir? Collins, Peters"
+  },
+  {
+   "id": "yenilik",
+   "title": "Başarılı şirketler neden yeniliklere yenilir? Christensen"
+  },
+  {
+   "id": "okuma-sirasi",
+   "title": "Önerilen okuma sırası"
+  },
+  {
+   "id": "ilk-uc",
+   "title": "Yalnız üç kitap seçilecekse"
+  }
+ ],
+ "books": [
+  {
+   "key": "practiceofmanagement",
+   "group": "nasil-yonetilir",
+   "role": "Birinci tercih",
+   "existingId": "practiceofmanagement",
+   "reason": "İşletmenin amacı nedir, yönetici ne iş yapar, hedefler nasıl belirlenir, performans nasıl değerlendirilir? Yönetimi bütünlüklü bir disiplin olarak ele alan temel eserlerden biri.",
+   "extraGroups": [
+    {
+     "id": "okuma-sirasi",
+     "order": 2,
+     "reason": "Okuma sırasında 2.: şirket yönetiminin bütünsel modeli."
+    },
+    {
+     "id": "ilk-uc",
+     "order": 2,
+     "reason": "Şirketin nasıl yönetileceğini anlatır."
+    }
+   ]
+  },
+  {
+   "key": "effectiveexecutive",
+   "group": "nasil-yonetilir",
+   "role": "Diğer etkili eser",
+   "existingId": "effectiveexecutive",
+   "reason": "Etkin yöneticilik: öncelik belirleme, zaman ve karar yönetimi."
+  },
+  {
+   "key": "managementtasksresponsibilitiespractices",
+   "group": "nasil-yonetilir",
+   "role": "Diğer etkili eser",
+   "title": "Management: Tasks, Responsibilities, Practices",
+   "author": "Peter F. Drucker",
+   "originalLanguage": "en",
+   "categories": [
+    "management"
+   ],
+   "reason": "Yönetim disiplininin geniş kapsamlı incelemesi.",
+   "year": 1973,
+   "cover": {
+    "src": "covers/founders-managementtasksresponsibilitiespractices.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780060110925-L.jpg",
+    "sourceUrl": "https://openlibrary.org/isbn/0060110929",
+    "sourceName": "Open Library",
+    "title": "Management: Tasks, Responsibilities, Practices",
+    "author": "Peter F. Drucker",
+    "publisher": "Harper & Row",
+    "isbn": "9780060110925",
+    "language": "en",
+    "checkedAt": "2026-10-22",
+    "scope": "Uluslararası baskı kapağı"
+   },
+   "issue": "Türkçe baskı adayı: Yönetimin Görevleri, Sorumlulukları, Uygulamaları (ODTÜ Yayıncılık, çeviren Fatoş Dilber, ISBN 9789754290639). İkinci, bağımsız bir kaynakta görülemediği için doğrulanmış sayılmadı."
+  },
+  {
+   "key": "innovationandentrepreneurship",
+   "group": "nasil-yonetilir",
+   "role": "Diğer etkili eser",
+   "existingId": "innovationandentrepreneurship",
+   "reason": "Girişimciliği sistemli bir faaliyet olarak ele alır."
+  },
+  {
+   "key": "administrationindustrielleetgenerale",
+   "group": "nasil-yonetilir",
+   "role": "Birinci tercih",
+   "title": "Administration industrielle et générale",
+   "author": "Henri Fayol",
+   "originalLanguage": "fr",
+   "categories": [
+    "management",
+    "systems"
+   ],
+   "reason": "Planlama, örgütleme, kumanda, koordinasyon ve kontrol işlevlerini sistemli olarak ele alır; Fayol’un yönetim ilkelerinin ana kaynağı ve onun için asıl okunacak eser. Kazanım: departmanları, yetki ve sorumluluk ilişkilerini ve yönetim kademelerini kuramsal bir temele oturtmak.",
+   "year": 1916,
+   "titleTr": "Genel ve Endüstriyel Yönetim",
+   "edition": {
+    "title": "Genel ve Endüstriyel Yönetim",
+    "isbn": "9789752500341",
+    "publisher": "Adres Yayınları",
+    "translators": [
+     "M. Asım Çalıkoğlu"
+    ],
+    "sourceUrl": "https://1000kitap.com/kitap/genel-ve-endustriyel-yonetim--87692",
+    "sourceType": "bibliographic",
+    "secondSourceUrl": "https://www.kitapyurdu.com/kitap/genel-ve-endustriyel-yonetim/66980.html",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "1000kitap.com ve kitapyurdu.com aynı ISBN'i (9789752500341) ve Adres Yayınları yayınevini gösteriyor; çevirmen: M. Asım Çalıkoğlu. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/founders-administrationindustrielleetgenerale.jpg",
+    "imageUrl": "https://i.dr.com.tr/cache/600x600-0/originals/0000000449133-1.jpg",
+    "sourceUrl": "https://www.dr.com.tr/kitap/genel-ve-endustriyel-yonetim/henri-fayol/arastirma-tarih/politika-arastirma/politika/urunno=0000000449133",
+    "sourceName": "dr.com.tr",
+    "title": "Genel ve Endüstriyel Yönetim",
+    "author": "Henri Fayol",
+    "publisher": "Adres Yayınları",
+    "isbn": "9789752500341",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "extraGroups": [
+    {
+     "id": "okuma-sirasi",
+     "order": 6,
+     "reason": "Okuma sırasında 6.: örgüt yapısı ve yönetim işlevleri."
+    }
+   ]
+  },
+  {
+   "key": "principlesofscientificmanagement",
+   "group": "nasil-yonetilir",
+   "role": "Birinci tercih",
+   "title": "The Principles of Scientific Management",
+   "author": "Frederick Winslow Taylor",
+   "originalLanguage": "en",
+   "categories": [
+    "management",
+    "systems"
+   ],
+   "reason": "İşin sezgiyle değil gözlem, ölçüm ve yöntem çözümlemesiyle nasıl düzenlenebileceğini anlatır; iş standartlarının, uzmanlaşmanın ve operasyonel verimliliğin tarihsel temeli. Eleştirel okunmalı: çalışanı büyük ölçüde üretim sürecinin bir unsuru olarak gören yönü, bugünkü insan merkezli yönetim anlayışıyla birlikte değerlendirilmeli.",
+   "year": 1911,
+   "titleTr": "Bilimsel Yönetimin İlkeleri",
+   "edition": {
+    "title": "Bilimsel Yönetimin İlkeleri",
+    "isbn": "9789752500082",
+    "publisher": "Adres Yayınları",
+    "translators": [
+     "H. Bahadır Akın"
+    ],
+    "sourceUrl": "https://1000kitap.com/kitap/bilimsel-yonetimin-ilkeleri--211237",
+    "sourceType": "bibliographic",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9789752500082",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "1000kitap.com ve dr.com.tr aynı ISBN'i (9789752500082) ve Adres Yayınları yayınevini gösteriyor; çevirmen: H. Bahadır Akın. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/founders-principlesofscientificmanagement.jpg",
+    "imageUrl": "https://i.dr.com.tr/cache/600x600-0/originals/0000000308255-1.jpg",
+    "sourceUrl": "https://www.dr.com.tr/kitap/bilimsel-yonetimin-ilkeleri/bilim/bilim-tarihi-ve-felsefesi/urunno=0000000308255",
+    "sourceName": "dr.com.tr",
+    "title": "Bilimsel Yönetimin İlkeleri",
+    "author": "Frederick Winslow Taylor",
+    "publisher": "Adres Yayınları",
+    "isbn": "9789752500082",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "extraGroups": [
+    {
+     "id": "okuma-sirasi",
+     "order": 8,
+     "reason": "Okuma sırasında 8.: iş standartları ve verimliliğin kökenleri."
+    }
+   ]
+  },
+  {
+   "key": "shopmanagement",
+   "group": "nasil-yonetilir",
+   "role": "İkinci eser",
+   "title": "Shop Management",
+   "author": "Frederick Winslow Taylor",
+   "originalLanguage": "en",
+   "categories": [
+    "management",
+    "systems"
+   ],
+   "reason": "Üretim örgütlenmesi ve işlerin standartlaştırılması üzerine Taylor’ın öncü çalışması.",
+   "year": 1903,
+   "issue": "Türkçe baskısı doğrulanamadı; özgün baskının kapağı henüz eklenmedi."
+  },
+  {
+   "key": "outofthecrisis",
+   "group": "kalite",
+   "role": "Birinci tercih",
+   "existingId": "outofthecrisis",
+   "reason": "İşletmelerdeki hataların, düşük kalitenin ve verimsizliğin çoğu zaman çalışanlardan değil yönetimin kurduğu sistemden kaynaklandığını anlatır; merkezinde Deming’in on dört ilkesi var. Kazanım: performans sorunlarını çalışanları değiştirerek değil, süreçleri ve yönetim sistemini iyileştirerek çözmek.",
+   "extraGroups": [
+    {
+     "id": "okuma-sirasi",
+     "order": 4,
+     "reason": "Okuma sırasında 4.: süreç, kalite ve sistem iyileştirme."
+    }
+   ]
+  },
+  {
+   "key": "neweconomics",
+   "group": "kalite",
+   "role": "İkinci eser",
+   "existingId": "neweconomics",
+   "reason": "Sistemlerin etkileşimini, süreçlerdeki değişkenliği ve örgütsel öğrenmeyi daha derinlemesine inceler."
+  },
+  {
+   "key": "wirtschaftundgesellschaft",
+   "group": "otorite",
+   "role": "Birinci tercih",
+   "title": "Wirtschaft und Gesellschaft",
+   "author": "Max Weber",
+   "originalLanguage": "de",
+   "categories": [
+    "politics",
+    "management"
+   ],
+   "reason": "Modern bürokrasinin, meşru otoritenin, hiyerarşinin ve rasyonel örgütlenmenin toplumsal temellerini açıklar.",
+   "year": 1922,
+   "issue": "Türkçe baskı adayı: Ekonomi ve Toplum, 1. cilt (Runik Kitap, çeviren Latif Boyacı, ISBN 9786257513999). İkinci, bağımsız bir kaynakta görülemediği için doğrulanmış sayılmadı. Kısa bir giriş için aynı kümedeki Bürokrasi ve Otorite seçkisine bakılabilir."
+  },
+  {
+   "key": "dieprotestantischeethikunddergeistdeskapitalismus",
+   "group": "otorite",
+   "role": "Diğer etkili eser",
+   "title": "Die protestantische Ethik und der Geist des Kapitalismus",
+   "author": "Max Weber",
+   "originalLanguage": "de",
+   "categories": [
+    "economy",
+    "history"
+   ],
+   "reason": "Kapitalizmin gelişimiyle kültürel ve dinsel değerler arasındaki ilişkiyi inceler.",
+   "year": 1905,
+   "titleTr": "Protestan Etiği ve Kapitalizmin Ruhu",
+   "edition": {
+    "title": "Protestan Etiği ve Kapitalizmin Ruhu",
+    "isbn": "9786054137930",
+    "publisher": "alBaraka Yayınları",
+    "translators": [
+     "Abdussamed Bayram"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/protestan-etigi-ve-kapitalizmin-ruhu/716016.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.bkmkitap.com/protestan-etigi-ve-kapitalizmin-ruhu",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve bkmkitap.com aynı ISBN'i (9786054137930) ve alBaraka Yayınları yayınevini gösteriyor; çevirmen: Abdussamed Bayram. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/founders-dieprotestantischeethikunddergeistdeskapitalismu.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12046079/wi:500/wh:34bf764bc",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/protestan-etigi-ve-kapitalizmin-ruhu/716016.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Protestan Etiği ve Kapitalizmin Ruhu",
+    "author": "Max Weber",
+    "publisher": "alBaraka Yayınları",
+    "isbn": "9786054137930",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "burokrasiveotorite",
+   "group": "otorite",
+   "role": "Kısa alternatif",
+   "title": "Bürokrasi ve Otorite",
+   "author": "Max Weber",
+   "originalLanguage": "de",
+   "categories": [
+    "politics",
+    "management"
+   ],
+   "reason": "Ekonomi ve Toplum’dan seçilmiş ilgili metinler; bağımsız, özgün bir Weber kitabı değil. Bir yönetici için Weber’e başlamanın daha pratik yolu.",
+   "titleTr": "Bürokrasi ve Otorite",
+   "edition": {
+    "title": "Bürokrasi ve Otorite",
+    "isbn": "9789752500280",
+    "publisher": "Adres Yayınları",
+    "translators": [
+     "H. Bahadır Akın"
+    ],
+    "sourceUrl": "https://www.biyografiler.com/kitap/burokrasi-ve-otorite",
+    "sourceType": "bibliographic",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9789752500280",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "biyografiler.com ve dr.com.tr aynı ISBN'i (9789752500280) ve Adres Yayınları yayınevini gösteriyor; çevirmen: H. Bahadır Akın. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/founders-burokrasiveotorite.jpg",
+    "imageUrl": "https://i.dr.com.tr/cache/600x600-0/originals/0000000308259-1.jpg",
+    "sourceUrl": "https://www.dr.com.tr/kitap/burokrasi-ve-otorite/bilim/bilim-tarihi-ve-felsefesi/urunno=0000000308259",
+    "sourceName": "dr.com.tr",
+    "title": "Bürokrasi ve Otorite",
+    "author": "Max Weber",
+    "publisher": "Adres Yayınları",
+    "isbn": "9789752500280",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "issue": "Bu seçki Almanca aslından değil, büyük olasılıkla Henderson ve Parsons’ın Ekonomi ve Toplum’dan yaptığı İngilizce seçkiden çevrildi; hangi bölümleri içerdiği künyede belirtilmiyor.",
+   "extraGroups": [
+    {
+     "id": "okuma-sirasi",
+     "order": 7,
+     "reason": "Okuma sırasında 7.: yetki, hiyerarşi ve kurumsal davranış."
+    }
+   ]
+  },
+  {
+   "key": "competitivestrategy",
+   "group": "rekabet",
+   "role": "Birinci tercih",
+   "existingId": "competitivestrategy",
+   "reason": "Bir sektörün kârlılığını hangi güçlerin belirlediğini, rekabetin nasıl çözümleneceğini ve şirketin hangi konumu seçmesi gerektiğini öğretir; beş rekabet gücü modeli bu kitaptan. Kazanım: rakipleri taklit etmek yerine şirketin neden ve nasıl farklı bir rekabet konumu seçmesi gerektiğini görmek.",
+   "extraGroups": [
+    {
+     "id": "okuma-sirasi",
+     "order": 1,
+     "reason": "Okuma sırasında 1.: sektör ve rekabet çözümlemesi."
+    },
+    {
+     "id": "ilk-uc",
+     "order": 1,
+     "reason": "Şirketin nasıl rekabet edeceğini anlatır."
+    }
+   ]
+  },
+  {
+   "key": "competitiveadvantage",
+   "group": "rekabet",
+   "role": "Diğer etkili eser",
+   "existingId": "competitiveadvantage",
+   "reason": "Değer zinciri, maliyet liderliği ve farklılaşma."
+  },
+  {
+   "key": "oncompetition",
+   "group": "rekabet",
+   "role": "Diğer etkili eser",
+   "existingId": "oncompetition",
+   "reason": "Porter’ın rekabet ve strateji üzerine çalışmalarından bir derleme."
+  },
+  {
+   "key": "goodtogreat",
+   "group": "kultur",
+   "role": "Birinci tercih",
+   "existingId": "goodtogreat",
+   "reason": "Sıradan bir şirketin nasıl üstün performansa ulaşabileceğini araştırma örnekleriyle inceler: liderlik, doğru insanları seçmek, odaklanmak ve disiplinli uygulama. Kazanım: şirketin başarısını tek bir yetenekli yöneticiye bağlı bırakmadan kurumsallaştırmayı düşünmek.",
+   "extraGroups": [
+    {
+     "id": "okuma-sirasi",
+     "order": 5,
+     "reason": "Okuma sırasında 5.: örgütsel disiplin ve liderlik."
+    }
+   ]
+  },
+  {
+   "key": "builttolast",
+   "group": "kultur",
+   "role": "Diğer etkili eser",
+   "existingId": "builttolast",
+   "reason": "Jerry I. Porras ile: kurumları uzun ömürlü yapan ortak özellikler."
+  },
+  {
+   "key": "greatbychoice",
+   "group": "kultur",
+   "role": "Diğer etkili eser",
+   "title": "Great by Choice",
+   "author": "Jim Collins and Morten T. Hansen",
+   "originalLanguage": "en",
+   "categories": [
+    "management",
+    "strategy"
+   ],
+   "reason": "Morten T. Hansen ile: belirsizlik ve kriz ortamında başarılı olan şirketler.",
+   "year": 2011,
+   "titleTr": "Mükemmeli Seçmek",
+   "edition": {
+    "title": "Mükemmeli Seçmek",
+    "isbn": "9789757004684",
+    "publisher": "Boyner Yayınları",
+    "translators": [
+     "İclal Büyükdevrim Özçelik"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/mukemmeli-secmek/297784.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.goodreads.com/work/editions/17790487-great-by-choice-uncertainty-chaos-and-luck-why-some-thrive-despite-th?page=2",
+    "secondSourceType": "bibliographic",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve goodreads.com aynı ISBN'i (9789757004684) ve Boyner Yayınları yayınevini gösteriyor; çevirmen: İclal Büyükdevrim Özçelik. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/founders-greatbychoice.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:68700/wi:500/wh:1aad03162",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/mukemmeli-secmek/297784.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Mükemmeli Seçmek",
+    "author": "Jim Collins and Morten T. Hansen",
+    "publisher": "Boyner Yayınları",
+    "isbn": "9789757004684",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "insearchofexcellence",
+   "group": "kultur",
+   "role": "Birinci tercih",
+   "existingId": "insearchofexcellence",
+   "reason": "Robert H. Waterman ile: başarılı şirketlerin ortak yönetim alışkanlıkları, müşteri yakınlığı, çalışan inisiyatifi ve uygulamaya verilen ağırlık. Eleştirel okunmalı: başarılı şirket örneklerinden çıkarılan ilkeler evrensel ve kesin başarı kuralları değildir.",
+   "extraGroups": [
+    {
+     "id": "okuma-sirasi",
+     "order": 9,
+     "reason": "Okuma sırasında 9.: yönetim kültürü ve müşteri odaklılık."
+    }
+   ]
+  },
+  {
+   "key": "thrivingonchaos",
+   "group": "kultur",
+   "role": "Diğer etkili eser",
+   "title": "Thriving on Chaos",
+   "author": "Tom Peters",
+   "originalLanguage": "en",
+   "categories": [
+    "management"
+   ],
+   "reason": "Değişim karşısında uyum yeteneği.",
+   "year": 1987,
+   "cover": {
+    "src": "covers/founders-thrivingonchaos.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780394567846-L.jpg",
+    "sourceUrl": "https://openlibrary.org/isbn/9780394567846",
+    "sourceName": "Open Library",
+    "title": "Thriving on Chaos",
+    "author": "Tom Peters",
+    "publisher": "Alfred A. Knopf",
+    "isbn": "9780394567846",
+    "language": "en",
+    "checkedAt": "2026-10-22",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "reimagine",
+   "group": "kultur",
+   "role": "Diğer etkili eser",
+   "title": "Re-imagine!",
+   "author": "Tom Peters",
+   "originalLanguage": "en",
+   "categories": [
+    "management",
+    "innovation"
+   ],
+   "reason": "Kurumları köklü biçimde yeniden düşünmek.",
+   "year": 2003,
+   "cover": {
+    "src": "covers/founders-reimagine.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9781405300490-L.jpg",
+    "sourceUrl": "https://openlibrary.org/isbn/1405300493",
+    "sourceName": "Open Library",
+    "title": "Re-imagine!",
+    "author": "Tom Peters",
+    "publisher": "Dorling Kindersley",
+    "isbn": "9781405300490",
+    "language": "en",
+    "checkedAt": "2026-10-22",
+    "scope": "Uluslararası baskı kapağı"
+   },
+   "issue": "Türkçe baskı adayı: İşinizi Yeniden Yaratın! (Boyner Yayınları, ISBN 9789757004486). İkinci, bağımsız bir kaynakta görülemediği için doğrulanmış sayılmadı."
+  },
+  {
+   "key": "littlebigthings",
+   "group": "kultur",
+   "role": "Diğer etkili eser",
+   "title": "The Little BIG Things",
+   "author": "Tom Peters",
+   "originalLanguage": "en",
+   "categories": [
+    "management"
+   ],
+   "reason": "Gündelik yönetim davranışlarının toplam etkisi.",
+   "year": 2010,
+   "issue": "Türkçe baskı adayı: Küçük Ama Önemli Şeyler: Mükemmel’e Ulaşmanın 163 Yolu (Boyner Yayınları, çeviren İclal Büyükdevrim Özçelik, ISBN 9789757004608). ISBN, ad ve yayınevi bağımsız bir sayfada birlikte görülemediği için doğrulanmış sayılmadı."
+  },
+  {
+   "key": "innovatorsdilemma",
+   "group": "yenilik",
+   "role": "Birinci tercih",
+   "existingId": "innovatorsdilemma",
+   "reason": "Başarılı şirketlerin müşterilerini dinlemelerine, süreçlerini iyileştirmelerine ve mantıklı kararlar vermelerine rağmen yeni teknolojiler ve iş modelleri karşısında neden yenilebildiklerini açıklar. Kazanım: mevcut müşterilere odaklanırken yeni pazarları ve iş modeli tehditlerini neden gözden kaçırabileceğini anlamak.",
+   "extraGroups": [
+    {
+     "id": "okuma-sirasi",
+     "order": 3,
+     "reason": "Okuma sırasında 3.: yeni iş modelleri ve pazar dönüşümü."
+    },
+    {
+     "id": "ilk-uc",
+     "order": 3,
+     "reason": "Başarılı bir şirketin gelecekte neden başarısız olabileceğini anlatır."
+    }
+   ]
+  },
+  {
+   "key": "innovatorssolution",
+   "group": "yenilik",
+   "role": "Diğer etkili eser",
+   "existingId": "innovatorssolution",
+   "reason": "Michael E. Raynor ile: yıkıcı yeniliğin stratejik olarak nasıl geliştirilebileceği."
+  },
+  {
+   "key": "competingagainstluck",
+   "group": "yenilik",
+   "role": "Diğer etkili eser",
+   "existingId": "competingagainstluck",
+   "reason": "Müşterinin ürünü hangi ihtiyacını karşılamak için seçtiğine odaklanan “yapılacak iş” (jobs to be done) yaklaşımı."
+  }
+ ],
+ "links": [
+  {
+   "type": "companion",
+   "books": [
+    "wirtschaftundgesellschaft",
+    "burokrasiveotorite"
+   ],
+   "reason": "Kısa seçki, Ekonomi ve Toplum’un bürokrasi ve otorite üzerine bölümlerinden metinleri bir araya getirir; Weber’e başlamanın pratik yolu, ana eser ise bütünü."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "principlesofscientificmanagement",
+    "shopmanagement"
+   ],
+   "reason": "Taylor’ın iki temel çalışması: biri bilimsel yönetimin ilkelerini, öteki atölyede işin örgütlenmesini anlatır."
+  },
+  {
+   "type": "sequence",
+   "first": "innovatorsdilemma",
+   "then": "innovatorssolution",
+   "why": "Yenilikçinin İkilemi’nin devamı: ikilemi teşhis ettikten sonra yıkıcı yeniliğin nasıl geliştirileceğini anlatır.",
+   "next": "Aynı yazarın, ikilemden çıkış yolunu anlatan devam kitabı."
+  }
+ ]
+}

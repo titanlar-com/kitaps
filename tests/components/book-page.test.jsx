@@ -31,8 +31,9 @@ describe('EditionSummary', () => {
   });
 
   it('shows the source list’s trusted translation instead of “not verified”', () => {
-    renderWithTheme(<EditionSummary book={book('oncompetition')}/>);
-    expect(screen.getByText(/Kıvanç Tanrıyar/)).toBeTruthy();
+    // Playing to Win has no researched edition yet; only the source list names its translation.
+    renderWithTheme(<EditionSummary book={book('playingtowin')}/>);
+    expect(screen.getByText(/Meriç Aydonat/)).toBeTruthy();
     expect(screen.getByText(/Kaynak listesindeki doğrulanmış çeviri notundan alındı/)).toBeTruthy();
     expect(screen.queryByText(/Türkçe baskı doğrulanamadı/)).toBeNull();
   });

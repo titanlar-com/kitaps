@@ -20375,6 +20375,390 @@
           }
         ]
       }
+    },
+    "managementtasksresponsibilitiespractices": {
+      "firstPublisher": "Harper & Row",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Peter_Drucker",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/0060110929.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.goodreads.com/work/editions/79686-management-tasks-responsibilities-practices?page=1",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://lib.ecu.edu/catalog-preview/catalog/270129",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.raptisrarebooks.com/?p=182510",
+            "type": "retailer"
+          },
+          {
+            "url": "https://facultyaffairs.ku.edu/book/management-tasks-responsibilities-practices",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "administrationindustrielleetgenerale": {
+      "firstPublicationYear": 1916,
+      "firstPublisher": "Société de l'Industrie Minérale (Bulletin de la Société de l'Industrie Minérale)",
+      "originalLanguage": "fr",
+      "stage1": {
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Henri_Fayol",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://fr.wikisource.org/wiki/Livre:Fayol,_Henri_-_Administration_industrielle_et_g%C3%A9n%C3%A9rale,_1917.djvu",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.annales.org/edit/gc/2000/gc12-2000/73-87.pdf",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://lelibellio.polytechnique.fr/wp-content/uploads/2013/02/vol.-12-n°-4-pages-49-à-86-2016-DOSSIER-Actualité-d’Henri-Fayol-1916-2016.pdf",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://bibliotheques-numeriques.defense.gouv.fr/impression/document/88d3d506-87c2-4854-a710-e917413afb50",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "principlesofscientificmanagement": {
+      "firstPublicationYear": 1911,
+      "firstPublisher": "Harper & Brothers",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.loc.gov/item/11010339",
+            "type": "national-bibliography"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Principles_of_Scientific_Management",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://dspace.gipe.ac.in/xmlui/handle/10973/41111?show=full",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.marxists.org/reference/subject/economics/taylor/principles/",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "shopmanagement": {
+      "firstPublicationYear": 1903,
+      "firstPublisher": "American Society of Mechanical Engineers",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Frederick_Winslow_Taylor",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://stevensarchives.libraryhost.com/repositories/2/archival_objects/2101",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://theses.univ-nantes.fr/vufind/Record/PPN019507216/Description",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://tekniskkulturarv.dk/book/8811fbb1-adb5-4cf3-8d73-22217a103e62?page=17",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.gutenberg.org/ebooks/6464",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "wirtschaftundgesellschaft": {
+      "firstPublicationYear": 1922,
+      "firstPublisher": "J. C. B. Mohr (Paul Siebeck)",
+      "originalLanguage": "de",
+      "stage1": {
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://de.wikipedia.org/wiki/Wirtschaft_und_Gesellschaft",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://openlibrary.org/books/OL18572323M.json",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://ulb-cardcatalogues.uibk.ac.at/Record/card_0000003042643/Details",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://dewiki.de/Lexikon/Wirtschaft_und_Gesellschaft",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "dieprotestantischeethikunddergeistdeskapitalismus": {
+      "firstPublicationYear": 1905,
+      "firstPublisher": "J. C. B. Mohr (Paul Siebeck)",
+      "originalLanguage": "de",
+      "stage1": {
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://de.wikipedia.org/wiki/Die_protestantische_Ethik_und_der_Geist_des_Kapitalismus",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://de.wikisource.org/wiki/Archiv_f%C3%BCr_Sozialwissenschaft_und_Sozialpolitik",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Archiv_f%C3%BCr_Sozialwissenschaft_und_Sozialpolitik",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.mohrsiebeck.com/en/book/max-weber-gesamtausgabe-9783161531354",
+            "type": "publisher"
+          },
+          {
+            "url": "https://archive.org/details/bub_gb_ffUnAAAAYAAJ",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.ebook.de/de/product/23694743/.html",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "greatbychoice": {
+      "firstPublicationYear": 2011,
+      "firstPublisher": "HarperBusiness",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://leadershipnow.com/leadershop/9780062120991.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://documentacion.fundacionmapfre.org/documentacion/publico/es/bib/134661.do",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.porchlightbooks.com/products/great-by-choice-jim-collins-9780062120991",
+            "type": "retailer"
+          },
+          {
+            "url": "https://800ceoread.com/products/great-by-choice-jim-collins-morten-t-hansen-english",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "thrivingonchaos": {
+      "firstPublicationYear": 1987,
+      "firstPublisher": "Alfred A. Knopf",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://gapines.org/eg/opac/record/24568",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://tompeters.com/thriving-on-chaos/",
+            "type": "author"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Tom_Peters",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.publishersweekly.com/9780394567846",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://bdu3.siu.edu.ar/bdu/Record/B-35-990000080870204151",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://penguinrandomhouse.com/books/130188/thriving-on-chaos-by-tom-peters",
+            "type": "publisher"
+          }
+        ]
+      }
+    },
+    "reimagine": {
+      "firstPublicationYear": 2003,
+      "firstPublisher": "Dorling Kindersley",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/isbn/1405300493.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Tom_Peters",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.emerald.com/insight/content/doi/10.1108/ijppm.2004.07953dae.001/full/html",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://publishersweekly.com/9780789496478",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "littlebigthings": {
+      "firstPublicationYear": 2010,
+      "firstPublisher": "HarperStudio",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/isbn/9780061894084.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Tom_Peters",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://warwicklibrary.oslri.net/Record/545486",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://catalogue.nflibrary.ca/eg/opac/record/40952",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "burokrasiveotorite": {
+      "originalLanguage": "de",
+      "stage1": {
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://de.wikipedia.org/wiki/Wirtschaft_und_Gesellschaft",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://katalog.hacettepe.edu.tr/client/en_US/default/search/detailnonmodal/ent:$002f$002fSD_ILS$002f0$002fSD_ILS:515030/one",
+            "type": "library-catalog"
+          }
+        ]
+      }
     }
   }
 }

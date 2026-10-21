@@ -413,18 +413,33 @@
    "year": 1954,
    "cover": {
     "src": "covers/originals-practiceofmanagement.jpg",
-    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780060878979-L.jpg",
-    "sourceUrl": "https://openlibrary.org/books/OL7283402M",
-    "sourceName": "Open Library",
-    "title": "The Practice of Management",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:200172/wi:500/wh:cfa7275c2",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/yonetim-uygulamasi/7505.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Yönetim Uygulaması",
     "author": "Peter F. Drucker",
-    "publisher": "Collins",
-    "isbn": "9780060878979",
-    "language": "en",
-    "checkedAt": "2026-10-21",
-    "scope": "Uluslararası baskı kapağı"
+    "publisher": "İnkılap Kitabevi",
+    "isbn": "9789751010209",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
    },
-   "issue": "Türkçe baskısı: Yönetim Uygulaması (İnkılap Kitabevi, 1996, çeviren E. Sabri Yarmalı, ISBN 9789751010209). Baskı tükenmiş; künye bir üniversite kütüphanesinde ve iki kitapçıda görülüyor, ancak iki aşamalı inceleme tamamlanmadığı için doğrulanmış sayılmadı."
+   "titleTr": "Yönetim Uygulaması",
+   "edition": {
+    "title": "Yönetim Uygulaması",
+    "isbn": "9789751010209",
+    "publisher": "İnkılap Kitabevi",
+    "translators": [
+     "E. Sabri Yarmalı"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/yonetim-uygulamasi/7505.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.pandora.com.tr/kitap/yonetim-uygulamasi/31718",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve pandora.com.tr aynı ISBN'i (9789751010209) ve İnkılap Kitabevi yayınevini gösteriyor; çevirmen E. Sabri Yarmalı (Bilecik, THK ve Beykent üniversite kütüphane künyeleri). Baskı 1996'dan; tükenmiş, yeni bir Türkçe baskısı bulunamadı."
+   }
   },
   {
    "key": "highoutputmanagement",

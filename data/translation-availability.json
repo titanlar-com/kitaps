@@ -5709,6 +5709,371 @@
         ],
         "year": 2006
       }
+    },
+    "administrationindustrielleetgenerale": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://katalog.bilecik.edu.tr/bib/59207",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://1000kitap.com/kitap/genel-ve-endustriyel-yonetim--87692",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/genel-ve-endustriyel-yonetim/66980.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789752500341",
+            "type": "retailer"
+          },
+          {
+            "url": "https://katalog.hacettepe.edu.tr/client/rss/hitlist/default/qu=END%C3%9CSTR%C4%B0YEL+Y%C3%96NET%C4%B0M.&ps=300",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Genel ve Endüstriyel Yönetim",
+        "publisher": "Adres Yayınları",
+        "isbn": "9789752500341",
+        "translators": [
+          "M. Asım Çalıkoğlu"
+        ],
+        "year": 2016
+      }
+    },
+    "principlesofscientificmanagement": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://katalog.bilecik.edu.tr/bib/59206",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://1000kitap.com/kitap/bilimsel-yonetimin-ilkeleri--211237",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9789752500082",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Bilimsel Yönetimin İlkeleri",
+        "publisher": "Adres Yayınları",
+        "isbn": "9789752500082",
+        "translators": [
+          "H. Bahadır Akın"
+        ],
+        "year": 2016
+      }
+    },
+    "dieprotestantischeethikunddergeistdeskapitalismus": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/protestan-etigi-ve-kapitalizmin-ruhu/716016.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786054137930",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/protestan-ahlaki-ve-kapitalizmin-ruhu/590507.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/yazar/max-weber-184132",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.bkmkitap.com/protestan-etigi-ve-kapitalizmin-ruhu",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Protestan Etiği ve Kapitalizmin Ruhu",
+        "publisher": "alBaraka Yayınları",
+        "isbn": "9786054137930",
+        "translators": [
+          "Abdussamed Bayram"
+        ],
+        "year": 2025
+      }
+    },
+    "greatbychoice": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/mukemmeli-secmek/297784.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789757004684",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.goodreads.com/work/editions/17790487-great-by-choice-uncertainty-chaos-and-luck-why-some-thrive-despite-th?page=2",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Mükemmeli Seçmek",
+        "publisher": "Boyner Yayınları",
+        "isbn": "9789757004684",
+        "translators": [
+          "İclal Büyükdevrim Özçelik"
+        ],
+        "year": 2013
+      }
+    },
+    "burokrasiveotorite": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://katalog.bilecik.edu.tr/bib/59208",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.biyografiler.com/kitap/burokrasi-ve-otorite",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://catalog.khas.edu.tr/bib/18017",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.idefix.com/burokrasi-ve-otorite-p-228465",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-m-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9789752500280",
+            "type": "retailer"
+          },
+          {
+            "url": "https://katalog.hacettepe.edu.tr/client/en_US/default/search/detailnonmodal/ent:$002f$002fSD_ILS$002f0$002fSD_ILS:515030/one",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://katalog.hacettepe.edu.tr/client/rss/hitlist/default/qu=B%C3%BCrokrasi+ve+otorite&ps=50",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Bürokrasi ve Otorite",
+        "publisher": "Adres Yayınları",
+        "isbn": "9789752500280",
+        "translators": [
+          "H. Bahadır Akın"
+        ],
+        "year": 2005
+      }
+    },
+    "practiceofmanagement": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-m-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://katalog.bilecik.edu.tr/bib/21863",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/yonetim-uygulamasi/7505.html",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-m-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.pandora.com.tr/kitap/yonetim-uygulamasi/31718",
+            "type": "retailer"
+          },
+          {
+            "url": "https://katalog.thk.edu.tr/yordam/?dil=0&fq%5B%5D=kunyeAnaTurKN_str%3A%220100%22&p=1&q=&sno=41",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://library.beykent.edu.tr/yordam/?alan=kunyeKonuBasligi_txt&dil=0&p=1&q=Management.&sno=124",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://dergipark.org.tr/tr/pub/sobiadsbd/article/135657",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Yönetim Uygulaması",
+        "publisher": "İnkılap Kitabevi",
+        "isbn": "9789751010209",
+        "translators": [
+          "E. Sabri Yarmalı"
+        ],
+        "year": 1996
+      }
+    },
+    "insearchofexcellence": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-m-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://katalog.bilecik.edu.tr/bib/14370",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/yonetme-ve-yukselme-sanati/2986.html",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-m-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://search.worldcat.org/title/yonetme-ve-yukselme-sanat-mukemmeli-arays/oclc/758850063",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://books.google.com/books/about/Y%C3%B6netme_ve_y%C3%BCkselme_sanat%C4%B1.html?id=8sEntwAACAAJ",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.nadirkitap.com/yonetme-ve-yukselme-sanati-mukemmeli-arayis-thomas-j-peters-robert-h-waterman-kitap926134.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.kitantik.com/product/YONETME-VE-YUKSELME-SANATI-Mukemmeli-Arayis_0z8kgltjmyyrfdw1trn",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.pandora.com.tr/kitap/yonetme-ve-yukselme-sanati/6765",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Yönetme ve Yükselme Sanatı: \"Mükemmeli Arayış\"",
+        "publisher": "Altın Kitaplar",
+        "isbn": "",
+        "translators": [
+          "Selami Sargut"
+        ],
+        "isbnUnavailable": true,
+        "year": 1995
+      }
+    },
+    "oncompetition": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-m-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/rekabet-uzerine/243854.html",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-m-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.idefix.com/rekabet-uzerine-p-1156523",
+            "type": "retailer"
+          },
+          {
+            "url": "https://dergipark.org.tr/tr/pub/econder/article/705257",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Rekabet Üzerine",
+        "publisher": "Optimist Kitap",
+        "isbn": "9786055655433",
+        "translators": [
+          "Kıvanç Tanrıyar"
+        ],
+        "year": 2010
+      }
     }
   }
 }

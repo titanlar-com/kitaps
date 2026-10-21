@@ -70,7 +70,8 @@ test('the export uses the same edition and translator rules as the book page',()
   else if(status!=='original')assert.equal(record.turkceAdi,null,book.id);
  }
  assert.deepEqual(exportBookRecord(byId.oncompetition).onerilenCevirmenler,['Kıvanç Tanrıyar']);
- assert.equal(exportBookRecord(byId.oncompetition).turkiyeYayinevi,'Optimist Yayınları');
+ // The two-stage research (ISBN 9786055655433) names the publisher as its imprint does.
+ assert.equal(exportBookRecord(byId.oncompetition).turkiyeYayinevi,'Optimist Kitap');
 });
 
 test('authors split into people without losing suffixes or shared surnames',()=>{

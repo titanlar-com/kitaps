@@ -14,6 +14,7 @@ const resolve=reference=>catalog.mapping[`originals:${reference}`]||reference;
 const mapped=key=>byId[catalog.mapping[`originals:${key}`]];
 const domain=url=>new URL(url).hostname.replace(/^www\./,'');
 const validIsbn13=value=>/^\d{13}$/.test(value)&&[...value].reduce((sum,digit,index)=>sum+Number(digit)*(index%2?3:1),0)%10===0;
+const LATER_REFERENCES=new Set(['founders']);
 const ROLES=['Özgün kaynak','Popüler sürüm','Eleştiri ve sınama','Boyd’a giriş','Hem yeni hem derin'];
 
 test('every original-source entry is one catalog book in its concept group, with its role',()=>{
@@ -29,7 +30,8 @@ test('every original-source entry is one catalog book in its concept group, with
   assert.ok(book.notes.some(note=>note.text===item.reason&&note.source===`${source.short} · ${item.role}`),item.key);
   // Catalog books keep their identity; new ones never merge into another work.
   if(item.existingId)assert.equal(book.id,item.existingId,item.key);
-  else assert.deepEqual(book.origins,['originals'],item.key);
+  // Collections added later may point at the same book by existingId; it is still one work.
+  else assert.deepEqual(book.origins.filter(origin=>!LATER_REFERENCES.has(origin)),['originals'],item.key);
  }
 });
 

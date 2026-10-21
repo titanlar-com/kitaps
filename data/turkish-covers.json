@@ -2470,5 +2470,19 @@
     "checkedAt": "2026-09-28",
     "scope": "Türkçe baskı kapağı",
     "matchMethod": "manual-source-review"
+  },
+  "oncompetition": {
+    "src": "covers/tr-oncompetition.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:67165/mh:1000/wh:40ec6cf0a",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/rekabet-uzerine/243854.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Rekabet Üzerine",
+    "author": "Michael E. Porter",
+    "publisher": "Optimist Kitap",
+    "isbn": "9786055655433",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı",
+    "matchMethod": "manual-source-review"
   }
 }
