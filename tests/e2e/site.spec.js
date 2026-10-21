@@ -339,7 +339,8 @@ test('the book sheet keeps its text inside its boxes at 320 px with 200% text', 
   const context = await browser.newContext({ viewport: { width: 320, height: 900 } });
   await isolate(context);
   const page = await context.newPage();
-  for (const book of ['good-to-great-by-jim-collins', 'fadis-by-gulten-dayioglu']) {
+  // Management carries a caution with a 13-digit ISBN, a word that cannot wrap at a space.
+  for (const book of ['good-to-great-by-jim-collins', 'fadis-by-gulten-dayioglu', 'management-by-peter-f-drucker']) {
     await page.goto(`./?book=${book}`);
     const sheet = page.locator('.mantine-Drawer-content');
     await expect(sheet.locator('.reading-priority-card')).toBeVisible();
@@ -356,9 +357,13 @@ test('the book sheet keeps its text inside its boxes at 320 px with 200% text', 
     }
     await expect(sheet.locator('.mantine-Accordion-control[aria-expanded="false"]')).toHaveCount(0);
     await page.addStyleTag({ content: LARGE_TEXT });
-    // The sheet scrolls on its own, so it is checked apart from the page.
-    expect(await sheet.evaluate(element => element.scrollWidth <= element.clientWidth), `${book}: the sheet scrolls sideways`).toBe(true);
-    expect(await spilling(sheet.locator('.reading-priority-card, .detail-sections')), book).toEqual([]);
+    await page.addStyleTag({ content: WIDE_FONT });
+    for (const [font, wide] of Object.entries(fonts)) {
+      await useFont(page, wide);
+      // The sheet scrolls on its own, so it is checked apart from the page.
+      expect(await sheet.evaluate(element => element.scrollWidth <= element.clientWidth), `${book}: the sheet scrolls sideways in the ${font}`).toBe(true);
+      expect(await spilling(sheet.locator('.reading-priority-card, .edition-summary, .detail-sections')), `${book}, ${font}`).toEqual([]);
+    }
   }
   await context.close();
 });

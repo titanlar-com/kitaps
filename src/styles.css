@@ -715,16 +715,18 @@ main{padding-top:20px}
 .source-counts dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
 .token-steps{color:var(--muted)}
 .token-steps a{display:inline-flex;align-items:center;gap:3px}
-/* The sync notice and the connect dialog reflow with enlarged text: button labels wrap
-   instead of widening their box past the screen. When the notice is narrow for its own text
-   size (a phone with 200% text), the icon gives its column to the text and the buttons stack
-   at full width. The query is in em, so it follows the text size, not only the screen. */
-.sync-notice,:is(.sync-modal,.github-sync-panel) .mantine-Alert-root{container-type:inline-size}
-:is(.sync-notice,.sync-modal,.github-sync-panel) .mantine-Alert-body{min-width:0;overflow-wrap:anywhere}
+/* Every alert (the sync notice, the connect dialog, a caution on the book page) reflows with
+   enlarged text: its text wraps inside the box, a word longer than a line (an ISBN, say) breaks
+   instead of running out, and in the sync alerts button labels wrap instead of widening their
+   box past the screen. When an alert is narrow for its own text size (a phone with 200% text),
+   the icon gives its column to the text and the sync notice's buttons stack at full width. The
+   query is in em, so it follows the text size, not only the screen. */
+.sync-notice,.mantine-Alert-root{container-type:inline-size}
+.mantine-Alert-body{min-width:0;overflow-wrap:anywhere}
 :is(.sync-notice,.sync-modal,.github-sync-panel) .mantine-Button-root{height:auto;max-width:100%;padding-block:.5rem}
 :is(.sync-notice,.sync-modal,.github-sync-panel) .mantine-Button-label{white-space:normal;text-align:left;overflow-wrap:anywhere}
 @container (max-width:15em){
- :is(.sync-notice,.sync-modal,.github-sync-panel) .mantine-Alert-icon{display:none}
+ .mantine-Alert-icon{display:none}
  .sync-notice .mantine-Group-root{flex-direction:column;align-items:stretch}
 }
 .global-guide-modal .mantine-Modal-content,.global-guide-modal .mantine-Modal-header{background:var(--surface);color:var(--ink)}
