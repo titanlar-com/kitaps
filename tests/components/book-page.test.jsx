@@ -108,11 +108,12 @@ describe('BookDiscovery', () => {
   const discovery = id => renderWithTheme(<BookDiscovery book={book(id)} catalog={catalog} states={{}} onOpen={vi.fn()} onCategory={vi.fn()} onCollection={vi.fn()} BookCover={Cover}/>);
 
   it('suggests no preparation where the engine counts none', () => {
-    discovery('goodtogreat');
+    // Built to Last has no preparation relation (Good to Great gained two from the manager-candidate programme).
+    discovery('builttolast');
     const before = screen.getByRole('button', { name: /Önce ne okumalıyım\? · 0/ });
     expect(before).toBeTruthy();
     expect(screen.getByText(/Doğrudan bu kitapla başlayabilirsin/)).toBeTruthy();
-    expect(ranking.byId.goodtogreat.criteria.find(item => item.id === 'preparationFit').evidence).toMatch(/önerilmiyor/);
+    expect(ranking.byId.builttolast.criteria.find(item => item.id === 'preparationFit').evidence).toMatch(/önerilmiyor/);
   });
 
   it('shows editorial preparation with its reason', () => {

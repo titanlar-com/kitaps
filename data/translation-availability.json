@@ -6074,6 +6074,232 @@
         ],
         "year": 2010
       }
+    },
+    "finansciolmayanlaricinfinans": {
+      "status": "original",
+      "stage1": {
+        "decision": "original",
+        "reviewer": "claude-stage1-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.nadirkitap.com/finansci-olmayanlar-icin-finans-hakan-ozerol-kitap48342237.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.nadirkitap.com/finansci-olmayanlar-icin-finans-9-baski-dr-hakan-ozerol-kitap45378286.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.goodreads.com/book/show/43223519",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "original",
+        "reviewer": "claude-stage2-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/kitap/finansci-olmayanlar-icin-finans/hakan-ozerol/basvuru/is-ekonomi-hukuk/hukuk/urunno=0000000121561",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789756093245",
+            "type": "retailer"
+          }
+        ]
+      },
+      "originalLanguage": "tr"
+    },
+    "decisive": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/dogru-karar/339136.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789757004707",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.konseykitap.com/dogru-karar",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Do%C4%9Fru-Karar-Hayat%C4%B1n%C4%B1z%C4%B1-De%C4%9Fi%C5%9Ftirecek-Kararlar%C4%B1/dp/9757004707",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.nadirkitap.com/dogru-karar-hayatinizi-degistirecek-en-iyi-kararlari-vermek-chip-heath-dan-heath-kitap22257568.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://tamadres.com/dogru-karar-chip-heath-dan-heath-kitabi-148158-9789757004707",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Doğru Karar",
+        "publisher": "Boyner Yayınları",
+        "isbn": "9789757004707",
+        "translators": [
+          "İclal Büyükdevrim Özçelik"
+        ],
+        "year": 2014
+      }
+    },
+    "invitationtosociology": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://iletisim.com.tr/kitap/sosyolojiye-cagri/9463",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.pandora.com.tr/kitap/sosyolojiye-cagri-humanist-bir-perspektif/572107",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/kitap/sosyolojiye-cagri/arastirma-tarih/sosyoloji/urunno=0001708849001",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/sosyolojiye-cagri-humanist-bir-perspektif/429672.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com/Sosyolojiye-Cagri-H%C3%BCmanist-Bir-Perspektif/dp/9750522109",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Sosyolojiye Çağrı: Hümanist Bir Perspektif",
+        "publisher": "İletişim Yayınları",
+        "isbn": "9789750522109",
+        "translators": [
+          "A. Erkan Koca"
+        ],
+        "year": 2017
+      }
+    },
+    "intelligentthinking": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri/712521.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786255942227",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.pandora.com.tr/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri/926714",
+            "type": "retailer"
+          },
+          {
+            "url": "https://dunyadakitap.com/products/akilli-kararlar-i%CC%87cin-stratejik-dusunme-yontemleri-destek-yayinlari-i%CC%87nce-kapak-1",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Ak%C4%B1ll%C4%B1-Kararlar-Stratejik-D%C3%BC%C5%9F%C3%BCnme-Y%C3%B6ntemleri/dp/6255942228",
+            "type": "retailer"
+          },
+          {
+            "url": "https://1000kitap.com/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri--483502",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Akıllı Kararlar İçin Stratejik Düşünme Yöntemleri",
+        "publisher": "Destek Yayınları",
+        "isbn": "9786255942227",
+        "translators": [
+          "Cemal Can Tarımcıoğlu"
+        ],
+        "year": 2025
+      }
+    },
+    "nakedeconomics": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/ciplak-ekonomi/368459.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.bkmkitap.com/ciplak-ekonomi",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/Kitap/Ciplak-Ekonomi/Egitim-Basvuru/Is-Ekonomi-Hukuk/Ekonomi/urunno=0000000646886",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/%C3%87%C4%B1plak-Ekonomi-K%C3%BCresel-Ekonomiyi-E%C4%9Flenceli/dp/6053435678",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Çıplak Ekonomi",
+        "publisher": "Pegasus Yayınları",
+        "isbn": "9786053435679",
+        "translators": [
+          "Giray Ergin"
+        ],
+        "year": 2015
+      }
     }
   }
 }

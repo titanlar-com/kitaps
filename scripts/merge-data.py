@@ -298,39 +298,44 @@ if children:
 # popular versions. New Turkish editions are verified on two websites.
 # Priorities and roles stay notes and group names; the engine scores these
 # books like every other, and look-alike warnings become notes on the real work.
-REVIEWS=[('data/shelf-review.json','shelf','RAF','Raf taraması'),('data/original-sources.json','originals','ÖZ','Özgün kaynak'),('data/management-founders.json','founders','YD','Kurucu eserler')]
-reviews={};review_links=[];review_purposes={}
+def add_review_item(review,origin,item):
+ cid=review['id']
+ b=books[item['existingId']] if item.get('existingId') else getbook(item['title'],item['author'],origin,extraTitles=[item.get('titleTr','')])
+ if origin not in b['origins']:b['origins'].append(origin)
+ # A new recommendation must not silently merge into an unrelated catalog book.
+ assert item.get('existingId') or b['origins']==[origin],(item['key'],b['id'])
+ mapping[origin+':'+item['key']]=b['id']
+ if not item.get('existingId'):
+  if item.get('titleTr'):b['titleTr']=item['titleTr']
+  b['originalLanguage']=item['originalLanguage']
+  if item['originalLanguage']!='tr':offer_original(b,item['title'],1)
+  if item.get('year') and item['year'] not in b['years']:b['years'].append(item['year'])
+  if item.get('edition'):
+   b['verifiedEdition']={k:v for k,v in item['edition'].items() if k=='translators' or v not in (None,'',[])}
+   if item['originalLanguage']=='tr':b['verifiedEdition']['originalLanguage']='tr'
+  if item.get('cover'):b['cover']=item['cover']
+  if item.get('issue'):b['sourceIssue']={'note':item['issue']}
+  apply_format(b,item)
+ addcat(b,*item.get('categories',[]))
+ if item.get('childAge'):b['childAge']=item['childAge']
+ if item.get('purpose'):review_purposes[b['id']]=item['purpose']
+ # A role (original source, popular version, critique) names the note's source.
+ label=review['short']+(' · '+item['role'] if item.get('role') else '')
+ for placement in [{'id':item['group'],'reason':item['reason']},*item.get('extraGroups',[])]:
+  note(b,placement['reason'],label)
+  extra={k:v for k,v in (('role',item.get('role')),('order',placement.get('order'))) if v}
+  member(b,cid,cid+':'+placement['id'],source=review['source'],note=placement['reason'],**extra)
+REVIEWS=[('data/shelf-review.json','shelf','RAF','Raf taraması'),('data/original-sources.json','originals','ÖZ','Özgün kaynak'),('data/management-founders.json','founders','YD','Kurucu eserler'),('data/manager-foundations.json','managerprep','YA','Yönetici adayı')]
+reviews={};review_links=[];review_purposes={};deferred_reviews=[]
 for path,origin,mark,tag in REVIEWS:
  if not (ROOT/path).exists():continue
  review=reviews[origin]=read(path);cid=review['id']
  collections.append({k:review[k] for k in ('id','title','short','description','source','context')}|{'origin':origin,'mark':mark,'tag':tag,'note':review['note']})
  for group in review['groups']:groups.append({'id':cid+':'+group['id'],'collectionId':cid,'title':group['title']})
  for item in review['books']:
-  b=books[item['existingId']] if item.get('existingId') else getbook(item['title'],item['author'],origin,extraTitles=[item.get('titleTr','')])
-  if origin not in b['origins']:b['origins'].append(origin)
-  # A new recommendation must not silently merge into an unrelated catalog book.
-  assert item.get('existingId') or b['origins']==[origin],(item['key'],b['id'])
-  mapping[origin+':'+item['key']]=b['id']
-  if not item.get('existingId'):
-   if item.get('titleTr'):b['titleTr']=item['titleTr']
-   b['originalLanguage']=item['originalLanguage']
-   if item['originalLanguage']!='tr':offer_original(b,item['title'],1)
-   if item.get('year') and item['year'] not in b['years']:b['years'].append(item['year'])
-   if item.get('edition'):
-    b['verifiedEdition']={k:v for k,v in item['edition'].items() if k=='translators' or v not in (None,'',[])}
-    if item['originalLanguage']=='tr':b['verifiedEdition']['originalLanguage']='tr'
-   if item.get('cover'):b['cover']=item['cover']
-   if item.get('issue'):b['sourceIssue']={'note':item['issue']}
-   apply_format(b,item)
-  addcat(b,*item.get('categories',[]))
-  if item.get('childAge'):b['childAge']=item['childAge']
-  if item.get('purpose'):review_purposes[b['id']]=item['purpose']
-  # A role (original source, popular version, critique) names the note's source.
-  label=review['short']+(' · '+item['role'] if item.get('role') else '')
-  for placement in [{'id':item['group'],'reason':item['reason']},*item.get('extraGroups',[])]:
-   note(b,placement['reason'],label)
-   extra={k:v for k,v in (('role',item.get('role')),('order',placement.get('order'))) if v}
-   member(b,cid,cid+':'+placement['id'],source=review['source'],note=placement['reason'],**extra)
+  # A review can point at a book a later source adds (the preparation route); it joins after that source.
+  if item.get('existingId') and item['existingId'] not in books:deferred_reviews.append((review,origin,item));continue
+  add_review_item(review,origin,item)
  for bid,text in review.get('lookAlikes',{}).items():
   assert bid in books,bid
   note(books[bid],text,review['short'])
@@ -365,6 +370,7 @@ for item in preparation['books']:
  member(b,'preparation',gid,source=item['bibliyografikKaynaklar'][0],note=item['onerilmeNedeni'],order=item['okumaSirasi'])
  preparation_links.append((b['id'],item['ornekHedefEserler'],item['onerilmeNedeni']))
  mapping['preparation:'+item['id']]=b['id']
+for review,origin,item in deferred_reviews:add_review_item(review,origin,item)
 for b in books.values():
  if any(origin in b['origins'] for origin in ['entrepreneurship','foundations']) and not b.get('cover') and not b.get('sourceIssue') and not b.get('format'):
   b['sourceIssue']={'note':'Kapak görseli eser ve baskı kimliğiyle birlikte henüz yerel kataloğa alınmadı; doğrulanmış bibliyografik kayıt görünür tutuluyor.'}
@@ -486,7 +492,7 @@ def checked_dates():
 # The catalog date follows its newest verified evidence, never the build clock.
 latest=max(value for value in checked_dates() if isinstance(value,str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}',value))
 updated=f"{int(latest[8:10])} {MONTHS[int(latest[5:7])-1]} {latest[:4]}"
-result={'updated':updated,'readingGuides':readingGuides,'books':list(books.values()),'collections':collections,'groups':groups,'categories':[{'id':k,'label':v,'count':sum(k in b['categories'] for b in books.values())} for k,v in categoryNames.items()],'sourceTags':local['tags'],'mapping':mapping,'sourceCounts':{'atlasEntries':sum(len(g['books']) for c in atlas['collections'] for g in c['groups']),'localBooks':len(local['books']),'kitapsRecords':len(kitaps['books']),'foundationalBooks':sum(len(group['books']) for group in foundations['groups']),'preparationRecommendations':len(preparation['books']),'entrepreneurshipBooks':sum(len(group['books']) for group in entrepreneurship['groups']),'childrenLibraryBooks':len(children['books']) if children else 0,'shelfReviewBooks':len(shelf['books']) if shelf else 0,'originalSourceWorks':len(reviews['originals']['books']) if 'originals' in reviews else 0,'managementFounderWorks':len(reviews['founders']['books']) if 'founders' in reviews else 0}}
+result={'updated':updated,'readingGuides':readingGuides,'books':list(books.values()),'collections':collections,'groups':groups,'categories':[{'id':k,'label':v,'count':sum(k in b['categories'] for b in books.values())} for k,v in categoryNames.items()],'sourceTags':local['tags'],'mapping':mapping,'sourceCounts':{'atlasEntries':sum(len(g['books']) for c in atlas['collections'] for g in c['groups']),'localBooks':len(local['books']),'kitapsRecords':len(kitaps['books']),'foundationalBooks':sum(len(group['books']) for group in foundations['groups']),'preparationRecommendations':len(preparation['books']),'entrepreneurshipBooks':sum(len(group['books']) for group in entrepreneurship['groups']),'childrenLibraryBooks':len(children['books']) if children else 0,'shelfReviewBooks':len(shelf['books']) if shelf else 0,'originalSourceWorks':len(reviews['originals']['books']) if 'originals' in reviews else 0,'managementFounderWorks':len(reviews['founders']['books']) if 'founders' in reviews else 0,'managerProgramBooks':len(reviews['managerprep']['books']) if 'managerprep' in reviews else 0}}
 (ROOT/'src/catalog.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
 print(len(books),'books',len(collections),'collections',len(groups),'groups')
 print('Edition records',sum(len(b['editions']) for b in books.values()))

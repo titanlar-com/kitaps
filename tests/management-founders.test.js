@@ -27,7 +27,8 @@ test('every work of the nine thinkers is one catalog book in its question’s gr
   const book=mapped(item.key);
   assert.equal(book.memberships.find(entry=>entry.groupId===`${source.id}:${item.group}`)?.role,item.role,item.key);
   if(item.existingId)assert.equal(book.id,item.existingId,item.key);
-  else assert.deepEqual(book.origins,['founders'],item.key);
+  // Collections added later may point at the same book by existingId; it is still one work.
+  else assert.deepEqual(book.origins.filter(origin=>!['managerprep'].includes(origin)),['founders'],item.key);
  }
  // Each thinker has exactly one first choice.
  const firsts=source.books.filter(item=>item.role==='Birinci tercih').map(item=>item.key);

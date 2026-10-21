@@ -1,0 +1,592 @@
+{
+ "id": "yonetici-adayi",
+ "title": "Yönetici adayının temel okumaları",
+ "short": "Yönetici adayı",
+ "description": "Drucker, Porter ve Weber’den önce yöneticiliğin altyapısı: işletme, finans, karar, ekonomi ve veri okuryazarlığı; insan ve örgüt; sistem kurmak ve yönetimi uygulamak. On iki kitaplık üç aşamalı bir program, kısa yolu ve her aşamanın kolaylaştırdığı yönetim klasikleri.",
+ "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+ "checkedAt": "2026-10-22",
+ "context": {
+  "purpose": "Yönetim klasiklerine geçmeden önce işletmenin, rakamların, kararların ve insanların dilini öğrenmek; böylece Drucker’ın anlattığı yönetimin, Porter’ın anlattığı rekabetin ve Deming’in anlattığı sistemlerin neyi çözmeye çalıştığı daha iyi anlaşılır. Bu klasiklerin çoğu okurun işletme, ekonomi, insan davranışı ve örgüt üzerine temel kavramları bildiğini varsayar.",
+  "criterion": "Kitaplar üç aşamaya ayrıldı: temel okuryazarlık (işletme, finans, karar, ekonomi, veri), insan ve örgüt (toplum, geri bildirim, ekip, müzakere), sistem kurmak ve yönetimi uygulamak (sistem düşüncesi, darboğaz, yöneticiliğe geçiş). Her kitabın hangi yönetim klasiğine hazırladığı kitap sayfasında yazar. Türkçe baskı yalnız iki ayrı sitede doğrulandığında gösterilir.",
+  "verdict": "Temel seviye kitap sayısıyla değil, şu sorulara neden-sonuç ilişkisiyle verilen cevaplarla geçilir: Geliri büyüyen bir şirket neden nakit sıkıntısı yaşayabilir? Bir çalışan çok çalıştığı hâlde ekibin toplam performansı neden düşebilir? Bir departmandaki verimlilik artışı neden şirketin toplam kârlılığını artırmayabilir? Satışlar yüzde 30 arttığında bunun fiyattan, müşteri sayısından ya da ürün karmasından hangisinden geldiği nasıl anlaşılır? Çalışanın performans sorunu yanlış tasarlanmış bir iş sürecinden nasıl ayırt edilir? İki departmanın hedefleri çatışıyorsa hangisine öncelik verilir? Her kitabın sonunda somut bir uygulama yapılır: finans kitabından sonra gerçek bir bilançoyu yorumlamak, karar kitabından sonra seçenekli bir karar matrisi kurmak, sistem kitabından sonra bir işletmenin süreç ve bağımlılık haritasını çıkarmak."
+ },
+ "note": "Aşamalar ve sıra öğrenme önerisidir, zorunlu akademik önkoşul değildir: on iki kitabın hepsini bitirmeden de Drucker okunabilir. Roller not ve alt küme olarak tutulur, puana eklenmez. İknanın Psikolojisi, Hızlı ve Yavaş Düşünme ve Akıllı Kararlar İçin Stratejik Düşünme Yöntemleri programa kitaplığın sahibince eklendi.",
+ "groups": [
+  {
+   "id": "asama-1",
+   "title": "Aşama 1 · Temel okuryazarlık: işletme, finans, karar, ekonomi ve veri"
+  },
+  {
+   "id": "asama-2",
+   "title": "Aşama 2 · İnsan ve örgüt"
+  },
+  {
+   "id": "asama-3",
+   "title": "Aşama 3 · Sistem kurmak ve yönetimi uygulamak"
+  },
+  {
+   "id": "program",
+   "title": "On iki kitaplık program, sırasıyla"
+  },
+  {
+   "id": "ilk-uc",
+   "title": "İlk üç: işletmenin, rakamların ve kararların dili"
+  },
+  {
+   "id": "ilk-kez-yonetecekler",
+   "title": "İlk kez insan yönetecekler için öncelikli"
+  },
+  {
+   "id": "kisa-yol",
+   "title": "Kısa yol: altı kitap, ardından Drucker"
+  },
+  {
+   "id": "ekler",
+   "title": "Programa eklenenler"
+  }
+ ],
+ "books": [
+  {
+   "key": "personalmba",
+   "group": "asama-1",
+   "role": "İşletmeyi bir bütün olarak anlamak",
+   "existingId": "personalmbamastertheartofbusiness",
+   "reason": "Değer üretiminin, pazarlamanın, satışın, finansın, insan davranışının ve işletme sistemlerinin birbirine nasıl bağlandığını gösterir. İlk kitap, çünkü bir işletmeyi parçalarına ayırarak çözümlemeyi sağlayan kavram haritasını kurar.",
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 1,
+     "reason": "Programda 1. kitap: işletmeyi bir bütün olarak anlamak."
+    },
+    {
+     "id": "ilk-uc",
+     "order": 1,
+     "reason": "İşletmenin dilini öğretir."
+    },
+    {
+     "id": "kisa-yol",
+     "order": 1,
+     "reason": "Kısa yolda 1. kitap."
+    }
+   ]
+  },
+  {
+   "key": "finansciolmayanlaricinfinans",
+   "group": "asama-1",
+   "role": "Finansal okuryazarlık",
+   "title": "Finansçı Olmayanlar İçin Finans",
+   "author": "Hakan Özerol",
+   "originalLanguage": "tr",
+   "categories": [
+    "finance"
+   ],
+   "reason": "Gelirin, giderin, kârın, finansmanın ve temel finansal kavramların işletmedeki anlamına giriş. İkinci kitap, çünkü finansal sonuçlarını anlayamadığın bir işletmeyi sağlıklı yönetemezsin; bilanço, gelir tablosu ve nakit akış tablosu üzerinde ayrıca uygulama yaparak tamamlanmalı.",
+   "year": 2002,
+   "titleTr": "Finansçı Olmayanlar İçin Finans",
+   "edition": {
+    "title": "Finansçı Olmayanlar İçin Finans",
+    "isbn": "9789756093245",
+    "publisher": "Elma Yayınevi",
+    "translators": [],
+    "sourceUrl": "https://www.nadirkitap.com/finansci-olmayanlar-icin-finans-hakan-ozerol-kitap48342237.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/kitap/finansci-olmayanlar-icin-finans/hakan-ozerol/basvuru/is-ekonomi-hukuk/hukuk/urunno=0000000121561",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "nadirkitap.com ve dr.com.tr aynı ISBN'i (9789756093245) ve Elma Yayınevi yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/manager-finansciolmayanlaricinfinans.jpg",
+    "imageUrl": "https://i.dr.com.tr/cache/600x600-0/originals/0000000121561-1.jpg",
+    "sourceUrl": "https://www.dr.com.tr/kitap/finansci-olmayanlar-icin-finans/hakan-ozerol/basvuru/is-ekonomi-hukuk/hukuk/urunno=0000000121561",
+    "sourceName": "dr.com.tr",
+    "title": "Finansçı Olmayanlar İçin Finans",
+    "author": "Hakan Özerol",
+    "publisher": "Elma Yayınevi",
+    "isbn": "9789756093245",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 2,
+     "reason": "Programda 2. kitap: finansal okuryazarlık."
+    },
+    {
+     "id": "ilk-uc",
+     "order": 2,
+     "reason": "Rakamların dilini öğretir."
+    },
+    {
+     "id": "kisa-yol",
+     "order": 2,
+     "reason": "Kısa yolda 2. kitap."
+    }
+   ]
+  },
+  {
+   "key": "decisive",
+   "group": "asama-1",
+   "role": "Karar verme",
+   "title": "Decisive",
+   "author": "Chip Heath and Dan Heath",
+   "originalLanguage": "en",
+   "categories": [
+    "psychology",
+    "management"
+   ],
+   "reason": "Karar seçeneklerini genişletmeyi, varsayımları sınamayı, kısa vadeli duyguların etkisini azaltmayı ve aşırı özgüvenden korunmayı öğretir. Üçüncü kitap, çünkü doğru soruları sormaya ve kararları sistemli biçimde değerlendirmeye yardım eder.",
+   "year": 2013,
+   "titleTr": "Doğru Karar",
+   "edition": {
+    "title": "Doğru Karar",
+    "isbn": "9789757004707",
+    "publisher": "Boyner Yayınları",
+    "translators": [
+     "İclal Büyükdevrim Özçelik"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/dogru-karar/339136.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.konseykitap.com/dogru-karar",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve konseykitap.com aynı ISBN'i (9789757004707) ve Boyner Yayınları yayınevini gösteriyor; çevirmen: İclal Büyükdevrim Özçelik. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/manager-decisive.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:84532/wi:500/wh:3c23d1ae8",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/dogru-karar/339136.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Doğru Karar",
+    "author": "Chip Heath and Dan Heath",
+    "publisher": "Boyner Yayınları",
+    "isbn": "9789757004707",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 3,
+     "reason": "Programda 3. kitap: karar verme."
+    },
+    {
+     "id": "ilk-uc",
+     "order": 3,
+     "reason": "Kararların mantığını öğretir."
+    },
+    {
+     "id": "kisa-yol",
+     "order": 4,
+     "reason": "Kısa yolda 4. kitap."
+    }
+   ]
+  },
+  {
+   "key": "nakedeconomics",
+   "group": "asama-1",
+   "role": "Ekonominin mantığı",
+   "existingId": "nakedeconomics",
+   "reason": "Arz ve talebi, teşvikleri, fırsat maliyetini, piyasaları, fiyatları ve ekonomik davranışı anlaşılır örneklerle anlatır. Porter’ın rekabet stratejisinden önce piyasaların nasıl çalıştığını anlamak için.",
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 4,
+     "reason": "Programda 4. kitap: ekonominin mantığı."
+    },
+    {
+     "id": "kisa-yol",
+     "order": 3,
+     "reason": "Kısa yolda 3. kitap."
+    }
+   ]
+  },
+  {
+   "key": "nakedstatistics",
+   "group": "asama-1",
+   "role": "Veri ve istatistik okuryazarlığı",
+   "existingId": "nakedstatisticsstrippingthedreadfromthedata",
+   "reason": "Ortalama, medyan, olasılık, örnekleme, korelasyon (değişkenlerin birlikte değişmesi) ve regresyon (değişkenler arasındaki ilişkiyi modellemek). Performans raporlarını, çalışan verimliliğini, pazarlama sonuçlarını ve şirket araştırmalarını yanlış yorumlamamak için.",
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 5,
+     "reason": "Programda 5. kitap: veri ve istatistik okuryazarlığı."
+    }
+   ]
+  },
+  {
+   "key": "invitationtosociology",
+   "group": "asama-2",
+   "role": "Toplum ve kurumlar",
+   "title": "Invitation to Sociology",
+   "author": "Peter L. Berger",
+   "originalLanguage": "en",
+   "categories": [
+    "politics",
+    "psychology"
+   ],
+   "reason": "İnsan davranışının toplumsal roller, kurumlar ve beklentilerle nasıl biçimlendiğini gösterir; Weber’den önce iyi bir temel.",
+   "year": 1963,
+   "titleTr": "Sosyolojiye Çağrı: Hümanist Bir Perspektif",
+   "edition": {
+    "title": "Sosyolojiye Çağrı: Hümanist Bir Perspektif",
+    "isbn": "9789750522109",
+    "publisher": "İletişim Yayınları",
+    "translators": [
+     "A. Erkan Koca"
+    ],
+    "sourceUrl": "https://iletisim.com.tr/kitap/sosyolojiye-cagri/9463",
+    "sourceType": "publisher",
+    "secondSourceUrl": "https://www.kitapyurdu.com/kitap/sosyolojiye-cagri-humanist-bir-perspektif/429672.html",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "iletisim.com.tr ve kitapyurdu.com aynı ISBN'i (9789750522109) ve İletişim Yayınları yayınevini gösteriyor; çevirmen: A. Erkan Koca. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/manager-invitationtosociology.jpg",
+    "imageUrl": "https://iletisim.com.tr/Images/UserFiles/Images/Spot/sosyolojiye-cagri.jpg",
+    "sourceUrl": "https://iletisim.com.tr/kitap/sosyolojiye-cagri/9463",
+    "sourceName": "iletisim.com.tr",
+    "title": "Sosyolojiye Çağrı: Hümanist Bir Perspektif",
+    "author": "Peter L. Berger",
+    "publisher": "İletişim Yayınları",
+    "isbn": "9789750522109",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 6,
+     "reason": "Programda 6. kitap: toplum ve kurumlar."
+    }
+   ]
+  },
+  {
+   "key": "radicalcandor",
+   "group": "asama-2",
+   "role": "Geri bildirim ve güven",
+   "existingId": "radicalcandor",
+   "reason": "Çalışana geri bildirim vermeyi, zor konuşmaları yönetmeyi ve güven ilişkisi kurmayı öğretir.",
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 7,
+     "reason": "Programda 7. kitap: geri bildirim ve güven."
+    },
+    {
+     "id": "ilk-kez-yonetecekler",
+     "reason": "Geri bildirim ve zor konuşmalar: ilk kez ekip yönetenin ilk ihtiyacı."
+    },
+    {
+     "id": "kisa-yol",
+     "order": 5,
+     "reason": "Kısa yolda 5. kitap."
+    }
+   ]
+  },
+  {
+   "key": "fivedysfunctions",
+   "group": "asama-2",
+   "role": "Ekip dinamikleri",
+   "existingId": "fivedysfunctionsofateam",
+   "reason": "Ekiplerde güven eksikliğini, çatışmadan kaçınmayı, kararsızlığı, hesap verebilirlik eksikliğini ve sonuçlardan uzaklaşmayı anlatır.",
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 8,
+     "reason": "Programda 8. kitap: ekip dinamikleri."
+    },
+    {
+     "id": "ilk-kez-yonetecekler",
+     "reason": "Ekibi bozan beş aksaklığı erkenden tanımak için."
+    }
+   ]
+  },
+  {
+   "key": "gettingtoyes",
+   "group": "asama-2",
+   "role": "Müzakere",
+   "existingId": "gettingtoyes",
+   "reason": "İnsanları sorundan ayırmayı, pozisyonların arkasındaki çıkarları görmeyi ve ilkelere dayalı müzakereyi öğretir.",
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 9,
+     "reason": "Programda 9. kitap: müzakere."
+    }
+   ]
+  },
+  {
+   "key": "thinkinginsystems",
+   "group": "asama-3",
+   "role": "Sistem düşüncesi",
+   "existingId": "thinkinginsystems",
+   "reason": "Bir sistemin parçaları arasındaki ilişkileri, geri besleme döngülerini, gecikmeleri ve beklenmedik sonuçları anlamayı öğretir. Kazanım: bir departmandaki sorunu çözerken başka bir departmanda yeni sorun yaratmamak; Deming’e geçmeden önce çok değerli.",
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 10,
+     "reason": "Programda 10. kitap: sistem düşüncesi."
+    },
+    {
+     "id": "kisa-yol",
+     "order": 6,
+     "reason": "Kısa yolda 6. kitap. Ardından Drucker’ın Yönetim Uygulaması’na geçilebilir; Porter ve Deming sonraki aşamada gelir."
+    }
+   ]
+  },
+  {
+   "key": "goal",
+   "group": "asama-3",
+   "role": "Operasyon ve darboğaz yönetimi",
+   "existingId": "goal",
+   "reason": "Bir fabrikanın sorunları üzerinden kısıtlar teorisini anlatır: sistemin toplam performansını sınırlayan darboğazı bulup iyileştirmek. Kazanım: herkesin daha hızlı çalışmasının neden işletmenin daha fazla çıktı üretmesi demek olmadığını görmek.",
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 11,
+     "reason": "Programda 11. kitap: operasyon ve darboğaz yönetimi."
+    }
+   ]
+  },
+  {
+   "key": "first90days",
+   "group": "asama-3",
+   "role": "Yöneticiliğe geçiş",
+   "existingId": "first90days",
+   "reason": "Yeni yöneticinin ilk döneminde durumu nasıl çözümleyeceğini, paydaşlarla nasıl ilişki kuracağını, öncelikleri nasıl seçeceğini ve erken sonuçları nasıl alacağını anlatır. Kazanım: teoriyi yeni bir yöneticilik görevinde uygulanabilir bir başlangıç planına çevirmek.",
+   "extraGroups": [
+    {
+     "id": "program",
+     "order": 12,
+     "reason": "Programda 12. kitap: yöneticiliğe geçiş."
+    }
+   ]
+  },
+  {
+   "key": "influence",
+   "group": "ekler",
+   "role": "Programa eklenen",
+   "existingId": "influence",
+   "reason": "İnsanların neden ve nasıl ikna olduğunu karşılıklılık, tutarlılık, toplumsal kanıt, sevme, otorite ve kıtlık ilkeleriyle anlatır; müzakere ve ekip kitaplarının yanında okunur.",
+   "extraGroups": [
+    {
+     "id": "asama-2",
+     "reason": "İkna ve etki: müzakere ve ekip kitaplarının yanında."
+    }
+   ]
+  },
+  {
+   "key": "thinkingfastandslow",
+   "group": "ekler",
+   "role": "Programa eklenen",
+   "existingId": "thinkingfastandslow",
+   "reason": "Hızlı, sezgisel düşünme ile yavaş, çaba isteyen düşünmenin ayrımını ve yargılardaki sistemli hataları anlatır; Doğru Karar’ın ele aldığı karar hatalarının araştırma temeli.",
+   "extraGroups": [
+    {
+     "id": "asama-1",
+     "reason": "Kararlardaki sistemli hataların araştırma temeli: Doğru Karar’ın yanında."
+    }
+   ]
+  },
+  {
+   "key": "akillikararlaricinstratejikdusunmeyontemleri",
+   "group": "ekler",
+   "role": "Programa eklenen",
+   "title": "Intelligent Thinking",
+   "author": "Som Bathla",
+   "originalLanguage": "en",
+   "categories": [
+    "psychology",
+    "strategy"
+   ],
+   "reason": "Akıllı kararlar için düşünme yöntemlerini anlatan kısa bir kitap; Doğru Karar ve Hızlı ve Yavaş Düşünme’nin yanında, kendi kararlarını sınamak için okunabilir.",
+   "titleTr": "Akıllı Kararlar İçin Stratejik Düşünme Yöntemleri",
+   "edition": {
+    "title": "Akıllı Kararlar İçin Stratejik Düşünme Yöntemleri",
+    "isbn": "9786255942227",
+    "publisher": "Destek Yayınları",
+    "translators": [
+     "Cemal Can Tarımcıoğlu"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri/712521.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.pandora.com.tr/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri/926714",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve pandora.com.tr aynı ISBN'i (9786255942227) ve Destek Yayınları yayınevini gösteriyor; çevirmen: Cemal Can Tarımcıoğlu. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/manager-akillikararlaricinstratejikdusunmeyontemleri.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12029715/mh:1000/wh:9ebe7ae0a",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri/712521.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Akıllı Kararlar İçin Stratejik Düşünme Yöntemleri",
+    "author": "Som Bathla",
+    "publisher": "Destek Yayınları",
+    "isbn": "9786255942227",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "extraGroups": [
+    {
+     "id": "asama-1",
+     "reason": "Karar verme: Doğru Karar’ın yanında, kısa bir uygulama kitabı."
+    }
+   ]
+  }
+ ],
+ "links": [
+  {
+   "type": "sequence",
+   "first": "personalmba",
+   "then": "practiceofmanagement",
+   "why": "Yönetici adayı programı: işletmenin bütününü ve yöneticiliğe geçişi önce görmek, bu eserin anlattığı yönetim işlevlerini daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Drucker ve Fayol’un yönetim işlevleri."
+  },
+  {
+   "type": "sequence",
+   "first": "personalmba",
+   "then": "administrationindustrielleetgenerale",
+   "why": "Yönetici adayı programı: işletmenin bütününü ve yöneticiliğe geçişi önce görmek, bu eserin anlattığı yönetim işlevlerini daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Drucker ve Fayol’un yönetim işlevleri."
+  },
+  {
+   "type": "sequence",
+   "first": "first90days",
+   "then": "practiceofmanagement",
+   "why": "Yönetici adayı programı: işletmenin bütününü ve yöneticiliğe geçişi önce görmek, bu eserin anlattığı yönetim işlevlerini daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Drucker ve Fayol’un yönetim işlevleri."
+  },
+  {
+   "type": "sequence",
+   "first": "first90days",
+   "then": "administrationindustrielleetgenerale",
+   "why": "Yönetici adayı programı: işletmenin bütününü ve yöneticiliğe geçişi önce görmek, bu eserin anlattığı yönetim işlevlerini daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Drucker ve Fayol’un yönetim işlevleri."
+  },
+  {
+   "type": "sequence",
+   "first": "nakedeconomics",
+   "then": "competitivestrategy",
+   "why": "Yönetici adayı programı: piyasaların ve finansal sonuçların mantığını önce öğrenmek, Porter’ın rekabet çözümlemesini daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Porter’ın rekabet stratejisi."
+  },
+  {
+   "type": "sequence",
+   "first": "finansciolmayanlaricinfinans",
+   "then": "competitivestrategy",
+   "why": "Yönetici adayı programı: piyasaların ve finansal sonuçların mantığını önce öğrenmek, Porter’ın rekabet çözümlemesini daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Porter’ın rekabet stratejisi."
+  },
+  {
+   "type": "sequence",
+   "first": "nakedstatistics",
+   "then": "outofthecrisis",
+   "why": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
+  },
+  {
+   "type": "sequence",
+   "first": "nakedstatistics",
+   "then": "principlesofscientificmanagement",
+   "why": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
+  },
+  {
+   "type": "sequence",
+   "first": "thinkinginsystems",
+   "then": "outofthecrisis",
+   "why": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
+  },
+  {
+   "type": "sequence",
+   "first": "thinkinginsystems",
+   "then": "principlesofscientificmanagement",
+   "why": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
+  },
+  {
+   "type": "sequence",
+   "first": "goal",
+   "then": "outofthecrisis",
+   "why": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
+  },
+  {
+   "type": "sequence",
+   "first": "goal",
+   "then": "principlesofscientificmanagement",
+   "why": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
+  },
+  {
+   "type": "sequence",
+   "first": "invitationtosociology",
+   "then": "burokrasiveotorite",
+   "why": "Yönetici adayı programı: toplumsal rolleri ve kurumları önce görmek, Weber’in bürokrasi ve otorite çözümlemesini daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Weber’in bürokrasi, otorite ve örgüt çözümlemesi."
+  },
+  {
+   "type": "sequence",
+   "first": "radicalcandor",
+   "then": "goodtogreat",
+   "why": "Yönetici adayı programı: geri bildirimi ve ekip dinamiklerini önce öğrenmek, liderlik ve kurum kültürü üzerine bu eseri daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Collins ve Peters’ın liderlik ve kurum kültürü üzerine eserleri."
+  },
+  {
+   "type": "sequence",
+   "first": "radicalcandor",
+   "then": "insearchofexcellence",
+   "why": "Yönetici adayı programı: geri bildirimi ve ekip dinamiklerini önce öğrenmek, liderlik ve kurum kültürü üzerine bu eseri daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Collins ve Peters’ın liderlik ve kurum kültürü üzerine eserleri."
+  },
+  {
+   "type": "sequence",
+   "first": "fivedysfunctions",
+   "then": "goodtogreat",
+   "why": "Yönetici adayı programı: geri bildirimi ve ekip dinamiklerini önce öğrenmek, liderlik ve kurum kültürü üzerine bu eseri daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Collins ve Peters’ın liderlik ve kurum kültürü üzerine eserleri."
+  },
+  {
+   "type": "sequence",
+   "first": "fivedysfunctions",
+   "then": "insearchofexcellence",
+   "why": "Yönetici adayı programı: geri bildirimi ve ekip dinamiklerini önce öğrenmek, liderlik ve kurum kültürü üzerine bu eseri daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Collins ve Peters’ın liderlik ve kurum kültürü üzerine eserleri."
+  },
+  {
+   "type": "sequence",
+   "first": "decisive",
+   "then": "innovatorsdilemma",
+   "why": "Yönetici adayı programı: kararları, piyasaları ve sistemleri önce öğrenmek, Christensen’in yenilik ve dönüşüm çözümlemesini daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Christensen’in yenilik, rekabet ve dönüşüm üzerine eseri."
+  },
+  {
+   "type": "sequence",
+   "first": "nakedeconomics",
+   "then": "innovatorsdilemma",
+   "why": "Yönetici adayı programı: kararları, piyasaları ve sistemleri önce öğrenmek, Christensen’in yenilik ve dönüşüm çözümlemesini daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Christensen’in yenilik, rekabet ve dönüşüm üzerine eseri."
+  },
+  {
+   "type": "sequence",
+   "first": "thinkinginsystems",
+   "then": "innovatorsdilemma",
+   "why": "Yönetici adayı programı: kararları, piyasaları ve sistemleri önce öğrenmek, Christensen’in yenilik ve dönüşüm çözümlemesini daha iyi anlamayı sağlar.",
+   "next": "Bu temelden sonra geçilecek yönetim klasiği: Christensen’in yenilik, rekabet ve dönüşüm üzerine eseri."
+  }
+ ]
+}

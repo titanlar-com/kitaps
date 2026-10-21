@@ -20759,6 +20759,95 @@
           }
         ]
       }
+    },
+    "finansciolmayanlaricinfinans": {
+      "firstPublicationYear": 2002,
+      "firstPublisher": "Elma Yayınevi",
+      "originalLanguage": "tr",
+      "stage1": {
+        "reviewer": "claude-stage1-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.goodreads.com/book/show/43223519",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.nadirkitap.com/finansci-olmayanlar-icin-finans-dr-hakan-ozerol-kitap41959780.html",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/kitap/finansci-olmayanlar-icin-finans/hakan-ozerol/basvuru/is-ekonomi-hukuk/hukuk/urunno=0000000121561",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "decisive": {
+      "firstPublicationYear": 2013,
+      "firstPublisher": "Crown Business",
+      "stage1": {
+        "reviewer": "claude-stage1-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Dan_Heath",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.abebooks.com/9780307956392/Decisive-Better-Choices-Life-Work-0307956393/plp",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.penguinrandomhouse.com/books/215508/decisive-by-chip-heath-and-dan-heath/",
+            "type": "publisher"
+          }
+        ]
+      }
+    },
+    "invitationtosociology": {
+      "firstPublicationYear": 1963,
+      "firstPublisher": "Doubleday",
+      "stage1": {
+        "reviewer": "claude-stage1-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Invitation_to_Sociology",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://iletisim.com.tr/kitap/sosyolojiye-cagri/9463",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-r-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/books/OL13944190M/Invitation_to_sociology",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://search.worldcat.org/title/253935",
+            "type": "library-catalog"
+          }
+        ]
+      }
     }
   }
 }

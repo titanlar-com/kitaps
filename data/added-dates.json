@@ -155,8 +155,8 @@
   "administrationindustrielleetgenerale": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "098e88c",
+   "matchedBy": "id"
   },
   "adventuresofsherlockholmes": {
    "date": "2026-09-28",
@@ -797,8 +797,8 @@
   "burokrasiveotorite": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "098e88c",
+   "matchedBy": "id"
   },
   "bushidothesoulofjapan": {
    "date": "2026-09-28",
@@ -1214,6 +1214,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "decisive": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "dedekorkutcocukuyarlamasi": {
    "date": "2026-09-02",
    "repository": "kitaps",
@@ -1301,8 +1307,8 @@
   "dieprotestantischeethikunddergeistdeskapitalismus": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "098e88c",
+   "matchedBy": "id"
   },
   "dieunendlichegeschichte": {
    "date": "2026-09-28",
@@ -1796,6 +1802,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "finansciolmayanlaricinfinans": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "firefighting": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -2123,8 +2135,8 @@
   "greatbychoice": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "098e88c",
+   "matchedBy": "id"
   },
   "greatceowithin": {
    "date": "2026-09-28",
@@ -2660,11 +2672,23 @@
    "commit": "1176650",
    "matchedBy": "id"
   },
+  "intelligentthinking": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "invisiblewomen": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "invitationtosociology": {
+   "date": "2026-10-22",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "irakkraliifaysal": {
    "date": "2026-09-02",
@@ -2993,8 +3017,8 @@
   "littlebigthings": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "098e88c",
+   "matchedBy": "id"
   },
   "littlehistoryofphilosophy": {
    "date": "2026-09-28",
@@ -3167,8 +3191,8 @@
   "managementtasksresponsibilitiespractices": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "098e88c",
+   "matchedBy": "id"
   },
   "managingacrossborders": {
    "date": "2026-09-26",
@@ -4025,8 +4049,8 @@
   "principlesofscientificmanagement": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "098e88c",
+   "matchedBy": "id"
   },
   "prisonersofgeography": {
    "date": "2026-09-28",
@@ -4205,8 +4229,8 @@
   "reimagine": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "098e88c",
+   "matchedBy": "id"
   },
   "reimaginingcapitalism": {
    "date": "2026-09-26",
@@ -4517,8 +4541,8 @@
   "shopmanagement": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "098e88c",
+   "matchedBy": "id"
   },
   "showmethenumbers": {
    "date": "2026-09-26",
@@ -4997,8 +5021,8 @@
   "thrivingonchaos": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "098e88c",
+   "matchedBy": "id"
   },
   "timemachine": {
    "date": "2026-09-02",
@@ -5549,8 +5573,8 @@
   "wirtschaftundgesellschaft": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "098e88c",
+   "matchedBy": "id"
   },
   "wisdomofcrowds": {
    "date": "2026-09-26",

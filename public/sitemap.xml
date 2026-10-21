@@ -183,6 +183,7 @@
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/collection/ozgun-kaynaklar/page/2/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/collection/yonetim-kuruculari/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/collection/yonetim-kuruculari/page/2/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/collection/yonetici-adayi/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/collection/preparation/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/time%3A0/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/pmba%3A0/</loc></url>
@@ -343,6 +344,14 @@
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetim-kuruculari%3Ayenilik/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetim-kuruculari%3Aokuma-sirasi/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetim-kuruculari%3Ailk-uc/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetici-adayi%3Aasama-1/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetici-adayi%3Aasama-2/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetici-adayi%3Aasama-3/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetici-adayi%3Aprogram/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetici-adayi%3Ailk-uc/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetici-adayi%3Ailk-kez-yonetecekler/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetici-adayi%3Akisa-yol/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/yonetici-adayi%3Aekler/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/preparation%3A1/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/preparation%3A2/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/group/preparation%3A3/</loc></url>
@@ -1305,6 +1314,10 @@
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/thriving-on-chaos-by-tom-peters/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/re-imagine-by-tom-peters/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/the-little-big-things-by-tom-peters/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/finansci-olmayanlar-icin-finans-by-hakan-ozerol/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/decisive-by-chip-heath-and-dan-heath/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/invitation-to-sociology-by-peter-l-berger/</loc></url>
+  <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/intelligent-thinking-by-som-bathla/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/elestirel-okuma-by-emin-ozdemir/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/dusunmenin-alfabesi-by-yasin-ramazan/</loc></url>
   <url><loc>https://titanlar-com.github.io/kitaps/catalog/books/adim-adim-matematik-essiz-bir-gorsel-rehber-by-unknown/</loc></url>

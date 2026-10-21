@@ -2484,5 +2484,19 @@
     "checkedAt": "2026-10-22",
     "scope": "Türkçe baskı kapağı",
     "matchMethod": "manual-source-review"
+  },
+  "nakedeconomics": {
+    "src": "covers/tr-nakedeconomics.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:1025712/wi:500/wh:fe27eb8fd",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/ciplak-ekonomi/368459.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Çıplak Ekonomi",
+    "author": "Charles Wheelan",
+    "publisher": "Pegasus Yayınları",
+    "isbn": "9786053435679",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı",
+    "matchMethod": "manual-source-review"
   }
 }

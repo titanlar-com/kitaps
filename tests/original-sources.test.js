@@ -14,7 +14,7 @@ const resolve=reference=>catalog.mapping[`originals:${reference}`]||reference;
 const mapped=key=>byId[catalog.mapping[`originals:${key}`]];
 const domain=url=>new URL(url).hostname.replace(/^www\./,'');
 const validIsbn13=value=>/^\d{13}$/.test(value)&&[...value].reduce((sum,digit,index)=>sum+Number(digit)*(index%2?3:1),0)%10===0;
-const LATER_REFERENCES=new Set(['founders']);
+const LATER_REFERENCES=new Set(['founders','managerprep']);
 const ROLES=['Özgün kaynak','Popüler sürüm','Eleştiri ve sınama','Boyd’a giriş','Hem yeni hem derin'];
 
 test('every original-source entry is one catalog book in its concept group, with its role',()=>{

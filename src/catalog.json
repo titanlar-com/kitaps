@@ -926,6 +926,14 @@
           {
             "id": "strategyahistory",
             "reason": "Askerî, siyasi ve iş stratejisini tarihsel bir çizgide bağlayarak parçalı strateji rafını bütünler."
+          },
+          {
+            "id": "nakedeconomics",
+            "reason": "Yönetici adayı programı: piyasaların ve finansal sonuçların mantığını önce öğrenmek, Porter’ın rekabet çözümlemesini daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "finansciolmayanlaricinfinans",
+            "reason": "Yönetici adayı programı: piyasaların ve finansal sonuçların mantığını önce öğrenmek, Porter’ın rekabet çözümlemesini daha iyi anlamayı sağlar."
           }
         ],
         "after": [
@@ -972,6 +980,18 @@
           {
             "id": "competitivestrategy",
             "reason": "Yerleşik şirketlerin sektör ve müşteri tercihlerini anlamak, yenilik karşısındaki kaynak kararlarını yorumlamayı kolaylaştırır."
+          },
+          {
+            "id": "decisive",
+            "reason": "Yönetici adayı programı: kararları, piyasaları ve sistemleri önce öğrenmek, Christensen’in yenilik ve dönüşüm çözümlemesini daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "nakedeconomics",
+            "reason": "Yönetici adayı programı: kararları, piyasaları ve sistemleri önce öğrenmek, Christensen’in yenilik ve dönüşüm çözümlemesini daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "thinkinginsystems",
+            "reason": "Yönetici adayı programı: kararları, piyasaları ve sistemleri önce öğrenmek, Christensen’in yenilik ve dönüşüm çözümlemesini daha iyi anlamayı sağlar."
           }
         ],
         "after": [
@@ -1014,6 +1034,14 @@
           {
             "id": "outofthecrisis",
             "reason": "Sistem bakışını kalite, ölçüm ve yönetim sorumluluğu üzerinden derinleştirebilirsin."
+          },
+          {
+            "id": "principlesofscientificmanagement",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
+          },
+          {
+            "id": "innovatorsdilemma",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Christensen’in yenilik, rekabet ve dönüşüm üzerine eseri."
           }
         ]
       },
@@ -1027,6 +1055,14 @@
           {
             "id": "toyotaproductionsystem",
             "reason": "Darboğazlara odaklanmanın yanına israfı azaltma ve akışı düzenleme yaklaşımını koyabilirsin."
+          },
+          {
+            "id": "outofthecrisis",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
+          },
+          {
+            "id": "principlesofscientificmanagement",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
           }
         ]
       },
@@ -1283,7 +1319,16 @@
             "reason": "Ekonomi diline, daha kapsamlı ekonomi ve işletme okumalarından önce örnekler üzerinden giriş yapmak."
           }
         ],
-        "after": []
+        "after": [
+          {
+            "id": "practiceofmanagement",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Drucker ve Fayol’un yönetim işlevleri."
+          },
+          {
+            "id": "administrationindustrielleetgenerale",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Drucker ve Fayol’un yönetim işlevleri."
+          }
+        ]
       },
       "dialektikderaufklarung": {
         "before": [
@@ -3751,7 +3796,16 @@
             "reason": "Ekonomi diline, daha kapsamlı ekonomi ve işletme okumalarından önce örnekler üzerinden giriş yapmak."
           }
         ],
-        "after": []
+        "after": [
+          {
+            "id": "competitivestrategy",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Porter’ın rekabet stratejisi."
+          },
+          {
+            "id": "innovatorsdilemma",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Christensen’in yenilik, rekabet ve dönüşüm üzerine eseri."
+          }
+        ]
       },
       "hegel": {
         "before": [
@@ -3884,6 +3938,14 @@
           {
             "id": "blackswan",
             "reason": "Bu hazırlıkta çalışılan kavramları katalogdaki bu eser üzerinde uygulayabilirsin."
+          },
+          {
+            "id": "outofthecrisis",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
+          },
+          {
+            "id": "principlesofscientificmanagement",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Deming ve Taylor’ın süreç ve verimlilik anlayışı."
           }
         ]
       },
@@ -4236,6 +4298,18 @@
           {
             "id": "statisticalmethodfromtheviewpointofqualitycontrol",
             "reason": "Deming’in yaygınlaştırdığı iyileştirme döngüsü ve süreçteki değişkenliği istatistikle izleme fikri Shewhart’ın bu kitabına dayanır."
+          },
+          {
+            "id": "nakedstatisticsstrippingthedreadfromthedata",
+            "reason": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "thinkinginsystems",
+            "reason": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "goal",
+            "reason": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar."
           }
         ],
         "after": [
@@ -4291,7 +4365,16 @@
         ]
       },
       "practiceofmanagement": {
-        "before": [],
+        "before": [
+          {
+            "id": "personalmbamastertheartofbusiness",
+            "reason": "Yönetici adayı programı: işletmenin bütününü ve yöneticiliğe geçişi önce görmek, bu eserin anlattığı yönetim işlevlerini daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "first90days",
+            "reason": "Yönetici adayı programı: işletmenin bütününü ve yöneticiliğe geçişi önce görmek, bu eserin anlattığı yönetim işlevlerini daha iyi anlamayı sağlar."
+          }
+        ],
         "after": [
           {
             "id": "highoutputmanagement",
@@ -4427,7 +4510,12 @@
         ]
       },
       "burokrasiveotorite": {
-        "before": [],
+        "before": [
+          {
+            "id": "invitationtosociology",
+            "reason": "Yönetici adayı programı: toplumsal rolleri ve kurumları önce görmek, Weber’in bürokrasi ve otorite çözümlemesini daha iyi anlamayı sağlar."
+          }
+        ],
         "after": [],
         "companions": [
           {
@@ -4437,7 +4525,20 @@
         ]
       },
       "principlesofscientificmanagement": {
-        "before": [],
+        "before": [
+          {
+            "id": "nakedstatisticsstrippingthedreadfromthedata",
+            "reason": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "thinkinginsystems",
+            "reason": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "goal",
+            "reason": "Yönetici adayı programı: veri okumayı, sistemleri ve darboğazları önce öğrenmek, süreç ve verimlilik üzerine bu eseri daha iyi anlamayı sağlar."
+          }
+        ],
         "after": [],
         "companions": [
           {
@@ -4453,6 +4554,111 @@
           {
             "id": "principlesofscientificmanagement",
             "reason": "Taylor’ın iki temel çalışması: biri bilimsel yönetimin ilkelerini, öteki atölyede işin örgütlenmesini anlatır."
+          }
+        ]
+      },
+      "administrationindustrielleetgenerale": {
+        "before": [
+          {
+            "id": "personalmbamastertheartofbusiness",
+            "reason": "Yönetici adayı programı: işletmenin bütününü ve yöneticiliğe geçişi önce görmek, bu eserin anlattığı yönetim işlevlerini daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "first90days",
+            "reason": "Yönetici adayı programı: işletmenin bütününü ve yöneticiliğe geçişi önce görmek, bu eserin anlattığı yönetim işlevlerini daha iyi anlamayı sağlar."
+          }
+        ],
+        "after": []
+      },
+      "first90days": {
+        "before": [],
+        "after": [
+          {
+            "id": "practiceofmanagement",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Drucker ve Fayol’un yönetim işlevleri."
+          },
+          {
+            "id": "administrationindustrielleetgenerale",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Drucker ve Fayol’un yönetim işlevleri."
+          }
+        ]
+      },
+      "finansciolmayanlaricinfinans": {
+        "before": [],
+        "after": [
+          {
+            "id": "competitivestrategy",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Porter’ın rekabet stratejisi."
+          }
+        ]
+      },
+      "invitationtosociology": {
+        "before": [],
+        "after": [
+          {
+            "id": "burokrasiveotorite",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Weber’in bürokrasi, otorite ve örgüt çözümlemesi."
+          }
+        ]
+      },
+      "goodtogreat": {
+        "before": [
+          {
+            "id": "radicalcandor",
+            "reason": "Yönetici adayı programı: geri bildirimi ve ekip dinamiklerini önce öğrenmek, liderlik ve kurum kültürü üzerine bu eseri daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "fivedysfunctionsofateam",
+            "reason": "Yönetici adayı programı: geri bildirimi ve ekip dinamiklerini önce öğrenmek, liderlik ve kurum kültürü üzerine bu eseri daha iyi anlamayı sağlar."
+          }
+        ],
+        "after": []
+      },
+      "radicalcandor": {
+        "before": [],
+        "after": [
+          {
+            "id": "goodtogreat",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Collins ve Peters’ın liderlik ve kurum kültürü üzerine eserleri."
+          },
+          {
+            "id": "insearchofexcellence",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Collins ve Peters’ın liderlik ve kurum kültürü üzerine eserleri."
+          }
+        ]
+      },
+      "insearchofexcellence": {
+        "before": [
+          {
+            "id": "radicalcandor",
+            "reason": "Yönetici adayı programı: geri bildirimi ve ekip dinamiklerini önce öğrenmek, liderlik ve kurum kültürü üzerine bu eseri daha iyi anlamayı sağlar."
+          },
+          {
+            "id": "fivedysfunctionsofateam",
+            "reason": "Yönetici adayı programı: geri bildirimi ve ekip dinamiklerini önce öğrenmek, liderlik ve kurum kültürü üzerine bu eseri daha iyi anlamayı sağlar."
+          }
+        ],
+        "after": []
+      },
+      "fivedysfunctionsofateam": {
+        "before": [],
+        "after": [
+          {
+            "id": "goodtogreat",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Collins ve Peters’ın liderlik ve kurum kültürü üzerine eserleri."
+          },
+          {
+            "id": "insearchofexcellence",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Collins ve Peters’ın liderlik ve kurum kültürü üzerine eserleri."
+          }
+        ]
+      },
+      "decisive": {
+        "before": [],
+        "after": [
+          {
+            "id": "innovatorsdilemma",
+            "reason": "Bu temelden sonra geçilecek yönetim klasiği: Christensen’in yenilik, rekabet ve dönüşüm üzerine eseri."
           }
         ]
       },
@@ -5729,6 +5935,21 @@
           "groupId": "entrepreneurship-curriculum:operations",
           "source": "https://www.routledge.com/The-Goal-A-Process-of-Ongoing-Improvement/Goldratt-Cox/p/book/9781032438325",
           "note": "Darboğazı ve sistem akışını yönetmek."
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-3",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Bir fabrikanın sorunları üzerinden kısıtlar teorisini anlatır: sistemin toplam performansını sınırlayan darboğazı bulup iyileştirmek. Kazanım: herkesin daha hızlı çalışmasının neden işletmenin daha fazla çıktı üretmesi demek olmadığını görmek.",
+          "role": "Operasyon ve darboğaz yönetimi"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 11. kitap: operasyon ve darboğaz yönetimi.",
+          "role": "Operasyon ve darboğaz yönetimi",
+          "order": 11
         }
       ],
       "notes": [
@@ -5755,13 +5976,22 @@
         {
           "text": "Darboğazı ve sistem akışını yönetmek.",
           "source": "Girişimcilik rotası"
+        },
+        {
+          "text": "Bir fabrikanın sorunları üzerinden kısıtlar teorisini anlatır: sistemin toplam performansını sınırlayan darboğazı bulup iyileştirmek. Kazanım: herkesin daha hızlı çalışmasının neden işletmenin daha fazla çıktı üretmesi demek olmadığını görmek.",
+          "source": "Yönetici adayı · Operasyon ve darboğaz yönetimi"
+        },
+        {
+          "text": "Programda 11. kitap: operasyon ve darboğaz yönetimi.",
+          "source": "Yönetici adayı · Operasyon ve darboğaz yönetimi"
         }
       ],
       "editions": [],
       "origins": [
         "atlas",
         "local",
-        "entrepreneurship"
+        "entrepreneurship",
+        "managerprep"
       ],
       "legacyKeys": [],
       "tags": [
@@ -5802,7 +6032,8 @@
         "hundred",
         "core",
         "next",
-        "entrepreneurship-curriculum"
+        "entrepreneurship-curriculum",
+        "yonetici-adayi"
       ],
       "groupIds": [
         "time:0",
@@ -5810,7 +6041,9 @@
         "hundred:5",
         "core:0",
         "next:local",
-        "entrepreneurship-curriculum:operations"
+        "entrepreneurship-curriculum:operations",
+        "yonetici-adayi:asama-3",
+        "yonetici-adayi:program"
       ]
     },
     {
@@ -8839,12 +9072,34 @@
           "groupId": "raf-degerlendirmesi:uzun-vadeli",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "Değerli ama yoğun: daha fazla dikkat ayrılacak, uzun vadeli bir okuma. Okuma düzenini yeniden kurmak için ilk kitap olarak önerilmiyor."
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:ekler",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Hızlı, sezgisel düşünme ile yavaş, çaba isteyen düşünmenin ayrımını ve yargılardaki sistemli hataları anlatır; Doğru Karar’ın ele aldığı karar hatalarının araştırma temeli.",
+          "role": "Programa eklenen"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-1",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Kararlardaki sistemli hataların araştırma temeli: Doğru Karar’ın yanında.",
+          "role": "Programa eklenen"
         }
       ],
       "notes": [
         {
           "text": "Değerli ama yoğun: daha fazla dikkat ayrılacak, uzun vadeli bir okuma. Okuma düzenini yeniden kurmak için ilk kitap olarak önerilmiyor.",
           "source": "Raf taraması"
+        },
+        {
+          "text": "Hızlı, sezgisel düşünme ile yavaş, çaba isteyen düşünmenin ayrımını ve yargılardaki sistemli hataları anlatır; Doğru Karar’ın ele aldığı karar hatalarının araştırma temeli.",
+          "source": "Yönetici adayı · Programa eklenen"
+        },
+        {
+          "text": "Kararlardaki sistemli hataların araştırma temeli: Doğru Karar’ın yanında.",
+          "source": "Yönetici adayı · Programa eklenen"
         }
       ],
       "editions": [
@@ -8877,7 +9132,8 @@
       "origins": [
         "atlas",
         "kitaps",
-        "shelf"
+        "shelf",
+        "managerprep"
       ],
       "legacyKeys": [
         "thinking-fast-and-slow-daniel-kahneman"
@@ -8915,13 +9171,16 @@
         "pmba",
         "hundred",
         "kitaps-N",
-        "raf-degerlendirmesi"
+        "raf-degerlendirmesi",
+        "yonetici-adayi"
       ],
       "groupIds": [
         "pmba:6",
         "hundred:10",
         "kitaps-N:N.1 — Bireysel irade ve öz-strateji",
-        "raf-degerlendirmesi:uzun-vadeli"
+        "raf-degerlendirmesi:uzun-vadeli",
+        "yonetici-adayi:ekler",
+        "yonetici-adayi:asama-1"
       ]
     },
     {
@@ -10336,12 +10595,34 @@
           "groupId": "raf-degerlendirmesi:oncelikli",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/shelf-review.json",
           "note": "İkna üzerine tek kitap alınacaksa ilk seçim ve konunun genel temeli. Sihirli Kelimeler ile Stratejik İkna’yı başlangıçta birlikte almak gerekmiyor."
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:ekler",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "İnsanların neden ve nasıl ikna olduğunu karşılıklılık, tutarlılık, toplumsal kanıt, sevme, otorite ve kıtlık ilkeleriyle anlatır; müzakere ve ekip kitaplarının yanında okunur.",
+          "role": "Programa eklenen"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-2",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "İkna ve etki: müzakere ve ekip kitaplarının yanında.",
+          "role": "Programa eklenen"
         }
       ],
       "notes": [
         {
           "text": "İkna üzerine tek kitap alınacaksa ilk seçim ve konunun genel temeli. Sihirli Kelimeler ile Stratejik İkna’yı başlangıçta birlikte almak gerekmiyor.",
           "source": "Raf taraması"
+        },
+        {
+          "text": "İnsanların neden ve nasıl ikna olduğunu karşılıklılık, tutarlılık, toplumsal kanıt, sevme, otorite ve kıtlık ilkeleriyle anlatır; müzakere ve ekip kitaplarının yanında okunur.",
+          "source": "Yönetici adayı · Programa eklenen"
+        },
+        {
+          "text": "İkna ve etki: müzakere ve ekip kitaplarının yanında.",
+          "source": "Yönetici adayı · Programa eklenen"
         }
       ],
       "editions": [
@@ -10372,7 +10653,8 @@
       "origins": [
         "atlas",
         "kitaps",
-        "shelf"
+        "shelf",
+        "managerprep"
       ],
       "legacyKeys": [
         "influence-the-psychology-of-persuasion-robert-b-cialdini"
@@ -10412,13 +10694,16 @@
         "pmba",
         "hundred",
         "kitaps-N",
-        "raf-degerlendirmesi"
+        "raf-degerlendirmesi",
+        "yonetici-adayi"
       ],
       "groupIds": [
         "pmba:12",
         "hundred:3",
         "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
-        "raf-degerlendirmesi:oncelikli"
+        "raf-degerlendirmesi:oncelikli",
+        "yonetici-adayi:ekler",
+        "yonetici-adayi:asama-2"
       ]
     },
     {
@@ -11346,6 +11631,29 @@
           "source": "https://personalmba.com/review/thinking-in-systems/",
           "award": null,
           "awardYear": null
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-3",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Bir sistemin parçaları arasındaki ilişkileri, geri besleme döngülerini, gecikmeleri ve beklenmedik sonuçları anlamayı öğretir. Kazanım: bir departmandaki sorunu çözerken başka bir departmanda yeni sorun yaratmamak; Deming’e geçmeden önce çok değerli.",
+          "role": "Sistem düşüncesi"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 10. kitap: sistem düşüncesi.",
+          "role": "Sistem düşüncesi",
+          "order": 10
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:kisa-yol",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Kısa yolda 6. kitap. Ardından Drucker’ın Yönetim Uygulaması’na geçilebilir; Porter ve Deming sonraki aşamada gelir.",
+          "role": "Sistem düşüncesi",
+          "order": 6
         }
       ],
       "notes": [
@@ -11364,12 +11672,25 @@
         {
           "text": "Sistemi anlamak.",
           "source": "Yakın Vade · 3 Kitap ve Amaç"
+        },
+        {
+          "text": "Bir sistemin parçaları arasındaki ilişkileri, geri besleme döngülerini, gecikmeleri ve beklenmedik sonuçları anlamayı öğretir. Kazanım: bir departmandaki sorunu çözerken başka bir departmanda yeni sorun yaratmamak; Deming’e geçmeden önce çok değerli.",
+          "source": "Yönetici adayı · Sistem düşüncesi"
+        },
+        {
+          "text": "Programda 10. kitap: sistem düşüncesi.",
+          "source": "Yönetici adayı · Sistem düşüncesi"
+        },
+        {
+          "text": "Kısa yolda 6. kitap. Ardından Drucker’ın Yönetim Uygulaması’na geçilebilir; Porter ve Deming sonraki aşamada gelir.",
+          "source": "Yönetici adayı · Sistem düşüncesi"
         }
       ],
       "editions": [],
       "origins": [
         "atlas",
-        "local"
+        "local",
+        "managerprep"
       ],
       "legacyKeys": [],
       "tags": [
@@ -11411,12 +11732,16 @@
       "collectionIds": [
         "pmba",
         "core",
-        "next"
+        "next",
+        "yonetici-adayi"
       ],
       "groupIds": [
         "pmba:17",
         "core:1",
-        "next:0"
+        "next:0",
+        "yonetici-adayi:asama-3",
+        "yonetici-adayi:program",
+        "yonetici-adayi:kisa-yol"
       ]
     },
     {
@@ -13243,19 +13568,67 @@
           "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 1
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-1",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Değer üretiminin, pazarlamanın, satışın, finansın, insan davranışının ve işletme sistemlerinin birbirine nasıl bağlandığını gösterir. İlk kitap, çünkü bir işletmeyi parçalarına ayırarak çözümlemeyi sağlayan kavram haritasını kurar.",
+          "role": "İşletmeyi bir bütün olarak anlamak"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 1. kitap: işletmeyi bir bütün olarak anlamak.",
+          "role": "İşletmeyi bir bütün olarak anlamak",
+          "order": 1
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:ilk-uc",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "İşletmenin dilini öğretir.",
+          "role": "İşletmeyi bir bütün olarak anlamak",
+          "order": 1
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:kisa-yol",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Kısa yolda 1. kitap.",
+          "role": "İşletmeyi bir bütün olarak anlamak",
+          "order": 1
         }
       ],
       "notes": [
         {
           "text": "İşletmenin temel mekanizmalarını tek haritada görmek.",
           "source": "Girişimcilik rotası"
+        },
+        {
+          "text": "Değer üretiminin, pazarlamanın, satışın, finansın, insan davranışının ve işletme sistemlerinin birbirine nasıl bağlandığını gösterir. İlk kitap, çünkü bir işletmeyi parçalarına ayırarak çözümlemeyi sağlayan kavram haritasını kurar.",
+          "source": "Yönetici adayı · İşletmeyi bir bütün olarak anlamak"
+        },
+        {
+          "text": "Programda 1. kitap: işletmeyi bir bütün olarak anlamak.",
+          "source": "Yönetici adayı · İşletmeyi bir bütün olarak anlamak"
+        },
+        {
+          "text": "İşletmenin dilini öğretir.",
+          "source": "Yönetici adayı · İşletmeyi bir bütün olarak anlamak"
+        },
+        {
+          "text": "Kısa yolda 1. kitap.",
+          "source": "Yönetici adayı · İşletmeyi bir bütün olarak anlamak"
         }
       ],
       "editions": [],
       "origins": [
         "atlas",
         "entrepreneurship",
-        "foundations"
+        "foundations",
+        "managerprep"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -13290,12 +13663,17 @@
       "collectionIds": [
         "pmba",
         "entrepreneurship-curriculum",
-        "foundations"
+        "foundations",
+        "yonetici-adayi"
       ],
       "groupIds": [
         "pmba:guide",
         "entrepreneurship-curriculum:customer",
-        "foundations:baslangic"
+        "foundations:baslangic",
+        "yonetici-adayi:asama-1",
+        "yonetici-adayi:program",
+        "yonetici-adayi:ilk-uc",
+        "yonetici-adayi:kisa-yol"
       ]
     },
     {
@@ -34616,12 +34994,37 @@
           "source": "https://toddsattersten.com/what-to-read/",
           "award": null,
           "awardYear": null
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-3",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Yeni yöneticinin ilk döneminde durumu nasıl çözümleyeceğini, paydaşlarla nasıl ilişki kuracağını, öncelikleri nasıl seçeceğini ve erken sonuçları nasıl alacağını anlatır. Kazanım: teoriyi yeni bir yöneticilik görevinde uygulanabilir bir başlangıç planına çevirmek.",
+          "role": "Yöneticiliğe geçiş"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 12. kitap: yöneticiliğe geçiş.",
+          "role": "Yöneticiliğe geçiş",
+          "order": 12
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Yeni yöneticinin ilk döneminde durumu nasıl çözümleyeceğini, paydaşlarla nasıl ilişki kuracağını, öncelikleri nasıl seçeceğini ve erken sonuçları nasıl alacağını anlatır. Kazanım: teoriyi yeni bir yöneticilik görevinde uygulanabilir bir başlangıç planına çevirmek.",
+          "source": "Yönetici adayı · Yöneticiliğe geçiş"
+        },
+        {
+          "text": "Programda 12. kitap: yöneticiliğe geçiş.",
+          "source": "Yönetici adayı · Yöneticiliğe geçiş"
+        }
+      ],
       "editions": [],
       "origins": [
-        "atlas"
+        "atlas",
+        "managerprep"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -34678,10 +35081,13 @@
       "originalTitle": "The First 90 Days",
       "addedAt": "2026-09-26",
       "collectionIds": [
-        "hundred"
+        "hundred",
+        "yonetici-adayi"
       ],
       "groupIds": [
-        "hundred:0"
+        "hundred:0",
+        "yonetici-adayi:asama-3",
+        "yonetici-adayi:program"
       ]
     },
     {
@@ -36561,7 +36967,7 @@
     {
       "id": "nakedeconomics",
       "title": "Naked Economics",
-      "titleTr": "",
+      "titleTr": "Çıplak Ekonomi",
       "author": "Charles Wheelan",
       "aliases": [],
       "years": [
@@ -36577,37 +36983,121 @@
           "source": "https://toddsattersten.com/what-to-read/",
           "award": null,
           "awardYear": null
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-1",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Arz ve talebi, teşvikleri, fırsat maliyetini, piyasaları, fiyatları ve ekonomik davranışı anlaşılır örneklerle anlatır. Porter’ın rekabet stratejisinden önce piyasaların nasıl çalıştığını anlamak için.",
+          "role": "Ekonominin mantığı"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 4. kitap: ekonominin mantığı.",
+          "role": "Ekonominin mantığı",
+          "order": 4
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:kisa-yol",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Kısa yolda 3. kitap.",
+          "role": "Ekonominin mantığı",
+          "order": 3
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Arz ve talebi, teşvikleri, fırsat maliyetini, piyasaları, fiyatları ve ekonomik davranışı anlaşılır örneklerle anlatır. Porter’ın rekabet stratejisinden önce piyasaların nasıl çalıştığını anlamak için.",
+          "source": "Yönetici adayı · Ekonominin mantığı"
+        },
+        {
+          "text": "Programda 4. kitap: ekonominin mantığı.",
+          "source": "Yönetici adayı · Ekonominin mantığı"
+        },
+        {
+          "text": "Kısa yolda 3. kitap.",
+          "source": "Yönetici adayı · Ekonominin mantığı"
+        }
+      ],
       "editions": [],
       "origins": [
-        "atlas"
+        "atlas",
+        "managerprep"
       ],
       "legacyKeys": [],
       "tags": [],
       "cover": {
-        "title": "Naked Economics: Undressing the Dismal Science",
+        "src": "covers/tr-nakedeconomics.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:1025712/wi:500/wh:fe27eb8fd",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/ciplak-ekonomi/368459.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Çıplak Ekonomi",
         "author": "Charles Wheelan",
-        "sourceUrl": "https://www.porchlightbooks.com/collections/100-best-business-books-of-all-time/products/naked-economics-charles-wheelan-9780393324860",
-        "imageUrl": "https://www.porchlightbooks.com/cdn/shop/files/9780393324860.jpg?v=1729588308&width=360",
-        "sourceName": "Porchlight Books",
-        "publisher": "W. W. Norton & Company",
-        "isbn": "9780393324860",
-        "src": "covers/a81f772a49494f03.jpg",
-        "language": "en",
-        "checkedAt": "2026-09-28",
-        "turkishStatus": "unverified"
+        "publisher": "Pegasus Yayınları",
+        "isbn": "9786053435679",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı",
+        "matchMethod": "manual-source-review"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-001",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/ciplak-ekonomi/368459.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.bkmkitap.com/ciplak-ekonomi",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-001",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.dr.com.tr/Kitap/Ciplak-Ekonomi/Egitim-Basvuru/Is-Ekonomi-Hukuk/Ekonomi/urunno=0000000646886",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.amazon.com.tr/%C3%87%C4%B1plak-Ekonomi-K%C3%BCresel-Ekonomiyi-E%C4%9Flenceli/dp/6053435678",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Çıplak Ekonomi",
+          "publisher": "Pegasus Yayınları",
+          "isbn": "9786053435679",
+          "translators": [
+            "Giray Ergin"
+          ],
+          "year": 2015
+        }
       },
       "originalLanguage": "en",
       "originalPublisher": "W. W. Norton & Company",
       "originalTitle": "Naked Economics",
       "addedAt": "2026-09-26",
       "collectionIds": [
-        "hundred"
+        "hundred",
+        "yonetici-adayi"
       ],
       "groupIds": [
-        "hundred:4"
+        "hundred:4",
+        "yonetici-adayi:asama-1",
+        "yonetici-adayi:program",
+        "yonetici-adayi:kisa-yol"
       ]
     },
     {
@@ -36952,9 +37442,44 @@
           "groupId": "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
           "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Roman biçiminde. Güven yokluğu → çatışma korkusu → bağlılık eksikliği → hesap verebilirlikten kaçınma → sonuçlara kayıtsızlık zinciri. Ekip teşhisi için hızlı araç."
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-2",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Ekiplerde güven eksikliğini, çatışmadan kaçınmayı, kararsızlığı, hesap verebilirlik eksikliğini ve sonuçlardan uzaklaşmayı anlatır.",
+          "role": "Ekip dinamikleri"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 8. kitap: ekip dinamikleri.",
+          "role": "Ekip dinamikleri",
+          "order": 8
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:ilk-kez-yonetecekler",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Ekibi bozan beş aksaklığı erkenden tanımak için.",
+          "role": "Ekip dinamikleri"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Ekiplerde güven eksikliğini, çatışmadan kaçınmayı, kararsızlığı, hesap verebilirlik eksikliğini ve sonuçlardan uzaklaşmayı anlatır.",
+          "source": "Yönetici adayı · Ekip dinamikleri"
+        },
+        {
+          "text": "Programda 8. kitap: ekip dinamikleri.",
+          "source": "Yönetici adayı · Ekip dinamikleri"
+        },
+        {
+          "text": "Ekibi bozan beş aksaklığı erkenden tanımak için.",
+          "source": "Yönetici adayı · Ekip dinamikleri"
+        }
+      ],
       "editions": [
         {
           "id": "N9",
@@ -36984,7 +37509,8 @@
       ],
       "origins": [
         "atlas",
-        "kitaps"
+        "kitaps",
+        "managerprep"
       ],
       "legacyKeys": [
         "the-five-dysfunctions-of-a-team-patrick-lencioni"
@@ -37020,11 +37546,15 @@
       "addedAt": "2026-09-02",
       "collectionIds": [
         "hundred",
-        "kitaps-N"
+        "kitaps-N",
+        "yonetici-adayi"
       ],
       "groupIds": [
         "hundred:5",
-        "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim"
+        "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
+        "yonetici-adayi:asama-2",
+        "yonetici-adayi:program",
+        "yonetici-adayi:ilk-kez-yonetecekler"
       ]
     },
     {
@@ -51530,12 +52060,58 @@
           "groupId": "entrepreneurship-curriculum:operations",
           "source": "https://www.radicalcandor.com/books/radical-candor/",
           "note": "Açık geri bildirim ve insan yönetimi geliştirmek."
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-2",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Çalışana geri bildirim vermeyi, zor konuşmaları yönetmeyi ve güven ilişkisi kurmayı öğretir.",
+          "role": "Geri bildirim ve güven"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 7. kitap: geri bildirim ve güven.",
+          "role": "Geri bildirim ve güven",
+          "order": 7
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:ilk-kez-yonetecekler",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Geri bildirim ve zor konuşmalar: ilk kez ekip yönetenin ilk ihtiyacı.",
+          "role": "Geri bildirim ve güven"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:kisa-yol",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Kısa yolda 5. kitap.",
+          "role": "Geri bildirim ve güven",
+          "order": 5
         }
       ],
       "notes": [
         {
           "text": "Açık geri bildirim ve insan yönetimi geliştirmek.",
           "source": "Girişimcilik rotası"
+        },
+        {
+          "text": "Çalışana geri bildirim vermeyi, zor konuşmaları yönetmeyi ve güven ilişkisi kurmayı öğretir.",
+          "source": "Yönetici adayı · Geri bildirim ve güven"
+        },
+        {
+          "text": "Programda 7. kitap: geri bildirim ve güven.",
+          "source": "Yönetici adayı · Geri bildirim ve güven"
+        },
+        {
+          "text": "Geri bildirim ve zor konuşmalar: ilk kez ekip yönetenin ilk ihtiyacı.",
+          "source": "Yönetici adayı · Geri bildirim ve güven"
+        },
+        {
+          "text": "Kısa yolda 5. kitap.",
+          "source": "Yönetici adayı · Geri bildirim ve güven"
         }
       ],
       "editions": [
@@ -51567,7 +52143,8 @@
       ],
       "origins": [
         "kitaps",
-        "entrepreneurship"
+        "entrepreneurship",
+        "managerprep"
       ],
       "legacyKeys": [
         "radical-candor-kim-scott"
@@ -51603,11 +52180,16 @@
       "addedAt": "2026-09-02",
       "collectionIds": [
         "kitaps-N",
-        "entrepreneurship-curriculum"
+        "entrepreneurship-curriculum",
+        "yonetici-adayi"
       ],
       "groupIds": [
         "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
-        "entrepreneurship-curriculum:operations"
+        "entrepreneurship-curriculum:operations",
+        "yonetici-adayi:asama-2",
+        "yonetici-adayi:program",
+        "yonetici-adayi:ilk-kez-yonetecekler",
+        "yonetici-adayi:kisa-yol"
       ]
     },
     {
@@ -51630,9 +52212,33 @@
           "groupId": "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
           "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Harvard müzakere yönteminin klasiği: pozisyon değil çıkar üzerinden pazarlık, BATNA kavramı. Türkçe ad ve künye baskıya göre değişiyor — kontrol et."
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-2",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "İnsanları sorundan ayırmayı, pozisyonların arkasındaki çıkarları görmeyi ve ilkelere dayalı müzakereyi öğretir.",
+          "role": "Müzakere"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 9. kitap: müzakere.",
+          "role": "Müzakere",
+          "order": 9
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "İnsanları sorundan ayırmayı, pozisyonların arkasındaki çıkarları görmeyi ve ilkelere dayalı müzakereyi öğretir.",
+          "source": "Yönetici adayı · Müzakere"
+        },
+        {
+          "text": "Programda 9. kitap: müzakere.",
+          "source": "Yönetici adayı · Müzakere"
+        }
+      ],
       "editions": [
         {
           "id": "N10",
@@ -51659,7 +52265,8 @@
         }
       ],
       "origins": [
-        "kitaps"
+        "kitaps",
+        "managerprep"
       ],
       "legacyKeys": [
         "getting-to-yes-roger-fisher-william-ury-bruce-patton"
@@ -51695,10 +52302,13 @@
       "originalTitle": "Getting to Yes",
       "addedAt": "2026-09-02",
       "collectionIds": [
-        "kitaps-N"
+        "kitaps-N",
+        "yonetici-adayi"
       ],
       "groupIds": [
-        "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim"
+        "kitaps-N:N.3 — Çalışanlar ve üst yönetimle iletişim",
+        "yonetici-adayi:asama-2",
+        "yonetici-adayi:program"
       ]
     },
     {
@@ -73199,6 +73809,585 @@
       ]
     },
     {
+      "id": "finansciolmayanlaricinfinans",
+      "title": "Finansçı Olmayanlar İçin Finans",
+      "titleTr": "Finansçı Olmayanlar İçin Finans",
+      "author": "Hakan Özerol",
+      "aliases": [],
+      "years": [
+        2002
+      ],
+      "categories": [
+        "finance"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-1",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Gelirin, giderin, kârın, finansmanın ve temel finansal kavramların işletmedeki anlamına giriş. İkinci kitap, çünkü finansal sonuçlarını anlayamadığın bir işletmeyi sağlıklı yönetemezsin; bilanço, gelir tablosu ve nakit akış tablosu üzerinde ayrıca uygulama yaparak tamamlanmalı.",
+          "role": "Finansal okuryazarlık"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 2. kitap: finansal okuryazarlık.",
+          "role": "Finansal okuryazarlık",
+          "order": 2
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:ilk-uc",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Rakamların dilini öğretir.",
+          "role": "Finansal okuryazarlık",
+          "order": 2
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:kisa-yol",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Kısa yolda 2. kitap.",
+          "role": "Finansal okuryazarlık",
+          "order": 2
+        }
+      ],
+      "notes": [
+        {
+          "text": "Gelirin, giderin, kârın, finansmanın ve temel finansal kavramların işletmedeki anlamına giriş. İkinci kitap, çünkü finansal sonuçlarını anlayamadığın bir işletmeyi sağlıklı yönetemezsin; bilanço, gelir tablosu ve nakit akış tablosu üzerinde ayrıca uygulama yaparak tamamlanmalı.",
+          "source": "Yönetici adayı · Finansal okuryazarlık"
+        },
+        {
+          "text": "Programda 2. kitap: finansal okuryazarlık.",
+          "source": "Yönetici adayı · Finansal okuryazarlık"
+        },
+        {
+          "text": "Rakamların dilini öğretir.",
+          "source": "Yönetici adayı · Finansal okuryazarlık"
+        },
+        {
+          "text": "Kısa yolda 2. kitap.",
+          "source": "Yönetici adayı · Finansal okuryazarlık"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerprep"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "tr",
+      "verifiedEdition": {
+        "title": "Finansçı Olmayanlar İçin Finans",
+        "isbn": "9789756093245",
+        "publisher": "Elma Yayınevi",
+        "translators": [],
+        "sourceUrl": "https://www.nadirkitap.com/finansci-olmayanlar-icin-finans-hakan-ozerol-kitap48342237.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.dr.com.tr/kitap/finansci-olmayanlar-icin-finans/hakan-ozerol/basvuru/is-ekonomi-hukuk/hukuk/urunno=0000000121561",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "nadirkitap.com ve dr.com.tr aynı ISBN'i (9789756093245) ve Elma Yayınevi yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı.",
+        "originalLanguage": "tr"
+      },
+      "cover": {
+        "src": "covers/manager-finansciolmayanlaricinfinans.jpg",
+        "imageUrl": "https://i.dr.com.tr/cache/600x600-0/originals/0000000121561-1.jpg",
+        "sourceUrl": "https://www.dr.com.tr/kitap/finansci-olmayanlar-icin-finans/hakan-ozerol/basvuru/is-ekonomi-hukuk/hukuk/urunno=0000000121561",
+        "sourceName": "dr.com.tr",
+        "title": "Finansçı Olmayanlar İçin Finans",
+        "author": "Hakan Özerol",
+        "publisher": "Elma Yayınevi",
+        "isbn": "9789756093245",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "original",
+        "stage1": {
+          "decision": "original",
+          "reviewer": "claude-stage1-r-001",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.nadirkitap.com/finansci-olmayanlar-icin-finans-hakan-ozerol-kitap48342237.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.nadirkitap.com/finansci-olmayanlar-icin-finans-9-baski-dr-hakan-ozerol-kitap45378286.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.goodreads.com/book/show/43223519",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "original",
+          "reviewer": "claude-stage2-r-001",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.dr.com.tr/kitap/finansci-olmayanlar-icin-finans/hakan-ozerol/basvuru/is-ekonomi-hukuk/hukuk/urunno=0000000121561",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9789756093245",
+              "type": "retailer"
+            }
+          ]
+        },
+        "originalLanguage": "tr"
+      },
+      "originalPublisher": "Elma Yayınevi",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yonetici-adayi"
+      ],
+      "groupIds": [
+        "yonetici-adayi:asama-1",
+        "yonetici-adayi:program",
+        "yonetici-adayi:ilk-uc",
+        "yonetici-adayi:kisa-yol"
+      ]
+    },
+    {
+      "id": "decisive",
+      "title": "Decisive",
+      "titleTr": "Doğru Karar",
+      "author": "Chip Heath and Dan Heath",
+      "aliases": [
+        "Doğru Karar"
+      ],
+      "years": [
+        2013
+      ],
+      "categories": [
+        "psychology",
+        "management"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-1",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Karar seçeneklerini genişletmeyi, varsayımları sınamayı, kısa vadeli duyguların etkisini azaltmayı ve aşırı özgüvenden korunmayı öğretir. Üçüncü kitap, çünkü doğru soruları sormaya ve kararları sistemli biçimde değerlendirmeye yardım eder.",
+          "role": "Karar verme"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 3. kitap: karar verme.",
+          "role": "Karar verme",
+          "order": 3
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:ilk-uc",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Kararların mantığını öğretir.",
+          "role": "Karar verme",
+          "order": 3
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:kisa-yol",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Kısa yolda 4. kitap.",
+          "role": "Karar verme",
+          "order": 4
+        }
+      ],
+      "notes": [
+        {
+          "text": "Karar seçeneklerini genişletmeyi, varsayımları sınamayı, kısa vadeli duyguların etkisini azaltmayı ve aşırı özgüvenden korunmayı öğretir. Üçüncü kitap, çünkü doğru soruları sormaya ve kararları sistemli biçimde değerlendirmeye yardım eder.",
+          "source": "Yönetici adayı · Karar verme"
+        },
+        {
+          "text": "Programda 3. kitap: karar verme.",
+          "source": "Yönetici adayı · Karar verme"
+        },
+        {
+          "text": "Kararların mantığını öğretir.",
+          "source": "Yönetici adayı · Karar verme"
+        },
+        {
+          "text": "Kısa yolda 4. kitap.",
+          "source": "Yönetici adayı · Karar verme"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerprep"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Doğru Karar",
+        "isbn": "9789757004707",
+        "publisher": "Boyner Yayınları",
+        "translators": [
+          "İclal Büyükdevrim Özçelik"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/dogru-karar/339136.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.konseykitap.com/dogru-karar",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve konseykitap.com aynı ISBN'i (9789757004707) ve Boyner Yayınları yayınevini gösteriyor; çevirmen: İclal Büyükdevrim Özçelik. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/manager-decisive.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:84532/wi:500/wh:3c23d1ae8",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/dogru-karar/339136.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Doğru Karar",
+        "author": "Chip Heath and Dan Heath",
+        "publisher": "Boyner Yayınları",
+        "isbn": "9789757004707",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-001",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/dogru-karar/339136.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9789757004707",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-001",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.konseykitap.com/dogru-karar",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.amazon.com.tr/Do%C4%9Fru-Karar-Hayat%C4%B1n%C4%B1z%C4%B1-De%C4%9Fi%C5%9Ftirecek-Kararlar%C4%B1/dp/9757004707",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.nadirkitap.com/dogru-karar-hayatinizi-degistirecek-en-iyi-kararlari-vermek-chip-heath-dan-heath-kitap22257568.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://tamadres.com/dogru-karar-chip-heath-dan-heath-kitabi-148158-9789757004707",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Doğru Karar",
+          "publisher": "Boyner Yayınları",
+          "isbn": "9789757004707",
+          "translators": [
+            "İclal Büyükdevrim Özçelik"
+          ],
+          "year": 2014
+        }
+      },
+      "originalPublisher": "Crown Business",
+      "originalTitle": "Decisive",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yonetici-adayi"
+      ],
+      "groupIds": [
+        "yonetici-adayi:asama-1",
+        "yonetici-adayi:program",
+        "yonetici-adayi:ilk-uc",
+        "yonetici-adayi:kisa-yol"
+      ]
+    },
+    {
+      "id": "invitationtosociology",
+      "title": "Invitation to Sociology",
+      "titleTr": "Sosyolojiye Çağrı: Hümanist Bir Perspektif",
+      "author": "Peter L. Berger",
+      "aliases": [
+        "Sosyolojiye Çağrı: Hümanist Bir Perspektif"
+      ],
+      "years": [
+        1963
+      ],
+      "categories": [
+        "politics",
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-2",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "İnsan davranışının toplumsal roller, kurumlar ve beklentilerle nasıl biçimlendiğini gösterir; Weber’den önce iyi bir temel.",
+          "role": "Toplum ve kurumlar"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 6. kitap: toplum ve kurumlar.",
+          "role": "Toplum ve kurumlar",
+          "order": 6
+        }
+      ],
+      "notes": [
+        {
+          "text": "İnsan davranışının toplumsal roller, kurumlar ve beklentilerle nasıl biçimlendiğini gösterir; Weber’den önce iyi bir temel.",
+          "source": "Yönetici adayı · Toplum ve kurumlar"
+        },
+        {
+          "text": "Programda 6. kitap: toplum ve kurumlar.",
+          "source": "Yönetici adayı · Toplum ve kurumlar"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerprep"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Sosyolojiye Çağrı: Hümanist Bir Perspektif",
+        "isbn": "9789750522109",
+        "publisher": "İletişim Yayınları",
+        "translators": [
+          "A. Erkan Koca"
+        ],
+        "sourceUrl": "https://iletisim.com.tr/kitap/sosyolojiye-cagri/9463",
+        "sourceType": "publisher",
+        "secondSourceUrl": "https://www.kitapyurdu.com/kitap/sosyolojiye-cagri-humanist-bir-perspektif/429672.html",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "iletisim.com.tr ve kitapyurdu.com aynı ISBN'i (9789750522109) ve İletişim Yayınları yayınevini gösteriyor; çevirmen: A. Erkan Koca. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/manager-invitationtosociology.jpg",
+        "imageUrl": "https://iletisim.com.tr/Images/UserFiles/Images/Spot/sosyolojiye-cagri.jpg",
+        "sourceUrl": "https://iletisim.com.tr/kitap/sosyolojiye-cagri/9463",
+        "sourceName": "iletisim.com.tr",
+        "title": "Sosyolojiye Çağrı: Hümanist Bir Perspektif",
+        "author": "Peter L. Berger",
+        "publisher": "İletişim Yayınları",
+        "isbn": "9789750522109",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-001",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://iletisim.com.tr/kitap/sosyolojiye-cagri/9463",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.pandora.com.tr/kitap/sosyolojiye-cagri-humanist-bir-perspektif/572107",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/kitap/sosyolojiye-cagri/arastirma-tarih/sosyoloji/urunno=0001708849001",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-001",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/sosyolojiye-cagri-humanist-bir-perspektif/429672.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.amazon.com/Sosyolojiye-Cagri-H%C3%BCmanist-Bir-Perspektif/dp/9750522109",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Sosyolojiye Çağrı: Hümanist Bir Perspektif",
+          "publisher": "İletişim Yayınları",
+          "isbn": "9789750522109",
+          "translators": [
+            "A. Erkan Koca"
+          ],
+          "year": 2017
+        }
+      },
+      "originalPublisher": "Doubleday",
+      "originalTitle": "Invitation to Sociology",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yonetici-adayi"
+      ],
+      "groupIds": [
+        "yonetici-adayi:asama-2",
+        "yonetici-adayi:program"
+      ]
+    },
+    {
+      "id": "intelligentthinking",
+      "title": "Intelligent Thinking",
+      "titleTr": "Akıllı Kararlar İçin Stratejik Düşünme Yöntemleri",
+      "author": "Som Bathla",
+      "aliases": [
+        "Akıllı Kararlar İçin Stratejik Düşünme Yöntemleri"
+      ],
+      "years": [],
+      "categories": [
+        "psychology",
+        "strategy"
+      ],
+      "memberships": [
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:ekler",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Akıllı kararlar için düşünme yöntemlerini anlatan kısa bir kitap; Doğru Karar ve Hızlı ve Yavaş Düşünme’nin yanında, kendi kararlarını sınamak için okunabilir.",
+          "role": "Programa eklenen"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-1",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Karar verme: Doğru Karar’ın yanında, kısa bir uygulama kitabı.",
+          "role": "Programa eklenen"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Akıllı kararlar için düşünme yöntemlerini anlatan kısa bir kitap; Doğru Karar ve Hızlı ve Yavaş Düşünme’nin yanında, kendi kararlarını sınamak için okunabilir.",
+          "source": "Yönetici adayı · Programa eklenen"
+        },
+        {
+          "text": "Karar verme: Doğru Karar’ın yanında, kısa bir uygulama kitabı.",
+          "source": "Yönetici adayı · Programa eklenen"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "managerprep"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Akıllı Kararlar İçin Stratejik Düşünme Yöntemleri",
+        "isbn": "9786255942227",
+        "publisher": "Destek Yayınları",
+        "translators": [
+          "Cemal Can Tarımcıoğlu"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri/712521.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.pandora.com.tr/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri/926714",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-22",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve pandora.com.tr aynı ISBN'i (9786255942227) ve Destek Yayınları yayınevini gösteriyor; çevirmen: Cemal Can Tarımcıoğlu. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/manager-akillikararlaricinstratejikdusunmeyontemleri.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12029715/mh:1000/wh:9ebe7ae0a",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri/712521.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Akıllı Kararlar İçin Stratejik Düşünme Yöntemleri",
+        "author": "Som Bathla",
+        "publisher": "Destek Yayınları",
+        "isbn": "9786255942227",
+        "language": "tr",
+        "checkedAt": "2026-10-22",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-r-001",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri/712521.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9786255942227",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-r-001",
+          "checkedAt": "2026-10-22",
+          "sources": [
+            {
+              "url": "https://www.pandora.com.tr/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri/926714",
+              "type": "retailer"
+            },
+            {
+              "url": "https://dunyadakitap.com/products/akilli-kararlar-i%CC%87cin-stratejik-dusunme-yontemleri-destek-yayinlari-i%CC%87nce-kapak-1",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.amazon.com.tr/Ak%C4%B1ll%C4%B1-Kararlar-Stratejik-D%C3%BC%C5%9F%C3%BCnme-Y%C3%B6ntemleri/dp/6255942228",
+              "type": "retailer"
+            },
+            {
+              "url": "https://1000kitap.com/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri--483502",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Akıllı Kararlar İçin Stratejik Düşünme Yöntemleri",
+          "publisher": "Destek Yayınları",
+          "isbn": "9786255942227",
+          "translators": [
+            "Cemal Can Tarımcıoğlu"
+          ],
+          "year": 2025
+        }
+      },
+      "originalTitle": "Intelligent Thinking",
+      "addedAt": "2026-10-22",
+      "collectionIds": [
+        "yonetici-adayi"
+      ],
+      "groupIds": [
+        "yonetici-adayi:ekler",
+        "yonetici-adayi:asama-1"
+      ]
+    },
+    {
       "id": "elestirelokuma",
       "title": "Eleştirel Okuma",
       "titleTr": "Eleştirel Okuma",
@@ -73798,17 +74987,41 @@
           "source": "https://www.buzdagikitabevi.com/ciplak-istatistik",
           "note": "Ortalama, olasılık, örneklem ve birlikte değişim gibi kavramlarla araştırma sonuçlarını yorumlamaya hazırlanmak.",
           "order": 10
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:asama-1",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Ortalama, medyan, olasılık, örnekleme, korelasyon (değişkenlerin birlikte değişmesi) ve regresyon (değişkenler arasındaki ilişkiyi modellemek). Performans raporlarını, çalışan verimliliğini, pazarlama sonuçlarını ve şirket araştırmalarını yanlış yorumlamamak için.",
+          "role": "Veri ve istatistik okuryazarlığı"
+        },
+        {
+          "collectionId": "yonetici-adayi",
+          "groupId": "yonetici-adayi:program",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+          "note": "Programda 5. kitap: veri ve istatistik okuryazarlığı.",
+          "role": "Veri ve istatistik okuryazarlığı",
+          "order": 5
         }
       ],
       "notes": [
         {
           "text": "Ortalama, olasılık, örneklem ve birlikte değişim gibi kavramlarla araştırma sonuçlarını yorumlamaya hazırlanmak.",
           "source": "Ön hazırlık araştırması"
+        },
+        {
+          "text": "Ortalama, medyan, olasılık, örnekleme, korelasyon (değişkenlerin birlikte değişmesi) ve regresyon (değişkenler arasındaki ilişkiyi modellemek). Performans raporlarını, çalışan verimliliğini, pazarlama sonuçlarını ve şirket araştırmalarını yanlış yorumlamamak için.",
+          "source": "Yönetici adayı · Veri ve istatistik okuryazarlığı"
+        },
+        {
+          "text": "Programda 5. kitap: veri ve istatistik okuryazarlığı.",
+          "source": "Yönetici adayı · Veri ve istatistik okuryazarlığı"
         }
       ],
       "editions": [],
       "origins": [
-        "preparation"
+        "preparation",
+        "managerprep"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -73854,10 +75067,13 @@
       "originalPublisher": "W. W. Norton & Company",
       "addedAt": "2026-09-28",
       "collectionIds": [
-        "preparation"
+        "preparation",
+        "yonetici-adayi"
       ],
       "groupIds": [
-        "preparation:3"
+        "preparation:3",
+        "yonetici-adayi:asama-1",
+        "yonetici-adayi:program"
       ]
     }
   ],
@@ -74579,6 +75795,33 @@
         "yonetim-kuruculari:yenilik",
         "yonetim-kuruculari:okuma-sirasi",
         "yonetim-kuruculari:ilk-uc"
+      ]
+    },
+    {
+      "id": "yonetici-adayi",
+      "title": "Yönetici adayının temel okumaları",
+      "short": "Yönetici adayı",
+      "description": "Drucker, Porter ve Weber’den önce yöneticiliğin altyapısı: işletme, finans, karar, ekonomi ve veri okuryazarlığı; insan ve örgüt; sistem kurmak ve yönetimi uygulamak. On iki kitaplık üç aşamalı bir program, kısa yolu ve her aşamanın kolaylaştırdığı yönetim klasikleri.",
+      "source": "https://github.com/titanlar-com/kitaps/blob/main/data/manager-foundations.json",
+      "context": {
+        "purpose": "Yönetim klasiklerine geçmeden önce işletmenin, rakamların, kararların ve insanların dilini öğrenmek; böylece Drucker’ın anlattığı yönetimin, Porter’ın anlattığı rekabetin ve Deming’in anlattığı sistemlerin neyi çözmeye çalıştığı daha iyi anlaşılır. Bu klasiklerin çoğu okurun işletme, ekonomi, insan davranışı ve örgüt üzerine temel kavramları bildiğini varsayar.",
+        "criterion": "Kitaplar üç aşamaya ayrıldı: temel okuryazarlık (işletme, finans, karar, ekonomi, veri), insan ve örgüt (toplum, geri bildirim, ekip, müzakere), sistem kurmak ve yönetimi uygulamak (sistem düşüncesi, darboğaz, yöneticiliğe geçiş). Her kitabın hangi yönetim klasiğine hazırladığı kitap sayfasında yazar. Türkçe baskı yalnız iki ayrı sitede doğrulandığında gösterilir.",
+        "verdict": "Temel seviye kitap sayısıyla değil, şu sorulara neden-sonuç ilişkisiyle verilen cevaplarla geçilir: Geliri büyüyen bir şirket neden nakit sıkıntısı yaşayabilir? Bir çalışan çok çalıştığı hâlde ekibin toplam performansı neden düşebilir? Bir departmandaki verimlilik artışı neden şirketin toplam kârlılığını artırmayabilir? Satışlar yüzde 30 arttığında bunun fiyattan, müşteri sayısından ya da ürün karmasından hangisinden geldiği nasıl anlaşılır? Çalışanın performans sorunu yanlış tasarlanmış bir iş sürecinden nasıl ayırt edilir? İki departmanın hedefleri çatışıyorsa hangisine öncelik verilir? Her kitabın sonunda somut bir uygulama yapılır: finans kitabından sonra gerçek bir bilançoyu yorumlamak, karar kitabından sonra seçenekli bir karar matrisi kurmak, sistem kitabından sonra bir işletmenin süreç ve bağımlılık haritasını çıkarmak."
+      },
+      "origin": "managerprep",
+      "mark": "YA",
+      "tag": "Yönetici adayı",
+      "note": "Aşamalar ve sıra öğrenme önerisidir, zorunlu akademik önkoşul değildir: on iki kitabın hepsini bitirmeden de Drucker okunabilir. Roller not ve alt küme olarak tutulur, puana eklenmez. İknanın Psikolojisi, Hızlı ve Yavaş Düşünme ve Akıllı Kararlar İçin Stratejik Düşünme Yöntemleri programa kitaplığın sahibince eklendi.",
+      "count": 15,
+      "groupIds": [
+        "yonetici-adayi:asama-1",
+        "yonetici-adayi:asama-2",
+        "yonetici-adayi:asama-3",
+        "yonetici-adayi:program",
+        "yonetici-adayi:ilk-uc",
+        "yonetici-adayi:ilk-kez-yonetecekler",
+        "yonetici-adayi:kisa-yol",
+        "yonetici-adayi:ekler"
       ]
     },
     {
@@ -75584,6 +76827,54 @@
       "count": 3
     },
     {
+      "id": "yonetici-adayi:asama-1",
+      "collectionId": "yonetici-adayi",
+      "title": "Aşama 1 · Temel okuryazarlık: işletme, finans, karar, ekonomi ve veri",
+      "count": 7
+    },
+    {
+      "id": "yonetici-adayi:asama-2",
+      "collectionId": "yonetici-adayi",
+      "title": "Aşama 2 · İnsan ve örgüt",
+      "count": 5
+    },
+    {
+      "id": "yonetici-adayi:asama-3",
+      "collectionId": "yonetici-adayi",
+      "title": "Aşama 3 · Sistem kurmak ve yönetimi uygulamak",
+      "count": 3
+    },
+    {
+      "id": "yonetici-adayi:program",
+      "collectionId": "yonetici-adayi",
+      "title": "On iki kitaplık program, sırasıyla",
+      "count": 12
+    },
+    {
+      "id": "yonetici-adayi:ilk-uc",
+      "collectionId": "yonetici-adayi",
+      "title": "İlk üç: işletmenin, rakamların ve kararların dili",
+      "count": 3
+    },
+    {
+      "id": "yonetici-adayi:ilk-kez-yonetecekler",
+      "collectionId": "yonetici-adayi",
+      "title": "İlk kez insan yönetecekler için öncelikli",
+      "count": 2
+    },
+    {
+      "id": "yonetici-adayi:kisa-yol",
+      "collectionId": "yonetici-adayi",
+      "title": "Kısa yol: altı kitap, ardından Drucker",
+      "count": 6
+    },
+    {
+      "id": "yonetici-adayi:ekler",
+      "collectionId": "yonetici-adayi",
+      "title": "Programa eklenenler",
+      "count": 3
+    },
+    {
       "id": "preparation:1",
       "collectionId": "preparation",
       "title": "1 — Temel okuma ve düşünme becerileri",
@@ -75606,12 +76897,12 @@
     {
       "id": "strategy",
       "label": "Strateji ve rekabet",
-      "count": 80
+      "count": 81
     },
     {
       "id": "management",
       "label": "Yönetim ve liderlik",
-      "count": 136
+      "count": 137
     },
     {
       "id": "enterprise",
@@ -75631,7 +76922,7 @@
     {
       "id": "psychology",
       "label": "Psikoloji ve davranış",
-      "count": 81
+      "count": 84
     },
     {
       "id": "productivity",
@@ -75646,7 +76937,7 @@
     {
       "id": "finance",
       "label": "Finans ve yatırım",
-      "count": 91
+      "count": 92
     },
     {
       "id": "economy",
@@ -75676,7 +76967,7 @@
     {
       "id": "politics",
       "label": "Siyaset ve jeopolitik",
-      "count": 56
+      "count": 57
     },
     {
       "id": "ethics",
@@ -76926,6 +78217,20 @@
     "founders:innovatorsdilemma": "innovatorsdilemma",
     "founders:innovatorssolution": "innovatorssolution",
     "founders:competingagainstluck": "competingagainstluck",
+    "managerprep:personalmba": "personalmbamastertheartofbusiness",
+    "managerprep:finansciolmayanlaricinfinans": "finansciolmayanlaricinfinans",
+    "managerprep:decisive": "decisive",
+    "managerprep:nakedeconomics": "nakedeconomics",
+    "managerprep:invitationtosociology": "invitationtosociology",
+    "managerprep:radicalcandor": "radicalcandor",
+    "managerprep:fivedysfunctions": "fivedysfunctionsofateam",
+    "managerprep:gettingtoyes": "gettingtoyes",
+    "managerprep:thinkinginsystems": "thinkinginsystems",
+    "managerprep:goal": "goal",
+    "managerprep:first90days": "first90days",
+    "managerprep:influence": "influence",
+    "managerprep:thinkingfastandslow": "thinkingfastandslow",
+    "managerprep:akillikararlaricinstratejikdusunmeyontemleri": "intelligentthinking",
     "preparation:hazirlik-01": "elestirelokuma",
     "preparation:hazirlik-02": "dusunmeninalfabesi",
     "preparation:hazirlik-03": "adimadimmatematikessizbirgorselrehber",
@@ -76935,7 +78240,8 @@
     "preparation:hazirlik-07": "psych101",
     "preparation:hazirlik-08": "littlehistoryofscience",
     "preparation:hazirlik-09": "makeitstickthescienceofsuccessfullearning",
-    "preparation:hazirlik-10": "nakedstatisticsstrippingthedreadfromthedata"
+    "preparation:hazirlik-10": "nakedstatisticsstrippingthedreadfromthedata",
+    "managerprep:nakedstatistics": "nakedstatisticsstrippingthedreadfromthedata"
   },
   "sourceCounts": {
     "atlasEntries": 619,
@@ -76947,6 +78253,7 @@
     "childrenLibraryBooks": 125,
     "shelfReviewBooks": 33,
     "originalSourceWorks": 39,
-    "managementFounderWorks": 25
+    "managementFounderWorks": 25,
+    "managerProgramBooks": 15
   }
 }

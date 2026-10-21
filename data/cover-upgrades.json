@@ -5418,21 +5418,6 @@
    },
    "status": "kept-no-larger-copy"
   },
-  "covers/a81f772a49494f03.jpg": {
-   "bookId": "nakedeconomics",
-   "from": {
-    "width": 360,
-    "effective": 360
-   },
-   "status": "upgraded",
-   "to": {
-    "width": 432,
-    "effective": 432,
-    "source": "kaynağın büyük kopyası",
-    "url": "https://www.porchlightbooks.com/cdn/shop/files/9780393324860.jpg?v=1729588308",
-    "hashDistance": 1
-   }
-  },
   "covers/a826a34fa33fa14e.jpg": {
    "bookId": "manwhoknew",
    "from": {
@@ -10102,6 +10087,54 @@
    },
    "status": "kept-no-larger-copy"
   },
+  "covers/manager-akillikararlaricinstratejikdusunmeyontemleri.jpg": {
+   "bookId": "intelligentthinking",
+   "from": {
+    "width": 211,
+    "effective": 211,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 560,
+    "effective": 560,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:12029715/wi:1600",
+    "hashDistance": 2
+   }
+  },
+  "covers/manager-decisive.jpg": {
+   "bookId": "decisive",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 672,
+    "effective": 672,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:84532/wi:1600",
+    "hashDistance": 0
+   }
+  },
+  "covers/manager-finansciolmayanlaricinfinans.jpg": {
+   "bookId": "finansciolmayanlaricinfinans",
+   "from": {
+    "width": 398,
+    "effective": 398
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/manager-invitationtosociology.jpg": {
+   "bookId": "invitationtosociology",
+   "from": {
+    "width": 349,
+    "effective": 349
+   },
+   "status": "kept-no-larger-copy"
+  },
   "covers/originals-boyd.jpg": {
    "bookId": "boyd",
    "from": {
@@ -10606,6 +10639,15 @@
     "watermark": true
    },
    "status": "kept"
+  },
+  "covers/tr-nakedeconomics.jpg": {
+   "bookId": "nakedeconomics",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
   },
   "covers/tr-oncompetition.jpg": {
    "bookId": "oncompetition",
