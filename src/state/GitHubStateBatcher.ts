@@ -1,7 +1,8 @@
 import { GitHubStateRepository, GitHubStateRepositoryError, type GitHubStateErrorCode } from './GitHubStateRepository.ts';
 import type { BookStatePayload, PendingStateMutation } from './types.ts';
 
-export const MIN_GITHUB_SYNC_DELAY_MS = 120_000;
+/** The project owner's decision of 22 October 2026: 30 seconds (it was 120). */
+export const MIN_GITHUB_SYNC_DELAY_MS = 30_000;
 
 /** Failures only the reader can fix (a refused key, full storage, a broken or
  * missing file): retrying cannot help, so the queue waits for them. */
@@ -18,7 +19,7 @@ export interface GitHubStateBatcherOptions {
 
 /**
  * Persists every mutation immediately, then coalesces remote writes into one
- * flush at least 120 seconds after the first unsent change. The window is
+ * flush at least 30 seconds after the first unsent change. The window is
  * measured from that stored change time, not from the page load, so a change
  * made in a short visit is sent on the next visit once the window has passed.
  * Disposing only cancels the timer; the local queue survives navigation.
@@ -67,7 +68,7 @@ export class GitHubStateBatcher {
     return mutation;
   }
 
-  /** Milliseconds until the oldest pending change is 120 seconds old. */
+  /** Milliseconds until the oldest pending change is 30 seconds old. */
   remainingDelay(): number {
     const since = Date.parse(this.repository.getPendingSince() ?? '');
     if (!Number.isFinite(since)) return this.delayMs;

@@ -120,7 +120,7 @@ test('422 conflicts re-read and retry like 409 conflicts',async()=>{
  assert.equal(puts,2);assert.equal(gets,2);
 });
 
-test('the batcher waits 120 seconds from the first change and sends one combined flush',async()=>{
+test('the batcher waits 30 seconds from the first change and sends one combined flush',async()=>{
  const repository=new GitHubStateRepository({storage:storage(),fetch:async()=>raw(emptyStateDocument())});
  const timers=new Map();let nextTimer=0,flushes=0,now=Date.parse(timestamp(0));
  const batcher=new GitHubStateBatcher(repository,async()=>{flushes++;},{
@@ -131,7 +131,7 @@ test('the batcher waits 120 seconds from the first change and sends one combined
  batcher.queueBookState('favorite',{states:['onemli']},timestamp(0));
  assert.equal(repository.getPendingCount(),1,'the unload-safe queue is written synchronously');
  assert.equal([...timers.values()][0].delay,MIN_GITHUB_SYNC_DELAY_MS,'the minimum cannot be lowered');
- now+=30_000;
+ now+=10_000;
  batcher.queueBookState('library',{states:['alindi']});
  batcher.queueQueueState(['library','favorite']);
  assert.equal(repository.getPendingCount(),3);
@@ -141,12 +141,13 @@ test('the batcher waits 120 seconds from the first change and sends one combined
  assert.equal(flushes,1,'the batch results in one remote write');
 });
 
-test('a change older than 120 seconds is sent as soon as the next visit schedules it',()=>{
+test('a change older than 30 seconds is sent as soon as the next visit schedules it',()=>{
+ assert.equal(MIN_GITHUB_SYNC_DELAY_MS,30_000,'the owner’s decision of 22 October 2026');
  const repository=new GitHubStateRepository({storage:storage(),clock:()=>new Date(timestamp(0)),fetch:async()=>raw(emptyStateDocument())});
  repository.queueBookState('a',{states:['onemli']});
  const timers=[];
- const early=new GitHubStateBatcher(repository,async()=>{},{now:()=>Date.parse(timestamp(0))+45_000,setTimeout:(callback,delay)=>{timers.push(delay);return timers.length;},clearTimeout:()=>{}});
- early.schedule();assert.equal(timers.at(-1),75_000,'the window is counted from the change, not the page load');
+ const early=new GitHubStateBatcher(repository,async()=>{},{now:()=>Date.parse(timestamp(0))+12_000,setTimeout:(callback,delay)=>{timers.push(delay);return timers.length;},clearTimeout:()=>{}});
+ early.schedule();assert.equal(timers.at(-1),18_000,'the window is counted from the change, not the page load');
  const later=new GitHubStateBatcher(repository,async()=>{},{now:()=>Date.parse(timestamp(0))+300_000,setTimeout:(callback,delay)=>{timers.push(delay);return timers.length;},clearTimeout:()=>{}});
  later.schedule();assert.equal(timers.at(-1),0);
 });

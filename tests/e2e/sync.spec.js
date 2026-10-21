@@ -182,7 +182,7 @@ test('the phone sends its mark when the reader leaves the page, and the computer
   const phonePage = await phone.newPage();
   await markPurchased(phonePage);
   await phonePage.waitForTimeout(500);
-  expect(github.puts, 'the two-minute window is still open').toHaveLength(0);
+  expect(github.puts, 'the 30 second window is still open').toHaveLength(0);
   // Browsers fire both events when a page goes away; they share one write.
   await hidePage(phonePage);
   await phonePage.evaluate(() => window.dispatchEvent(new Event('pagehide')));

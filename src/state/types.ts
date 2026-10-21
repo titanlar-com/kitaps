@@ -63,7 +63,7 @@ export type PendingStateMutation =
   | { id: string; kind: 'queue'; updatedAt: string; value: string[] };
 
 export interface PendingStore {
-  /** When the oldest unsent change was made; the 120 second window counts from here. */
+  /** When the oldest unsent change was made; the 30 second window counts from here. */
   since: string | null;
   mutations: PendingStateMutation[];
 }

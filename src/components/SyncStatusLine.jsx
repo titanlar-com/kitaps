@@ -24,7 +24,7 @@ const TEXT={
  saving:()=>'Değişiklikler GitHub’a gönderiliyor.',
  queued:sync=>sync.reviewPending?'Bu cihazın kayıtları GitHub’dakiyle karşılaştırıldıktan sonra gönderilecek.'
   :sync.retryAt?`GitHub’ın istediği bekleme bitince, ${clock(sync.retryAt)} sonrasında gönderilecek.`
-   :'GitHub’a gönderilecek: ilk değişiklikten iki dakika sonra ya da sayfadan ayrılınca.',
+   :'GitHub’a gönderilecek: ilk değişiklikten 30 saniye sonra ya da sayfadan ayrılınca.',
  sent:sync=>`GitHub’a gönderildi · ${clock(sync.lastSentAt)}`,
 };
 const ICONS={local:IconCloudOff,failed:IconAlertTriangle,saving:IconCloudUpload,queued:IconCloudUpload,sent:IconCloudCheck};

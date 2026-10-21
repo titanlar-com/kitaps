@@ -45,6 +45,7 @@ describe('SyncStatusLine', () => {
     expect(text({ hasToken: true, tokenRejected: true, writeError: 'x' })).not.toMatch(/0 değişiklik/);
     expect(text({ hasToken: true, pending: 1, reviewPending: true })).toMatch(/karşılaştırıldıktan sonra gönderilecek/);
     expect(text({ hasToken: true, pending: 1, retryAt: Date.parse('2026-10-22T09:30:00Z') })).toMatch(/GitHub’ın istediği bekleme bitince/);
+    expect(text({ hasToken: true, pending: 1 })).toBe('GitHub’a gönderilecek: ilk değişiklikten 30 saniye sonra ya da sayfadan ayrılınca.');
   });
 });
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { useGitHubStateSync, readSyncBackup } from '../../src/state/useGitHubStateSync';
+import { SHARED_REFRESH_MS, useGitHubStateSync, readSyncBackup } from '../../src/state/useGitHubStateSync';
 
 const remoteDocument = (books, queue = null) => ({ schemaVersion: 2, updatedAt: '2026-09-28T10:00:00.000Z', books, queue });
 const record = value => ({ updatedAt: '2026-09-28T10:00:00.000Z', value });
@@ -127,6 +127,41 @@ describe('useGitHubStateSync getting changes off the device', () => {
     await waitFor(() => expect(result.current.sync.pending).toBe(0));
   });
 
+  it('a visible page reads the shared file again 30 seconds after its last read, not a whole period later', async () => {
+    expect(SHARED_REFRESH_MS).toBe(30_000);
+    localStorage.setItem('kitapatlasi:github-state:token:v1', TOKEN);
+    const server = github(remoteDocument({}));
+    // The first read ends a little after the page starts its timers, as in a browser.
+    server.readDelay = 30;
+    vi.stubGlobal('fetch', server.fetch);
+    const realSetInterval = window.setInterval.bind(window);
+    const checks = [];
+    // The testing library polls with short intervals of its own; only the page's checks are recorded.
+    const spy = vi.spyOn(window, 'setInterval').mockImplementation((callback, delay, ...rest) => {
+      if (delay < 1000) return realSetInterval(callback, delay, ...rest);
+      checks.push({ callback, delay, from: Date.now() });
+      return realSetInterval(() => {}, 1e9);
+    });
+    const { result } = renderHook(() => useHarness({}, { queue: [], reading: {} }));
+    await waitFor(() => expect(result.current.sync.status).toBe('ready'));
+    const check = checks.at(-1);
+    const reads = () => server.calls.filter(call => call.method === 'GET').length;
+    const before = reads();
+    const realNow = Date.now.bind(Date);
+    let read = null;
+    // The page's own timer, tick by tick, on a clock moved forward.
+    for (let tick = 1; tick * check.delay <= 2 * SHARED_REFRESH_MS && read === null; tick += 1) {
+      const at = check.from + tick * check.delay;
+      vi.spyOn(Date, 'now').mockReturnValue(at);
+      await act(async () => { check.callback(); await new Promise(resolve => setTimeout(resolve, 60)); });
+      if (reads() > before) read = at - check.from;
+    }
+    vi.spyOn(Date, 'now').mockImplementation(realNow);
+    spy.mockRestore();
+    expect(read).toBeGreaterThanOrEqual(SHARED_REFRESH_MS);
+    expect(read).toBeLessThan(SHARED_REFRESH_MS + 10_000);
+  });
+
   it('connecting a device sends the changes that waited on it right away', async () => {
     const server = github(remoteDocument({}));
     vi.stubGlobal('fetch', server.fetch);
@@ -167,7 +202,7 @@ describe('useGitHubStateSync getting changes off the device', () => {
     expect(localStorage.getItem('kitapatlasi:github-state:connect-review:v1')).toBeNull();
   });
 
-  it('a change older than the two-minute window still waits for the comparison', async () => {
+  it('a change older than the 30 second window still waits for the comparison', async () => {
     // Marks made days ago on a device that was never connected: the batcher would send them at once.
     const old = '2026-09-28T08:00:00.000Z';
     localStorage.setItem('kitapatlasi:github-state:pending:v2', JSON.stringify({ since: old, mutations: [{ id: `${old}:a`, kind: 'book', bookId: 'a', updatedAt: old, value: { states: ['okunuyor'] } }] }));

@@ -8,7 +8,7 @@ Uygulama mevcut React görünüm katmanını korur. İş kuralları TypeScript s
 - **ViewModel:** `ReadingRankingViewModel`, görünümün kullanacağı sıralı listeyi ve kitap kimliğine göre sonuç haritasını üretir. Katalog değişmediği sürece sonuç her cihazda aynıdır ve uygulama açılırken bir kez hesaplanır.
 - **View:** React bileşenleri puanı, sıra numarasını, olgunluk düzeyini ve her ölçütün kanıtını gösterir. Kitap sayfasındaki hazırlık önerileri motorun kullandığı `ReadingGraph` üzerinden okunur.
 - **Repository:** `GitHubStateRepository`, `kitaps-state/state.json` dosyasını okur ve yazar.
-- **Batcher:** `GitHubStateBatcher`, her değişikliği önce kalıcı yerel kuyruğa alır; uzak yazımı ilk değişiklikten en az 120 saniye sonra yapar.
+- **Batcher:** `GitHubStateBatcher`, her değişikliği önce kalıcı yerel kuyruğa alır; uzak yazımı ilk değişiklikten en az 30 saniye sonra yapar.
 
 ## Okuma önceliği politikası (reading-priority-v2.1.0)
 
@@ -54,11 +54,12 @@ Kaynak veride hiçbir kitaba doğrudan puan yazılmaz.
 - **Okuma:** Anahtarlı cihazlar API'yi `If-None-Match` ile koşullu okur.
 - **Anahtarsız okuma:** Anahtarsız cihazlar periyodik okumada dosyayı `raw.githubusercontent.com` üzerinden, özel başlık göndermeden okur. Bu basit bir CORS isteğidir ve API sınırına takılmaz. Ancak CDN kopyası en fazla beş dakika gecikebilir; sorgu parametresi bu önbelleği aşmaz (5 Ekim 2026'da denendi).
 - **Taze okuma:** Sayfa açılırken ve sayfaya en az 30 saniye sonra dönülünce anahtarsız cihaz önce API'yi dener. Bu deneme her sayfada en çok dakikada bir yapılır, çünkü GitHub ağ adresi başına saatte 60 anonim istek tanır; aynı ağdaki sekmeler ve cihazlar bu payı paylaşır. API yanıt vermezse ya da sınır doluysa CDN kopyası kullanılır.
+- **Düzenli okuma:** Görünür sayfa ortak dosyayı son okumadan 30 saniye sonra yeniden okur (proje sahibinin 22 Ekim 2026 kararı; önceden 120 saniyeydi). Denetim 5 saniyede bir yapılır, böylece okuma bir dönem gecikmez. Anahtarlı cihaz API'yi koşullu okur: saatte 120 istek, 5000'lik sınırın çok altında. Anahtarsız cihazın düzenli okuması CDN kopyasıdır; taze API okuması yukarıdaki gibi en çok dakikada birdir. Gizli sayfa okumaz.
 - **Eski kopya:** Her yazım dosyanın `updatedAt` zamanını önceki dosyanınkinden kesin olarak ileri taşır. Böylece cihazın bu oturumda gördüğü ya da yazdığı dosyadan eski bir kopya her zaman tanınır ve onun yerine geçmez; geride kalan bir CDN kopyası yeni bir işareti geri almaz.
 - **İstek başlıkları:** Yalnızca `Accept`, `X-GitHub-Api-Version`, `Authorization` ve `If-None-Match`. GitHub'ın CORS ön kontrolü başka özel başlıkları (ör. `Cache-Control`) reddeder; test bu listeyi GitHub'ın canlı yanıtıyla karşılaştırır.
 - **Birleştirme:** Her kitap kaydı alan bazında (`states`, `reading`) düzenlenme zamanı taşır. Gönderilmemiş bir yerel değişiklik, o alanı ondan sonra düzenleyen başka bir cihazın değerini ezmez; dokunmadığı alanları hiç değiştirmez.
 - **Okuma sırası:** Tek bir kayıt olarak (`queue`) tutulur ve bütün olarak son yazan kazanır.
-- **Toplu gönderim:** Yerel kuyruk ilk değişikliğin zamanını saklar. Gönderim bu zamandan en az 120 saniye sonra yapılır. Bu kuralın bilinçli istisnaları:
+- **Toplu gönderim:** Yerel kuyruk ilk değişikliğin zamanını saklar. Gönderim bu zamandan en az 30 saniye sonra yapılır. Bu süre proje sahibinin 22 Ekim 2026 kararıdır ("eşitleme süresi 2dk değil, 30 sn olsun"); önceden 120 saniyeydi. Bu kuralın bilinçli istisnaları:
   - "Şimdi gönder" düğmesi.
   - Hata sonrası yeniden denemeler: 15 ve 30 saniye, 1, 2 ve 5 dakika; değişiklikler bekledikçe sonra 5 dakikada bir. Reddedilen anahtar, dolu yerel alan, bozuk ya da bulunamayan dosya yeniden denenmez: bunları yalnız okur düzeltebilir.
   - Bir cihaz bağlandığında, o cihazda bekleyen değişikliklerin hemen gönderilmesi.

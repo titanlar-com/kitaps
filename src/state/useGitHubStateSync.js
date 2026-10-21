@@ -20,7 +20,12 @@ const emptySignature=signature({states:[],reading:null});
 const modelSnapshot=(bookIds,states,personal)=>new Map(bookIds.map(id=>[id,publicPayload(id,states,personal)]));
 const queueSignature=personal=>JSON.stringify(personal.queue);
 const noSkip=()=>({books:new Set(),queue:false});
-const SHARED_REFRESH_MS=120_000;
+// A visible page reads the shared file this often (the owner's decision of 22 October 2026).
+// A connected device reads the API conditionally, 120 requests an hour against its 5000;
+// a device without a key reads the CDN copy, which has no API limit but may lag.
+export const SHARED_REFRESH_MS=30_000;
+// The check runs more often than the refresh, so a read is never a whole period late.
+const REFRESH_CHECK_MS=5_000;
 // Coming back to the page re-reads the shared file when the last read is at least this old.
 const RETURN_REFRESH_MS=30_000;
 
@@ -150,7 +155,7 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
     }
     if(repository.hasToken()&&pending)batcher.current?.schedule();
     const readOnly=read.source==='cdn'?'GitHub durumu okundu. Bağlı olmayan cihaz GitHub’ın önbellek kopyasını okur; bu kopya en çok beş dakika gecikebilir.':'GitHub durumu salt okunur olarak güncel.';
-    setSync(value=>({...value,...readState,...(wasRejected?{writeError:null}:{}),status:pending?'queued':'ready',message:pending?(value.hasToken?'Değişiklikler cihazda; ilk değişiklikten iki dakika sonra toplu gönderilecek.':'Değişiklikler cihazda kuyrukta; GitHub’a göndermek için bu cihazı bağla.'):(value.hasToken?'GitHub durumu güncel.':readOnly),pending}));
+    setSync(value=>({...value,...readState,...(wasRejected?{writeError:null}:{}),status:pending?'queued':'ready',message:pending?(value.hasToken?'Değişiklikler cihazda; ilk değişiklikten 30 saniye sonra toplu gönderilecek.':'Değişiklikler cihazda kuyrukta; GitHub’a göndermek için bu cihazı bağla.'):(value.hasToken?'GitHub durumu güncel.':readOnly),pending}));
    }catch(error){
     if(error.code==='rate-limited')backoffUntil.current=error.retryAt;
     if(!hydrated.current)for(const [id,value] of baseline)known.current.set(id,value);
@@ -335,7 +340,7 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
  useEffect(()=>{void load()},[load]);
  useEffect(()=>{
   const refreshIfDue=()=>{if(document.visibilityState==='visible'&&Date.now()-lastRefresh.current>=SHARED_REFRESH_MS)void refresh(true)};
-  // A phone suspends a page as soon as the reader switches away, so the two-minute
+  // A phone suspends a page as soon as the reader switches away, so the 30 second
   // window would hold a change until the next visit; leaving the page sends it now.
   // keepalive lets the write outlive the page once it has been sent.
   const sendBeforeLeaving=()=>{if(tokenPresent()&&pendingCount())void flushLatest.current({keepalive:true}).catch(()=>undefined)};
@@ -343,7 +348,7 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
    if(document.visibilityState==='hidden')sendBeforeLeaving();
    else if(Date.now()-lastRefresh.current>=RETURN_REFRESH_MS)void refresh(true,true);
   };
-  const interval=window.setInterval(refreshIfDue,SHARED_REFRESH_MS);
+  const interval=window.setInterval(refreshIfDue,REFRESH_CHECK_MS);
   document.addEventListener('visibilitychange',visibilityChanged);
   window.addEventListener('pagehide',sendBeforeLeaving);
   return()=>{window.clearInterval(interval);document.removeEventListener('visibilitychange',visibilityChanged);window.removeEventListener('pagehide',sendBeforeLeaving)};
@@ -373,7 +378,7 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
     if(!pending)return value.pending===0?value:{...value,pending};
     // While the stored key is refused, the reconnect message stays; only the count moves.
     if(value.tokenRejected)return value.pending===pending?value:{...value,pending};
-    const message=value.hasToken?(reviewPending()?'Değişiklikler cihazda; bu cihazın kayıtları GitHub’dakiyle karşılaştırıldıktan sonra gönderilecek.':'Değişiklikler cihazda; ilk değişiklikten iki dakika sonra toplu gönderilecek.'):'Değişiklikler cihazda kuyrukta; GitHub’a göndermek için bu cihazı bağla.';
+    const message=value.hasToken?(reviewPending()?'Değişiklikler cihazda; bu cihazın kayıtları GitHub’dakiyle karşılaştırıldıktan sonra gönderilecek.':'Değişiklikler cihazda; ilk değişiklikten 30 saniye sonra toplu gönderilecek.'):'Değişiklikler cihazda kuyrukta; GitHub’a göndermek için bu cihazı bağla.';
     return value.status==='queued'&&value.pending===pending&&value.message===message?value:{...value,status:'queued',message,pending};
    });
    if(sync.hasToken&&!sync.tokenRejected&&pending)batcher.current.schedule();else batcher.current.cancel();
