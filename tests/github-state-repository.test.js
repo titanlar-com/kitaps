@@ -441,3 +441,64 @@ test('a partly stamped legacy record answers from its stamps alone, like the mer
  assert.equal(fieldStamp(legacy,'reading'),undefined);
  assert.equal(fieldStamp({updatedAt:timestamp(3),value:null},'reading'),timestamp(3));
 });
+
+test('a refused key stops writes, not reads: the public file is read without it',async()=>{
+ const remote=document({a:record(1,{states:['alindi']})},timestamp(1));
+ const requests=[];
+ const fetch=async(url,init)=>{
+  requests.push({url,authorized:Boolean(init.headers?.Authorization)});
+  if(init.headers?.Authorization)return new Response('',{status:401});
+  return url.startsWith('https://raw.')?raw(remote):contents(remote,'sha-1');
+ };
+ const repository=new GitHubStateRepository({storage:withToken(),fetch,clock:()=>new Date(timestamp(5))});
+ assert.deepEqual(await repository.load(),remote);
+ assert.deepEqual(repository.lastReadInfo(),{source:'cdn',authenticated:false,tokenRejected:true,at:Date.parse(timestamp(5))});
+ assert.deepEqual(requests.map(item=>item.authorized),[true,false],'the key is tried once, then the CDN copy is read without it');
+ requests.length=0;
+ await repository.load({fresh:true});
+ assert.equal(repository.lastReadInfo().source,'api');
+ assert.deepEqual(requests.map(item=>item.authorized),[true,false],'a fresh read asks the API without the refused key');
+ const connected=new GitHubStateRepository({storage:withToken(),fetch:async()=>contents(remote)});
+ await connected.load();
+ assert.deepEqual({...connected.lastReadInfo(),at:0},{source:'api',authenticated:true,tokenRejected:false,at:0});
+});
+
+test('Retry-After decides the wait; the reset time counts only once the hourly quota is used up',async()=>{
+ const before=Date.now();
+ const secondary=new GitHubStateRepository({storage:withToken(),fetch:async()=>new Response('',{status:403,headers:{'Retry-After':'30','X-RateLimit-Remaining':'4000','X-RateLimit-Reset':'1999999999'}})});
+ await assert.rejects(()=>secondary.load(),error=>error.code==='rate-limited'&&error.retryAt>=before+30_000&&error.retryAt<=Date.now()+30_000);
+ const quota=new GitHubStateRepository({storage:withToken(),fetch:async()=>new Response('',{status:429,headers:{'X-RateLimit-Remaining':'0','X-RateLimit-Reset':'1790600000'}})});
+ await assert.rejects(()=>quota.load(),error=>error.code==='rate-limited'&&error.retryAt===1790600000000);
+});
+
+test('every state commit names the owner as author and committer, never the token',async()=>{
+ let body;
+ const repository=new GitHubStateRepository({storage:withToken(),fetch:async(url,init)=>{if(init.method==='PUT'){body=JSON.parse(init.body);return new Response('{}',{status:200});}return contents(emptyStateDocument());}});
+ repository.queueBookState('a',{states:['onemli']});
+ await repository.flushPending();
+ const identity={name:'karacaismail',email:'35493655+karacaismail@users.noreply.github.com'};
+ assert.deepEqual(body.author,identity);
+ assert.deepEqual(body.committer,identity);
+ assert.ok(!JSON.stringify(body).includes(TOKEN));
+});
+
+test('the batcher keeps retrying a passing failure at its last step, waits for a rate limit, and stops for a refused key',async()=>{
+ const make=failure=>{
+  const repository=new GitHubStateRepository({storage:storage(),clock:()=>new Date(timestamp(0)),fetch:async()=>raw(emptyStateDocument())});
+  const timers=new Map();let id=0,attempts=0;const now=Date.parse(timestamp(0))+200_000;
+  const batcher=new GitHubStateBatcher(repository,async()=>{attempts++;throw failure();},{now:()=>now,setTimeout:(callback,delay)=>{timers.set(++id,{callback,delay});return id;},clearTimeout:key=>timers.delete(key),retryDelaysMs:[10,20]});
+  batcher.queueBookState('a',{states:['onemli']});
+  const runNext=async()=>{const [key,timer]=timers.entries().next().value;timers.delete(key);timer.callback();await new Promise(resolve=>setImmediate(resolve));};
+  return {timers,runNext,attempts:()=>attempts,now};
+ };
+ const passing=make(()=>new GitHubStateRepositoryError('network','offline'));
+ await passing.runNext();await passing.runNext();await passing.runNext();await passing.runNext();
+ assert.equal(passing.attempts(),4);
+ assert.deepEqual([...passing.timers.values()].map(timer=>timer.delay),[20],'after the last step it keeps that step');
+ const refused=make(()=>new GitHubStateRepositoryError('unauthorized','refused',401));
+ await refused.runNext();
+ assert.equal(refused.attempts(),1);assert.equal(refused.timers.size,0,'a refused key waits for the reader');
+ let limited;limited=make(()=>new GitHubStateRepositoryError('rate-limited','limited',403,{retryAt:limited.now+90_000}));
+ await limited.runNext();
+ assert.deepEqual([...limited.timers.values()].map(timer=>timer.delay),[90_000],'nothing is sent before GitHub accepts requests again');
+});

@@ -1,7 +1,12 @@
-import { GitHubStateRepository } from './GitHubStateRepository.ts';
+import { GitHubStateRepository, GitHubStateRepositoryError, type GitHubStateErrorCode } from './GitHubStateRepository.ts';
 import type { BookStatePayload, PendingStateMutation } from './types.ts';
 
 export const MIN_GITHUB_SYNC_DELAY_MS = 120_000;
+
+/** Failures only the reader can fix (a refused key, full storage, a broken or
+ * missing file): retrying cannot help, so the queue waits for them. */
+export const PERMANENT_SYNC_ERRORS: ReadonlySet<GitHubStateErrorCode> = new Set(['unauthorized', 'storage', 'invalid-data', 'not-found', 'token-type', 'read-only']);
+export const isPermanentSyncError = (error: unknown): boolean => error instanceof GitHubStateRepositoryError && PERMANENT_SYNC_ERRORS.has(error.code);
 
 export interface GitHubStateBatcherOptions {
   delayMs?: number;
@@ -41,7 +46,8 @@ export class GitHubStateBatcher {
     this.now = options.now ?? Date.now;
     this.scheduleTimer = options.setTimeout ?? globalThis.setTimeout.bind(globalThis);
     this.cancelTimer = options.clearTimeout ?? globalThis.clearTimeout.bind(globalThis);
-    this.retryDelaysMs = options.retryDelaysMs ?? [15_000, 30_000, 60_000];
+    // After the last step the batcher keeps retrying at that step while changes wait.
+    this.retryDelaysMs = options.retryDelaysMs?.length ? options.retryDelaysMs : [15_000, 30_000, 60_000, 120_000, 300_000];
   }
 
   queueBookState(
@@ -80,11 +86,13 @@ export class GitHubStateBatcher {
     this.cancel();
     this.timer = this.scheduleTimer(() => {
       this.timer = undefined;
-      void this.flush().then(() => { this.retryAttempt = 0; }).catch(() => {
-        if (!this.repository.getPendingCount() || this.retryAttempt >= this.retryDelaysMs.length) return;
-        const retryDelay = Math.max(0, this.retryDelaysMs[this.retryAttempt]);
+      void this.flush().then(() => { this.retryAttempt = 0; }).catch((error: unknown) => {
+        if (!this.repository.getPendingCount() || isPermanentSyncError(error)) return;
+        const step = Math.max(0, this.retryDelaysMs[Math.min(this.retryAttempt, this.retryDelaysMs.length - 1)]);
         this.retryAttempt += 1;
-        this.setFlushTimer(retryDelay);
+        // A rate limit names when GitHub accepts requests again; nothing is sent before then.
+        const retryAt = error instanceof GitHubStateRepositoryError ? error.retryAt : undefined;
+        this.setFlushTimer(retryAt ? Math.max(step, retryAt - this.now()) : step);
       });
     }, delayMs);
   }

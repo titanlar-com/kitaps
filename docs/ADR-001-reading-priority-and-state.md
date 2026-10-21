@@ -60,12 +60,14 @@ Kaynak veride hiçbir kitaba doğrudan puan yazılmaz.
 - **Okuma sırası:** Tek bir kayıt olarak (`queue`) tutulur ve bütün olarak son yazan kazanır.
 - **Toplu gönderim:** Yerel kuyruk ilk değişikliğin zamanını saklar. Gönderim bu zamandan en az 120 saniye sonra yapılır. Bu kuralın bilinçli istisnaları:
   - "Şimdi gönder" düğmesi.
-  - Hata sonrası 15, 30 ve 60 saniyelik yeniden denemeler.
+  - Hata sonrası yeniden denemeler: 15 ve 30 saniye, 1, 2 ve 5 dakika; değişiklikler bekledikçe sonra 5 dakikada bir. Reddedilen anahtar, dolu yerel alan, bozuk ya da bulunamayan dosya yeniden denenmez: bunları yalnız okur düzeltebilir.
   - Bir cihaz bağlandığında, o cihazda bekleyen değişikliklerin hemen gönderilmesi.
   - Sayfadan ayrılırken (`visibilitychange` ile gizlenme, `pagehide`) gönderim. Telefon, okur başka uygulamaya geçtiği anda sayfayı askıya aldığından, aksi halde değişiklik bir sonraki ziyarete kalırdı. 4 Ekim 2026'da bildirilen "telefonda işaretledim, bilgisayarda göremiyorum" sorununun bir nedeni buydu.
 - **Tek yazım:** Gizlenme, zamanlayıcı ve düğme aynı anda gönderim isterse tek bir yazım hepsine hizmet eder. O yazım sürerken yapılan bir değişiklik, hemen ardından kendi yazımını alır.
 - **Tek istek:** Yazım, son okunan ya da yazılan dosyanın sha'sı üzerine tek istekle yapılır; sayfa gizlenirken gönderilen yazım `keepalive` taşır (gövde 60 KB'den küçükse). Dosyayı bu arada başka bir cihaz değiştirdiyse GitHub 409/422 döner ve yazım taze okumadan yeniden başlar. Her istek 20 saniyede zaman aşımına uğrar.
-- **İstek sınırı:** GitHub sınırı aşıldığında istemci sıfırlanma zamanına kadar bekler.
+- **İstek sınırı:** GitHub sınırı aşıldığında istemci, yanıttaki `Retry-After` süresi kadar (ikincil sınır) ya da saatlik pay bittiyse sıfırlanma zamanına kadar bekler. Zamanlayıcı, "Şimdi gönder" ve sayfadan ayrılma bu süreden önce göndermez.
+- **Reddedilen anahtar:** GitHub anahtarla yapılan okumayı reddederse (401 ya da sınır dışı 403) cihaz herkese açık dosyayı anahtarsız okumayı sürdürür. Yazma durur, bekleyen değişiklikler cihazda kalır ve yeniden bağlanma istenir. Bu okuma bağlanma karşılaştırmasına temel olmaz.
+- **Commit kimliği:** Her durum commit'i yazar ve commit'leyen olarak proje sahibinin kimliğini (`karacaismail`, GitHub noreply e-postası) açıkça adlandırır. API yazımları yerel Git yazar korumasından geçmediği için kimlik isteğin kendisinde verilir.
 - **Yeni cihaz:** Bir cihaz ilk kez eşitlendiğinde yalnız kendisinde olan kayıtları ortak dosyaya ekler. Aynı kitap için iki taraf farklıysa önce yerel yedek alır ve okura hangisinin kalacağını sorar.
 - **Bağlanma:** Bir cihaz anahtarla bağlandığında, bağlı değilken yaptığı ve gönderemediği değişiklikler ortak dosyayla karşılaştırılır.
   - Karşılaştırma bitene kadar hiçbir şey gönderilmez. Bunu kalıcı bir işaret sağlar: zamanlayıcı, sayfadan ayrılma ya da yeniden yükleme karşılaştırmayı atlayamaz. Okuma başarısız olursa işaret kalır, uyarı görünür ve karşılaştırma sayfaya dönünce yeniden denenir.
@@ -96,6 +98,9 @@ Kaynak veride hiçbir kitaba doğrudan puan yazılmaz.
 
 - **Uyarı:** Bağlı olmayan bir cihazda bekleyen değişiklik varsa, sayfanın başında "Bu cihazdaki işaretler yalnız burada" uyarısı ve "Bu cihazı bağla" düğmesi görünür. Bağlı bir cihazın son yazımı reddedildiyse "Değişiklikler GitHub'a gönderilemedi" görünür; okuma hatası bu uyarıyı açmaz. Uyarı her zaman sayfada bulunan bir canlı bölgeden duyurulur; uyarının kendisi canlı bölge değildir.
   - Önceki sürümde bu durum yalnız Notlar sayfasındaki panelde yazıyordu. Telefondan işaretlenen kitaplar bu yüzden hiçbir zaman GitHub'a ulaşmadı: `kitaps-state` deposunda 4 Ekim 2026'ya kadar yalnız ilk kurulum commit'i vardı.
+- **Kitap sayfası:** İşaretler kitap sayfasında yapılır. Bu yüzden işaret düğmelerinin altındaki satır, cihazın değişikliklerinin nerede olduğunu söyler: yalnız bu cihazda ("Bu cihazı bağla" düğmesiyle), gönderilecek, gönderiliyor, gönderildi (saatiyle) ya da gönderilemedi. Satır kapatılamaz ve canlı bölgedir; tek bir yazım bütün bekleyen değişiklikleri taşıdığı için kitap değil cihaz düzeyinde konuşur. Bağlantı ve birleştirme pencereleri kitap sayfasının üstünde açılır.
+  - 21 Ekim 2026'da bildirilen "bilgisayarda işaretledim, telefonda göremiyorum" sorununda depoda hâlâ yalnız ilk kurulum commit'i vardı. Sayfanın başındaki uyarı, işaretlerin yapıldığı kitap sayfası açıkken görünmüyordu.
+- **Okumanın kaynağı:** Eşitleme penceresi son okumanın ve son gönderimin saatini, okumanın GitHub'dan mı yoksa en çok beş dakika gecikebilen önbellek kopyasından mı geldiğini yazar. Önbellek kopyası "güncel" diye sunulmaz. Anahtarsız cihaz da "GitHub’dan yenile" ile taze kopya isteyebilir.
 - **Bağlantı penceresi:** "Bu cihazı bağla" ve altbilgideki "Cihaz eşitleme" aynı bağlantı penceresini açar.
 - **Gizleme:** Uyarı o ziyaret için gizlenebilir; odak ana içeriğe geçer. Daha fazla değişiklik birikince, nedeni değişince ya da sorun giderilip yeniden ortaya çıkınca uyarı yeniden görünür.
 - **Odak:** Bağlantı penceresi kapanınca odak onu açan düğmeye döner. O düğme bağlanmayla kaybolduysa odak ana içeriğe geçer. Başarılı bağlantıdan sonra odak pencerenin durum satırına geçer.

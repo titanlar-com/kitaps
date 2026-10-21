@@ -14,6 +14,9 @@ export const GITHUB_STATE_BACKUP_KEY = 'kitapatlasi:github-state:pre-sync-backup
 export const GITHUB_STATE_BASE_KEY = 'kitapatlasi:github-state:base:v1';
 /** Set while a newly connected device has not yet compared its unsent edits with the shared file. */
 export const GITHUB_STATE_CONNECT_REVIEW_KEY = 'kitapatlasi:github-state:connect-review:v1';
+/** Writes through the API bypass the local Git author guard, so every state commit
+ * names the owner's identity itself (the owner's standing authorship rule). */
+export const GITHUB_STATE_COMMIT_IDENTITY = { name: 'karacaismail', email: '35493655+karacaismail@users.noreply.github.com' } as const;
 
 export type ReadingState = 'onemli' | 'alinacak' | 'alindi' | 'okunuyor' | 'araverildi' | 'birakildi' | 'okundu';
 

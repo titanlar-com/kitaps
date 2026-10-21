@@ -77,7 +77,8 @@ const brokenWords = (texts, line) => texts.evaluateAll((elements, line) => eleme
 test('the shared state is read from GitHub in a real browser, without CORS errors', async ({ page }) => {
   const errors = consoleErrors(page);
   await page.goto('./?view=notes');
-  await expect(page.getByText(/GitHub durumu salt okunur olarak güncel|Değişiklikler cihazda kuyrukta/)).toBeVisible({ timeout: 20_000 });
+  // The API answers a fresh read; when GitHub's anonymous limit is used up, the CDN copy does.
+  await expect(page.getByText(/GitHub durumu salt okunur olarak güncel|GitHub durumu okundu\. Bağlı olmayan cihaz GitHub’ın önbellek kopyasını okur|Değişiklikler cihazda kuyrukta/)).toBeVisible({ timeout: 20_000 });
   expect(errors.filter(text => /CORS|Access-Control|Failed to fetch/i.test(text))).toEqual([]);
 });
 

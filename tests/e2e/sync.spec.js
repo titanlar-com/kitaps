@@ -100,6 +100,46 @@ test('a mark made on a device that is not connected says it stays there, and con
   await expect(page.locator('#main-content')).toBeFocused();
 });
 
+test('a mark made in the book sheet says there that it stays on this device, and connects from there', async ({ page }) => {
+  const github = fakeGitHub();
+  await github.attach(page.context());
+  await markPurchased(page);
+  // The reader marks books in the sheet, so the sheet itself says where the mark stands.
+  const line = page.locator('.detail-actions .sync-status-line');
+  await expect(line).toContainText('1 değişiklik yalnız bu cihazda kayıtlı');
+  await line.getByRole('button', { name: 'Bu cihazı bağla' }).click();
+  const dialog = page.getByRole('dialog', { name: 'Cihazlar arası eşitleme' });
+  await dialog.getByLabel('İnce ayarlı (fine-grained) GitHub anahtarı').fill(TOKEN);
+  await dialog.getByRole('button', { name: 'Bu cihazda bağla' }).click();
+  await expect(dialog.getByRole('status')).toContainText('GitHub ile eşitlendi.');
+  expect(github.puts).toHaveLength(1);
+  await dialog.getByRole('button', { name: 'Kapat' }).click();
+  await expect(line).toContainText('GitHub’a gönderildi');
+});
+
+test('the sheet’s sync line keeps its words and button inside at 320 px with 200% text, in a wide font too', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 320, height: 720 } });
+  await fakeGitHub().attach(context);
+  const page = await context.newPage();
+  await markPurchased(page);
+  // Ubuntu CI draws the interface in a font much wider than macOS's; Verdana stands in for it.
+  await page.addStyleTag({ content: 'html{font-size:200%}' });
+  const line = page.locator('.detail-actions .sync-status-line');
+  for (const font of ['', 'Verdana,sans-serif']) {
+    if (font) await page.addStyleTag({ content: `:root{--sans:${font}!important;--mantine-font-family:${font}!important}` });
+    await expect(line.getByRole('button', { name: 'Bu cihazı bağla' })).toBeVisible();
+    const spilled = await line.evaluate(container => {
+      const edge = container.getBoundingClientRect().right + 1;
+      return [...container.querySelectorAll('*')].filter(element => element.getBoundingClientRect().right > edge
+        || (element.scrollWidth > element.clientWidth + 2 && getComputedStyle(element).overflowX !== 'visible')).map(element => element.className || element.tagName);
+    });
+    expect(spilled, font || 'platform font').toEqual([]);
+    const box = await line.getByRole('button', { name: 'Bu cihazı bağla' }).boundingBox();
+    expect(Math.min(box.width, box.height)).toBeGreaterThanOrEqual(44);
+  }
+  await context.close();
+});
+
 test('a token that can read but not write is refused and never stored', async ({ page }) => {
   const github = fakeGitHub({ canWrite: false });
   await github.attach(page.context());
@@ -220,6 +260,9 @@ test('the notice and the connect dialog keep their content inside at 320 px with
     await page.keyboard.press('Enter');
     await expect(page.locator('.sync-modal .mantine-Modal-content')).toBeVisible();
     expect(await spills('.sync-modal .mantine-Modal-content'), `${colorScheme} dialog`).toEqual([]);
+    // Ubuntu CI draws the interface in a font much wider than macOS's; Verdana stands in for it.
+    await page.addStyleTag({ content: ':root{--sans:Verdana,sans-serif!important;--mantine-font-family:Verdana,sans-serif!important}' });
+    expect(await spills('.sync-modal .mantine-Modal-content'), `${colorScheme} dialog, wide font`).toEqual([]);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await context.close();
   }

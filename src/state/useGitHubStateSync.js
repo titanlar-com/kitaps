@@ -1,6 +1,6 @@
 import {useCallback,useEffect,useRef,useState} from 'react';
-import {GitHubStateRepository} from './GitHubStateRepository.ts';
-import {GitHubStateBatcher} from './GitHubStateBatcher.ts';
+import {GitHubStateRepository,GitHubStateRepositoryError} from './GitHubStateRepository.ts';
+import {GitHubStateBatcher,isPermanentSyncError} from './GitHubStateBatcher.ts';
 import {planConnect,planFirstSync,projectPublicState} from './syncModel.ts';
 import {GITHUB_STATE_BACKUP_KEY,GITHUB_STATE_OWNER,GITHUB_STATE_REPOSITORY} from './types.ts';
 
@@ -52,7 +52,9 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
  const pendingCount=()=>{try{return repository.getPendingCount()}catch{return 0}};
  const tokenPresent=()=>{try{return repository.hasToken()}catch{return false}};
  // writeError: why GitHub refused this device's last write; cleared by the next successful one.
- const [sync,setSync]=useState(()=>({status:'loading',message:'GitHub durumu okunuyor.',pending:pendingCount(),hasToken:tokenPresent(),writeError:null}));
+ // lastSentAt and lastReadAt: this visit's last successful write and read; readSource: 'api' or
+ // the CDN copy ('cdn'), which can lag; tokenRejected: GitHub refused the stored key on a read.
+ const [sync,setSync]=useState(()=>({status:'loading',message:'GitHub durumu okunuyor.',pending:pendingCount(),hasToken:tokenPresent(),writeError:null,lastSentAt:null,lastReadAt:null,readSource:null,tokenRejected:false}));
  const [mergePrompt,setMergePrompt]=useState(null);
 
  const applyDocument=useCallback((document,baseline,baselineQueue,skip=noSkip())=>{
@@ -127,10 +129,20 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
     // A connected device that has not yet compared its unsent edits does so now,
     // also after a reload or a failed first attempt. Only a read made with the key
     // is fresh enough to compare against; otherwise the comparison reads again.
-    if(reviewPending()&&repository.hasToken()&&!firstSyncRemote.current){await reviewLatest.current(authenticated?remoteDocument:undefined);return;}
+    const read=repository.lastReadInfo(),readState={lastReadAt:read?.at??Date.now(),readSource:read?.source??null,tokenRejected:Boolean(read?.tokenRejected)};
+    // A read GitHub answered without the stored key (it refused it) is no fresh comparison.
+    if(reviewPending()&&repository.hasToken()&&!firstSyncRemote.current&&!readState.tokenRejected){await reviewLatest.current(authenticated&&read?.authenticated?remoteDocument:undefined);return;}
     const pending=repository.getPendingCount();
+    if(readState.tokenRejected){
+     // Writes stop and the queue stays until the reader connects a new key; reads go on.
+     batcher.current?.cancel();
+     const message=writeMessage({code:'unauthorized'});
+     setSync(value=>({...value,...readState,status:'error',message,writeError:message,pending}));
+     return;
+    }
     if(repository.hasToken()&&pending)batcher.current?.schedule();
-    setSync(value=>({...value,status:pending?'queued':'ready',message:pending?(value.hasToken?'Değişiklikler cihazda; ilk değişiklikten iki dakika sonra toplu gönderilecek.':'Değişiklikler cihazda kuyrukta; GitHub’a göndermek için bu cihazı bağla.'):(value.hasToken?'GitHub durumu güncel.':'GitHub durumu salt okunur olarak güncel.'),pending}));
+    const readOnly=read?.source==='cdn'?'GitHub durumu okundu. Bağlı olmayan cihaz GitHub’ın önbellek kopyasını okur; bu kopya en çok beş dakika gecikebilir.':'GitHub durumu salt okunur olarak güncel.';
+    setSync(value=>({...value,...readState,status:pending?'queued':'ready',message:pending?(value.hasToken?'Değişiklikler cihazda; ilk değişiklikten iki dakika sonra toplu gönderilecek.':'Değişiklikler cihazda kuyrukta; GitHub’a göndermek için bu cihazı bağla.'):(value.hasToken?'GitHub durumu güncel.':readOnly),pending}));
    }catch(error){
     if(error.code==='rate-limited')backoffUntil.current=error.retryAt;
     if(!hydrated.current)for(const [id,value] of baseline)known.current.set(id,value);
@@ -233,6 +245,14 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
   // Leaving the page, the batcher and "Şimdi gönder" can ask at once; one write serves
   // them all, and a change made while it ran gets one more write right after it.
   if(flushing.current){flushAgain.current=true;return flushing.current;}
+  // GitHub asked this device to wait: no path (the timer, "Şimdi gönder", leaving the
+  // page) sends before then. The batcher is told when; the others leave the queue to it.
+  if(Date.now()<backoffUntil.current){
+   const waiting=new GitHubStateRepositoryError('rate-limited','GitHub rate limit reached.',429,{retryAt:backoffUntil.current});
+   if(!fromBatcher&&tokenPresent()&&pendingCount())batcher.current?.schedule();
+   setSync(value=>({...value,status:'queued',message:writeMessage(waiting),pending:pendingCount()}));
+   return fromBatcher?Promise.reject(waiting):Promise.resolve(undefined);
+  }
   const run=(async()=>{
    batcher.current?.cancel();
    const baseline=modelSnapshot(bookIds,latest.current.states,latest.current.personal),baselineQueue=queueSignature(latest.current.personal);
@@ -241,10 +261,11 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
     const document=await repository.flushPending({keepalive});applyDocument(document,baseline,baselineQueue,blocked.current);
     repository.recordBases(document,{skipBooks:blocked.current.books,skipQueue:blocked.current.queue});
     lastRefresh.current=Date.now();
-    setSync(value=>({...value,status:'ready',message:'GitHub ile eşitlendi.',writeError:null,pending:repository.getPendingCount()}));return document;
+    setSync(value=>({...value,status:'ready',message:'GitHub ile eşitlendi.',writeError:null,tokenRejected:false,lastSentAt:Date.now(),pending:repository.getPendingCount()}));return document;
    }catch(error){
     if(error.code==='rate-limited')backoffUntil.current=error.retryAt;
-    if(!fromBatcher&&repository.hasToken()&&pendingCount())batcher.current?.schedule();
+    // A refused key or a broken file waits for the reader; anything else is retried.
+    if(!fromBatcher&&repository.hasToken()&&pendingCount()&&!isPermanentSyncError(error))batcher.current?.schedule();
     const message=writeMessage(error);
     setSync(value=>({...value,status:'error',message,writeError:message,pending:pendingCount()}));
     throw error;
@@ -273,12 +294,12 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
    repository.beginConnectReview();
    try{repository.setToken(token)}catch(error){try{repository.clearConnectReview()}catch{/* Nothing more to undo. */}throw error;}
   }catch(error){setSync(value=>({...value,status:'error',hasToken:tokenPresent(),message:error.code==='read-only'?`Bu anahtar ${GITHUB_STATE_REPOSITORY} deposuna yazamıyor. Anahtarın sahibi (Resource owner) ${GITHUB_STATE_OWNER} olmalı, Repository access bölümünde ${GITHUB_STATE_REPOSITORY} seçili ve Contents izni Read and write olmalı; kuruluş onayı bekleyen anahtar da yazamaz. Anahtar kaydedilmedi.`:error.code==='token-type'?`Yalnız ince ayarlı (fine-grained) ve yalnız ${GITHUB_STATE_OWNER}/${GITHUB_STATE_REPOSITORY} deposuna yetkili bir anahtar kabul edilir; anahtar kaydedilmedi.`:error.code==='storage'?'Anahtar bu tarayıcıya kaydedilemedi.':error.code==='rate-limited'?readMessage(error):'GitHub anahtarı doğrulanamadı; anahtar kaydedilmedi.'}));throw error;}
-  setSync(value=>({...value,status:'loading',hasToken:true,writeError:null,message:'Anahtar doğrulandı; bu cihazın kayıtları GitHub’dakiyle karşılaştırılıyor.'}));
+  setSync(value=>({...value,status:'loading',hasToken:true,writeError:null,tokenRejected:false,message:'Anahtar doğrulandı; bu cihazın kayıtları GitHub’dakiyle karşılaştırılıyor.'}));
   if(!repository.hasCompletedInitialMigration()&&!firstSyncRemote.current)await refresh(true,true);
   else if(loading.current)await refreshing.current;
   await reviewConnection();
  },[refresh,reviewConnection,repository]);
- const clearToken=useCallback(()=>{try{repository.clearToken();repository.clearConnectReview();batcher.current?.cancel();setSync(value=>({...value,status:'ready',hasToken:false,writeError:null,message:'Yazma anahtarı bu cihazdan kaldırıldı; GitHub durumu salt okunur.'}));}catch{setSync(value=>({...value,status:'error',message:'Anahtar tarayıcıdan kaldırılamadı.'}));}},[repository]);
+ const clearToken=useCallback(()=>{try{repository.clearToken();repository.clearConnectReview();batcher.current?.cancel();setSync(value=>({...value,status:'ready',hasToken:false,writeError:null,tokenRejected:false,message:'Yazma anahtarı bu cihazdan kaldırıldı; GitHub durumu salt okunur.'}));}catch{setSync(value=>({...value,status:'error',message:'Anahtar tarayıcıdan kaldırılamadı.'}));}},[repository]);
 
  useEffect(()=>{void load()},[load]);
  useEffect(()=>{
@@ -319,12 +340,14 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
    // re-rendering the app on every pass.
    setSync(value=>{
     if(!pending)return value.pending===0?value:{...value,pending};
+    // While the stored key is refused, the reconnect message stays; only the count moves.
+    if(value.tokenRejected)return value.pending===pending?value:{...value,pending};
     const message=value.hasToken?(reviewPending()?'Değişiklikler cihazda; bu cihazın kayıtları GitHub’dakiyle karşılaştırıldıktan sonra gönderilecek.':'Değişiklikler cihazda; ilk değişiklikten iki dakika sonra toplu gönderilecek.'):'Değişiklikler cihazda kuyrukta; GitHub’a göndermek için bu cihazı bağla.';
     return value.status==='queued'&&value.pending===pending&&value.message===message?value:{...value,status:'queued',message,pending};
    });
-   if(sync.hasToken&&pending)batcher.current.schedule();else batcher.current.cancel();
+   if(sync.hasToken&&!sync.tokenRejected&&pending)batcher.current.schedule();else batcher.current.cancel();
   }catch{setSync(value=>({...value,status:'error',message:'Tarayıcının yerel eşitleme alanına yazılamadı.',pending:pendingCount()}));}
- },[bookIds,states,personal,repository,sync.hasToken]);
+ },[bookIds,states,personal,repository,sync.hasToken,sync.tokenRejected]);
  useEffect(()=>()=>batcher.current?.dispose(),[]);
  return {...sync,hydrated:hydrated.current,mergePrompt,resolveMerge,load,flush,saveToken,clearToken};
 }

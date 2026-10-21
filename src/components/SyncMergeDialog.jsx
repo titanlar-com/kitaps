@@ -25,7 +25,8 @@ export default function SyncMergeDialog({sync}){
  };
  const backup=readSyncBackup();
  const parts=[prompt.conflicts.length?`${prompt.conflicts.length} kitabın kaydı`:'',prompt.queueConflict?'okuma sıran':''].filter(Boolean).join(' ve ');
- return <Modal opened onClose={()=>undefined} withCloseButton={false} closeOnClickOutside={false} closeOnEscape={false} centered className="sync-merge-dialog" title="Bu cihazdaki kayıtlar farklı">
+ // Connecting from the book sheet can raise it, so it sits above the sheet (layer 200), like the sync dialog.
+ return <Modal opened onClose={()=>undefined} zIndex={300} withCloseButton={false} closeOnClickOutside={false} closeOnEscape={false} centered className="sync-merge-dialog" title="Bu cihazdaki kayıtlar farklı">
   <Stack gap="md">
    <Text>{prompt.reason==='connect'
     ?`Bu cihaz bağlı değilken ${parts} değişti; bu arada başka bir cihaz aynı kayıtları farklı kaydetti. Hangisinin kalacağını seç. Seçim yalnız bu kayıtları etkiler; bu cihazın öteki değişiklikleri seçimden sonra gönderilir.`

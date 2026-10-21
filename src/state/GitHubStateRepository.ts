@@ -3,6 +3,7 @@ import { applyPendingMutations, assertBookStatePayload, assertPendingMutation, a
 import {
   BOOK_FIELDS,
   GITHUB_STATE_BASE_KEY,
+  GITHUB_STATE_COMMIT_IDENTITY,
   GITHUB_STATE_CONNECT_REVIEW_KEY,
   GITHUB_STATE_MIGRATION_KEY,
   GITHUB_STATE_OWNER,
@@ -56,6 +57,16 @@ export const REQUEST_TIMEOUT_MS = 20_000;
 
 /** Browsers cap the bodies of in-flight keepalive requests at 64 KiB. */
 const KEEPALIVE_BODY_LIMIT = 60_000;
+
+/** Where the last successful read came from: the API (fresh) or the CDN copy,
+ * which can lag by up to five minutes. `tokenRejected`: GitHub refused the stored
+ * key, so the file was read without it. */
+export interface ReadInfo {
+  source: 'api' | 'cdn';
+  authenticated: boolean;
+  tokenRejected: boolean;
+  at: number;
+}
 
 export interface SaveOptions {
   /** The page is being hidden: once sent, the write must outlive the page. */
@@ -116,6 +127,7 @@ export class GitHubStateRepository {
   /** The newest file this device has read or written in this session. */
   private newest?: StateDocument;
   private nextAnonymousApiRead = 0;
+  private lastRead?: ReadInfo;
 
   constructor(options: GitHubStateRepositoryOptions = {}) {
     this.owner = options.owner ?? GITHUB_STATE_OWNER;
@@ -141,6 +153,11 @@ export class GitHubStateRepository {
 
   hasToken(): boolean {
     return Boolean(this.readStorage(GITHUB_STATE_TOKEN_KEY)?.trim());
+  }
+
+  /** The last successful read's source, or undefined before the first one. */
+  lastReadInfo(): ReadInfo | undefined {
+    return this.lastRead ? { ...this.lastRead } : undefined;
   }
 
   hasCompletedInitialMigration(): boolean {
@@ -342,6 +359,8 @@ export class GitHubStateRepository {
         message: 'Update Kitaplık state',
         content: encodeBase64(`${JSON.stringify(merged, null, 2)}\n`),
         branch: this.branch,
+        author: GITHUB_STATE_COMMIT_IDENTITY,
+        committer: GITHUB_STATE_COMMIT_IDENTITY,
         ...(remote.sha ? { sha: remote.sha } : {}),
       });
       const response = await this.request(this.contentsUrl(), { method: 'PUT', headers: this.headers(token), body, keepalive: options.keepalive === true && body.length < KEEPALIVE_BODY_LIMIT });
@@ -362,18 +381,41 @@ export class GitHubStateRepository {
   }
 
   private async readCurrent(fresh: boolean): Promise<RemoteFile> {
-    if (this.hasToken()) return this.readApi(true);
+    if (this.hasToken()) {
+      try {
+        const file = await this.readApi(true);
+        this.noteRead('api', true, false);
+        return file;
+      } catch (error) {
+        // A refused key stops this device's writes, not its reads: the file is public,
+        // so it is read without the key while the device shows how to reconnect.
+        if (!(error instanceof GitHubStateRepositoryError && error.code === 'unauthorized')) throw error;
+        return this.readAnonymous(fresh, true);
+      }
+    }
+    return this.readAnonymous(fresh, false);
+  }
+
+  private async readAnonymous(fresh: boolean, tokenRejected: boolean): Promise<RemoteFile> {
     const now = this.clock().getTime();
     if (fresh && now >= this.nextAnonymousApiRead) {
       this.nextAnonymousApiRead = now + ANONYMOUS_FRESH_READ_INTERVAL_MS;
       try {
-        return await this.readApi(true);
+        const file = await this.readApi(true, false, true);
+        this.noteRead('api', false, tokenRejected);
+        return file;
       } catch (error) {
         // The CDN copy stays the anonymous baseline; the API only makes it fresher.
         if (error instanceof GitHubStateRepositoryError && error.retryAt) this.nextAnonymousApiRead = Math.max(this.nextAnonymousApiRead, error.retryAt);
       }
     }
-    return this.readRaw();
+    const file = await this.readRaw();
+    this.noteRead('cdn', false, tokenRejected);
+    return file;
+  }
+
+  private noteRead(source: ReadInfo['source'], authenticated: boolean, tokenRejected: boolean): void {
+    this.lastRead = { source, authenticated, tokenRejected, at: this.clock().getTime() };
   }
 
   /** The CDN can serve a copy older than a file this device has already read
@@ -384,8 +426,8 @@ export class GitHubStateRepository {
     return document;
   }
 
-  private async readApi(conditional: boolean, allowMissing = false): Promise<RemoteFile> {
-    const token = this.readStorage(GITHUB_STATE_TOKEN_KEY)?.trim();
+  private async readApi(conditional: boolean, allowMissing = false, anonymous = false): Promise<RemoteFile> {
+    const token = anonymous ? undefined : this.readStorage(GITHUB_STATE_TOKEN_KEY)?.trim();
     const etag = conditional ? this.cached?.etag : undefined;
     const response = await this.request(`${this.contentsUrl()}?ref=${encodeURIComponent(this.branch)}`, { headers: this.headers(token, etag) });
     if (response.status === 304 && this.cached) return structuredClone(this.cached.file);
@@ -523,7 +565,11 @@ export class GitHubStateRepository {
     if (response.status === 429 || (response.status === 403 && (remaining === '0' || header(response, 'Retry-After') !== ''))) {
       const reset = Number(header(response, 'X-RateLimit-Reset'));
       const retryAfter = Number(header(response, 'Retry-After'));
-      const retryAt = Number.isFinite(reset) && reset > 0 ? reset * 1000 : Number.isFinite(retryAfter) && retryAfter > 0 ? Date.now() + retryAfter * 1000 : Date.now() + 60_000;
+      // Retry-After names the wait for this answer (a secondary limit); the reset time
+      // only applies once the hourly quota is used up. Without either, a minute.
+      const retryAt = header(response, 'Retry-After') !== '' && Number.isFinite(retryAfter) && retryAfter >= 0 ? Date.now() + retryAfter * 1000
+        : remaining === '0' && Number.isFinite(reset) && reset > 0 ? reset * 1000
+          : Date.now() + 60_000;
       return new GitHubStateRepositoryError('rate-limited', 'GitHub rate limit reached.', response.status, { retryAt });
     }
     if (response.status === 401 || response.status === 403) return new GitHubStateRepositoryError('unauthorized', 'GitHub rejected the credentials or repository write permission.', response.status);

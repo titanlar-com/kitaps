@@ -554,6 +554,13 @@ main{padding-top:20px}
 /* With very large text a label wraps inside its button instead of pushing the sheet sideways. */
 .detail-actions .mantine-Button-root{height:auto;max-width:100%;padding-block:.5rem;border-radius:999px}
 .detail-actions .mantine-Button-label{white-space:normal}
+/* Where this device's marks stand, on a row of its own under the mark buttons. */
+/* Empty, it stays in the accessibility tree as a live region but takes no room. */
+.sync-status-line:empty{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.sync-status-line{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding-top:8px;border-top:1px solid var(--line)}
+.sync-status-text{display:flex;align-items:flex-start;gap:8px;min-width:0;flex:1 1 12em;color:var(--ink-2)}
+.sync-status-text svg{flex:none;margin-top:.15em}
+.sync-status-line[data-kind=local] .sync-status-text svg,.sync-status-line[data-kind=failed] .sync-status-text svg{color:var(--bad)}
 
 .edition-summary{padding:22px!important}
 .edition-facts{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin:0}

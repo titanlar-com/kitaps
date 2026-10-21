@@ -12,6 +12,13 @@ const SITE_HOST=new URL(SITE_URL).host;
 // repository, so the steps below name it.
 const TOKEN_FORM='https://github.com/settings/personal-access-tokens/new?'+new URLSearchParams({name:'Kitaplık eşitleme',description:`Yalnız ${GITHUB_STATE_OWNER}/${GITHUB_STATE_REPOSITORY}: Contents read and write`,target_name:GITHUB_STATE_OWNER,expires_in:'90',contents:'write'});
 
+const clock=ms=>new Date(ms).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
+// What the last read and write were, so a stale copy is never presented as fresh.
+const lastActivity=sync=>[
+ sync.lastReadAt&&`Son okuma ${clock(sync.lastReadAt)} · ${sync.readSource==='cdn'?'GitHub önbelleği, en çok beş dakika gecikebilir':'GitHub'}`,
+ sync.lastSentAt&&`Son gönderim ${clock(sync.lastSentAt)}`,
+].filter(Boolean).join(' · ');
+
 /** Connects this browser to the shared state file. Inside a dialog that already
  * carries the title, `framed={false}` drops the panel's own frame and heading. */
 export default function GitHubSyncPanel({sync,framed=true}){
@@ -23,7 +30,9 @@ export default function GitHubSyncPanel({sync,framed=true}){
  const badge=sync.status==='saving'?'Kaydediliyor':sync.status==='queued'?'Gönderim bekliyor':sync.status==='error'?'Dikkat':sync.hasToken?'Yazma bağlı':'Salt okunur';
  const content=<><Group justify="space-between" align="flex-start"><div>{framed&&<Title order={3}>Cihazlar arası eşitleme</Title>}<Text c="dimmed" mt={framed?4:0}>Favoriler, kitaplık, okuma durumları, sıra, tarihler, ilerleme ve notlar herkese açık kitaps-state deposunda ve onun GitHub geçmişinde görünür. Bir cihazdaki değişiklik ancak o cihaz bağlıysa diğer cihazlara ulaşır. Bağlı cihaz değişiklikleri sayfadan ayrılırken ya da ilk değişiklikten 120 saniye sonra tek güncellemeyle gönderir.</Text></div><Badge variant="light" color={sync.status==='error'?'red':sync.status==='saving'||sync.status==='queued'?'yellow':sync.hasToken?'green':'gray'}>{badge}</Badge></Group>
   <Alert ref={status} tabIndex={-1} mt="md" role="status" icon={<IconBrandGithub size={20}/>} color={sync.status==='error'?'red':'brand'}>{sync.message}{sync.pending?` · ${sync.pending} bekleyen değişiklik`:''}</Alert>
+  {lastActivity(sync)&&<Text c="dimmed" mt="xs" className="sync-activity">{lastActivity(sync)}</Text>}
   {sync.hasToken?<Group mt="md"><Button variant="light" leftSection={<IconRefresh size={18}/>} onClick={()=>void sync.flush().catch(()=>undefined)}>Şimdi gönder</Button><Button variant="default" onClick={()=>void sync.load()}>GitHub’dan yenile</Button><Button variant="subtle" color="red" onClick={sync.clearToken}>Anahtarı kaldır</Button></Group>:<form onSubmit={submit}><Stack mt="md" gap="sm">
+   <Group><Button type="button" variant="default" leftSection={<IconRefresh size={18}/>} onClick={()=>void sync.load()}>GitHub’dan yenile</Button></Group>
    <Text fw={600}>Bu cihazı bağla</Text>
    <List size="sm" spacing={4} className="token-steps" type="ordered">
     <List.Item><Anchor href={TOKEN_FORM} target="_blank" rel="noreferrer">Anahtarı hazır ayarlarla oluştur <IconArrowUpRight size={15}/></Anchor> (sahibi {GITHUB_STATE_OWNER}, Contents yazma, 90 gün).</List.Item>

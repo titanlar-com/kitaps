@@ -29,6 +29,7 @@ import ReadingPriorityBadge from './components/ReadingPriorityBadge';
 import StateRibbons, { StateSummary } from './components/StateRibbons';
 import SyncMergeDialog from './components/SyncMergeDialog';
 import SyncNotice from './components/SyncNotice';
+import SyncStatusLine from './components/SyncStatusLine';
 import GitHubSyncPanel from './components/GitHubSyncPanel';
 import SourceBadge from './components/SourceBadge';
 import {download} from './download';
@@ -155,7 +156,7 @@ function BookCard({book:b,ranking,states,onOpen,onToggle,queue,onAdd,onQueue}) {
   </div>
  </Card>
 }
-function BookDetail({book:b,ranking,onClose,onOpen,onBack,hasBack,states,onToggle,onCollection,onCategory,personal,onReading,onAdd,onQueue,storageError,feedback}) {
+function BookDetail({book:b,ranking,onClose,onOpen,onBack,hasBack,states,onToggle,onCollection,onCategory,personal,onReading,onAdd,onQueue,storageError,feedback,sync,onSync}) {
  const topRef=useRef(null);
  const shownTitle=b?displayTitle(b):'';
  // Only a known original title is shown under a Turkish title.
@@ -172,7 +173,7 @@ function BookDetail({book:b,ranking,onClose,onOpen,onBack,hasBack,states,onToggl
    </div>
    {b.childCaution&&<Alert color="orange" title="Ebeveyn notu" className="child-caution">{b.childCaution}</Alert>}
    <EditionSummary book={b}/>
-   <Paper withBorder radius="lg" className="detail-actions"><Group gap={8}>{Object.entries(STATE_LABELS).filter(([key])=>['onemli','alinacak','alindi'].includes(key)).map(([key,label])=><Button variant={(states[b.id]||[]).includes(key)?'filled':'light'} key={key} aria-pressed={(states[b.id]||[]).includes(key)} onClick={e=>onToggle(b.id,key,e.currentTarget)} leftSection={(states[b.id]||[]).includes(key)?<IconCheck size={17}/>:null}>{label}</Button>)}</Group><QueueButton id={b.id} queue={personal.queue} onAdd={onAdd} onQueue={onQueue}/></Paper>
+   <Paper withBorder radius="lg" className="detail-actions"><Group gap={8}>{Object.entries(STATE_LABELS).filter(([key])=>['onemli','alinacak','alindi'].includes(key)).map(([key,label])=><Button variant={(states[b.id]||[]).includes(key)?'filled':'light'} key={key} aria-pressed={(states[b.id]||[]).includes(key)} onClick={e=>onToggle(b.id,key,e.currentTarget)} leftSection={(states[b.id]||[]).includes(key)?<IconCheck size={17}/>:null}>{label}</Button>)}</Group><QueueButton id={b.id} queue={personal.queue} onAdd={onAdd} onQueue={onQueue}/><SyncStatusLine sync={sync} onOpen={onSync}/></Paper>
    <ReadingPurpose book={b} catalog={catalog}/>
    <BookDiscovery key={b.id} book={b} catalog={catalog} states={states} onOpen={onOpen} onCategory={onCategory} onCollection={onCollection} BookCover={ThumbCover}/>
    <EditionGuide book={b}/>
@@ -303,11 +304,12 @@ function AtlasApp() {
   </Container>
   </Tabs>
   <SyncMergeDialog sync={githubSync}/>
-  <Modal opened={syncOpened} onClose={()=>setSyncOpened(false)} returnFocus={false} onExitTransitionEnd={syncClosed} title="Cihazlar arası eşitleme" size="lg" centered className="sync-modal" closeButtonProps={{'aria-label':'Kapat'}}><GitHubSyncPanel sync={githubSync} framed={false}/></Modal>
+  {/* Opened from the book sheet too, so it sits above the sheet (Mantine's layer 200) and below the toast (310). */}
+  <Modal opened={syncOpened} onClose={()=>setSyncOpened(false)} zIndex={300} returnFocus={false} onExitTransitionEnd={syncClosed} title="Cihazlar arası eşitleme" size="lg" centered className="sync-modal" closeButtonProps={{'aria-label':'Kapat'}}><GitHubSyncPanel sync={githubSync} framed={false}/></Modal>
   <Modal opened={guideOpened} onClose={()=>setGuideOpened(false)} title="Çeviri seçme rehberi" size="lg" centered className="global-guide-modal" closeButtonProps={{'aria-label':'Kapat'}}><TranslationCriteria/></Modal>
   <FilterSheet opened={opened} onClose={()=>setOpened(false)} value={draft} onChange={setDraft} onReset={()=>setDraft({...emptyFilters(),query:filters.query})} onApply={()=>{changeFilters(draft);setOpened(false)}} count={draftCount} catalog={catalog} authors={authorOptions} shelf={shelfBooks}/>
   {!book&&transferNotice}
-  <BookDetail feedback={transferNotice} ranking={readingRanking.byId[book]} onOpen={onOpen} onBack={previousBook} hasBack={bookTrail.length>0} book={byId[book]} onClose={closeBook} states={states} onToggle={onToggle} onCollection={goCollection} onCategory={goCategory} personal={personal} onReading={onReading} onAdd={onAdd} onQueue={onQueue} storageError={storageError||personalStorageError}/>
+  <BookDetail feedback={transferNotice} ranking={readingRanking.byId[book]} onOpen={onOpen} onBack={previousBook} hasBack={bookTrail.length>0} book={byId[book]} onClose={closeBook} states={states} onToggle={onToggle} onCollection={goCollection} onCategory={goCategory} personal={personal} onReading={onReading} onAdd={onAdd} onQueue={onQueue} storageError={storageError||personalStorageError} sync={githubSync} onSync={openSync}/>
  </>;
 }
 export default function App(){return <MantineProvider theme={theme} defaultColorScheme="auto" colorSchemeManager={localStorageColorSchemeManager({key:'kitapatlasi:color-scheme'})}><AtlasApp/>{AccessibilityAudit&&<React.Suspense fallback={null}><AccessibilityAudit/></React.Suspense>}</MantineProvider>}

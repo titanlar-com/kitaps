@@ -23,15 +23,15 @@ Kitap kimliklerini, Türkçe baskıları, kitaplar arasındaki hazırlık ve eş
 
 Kişisel kayıtlar önce tarayıcıda tutulur, ardından herkese açık [`titanlar-com/kitaps-state`](https://github.com/titanlar-com/kitaps-state) deposundaki `state.json` dosyasıyla eşitlenir. Bu kayıtlar ve GitHub geçmişi herkes tarafından görülebilir.
 
-- **Bağlantı:** Bir cihazdaki işaret ancak o cihaz bağlıysa diğer cihazlara ulaşır. Bağlı olmayan cihazda bekleyen değişiklik varsa sayfanın başında uyarı ve "Bu cihazı bağla" düğmesi çıkar. Aynı pencere altbilgideki "Cihaz eşitleme" ile de açılır.
+- **Bağlantı:** Bir cihazdaki işaret ancak o cihaz bağlıysa diğer cihazlara ulaşır. Bağlı olmayan cihazda bekleyen değişiklik varsa sayfanın başında uyarı ve "Bu cihazı bağla" düğmesi çıkar. Kitap sayfasında da işaret düğmelerinin altındaki satır, değişikliklerin nerede olduğunu söyler: yalnız bu cihazda, gönderilecek, gönderildi ya da gönderilemedi. Aynı pencere altbilgideki "Cihaz eşitleme" ile de açılır.
 - **Anahtar:** Bağlamak için ince ayarlı (fine-grained) bir GitHub anahtarı girilir.
   - Anahtarın sahibi (Resource owner) `titanlar-com` olmalıdır. Kişisel hesaba bağlı anahtarlar, depolar kuruluşa taşınmadan önce oluşturulanlar da, bu depoya yazamaz.
   - Anahtar yalnız `kitaps-state` deposunda (Only select repositories) Contents: Read and write izni taşımalı ve süreli olmalıdır.
   - Kuruluş yeni anahtarları onaya bağlıyorsa (GitHub'ın varsayılanı), anahtar bir kuruluş sahibi onaylayana kadar yalnız okuyabilir. Kuruluş sahiplerinin kendi anahtarları kendiliğinden onaylanır.
   - Kaydetmeden önce yazma izni GitHub'da denenir; yazamayan anahtar kaydedilmez.
   - Klasik ve OAuth anahtarları kabul edilmez.
-- **Okuma:** Anahtarsız cihazlar ortak durumu salt okunur görür. Sayfa açılırken ve sayfaya dönülünce taze kopya istenir; arada CDN kopyası en fazla beş dakika gecikebilir.
-- **Gönderim:** Bağlı cihaz değişiklikleri tek güncellemeyle gönderir: sayfadan ayrılırken ya da ilk değişiklikten 120 saniye sonra. Bağlanınca, o cihazda bekleyen değişiklikler hemen gönderilir.
+- **Okuma:** Anahtarsız cihazlar ortak durumu salt okunur görür. Sayfa açılırken ve sayfaya dönülünce taze kopya istenir; arada CDN kopyası en fazla beş dakika gecikebilir. Anahtarsız cihaz da "GitHub’dan yenile" ile taze kopya isteyebilir; eşitleme penceresi son okumanın kaynağını yazar.
+- **Gönderim:** Bağlı cihaz değişiklikleri tek güncellemeyle gönderir: sayfadan ayrılırken ya da ilk değişiklikten 120 saniye sonra. Bağlanınca, o cihazda bekleyen değişiklikler hemen gönderilir. GitHub beklemeyi isterse hiçbir yol o zamandan önce göndermez. Geçici hatalar 5 dakikaya kadar artan aralıklarla yeniden denenir. GitHub anahtarı reddederse yazma durur, değişiklikler cihazda kalır, okuma anahtarsız sürer ve yeniden bağlanma istenir. Her durum commit'i proje sahibinin kimliğiyle yazılır.
 - Bir cihaz bağlandığında, bağlı değilken yaptığı değişiklikler ortak kayıtla karşılaştırılır. Aynı kitabı bu arada başka bir cihaz farklı kaydettiyse önce yedek alınır ve hangisinin kalacağı sorulur.
 
 Anahtar tarayıcıda saklanır. Kuruluşun özel alan adı kullanmayan bütün Pages siteleri, ileride açılacaklar da, `titanlar-com.github.io` altında aynı tarayıcı alanını paylaştığı için anahtarın yetkisi tek depo ve tek izinle sınırlı tutulmalıdır. Kuruluşta Pages yayımlayabilen her üye ve Pages'a yayın yapan her iş akışı bu alanda betik çalıştırıp anahtarı okuyabilir. Kuruluşa yeni üye eklenecekse kuruluş ayarlarında (Member privileges → Pages creation) Pages oluşturma iznini kısıtla ya da siteyi özel bir alan adına taşı.
