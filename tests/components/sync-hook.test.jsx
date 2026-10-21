@@ -342,3 +342,102 @@ describe('useGitHubStateSync getting changes off the device', () => {
     expect(server.calls.some(call => call.method === 'PUT')).toBe(false);
   });
 });
+
+describe('useGitHubStateSync when GitHub refuses the key or asks to wait', () => {
+  const TOKEN_KEY = 'kitapatlasi:github-state:token:v1';
+  const REVIEW_KEY = 'kitapatlasi:github-state:connect-review:v1';
+  beforeEach(() => { localStorage.clear(); localStorage.setItem('kitapatlasi:github-state:migrated:v1', '1'); });
+  afterEach(() => { vi.unstubAllGlobals(); delete document.visibilityState; });
+
+  /** GitHub that refuses the key on reads once `refuse()` says so; anonymous reads always work. */
+  function keyed(remote, { refuse = () => true, put } = {}) {
+    const calls = [];
+    const fetch = vi.fn(async (url, init = {}) => {
+      const authorized = Boolean(init.headers?.Authorization);
+      const method = init.method || 'GET';
+      calls.push({ url, method, authorized });
+      if (url.endsWith('/git/blobs')) return new Response('{}', { status: 201 });
+      if (method === 'PUT') {
+        if (put) return put(init);
+        remote = JSON.parse(atob(JSON.parse(init.body).content));
+        return new Response('{}', { status: 200 });
+      }
+      if (authorized && refuse()) return new Response('', { status: 401 });
+      if (url.startsWith('https://raw.')) return new Response(JSON.stringify(remote));
+      return new Response(JSON.stringify({ sha: 'sha-1', encoding: 'base64', content: btoa(JSON.stringify(remote)) }));
+    });
+    return { fetch, calls, current: () => remote, puts: () => calls.filter(call => call.method === 'PUT') };
+  }
+
+  it('a key GitHub refuses on a read stops writes while reads go on, and an accepted read resumes them', async () => {
+    localStorage.setItem(TOKEN_KEY, TOKEN);
+    let refusing = true;
+    const server = keyed(remoteDocument({ b: record({ states: ['okundu'] }) }), { refuse: () => refusing });
+    vi.stubGlobal('fetch', server.fetch);
+    const { result } = renderHook(() => useHarness({}, { queue: [], reading: {} }));
+    await waitFor(() => expect(result.current.sync.tokenRejected).toBe(true));
+    expect(result.current.states.b).toEqual(['okundu']);
+    act(() => result.current.setStates(previous => ({ ...previous, a: ['alindi'] })));
+    await waitFor(() => expect(result.current.sync.pending).toBe(1));
+    act(hidePage);
+    await act(async () => { await result.current.sync.flush(); });
+    expect(server.puts()).toHaveLength(0);
+    expect(result.current.sync.writeError).toMatch(/GitHub anahtarı reddetti/);
+    // "Şimdi gönder" checks the key again; once GitHub accepts it, the refusal clears.
+    refusing = false;
+    await act(async () => { await result.current.sync.flush(); });
+    await waitFor(() => expect(result.current.sync.tokenRejected).toBe(false));
+    expect(result.current.sync.writeError).toBeNull();
+    await act(async () => { await result.current.sync.flush(); });
+    await waitFor(() => expect(server.current().books.a?.value.states).toEqual(['alindi']));
+    expect(result.current.sync.lastSentAt).toBeTypeOf('number');
+  });
+
+  it('a connect comparison never completes on a read made without the key', async () => {
+    let keyedReads = 0;
+    // The key passes the write check, then GitHub refuses it on the comparison's own read.
+    const server = keyed(remoteDocument({}), { refuse: () => ++keyedReads > 1, put: () => new Response('', { status: 401 }) });
+    vi.stubGlobal('fetch', server.fetch);
+    const { result } = renderHook(() => useHarness({}, { queue: [], reading: {} }));
+    await waitFor(() => expect(result.current.sync.status).toBe('ready'));
+    act(() => result.current.setStates({ a: ['alindi'] }));
+    await waitFor(() => expect(result.current.sync.pending).toBe(1));
+    await act(async () => { await result.current.sync.saveToken(TOKEN); });
+    expect(localStorage.getItem(REVIEW_KEY)).toBe('1');
+    expect(server.puts()).toHaveLength(0);
+    expect(result.current.sync.tokenRejected).toBe(true);
+    expect(result.current.sync.message).toMatch(/GitHub anahtarı reddetti/);
+  });
+
+  it('no path sends before GitHub’s requested wait ends', async () => {
+    localStorage.setItem(TOKEN_KEY, TOKEN);
+    const server = keyed(remoteDocument({}), { refuse: () => false, put: () => new Response('{}', { status: 403, headers: { 'Retry-After': '600' } }) });
+    vi.stubGlobal('fetch', server.fetch);
+    const { result } = renderHook(() => useHarness({}, { queue: [], reading: {} }));
+    await waitFor(() => expect(result.current.sync.status).toBe('ready'));
+    act(() => result.current.setStates({ a: ['alindi'] }));
+    await waitFor(() => expect(result.current.sync.pending).toBe(1));
+    await act(async () => { await result.current.sync.flush().catch(() => undefined); });
+    expect(server.puts()).toHaveLength(1);
+    expect(result.current.sync.retryAt).toBeGreaterThan(Date.now());
+    await act(async () => { await result.current.sync.flush(); });
+    act(hidePage);
+    await new Promise(resolve => setTimeout(resolve, 20));
+    expect(server.puts()).toHaveLength(1);
+    expect(result.current.sync.message).toMatch(/sonrasında gönderilecek/);
+  });
+
+  it('"Şimdi gönder" with nothing queued reads the file again instead of claiming a send', async () => {
+    localStorage.setItem(TOKEN_KEY, TOKEN);
+    const server = keyed(remoteDocument({}), { refuse: () => false });
+    vi.stubGlobal('fetch', server.fetch);
+    const { result } = renderHook(() => useHarness({}, { queue: [], reading: {} }));
+    await waitFor(() => expect(result.current.sync.status).toBe('ready'));
+    const reads = server.calls.length;
+    await act(async () => { await result.current.sync.flush(); });
+    expect(server.puts()).toHaveLength(0);
+    expect(server.calls.length).toBeGreaterThan(reads);
+    expect(result.current.sync.lastSentAt).toBeNull();
+    expect(result.current.sync.message).not.toBe('GitHub ile eşitlendi.');
+  });
+});

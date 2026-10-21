@@ -1,6 +1,7 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
+import { MantineProvider } from '@mantine/core';
 import GitHubSyncPanel from '../../src/components/GitHubSyncPanel';
 import SyncStatusLine, { syncStatusKind } from '../../src/components/SyncStatusLine';
 import { renderWithTheme } from './render';
@@ -27,11 +28,23 @@ describe('SyncStatusLine', () => {
     expect(syncStatusKind(sync())).toBe(null);
   });
 
-  it('keeps an empty live region so the first change is announced', () => {
-    const { container } = renderWithTheme(<SyncStatusLine sync={sync()} onOpen={vi.fn()}/>);
-    const region = container.querySelector('.sync-status-line');
+  it('keeps an empty, text-only live region so the first change is announced, with the button outside it', () => {
+    const { container, rerender } = renderWithTheme(<SyncStatusLine sync={sync()} onOpen={vi.fn()}/>);
+    const region = container.querySelector('.sync-status-text');
     expect(region.getAttribute('role')).toBe('status');
     expect(region.textContent).toBe('');
+    rerender(<MantineProvider><SyncStatusLine sync={sync({ pending: 1 })} onOpen={vi.fn()}/></MantineProvider>);
+    expect(region.textContent).toMatch(/yalnız bu cihazda/);
+    expect(region.querySelector('button')).toBeNull();
+    expect(container.querySelector('.sync-status-line button')).toBeTruthy();
+  });
+
+  it('words a refused key, a pending comparison and GitHub’s wait as what they are', () => {
+    const text = value => { const { container, unmount } = renderWithTheme(<SyncStatusLine sync={sync(value)} onOpen={vi.fn()}/>); const content = container.querySelector('.sync-status-text').textContent; unmount(); return content; };
+    expect(text({ hasToken: true, tokenRejected: true, writeError: 'x' })).toMatch(/anahtarını reddetti; bu cihazı yeniden bağla/);
+    expect(text({ hasToken: true, tokenRejected: true, writeError: 'x' })).not.toMatch(/0 değişiklik/);
+    expect(text({ hasToken: true, pending: 1, reviewPending: true })).toMatch(/karşılaştırıldıktan sonra gönderilecek/);
+    expect(text({ hasToken: true, pending: 1, retryAt: Date.parse('2026-10-22T09:30:00Z') })).toMatch(/GitHub’ın istediği bekleme bitince/);
   });
 });
 

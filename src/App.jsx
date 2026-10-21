@@ -156,13 +156,13 @@ function BookCard({book:b,ranking,states,onOpen,onToggle,queue,onAdd,onQueue}) {
   </div>
  </Card>
 }
-function BookDetail({book:b,ranking,onClose,onOpen,onBack,hasBack,states,onToggle,onCollection,onCategory,personal,onReading,onAdd,onQueue,storageError,feedback,sync,onSync}) {
+function BookDetail({book:b,ranking,onClose,onOpen,onBack,hasBack,states,onToggle,onCollection,onCategory,personal,onReading,onAdd,onQueue,storageError,feedback,sync,onSync,covered}) {
  const topRef=useRef(null);
  const shownTitle=b?displayTitle(b):'';
  // Only a known original title is shown under a Turkish title.
  const originalTitle=b&&translationStatus(b).status==='available'&&b.originalTitle&&b.originalTitle!==shownTitle?b.originalTitle:'';
  useEffect(()=>{if(b)topRef.current?.scrollIntoView({block:'start',behavior:'instant'})},[b?.id]);
- return <BookSheet opened={!!b} onClose={onClose}>
+ return <BookSheet opened={!!b} onClose={onClose} covered={covered}>
   {b&&<Stack gap="xl" pb="xl" key={b.id} className="detail-content">
    <div ref={topRef} className="detail-top">{hasBack&&<Button variant="subtle" leftSection={<IconArrowLeft size={18}/>} onClick={onBack}>Önceki kitaba dön</Button>}</div>
    <div className="detail-hero"><div className="detail-cover-block"><BookCover key={b.id} book={b} detail read={(states[b.id]||[]).includes('okundu')}/><div className="cover-marks"><StateRibbons marks={states[b.id]||[]}/></div></div>
@@ -266,9 +266,15 @@ function AtlasApp() {
  const changePage=p=>{navigate({...route,page:p,book:null});resultsRef.current?.scrollIntoView({behavior:'instant',block:'start'})};
  // The library toast sits above dialogs, so it closes before the connect dialog opens over it.
  const syncOpener=useRef(null);
- const openSync=event=>{syncOpener.current=event?.currentTarget??document.activeElement;setTransfer(null);setSyncOpened(true)};
+ // The sync dialog covers the book sheet from opening until its closing transition ends. Mantine
+ // closes both on one Escape otherwise: the dialog's handler runs first and closes it, React
+ // re-renders between the two window listeners, and the sheet's handler then sees itself uncovered.
+ const [syncCovering,setSyncCovering]=useState(false);
+ const openSync=event=>{syncOpener.current=event?.currentTarget??document.activeElement;setTransfer(null);setSyncCovering(true);setSyncOpened(true)};
  // Connecting removes the notice whose button opened the dialog; focus then goes to the main content.
- const syncClosed=()=>{const opener=syncOpener.current;(opener?.isConnected?opener:document.getElementById('main-content'))?.focus({preventScroll:true})};
+ // Focus returns to the button that opened the dialog. When connecting removed it, focus stays
+ // in the open book sheet (on its sync status), never behind it; otherwise on the main content.
+ const syncClosed=()=>{setSyncCovering(false);const opener=syncOpener.current;(opener?.isConnected?opener:document.querySelector('.detail-drawer .sync-status-text')??document.getElementById('main-content'))?.focus({preventScroll:true})};
  const copyLink=async()=>{try{await navigator.clipboard.writeText(window.location.href);setCopied(true);setTimeout(()=>setCopied(false),2000)}catch{setCopied(false)}};
  const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true">{transfer&&<LibraryToast key={`${transfer.id}-${transfer.owned}`} book={byId[transfer.id]} owned={transfer.owned} onClose={dismissTransfer} onUndo={()=>{setStates(prev=>({...prev,[transfer.id]:toggleState(prev[transfer.id],'alindi')}));dismissTransfer()}}/>}</div>;
  const activeTab=['owned','favorites'].includes(view)?'books':['books','queue','collections'].includes(view)?view:null;
@@ -309,7 +315,7 @@ function AtlasApp() {
   <Modal opened={guideOpened} onClose={()=>setGuideOpened(false)} title="Çeviri seçme rehberi" size="lg" centered className="global-guide-modal" closeButtonProps={{'aria-label':'Kapat'}}><TranslationCriteria/></Modal>
   <FilterSheet opened={opened} onClose={()=>setOpened(false)} value={draft} onChange={setDraft} onReset={()=>setDraft({...emptyFilters(),query:filters.query})} onApply={()=>{changeFilters(draft);setOpened(false)}} count={draftCount} catalog={catalog} authors={authorOptions} shelf={shelfBooks}/>
   {!book&&transferNotice}
-  <BookDetail feedback={transferNotice} ranking={readingRanking.byId[book]} onOpen={onOpen} onBack={previousBook} hasBack={bookTrail.length>0} book={byId[book]} onClose={closeBook} states={states} onToggle={onToggle} onCollection={goCollection} onCategory={goCategory} personal={personal} onReading={onReading} onAdd={onAdd} onQueue={onQueue} storageError={storageError||personalStorageError} sync={githubSync} onSync={openSync}/>
+  <BookDetail feedback={transferNotice} ranking={readingRanking.byId[book]} onOpen={onOpen} onBack={previousBook} hasBack={bookTrail.length>0} book={byId[book]} onClose={closeBook} states={states} onToggle={onToggle} onCollection={goCollection} onCategory={goCategory} personal={personal} onReading={onReading} onAdd={onAdd} onQueue={onQueue} storageError={storageError||personalStorageError} sync={githubSync} onSync={openSync} covered={syncCovering||Boolean(githubSync.mergePrompt)}/>
  </>;
 }
 export default function App(){return <MantineProvider theme={theme} defaultColorScheme="auto" colorSchemeManager={localStorageColorSchemeManager({key:'kitapatlasi:color-scheme'})}><AtlasApp/>{AccessibilityAudit&&<React.Suspense fallback={null}><AccessibilityAudit/></React.Suspense>}</MantineProvider>}

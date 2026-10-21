@@ -151,7 +151,7 @@ test('a change older than 120 seconds is sent as soon as the next visit schedule
  later.schedule();assert.equal(timers.at(-1),0);
 });
 
-test('bounded retries back off after a failed flush',async()=>{
+test('retries back off after a failed flush',async()=>{
  const repository=new GitHubStateRepository({storage:storage(),clock:()=>new Date(timestamp(0)),fetch:async()=>raw(emptyStateDocument())});
  const timers=new Map();let timerId=0,attempts=0;
  const batcher=new GitHubStateBatcher(repository,async()=>{attempts++;if(attempts<3)throw new Error('offline');},{
@@ -501,4 +501,18 @@ test('the batcher keeps retrying a passing failure at its last step, waits for a
  let limited;limited=make(()=>new GitHubStateRepositoryError('rate-limited','limited',403,{retryAt:limited.now+90_000}));
  await limited.runNext();
  assert.deepEqual([...limited.timers.values()].map(timer=>timer.delay),[90_000],'nothing is sent before GitHub accepts requests again');
+});
+
+test('a read that must use the key never falls back, and a 403 is not taken as a refused key',async()=>{
+ const requests=[];
+ const refusing=new GitHubStateRepository({storage:withToken(),fetch:async(url,init)=>{requests.push({url,authorized:Boolean(init.headers?.Authorization)});return init.headers?.Authorization?new Response('',{status:401}):raw(emptyStateDocument());}});
+ await assert.rejects(()=>refusing.load({fresh:true,requireToken:true}),error=>error.code==='unauthorized'&&error.status===401);
+ assert.deepEqual(requests.map(item=>item.authorized),[true],'no anonymous read stands in for the comparison');
+ await assert.rejects(()=>new GitHubStateRepository({storage:storage(),fetch:async()=>raw(emptyStateDocument())}).load({requireToken:true}),error=>error.code==='unauthorized');
+ // GitHub also answers some secondary limits with a bare 403: that is no reason to give up the key.
+ const forbidden=new GitHubStateRepository({storage:withToken(),fetch:async()=>new Response('',{status:403})});
+ await assert.rejects(()=>forbidden.load(),error=>error.code==='unauthorized'&&error.status===403);
+ assert.equal(forbidden.lastReadInfo(),undefined);
+ const {info}=await new GitHubStateRepository({storage:withToken(),fetch:async()=>contents(emptyStateDocument())}).loadRead();
+ assert.equal(info.authenticated,true);
 });

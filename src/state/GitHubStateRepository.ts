@@ -259,8 +259,17 @@ export class GitHubStateRepository {
    * when freshness matters (opening the page, coming back to it) they ask the
    * API first, at most once a minute, and fall back to the CDN when GitHub
    * refuses. A copy older than one already seen never replaces it. */
-  async load(options: { fresh?: boolean } = {}): Promise<StateDocument> {
-    return this.keepNewest((await this.readCurrent(options.fresh === true)).document);
+  async load(options: { fresh?: boolean; requireToken?: boolean } = {}): Promise<StateDocument> {
+    return (await this.loadRead(options)).document;
+  }
+
+  /** The shared file with where this very read came from (`lastReadInfo` can
+   * already describe a later read by then). `requireToken`: only a read made with
+   * the stored key will do (a connect comparison); a refused key then throws
+   * instead of falling back to an anonymous read. */
+  async loadRead(options: { fresh?: boolean; requireToken?: boolean } = {}): Promise<{ document: StateDocument; info: ReadInfo }> {
+    const { file, info } = await this.readCurrent(options.fresh === true, options.requireToken === true);
+    return { document: this.keepNewest(file.document), info };
   }
 
   /** This device's unsent edits, oldest first. */
@@ -380,42 +389,40 @@ export class GitHubStateRepository {
     throw new GitHubStateRepositoryError('conflict', 'GitHub state changed during save. Reload and try again.', 409);
   }
 
-  private async readCurrent(fresh: boolean): Promise<RemoteFile> {
+  private async readCurrent(fresh: boolean, requireToken = false): Promise<{ file: RemoteFile; info: ReadInfo }> {
     if (this.hasToken()) {
       try {
-        const file = await this.readApi(true);
-        this.noteRead('api', true, false);
-        return file;
+        return this.noteRead(await this.readApi(true), 'api', true, false);
       } catch (error) {
-        // A refused key stops this device's writes, not its reads: the file is public,
-        // so it is read without the key while the device shows how to reconnect.
-        if (!(error instanceof GitHubStateRepositoryError && error.code === 'unauthorized')) throw error;
+        // A refused key (401) stops this device's writes, not its reads: the file is
+        // public, so it is read without the key while the device asks to reconnect.
+        // A 403 is not taken as a refusal: GitHub also answers secondary limits with it.
+        if (requireToken || !(error instanceof GitHubStateRepositoryError && error.status === 401)) throw error;
         return this.readAnonymous(fresh, true);
       }
     }
+    if (requireToken) throw new GitHubStateRepositoryError('unauthorized', 'A GitHub token is required for this read.', 401);
     return this.readAnonymous(fresh, false);
   }
 
-  private async readAnonymous(fresh: boolean, tokenRejected: boolean): Promise<RemoteFile> {
+  private async readAnonymous(fresh: boolean, tokenRejected: boolean): Promise<{ file: RemoteFile; info: ReadInfo }> {
     const now = this.clock().getTime();
     if (fresh && now >= this.nextAnonymousApiRead) {
       this.nextAnonymousApiRead = now + ANONYMOUS_FRESH_READ_INTERVAL_MS;
       try {
-        const file = await this.readApi(true, false, true);
-        this.noteRead('api', false, tokenRejected);
-        return file;
+        return this.noteRead(await this.readApi(true, false, true), 'api', false, tokenRejected);
       } catch (error) {
         // The CDN copy stays the anonymous baseline; the API only makes it fresher.
         if (error instanceof GitHubStateRepositoryError && error.retryAt) this.nextAnonymousApiRead = Math.max(this.nextAnonymousApiRead, error.retryAt);
       }
     }
-    const file = await this.readRaw();
-    this.noteRead('cdn', false, tokenRejected);
-    return file;
+    return this.noteRead(await this.readRaw(), 'cdn', false, tokenRejected);
   }
 
-  private noteRead(source: ReadInfo['source'], authenticated: boolean, tokenRejected: boolean): void {
-    this.lastRead = { source, authenticated, tokenRejected, at: this.clock().getTime() };
+  private noteRead(file: RemoteFile, source: ReadInfo['source'], authenticated: boolean, tokenRejected: boolean): { file: RemoteFile; info: ReadInfo } {
+    const info: ReadInfo = { source, authenticated, tokenRejected, at: this.clock().getTime() };
+    this.lastRead = info;
+    return { file, info: { ...info } };
   }
 
   /** The CDN can serve a copy older than a file this device has already read

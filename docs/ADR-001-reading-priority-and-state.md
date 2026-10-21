@@ -66,7 +66,9 @@ Kaynak veride hiçbir kitaba doğrudan puan yazılmaz.
 - **Tek yazım:** Gizlenme, zamanlayıcı ve düğme aynı anda gönderim isterse tek bir yazım hepsine hizmet eder. O yazım sürerken yapılan bir değişiklik, hemen ardından kendi yazımını alır.
 - **Tek istek:** Yazım, son okunan ya da yazılan dosyanın sha'sı üzerine tek istekle yapılır; sayfa gizlenirken gönderilen yazım `keepalive` taşır (gövde 60 KB'den küçükse). Dosyayı bu arada başka bir cihaz değiştirdiyse GitHub 409/422 döner ve yazım taze okumadan yeniden başlar. Her istek 20 saniyede zaman aşımına uğrar.
 - **İstek sınırı:** GitHub sınırı aşıldığında istemci, yanıttaki `Retry-After` süresi kadar (ikincil sınır) ya da saatlik pay bittiyse sıfırlanma zamanına kadar bekler. Zamanlayıcı, "Şimdi gönder" ve sayfadan ayrılma bu süreden önce göndermez.
-- **Reddedilen anahtar:** GitHub anahtarla yapılan okumayı reddederse (401 ya da sınır dışı 403) cihaz herkese açık dosyayı anahtarsız okumayı sürdürür. Yazma durur, bekleyen değişiklikler cihazda kalır ve yeniden bağlanma istenir. Bu okuma bağlanma karşılaştırmasına temel olmaz.
+- **Reddedilen anahtar:** GitHub anahtarla yapılan okumayı 401 ile reddederse cihaz herkese açık dosyayı anahtarsız okumayı sürdürür. 403 ret sayılmaz, çünkü GitHub bazı ikincil sınırları da başlıksız 403 ile bildirir. Ret sürerken hiçbir yol yazmaz: zamanlayıcı durur, sayfadan ayrılma göndermez, "Şimdi gönder" önce anahtarı taze bir okumayla yeniden dener ve GitHub kabul ederse yazma kendiliğinden sürer. Bekleyen değişiklikler cihazda kalır ve yeniden bağlanma istenir.
+  - Bağlanma karşılaştırması anahtarsız okumaya hiç düşmez: anahtar reddedilirse işaret kalır, hiçbir şey gönderilmez ve yeniden bağlanma istenir.
+  - Kuyruk boşken "Şimdi gönder" yazmaz; dosyayı yeniden okur. Son gönderim saati yalnız gerçek bir yazımdan sonra değişir.
 - **Commit kimliği:** Her durum commit'i yazar ve commit'leyen olarak proje sahibinin kimliğini (`karacaismail`, GitHub noreply e-postası) açıkça adlandırır. API yazımları yerel Git yazar korumasından geçmediği için kimlik isteğin kendisinde verilir.
 - **Yeni cihaz:** Bir cihaz ilk kez eşitlendiğinde yalnız kendisinde olan kayıtları ortak dosyaya ekler. Aynı kitap için iki taraf farklıysa önce yerel yedek alır ve okura hangisinin kalacağını sorar.
 - **Bağlanma:** Bir cihaz anahtarla bağlandığında, bağlı değilken yaptığı ve gönderemediği değişiklikler ortak dosyayla karşılaştırılır.
@@ -103,7 +105,7 @@ Kaynak veride hiçbir kitaba doğrudan puan yazılmaz.
 - **Okumanın kaynağı:** Eşitleme penceresi son okumanın ve son gönderimin saatini, okumanın GitHub'dan mı yoksa en çok beş dakika gecikebilen önbellek kopyasından mı geldiğini yazar. Önbellek kopyası "güncel" diye sunulmaz. Anahtarsız cihaz da "GitHub’dan yenile" ile taze kopya isteyebilir.
 - **Bağlantı penceresi:** "Bu cihazı bağla" ve altbilgideki "Cihaz eşitleme" aynı bağlantı penceresini açar.
 - **Gizleme:** Uyarı o ziyaret için gizlenebilir; odak ana içeriğe geçer. Daha fazla değişiklik birikince, nedeni değişince ya da sorun giderilip yeniden ortaya çıkınca uyarı yeniden görünür.
-- **Odak:** Bağlantı penceresi kapanınca odak onu açan düğmeye döner. O düğme bağlanmayla kaybolduysa odak ana içeriğe geçer. Başarılı bağlantıdan sonra odak pencerenin durum satırına geçer.
+- **Odak:** Bağlantı penceresi kapanınca odak onu açan düğmeye döner. O düğme bağlanmayla kaybolduysa odak, kitap sayfası açıksa sayfanın eşitleme satırına, değilse ana içeriğe geçer; açık bir sayfanın arkasına düşmez. Başarılı bağlantıdan sonra odak pencerenin durum satırına geçer. Kitap sayfasından açılan pencerede Escape yalnız pencereyi kapatır.
 
 ## Sonuçlar
 

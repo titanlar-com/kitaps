@@ -23,7 +23,8 @@ test.afterEach(() => {
 
 /** One fake GitHub shared by every device in a test. The CDN copy can be made to lag,
  * as the real one does for up to five minutes. */
-function fakeGitHub({ canWrite = true, cdnLags = false } = {}) {
+// refuseKey: GitHub answers every request made with the key with 401, as for an expired key.
+function fakeGitHub({ canWrite = true, cdnLags = false, refuseKey = false } = {}) {
   const github = { file: structuredClone(EMPTY), sha: 'sha-0', puts: [], probes: 0, elsewhere: [] };
   fakes.push(github);
   github.attach = async context => {
@@ -36,6 +37,7 @@ function fakeGitHub({ canWrite = true, cdnLags = false } = {}) {
     await context.route('https://api.github.com/repos/titanlar-com/kitaps-state/**', async route => {
       const request = route.request();
       if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: CORS });
+      if (refuseKey && request.headers().authorization) return route.fulfill({ status: 401, headers: CORS, json: { message: 'Bad credentials' } });
       if (request.url().endsWith('/git/blobs')) {
         github.probes += 1;
         return route.fulfill({ status: canWrite ? 201 : 403, headers: CORS, json: canWrite ? { sha: 'e69de29' } : { message: 'Resource not accessible by personal access token' } });
@@ -107,37 +109,55 @@ test('a mark made in the book sheet says there that it stays on this device, and
   // The reader marks books in the sheet, so the sheet itself says where the mark stands.
   const line = page.locator('.detail-actions .sync-status-line');
   await expect(line).toContainText('1 değişiklik yalnız bu cihazda kayıtlı');
-  await line.getByRole('button', { name: 'Bu cihazı bağla' }).click();
   const dialog = page.getByRole('dialog', { name: 'Cihazlar arası eşitleme' });
+  // Escape closes the dialog opened from the sheet, not the sheet under it.
+  await line.getByRole('button', { name: 'Bu cihazı bağla' }).click();
+  await expect(dialog).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await expect(line).toBeVisible();
+  await expect(line.getByRole('button', { name: 'Bu cihazı bağla' })).toBeFocused();
+  await line.getByRole('button', { name: 'Bu cihazı bağla' }).click();
   await dialog.getByLabel('İnce ayarlı (fine-grained) GitHub anahtarı').fill(TOKEN);
   await dialog.getByRole('button', { name: 'Bu cihazda bağla' }).click();
   await expect(dialog.getByRole('status')).toContainText('GitHub ile eşitlendi.');
   expect(github.puts).toHaveLength(1);
   await dialog.getByRole('button', { name: 'Kapat' }).click();
   await expect(line).toContainText('GitHub’a gönderildi');
+  // The button that opened the dialog is gone; focus stays in the sheet, on its sync status.
+  await expect(line.locator('.sync-status-text')).toBeFocused();
 });
 
+// AGENTS.md: large text is in place before the page opens, so the sheet's em container queries apply.
+const enlargeBeforeOpening = (context, wide = false) => context.addInitScript(css => {
+  const add = () => document.head.append(Object.assign(document.createElement('style'), { textContent: css }));
+  if (document.head) add(); else document.addEventListener('DOMContentLoaded', add, { once: true });
+}, `html{font-size:200%}${wide ? ':root{--sans:Verdana,sans-serif!important;--mantine-font-family:Verdana,sans-serif!important}' : ''}`);
+
 test('the sheet’s sync line keeps its words and button inside at 320 px with 200% text, in a wide font too', async ({ browser }) => {
-  const context = await browser.newContext({ viewport: { width: 320, height: 720 } });
-  await fakeGitHub().attach(context);
-  const page = await context.newPage();
-  await markPurchased(page);
+  const spilled = line => line.evaluate(container => {
+    const edge = container.getBoundingClientRect().right + 1;
+    return [...container.querySelectorAll('*')].filter(element => element.getBoundingClientRect().right > edge
+      || (element.scrollWidth > element.clientWidth + 2 && getComputedStyle(element).overflowX !== 'visible')).map(element => element.className || element.tagName);
+  });
   // Ubuntu CI draws the interface in a font much wider than macOS's; Verdana stands in for it.
-  await page.addStyleTag({ content: 'html{font-size:200%}' });
-  const line = page.locator('.detail-actions .sync-status-line');
-  for (const font of ['', 'Verdana,sans-serif']) {
-    if (font) await page.addStyleTag({ content: `:root{--sans:${font}!important;--mantine-font-family:${font}!important}` });
-    await expect(line.getByRole('button', { name: 'Bu cihazı bağla' })).toBeVisible();
-    const spilled = await line.evaluate(container => {
-      const edge = container.getBoundingClientRect().right + 1;
-      return [...container.querySelectorAll('*')].filter(element => element.getBoundingClientRect().right > edge
-        || (element.scrollWidth > element.clientWidth + 2 && getComputedStyle(element).overflowX !== 'visible')).map(element => element.className || element.tagName);
-    });
-    expect(spilled, font || 'platform font').toEqual([]);
-    const box = await line.getByRole('button', { name: 'Bu cihazı bağla' }).boundingBox();
-    expect(Math.min(box.width, box.height)).toBeGreaterThanOrEqual(44);
+  for (const wide of [false, true]) {
+    for (const [state, button] of [['local', 'Bu cihazı bağla'], ['failed', 'Eşitleme ayrıntıları']]) {
+      const context = await browser.newContext({ viewport: { width: 320, height: 720 } });
+      await enlargeBeforeOpening(context, wide);
+      if (state === 'failed') await context.addInitScript(([key, token]) => localStorage.setItem(key, token), [TOKEN_KEY, TOKEN]);
+      await fakeGitHub({ refuseKey: state === 'failed' }).attach(context);
+      const page = await context.newPage();
+      await markPurchased(page);
+      const line = page.locator('.detail-actions .sync-status-line');
+      await expect(line).toHaveAttribute('data-kind', state);
+      await expect(line.getByRole('button', { name: button })).toBeVisible();
+      expect(await spilled(line), `${state}${wide ? ', wide font' : ''}`).toEqual([]);
+      const box = await line.getByRole('button', { name: button }).boundingBox();
+      expect(Math.min(box.width, box.height)).toBeGreaterThanOrEqual(44);
+      await context.close();
+    }
   }
-  await context.close();
 });
 
 test('a token that can read but not write is refused and never stored', async ({ page }) => {

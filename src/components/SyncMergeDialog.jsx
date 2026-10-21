@@ -19,14 +19,15 @@ export default function SyncMergeDialog({sync}){
   requestAnimationFrame(()=>{
    // A further question (a connect right after a first-sync choice) keeps the focus.
    if(document.querySelector('.sync-merge-dialog'))return;
-   const target=document.querySelector('.sync-modal [role="status"]')??document.getElementById('main-content');
+   // With the book sheet open, focus stays in it rather than behind it.
+   const target=document.querySelector('.sync-modal [role="status"]')??document.querySelector('.detail-drawer .sync-status-text')??document.getElementById('main-content');
    if(target instanceof HTMLElement)target.focus({preventScroll:true});
   });
  };
  const backup=readSyncBackup();
  const parts=[prompt.conflicts.length?`${prompt.conflicts.length} kitabın kaydı`:'',prompt.queueConflict?'okuma sıran':''].filter(Boolean).join(' ve ');
- // Connecting from the book sheet can raise it, so it sits above the sheet (layer 200), like the sync dialog.
- return <Modal opened onClose={()=>undefined} zIndex={300} withCloseButton={false} closeOnClickOutside={false} closeOnEscape={false} centered className="sync-merge-dialog" title="Bu cihazdaki kayıtlar farklı">
+ // Connecting from the book sheet can raise it, so it sits above the sheet (layer 200) and the sync dialog (300).
+ return <Modal opened onClose={()=>undefined} zIndex={305} withCloseButton={false} closeOnClickOutside={false} closeOnEscape={false} centered className="sync-merge-dialog" title="Bu cihazdaki kayıtlar farklı">
   <Stack gap="md">
    <Text>{prompt.reason==='connect'
     ?`Bu cihaz bağlı değilken ${parts} değişti; bu arada başka bir cihaz aynı kayıtları farklı kaydetti. Hangisinin kalacağını seç. Seçim yalnız bu kayıtları etkiler; bu cihazın öteki değişiklikleri seçimden sonra gönderilir.`
