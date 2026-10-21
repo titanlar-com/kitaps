@@ -46,14 +46,12 @@ const hidePage = page => page.evaluate(() => {
   Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' });
   document.dispatchEvent(new Event('visibilitychange'));
 });
-// The footer sits below the book covers. Covers near it start loading only once it is
-// scrolled into view, and a cover taller than 2:3 makes its card taller, so the footer
-// can move under a pointer click that was aimed a moment earlier (seen in WebKit under
-// load). The click waits for those covers.
+// The footer sits below the book covers, which start loading only once it is scrolled into
+// view. Each cover keeps its 2:3 frame (catalog-grid.spec.js checks it), so the click does
+// not wait for them: a footer that moved under the pointer would be a bug.
 const openSyncFromFooter = async page => {
   const button = page.getByRole('button', { name: 'Cihaz eşitleme' });
   await button.scrollIntoViewIfNeeded();
-  await page.waitForLoadState('networkidle');
   await button.click();
 };
 const markPurchased = async page => {

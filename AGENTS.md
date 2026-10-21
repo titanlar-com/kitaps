@@ -47,6 +47,7 @@ Okuma durumları, sahiplik, favoriler ve okuma sırası herkese açık `karacais
 ## Arayüz
 
 - **Tokenlar:** Renk, köşe yarıçapı, gölge, odak ve kapak işaretleri `src/styles.css` başındaki tokenlarla yönetilir. Boşlukların bir kısmı henüz sabit piksel değeridir; yeni değerleri token olarak ekle.
+- **Kapaklar:** Her kapak 2:3 bir çerçevede durur ve çerçeve kapak yüklenince büyümez. 2:3'ten uzun bir kapak bütün gösterilir; iki yanında çerçevenin yüzeyi görünür. Kapak kırpılmaz ve daraltılmaz; bu, proje sahibinin 21 Ekim 2026 kararıdır. `tests/e2e/catalog-grid.spec.js` bunu dört tarayıcı profilinde doğrular.
 - **Açılır listeler:** Mantine Select kullanılır; değeri uzun olabilen seçiciler (sıralama, önerilerin konusu) aynı Combobox üzerine kurulu `WrappingSelect` ile değeri alt satıra alır. Yerel `<select>` kullanılmaz.
 - **Odak:** Tek ve görünür bir `:focus-visible` halkası korunur.
 - **Kabul:** 320 px'den başlar. Ayrıntılar `docs/UX-VALIDATION.md` içindedir.

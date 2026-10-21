@@ -49,3 +49,80 @@ test('a larger page of 48 books also ends on a full row', async ({ page }) => {
     expect(lastRow.cards, `${width}px wide`).toBe(lastRow.columns);
   }
 });
+
+// A cover that arrives late must not move the page. The covers are held back until the cards
+// and the footer have been measured; once every cover has loaded, nothing may have moved.
+// The owner's choice: a cover taller than 2:3 is shown whole inside the 2:3 frame, with the
+// frame's surface beside it; it is neither cut nor made narrower, and the frame never grows.
+const EMPTY_STATE = { schemaVersion: 2, updatedAt: '1970-01-01T00:00:00.000Z', books: {}, queue: null };
+const COVER_WIDTHS = [320, 360, 375, 390, 768, 1280];
+const isolate = page => Promise.all([
+  page.route('https://raw.githubusercontent.com/karacaismail/kitaps-state/**', route => route.fulfill({ json: EMPTY_STATE })),
+  page.route('https://api.github.com/repos/karacaismail/kitaps-state/**', route => route.fulfill({ status: 404, json: {} })),
+]);
+// Each frame that is not 2:3, or whose cover reaches past it, and how many covers taller
+// than 2:3 fill the frame from edge to edge.
+const frames = stages => stages.evaluateAll(list => {
+  const problems = [];
+  let tallFilled = 0;
+  for (const stage of list) {
+    const frame = stage.getBoundingClientRect(), image = stage.querySelector('img'), name = stage.getAttribute('aria-label') || stage.className;
+    if (Math.abs(frame.height - frame.width * 1.5) > 1) problems.push(`${name}: frame ${Math.round(frame.width)}×${Math.round(frame.height)}`);
+    if (!image) continue;
+    const cover = image.getBoundingClientRect();
+    if (cover.top < frame.top - 1 || cover.bottom > frame.bottom + 1 || cover.left < frame.left - 1 || cover.right > frame.right + 1) problems.push(`${name}: cover ${Math.round(cover.width)}×${Math.round(cover.height)} outside the frame`);
+    if (image.naturalHeight / image.naturalWidth > 1.52 && Math.abs(cover.height - frame.height) <= 1 && Math.abs(cover.width - frame.width) <= 1) tallFilled++;
+  }
+  return { problems, tallFilled };
+});
+
+test('covers that load late leave the cards and the footer where they were', async ({ page }) => {
+  // The shared reading state could add a line to a card while the covers load.
+  await isolate(page);
+  let held = [], holding = true;
+  await page.route('**/covers/**', route => holding ? held.push(route) : route.continue());
+  const layout = () => page.evaluate(() => {
+    const place = element => { const box = element.getBoundingClientRect(); return { top: box.top + scrollY, height: box.height }; };
+    return { cards: [...document.querySelectorAll('.books-grid > .book-card')].map(place), footer: place(document.querySelector('.site-footer')) };
+  });
+  const covers = page.locator('.books-grid img');
+  for (const width of COVER_WIDTHS) {
+    held = []; holding = true;
+    await page.setViewportSize({ width, height: 800 });
+    // A held cover may delay the load event, so the page counts as ready once its cards are there.
+    await page.goto('./', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('.books-grid > .book-card')).toHaveCount(24);
+    // WebKit settles document.fonts.ready only after the load event, which a held cover can delay,
+    // so the test waits for the font faces themselves: the title font in, none still loading.
+    await expect.poll(() => page.evaluate(() => [...document.fonts].some(face => face.family.includes('Literata') && face.status === 'loaded') && [...document.fonts].every(face => face.status !== 'loading')), { message: `${width}px: fonts load` }).toBe(true);
+    expect(await covers.evaluateAll(images => images.filter(image => image.naturalWidth > 0).length), `${width}px: no cover has arrived yet`).toBe(0);
+    const before = await layout();
+    holding = false;
+    await Promise.all(held.map(route => route.continue()));
+    // Load every cover now, not only those near the screen.
+    await covers.evaluateAll(images => images.forEach(image => { image.loading = 'eager'; }));
+    await expect.poll(() => covers.evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0)), { message: `${width}px: every cover loads` }).toBe(true);
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const after = await layout();
+    const moved = [...before.cards.map((card, i) => [`card ${i + 1}`, card, after.cards[i]]), ['footer', before.footer, after.footer]]
+      .filter(([, was, now]) => Math.abs(was.top - now.top) > 1 || Math.abs(was.height - now.height) > 1)
+      .map(([name, was, now]) => `${name}: top ${Math.round(was.top)} → ${Math.round(now.top)}, height ${Math.round(was.height)} → ${Math.round(now.height)}`);
+    expect(moved, `${width}px wide`).toEqual([]);
+    const framed = await frames(page.locator('.books-grid .cover-stage'));
+    expect(framed.problems, `${width}px wide`).toEqual([]);
+    // The first page holds several covers taller than 2:3 (Psiko 101, Strateji: Bir Tarih).
+    expect(framed.tallFilled, `${width}px: tall covers fill their frame`).toBeGreaterThan(0);
+  }
+});
+
+test('the book sheet shows a cover taller than 2:3 whole inside its 2:3 frame', async ({ page }) => {
+  await isolate(page);
+  for (const width of [320, 1280]) {
+    await page.setViewportSize({ width, height: 800 });
+    // Çalıkuşu's cover is 720 × 1312, the tallest in the catalog.
+    await page.goto('./?book=calikusu');
+    const stage = page.locator('.cover-stage-detail');
+    await expect.poll(() => stage.locator('img').evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+    expect(await frames(stage), `${width}px wide`).toEqual({ problems: [], tallFilled: 1 });
+  }
+});
