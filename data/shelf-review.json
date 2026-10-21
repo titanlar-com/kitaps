@@ -10,7 +10,7 @@
   "criterion": "Günlük hayata ve işe uygulanabilirlik. Her kitaba “mutlaka okunmalı” denmedi: bazıları yalnızca belirli bir ihtiyaç doğduğunda öneriliyor. Yeniden taramada yönetim ve süreç kitaplarına daha çok ağırlık verildi.",
   "verdict": "Satın alırken karışabilecekler: Viktor Frankl’ın Anlam Arayışı Üzerine (Pam Roy, Moira Hummel; Üçüncü Göz) Frankl’ın kendi kitabı İnsanın Anlam Arayışı değil, onun düşüncelerine eşlik eden ayrı bir kitap. Kapağında büyük harflerle Erich Fromm yazan Yaratmayan İnsan Yok Etmek İster (Destek Yayınları), Fromm’un bir eserinin çevirisi değil; Müthiş Psikoloji’nin Fromm üzerine hazırladığı kısa bir tanıtım. Etkili Yöneticilerin 7 Alışkanlığı, Etkili İnsanların 7 Alışkanlığı ile aynı kitap değil. Etkin Yönetici, Drucker’ın ana eseri değil, uygulama defteri. Paul Ekman’ın Ne Düşündüğünü Biliyorum kitabı kesin bir yalan yakalama yöntemi gibi okunmamalı; Ekman da tek bir işaretin yalanı kanıtlamadığını söylüyor."
  },
- "note": "Değerlendirmedeki tablo biçimli öncelik listeleri aktarılan metinde yer almadığı için yalnızca adıyla anılan kitaplar alındı. Öncelikler not ve alt küme olarak tutulur, puana eklenmez; puanlar diğer kitaplarla aynı motordan gelir. Yeni Türkçe baskılar iki ayrı sitede doğrulandı.",
+ "note": "Değerlendirmedeki tablo biçimli öncelik listeleri aktarılan metinde yer almadığı için yalnızca adıyla anılan kitaplar alındı. Öncelikler not ve alt küme olarak tutulur, puana eklenmez; puanlar diğer kitaplarla aynı motordan gelir. Yeni Türkçe baskılar iki ayrı sitede doğrulandı. 21 Ekim 2026’da ikinci bir fotoğraf değerlendirmesi eklendi: Sosyolojik Düşünmek öncelikli okuma, İnsanlık 2.0 seçerek okunacak uzun vadeli bir kitap.",
  "groups": [
   {
    "id": "oncelikli",
@@ -1056,6 +1056,57 @@
     "checkedAt": "2026-10-04",
     "scope": "Türkçe baskı kapağı"
    }
+  },
+  {
+   "key": "sosyolojik-dusunmek",
+   "existingId": "thinkingsociologically",
+   "group": "oncelikli",
+   "reason": "Fotoğraftaki iki kitaptan önce okunacak olan ve sosyolojiye iyi bir giriş: gündelik hayatta doğal ve kişisel sandığımız davranışların arkasındaki toplumsal ilişkileri sorgulatır. Yönetici için değeri, kişiyi suçlamadan önce sınanacak alternatif açıklamalar üretmesi: yeni sisteme direnç, zamanında bitmeyen işler, karşılık bulmayan iyi bir ürün, uygulanmayan kararlar.",
+   "purpose": "Her bölümden sonra üç soru yazarak oku: İşimde bunun örneği ne? Şimdiye kadar hangi açıklamayı gözden kaçırmışım? Bunu nasıl kontrol edebilirim?"
+  },
+  {
+   "key": "insanlik-2-0",
+   "existingId": null,
+   "group": "uzun-vadeli",
+   "reason": "Ufuk açıcı ama öncelikli bir yönetici kitabı değil: büyük teknolojik değişimleri birlikte düşünmeye zorlar. Ancak bir teknolojideki hızlanmadan bütün toplumsal ve biyolojik dönüşümlerin aynı hızla geleceği sonucu çıkmaz; teknik olanak, güvenilir ürün, ekonomik uygulanabilirlik ve toplumsal benimsenme ayrı aşamalardır. Önce Sosyolojik Düşünmek, sonra bu kitap.",
+   "title": "The Singularity Is Near",
+   "titleTr": "İnsanlık 2.0: Tekilliğe Doğru Biyolojisini Aşan İnsan",
+   "author": "Ray Kurzweil",
+   "originalLanguage": "en",
+   "year": 2005,
+   "categories": [
+    "technology",
+    "science"
+   ],
+   "purpose": "Teknolojinin nelerin önünü açabileceğine dair iddiaları tek tek sorgulayarak, seçerek okumak için.",
+   "edition": {
+    "title": "İnsanlık 2.0: Tekilliğe Doğru Biyolojisini Aşan İnsan",
+    "isbn": "9786051712550",
+    "publisher": "Alfa Yayınları",
+    "translators": [
+     "Mine Şengel"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/insanlik-20/393072.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/kitap/insanlik-2-0/bilim/populer-bilim/urunno=0000000688766",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-21",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786051712550) ve Alfa Yayınları yayınevini gösteriyor; çevirmen: Mine Şengel. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/shelf-singularityisnear.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11921999/mh:1000/wh:9d7d7da3a",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/insanlik-20/393072.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "İnsanlık 2.0: Tekilliğe Doğru Biyolojisini Aşan İnsan",
+    "author": "Ray Kurzweil",
+    "publisher": "Alfa Yayınları",
+    "isbn": "9786051712550",
+    "language": "tr",
+    "checkedAt": "2026-10-21",
+    "scope": "Türkçe baskı kapağı"
+   }
   }
  ],
  "lookAlikes": {
@@ -1194,6 +1245,13 @@
     "onwritingwell"
    ],
    "reason": "Zinsser açık ve yalın düz yazıyı, Turabian bir araştırmanın kaynak gösterilerek düzenli bir metne dönüşmesini öğretir."
+  },
+  {
+   "type": "sequence",
+   "first": "thinkingsociologically",
+   "then": "insanlik-2-0",
+   "why": "Önce insanların teknolojileri neden benimseyip neden reddettiğini ve kurumların bunlarla nasıl değiştiğini düşünmek; ardından teknolojinin nelerin önünü açabileceğine dair iddiaları seçerek okumak.",
+   "next": "Toplumsal bakışı kazandıktan sonra teknolojik tekillik iddialarını tek tek sorgulayarak okumak için."
   }
  ]
 }

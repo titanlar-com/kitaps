@@ -328,6 +328,8 @@ def main() -> None:
     records = cover_records()
     catalog = json.loads((ROOT / 'src/catalog.json').read_text())
     covers: dict[str, dict] = {}
+    # Every cover still in the catalog keeps its report entry, also when --only picks a few.
+    in_catalog = {book['cover']['src'] for book in catalog['books'] if (book.get('cover') or {}).get('src')}
     for book in catalog['books']:
         cover = book.get('cover')
         if cover and cover.get('src') and (not args.only or book['id'] in args.only.split(',')):
@@ -351,7 +353,8 @@ def main() -> None:
         counts[entry['status']] = counts.get(entry['status'], 0) + 1
     print(json.dumps(counts, ensure_ascii=False))
     if args.write:
-        merged = {src: entry for src, entry in previous.items() if src in covers and not args.base_rev}
+        # A cover redone from its original (--base-rev) gets a fresh record; the others keep theirs.
+        merged = {src: entry for src, entry in previous.items() if src in in_catalog and not (args.base_rev and src in covers)}
         merged.update({src: {k: v for k, v in entry.items() if k != 'rejected'} for src, entry in report.items()})
         REPORT.write_text(json.dumps({
             'note': 'Each cover\'s real resolution and, where one existed, the larger copy of the same image from the same source that replaced it. Written by scripts/upgrade-covers.py.',

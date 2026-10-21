@@ -1,5 +1,6 @@
 import { DEFAULT_PAGE_SIZE, bookSlug, emptyFilters, encodeRoute } from './library.js';
 import { displayTitle } from './translation.js';
+import { workFormat } from './workFormat.js';
 
 const SITE_NAME='Kitaplık';
 const baseDescription=catalog=>`${catalog.books.length} kitap; araştırılmış seçkiler, konu rotaları, çeviri, çevirmen ve baskı bilgileriyle tek katalogda.`;
@@ -57,12 +58,12 @@ export function seoState({route,catalog,count,currentPage,totalPages,displayed})
  const href=query=>`${siteBase()}${query?'?'+query:''}`;
  const canonical=book?staticBookUrl(book):staticListingUrl(route,indexable?currentPage:1);
  const structured=book?{
-  '@context':'https://schema.org','@type':'Book',name:displayTitle(book),author:{'@type':'Person',name:book.author},inLanguage:book.cover?.language||undefined,isbn:book.verifiedEdition?.isbn||book.cover?.isbn||undefined,url:canonical
+  '@context':'https://schema.org','@type':workFormat(book)?.schema||'Book',name:displayTitle(book),author:{'@type':'Person',name:book.author},inLanguage:book.cover?.language||undefined,isbn:book.verifiedEdition?.isbn||book.cover?.isbn||undefined,isPartOf:book.format==='article'&&book.publication?.venue?{'@type':'Periodical',name:book.publication.venue}:undefined,url:canonical
  }:{
   '@context':'https://schema.org','@type':'CollectionPage',name:heading,description,url:canonical,
   ...(indexable?{mainEntity:{'@type':'ItemList',numberOfItems:count,itemListElement:displayed.map((item,index)=>({'@type':'ListItem',position:start+index,url:staticBookUrl(item),name:displayTitle(item)}))}}:{})
  };
- return {title,description:description||baseDescription(catalog),robots:indexable?'index,follow':'noindex,follow',canonical,prev:indexable&&currentPage>1?staticListingUrl(route,currentPage-1):'',next:indexable&&currentPage<totalPages?staticListingUrl(route,currentPage+1):'',structured,interactive:href(canonicalQuery),ogType:book?'book':'website'};
+ return {title,description:description||baseDescription(catalog),robots:indexable?'index,follow':'noindex,follow',canonical,prev:indexable&&currentPage>1?staticListingUrl(route,currentPage-1):'',next:indexable&&currentPage<totalPages?staticListingUrl(route,currentPage+1):'',structured,interactive:href(canonicalQuery),ogType:book?(workFormat(book)?'article':'book'):'website'};
 }
 
 function upsertMeta(name,content) {

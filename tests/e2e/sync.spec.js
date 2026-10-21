@@ -46,6 +46,16 @@ const hidePage = page => page.evaluate(() => {
   Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' });
   document.dispatchEvent(new Event('visibilitychange'));
 });
+// The footer sits below the book covers. Covers near it start loading only once it is
+// scrolled into view, and a cover taller than 2:3 makes its card taller, so the footer
+// can move under a pointer click that was aimed a moment earlier (seen in WebKit under
+// load). The click waits for those covers.
+const openSyncFromFooter = async page => {
+  const button = page.getByRole('button', { name: 'Cihaz eşitleme' });
+  await button.scrollIntoViewIfNeeded();
+  await page.waitForLoadState('networkidle');
+  await button.click();
+};
 const markPurchased = async page => {
   await page.goto(`./?book=${BOOK.slug}`);
   const button = page.getByRole('button', { name: 'Satın alındı', exact: true });
@@ -83,7 +93,7 @@ test('a token that can read but not write is refused and never stored', async ({
   const github = fakeGitHub({ canWrite: false });
   await github.attach(page.context());
   await page.goto('./');
-  await page.getByRole('button', { name: 'Cihaz eşitleme' }).click();
+  await openSyncFromFooter(page);
   const dialog = page.getByRole('dialog', { name: 'Cihazlar arası eşitleme' });
   await dialog.getByLabel('İnce ayarlı (fine-grained) GitHub anahtarı').fill(TOKEN);
   await dialog.getByRole('button', { name: 'Bu cihazda bağla' }).click();
@@ -156,7 +166,7 @@ test('connecting a second device asks before it replaces a book the first one sa
   await expect.poll(() => github.puts.length).toBe(1);
 
   await computerPage.keyboard.press('Escape');
-  await computerPage.getByRole('button', { name: 'Cihaz eşitleme' }).click();
+  await openSyncFromFooter(computerPage);
   const dialog = computerPage.getByRole('dialog', { name: 'Cihazlar arası eşitleme' });
   await dialog.getByLabel('İnce ayarlı (fine-grained) GitHub anahtarı').fill(TOKEN);
   await dialog.getByRole('button', { name: 'Bu cihazda bağla' }).click();

@@ -5,6 +5,7 @@ import { DEFAULT_PAGE_SIZE, bookSlug } from '../src/library.js';
 import { displayTitle,recommendedTranslation,translationStatus,turkishEdition } from '../src/translation.js';
 import { readingGuide } from '../src/recommendations.js';
 import { splitAuthors } from '../src/authors.js';
+import { publicationLine,publicationLinkLabel,publicationUrl,workFormat } from '../src/workFormat.js';
 
 const projectRoot=fileURLToPath(new URL('../',import.meta.url));
 const catalog=JSON.parse(fs.readFileSync(path.join(projectRoot,'src/catalog.json'),'utf8'));
@@ -81,11 +82,13 @@ function renderBook(book) {
  const description=summary(`${shown}, ${book.author}. ${guide.purpose}`);
  const image=book.cover?`${appBase}${book.cover.src}`:'';
  const authors=splitAuthors(book.author).map(name=>({'@type':'Person',name}));
- const structured={'@context':'https://schema.org','@type':'Book',name:shown,author:authors.length>1?authors:authors[0],inLanguage:edition?'tr':book.cover?.language||undefined,isbn:edition?.isbn||book.cover?.isbn||undefined,publisher:edition?.publisher?{'@type':'Organization',name:edition.publisher}:undefined,translator:translation?.translators.map(name=>({'@type':'Person',name})),alternateName:book.originalTitle&&book.originalTitle!==shown?book.originalTitle:undefined,image:image||undefined,url:canonical};
+ const format=workFormat(book);
+ const structured={'@context':'https://schema.org','@type':format?.schema||'Book',name:shown,author:authors.length>1?authors:authors[0],inLanguage:edition?'tr':book.cover?.language||undefined,isbn:edition?.isbn||book.cover?.isbn||undefined,publisher:edition?.publisher?{'@type':'Organization',name:edition.publisher}:undefined,translator:translation?.translators.map(name=>({'@type':'Person',name})),alternateName:book.originalTitle&&book.originalTitle!==shown?book.originalTitle:undefined,isPartOf:book.format==='article'&&book.publication?.venue?{'@type':'Periodical',name:book.publication.venue}:undefined,image:image||undefined,url:canonical};
  const categories=book.categories.map(id=>catalog.categories.find(item=>item.id===id)).filter(Boolean);
  const facts=[
   book.originalTitle&&book.originalTitle!==shown?`Özgün ad: ${book.originalTitle}`:'',
   book.years.length?`İlk yayın: ${book.years.join(' / ')}`:'',
+  format?`${format.label}: ${publicationLine(book.publication)}`:'',
   `Türkçe baskı: ${status.label}`,
   edition?.publisher?`Yayınevi: ${edition.publisher}`:'',
   translation?.translators.length?`Önerilen çeviri: ${translation.translators.join(', ')}${translation.publisher?` (${translation.publisher})`:''}`:'',
@@ -95,8 +98,8 @@ function renderBook(book) {
  const topics=categories.length?`<p>Konular: ${categories.map(item=>`<a href="${publicBase}category/${encodeURIComponent(item.id)}/">${escapeHtml(item.label)}</a>`).join(', ')}</p>`:'';
  const collections=book.collectionIds.length?`<p>Kaynak kümeleri: ${book.collectionIds.map(id=>collectionMap[id]).filter(Boolean).map(item=>`<a href="${publicBase}collection/${encodeURIComponent(item.id)}/">${escapeHtml(item.title)}</a>`).join(', ')}</p>`:'';
  const cover=book.cover?`<img src="${escapeHtml(`${appBase}${book.cover.src.replace(/^covers\//,'covers/sm/')}`)}" alt="${escapeHtml(`${book.cover.title} — ${book.cover.publisher||''} baskı kapağı`)}" width="160" height="240" loading="lazy">`:'';
- const body=`<header><a href="${publicBase}">Kitaplık</a><h1>${escapeHtml(shown)}</h1><p>${escapeHtml(book.author)}</p></header><main>${cover}<ul>${facts}</ul><h2>Ne için okumalı?</h2><p>${escapeHtml(guide.purpose)}</p>${links(guide.before,'Önce okunabilecekler')}${links(guide.after,'Sonra okunabilecekler')}${links(guide.companions,'Birlikte okunabilecekler')}${topics}${collections}<p class="actions"><a href="${escapeHtml(interactiveFor({book}))}">Kitabı etkileşimli katalogda aç</a></p></main>`;
- write(`books/${slug}/`,documentShell({title,description,canonical,type:'book',structured,body,image}));
+ const body=`<header><a href="${publicBase}">Kitaplık</a><h1>${escapeHtml(shown)}</h1><p>${escapeHtml(book.author)}</p></header><main>${cover}<ul>${facts}</ul><h2>Ne için okumalı?</h2><p>${escapeHtml(guide.purpose)}</p>${links(guide.before,'Önce okunabilecekler')}${links(guide.after,'Sonra okunabilecekler')}${links(guide.companions,'Birlikte okunabilecekler')}${topics}${collections}${format&&publicationUrl(book.publication)?`<p><a href="${escapeHtml(publicationUrl(book.publication))}">${escapeHtml(publicationLinkLabel(book.publication))}</a></p>`:''}<p class="actions"><a href="${escapeHtml(interactiveFor({book}))}">Kitabı etkileşimli katalogda aç</a></p></main>`;
+ write(`books/${slug}/`,documentShell({title,description,canonical,type:format?'article':'book',structured,body,image}));
 }
 
 fs.rmSync(catalogRoot,{recursive:true,force:true});

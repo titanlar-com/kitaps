@@ -4,6 +4,30 @@
   "short": "Temel okumalar",
   "description": "Katalogdaki belirli eserleri daha verimli okumak için önerilen giriş, bağlam ve eşlik kitapları. İlişkiler zorunlu önkoşul değil, editoryal öğrenme sırasıdır.",
   "source": "https://github.com/karacaismail/kitaps",
+  "context": {
+    "purpose": "Katalogdaki kümeleri daha verimli okumak için dışarıdan gelen giriş, bağlam ve eşlik kitapları.",
+    "criterion": "Her kitap, katalogdaki belirli kitapları açan bir anahtar olmalı; “genel kültür için iyi olur” diye hiçbir şey eklenmedi. Türkçe baskısı doğrulanamayanlar özgün adıyla gösterilir.",
+    "verdict": "Hepsini baştan okumak gerekmiyor. Baştan okunacaklar kataloğun her yerini açar; yaklaşık dört aylık bir başlangıçtır. Geri kalanlar kümeye gelince okunur: piyasa kitaplarına başlarken Malkiel, Osmanlı biyografilerine başlarken İnalcık, Frankfurt Okulu’na gelince Martin Jay, yapay zekâya gelince Bostrom. Yöntem olarak sürekli uygulananlar: her biyografiden önce konusunun Çok Kısa Bir Giriş kitabı (Dost Kitabevi), her Rus romanının yanında Nabokov’un Rus Edebiyatı Dersleri. Yönetimde Grove’un Yüksek Çıktılı Yönetim’i Drucker’dan bile önce okunabilir, çünkü en somut olanı. Cesur Yeni Dünya’yı Orwell’in 1984’üyle yan yana okumak, iki kitabın da neden hâlâ tartışıldığını gösterir."
+  },
+  "start": {
+    "id": "baslangic",
+    "title": "Baştan okunacaklar: kataloğun her yerini açanlar",
+    "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+    "books": [
+      "personalmbamastertheartofbusiness",
+      "100bestbusinessbooksofalltime",
+      "economicstheusersguide",
+      "maniaspanicsandcrashes",
+      "predictablyirrational",
+      "thinkingstrategically",
+      "littlehistoryofphilosophy",
+      "thinkingsociologically",
+      "littlehistoryoftheworld",
+      "natashasdance",
+      "askeristratejinintemellerikuramcilar",
+      "strategyahistory"
+    ]
+  },
   "groups": [
     {
       "id": "method",
@@ -805,6 +829,51 @@
             "scope": "Türkçe baskı kapağı",
             "isbn": "9786058053618"
           }
+        },
+        {
+          "title": "The Corrosion of Character",
+          "author": "Richard Sennett",
+          "categories": [
+            "economy",
+            "management"
+          ],
+          "reason": "Çalışma hayatını çalışanın tarafından görmek için: esnek kapitalizmde değişimin, belirsizliğin ve kısa vadeli iş ilişkilerinin insan üzerindeki sonuçları. Sosyolojik Düşünmek’ten sonra ikinci okuma.",
+          "unlocks": [
+            "caseforgoodjobs",
+            "aworldwithoutwork",
+            "deathsofdespair"
+          ],
+          "year": 1998,
+          "titleTr": "Karakter Aşınması: Yeni Kapitalizmde İşin Kişilik Üzerindeki Etkileri",
+          "edition": {
+            "title": "Karakter Aşınması: Yeni Kapitalizmde İşin Kişilik Üzerindeki Etkileri",
+            "isbn": "9789755393704",
+            "publisher": "Ayrıntı Yayınları",
+            "translators": [
+              "Barış Yıldırım"
+            ],
+            "sourceUrl": "https://www.kitapyurdu.com/kitap/karakter-asinmasi-yeni-kapitalizmde-isin-kisilik-uzerindeki-etkileri/50042.html",
+            "sourceType": "retailer",
+            "secondSourceUrl": "https://www.ayrintiyayingrubu.com/kitap/karakter-asinmasi-2/",
+            "secondSourceType": "publisher",
+            "checkedAt": "2026-10-21",
+            "basis": "two-stage check",
+            "note": "kitapyurdu.com ve ayrintiyayingrubu.com aynı ISBN'i (9789755393704) ve Ayrıntı Yayınları yayınevini gösteriyor; çevirmen: Barış Yıldırım. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+          },
+          "cover": {
+            "src": "covers/foundation-corrosionofcharacter.jpg",
+            "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11914585/wi:500/wh:89700f7d9",
+            "sourceUrl": "https://www.kitapyurdu.com/kitap/karakter-asinmasi-yeni-kapitalizmde-isin-kisilik-uzerindeki-etkileri/50042.html",
+            "sourceName": "kitapyurdu.com",
+            "title": "Karakter Aşınması: Yeni Kapitalizmde İşin Kişilik Üzerindeki Etkileri",
+            "author": "Richard Sennett",
+            "publisher": "Ayrıntı Yayınları",
+            "isbn": "9789755393704",
+            "language": "tr",
+            "checkedAt": "2026-10-21",
+            "scope": "Türkçe baskı kapağı"
+          },
+          "sourceUrl": "https://www.kitapyurdu.com/kitap/karakter-asinmasi-yeni-kapitalizmde-isin-kisilik-uzerindeki-etkileri/50042.html"
         }
       ]
     },
@@ -1092,6 +1161,64 @@
             "isbn": "9786257027052"
           },
           "sourceUrl": "https://openlibrary.org/search?title=%E5%8D%81%E4%B8%AA%E8%AF%8D%E6%B1%87%E9%87%8C%E7%9A%84%E4%B8%AD%E5%9B%BD&author=Yu+Hua"
+        },
+        {
+          "title": "The Ottoman Empire: The Classical Age 1300–1600",
+          "author": "Halil İnalcık",
+          "categories": [
+            "history"
+          ],
+          "reason": "Devlet-i Aliyye’den kısa bir giriş isteyene: Osmanlı devletinin kuruluşundan klasik çağın sonuna kurumları, toplumu ve ekonomisi tek ciltte.",
+          "unlocks": [
+            "lesoriginesdelempireottoman",
+            "fatihsultanmehmedvezamani"
+          ],
+          "companions": [
+            "devletialiyyeosmanliimparatorluguuzerinearastirmalari"
+          ],
+          "year": 1973,
+          "titleTr": "Osmanlı İmparatorluğu Klasik Çağ (1300-1600)",
+          "edition": {
+            "title": "Osmanlı İmparatorluğu Klasik Çağ (1300-1600)",
+            "isbn": "9786057635099",
+            "publisher": "Kronik Kitap",
+            "translators": [
+              "Ruşen Sezer"
+            ],
+            "sourceUrl": "https://www.kitapyurdu.com/kitap/osmanli-imparatorlugu-klasik-cag-13001600/501208.html",
+            "sourceType": "retailer",
+            "secondSourceUrl": "https://kronikkitap.com/kitap/osmanli-imparatorlugu-klasik-cag/",
+            "secondSourceType": "publisher",
+            "checkedAt": "2026-10-21",
+            "basis": "two-stage check",
+            "note": "kitapyurdu.com ve kronikkitap.com aynı ISBN'i (9786057635099) ve Kronik Kitap yayınevini gösteriyor; çevirmen: Ruşen Sezer. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+          },
+          "cover": {
+            "src": "covers/foundation-ottomanempiretheclassicalage13001600.jpg",
+            "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:8634554/mh:1000/wh:2653942df",
+            "sourceUrl": "https://www.kitapyurdu.com/kitap/osmanli-imparatorlugu-klasik-cag-13001600/501208.html",
+            "sourceName": "kitapyurdu.com",
+            "title": "Osmanlı İmparatorluğu Klasik Çağ (1300-1600)",
+            "author": "Halil İnalcık",
+            "publisher": "Kronik Kitap",
+            "isbn": "9786057635099",
+            "language": "tr",
+            "checkedAt": "2026-10-21",
+            "scope": "Türkçe baskı kapağı"
+          },
+          "sourceUrl": "https://www.kitapyurdu.com/kitap/osmanli-imparatorlugu-klasik-cag-13001600/501208.html"
+        },
+        {
+          "existingId": "howasiaworks",
+          "reason": "Katalogdaki Asya kitaplarının kendi içindeki en iyi girişi: Çin üzerine ekonomi-politik kitaplara geçmeden önce oku.",
+          "unlocks": [
+            "houseofhuawei",
+            "beijingrules",
+            "breakneck",
+            "chinainc",
+            "alibaba",
+            "whatchinesewant"
+          ]
         }
       ]
     },
@@ -1184,6 +1311,20 @@
             "scope": "Türkçe baskı kapağı",
             "isbn": "9786056722165"
           }
+        },
+        {
+          "existingId": "innovators",
+          "reason": "Teknoloji ve yapay zekâ kümesinin katalogdaki kendi temeli: bilgisayardan internete dijital çağın nasıl kurulduğunu anlatır; bu kümede önce o okunmalı.",
+          "unlocks": [
+            "chipwar",
+            "empireofai",
+            "supremacy",
+            "comingwave",
+            "humancompatible",
+            "bignine",
+            "thinkingmachine",
+            "ageofsurveillancecapitalism"
+          ]
         }
       ]
     },
@@ -1246,6 +1387,67 @@
             "scope": "Uluslararası baskı kapağı",
             "isbn": "9781411601727"
           }
+        },
+        {
+          "title": "How to Get Startup Ideas",
+          "author": "Paul Graham",
+          "categories": [
+            "enterprise"
+          ],
+          "format": "essay",
+          "reason": "Paul Graham’ın ücretsiz denemesi: iyi girişim fikirleri aranarak değil, kurucunun kendi yaşadığı bir sorunu fark etmesiyle bulunur. Katalogdaki Y Combinator ekolünden kitapların (Traction, The Cold Start Problem, Founding Sales) atıf yaptığı metinlerden.",
+          "unlocks": [
+            "traction",
+            "coldstartproblem",
+            "foundingsales"
+          ],
+          "year": 2012,
+          "publication": {
+            "venue": "paulgraham.com",
+            "readUrl": "https://paulgraham.com/startupideas.html"
+          },
+          "sourceUrl": "https://paulgraham.com/startupideas.html"
+        },
+        {
+          "title": "Do Things That Don't Scale",
+          "author": "Paul Graham",
+          "categories": [
+            "enterprise"
+          ],
+          "format": "essay",
+          "reason": "Paul Graham’ın ücretsiz denemesi: ilk kullanıcıları tek tek, elle kazanmak; başlangıçta ölçeklenmeyen işleri yapmanın önemi.",
+          "unlocks": [
+            "traction",
+            "coldstartproblem",
+            "foundingsales"
+          ],
+          "year": 2013,
+          "publication": {
+            "venue": "paulgraham.com",
+            "readUrl": "https://paulgraham.com/ds.html"
+          },
+          "sourceUrl": "https://paulgraham.com/ds.html"
+        },
+        {
+          "title": "Default Alive or Default Dead?",
+          "author": "Paul Graham",
+          "categories": [
+            "enterprise",
+            "finance"
+          ],
+          "format": "essay",
+          "reason": "Paul Graham’ın ücretsiz denemesi: bugünkü büyüme ve harcama hızıyla şirketin parası bitmeden kâra geçip geçemeyeceğini hesaplamak.",
+          "unlocks": [
+            "traction",
+            "coldstartproblem",
+            "foundingsales"
+          ],
+          "year": 2015,
+          "publication": {
+            "venue": "paulgraham.com",
+            "readUrl": "https://paulgraham.com/aord.html"
+          },
+          "sourceUrl": "https://paulgraham.com/aord.html"
         }
       ]
     },
@@ -1413,6 +1615,51 @@
           "companions": [
             "bravenewworld"
           ]
+        },
+        {
+          "title": "Köpeğiyle Dolaşan Kadın: Otuz Yedi Seçme Öykü",
+          "originalTitle": null,
+          "author": "Anton Chekhov",
+          "categories": [
+            "literature"
+          ],
+          "reason": "Rus edebiyatının en kolay ve en iyi kapısı: büyük romanlardan önce Çehov’un kısa öyküleriyle başlamak için. İş Bankası Hasan Âli Yücel Klasikleri’ndeki geniş öykü seçkisi.",
+          "unlocks": [
+            "преступлениеинаказание",
+            "братьякарамазовы",
+            "воинаимир",
+            "аннакаренина"
+          ],
+          "titleTr": "Köpeğiyle Dolaşan Kadın: Otuz Yedi Seçme Öykü",
+          "edition": {
+            "title": "Köpeğiyle Dolaşan Kadın: Otuz Yedi Seçme Öykü",
+            "isbn": "9789754588767",
+            "publisher": "Türkiye İş Bankası Kültür Yayınları",
+            "translators": [
+              "Ergin Altay"
+            ],
+            "sourceUrl": "https://www.kitapyurdu.com/kitap/kopegiyle-dolasan-kadin-ciltsiz-otuz-yedi-secme-oyku/87023.html",
+            "sourceType": "retailer",
+            "secondSourceUrl": "https://www.iskultur.com.tr/kopegiyle-dolasan-kadin-otuz-yedi-secme-oyku.aspx",
+            "secondSourceType": "publisher",
+            "checkedAt": "2026-10-21",
+            "basis": "two-stage check",
+            "note": "kitapyurdu.com ve iskultur.com.tr aynı ISBN'i (9789754588767) ve Türkiye İş Bankası Kültür Yayınları yayınevini gösteriyor; çevirmen: Ergin Altay. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+          },
+          "cover": {
+            "src": "covers/foundation-kopegiyledolasankadinotuzyedisecmeoyku.jpg",
+            "imageUrl": "https://i.dr.com.tr/cache/600x600-0/originals/0000000220463-1.jpg",
+            "sourceUrl": "https://www.dr.com.tr/kitap/kopegiyle-dolasan-kadin-hasan-ali-yucel-klasikleri/anton-pavlovic-cehov/edebiyat/roman/dunya-klasik/urunno=0000000220463",
+            "sourceName": "dr.com.tr",
+            "title": "Köpeğiyle Dolaşan Kadın: Otuz Yedi Seçme Öykü",
+            "author": "Anton Chekhov",
+            "publisher": "Türkiye İş Bankası Kültür Yayınları",
+            "isbn": "9789754588767",
+            "language": "tr",
+            "checkedAt": "2026-10-21",
+            "scope": "Türkçe baskı kapağı"
+          },
+          "sourceUrl": "https://www.kitapyurdu.com/kitap/kopegiyle-dolasan-kadin-ciltsiz-otuz-yedi-secme-oyku/87023.html"
         }
       ]
     },
@@ -1481,5 +1728,38 @@
         }
       ]
     }
-  ]
+  ],
+  "links": [
+    {
+      "type": "sequence",
+      "first": "thinkingsociologically",
+      "then": "corrosionofcharacter",
+      "why": "Sosyolojik düşünme alışkanlığını kazandıktan sonra aynı bakışı çalışma hayatına uygulamak için ikinci okuma.",
+      "next": "Sosyolojik bakışı çalışma hayatına, değişim ve belirsizliğin çalışan üzerindeki etkisine uygulamak için."
+    },
+    {
+      "type": "sequence",
+      "first": "highoutputmanagement",
+      "then": "essentialdrucker",
+      "why": "Grove’un kitabı Drucker’dan bile önce okunabilir, çünkü en somut olanı.",
+      "next": "Somut yönetim pratiğinden sonra Drucker’ın yönetim ilkelerine geçmek için."
+    },
+    {
+      "type": "sequence",
+      "first": "musashiroman",
+      "then": "五輪書gorinnosho",
+      "why": "Önce roman: Musashi’nin hayatını ve dünyasını tanıdıktan sonra Beş Çember daha kolay okunur.",
+      "next": "Romandaki kılıç ustasının kendi kaleminden strateji kitabı."
+    },
+    {
+      "type": "sequence",
+      "first": "五輪書gorinnosho",
+      "then": "葉隠hagakure",
+      "why": "Musashi okumasında sıra roman, Beş Çember, sonra Hagakure.",
+      "next": "Aynı geleneğin samuray ahlakını anlatan metni."
+    }
+  ],
+  "notes": {
+    "مقدمةابنخلدونmukaddime": "İbn Haldun için ayrı bir giriş kitabı gerekmez: Dergâh Yayınları’nın Süleyman Uludağ çevirisindeki uzun giriş, Mukaddime’nin ne yapmaya çalıştığını anlatır. Başka bir baskı okunuyorsa bu girişi ayrıca edin."
+  }
 }

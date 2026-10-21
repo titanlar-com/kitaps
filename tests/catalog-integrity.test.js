@@ -46,6 +46,8 @@ test('companion workbooks and disputed translator credits are not presented as e
  for(const id of ['influence','7habitsofhighlyeffectivepeople']){assert.deepEqual(books[id].verifiedEdition.translators,[]);assert.ok(books[id].sourceIssue)}
 });
 test('unresolved source records remain visible and explain why a cover is absent',()=>{
- for(const b of catalog.books.filter(b=>!b.cover))assert.ok(b.sourceIssue?.note,b.id);
+ // Articles and essays have no cover; they name where they appeared instead.
+ for(const b of catalog.books.filter(b=>!b.cover&&!b.format))assert.ok(b.sourceIssue?.note,b.id);
+ for(const b of catalog.books.filter(b=>b.format)){assert.ok(['article','essay'].includes(b.format),b.id);assert.ok(b.publication?.venue,b.id);assert.equal(b.cover,undefined,b.id)}
  assert.equal(translationStatus({verifiedEdition:{originalLanguage:'tr'}}).label,'Türkçe eser');
 });

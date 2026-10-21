@@ -30,10 +30,13 @@ test('added dates follow the library\'s history: Kitaps, then Kitap Atlası, the
  assert.equal(byId['12'].addedAt,'2026-09-26');
  assert.equal(byId[catalog.mapping['children:pitircik']].addedAt,'2026-09-28');
  assert.equal(catalog.books.map(book=>book.addedAt).sort()[0],'2026-09-02');
- // The shelf review's new books arrive together; books already in the catalog keep their day.
+ // Each shelf review's new books arrive together on the day it was checked (4 and
+ // 21 October 2026); books already in the catalog keep their earlier day.
  for(const item of shelf.books){
   const book=byId[catalog.mapping[`shelf:${item.key}`]];
+  const day=item.edition?.checkedAt||shelf.checkedAt;
   if(item.existingId)assert.ok(book.addedAt<'2026-10-04',item.key);
-  else assert.equal(book.addedAt,'2026-10-04',item.key);
+  else assert.equal(book.addedAt,day,item.key);
  }
+ assert.deepEqual([...new Set(shelf.books.filter(item=>!item.existingId).map(item=>item.edition?.checkedAt||shelf.checkedAt))].sort(),['2026-10-04','2026-10-21']);
 });

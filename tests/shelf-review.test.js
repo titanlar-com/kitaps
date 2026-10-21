@@ -7,6 +7,7 @@ import {readingGraphFor} from '../src/ranking/readingGraph.ts';
 
 const read=path=>JSON.parse(fs.readFileSync(new URL(path,import.meta.url)));
 const shelf=read('../data/shelf-review.json');
+const originals=read('../data/original-sources.json');
 const catalog=read('../src/catalog.json');
 const byId=Object.fromEntries(catalog.books.map(book=>[book.id,book]));
 const resolve=reference=>catalog.mapping[`shelf:${reference}`]||reference;
@@ -23,8 +24,12 @@ test('every shelf recommendation is one catalog book in the shelf collection',()
   const book=mapped(item.key);
   assert.ok(book.groupIds.includes(`${shelf.id}:${item.group}`),item.key);
   // Books already in the catalog keep their identity; new ones never merge into another work.
+  // A later review may list it too, but only by naming it (İnsanlık 2.0 among the original sources).
   if(item.existingId)assert.equal(book.id,item.existingId,item.key);
-  else assert.deepEqual(book.origins,['shelf'],item.key);
+  else{
+   assert.equal(book.origins[0],'shelf',item.key);
+   for(const origin of book.origins.slice(1))assert.ok(origin==='originals'&&originals.books.some(entry=>entry.existingId===book.id),`${item.key}: ${origin}`);
+  }
  }
 });
 

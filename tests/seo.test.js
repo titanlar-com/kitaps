@@ -47,6 +47,17 @@ test('book pages use unique static canonical URLs',()=>{
  assert.equal(state.structured['@type'],'Book');
 });
 
+test('articles and essays are described as what they are, a journal only for an article',()=>{
+ const state=id=>seoState({route:route({book:id}),catalog,count:catalog.books.length,currentPage:1,totalPages:1,displayed:[]});
+ const article=state('dilemmasinageneraltheoryofplanning');
+ assert.equal(article.structured['@type'],'ScholarlyArticle');
+ assert.deepEqual(article.structured.isPartOf,{'@type':'Periodical',name:'Policy Sciences'});
+ assert.equal(article.ogType,'article');
+ const essay=state('dothingsthatdontscale');
+ assert.equal(essay.structured['@type'],'Article');
+ assert.equal(essay.structured.isPartOf,undefined);
+});
+
 test('build generator emits crawlable catalog and unique book HTML',()=>{
  const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'kitaps-seo-'));
  const output=path.join(temporary,'dist');

@@ -65,8 +65,8 @@
   "5typesofwealth": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "7habitsofhighlyeffectivepeople": {
    "date": "2026-09-26",
@@ -491,8 +491,8 @@
   "bananeoluyor": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "bankablebusinessplans": {
    "date": "2026-09-26",
@@ -713,8 +713,8 @@
   "boundaries": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "bourgeoisequality": {
    "date": "2026-09-26",
@@ -727,6 +727,12 @@
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "boyd": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "brainrules": {
    "date": "2026-09-26",
@@ -773,8 +779,8 @@
   "buildingasecondbrain": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "builttolast": {
    "date": "2026-09-26",
@@ -848,6 +854,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "capitalismsocialismanddemocracy": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "carguysvsbeancounters": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -869,8 +881,8 @@
   "catwhotaughtzen": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "cengizhan": {
    "date": "2026-09-02",
@@ -883,6 +895,12 @@
    "repository": "kitaplik",
    "commit": "2d35e9c",
    "matchedBy": "id"
+  },
+  "changebydesign": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "chaosmonkeys": {
    "date": "2026-09-26",
@@ -998,6 +1016,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "comingtechnologicalsingularity": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "comingwave": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -1100,6 +1124,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "corrosionofcharacter": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "crashed": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -1187,6 +1217,12 @@
   "deepwork": {
    "date": "2026-10-04",
    "repository": "kitaplik",
+   "commit": "4e63728",
+   "matchedBy": "id"
+  },
+  "defaultaliveordefaultdead": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
    "commit": null,
    "matchedBy": "working-tree"
   },
@@ -1262,6 +1298,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "dilemmasinageneraltheoryofplanning": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "direct": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -1327,6 +1369,12 @@
    "repository": "kitaps",
    "commit": "8f6190d",
    "matchedBy": "first-kitaps-id"
+  },
+  "dothingsthatdontscale": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "doublexeconomy": {
    "date": "2026-09-26",
@@ -1427,8 +1475,8 @@
   "effectiveexecutiveinaction": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "einsteinyasamiveevreni": {
    "date": "2026-09-02",
@@ -1487,8 +1535,8 @@
   "emotionallyintelligentleader": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "empireofai": {
    "date": "2026-09-26",
@@ -1700,6 +1748,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "fearlessorganization": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "fifthdiscipline": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -1861,6 +1915,12 @@
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "fullcatastropheliving": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "futureofcompetition": {
    "date": "2026-09-26",
@@ -2078,6 +2138,12 @@
    "commit": "8f6190d",
    "matchedBy": "first-kitaps-id"
   },
+  "grit": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "growingabusiness": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -2183,8 +2249,8 @@
   "hayaliniyorganinagoreuzat": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "hayvanlarlakonusancocuk": {
    "date": "2026-09-28",
@@ -2195,8 +2261,8 @@
   "hbrs10mustreadsonmanagingyourself": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "hedgehogging": {
    "date": "2026-09-26",
@@ -2215,6 +2281,12 @@
    "repository": "kitaps",
    "commit": "8f6190d",
    "matchedBy": "first-kitaps-id"
+  },
+  "helplessness": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "herecomeseverybody": {
    "date": "2026-09-26",
@@ -2354,6 +2426,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "howtogetstartupideas": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "howtoliewithstatistics": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -2435,8 +2513,8 @@
   "iletisimcatismalariveempati": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "ilprincipe": {
    "date": "2026-09-02",
@@ -2495,8 +2573,8 @@
   "influenceandpersuasion": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "influenceempire": {
    "date": "2026-09-26",
@@ -2702,6 +2780,12 @@
    "commit": "8f6190d",
    "matchedBy": "first-kitaps-id"
   },
+  "kopegiyledolasankadinotuzyedisecmeoyku": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "korkuncivan": {
    "date": "2026-09-02",
    "repository": "kitaps",
@@ -2747,8 +2831,8 @@
   "lavieinterieure": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "leadershipbs": {
    "date": "2026-09-26",
@@ -2981,8 +3065,8 @@
   "machinethatchangedtheworld": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "macrowikinomics": {
    "date": "2026-09-26",
@@ -3005,8 +3089,8 @@
   "magicwords": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "makeitstickthescienceofsuccessfullearning": {
    "date": "2026-09-28",
@@ -3065,8 +3149,8 @@
   "manualforwritersofresearchpapersthesesanddissertations": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "manwhoknew": {
    "date": "2026-09-26",
@@ -3140,6 +3224,18 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "mcmindfulness": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
+  "measurewhatmatters": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "meditations": {
    "date": "2026-09-02",
    "repository": "kitaps",
@@ -3157,6 +3253,12 @@
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "mindset": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "miominmio": {
    "date": "2026-09-28",
@@ -3254,6 +3356,12 @@
    "commit": "8f6190d",
    "matchedBy": "first-kitaps-id"
   },
+  "multilabpreregisteredreplicationoftheegodepletioneffect": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "musashiroman": {
    "date": "2026-09-02",
    "repository": "kitaps",
@@ -3335,8 +3443,8 @@
   "nevereatalone": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "neversplitthedifference": {
    "date": "2026-09-02",
@@ -3356,11 +3464,23 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "neweconomics": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "newleaders100dayactionplan": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "newnewproductdevelopmentgame": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "newpower": {
    "date": "2026-09-26",
@@ -3560,6 +3680,12 @@
    "commit": "1176650",
    "matchedBy": "id"
   },
+  "ottomanempiretheclassicalage13001600": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "ourdailymeds": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -3655,6 +3781,12 @@
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "personalandorganizationalchangethroughgroupmethods": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "personalhistory": {
    "date": "2026-09-26",
@@ -3824,6 +3956,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "practiceofmanagement": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "predictablyirrational": {
    "date": "2026-09-28",
    "repository": "kitaplik",
@@ -3902,6 +4040,12 @@
    "commit": "1176650",
    "matchedBy": "id"
   },
+  "psychologicalsafetyandlearningbehaviorinworkteams": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "psychologiedesfoules": {
    "date": "2026-09-02",
    "repository": "kitaps",
@@ -3935,8 +4079,8 @@
   "pursuitofperfect": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "quest": {
    "date": "2026-09-26",
@@ -4009,6 +4153,12 @@
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "reflectivepractitioner": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "reimaginingcapitalism": {
    "date": "2026-09-26",
@@ -4145,8 +4295,8 @@
   "sameasever": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "samsungrising": {
    "date": "2026-09-26",
@@ -4195,6 +4345,18 @@
    "repository": "kitaps",
    "commit": "8f6190d",
    "matchedBy": "first-kitaps-id"
+  },
+  "sciencesoftheartificial": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
+  "sciencestrategyandwar": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "scrumtheartofdoingtwicetheworkinhalfthetime": {
    "date": "2026-09-02",
@@ -4256,11 +4418,35 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "selfefficacytheexerciseofcontrol": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
+  "selfefficacytowardaunifyingtheoryofbehavioralchange": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "sellingtheinvisible": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "servantasleader": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
+  "servantleadership": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "sevdalibulut": {
    "date": "2026-09-28",
@@ -4327,6 +4513,12 @@
    "repository": "kitaplik",
    "commit": "2d35e9c",
    "matchedBy": "id"
+  },
+  "singularityisnear": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "sixsigmaway": {
    "date": "2026-09-26",
@@ -4412,6 +4604,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "spiralmodelofsoftwaredevelopmentandenhancement": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "spqr": {
    "date": "2026-09-28",
    "repository": "kitaplik",
@@ -4423,6 +4621,12 @@
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "statisticalmethodfromtheviewpointofqualitycontrol": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "stevejobs": {
    "date": "2026-09-26",
@@ -4517,8 +4721,8 @@
   "streetcoder": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "streetsmarts": {
    "date": "2026-09-26",
@@ -4622,6 +4826,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "teaming": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "testingbusinessideas": {
    "date": "2026-09-28",
    "repository": "kitaplik",
@@ -4631,8 +4841,8 @@
   "thankyouforarguing": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "thankyouforbeinglate": {
    "date": "2026-09-26",
@@ -4739,8 +4949,8 @@
   "tinyhabits": {
    "date": "2026-10-04",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "4e63728",
+   "matchedBy": "id"
   },
   "tippingpoint": {
    "date": "2026-09-26",
@@ -5245,6 +5455,12 @@
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "willpower": {
+   "date": "2026-10-21",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "windinthewillows": {
    "date": "2026-09-28",

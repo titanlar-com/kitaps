@@ -1,7 +1,8 @@
 import React from 'react';
 import { Alert,Anchor,Button,Group,Paper,Text,Title } from '@mantine/core';
-import { IconShoppingBag,IconPhoto,IconArrowUpRight } from '@tabler/icons-react';
+import { IconShoppingBag,IconPhoto,IconArrowUpRight,IconSchool } from '@tabler/icons-react';
 import { recommendedTranslation,translationStatus,turkishEdition } from '../translation';
+import { publicationLine,workFormat } from '../workFormat';
 
 const EVIDENCE={
  research:'Türkçe baskı iki bağımsız araştırma aşamasında doğrulandı.',
@@ -14,7 +15,29 @@ const EVIDENCE={
  'source-note':'Kaynak listesindeki doğrulanmış çeviri notundan alındı.',
 };
 
+/** An article or essay has no edition to buy: its page says where it appeared
+ * and links to the text, or to its DOI record when the text is not free. */
+function PublicationSummary({book,format}){
+ const p=book.publication;
+ const scholar=new URLSearchParams({q:`"${book.originalTitle||book.title}" ${book.author}`});
+ return <Paper component="section" withBorder radius="lg" p="lg" className="edition-summary" aria-label="Yayın bilgisi ve metin">
+  <Title order={3} mb="md">Yayın bilgisi</Title>
+  <dl className="edition-facts">
+   <div><dt>Tür</dt><dd>{format.label}</dd></div>
+   <div><dt>Yayımlandığı yer</dt><dd>{publicationLine(p)}</dd></div>
+   {p.doi&&<div><dt>DOI</dt><dd>{p.doi}</dd></div>}
+  </dl>
+  <Text c="dimmed" mt="md">{format.label} olduğu için baskı ve çevirmen bilgisi yok. Türkçe çevirisi araştırılmadı.</Text>
+  {p.readUrl&&<Anchor href={p.readUrl} target="_blank" rel="noreferrer" className="source-link">Metni oku <IconArrowUpRight size={18}/></Anchor>}
+  {p.doi&&<Anchor href={`https://doi.org/${p.doi}`} target="_blank" rel="noreferrer" className="source-link">DOI kaydını aç <IconArrowUpRight size={18}/></Anchor>}
+  {!p.readUrl&&!p.doi&&p.pageUrl&&<Anchor href={p.pageUrl} target="_blank" rel="noreferrer" className="source-link">Yayın sayfasını aç <IconArrowUpRight size={18}/></Anchor>}
+  {book.format==='article'&&<Group gap="sm" mt="lg" className="book-shopping-links"><Button component="a" href={`https://scholar.google.com/scholar?${scholar}`} target="_blank" rel="noreferrer" variant="light" leftSection={<IconSchool size={20}/>}>Google Akademik</Button></Group>}
+ </Paper>;
+}
+
 export default function EditionSummary({book}){
+ const format=workFormat(book);
+ if(format&&book.publication)return <PublicationSummary book={book} format={format}/>;
  const status=translationStatus(book).status,original=status==='original',known=original||status==='available';
  const edition=known?turkishEdition(book):null,recommended=recommendedTranslation(book),c=book.cover;
  const title=edition?.title||book.title;

@@ -1,5 +1,5 @@
 {
-  "updated": "4 Ekim 2026",
+  "updated": "21 Ekim 2026",
   "readingGuides": {
     "note": "Kitap Atlası için hazırlanmış editoryal okuma amaçları ve isteğe bağlı sıralar. Kaynakların zorunlu önkoşul iddiası değildir. Kitaba özel not bulunmayan eserler için mevcut konu etiketlerinden açıkça belirtilen bir çalışma amacı üretilir.",
     "purposes": {
@@ -138,7 +138,9 @@
       "manualforwritersofresearchpapersthesesanddissertations": "Bir araştırma sorusundan kanıta dayalı bir metne ulaşmak; kaynak göstermeyi ve Chicago atıf sistemini doğru uygulamak için oku.",
       "machinethatchangedtheworld": "Toyota’nın yalın üretimini seri üretimle karşılaştırarak bir süreci israftan arındırmanın mantığını görmek için oku.",
       "thankyouforarguing": "Klasik retoriğin araçlarını gündelik tartışmalarda karşındakini ikna etmek için kullanmayı öğrenmek için oku.",
-      "catwhotaughtzen": "Resimli kısa hikâyelerle sabır, kabul ve şimdiye dikkat üzerine birlikte konuşmak için oku."
+      "catwhotaughtzen": "Resimli kısa hikâyelerle sabır, kabul ve şimdiye dikkat üzerine birlikte konuşmak için oku.",
+      "thinkingsociologically": "Her bölümden sonra üç soru yazarak oku: İşimde bunun örneği ne? Şimdiye kadar hangi açıklamayı gözden kaçırmışım? Bunu nasıl kontrol edebilirim?",
+      "singularityisnear": "Teknolojinin nelerin önünü açabileceğine dair iddiaları tek tek sorgulayarak, seçerek okumak için."
     },
     "routes": [
       {
@@ -1037,6 +1039,10 @@
           {
             "id": "toyotaproductionsystem",
             "reason": "Akış ve israfın arka planını bilmek, kısa döngülerle çalışma fikrini daha geniş bir yönetim bağlamına yerleştirir."
+          },
+          {
+            "id": "newnewproductdevelopmentgame",
+            "reason": "Scrum adı ve kendi kendini örgütleyen ekip fikri bu makaleden gelir."
           }
         ],
         "after": [
@@ -1061,6 +1067,10 @@
           {
             "id": "workplacemanagement",
             "reason": "İlkeleri günlük gözlem ve iş yerindeki yönetim sorularıyla birlikte çalışabilirsin."
+          },
+          {
+            "id": "leanstartup",
+            "reason": "Ohno’nun israf ve akış fikirlerinin girişimciliğe uyarlanmış hâli."
           }
         ],
         "companions": [
@@ -1136,6 +1146,10 @@
           {
             "id": "шинель",
             "reason": "Rus kısa öyküsünün anlatıcı ve toplum eleştirisi geleneğine giriş sağlar."
+          },
+          {
+            "id": "kopegiyledolasankadinotuzyedisecmeoyku",
+            "reason": "Rus edebiyatının en kolay ve en iyi kapısı: büyük romanlardan önce Çehov’un kısa öyküleriyle başlamak için. İş Bankası Hasan Âli Yücel Klasikleri’ndeki geniş öykü seçkisi."
           }
         ],
         "after": [
@@ -1156,6 +1170,10 @@
           {
             "id": "преступлениеинаказание",
             "reason": "Dostoyevski’nin suçluluk ve sorumluluğu karakterler üzerinden tartışma biçimine alışmak, daha çok sesli bu romana geçişi kolaylaştırabilir."
+          },
+          {
+            "id": "kopegiyledolasankadinotuzyedisecmeoyku",
+            "reason": "Rus edebiyatının en kolay ve en iyi kapısı: büyük romanlardan önce Çehov’un kısa öyküleriyle başlamak için. İş Bankası Hasan Âli Yücel Klasikleri’ndeki geniş öykü seçkisi."
           }
         ],
         "after": [
@@ -1581,6 +1599,10 @@
           {
             "id": "prisonersofgeography",
             "reason": "Jeopolitik ve tedarik zinciri okumaları için temel fiziksel coğrafya çerçevesi sağlar."
+          },
+          {
+            "id": "innovators",
+            "reason": "Teknoloji ve yapay zekâ kümesinin katalogdaki kendi temeli: bilgisayardan internete dijital çağın nasıl kurulduğunu anlatır; bu kümede önce o okunmalı."
           }
         ],
         "after": []
@@ -2340,6 +2362,14 @@
           {
             "id": "psychologiedesfoules",
             "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "singularityisnear",
+            "reason": "Toplumsal bakışı kazandıktan sonra teknolojik tekillik iddialarını tek tek sorgulayarak okumak için."
+          },
+          {
+            "id": "corrosionofcharacter",
+            "reason": "Sosyolojik bakışı çalışma hayatına, değişim ve belirsizliğin çalışan üzerindeki etkisine uygulamak için."
           }
         ]
       },
@@ -2392,6 +2422,10 @@
           {
             "id": "sociology",
             "reason": "Sınıf, statü, kurum ve toplumsal cinsiyet için başvuru çerçevesi sunar."
+          },
+          {
+            "id": "corrosionofcharacter",
+            "reason": "Çalışma hayatını çalışanın tarafından görmek için: esnek kapitalizmde değişimin, belirsizliğin ve kısa vadeli iş ilişkilerinin insan üzerindeki sonuçları. Sosyolojik Düşünmek’ten sonra ikinci okuma."
           }
         ],
         "after": []
@@ -2401,6 +2435,46 @@
           {
             "id": "sociology",
             "reason": "Sınıf, statü, kurum ve toplumsal cinsiyet için başvuru çerçevesi sunar."
+          }
+        ],
+        "after": []
+      },
+      "corrosionofcharacter": {
+        "before": [
+          {
+            "id": "thinkingsociologically",
+            "reason": "Sosyolojik düşünme alışkanlığını kazandıktan sonra aynı bakışı çalışma hayatına uygulamak için ikinci okuma."
+          }
+        ],
+        "after": [
+          {
+            "id": "caseforgoodjobs",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "aworldwithoutwork",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "deathsofdespair",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          }
+        ]
+      },
+      "caseforgoodjobs": {
+        "before": [
+          {
+            "id": "corrosionofcharacter",
+            "reason": "Çalışma hayatını çalışanın tarafından görmek için: esnek kapitalizmde değişimin, belirsizliğin ve kısa vadeli iş ilişkilerinin insan üzerindeki sonuçları. Sosyolojik Düşünmek’ten sonra ikinci okuma."
+          }
+        ],
+        "after": []
+      },
+      "aworldwithoutwork": {
+        "before": [
+          {
+            "id": "corrosionofcharacter",
+            "reason": "Çalışma hayatını çalışanın tarafından görmek için: esnek kapitalizmde değişimin, belirsizliğin ve kısa vadeli iş ilişkilerinin insan üzerindeki sonuçları. Sosyolojik Düşünmek’ten sonra ikinci okuma."
           }
         ],
         "after": []
@@ -2591,6 +2665,12 @@
             "id": "fatihsultanmehmedvezamani",
             "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
           }
+        ],
+        "companions": [
+          {
+            "id": "ottomanempiretheclassicalage13001600",
+            "reason": "Devlet-i Aliyye’den kısa bir giriş isteyene: Osmanlı devletinin kuruluşundan klasik çağın sonuna kurumları, toplumu ve ekonomisi tek ciltte."
+          }
         ]
       },
       "lesoriginesdelempireottoman": {
@@ -2598,6 +2678,10 @@
           {
             "id": "devletialiyyeosmanliimparatorluguuzerinearastirmalari",
             "reason": "Osmanlı kuruluş ve klasik dönem okumalarına kurumsal ve kronolojik bağlam sağlar."
+          },
+          {
+            "id": "ottomanempiretheclassicalage13001600",
+            "reason": "Devlet-i Aliyye’den kısa bir giriş isteyene: Osmanlı devletinin kuruluşundan klasik çağın sonuna kurumları, toplumu ve ekonomisi tek ciltte."
           }
         ],
         "after": []
@@ -2607,6 +2691,10 @@
           {
             "id": "devletialiyyeosmanliimparatorluguuzerinearastirmalari",
             "reason": "Osmanlı kuruluş ve klasik dönem okumalarına kurumsal ve kronolojik bağlam sağlar."
+          },
+          {
+            "id": "ottomanempiretheclassicalage13001600",
+            "reason": "Devlet-i Aliyye’den kısa bir giriş isteyene: Osmanlı devletinin kuruluşundan klasik çağın sonuna kurumları, toplumu ve ekonomisi tek ciltte."
           }
         ],
         "after": []
@@ -2727,6 +2815,10 @@
             "reason": "Rus tarihî romanına kısa bir giriş sunar."
           },
           {
+            "id": "kopegiyledolasankadinotuzyedisecmeoyku",
+            "reason": "Rus edebiyatının en kolay ve en iyi kapısı: büyük romanlardan önce Çehov’un kısa öyküleriyle başlamak için. İş Bankası Hasan Âli Yücel Klasikleri’ndeki geniş öykü seçkisi."
+          },
+          {
             "id": "littlehistoryoftheworld",
             "reason": "Olayları ve düşünürleri zaman çizgisine yerleştirmek için genel bir tarih anlatısı edinmek."
           }
@@ -2795,6 +2887,10 @@
           {
             "id": "十个词汇里的中国",
             "reason": "Yakın Çin tarihini gündelik yaşam üzerinden anlatarak ekonomi-politik kitaplarına insani bağlam ekler."
+          },
+          {
+            "id": "howasiaworks",
+            "reason": "Katalogdaki Asya kitaplarının kendi içindeki en iyi girişi: Çin üzerine ekonomi-politik kitaplara geçmeden önce oku."
           }
         ],
         "after": []
@@ -2804,6 +2900,10 @@
           {
             "id": "十个词汇里的中国",
             "reason": "Yakın Çin tarihini gündelik yaşam üzerinden anlatarak ekonomi-politik kitaplarına insani bağlam ekler."
+          },
+          {
+            "id": "howasiaworks",
+            "reason": "Katalogdaki Asya kitaplarının kendi içindeki en iyi girişi: Çin üzerine ekonomi-politik kitaplara geçmeden önce oku."
           }
         ],
         "after": []
@@ -2813,6 +2913,10 @@
           {
             "id": "十个词汇里的中国",
             "reason": "Yakın Çin tarihini gündelik yaşam üzerinden anlatarak ekonomi-politik kitaplarına insani bağlam ekler."
+          },
+          {
+            "id": "howasiaworks",
+            "reason": "Katalogdaki Asya kitaplarının kendi içindeki en iyi girişi: Çin üzerine ekonomi-politik kitaplara geçmeden önce oku."
           }
         ],
         "after": []
@@ -2822,6 +2926,10 @@
           {
             "id": "十个词汇里的中国",
             "reason": "Yakın Çin tarihini gündelik yaşam üzerinden anlatarak ekonomi-politik kitaplarına insani bağlam ekler."
+          },
+          {
+            "id": "howasiaworks",
+            "reason": "Katalogdaki Asya kitaplarının kendi içindeki en iyi girişi: Çin üzerine ekonomi-politik kitaplara geçmeden önce oku."
           }
         ],
         "after": []
@@ -2831,6 +2939,10 @@
           {
             "id": "十个词汇里的中国",
             "reason": "Yakın Çin tarihini gündelik yaşam üzerinden anlatarak ekonomi-politik kitaplarına insani bağlam ekler."
+          },
+          {
+            "id": "howasiaworks",
+            "reason": "Katalogdaki Asya kitaplarının kendi içindeki en iyi girişi: Çin üzerine ekonomi-politik kitaplara geçmeden önce oku."
           }
         ],
         "after": []
@@ -2840,9 +2952,61 @@
           {
             "id": "十个词汇里的中国",
             "reason": "Yakın Çin tarihini gündelik yaşam üzerinden anlatarak ekonomi-politik kitaplarına insani bağlam ekler."
+          },
+          {
+            "id": "howasiaworks",
+            "reason": "Katalogdaki Asya kitaplarının kendi içindeki en iyi girişi: Çin üzerine ekonomi-politik kitaplara geçmeden önce oku."
           }
         ],
         "after": []
+      },
+      "ottomanempiretheclassicalage13001600": {
+        "before": [],
+        "after": [
+          {
+            "id": "lesoriginesdelempireottoman",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "fatihsultanmehmedvezamani",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          }
+        ],
+        "companions": [
+          {
+            "id": "devletialiyyeosmanliimparatorluguuzerinearastirmalari",
+            "reason": "Devlet-i Aliyye’den kısa bir giriş isteyene: Osmanlı devletinin kuruluşundan klasik çağın sonuna kurumları, toplumu ve ekonomisi tek ciltte."
+          }
+        ]
+      },
+      "howasiaworks": {
+        "before": [],
+        "after": [
+          {
+            "id": "houseofhuawei",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "beijingrules",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "breakneck",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "chinainc",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "alibaba",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "whatchinesewant",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          }
+        ]
       },
       "superintelligence": {
         "before": [],
@@ -2870,6 +3034,10 @@
           {
             "id": "artificialintelligenceaguideforthinkinghumans",
             "reason": "Yapay zekânın yetenek ve sınırlarını teknik fakat erişilebilir bir dille açıklayarak güncel tartışmaları değerlendirmeyi kolaylaştırır."
+          },
+          {
+            "id": "innovators",
+            "reason": "Teknoloji ve yapay zekâ kümesinin katalogdaki kendi temeli: bilgisayardan internete dijital çağın nasıl kurulduğunu anlatır; bu kümede önce o okunmalı."
           }
         ],
         "after": []
@@ -2883,6 +3051,10 @@
           {
             "id": "artificialintelligenceaguideforthinkinghumans",
             "reason": "Yapay zekânın yetenek ve sınırlarını teknik fakat erişilebilir bir dille açıklayarak güncel tartışmaları değerlendirmeyi kolaylaştırır."
+          },
+          {
+            "id": "innovators",
+            "reason": "Teknoloji ve yapay zekâ kümesinin katalogdaki kendi temeli: bilgisayardan internete dijital çağın nasıl kurulduğunu anlatır; bu kümede önce o okunmalı."
           }
         ],
         "after": []
@@ -2892,6 +3064,10 @@
           {
             "id": "superintelligence",
             "reason": "Yapay zekâ kontrolü ve uzun vadeli risk tartışmalarının temel kavramlarını kurar."
+          },
+          {
+            "id": "innovators",
+            "reason": "Teknoloji ve yapay zekâ kümesinin katalogdaki kendi temeli: bilgisayardan internete dijital çağın nasıl kurulduğunu anlatır; bu kümede önce o okunmalı."
           }
         ],
         "after": []
@@ -2918,6 +3094,10 @@
           {
             "id": "artificialintelligenceaguideforthinkinghumans",
             "reason": "Yapay zekânın yetenek ve sınırlarını teknik fakat erişilebilir bir dille açıklayarak güncel tartışmaları değerlendirmeyi kolaylaştırır."
+          },
+          {
+            "id": "innovators",
+            "reason": "Teknoloji ve yapay zekâ kümesinin katalogdaki kendi temeli: bilgisayardan internete dijital çağın nasıl kurulduğunu anlatır; bu kümede önce o okunmalı."
           }
         ],
         "after": []
@@ -2948,6 +3128,10 @@
           {
             "id": "attentionmerchants",
             "reason": "Reklam ve dikkat ekonomisinin tarihini kurarak platform eleştirilerini bağlama yerleştirir."
+          },
+          {
+            "id": "innovators",
+            "reason": "Teknoloji ve yapay zekâ kümesinin katalogdaki kendi temeli: bilgisayardan internete dijital çağın nasıl kurulduğunu anlatır; bu kümede önce o okunmalı."
           }
         ],
         "after": []
@@ -2975,6 +3159,61 @@
           {
             "id": "attentionmerchants",
             "reason": "Reklam ve dikkat ekonomisinin tarihini kurarak platform eleştirilerini bağlama yerleştirir."
+          }
+        ],
+        "after": []
+      },
+      "innovators": {
+        "before": [],
+        "after": [
+          {
+            "id": "chipwar",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "empireofai",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "supremacy",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "comingwave",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "humancompatible",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "bignine",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "thinkingmachine",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "ageofsurveillancecapitalism",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          }
+        ]
+      },
+      "bignine": {
+        "before": [
+          {
+            "id": "innovators",
+            "reason": "Teknoloji ve yapay zekâ kümesinin katalogdaki kendi temeli: bilgisayardan internete dijital çağın nasıl kurulduğunu anlatır; bu kümede önce o okunmalı."
+          }
+        ],
+        "after": []
+      },
+      "thinkingmachine": {
+        "before": [
+          {
+            "id": "innovators",
+            "reason": "Teknoloji ve yapay zekâ kümesinin katalogdaki kendi temeli: bilgisayardan internete dijital çağın nasıl kurulduğunu anlatır; bu kümede önce o okunmalı."
           }
         ],
         "after": []
@@ -3045,6 +3284,10 @@
           {
             "id": "fourstepstotheepiphany",
             "reason": "Müşteri geliştirme sürecini kurar; Yalın Startup yaklaşımının kaynak çerçevesidir."
+          },
+          {
+            "id": "toyotaproductionsystem",
+            "reason": "Yalın girişim, Toyota’da doğan yalın üretim fikirlerini girişimciliğe uyarlar."
           }
         ],
         "after": []
@@ -3066,6 +3309,108 @@
           }
         ],
         "after": []
+      },
+      "howtogetstartupideas": {
+        "before": [],
+        "after": [
+          {
+            "id": "traction",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "coldstartproblem",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "foundingsales",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          }
+        ]
+      },
+      "traction": {
+        "before": [
+          {
+            "id": "howtogetstartupideas",
+            "reason": "Paul Graham’ın ücretsiz denemesi: iyi girişim fikirleri aranarak değil, kurucunun kendi yaşadığı bir sorunu fark etmesiyle bulunur. Katalogdaki Y Combinator ekolünden kitapların (Traction, The Cold Start Problem, Founding Sales) atıf yaptığı metinlerden."
+          },
+          {
+            "id": "dothingsthatdontscale",
+            "reason": "Paul Graham’ın ücretsiz denemesi: ilk kullanıcıları tek tek, elle kazanmak; başlangıçta ölçeklenmeyen işleri yapmanın önemi."
+          },
+          {
+            "id": "defaultaliveordefaultdead",
+            "reason": "Paul Graham’ın ücretsiz denemesi: bugünkü büyüme ve harcama hızıyla şirketin parası bitmeden kâra geçip geçemeyeceğini hesaplamak."
+          }
+        ],
+        "after": []
+      },
+      "coldstartproblem": {
+        "before": [
+          {
+            "id": "howtogetstartupideas",
+            "reason": "Paul Graham’ın ücretsiz denemesi: iyi girişim fikirleri aranarak değil, kurucunun kendi yaşadığı bir sorunu fark etmesiyle bulunur. Katalogdaki Y Combinator ekolünden kitapların (Traction, The Cold Start Problem, Founding Sales) atıf yaptığı metinlerden."
+          },
+          {
+            "id": "dothingsthatdontscale",
+            "reason": "Paul Graham’ın ücretsiz denemesi: ilk kullanıcıları tek tek, elle kazanmak; başlangıçta ölçeklenmeyen işleri yapmanın önemi."
+          },
+          {
+            "id": "defaultaliveordefaultdead",
+            "reason": "Paul Graham’ın ücretsiz denemesi: bugünkü büyüme ve harcama hızıyla şirketin parası bitmeden kâra geçip geçemeyeceğini hesaplamak."
+          }
+        ],
+        "after": []
+      },
+      "foundingsales": {
+        "before": [
+          {
+            "id": "howtogetstartupideas",
+            "reason": "Paul Graham’ın ücretsiz denemesi: iyi girişim fikirleri aranarak değil, kurucunun kendi yaşadığı bir sorunu fark etmesiyle bulunur. Katalogdaki Y Combinator ekolünden kitapların (Traction, The Cold Start Problem, Founding Sales) atıf yaptığı metinlerden."
+          },
+          {
+            "id": "dothingsthatdontscale",
+            "reason": "Paul Graham’ın ücretsiz denemesi: ilk kullanıcıları tek tek, elle kazanmak; başlangıçta ölçeklenmeyen işleri yapmanın önemi."
+          },
+          {
+            "id": "defaultaliveordefaultdead",
+            "reason": "Paul Graham’ın ücretsiz denemesi: bugünkü büyüme ve harcama hızıyla şirketin parası bitmeden kâra geçip geçemeyeceğini hesaplamak."
+          }
+        ],
+        "after": []
+      },
+      "dothingsthatdontscale": {
+        "before": [],
+        "after": [
+          {
+            "id": "traction",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "coldstartproblem",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "foundingsales",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          }
+        ]
+      },
+      "defaultaliveordefaultdead": {
+        "before": [],
+        "after": [
+          {
+            "id": "traction",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "coldstartproblem",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "foundingsales",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          }
+        ]
       },
       "lecturesonrussianliterature": {
         "before": [],
@@ -3090,7 +3435,12 @@
         ]
       },
       "аннакаренина": {
-        "before": [],
+        "before": [
+          {
+            "id": "kopegiyledolasankadinotuzyedisecmeoyku",
+            "reason": "Rus edebiyatının en kolay ve en iyi kapısı: büyük romanlardan önce Çehov’un kısa öyküleriyle başlamak için. İş Bankası Hasan Âli Yücel Klasikleri’ndeki geniş öykü seçkisi."
+          }
+        ],
         "after": [],
         "companions": [
           {
@@ -3205,6 +3555,27 @@
           }
         ]
       },
+      "kopegiyledolasankadinotuzyedisecmeoyku": {
+        "before": [],
+        "after": [
+          {
+            "id": "преступлениеинаказание",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "братьякарамазовы",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "воинаимир",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "аннакаренина",
+            "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          }
+        ]
+      },
       "bushidothesoulofjapan": {
         "before": [],
         "after": [
@@ -3229,6 +3600,10 @@
           {
             "id": "wayofzen",
             "reason": "Zen düşüncesine giriş sağlayarak Musashi'nin boşluk ve zihin kavramlarını yorumlamayı kolaylaştırır."
+          },
+          {
+            "id": "五輪書gorinnosho",
+            "reason": "Musashi okumasında sıra roman, Beş Çember, sonra Hagakure."
           }
         ],
         "after": []
@@ -3267,13 +3642,27 @@
           {
             "id": "wayofzen",
             "reason": "Zen düşüncesine giriş sağlayarak Musashi'nin boşluk ve zihin kavramlarını yorumlamayı kolaylaştırır."
+          },
+          {
+            "id": "musashiroman",
+            "reason": "Önce roman: Musashi’nin hayatını ve dünyasını tanıdıktan sonra Beş Çember daha kolay okunur."
           }
         ],
-        "after": []
+        "after": [
+          {
+            "id": "葉隠hagakure",
+            "reason": "Aynı geleneğin samuray ahlakını anlatan metni."
+          }
+        ]
       },
       "musashiroman": {
         "before": [],
-        "after": [],
+        "after": [
+          {
+            "id": "五輪書gorinnosho",
+            "reason": "Romandaki kılıç ustasının kendi kaleminden strateji kitabı."
+          }
+        ],
         "companions": [
           {
             "id": "wayofzen",
@@ -3760,6 +4149,281 @@
             "reason": "Zinsser açık ve yalın düz yazıyı, Turabian bir araştırmanın kaynak gösterilerek düzenli bir metne dönüşmesini öğretir."
           }
         ]
+      },
+      "singularityisnear": {
+        "before": [
+          {
+            "id": "thinkingsociologically",
+            "reason": "Önce insanların teknolojileri neden benimseyip neden reddettiğini ve kurumların bunlarla nasıl değiştiğini düşünmek; ardından teknolojinin nelerin önünü açabileceğine dair iddiaları seçerek okumak."
+          }
+        ],
+        "after": [],
+        "companions": [
+          {
+            "id": "comingtechnologicalsingularity",
+            "reason": "Vinge eşiği insanüstü zekânın ortaya çıkışına bağlar; Kurzweil insan ve makine zekâsının birleşmesini öne çıkarır. Birlikte okununca “tekillik” sözcüğünün iki ayrı anlamı ayrılır."
+          }
+        ]
+      },
+      "selfefficacytowardaunifyingtheoryofbehavioralchange": {
+        "before": [
+          {
+            "id": "mindset",
+            "reason": "Önce Dweck’i, sonra Bandura’nın 1977 makalesini oku: popüler sürümle özgün kaynak arasındaki derinlik farkı hemen görünür."
+          }
+        ],
+        "after": [
+          {
+            "id": "selfefficacytheexerciseofcontrol",
+            "reason": "Öz-yeterlik kuramını sonraki araştırmalarıyla birlikte okumak için."
+          }
+        ]
+      },
+      "mindset": {
+        "before": [],
+        "after": [
+          {
+            "id": "selfefficacytowardaunifyingtheoryofbehavioralchange",
+            "reason": "Gelişim zihniyetinin dayandığı soruyu, inancın davranışı nasıl değiştirdiğini, kavramın ilk ortaya konduğu makaleden okumak için."
+          }
+        ]
+      },
+      "selfefficacytheexerciseofcontrol": {
+        "before": [
+          {
+            "id": "selfefficacytowardaunifyingtheoryofbehavioralchange",
+            "reason": "Makale kavramı ortaya koyar; kitap aynı kuramı yirmi yıllık araştırmayla genişletir."
+          }
+        ],
+        "after": []
+      },
+      "psychologicalsafetyandlearningbehaviorinworkteams": {
+        "before": [
+          {
+            "id": "personalandorganizationalchangethroughgroupmethods",
+            "reason": "Edmondson’ın makalesinin dayandığı kök: insanların değişebilmesi için kendini güvende hissetmesi gerektiği fikri burada tartışılır."
+          }
+        ],
+        "after": [],
+        "companions": [
+          {
+            "id": "fearlessorganization",
+            "reason": "Makale kavramı ölçütüyle tanımlar; kitap aynı yazarın daha okunaklı anlatımıdır ve kavramın yanlış anlaşılmasına karşı korur."
+          }
+        ]
+      },
+      "personalandorganizationalchangethroughgroupmethods": {
+        "before": [],
+        "after": [
+          {
+            "id": "psychologicalsafetyandlearningbehaviorinworkteams",
+            "reason": "Kavramın iş ekipleri üzerinde tanımlandığı ve sınandığı makale."
+          }
+        ]
+      },
+      "fearlessorganization": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "psychologicalsafetyandlearningbehaviorinworkteams",
+            "reason": "Makale kavramı ölçütüyle tanımlar; kitap aynı yazarın daha okunaklı anlatımıdır ve kavramın yanlış anlaşılmasına karşı korur."
+          }
+        ]
+      },
+      "outofthecrisis": {
+        "before": [
+          {
+            "id": "statisticalmethodfromtheviewpointofqualitycontrol",
+            "reason": "Deming’in yaygınlaştırdığı iyileştirme döngüsü ve süreçteki değişkenliği istatistikle izleme fikri Shewhart’ın bu kitabına dayanır."
+          }
+        ],
+        "after": [
+          {
+            "id": "neweconomics",
+            "reason": "Aynı ilkelerin Deming’in son kitabındaki toplu hâli."
+          }
+        ]
+      },
+      "statisticalmethodfromtheviewpointofqualitycontrol": {
+        "before": [],
+        "after": [
+          {
+            "id": "outofthecrisis",
+            "reason": "Shewhart’ın yöntemini bütün bir yönetim anlayışına dönüştüren kitap."
+          }
+        ]
+      },
+      "neweconomics": {
+        "before": [
+          {
+            "id": "outofthecrisis",
+            "reason": "Deming’in son kitabı, Krizden Çıkış’taki ilkeleri derin bilgi sistemiyle bir araya getirir."
+          }
+        ],
+        "after": []
+      },
+      "newnewproductdevelopmentgame": {
+        "before": [],
+        "after": [
+          {
+            "id": "scrumtheartofdoingtwicetheworkinhalfthetime",
+            "reason": "Makaledeki ekip modelinin yazılım geliştirmede yönteme dönüşmüş hâli."
+          }
+        ]
+      },
+      "highoutputmanagement": {
+        "before": [
+          {
+            "id": "practiceofmanagement",
+            "reason": "Grove’un Intel’deki hedef sistemi, Drucker’ın hedeflerle yönetim fikrinin uygulamasıdır."
+          }
+        ],
+        "after": [
+          {
+            "id": "measurewhatmatters",
+            "reason": "Grove’un hedef sisteminin bugünkü yaygın hâli."
+          },
+          {
+            "id": "essentialdrucker",
+            "reason": "Somut yönetim pratiğinden sonra Drucker’ın yönetim ilkelerine geçmek için."
+          }
+        ]
+      },
+      "practiceofmanagement": {
+        "before": [],
+        "after": [
+          {
+            "id": "highoutputmanagement",
+            "reason": "Hedeflerle yönetimin Intel’de OKR’a dönüşmüş hâli."
+          }
+        ]
+      },
+      "measurewhatmatters": {
+        "before": [
+          {
+            "id": "highoutputmanagement",
+            "reason": "Doerr OKR’ı Intel’de Grove’dan öğrendi; kitap Grove’un sistemini yaygınlaştırır."
+          }
+        ],
+        "after": []
+      },
+      "servantleadership": {
+        "before": [
+          {
+            "id": "servantasleader",
+            "reason": "Kitap, kavramı ortaya koyan kısa denemeyle başlar ve onu kurumlara genişletir."
+          }
+        ],
+        "after": []
+      },
+      "servantasleader": {
+        "before": [],
+        "after": [
+          {
+            "id": "servantleadership",
+            "reason": "Denemedeki fikrin kurumlar için geliştirilmiş hâli."
+          }
+        ]
+      },
+      "fullcatastropheliving": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "mcmindfulness",
+            "reason": "Biri yöntemi kaynağından anlatır; diğeri yöntemin kurumlarda nasıl kullanıldığını eleştirir."
+          }
+        ]
+      },
+      "mcmindfulness": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "fullcatastropheliving",
+            "reason": "Biri yöntemi kaynağından anlatır; diğeri yöntemin kurumlarda nasıl kullanıldığını eleştirir."
+          }
+        ]
+      },
+      "dilemmasinageneraltheoryofplanning": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "changebydesign",
+            "reason": "Biri tasarımın uğraştığı sorunların özgün tanımı, diğeri tasarım odaklı düşünmenin popüler sürümü; birlikte okununca popüler anlatıda neyin sadeleştiği görülür."
+          }
+        ]
+      },
+      "changebydesign": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "dilemmasinageneraltheoryofplanning",
+            "reason": "Biri tasarımın uğraştığı sorunların özgün tanımı, diğeri tasarım odaklı düşünmenin popüler sürümü; birlikte okununca popüler anlatıda neyin sadeleştiği görülür."
+          }
+        ]
+      },
+      "sciencestrategyandwar": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "boyd",
+            "reason": "Boyd’un kendi kitabı yok: biri fikirlerini çözümler, diğeri hayatını anlatır; birlikte en iyi başlangıç."
+          }
+        ]
+      },
+      "boyd": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "sciencestrategyandwar",
+            "reason": "Boyd’un kendi kitabı yok: biri fikirlerini çözümler, diğeri hayatını anlatır; birlikte en iyi başlangıç."
+          }
+        ]
+      },
+      "willpower": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "multilabpreregisteredreplicationoftheegodepletioneffect",
+            "reason": "Kitabın dayandığı ego tükenmesi etkisi, çok merkezli tekrar çalışmasında üretilemedi; ikisi birlikte okunmalı."
+          }
+        ]
+      },
+      "multilabpreregisteredreplicationoftheegodepletioneffect": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "willpower",
+            "reason": "Kitabın dayandığı ego tükenmesi etkisi, çok merkezli tekrar çalışmasında üretilemedi; ikisi birlikte okunmalı."
+          }
+        ]
+      },
+      "comingtechnologicalsingularity": {
+        "before": [],
+        "after": [],
+        "companions": [
+          {
+            "id": "singularityisnear",
+            "reason": "Vinge eşiği insanüstü zekânın ortaya çıkışına bağlar; Kurzweil insan ve makine zekâsının birleşmesini öne çıkarır. Birlikte okununca “tekillik” sözcüğünün iki ayrı anlamı ayrılır."
+          }
+        ]
+      },
+      "essentialdrucker": {
+        "before": [
+          {
+            "id": "highoutputmanagement",
+            "reason": "Grove’un kitabı Drucker’dan bile önce okunabilir, çünkü en somut olanı."
+          }
+        ],
+        "after": []
       }
     },
     "sources": {
@@ -3967,6 +4631,12 @@
           "url": "https://openlibrary.org/works/OL38123W"
         }
       ],
+      "corrosionofcharacter": [
+        {
+          "label": "Kaynak · kitapyurdu.com",
+          "url": "https://www.kitapyurdu.com/kitap/karakter-asinmasi-yeni-kapitalizmde-isin-kisilik-uzerindeki-etkileri/50042.html"
+        }
+      ],
       "littlehistoryoftheworld": [
         {
           "label": "Bibliyografik kayıt · Open Library",
@@ -4027,6 +4697,12 @@
           "url": "https://openlibrary.org/search?title=%E5%8D%81%E4%B8%AA%E8%AF%8D%E6%B1%87%E9%87%8C%E7%9A%84%E4%B8%AD%E5%9B%BD&author=Yu+Hua"
         }
       ],
+      "ottomanempiretheclassicalage13001600": [
+        {
+          "label": "Kaynak · kitapyurdu.com",
+          "url": "https://www.kitapyurdu.com/kitap/osmanli-imparatorlugu-klasik-cag-13001600/501208.html"
+        }
+      ],
       "superintelligence": [
         {
           "label": "Bibliyografik kayıt · Open Library",
@@ -4055,6 +4731,24 @@
         {
           "label": "Bibliyografik kayıt · Open Library",
           "url": "https://openlibrary.org/works/OL9216355W"
+        }
+      ],
+      "howtogetstartupideas": [
+        {
+          "label": "Kaynak · paulgraham.com",
+          "url": "https://paulgraham.com/startupideas.html"
+        }
+      ],
+      "dothingsthatdontscale": [
+        {
+          "label": "Kaynak · paulgraham.com",
+          "url": "https://paulgraham.com/ds.html"
+        }
+      ],
+      "defaultaliveordefaultdead": [
+        {
+          "label": "Kaynak · paulgraham.com",
+          "url": "https://paulgraham.com/aord.html"
         }
       ],
       "lecturesonrussianliterature": [
@@ -4091,6 +4785,12 @@
         {
           "label": "Bibliyografik kayıt · Open Library",
           "url": "https://openlibrary.org/works/OL1168083W"
+        }
+      ],
+      "kopegiyledolasankadinotuzyedisecmeoyku": [
+        {
+          "label": "Kaynak · kitapyurdu.com",
+          "url": "https://www.kitapyurdu.com/kitap/kopegiyle-dolasan-kadin-ciltsiz-otuz-yedi-secme-oyku/87023.html"
         }
       ],
       "bushidothesoulofjapan": [
@@ -4376,6 +5076,13 @@
           "groupId": "kitaps-N:cross",
           "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:strateji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Sektör yapısı ve beş güç çözümlemesinin kaynağı.",
+          "role": "Özgün kaynak"
         }
       ],
       "notes": [
@@ -4386,6 +5093,10 @@
         {
           "text": "Sektörleri ve rakipleri çözümleme teknikleri. Belgede çekirdekte korunan dört kitaptan biri.",
           "source": "Okuma Kümeleri"
+        },
+        {
+          "text": "Sektör yapısı ve beş güç çözümlemesinin kaynağı.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
         }
       ],
       "editions": [
@@ -4418,7 +5129,8 @@
       "origins": [
         "atlas",
         "local",
-        "kitaps"
+        "kitaps",
+        "originals"
       ],
       "legacyKeys": [
         "competitive-strategy-michael-e-porter"
@@ -4459,14 +5171,16 @@
         "pmba",
         "core",
         "kitaps-B",
-        "kitaps-N"
+        "kitaps-N",
+        "ozgun-kaynaklar"
       ],
       "groupIds": [
         "time:0",
         "pmba:20",
         "core:0",
         "kitaps-B:liste",
-        "kitaps-N:cross"
+        "kitaps-N:cross",
+        "ozgun-kaynaklar:strateji"
       ]
     },
     {
@@ -5669,6 +6383,21 @@
           "source": "https://content.time.com/time/specials/packages/article/0,28804,2086680_2086683_2087681,00.html",
           "award": null,
           "awardYear": null
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:cevik-yalin",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Deming’in yönetim için on dört ilkesi ve sistem görüşü: kaliteyi son denetim değil süreç belirler. Bugünkü sistem düşüncesinin temeli.",
+          "role": "Özgün kaynak"
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:ilk-uc",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Zamanın sınırlıysa ilk metin: bütün sistem düşüncesinin temeli.",
+          "role": "Özgün kaynak",
+          "order": 1
         }
       ],
       "notes": [
@@ -5679,12 +6408,21 @@
         {
           "text": "Kalite yönetiminin 14 ilkesi. Belgede çekirdekte korunan dört kitaptan biri.",
           "source": "Okuma Kümeleri"
+        },
+        {
+          "text": "Deming’in yönetim için on dört ilkesi ve sistem görüşü: kaliteyi son denetim değil süreç belirler. Bugünkü sistem düşüncesinin temeli.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        },
+        {
+          "text": "Zamanın sınırlıysa ilk metin: bütün sistem düşüncesinin temeli.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
         }
       ],
       "editions": [],
       "origins": [
         "atlas",
-        "local"
+        "local",
+        "originals"
       ],
       "legacyKeys": [],
       "tags": [
@@ -5723,12 +6461,15 @@
       "collectionIds": [
         "time",
         "hundred",
-        "core"
+        "core",
+        "ozgun-kaynaklar"
       ],
       "groupIds": [
         "time:0",
         "hundred:5",
-        "core:0"
+        "core:0",
+        "ozgun-kaynaklar:cevik-yalin",
+        "ozgun-kaynaklar:ilk-uc"
       ]
     },
     {
@@ -6143,9 +6884,21 @@
           "groupId": "kitaps-D:liste",
           "source": "https://karacaismail.github.io/kitaps/",
           "note": "Sutherland'ın Scrum'da atıf verdiği kaynak. Muda / Mura / Muri buradan gelir."
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:cevik-yalin",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Yalın düşüncenin kaynağı: Toyota üretim sistemini kuran Ohno’nun kendi anlatımı. Yalın girişimdeki israfı azaltma ve akış fikirleri buradan gelir.",
+          "role": "Özgün kaynak"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Yalın düşüncenin kaynağı: Toyota üretim sistemini kuran Ohno’nun kendi anlatımı. Yalın girişimdeki israfı azaltma ve akış fikirleri buradan gelir.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
       "editions": [
         {
           "id": "D2",
@@ -6176,7 +6929,8 @@
       "origins": [
         "atlas",
         "local",
-        "kitaps"
+        "kitaps",
+        "originals"
       ],
       "legacyKeys": [
         "toyota-production-system-taiichi-ohno"
@@ -6212,12 +6966,14 @@
       "collectionIds": [
         "time",
         "hundred",
-        "kitaps-D"
+        "kitaps-D",
+        "ozgun-kaynaklar"
       ],
       "groupIds": [
         "time:0",
         "hundred:5",
-        "kitaps-D:liste"
+        "kitaps-D:liste",
+        "ozgun-kaynaklar:cevik-yalin"
       ]
     },
     {
@@ -6379,13 +7135,26 @@
           "source": "https://toddsattersten.com/what-to-read/",
           "award": null,
           "awardYear": null
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:cevik-yalin",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Yalın üretimden ve bilimsel deneyden gelen fikirleri girişimciliğe taşıyan popüler kitap.",
+          "role": "Popüler sürüm"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Yalın üretimden ve bilimsel deneyden gelen fikirleri girişimciliğe taşıyan popüler kitap.",
+          "source": "Özgün kaynaklar · Popüler sürüm"
+        }
+      ],
       "editions": [],
       "origins": [
         "atlas",
-        "local"
+        "local",
+        "originals"
       ],
       "legacyKeys": [],
       "tags": [
@@ -6421,12 +7190,14 @@
       "collectionIds": [
         "pmba",
         "five",
-        "hundred"
+        "hundred",
+        "ozgun-kaynaklar"
       ],
       "groupIds": [
         "pmba:0",
         "five:0",
-        "hundred:7"
+        "hundred:7",
+        "ozgun-kaynaklar:cevik-yalin"
       ]
     },
     {
@@ -8261,7 +9032,7 @@
       "id": "poweroffullengagement",
       "title": "The Power of Full Engagement",
       "titleTr": "Yüksek Performans Teknikleri",
-      "author": "Jim Loehr &Tony Schwartz",
+      "author": "Jim Loehr & Tony Schwartz",
       "aliases": [],
       "years": [
         2003
@@ -8314,6 +9085,7 @@
       "originalPublisher": "Free Press",
       "originalTitle": "The Power of Full Engagement",
       "addedAt": "2026-09-26",
+      "slugAuthor": "Jim Loehr &Tony Schwartz",
       "collectionIds": [
         "pmba"
       ],
@@ -8921,7 +9693,7 @@
       "id": "smartchoices",
       "title": "Smart Choices",
       "titleTr": "",
-      "author": "John S. Hammond et al",
+      "author": "John S. Hammond, Ralph L. Keeney & Howard Raiffa",
       "aliases": [],
       "years": [],
       "categories": [
@@ -8962,6 +9734,7 @@
       "originalPublisher": "Harvard Business School Press",
       "originalTitle": "Smart Choices",
       "addedAt": "2026-09-26",
+      "slugAuthor": "John S. Hammond et al",
       "collectionIds": [
         "pmba"
       ],
@@ -9462,7 +10235,7 @@
       "id": "crucialconversations",
       "title": "Crucial Conversations",
       "titleTr": "Can Alıcı Görüşmeler",
-      "author": "Kerry Patterson et al",
+      "author": "Kerry Patterson, Joseph Grenny, Ron McMillan & Al Switzler",
       "aliases": [],
       "years": [
         2002
@@ -9516,6 +10289,7 @@
       "originalPublisher": "McGraw-Hill",
       "originalTitle": "Crucial Conversations",
       "addedAt": "2026-09-26",
+      "slugAuthor": "Kerry Patterson et al",
       "collectionIds": [
         "pmba"
       ],
@@ -10189,7 +10963,7 @@
       "id": "newleaders100dayactionplan",
       "title": "The New Leader’s 100-Day Action Plan",
       "titleTr": "",
-      "author": "George Bradt et al",
+      "author": "George B. Bradt, Jayme A. Check & Jorge Pedraza",
       "aliases": [],
       "years": [
         2006
@@ -10231,6 +11005,7 @@
       "originalPublisher": "Wiley",
       "originalTitle": "The New Leader’s 100-Day Action Plan",
       "addedAt": "2026-09-26",
+      "slugAuthor": "George Bradt et al",
       "collectionIds": [
         "pmba"
       ],
@@ -10710,7 +11485,7 @@
       "id": "marketingmetrics",
       "title": "Marketing Metrics",
       "titleTr": "",
-      "author": "Paul Farris et al",
+      "author": "Paul W. Farris, Neil T. Bendle, Phillip E. Pfeifer & David J. Reibstein",
       "aliases": [],
       "years": [
         2006
@@ -10752,6 +11527,7 @@
       "originalPublisher": "Wharton School Publishing",
       "originalTitle": "Marketing Metrics",
       "addedAt": "2026-09-26",
+      "slugAuthor": "Paul Farris et al",
       "collectionIds": [
         "pmba"
       ],
@@ -10763,7 +11539,7 @@
       "id": "economistnumbersguide",
       "title": "The Economist Numbers Guide",
       "titleTr": "",
-      "author": "Richard Stuteley",
+      "author": "Richard Stutely",
       "aliases": [],
       "years": [
         1991
@@ -10805,6 +11581,7 @@
       "originalPublisher": "Business Books (in association with The Economist Books)",
       "originalTitle": "The Economist Numbers Guide",
       "addedAt": "2026-09-26",
+      "slugAuthor": "Richard Stuteley",
       "collectionIds": [
         "pmba"
       ],
@@ -11191,9 +11968,21 @@
           "groupId": "kitaps-N:cross",
           "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:strateji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Rekabetin henüz olmadığı yeni pazar alanları yaratmayı anlatan popüler strateji kitabı.",
+          "role": "Popüler sürüm"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Rekabetin henüz olmadığı yeni pazar alanları yaratmayı anlatan popüler strateji kitabı.",
+          "source": "Özgün kaynaklar · Popüler sürüm"
+        }
+      ],
       "editions": [
         {
           "id": "A9",
@@ -11223,7 +12012,8 @@
       ],
       "origins": [
         "atlas",
-        "kitaps"
+        "kitaps",
+        "originals"
       ],
       "legacyKeys": [
         "blue-ocean-strategy-w-chan-kim-renee-mauborgne"
@@ -11261,21 +12051,23 @@
         "mit",
         "kitaps-A",
         "kitaps-M",
-        "kitaps-N"
+        "kitaps-N",
+        "ozgun-kaynaklar"
       ],
       "groupIds": [
         "pmba:20",
         "mit:3",
         "kitaps-A:liste",
         "kitaps-M:cross",
-        "kitaps-N:cross"
+        "kitaps-N:cross",
+        "ozgun-kaynaklar:strateji"
       ]
     },
     {
       "id": "seeingwhatsnext",
       "title": "Seeing What’s Next",
       "titleTr": "",
-      "author": "Clayton M. Christensen et al",
+      "author": "Clayton M. Christensen, Scott D. Anthony & Erik A. Roth",
       "aliases": [],
       "years": [
         2004
@@ -11317,6 +12109,7 @@
       "originalPublisher": "Harvard Business School Press",
       "originalTitle": "Seeing What’s Next",
       "addedAt": "2026-09-26",
+      "slugAuthor": "Clayton M. Christensen et al",
       "collectionIds": [
         "pmba"
       ],
@@ -11596,7 +12389,7 @@
       "id": "universalprinciplesofdesign",
       "title": "Universal Principles of Design",
       "titleTr": "",
-      "author": "William Lidwell et al",
+      "author": "William Lidwell, Kritina Holden & Jill Butler",
       "aliases": [],
       "years": [
         2003
@@ -11638,6 +12431,7 @@
       "originalPublisher": "Rockport Publishers",
       "originalTitle": "Universal Principles of Design",
       "addedAt": "2026-09-26",
+      "slugAuthor": "William Lidwell et al",
       "collectionIds": [
         "pmba"
       ],
@@ -11757,7 +12551,7 @@
       "id": "yourmoneyoryourlife",
       "title": "Your Money or Your Life",
       "titleTr": "",
-      "author": "Joel Dominguez & Vicki Robin",
+      "author": "Vicki Robin & Joe Dominguez",
       "aliases": [],
       "years": [
         1992
@@ -11799,6 +12593,7 @@
       "originalPublisher": "Viking",
       "originalTitle": "Your Money or Your Life",
       "addedAt": "2026-09-26",
+      "slugAuthor": "Joel Dominguez & Vicki Robin",
       "collectionIds": [
         "pmba"
       ],
@@ -12105,7 +12900,7 @@
       "id": "aguidetothegoodlife",
       "title": "A Guide to the Good Life",
       "titleTr": "Güzel Yaşam Kılavuzu: Antik Stoacı Sevinç Sanatı",
-      "author": "William Braxton Irvine",
+      "author": "William B. Irvine",
       "aliases": [],
       "years": [
         2009
@@ -12189,6 +12984,7 @@
       "originalPublisher": "Oxford University Press",
       "originalTitle": "A Guide to the Good Life",
       "addedAt": "2026-09-26",
+      "slugAuthor": "William Braxton Irvine",
       "collectionIds": [
         "pmba"
       ],
@@ -12221,6 +13017,13 @@
           "groupId": "entrepreneurship-curriculum:customer",
           "source": "https://personalmba.com/",
           "note": "İşletmenin temel mekanizmalarını tek haritada görmek."
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 1
         }
       ],
       "notes": [
@@ -12232,7 +13035,8 @@
       "editions": [],
       "origins": [
         "atlas",
-        "entrepreneurship"
+        "entrepreneurship",
+        "foundations"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -12266,11 +13070,13 @@
       "addedAt": "2026-09-28",
       "collectionIds": [
         "pmba",
-        "entrepreneurship-curriculum"
+        "entrepreneurship-curriculum",
+        "foundations"
       ],
       "groupIds": [
         "pmba:guide",
-        "entrepreneurship-curriculum:customer"
+        "entrepreneurship-curriculum:customer",
+        "foundations:baslangic"
       ]
     },
     {
@@ -24542,12 +25348,24 @@
           "source": "https://ig.ft.com/sites/business-book-award/books/2014/longlist/the-innovators-by-walter-isaacson",
           "award": "Uzun liste",
           "awardYear": 2014
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:technology",
+          "source": null,
+          "note": "Teknoloji ve yapay zekâ kümesinin katalogdaki kendi temeli: bilgisayardan internete dijital çağın nasıl kurulduğunu anlatır; bu kümede önce o okunmalı."
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Teknoloji ve yapay zekâ kümesinin katalogdaki kendi temeli: bilgisayardan internete dijital çağın nasıl kurulduğunu anlatır; bu kümede önce o okunmalı.",
+          "source": "Temel okumalar araştırması"
+        }
+      ],
       "editions": [],
       "origins": [
-        "atlas"
+        "atlas",
+        "foundations"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -24611,10 +25429,12 @@
       "originalTitle": "The Innovators",
       "addedAt": "2026-09-26",
       "collectionIds": [
-        "ft"
+        "ft",
+        "foundations"
       ],
       "groupIds": [
-        "ft:12"
+        "ft:12",
+        "foundations:technology"
       ]
     },
     {
@@ -25140,12 +25960,24 @@
           "source": "https://ig.ft.com/sites/business-book-award/books/2013/longlist/how-asia-works-by-joe-studwell",
           "award": "Uzun liste",
           "awardYear": 2013
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:history",
+          "source": null,
+          "note": "Katalogdaki Asya kitaplarının kendi içindeki en iyi girişi: Çin üzerine ekonomi-politik kitaplara geçmeden önce oku."
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Katalogdaki Asya kitaplarının kendi içindeki en iyi girişi: Çin üzerine ekonomi-politik kitaplara geçmeden önce oku.",
+          "source": "Temel okumalar araştırması"
+        }
+      ],
       "editions": [],
       "origins": [
-        "atlas"
+        "atlas",
+        "foundations"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -25204,10 +26036,12 @@
       "originalTitle": "How Asia Works",
       "addedAt": "2026-09-26",
       "collectionIds": [
-        "ft"
+        "ft",
+        "foundations"
       ],
       "groupIds": [
-        "ft:13"
+        "ft:13",
+        "foundations:history"
       ]
     },
     {
@@ -26723,6 +27557,13 @@
           "groupId": "entrepreneurship-curriculum:strategy",
           "source": "https://www.penguinrandomhouse.com/books/158208/good-strategybad-strategy-by-richard-rumelt/",
           "note": "Teşhis, politika ve tutarlı eylem kurmak."
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:strateji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Hem yeni hem derin olan istisna: iyi stratejinin çekirdeğini, yani teşhisi, yol gösterici ilkeyi ve birbirini destekleyen eylemleri anlatır.",
+          "role": "Hem yeni hem derin"
         }
       ],
       "notes": [
@@ -26749,6 +27590,10 @@
         {
           "text": "Teşhis, politika ve tutarlı eylem kurmak.",
           "source": "Girişimcilik rotası"
+        },
+        {
+          "text": "Hem yeni hem derin olan istisna: iyi stratejinin çekirdeğini, yani teşhisi, yol gösterici ilkeyi ve birbirini destekleyen eylemleri anlatır.",
+          "source": "Özgün kaynaklar · Hem yeni hem derin"
         }
       ],
       "editions": [
@@ -26782,7 +27627,8 @@
         "atlas",
         "local",
         "kitaps",
-        "entrepreneurship"
+        "entrepreneurship",
+        "originals"
       ],
       "legacyKeys": [
         "good-strategy-bad-strategy-richard-p-rumelt"
@@ -26830,7 +27676,8 @@
         "kitaps-A",
         "kitaps-M",
         "kitaps-N",
-        "entrepreneurship-curriculum"
+        "entrepreneurship-curriculum",
+        "ozgun-kaynaklar"
       ],
       "groupIds": [
         "ft:15",
@@ -26839,7 +27686,8 @@
         "kitaps-A:liste",
         "kitaps-M:cross",
         "kitaps-N:cross",
-        "entrepreneurship-curriculum:strategy"
+        "entrepreneurship-curriculum:strategy",
+        "ozgun-kaynaklar:strateji"
       ]
     },
     {
@@ -33170,12 +34018,25 @@
           "source": "https://toddsattersten.com/what-to-read/",
           "award": null,
           "awardYear": null
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:psikoloji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Akış kavramını ortaya koyan kitap; hâlâ popüler yorumlarından daha derin.",
+          "role": "Özgün kaynak"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Akış kavramını ortaya koyan kitap; hâlâ popüler yorumlarından daha derin.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
       "editions": [],
       "origins": [
-        "atlas"
+        "atlas",
+        "originals"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -33235,10 +34096,12 @@
       "originalTitle": "Flow",
       "addedAt": "2026-09-26",
       "collectionIds": [
-        "hundred"
+        "hundred",
+        "ozgun-kaynaklar"
       ],
       "groupIds": [
-        "hundred:0"
+        "hundred:0",
+        "ozgun-kaynaklar:psikoloji"
       ]
     },
     {
@@ -37508,6 +38371,13 @@
           "groupId": "hundred:guide",
           "source": "https://www.penguinrandomhouse.com/books/536326/the-100-best-business-books-of-all-time-by-jack-covert-and-todd-sattersten-with-sally-haldorson/",
           "guide": true
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 2
         }
       ],
       "notes": [
@@ -37523,7 +38393,8 @@
       "editions": [],
       "origins": [
         "atlas",
-        "local"
+        "local",
+        "foundations"
       ],
       "legacyKeys": [],
       "tags": [
@@ -37548,10 +38419,12 @@
       "originalTitle": "The 100 Best Business Books of All Time",
       "addedAt": "2026-09-28",
       "collectionIds": [
-        "hundred"
+        "hundred",
+        "foundations"
       ],
       "groupIds": [
-        "hundred:guide"
+        "hundred:guide",
+        "foundations:baslangic"
       ]
     },
     {
@@ -38951,6 +39824,13 @@
           "groupId": "entrepreneurship-curriculum:operations",
           "source": "https://www.penguinrandomhouse.com/books/72467/high-output-management-by-andrew-s-grove/",
           "note": "Yönetim kaldıracı, çıktı ve toplantı ritmi kurmak."
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:okr",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Grove’un Intel’de kurduğu hedef ve temel sonuç sistemi; OKR’ın doğrudan kaynağı.",
+          "role": "Özgün kaynak"
         }
       ],
       "notes": [
@@ -38973,13 +39853,18 @@
         {
           "text": "Yönetim kaldıracı, çıktı ve toplantı ritmi kurmak.",
           "source": "Girişimcilik rotası"
+        },
+        {
+          "text": "Grove’un Intel’de kurduğu hedef ve temel sonuç sistemi; OKR’ın doğrudan kaynağı.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
         }
       ],
       "editions": [],
       "origins": [
         "atlas",
         "local",
-        "entrepreneurship"
+        "entrepreneurship",
+        "originals"
       ],
       "legacyKeys": [],
       "tags": [
@@ -39007,12 +39892,14 @@
       "collectionIds": [
         "core",
         "next",
-        "entrepreneurship-curriculum"
+        "entrepreneurship-curriculum",
+        "ozgun-kaynaklar"
       ],
       "groupIds": [
         "core:1",
         "next:2",
-        "entrepreneurship-curriculum:operations"
+        "entrepreneurship-curriculum:operations",
+        "ozgun-kaynaklar:okr"
       ]
     },
     {
@@ -40075,7 +40962,12 @@
           "note": "Sade ve akıcı ama metne müdahale/ekleme var. Alt.: Zakir Kadiri Ugan, MEB (1954-57, 3 c.) — dili eski, bulması zor. Turan Dursun (Onur) yarım. Sevim Belli: Fransızcadan (Monteil üzerinden)."
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "İbn Haldun için ayrı bir giriş kitabı gerekmez: Dergâh Yayınları’nın Süleyman Uludağ çevirisindeki uzun giriş, Mukaddime’nin ne yapmaya çalıştığını anlatır. Başka bir baskı okunuyorsa bu girişi ayrıca edin.",
+          "source": "Temel okumalar araştırması"
+        }
+      ],
       "editions": [
         {
           "id": "B2",
@@ -40584,6 +41476,13 @@
           "groupId": "kitaps-M:cross",
           "source": "https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md",
           "note": "Bu kitap, kaynak notlarında bu okuma hattıyla da ilişkilendirilmiştir."
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 11
         }
       ],
       "notes": [],
@@ -40615,7 +41514,8 @@
         }
       ],
       "origins": [
-        "kitaps"
+        "kitaps",
+        "foundations"
       ],
       "legacyKeys": [
         "askeri-stratejinin-temelleri-kuramcilar-emrah-ozdemir-ali-bi"
@@ -40648,11 +41548,13 @@
       "addedAt": "2026-09-02",
       "collectionIds": [
         "kitaps-B",
-        "kitaps-M"
+        "kitaps-M",
+        "foundations"
       ],
       "groupIds": [
         "kitaps-B:liste",
-        "kitaps-M:cross"
+        "kitaps-M:cross",
+        "foundations:baslangic"
       ]
     },
     {
@@ -41027,9 +41929,21 @@
           "groupId": "kitaps-D:liste",
           "source": "https://karacaismail.github.io/kitaps/",
           "note": ""
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:cevik-yalin",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Scrum’ı kuranlardan birinin yöntemi anlattığı popüler kitap.",
+          "role": "Popüler sürüm"
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Scrum’ı kuranlardan birinin yöntemi anlattığı popüler kitap.",
+          "source": "Özgün kaynaklar · Popüler sürüm"
+        }
+      ],
       "editions": [
         {
           "id": "D1",
@@ -41058,7 +41972,8 @@
         }
       ],
       "origins": [
-        "kitaps"
+        "kitaps",
+        "originals"
       ],
       "legacyKeys": [
         "scrum-the-art-of-doing-twice-the-work-in-half-the-time-jeff-"
@@ -41092,10 +42007,12 @@
       "originalTitle": "Scrum: The Art of Doing Twice the Work in Half the Time",
       "addedAt": "2026-09-02",
       "collectionIds": [
-        "kitaps-D"
+        "kitaps-D",
+        "ozgun-kaynaklar"
       ],
       "groupIds": [
-        "kitaps-D:liste"
+        "kitaps-D:liste",
+        "ozgun-kaynaklar:cevik-yalin"
       ]
     },
     {
@@ -55045,6 +55962,13 @@
           "groupId": "foundations:economy",
           "source": "https://openlibrary.org/works/OL17810657W",
           "note": "İktisat okullarını karşılaştırmalı tanıtarak ekonomi tartışmalarının varsayımlarını görünür kılar."
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 3
         }
       ],
       "notes": [
@@ -55112,7 +56036,8 @@
         "foundations"
       ],
       "groupIds": [
-        "foundations:economy"
+        "foundations:economy",
+        "foundations:baslangic"
       ]
     },
     {
@@ -55227,6 +56152,13 @@
           "groupId": "foundations:economy",
           "source": "https://openlibrary.org/works/OL1831957W",
           "note": "Finansal krizlerin ortak mekaniklerini açıklar; tekil kriz anlatılarını karşılaştırmayı kolaylaştırır."
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 4
         }
       ],
       "notes": [
@@ -55259,7 +56191,8 @@
         "foundations"
       ],
       "groupIds": [
-        "foundations:economy"
+        "foundations:economy",
+        "foundations:baslangic"
       ]
     },
     {
@@ -55924,6 +56857,13 @@
           "groupId": "foundations:decisions",
           "source": "https://openlibrary.org/works/OL9302660W",
           "note": "Davranışsal iktisada kolay bir giriş sağlayarak daha yoğun karar bilimi kitaplarına geçişi kolaylaştırır."
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 5
         }
       ],
       "notes": [
@@ -55991,7 +56931,8 @@
         "foundations"
       ],
       "groupIds": [
-        "foundations:decisions"
+        "foundations:decisions",
+        "foundations:baslangic"
       ]
     },
     {
@@ -56072,6 +57013,13 @@
           "groupId": "foundations:decisions",
           "source": "https://openlibrary.org/works/OL2979495W",
           "note": "Oyun teorisine matematiksiz giriş yaparak stratejik etkileşim kitaplarının dilini kurar."
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 6
         }
       ],
       "notes": [
@@ -56105,7 +57053,8 @@
         "foundations"
       ],
       "groupIds": [
-        "foundations:decisions"
+        "foundations:decisions",
+        "foundations:baslangic"
       ]
     },
     {
@@ -56219,6 +57168,13 @@
           "groupId": "foundations:strategy",
           "source": "https://openlibrary.org/search?title=Strategy%3A+A+History&author=Lawrence+Freedman",
           "note": "Askerî, siyasi ve iş stratejisini tarihsel bir çizgide bağlayarak parçalı strateji rafını bütünler."
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 12
         }
       ],
       "notes": [
@@ -56252,7 +57208,8 @@
         "foundations"
       ],
       "groupIds": [
-        "foundations:strategy"
+        "foundations:strategy",
+        "foundations:baslangic"
       ]
     },
     {
@@ -56456,6 +57413,13 @@
           "note": "Temel soruları ve düşünürleri kronolojik biçimde tanıtarak filozof biyografilerine giriş sağlar."
         },
         {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 7
+        },
+        {
           "collectionId": "preparation",
           "groupId": "preparation:2",
           "source": "https://kitapsec.com/Products/Felsefenin-Kisa-Tarihi-Nigel-Warburton-Alfa-Yayinlari-755993.html",
@@ -56524,6 +57488,7 @@
       ],
       "groupIds": [
         "foundations:philosophy",
+        "foundations:baslangic",
         "preparation:2"
       ]
     },
@@ -56991,17 +57956,35 @@
           "groupId": "foundations:sociology",
           "source": "https://openlibrary.org/works/OL527241W",
           "note": "Birey, grup ve kurum düzeylerini ayırarak sosyolojik bakışı kurar."
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 8
+        },
+        {
+          "collectionId": "raf-degerlendirmesi",
+          "groupId": "raf-degerlendirmesi:oncelikli",
+          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "note": "Fotoğraftaki iki kitaptan önce okunacak olan ve sosyolojiye iyi bir giriş: gündelik hayatta doğal ve kişisel sandığımız davranışların arkasındaki toplumsal ilişkileri sorgulatır. Yönetici için değeri, kişiyi suçlamadan önce sınanacak alternatif açıklamalar üretmesi: yeni sisteme direnç, zamanında bitmeyen işler, karşılık bulmayan iyi bir ürün, uygulanmayan kararlar."
         }
       ],
       "notes": [
         {
           "text": "Birey, grup ve kurum düzeylerini ayırarak sosyolojik bakışı kurar.",
           "source": "Temel okumalar araştırması"
+        },
+        {
+          "text": "Fotoğraftaki iki kitaptan önce okunacak olan ve sosyolojiye iyi bir giriş: gündelik hayatta doğal ve kişisel sandığımız davranışların arkasındaki toplumsal ilişkileri sorgulatır. Yönetici için değeri, kişiyi suçlamadan önce sınanacak alternatif açıklamalar üretmesi: yeni sisteme direnç, zamanında bitmeyen işler, karşılık bulmayan iyi bir ürün, uygulanmayan kararlar.",
+          "source": "Raf taraması"
         }
       ],
       "editions": [],
       "origins": [
-        "foundations"
+        "foundations",
+        "shelf"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -57019,10 +58002,13 @@
       },
       "addedAt": "2026-09-28",
       "collectionIds": [
-        "foundations"
+        "foundations",
+        "raf-degerlendirmesi"
       ],
       "groupIds": [
-        "foundations:sociology"
+        "foundations:sociology",
+        "foundations:baslangic",
+        "raf-degerlendirmesi:oncelikli"
       ]
     },
     {
@@ -57119,6 +58105,117 @@
       ]
     },
     {
+      "id": "corrosionofcharacter",
+      "title": "The Corrosion of Character",
+      "titleTr": "Karakter Aşınması: Yeni Kapitalizmde İşin Kişilik Üzerindeki Etkileri",
+      "author": "Richard Sennett",
+      "aliases": [
+        "Karakter Aşınması: Yeni Kapitalizmde İşin Kişilik Üzerindeki Etkileri"
+      ],
+      "years": [
+        1998
+      ],
+      "categories": [
+        "economy",
+        "management"
+      ],
+      "memberships": [
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:sociology",
+          "source": "https://www.kitapyurdu.com/kitap/karakter-asinmasi-yeni-kapitalizmde-isin-kisilik-uzerindeki-etkileri/50042.html",
+          "note": "Çalışma hayatını çalışanın tarafından görmek için: esnek kapitalizmde değişimin, belirsizliğin ve kısa vadeli iş ilişkilerinin insan üzerindeki sonuçları. Sosyolojik Düşünmek’ten sonra ikinci okuma."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Çalışma hayatını çalışanın tarafından görmek için: esnek kapitalizmde değişimin, belirsizliğin ve kısa vadeli iş ilişkilerinin insan üzerindeki sonuçları. Sosyolojik Düşünmek’ten sonra ikinci okuma.",
+          "source": "Temel okumalar araştırması"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "foundations"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalTitle": "The Corrosion of Character",
+      "cover": {
+        "src": "covers/foundation-corrosionofcharacter.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11914585/wi:500/wh:89700f7d9",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/karakter-asinmasi-yeni-kapitalizmde-isin-kisilik-uzerindeki-etkileri/50042.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Karakter Aşınması: Yeni Kapitalizmde İşin Kişilik Üzerindeki Etkileri",
+        "author": "Richard Sennett",
+        "publisher": "Ayrıntı Yayınları",
+        "isbn": "9789755393704",
+        "language": "tr",
+        "checkedAt": "2026-10-21",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "verifiedEdition": {
+        "title": "Karakter Aşınması: Yeni Kapitalizmde İşin Kişilik Üzerindeki Etkileri",
+        "isbn": "9789755393704",
+        "publisher": "Ayrıntı Yayınları",
+        "translators": [
+          "Barış Yıldırım"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/karakter-asinmasi-yeni-kapitalizmde-isin-kisilik-uzerindeki-etkileri/50042.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.ayrintiyayingrubu.com/kitap/karakter-asinmasi-2/",
+        "secondSourceType": "publisher",
+        "checkedAt": "2026-10-21",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve ayrintiyayingrubu.com aynı ISBN'i (9789755393704) ve Ayrıntı Yayınları yayınevini gösteriyor; çevirmen: Barış Yıldırım. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-o-003",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/karakter-asinmasi-yeni-kapitalizmde-isin-kisilik-uzerindeki-etkileri/50042.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/kitap/karakter-asinmasi/arastirma-tarih/sosyoloji/urunno=0000000190314",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-o-003",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.ayrintiyayingrubu.com/kitap/karakter-asinmasi-2/",
+              "type": "publisher"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Karakter Aşınması: Yeni Kapitalizmde İşin Kişilik Üzerindeki Etkileri",
+          "publisher": "Ayrıntı Yayınları",
+          "isbn": "9789755393704",
+          "translators": [
+            "Barış Yıldırım"
+          ]
+        }
+      },
+      "originalLanguage": "en",
+      "originalPublisher": "W. W. Norton & Company",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "foundations"
+      ],
+      "groupIds": [
+        "foundations:sociology"
+      ]
+    },
+    {
       "id": "littlehistoryoftheworld",
       "title": "A Little History of the World",
       "titleTr": "Genç Okurlar İçin Kısa Bir Dünya Tarihi",
@@ -57138,6 +58235,13 @@
           "groupId": "foundations:history",
           "source": "https://openlibrary.org/works/OL686184W",
           "note": "Tarihî kişileri ve dönemleri kronolojik bir omurgaya yerleştirir."
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 9
         },
         {
           "collectionId": "preparation",
@@ -57205,6 +58309,7 @@
       ],
       "groupIds": [
         "foundations:history",
+        "foundations:baslangic",
         "preparation:2"
       ]
     },
@@ -57574,6 +58679,13 @@
           "groupId": "foundations:history",
           "source": "https://openlibrary.org/works/OL72140W",
           "note": "Rus kültür tarihini biyografiler ve romanlarla ilişkilendirir."
+        },
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:baslangic",
+          "source": "https://github.com/karacaismail/kitaps",
+          "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
+          "order": 10
         }
       ],
       "notes": [
@@ -57607,7 +58719,8 @@
         "foundations"
       ],
       "groupIds": [
-        "foundations:history"
+        "foundations:history",
+        "foundations:baslangic"
       ]
     },
     {
@@ -57716,6 +58829,129 @@
         "isbn": "9786257027052"
       },
       "addedAt": "2026-09-28",
+      "collectionIds": [
+        "foundations"
+      ],
+      "groupIds": [
+        "foundations:history"
+      ]
+    },
+    {
+      "id": "ottomanempiretheclassicalage13001600",
+      "title": "The Ottoman Empire: The Classical Age 1300–1600",
+      "titleTr": "Osmanlı İmparatorluğu Klasik Çağ (1300-1600)",
+      "author": "Halil İnalcık",
+      "aliases": [
+        "Osmanlı İmparatorluğu Klasik Çağ (1300-1600)"
+      ],
+      "years": [
+        1973
+      ],
+      "categories": [
+        "history"
+      ],
+      "memberships": [
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:history",
+          "source": "https://www.kitapyurdu.com/kitap/osmanli-imparatorlugu-klasik-cag-13001600/501208.html",
+          "note": "Devlet-i Aliyye’den kısa bir giriş isteyene: Osmanlı devletinin kuruluşundan klasik çağın sonuna kurumları, toplumu ve ekonomisi tek ciltte."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Devlet-i Aliyye’den kısa bir giriş isteyene: Osmanlı devletinin kuruluşundan klasik çağın sonuna kurumları, toplumu ve ekonomisi tek ciltte.",
+          "source": "Temel okumalar araştırması"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "foundations"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalTitle": "The Ottoman Empire: The Classical Age 1300–1600",
+      "cover": {
+        "src": "covers/foundation-ottomanempiretheclassicalage13001600.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:8634554/mh:1000/wh:2653942df",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/osmanli-imparatorlugu-klasik-cag-13001600/501208.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Osmanlı İmparatorluğu Klasik Çağ (1300-1600)",
+        "author": "Halil İnalcık",
+        "publisher": "Kronik Kitap",
+        "isbn": "9786057635099",
+        "language": "tr",
+        "checkedAt": "2026-10-21",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "verifiedEdition": {
+        "title": "Osmanlı İmparatorluğu Klasik Çağ (1300-1600)",
+        "isbn": "9786057635099",
+        "publisher": "Kronik Kitap",
+        "translators": [
+          "Ruşen Sezer"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/osmanli-imparatorlugu-klasik-cag-13001600/501208.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://kronikkitap.com/kitap/osmanli-imparatorlugu-klasik-cag/",
+        "secondSourceType": "publisher",
+        "checkedAt": "2026-10-21",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve kronikkitap.com aynı ISBN'i (9786057635099) ve Kronik Kitap yayınevini gösteriyor; çevirmen: Ruşen Sezer. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-o-003",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/osmanli-imparatorlugu-klasik-cag-13001600/501208.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/kitap/osmanli-imparatorlugu-klasik-cag-1300-1600/halil-inalcik/arastirma-tarih/tarih/osmanli-tarihi/urunno=0001807561001",
+              "type": "retailer"
+            },
+            {
+              "url": "https://catalog.khas.edu.tr/bib/25011",
+              "type": "library-catalog"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-o-003",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://kronikkitap.com/kitap/osmanli-imparatorlugu-klasik-cag/",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.bkmkitap.com/halil-inalcik-seti-6-kitap-takim",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.biyografiler.com/kitap/osmanli-imparatorlugu-klasik-cag-(1300-1600)",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Osmanlı İmparatorluğu Klasik Çağ (1300-1600)",
+          "publisher": "Kronik Kitap",
+          "isbn": "9786057635099",
+          "translators": [
+            "Ruşen Sezer"
+          ],
+          "year": 2019
+        }
+      },
+      "originalLanguage": "en",
+      "originalPublisher": "Weidenfeld & Nicolson",
+      "addedAt": "2026-10-21",
       "collectionIds": [
         "foundations"
       ],
@@ -57997,6 +59233,148 @@
       },
       "originalLanguage": "en",
       "addedAt": "2026-09-28",
+      "collectionIds": [
+        "foundations"
+      ],
+      "groupIds": [
+        "foundations:enterprise"
+      ]
+    },
+    {
+      "id": "howtogetstartupideas",
+      "title": "How to Get Startup Ideas",
+      "titleTr": "",
+      "author": "Paul Graham",
+      "aliases": [],
+      "years": [
+        2012
+      ],
+      "categories": [
+        "enterprise"
+      ],
+      "memberships": [
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:enterprise",
+          "source": "https://paulgraham.com/startupideas.html",
+          "note": "Paul Graham’ın ücretsiz denemesi: iyi girişim fikirleri aranarak değil, kurucunun kendi yaşadığı bir sorunu fark etmesiyle bulunur. Katalogdaki Y Combinator ekolünden kitapların (Traction, The Cold Start Problem, Founding Sales) atıf yaptığı metinlerden."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Paul Graham’ın ücretsiz denemesi: iyi girişim fikirleri aranarak değil, kurucunun kendi yaşadığı bir sorunu fark etmesiyle bulunur. Katalogdaki Y Combinator ekolünden kitapların (Traction, The Cold Start Problem, Founding Sales) atıf yaptığı metinlerden.",
+          "source": "Temel okumalar araştırması"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "foundations"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalTitle": "How to Get Startup Ideas",
+      "format": "essay",
+      "publication": {
+        "venue": "paulgraham.com",
+        "readUrl": "https://paulgraham.com/startupideas.html"
+      },
+      "originalLanguage": "en",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "foundations"
+      ],
+      "groupIds": [
+        "foundations:enterprise"
+      ]
+    },
+    {
+      "id": "dothingsthatdontscale",
+      "title": "Do Things That Don't Scale",
+      "titleTr": "",
+      "author": "Paul Graham",
+      "aliases": [],
+      "years": [
+        2013
+      ],
+      "categories": [
+        "enterprise"
+      ],
+      "memberships": [
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:enterprise",
+          "source": "https://paulgraham.com/ds.html",
+          "note": "Paul Graham’ın ücretsiz denemesi: ilk kullanıcıları tek tek, elle kazanmak; başlangıçta ölçeklenmeyen işleri yapmanın önemi."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Paul Graham’ın ücretsiz denemesi: ilk kullanıcıları tek tek, elle kazanmak; başlangıçta ölçeklenmeyen işleri yapmanın önemi.",
+          "source": "Temel okumalar araştırması"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "foundations"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalTitle": "Do Things That Don't Scale",
+      "format": "essay",
+      "publication": {
+        "venue": "paulgraham.com",
+        "readUrl": "https://paulgraham.com/ds.html"
+      },
+      "originalLanguage": "en",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "foundations"
+      ],
+      "groupIds": [
+        "foundations:enterprise"
+      ]
+    },
+    {
+      "id": "defaultaliveordefaultdead",
+      "title": "Default Alive or Default Dead?",
+      "titleTr": "",
+      "author": "Paul Graham",
+      "aliases": [],
+      "years": [
+        2015
+      ],
+      "categories": [
+        "enterprise",
+        "finance"
+      ],
+      "memberships": [
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:enterprise",
+          "source": "https://paulgraham.com/aord.html",
+          "note": "Paul Graham’ın ücretsiz denemesi: bugünkü büyüme ve harcama hızıyla şirketin parası bitmeden kâra geçip geçemeyeceğini hesaplamak."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Paul Graham’ın ücretsiz denemesi: bugünkü büyüme ve harcama hızıyla şirketin parası bitmeden kâra geçip geçemeyeceğini hesaplamak.",
+          "source": "Temel okumalar araştırması"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "foundations"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalTitle": "Default Alive or Default Dead?",
+      "format": "essay",
+      "publication": {
+        "venue": "paulgraham.com",
+        "readUrl": "https://paulgraham.com/aord.html"
+      },
+      "originalLanguage": "en",
+      "addedAt": "2026-10-21",
       "collectionIds": [
         "foundations"
       ],
@@ -58469,6 +59847,135 @@
       "originalLanguage": "en",
       "originalPublisher": "Secker & Warburg (London)",
       "addedAt": "2026-09-28",
+      "collectionIds": [
+        "foundations"
+      ],
+      "groupIds": [
+        "foundations:literature"
+      ]
+    },
+    {
+      "id": "kopegiyledolasankadinotuzyedisecmeoyku",
+      "title": "Köpeğiyle Dolaşan Kadın: Otuz Yedi Seçme Öykü",
+      "titleTr": "Köpeğiyle Dolaşan Kadın: Otuz Yedi Seçme Öykü",
+      "author": "Anton Chekhov",
+      "aliases": [],
+      "years": [],
+      "categories": [
+        "literature"
+      ],
+      "memberships": [
+        {
+          "collectionId": "foundations",
+          "groupId": "foundations:literature",
+          "source": "https://www.kitapyurdu.com/kitap/kopegiyle-dolasan-kadin-ciltsiz-otuz-yedi-secme-oyku/87023.html",
+          "note": "Rus edebiyatının en kolay ve en iyi kapısı: büyük romanlardan önce Çehov’un kısa öyküleriyle başlamak için. İş Bankası Hasan Âli Yücel Klasikleri’ndeki geniş öykü seçkisi."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Rus edebiyatının en kolay ve en iyi kapısı: büyük romanlardan önce Çehov’un kısa öyküleriyle başlamak için. İş Bankası Hasan Âli Yücel Klasikleri’ndeki geniş öykü seçkisi.",
+          "source": "Temel okumalar araştırması"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "foundations"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "cover": {
+        "src": "covers/foundation-kopegiyledolasankadinotuzyedisecmeoyku.jpg",
+        "imageUrl": "https://i.dr.com.tr/cache/600x600-0/originals/0000000220463-1.jpg",
+        "sourceUrl": "https://www.dr.com.tr/kitap/kopegiyle-dolasan-kadin-hasan-ali-yucel-klasikleri/anton-pavlovic-cehov/edebiyat/roman/dunya-klasik/urunno=0000000220463",
+        "sourceName": "dr.com.tr",
+        "title": "Köpeğiyle Dolaşan Kadın: Otuz Yedi Seçme Öykü",
+        "author": "Anton Chekhov",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9789754588767",
+        "language": "tr",
+        "checkedAt": "2026-10-21",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "verifiedEdition": {
+        "title": "Köpeğiyle Dolaşan Kadın: Otuz Yedi Seçme Öykü",
+        "isbn": "9789754588767",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "translators": [
+          "Ergin Altay"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/kopegiyle-dolasan-kadin-ciltsiz-otuz-yedi-secme-oyku/87023.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.iskultur.com.tr/kopegiyle-dolasan-kadin-otuz-yedi-secme-oyku.aspx",
+        "secondSourceType": "publisher",
+        "checkedAt": "2026-10-21",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve iskultur.com.tr aynı ISBN'i (9789754588767) ve Türkiye İş Bankası Kültür Yayınları yayınevini gösteriyor; çevirmen: Ergin Altay. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-o-003",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/kopegiyle-dolasan-kadin-ciltsiz-otuz-yedi-secme-oyku/87023.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://catalog.khas.edu.tr/bib/42964",
+              "type": "library-catalog"
+            },
+            {
+              "url": "https://www.kitapyurdu.com/kitap/kopegiyle-dolasan-kadin-ciltli-otuz-yedi-secme-oyku/87024.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.idefix.com/yazar/anton-pavlovic-cehov-260105",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-o-003",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.iskultur.com.tr/kopegiyle-dolasan-kadin-otuz-yedi-secme-oyku.aspx",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.iskultur.com.tr/yazarlar/anton-cehov",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.iskultur.com.tr/hikayeler.aspx",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.iskultur.com.tr/hikayeler-kisaltilmis-metin.aspx",
+              "type": "publisher"
+            },
+            {
+              "url": "https://www.biyografiler.com/kitap/kopegiyle-dolasan-kadin--(ciltsiz)-otuz-yedi-secme-oyku",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Köpeğiyle Dolaşan Kadın: Otuz Yedi Seçme Öykü",
+          "publisher": "Türkiye İş Bankası Kültür Yayınları",
+          "isbn": "9789754588767",
+          "translators": [
+            "Ergin Altay"
+          ],
+          "year": 2006
+        }
+      },
+      "originalLanguage": "ru",
+      "addedAt": "2026-10-21",
       "collectionIds": [
         "foundations"
       ],
@@ -68277,6 +69784,1948 @@
       ]
     },
     {
+      "id": "singularityisnear",
+      "title": "The Singularity Is Near",
+      "titleTr": "İnsanlık 2.0: Tekilliğe Doğru Biyolojisini Aşan İnsan",
+      "author": "Ray Kurzweil",
+      "aliases": [
+        "İnsanlık 2.0: Tekilliğe Doğru Biyolojisini Aşan İnsan"
+      ],
+      "years": [
+        2005
+      ],
+      "categories": [
+        "technology",
+        "science"
+      ],
+      "memberships": [
+        {
+          "collectionId": "raf-degerlendirmesi",
+          "groupId": "raf-degerlendirmesi:uzun-vadeli",
+          "source": "https://github.com/karacaismail/kitaps/blob/main/data/shelf-review.json",
+          "note": "Ufuk açıcı ama öncelikli bir yönetici kitabı değil: büyük teknolojik değişimleri birlikte düşünmeye zorlar. Ancak bir teknolojideki hızlanmadan bütün toplumsal ve biyolojik dönüşümlerin aynı hızla geleceği sonucu çıkmaz; teknik olanak, güvenilir ürün, ekonomik uygulanabilirlik ve toplumsal benimsenme ayrı aşamalardır. Önce Sosyolojik Düşünmek, sonra bu kitap."
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:tekillik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Tekilliği insan ve makine zekâsının birleşmesi ve biyolojik sınırların aşılması olarak anlatan kitap. 2045 Kurzweil’in öngörüsüdür, doğrulanmış bir tarih değil; Kurzweil de “tekillik” sözcüğünü bir metafor olarak kullandığını söyler.",
+          "role": "Popüler sürüm"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Ufuk açıcı ama öncelikli bir yönetici kitabı değil: büyük teknolojik değişimleri birlikte düşünmeye zorlar. Ancak bir teknolojideki hızlanmadan bütün toplumsal ve biyolojik dönüşümlerin aynı hızla geleceği sonucu çıkmaz; teknik olanak, güvenilir ürün, ekonomik uygulanabilirlik ve toplumsal benimsenme ayrı aşamalardır. Önce Sosyolojik Düşünmek, sonra bu kitap.",
+          "source": "Raf taraması"
+        },
+        {
+          "text": "Tekilliği insan ve makine zekâsının birleşmesi ve biyolojik sınırların aşılması olarak anlatan kitap. 2045 Kurzweil’in öngörüsüdür, doğrulanmış bir tarih değil; Kurzweil de “tekillik” sözcüğünü bir metafor olarak kullandığını söyler.",
+          "source": "Özgün kaynaklar · Popüler sürüm"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "shelf",
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "İnsanlık 2.0: Tekilliğe Doğru Biyolojisini Aşan İnsan",
+        "isbn": "9786051712550",
+        "publisher": "Alfa Yayınları",
+        "translators": [
+          "Mine Şengel"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/insanlik-20/393072.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.dr.com.tr/kitap/insanlik-2-0/bilim/populer-bilim/urunno=0000000688766",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-21",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786051712550) ve Alfa Yayınları yayınevini gösteriyor; çevirmen: Mine Şengel. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/shelf-singularityisnear.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11921999/mh:1000/wh:9d7d7da3a",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/insanlik-20/393072.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "İnsanlık 2.0: Tekilliğe Doğru Biyolojisini Aşan İnsan",
+        "author": "Ray Kurzweil",
+        "publisher": "Alfa Yayınları",
+        "isbn": "9786051712550",
+        "language": "tr",
+        "checkedAt": "2026-10-21",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-o-003",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/insanlik-20/393072.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://acikerisim.gelisim.edu.tr/items/6b4c45f5-24c3-44e5-ba3a-9f5bfedd3e0d/full",
+              "type": "bibliographic"
+            },
+            {
+              "url": "https://1000kitap.com/kitap/insanlik-2-0--59828",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-o-003",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.dr.com.tr/search?q=9786051712550",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "İnsanlık 2.0: Tekilliğe Doğru Biyolojisini Aşan İnsan",
+          "publisher": "Alfa Yayınları",
+          "isbn": "9786051712550",
+          "translators": [
+            "Mine Şengel"
+          ],
+          "year": 2016
+        }
+      },
+      "originalPublisher": "Viking",
+      "originalTitle": "The Singularity Is Near",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "raf-degerlendirmesi",
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "raf-degerlendirmesi:uzun-vadeli",
+        "ozgun-kaynaklar:tekillik"
+      ]
+    },
+    {
+      "id": "mindset",
+      "title": "Mindset",
+      "titleTr": "Aklını En Doğru Şekilde Kullan",
+      "author": "Carol S. Dweck",
+      "aliases": [
+        "Aklını En Doğru Şekilde Kullan"
+      ],
+      "years": [
+        2006
+      ],
+      "categories": [
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:zihniyet",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Gelişim zihniyeti kavramını yaygınlaştıran kitap. Önce bunu oku, sonra Bandura’nın 1977 tarihli makalesine bak: ikisi arasındaki derinlik farkı hemen görünür.",
+          "role": "Popüler sürüm"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Gelişim zihniyeti kavramını yaygınlaştıran kitap. Önce bunu oku, sonra Bandura’nın 1977 tarihli makalesine bak: ikisi arasındaki derinlik farkı hemen görünür.",
+          "source": "Özgün kaynaklar · Popüler sürüm"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Aklını En Doğru Şekilde Kullan",
+        "isbn": "9786053845539",
+        "publisher": "Yakamoz Yayıncılık",
+        "translators": [
+          "Uğurcan Kaya"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/aklini-en-dogru-sekilde-kullan/407054.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.dr.com.tr/kitap/aklini-en-dogru-sekilde-kullan/s-dweck/basvuru/psikoloji-bilimi/urunno=0000000427552",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-21",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786053845539) ve Yakamoz Yayıncılık yayınevini gösteriyor; çevirmen: Uğurcan Kaya. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/originals-mindset.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12177410/wi:500/wh:114c44736",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/aklini-en-dogru-sekilde-kullan/407054.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Aklını En Doğru Şekilde Kullan",
+        "author": "Carol S. Dweck",
+        "publisher": "Yakamoz Yayıncılık",
+        "isbn": "9786053845539",
+        "language": "tr",
+        "checkedAt": "2026-10-21",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-o-001",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/aklini-en-dogru-sekilde-kullan/407054.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://catalog.koc.k12.tr/bib/55367",
+              "type": "library-catalog"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-o-001",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.dr.com.tr/search?q=9786053845539",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=Carol%20Dweck",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Aklını En Doğru Şekilde Kullan",
+          "publisher": "Yakamoz Yayıncılık",
+          "isbn": "9786053845539",
+          "translators": [
+            "Uğurcan Kaya"
+          ]
+        }
+      },
+      "originalPublisher": "Random House",
+      "originalTitle": "Mindset",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:zihniyet"
+      ]
+    },
+    {
+      "id": "selfefficacytowardaunifyingtheoryofbehavioralchange",
+      "title": "Self-Efficacy: Toward a Unifying Theory of Behavioral Change",
+      "titleTr": "",
+      "author": "Albert Bandura",
+      "aliases": [],
+      "years": [
+        1977
+      ],
+      "categories": [
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:zihniyet",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Öz-yeterlik kavramını ortaya koyan makale: bir işi başarabileceğine dair inancın, kişinin neye girişeceğini, ne kadar çaba göstereceğini ve güçlük karşısında ne kadar dayanacağını belirlemesi.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Öz-yeterlik kavramını ortaya koyan makale: bir işi başarabileceğine dair inancın, kişinin neye girişeceğini, ne kadar çaba göstereceğini ve güçlük karşısında ne kadar dayanacağını belirlemesi.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "format": "article",
+      "publication": {
+        "venue": "Psychological Review",
+        "volume": "84",
+        "issue": "2",
+        "pages": "191–215",
+        "doi": "10.1037/0033-295X.84.2.191"
+      },
+      "originalTitle": "Self-Efficacy: Toward a Unifying Theory of Behavioral Change",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:zihniyet"
+      ]
+    },
+    {
+      "id": "selfefficacytheexerciseofcontrol",
+      "title": "Self-Efficacy: The Exercise of Control",
+      "titleTr": "",
+      "author": "Albert Bandura",
+      "aliases": [],
+      "years": [
+        1997
+      ],
+      "categories": [
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:zihniyet",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Öz-yeterlik kuramının kapsamlı hâli: Bandura kuramı yirmi yılda biriken araştırmayla sağlık, eğitim, iş ve toplu eylem alanlarına genişletir.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Öz-yeterlik kuramının kapsamlı hâli: Bandura kuramı yirmi yılda biriken araştırmayla sağlık, eğitim, iş ve toplu eylem alanlarına genişletir.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-selfefficacytheexerciseofcontrol.jpg",
+        "imageUrl": "https://covers.openlibrary.org/b/isbn/9780716728504-L.jpg",
+        "sourceUrl": "https://openlibrary.org/books/OL1011521M",
+        "sourceName": "Open Library",
+        "title": "Self-Efficacy: The Exercise of Control",
+        "author": "Albert Bandura",
+        "publisher": "W. H. Freeman",
+        "isbn": "9780716728504",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "W. H. Freeman",
+      "originalTitle": "Self-Efficacy: The Exercise of Control",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:zihniyet"
+      ]
+    },
+    {
+      "id": "helplessness",
+      "title": "Helplessness",
+      "titleTr": "",
+      "author": "Martin E. P. Seligman",
+      "aliases": [],
+      "years": [
+        1975
+      ],
+      "categories": [
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:zihniyet",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Öğrenilmiş çaresizlik araştırmalarının kitabı: sonuçları kontrol edemeyeceğini öğrenen canlının denemeyi bırakması ve bunun depresyon, gelişim ve ölümle ilişkisi.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Öğrenilmiş çaresizlik araştırmalarının kitabı: sonuçları kontrol edemeyeceğini öğrenen canlının denemeyi bırakması ve bunun depresyon, gelişim ve ölümle ilişkisi.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-helplessness.jpg",
+        "imageUrl": "https://covers.openlibrary.org/b/isbn/9780716707516-L.jpg",
+        "sourceUrl": "https://openlibrary.org/isbn/9780716707516",
+        "sourceName": "Open Library",
+        "title": "Helplessness",
+        "author": "Martin E. P. Seligman",
+        "publisher": "W. H. Freeman",
+        "isbn": "9780716707516",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "W. H. Freeman",
+      "originalTitle": "Helplessness",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:zihniyet"
+      ]
+    },
+    {
+      "id": "psychologicalsafetyandlearningbehaviorinworkteams",
+      "title": "Psychological Safety and Learning Behavior in Work Teams",
+      "titleTr": "",
+      "author": "Amy Edmondson",
+      "aliases": [],
+      "years": [
+        1999
+      ],
+      "categories": [
+        "management",
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:psikolojik-guvenlik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Kavramı ölçütüyle birlikte tanımlayan makale: ekipte soru sormanın, hatayı söylemenin ve yardım istemenin kişiler arası bir risk sayılmaması ve bunun ekibin öğrenmesine etkisi.",
+          "role": "Özgün kaynak"
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:ilk-uc",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Zamanın sınırlıysa üçüncü metin: bugün sıkça tekrarlanan psikolojik güvenlik fikrinin özgün tanımı ve koşulları.",
+          "role": "Özgün kaynak",
+          "order": 3
+        }
+      ],
+      "notes": [
+        {
+          "text": "Kavramı ölçütüyle birlikte tanımlayan makale: ekipte soru sormanın, hatayı söylemenin ve yardım istemenin kişiler arası bir risk sayılmaması ve bunun ekibin öğrenmesine etkisi.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        },
+        {
+          "text": "Zamanın sınırlıysa üçüncü metin: bugün sıkça tekrarlanan psikolojik güvenlik fikrinin özgün tanımı ve koşulları.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "format": "article",
+      "publication": {
+        "venue": "Administrative Science Quarterly",
+        "volume": "44",
+        "issue": "2",
+        "pages": "350–383",
+        "doi": "10.2307/2666999"
+      },
+      "originalTitle": "Psychological Safety and Learning Behavior in Work Teams",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:psikolojik-guvenlik",
+        "ozgun-kaynaklar:ilk-uc"
+      ]
+    },
+    {
+      "id": "personalandorganizationalchangethroughgroupmethods",
+      "title": "Personal and Organizational Change Through Group Methods",
+      "titleTr": "",
+      "author": "Edgar H. Schein and Warren G. Bennis",
+      "aliases": [],
+      "years": [
+        1965
+      ],
+      "categories": [
+        "management",
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:psikolojik-guvenlik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Kavramın kökü: Schein ve Bennis, grup yöntemleriyle kişisel ve örgütsel değişim üzerine bu kitapta insanların değişebilmesi için kendini güvende hissetmesi gerektiğini tartışır.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Kavramın kökü: Schein ve Bennis, grup yöntemleriyle kişisel ve örgütsel değişim üzerine bu kitapta insanların değişebilmesi için kendini güvende hissetmesi gerektiğini tartışır.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "sourceIssue": {
+        "note": "Türkçe baskısı doğrulanamadı. Kapak gösterilmiyor: bulunan tek görsel kitabın gerçek kapağı değildi."
+      },
+      "originalPublisher": "John Wiley & Sons",
+      "originalTitle": "Personal and Organizational Change Through Group Methods",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:psikolojik-guvenlik"
+      ]
+    },
+    {
+      "id": "fearlessorganization",
+      "title": "The Fearless Organization",
+      "titleTr": "",
+      "author": "Amy C. Edmondson",
+      "aliases": [],
+      "years": [
+        2018
+      ],
+      "categories": [
+        "management",
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:psikolojik-guvenlik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Edmondson’ın kavramı kurumlar için anlattığı kitap. Makaleden daha okunaklı; kavramın yanlış anlaşılmasına karşı da en iyi koruma.",
+          "role": "Popüler sürüm"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Edmondson’ın kavramı kurumlar için anlattığı kitap. Makaleden daha okunaklı; kavramın yanlış anlaşılmasına karşı da en iyi koruma.",
+          "source": "Özgün kaynaklar · Popüler sürüm"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-fearlessorganization.jpg",
+        "imageUrl": "https://media.wiley.com/product_data/coverImage300/47/11194772/1119477247.jpg",
+        "sourceUrl": "https://www.wiley.com/en-us/The+Fearless+Organization%3A+Creating+Psychological+Safety+in+the+Workplace+for+Learning%2C+Innovation%2C+and+Growth-p-9781119477242",
+        "sourceName": "Wiley",
+        "title": "The Fearless Organization",
+        "author": "Amy C. Edmondson",
+        "publisher": "John Wiley & Sons",
+        "isbn": "9781119477242",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "John Wiley & Sons",
+      "originalTitle": "The Fearless Organization",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:psikolojik-guvenlik"
+      ]
+    },
+    {
+      "id": "teaming",
+      "title": "Teaming",
+      "titleTr": "",
+      "author": "Amy C. Edmondson",
+      "aliases": [],
+      "years": [
+        2012
+      ],
+      "categories": [
+        "management"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:psikolojik-guvenlik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Ekiplerin sabit takımlar yerine iş üstünde bir araya gelip birlikte öğrenmesini anlatan kitap; psikolojik güvenliği ekip çalışmasının günlük pratiğine bağlar.",
+          "role": "Popüler sürüm"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Ekiplerin sabit takımlar yerine iş üstünde bir araya gelip birlikte öğrenmesini anlatan kitap; psikolojik güvenliği ekip çalışmasının günlük pratiğine bağlar.",
+          "source": "Özgün kaynaklar · Popüler sürüm"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-teaming.jpg",
+        "imageUrl": "https://media.wiley.com/product_data/coverImage300/3X/07879709/078797093X.jpg",
+        "sourceUrl": "https://www.wiley.com/en-us/Teaming%3A+How+Organizations+Learn%2C+Innovate%2C+and+Compete+in+the+Knowledge+Economy-p-9780787970932",
+        "sourceName": "Wiley",
+        "title": "Teaming",
+        "author": "Amy C. Edmondson",
+        "publisher": "Jossey-Bass",
+        "isbn": "9780787970932",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "Jossey-Bass",
+      "originalTitle": "Teaming",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:psikolojik-guvenlik"
+      ]
+    },
+    {
+      "id": "neweconomics",
+      "title": "The New Economics",
+      "titleTr": "",
+      "author": "W. Edwards Deming",
+      "aliases": [],
+      "years": [
+        1993
+      ],
+      "categories": [
+        "systems",
+        "management"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:cevik-yalin",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Deming’in son kitabı: sistemi, değişkenliği, bilgiyi ve insan psikolojisini birlikte ele alan derin bilgi sistemi ve planla-uygula-incele-önlem al döngüsü.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Deming’in son kitabı: sistemi, değişkenliği, bilgiyi ve insan psikolojisini birlikte ele alan derin bilgi sistemi ve planla-uygula-incele-önlem al döngüsü.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-neweconomics.jpg",
+        "imageUrl": "https://covers.openlibrary.org/b/isbn/9780911379051-L.jpg",
+        "sourceUrl": "https://openlibrary.org/books/OL1571542M",
+        "sourceName": "Open Library",
+        "title": "The New Economics",
+        "author": "W. Edwards Deming",
+        "publisher": "Massachusetts Institute of Technology, Center for Advanced Engineering Study",
+        "isbn": "9780911379051",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "Massachusetts Institute of Technology, Center for Advanced Engineering Study",
+      "originalTitle": "The New Economics",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:cevik-yalin"
+      ]
+    },
+    {
+      "id": "statisticalmethodfromtheviewpointofqualitycontrol",
+      "title": "Statistical Method from the Viewpoint of Quality Control",
+      "titleTr": "",
+      "author": "Walter A. Shewhart",
+      "aliases": [],
+      "years": [
+        1939
+      ],
+      "categories": [
+        "systems"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:cevik-yalin",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Planla-uygula-kontrol et-önlem al (PDCA) döngüsünün kökü Walter Shewhart’a gider; Deming onu yaygınlaştırdı. Süreçteki değişkenliği istatistikle izleme fikrinin kaynağı.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Planla-uygula-kontrol et-önlem al (PDCA) döngüsünün kökü Walter Shewhart’a gider; Deming onu yaygınlaştırdı. Süreçteki değişkenliği istatistikle izleme fikrinin kaynağı.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-statisticalmethodfromtheviewpointofqualitycontro.jpg",
+        "imageUrl": "https://covers.openlibrary.org/b/isbn/9780486652320-L.jpg",
+        "sourceUrl": "https://openlibrary.org/books/OL2723003M",
+        "sourceName": "Open Library",
+        "title": "Statistical Method from the Viewpoint of Quality Control",
+        "author": "Walter A. Shewhart",
+        "publisher": "Dover",
+        "isbn": "9780486652320",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "The Graduate School, The Department of Agriculture",
+      "originalTitle": "Statistical Method from the Viewpoint of Quality Control",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:cevik-yalin"
+      ]
+    },
+    {
+      "id": "newnewproductdevelopmentgame",
+      "title": "The New New Product Development Game",
+      "titleTr": "",
+      "author": "Hirotaka Takeuchi and Ikujiro Nonaka",
+      "aliases": [],
+      "years": [
+        1986
+      ],
+      "categories": [
+        "innovation",
+        "management"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:cevik-yalin",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Scrum adının geldiği makale: ürün geliştirmede işi aşamadan aşamaya devretmek yerine topu ragbideki gibi birlikte taşıyan, kendi kendini örgütleyen ekipler.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Scrum adının geldiği makale: ürün geliştirmede işi aşamadan aşamaya devretmek yerine topu ragbideki gibi birlikte taşıyan, kendi kendini örgütleyen ekipler.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "format": "article",
+      "publication": {
+        "venue": "Harvard Business Review",
+        "pageUrl": "https://hbr.org/1986/01/the-new-new-product-development-game"
+      },
+      "originalTitle": "The New New Product Development Game",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:cevik-yalin"
+      ]
+    },
+    {
+      "id": "spiralmodelofsoftwaredevelopmentandenhancement",
+      "title": "A Spiral Model of Software Development and Enhancement",
+      "titleTr": "",
+      "author": "Barry W. Boehm",
+      "aliases": [],
+      "years": [
+        1986
+      ],
+      "categories": [
+        "technology",
+        "systems"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:cevik-yalin",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Yazılımı riskleri erkenden görerek tekrarlanan döngülerle geliştirme fikrinin erken tarifi; çevik yöntemlerin öncülerinden.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Yazılımı riskleri erkenden görerek tekrarlanan döngülerle geliştirme fikrinin erken tarifi; çevik yöntemlerin öncülerinden.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "format": "article",
+      "publication": {
+        "venue": "ACM SIGSOFT Software Engineering Notes",
+        "volume": "11",
+        "issue": "4",
+        "pages": "14–24",
+        "doi": "10.1145/12944.12948"
+      },
+      "originalTitle": "A Spiral Model of Software Development and Enhancement",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:cevik-yalin"
+      ]
+    },
+    {
+      "id": "practiceofmanagement",
+      "title": "The Practice of Management",
+      "titleTr": "",
+      "author": "Peter F. Drucker",
+      "aliases": [],
+      "years": [
+        1954
+      ],
+      "categories": [
+        "management"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:okr",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Hedeflerle yönetim (MBO) kavramının ortaya konduğu kitap; Drucker yönetimi burada ayrı bir uğraş olarak tanımlar.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Hedeflerle yönetim (MBO) kavramının ortaya konduğu kitap; Drucker yönetimi burada ayrı bir uğraş olarak tanımlar.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-practiceofmanagement.jpg",
+        "imageUrl": "https://covers.openlibrary.org/b/isbn/9780060878979-L.jpg",
+        "sourceUrl": "https://openlibrary.org/books/OL7283402M",
+        "sourceName": "Open Library",
+        "title": "The Practice of Management",
+        "author": "Peter F. Drucker",
+        "publisher": "Collins",
+        "isbn": "9780060878979",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "sourceIssue": {
+        "note": "Türkçe baskısı: Yönetim Uygulaması (İnkılap Kitabevi, 1996, çeviren E. Sabri Yarmalı, ISBN 9789751010209). Baskı tükenmiş; künye bir üniversite kütüphanesinde ve iki kitapçıda görülüyor, ancak iki aşamalı inceleme tamamlanmadığı için doğrulanmış sayılmadı."
+      },
+      "originalPublisher": "Harper & Brothers",
+      "originalTitle": "The Practice of Management",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:okr"
+      ]
+    },
+    {
+      "id": "measurewhatmatters",
+      "title": "Measure What Matters",
+      "titleTr": "Önemli Olanı Ölç - OKR: 10 Kat Büyümek için Basit Bir Yöntem",
+      "author": "John Doerr",
+      "aliases": [
+        "Önemli Olanı Ölç - OKR: 10 Kat Büyümek için Basit Bir Yöntem"
+      ],
+      "years": [
+        2018
+      ],
+      "categories": [
+        "management"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:okr",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "OKR’ı Intel’de Grove’dan öğrenen Doerr’ın yöntemi şirketlere anlattığı kitap.",
+          "role": "Popüler sürüm"
+        }
+      ],
+      "notes": [
+        {
+          "text": "OKR’ı Intel’de Grove’dan öğrenen Doerr’ın yöntemi şirketlere anlattığı kitap.",
+          "source": "Özgün kaynaklar · Popüler sürüm"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Önemli Olanı Ölç - OKR: 10 Kat Büyümek için Basit Bir Yöntem",
+        "isbn": "9786056902468",
+        "publisher": "Buzdağı Yayınevi",
+        "translators": [
+          "Ali Atav"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/onemli-olani-olc-okr-10-kat-buyumek-icin-basit-bir-yontem/531864.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.pandora.com.tr/kitap/onemli-olani-olc-okr-10-kat-buyumek-icin-basit-bir-yontem/730718",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-21",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve pandora.com.tr aynı ISBN'i (9786056902468) ve Buzdağı Yayınevi yayınevini gösteriyor; çevirmen: Ali Atav. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/originals-measurewhatmatters.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11634073/wi:500/wh:3d8ba91ad",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/onemli-olani-olc-okr-10-kat-buyumek-icin-basit-bir-yontem/531864.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Önemli Olanı Ölç - OKR: 10 Kat Büyümek için Basit Bir Yöntem",
+        "author": "John Doerr",
+        "publisher": "Buzdağı Yayınevi",
+        "isbn": "9786056902468",
+        "language": "tr",
+        "checkedAt": "2026-10-21",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-o-002",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/onemli-olani-olc-okr-10-kat-buyumek-icin-basit-bir-yontem/531864.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.dr.com.tr/search?q=9786056902468",
+              "type": "retailer"
+            },
+            {
+              "url": "https://kureansiklopedi.com/tr/detay/onemli-olani-olc-kitap-14cbb",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-o-002",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.pandora.com.tr/kitap/onemli-olani-olc-okr-10-kat-buyumek-icin-basit-bir-yontem/730718",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.amazon.com.tr/%C3%96nemli-Olan%C4%B1-%C3%96l%C3%A7-B%C3%BCy%C3%BCmek-Y%C3%B6ntem/dp/6056902463",
+              "type": "retailer"
+            },
+            {
+              "url": "https://1000kitap.com/kitap/onemli-olani-olc--202802",
+              "type": "bibliographic"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Önemli Olanı Ölç - OKR: 10 Kat Büyümek için Basit Bir Yöntem",
+          "publisher": "Buzdağı Yayınevi",
+          "isbn": "9786056902468",
+          "translators": [
+            "Ali Atav"
+          ],
+          "year": 2020
+        }
+      },
+      "originalPublisher": "Portfolio",
+      "originalTitle": "Measure What Matters",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:okr"
+      ]
+    },
+    {
+      "id": "servantasleader",
+      "title": "The Servant as Leader",
+      "titleTr": "",
+      "author": "Robert K. Greenleaf",
+      "aliases": [],
+      "years": [
+        1970
+      ],
+      "categories": [
+        "management"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:hizmetkar-liderlik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Kavramı ortaya koyan kısa deneme. Hizmetkâr liderliği ölçütüyle birlikte buradan öğrenebilirsin: hizmet edilenler kişi olarak gelişiyor, daha sağlıklı, daha bilge, daha özgür ve daha bağımsız oluyorlar mı? Deneme bugün Greenleaf Center for Servant Leadership tarafından yayımlanıyor.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Kavramı ortaya koyan kısa deneme. Hizmetkâr liderliği ölçütüyle birlikte buradan öğrenebilirsin: hizmet edilenler kişi olarak gelişiyor, daha sağlıklı, daha bilge, daha özgür ve daha bağımsız oluyorlar mı? Deneme bugün Greenleaf Center for Servant Leadership tarafından yayımlanıyor.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "format": "essay",
+      "publication": {
+        "venue": "Center for Applied Studies",
+        "pageUrl": "https://greenleaf.org/product/the-servant-as-leader/"
+      },
+      "originalTitle": "The Servant as Leader",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:hizmetkar-liderlik"
+      ]
+    },
+    {
+      "id": "servantleadership",
+      "title": "Servant Leadership",
+      "titleTr": "",
+      "author": "Robert K. Greenleaf",
+      "aliases": [],
+      "years": [
+        1977
+      ],
+      "categories": [
+        "management"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:hizmetkar-liderlik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Greenleaf’in kavramı ortaya koyan denemesini ve kurumlar üzerine yazılarını bir araya getiren kitap.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Greenleaf’in kavramı ortaya koyan denemesini ve kurumlar üzerine yazılarını bir araya getiren kitap.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-servantleadership.jpg",
+        "imageUrl": "https://covers.openlibrary.org/b/isbn/9780809105540-L.jpg",
+        "sourceUrl": "https://openlibrary.org/books/OL3554155M",
+        "sourceName": "Open Library",
+        "title": "Servant Leadership",
+        "author": "Robert K. Greenleaf",
+        "publisher": "Paulist Press",
+        "isbn": "9780809105540",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "Paulist Press",
+      "originalTitle": "Servant Leadership",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:hizmetkar-liderlik"
+      ]
+    },
+    {
+      "id": "fullcatastropheliving",
+      "title": "Full Catastrophe Living",
+      "titleTr": "",
+      "author": "Jon Kabat-Zinn",
+      "aliases": [],
+      "years": [
+        1990
+      ],
+      "categories": [
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:farkindalik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Kabat-Zinn’in bir hastanede kurduğu farkındalığa dayalı stres azaltma programının kitabı; kavramın en güvenilir kaynağı.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Kabat-Zinn’in bir hastanede kurduğu farkındalığa dayalı stres azaltma programının kitabı; kavramın en güvenilir kaynağı.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "sourceIssue": {
+        "note": "Türkçe baskı adayı: Mindfulness’in İyileştirici Gücü (Diyojen Yayıncılık, ISBN 9786254434044). Alt başlığı ve sayfa sayısı bu esere işaret ediyor, ancak özgün adı gösteren bağımsız bir kaynak bulunamadığı için doğrulanmış sayılmadı. Kapak da bu yüzden eklenmedi."
+      },
+      "originalPublisher": "Delacorte Press",
+      "originalTitle": "Full Catastrophe Living",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:farkindalik"
+      ]
+    },
+    {
+      "id": "mcmindfulness",
+      "title": "McMindfulness",
+      "titleTr": "",
+      "author": "Ronald E. Purser",
+      "aliases": [],
+      "years": [
+        2019
+      ],
+      "categories": [
+        "psychology",
+        "ethics"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:farkindalik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Farkındalığın kurumsal sürümünün eleştirisi: stresi bireyin sorunu gibi ele alıp onu doğuran koşulları görünmez kılması.",
+          "role": "Eleştiri ve sınama"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Farkındalığın kurumsal sürümünün eleştirisi: stresi bireyin sorunu gibi ele alıp onu doğuran koşulları görünmez kılması.",
+          "source": "Özgün kaynaklar · Eleştiri ve sınama"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-mcmindfulness.jpg",
+        "imageUrl": "https://images4.penguinrandomhouse.com/cover/9781912248315",
+        "sourceUrl": "https://penguinrandomhouse.com/books/600158/mcmindfulness-by-ronald-purser",
+        "sourceName": "Penguin Random House",
+        "title": "McMindfulness",
+        "author": "Ronald E. Purser",
+        "publisher": "Repeater Books",
+        "isbn": "9781912248315",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "Repeater Books",
+      "originalTitle": "McMindfulness",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:farkindalik"
+      ]
+    },
+    {
+      "id": "sciencesoftheartificial",
+      "title": "The Sciences of the Artificial",
+      "titleTr": "",
+      "author": "Herbert A. Simon",
+      "aliases": [],
+      "years": [
+        1969
+      ],
+      "categories": [
+        "innovation",
+        "science"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:tasarim",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Tasarımı bir bilim alanı olarak ele alan kitap: mevcut bir durumu tercih edilen bir duruma dönüştürmenin yolunu arayan herkes tasarım yapar.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Tasarımı bir bilim alanı olarak ele alan kitap: mevcut bir durumu tercih edilen bir duruma dönüştürmenin yolunu arayan herkes tasarım yapar.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-sciencesoftheartificial.jpg",
+        "imageUrl": "https://covers.openlibrary.org/b/isbn/9780262691918-L.jpg",
+        "sourceUrl": "https://openlibrary.org/books/OL975566M",
+        "sourceName": "Open Library",
+        "title": "The Sciences of the Artificial",
+        "author": "Herbert A. Simon",
+        "publisher": "MIT Press",
+        "isbn": "9780262691918",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "M.I.T. Press",
+      "originalTitle": "The Sciences of the Artificial",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:tasarim"
+      ]
+    },
+    {
+      "id": "dilemmasinageneraltheoryofplanning",
+      "title": "Dilemmas in a General Theory of Planning",
+      "titleTr": "",
+      "author": "Horst W. J. Rittel and Melvin M. Webber",
+      "aliases": [],
+      "years": [
+        1973
+      ],
+      "categories": [
+        "innovation",
+        "systems"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:tasarim",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "“Çetrefil sorun” (wicked problem) kavramını ortaya koyan makale: tanımı tartışmalı, kesin bir doğru cevabı olmayan ve her çözümü yeni bir sorun doğuran planlama sorunları.",
+          "role": "Özgün kaynak"
+        },
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:ilk-uc",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Zamanın sınırlıysa ikinci metin: kısa ama çok yoğun.",
+          "role": "Özgün kaynak",
+          "order": 2
+        }
+      ],
+      "notes": [
+        {
+          "text": "“Çetrefil sorun” (wicked problem) kavramını ortaya koyan makale: tanımı tartışmalı, kesin bir doğru cevabı olmayan ve her çözümü yeni bir sorun doğuran planlama sorunları.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        },
+        {
+          "text": "Zamanın sınırlıysa ikinci metin: kısa ama çok yoğun.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "format": "article",
+      "publication": {
+        "venue": "Policy Sciences",
+        "volume": "4",
+        "issue": "2",
+        "pages": "155–169",
+        "doi": "10.1007/BF01405730"
+      },
+      "originalTitle": "Dilemmas in a General Theory of Planning",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:tasarim",
+        "ozgun-kaynaklar:ilk-uc"
+      ]
+    },
+    {
+      "id": "reflectivepractitioner",
+      "title": "The Reflective Practitioner",
+      "titleTr": "",
+      "author": "Donald A. Schön",
+      "aliases": [],
+      "years": [
+        1983
+      ],
+      "categories": [
+        "innovation",
+        "management"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:tasarim",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Profesyonellerin iş üstünde düşünerek nasıl öğrendiğini, eylem içinde düşünmeyi anlatan kitap.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Profesyonellerin iş üstünde düşünerek nasıl öğrendiğini, eylem içinde düşünmeyi anlatan kitap.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-reflectivepractitioner.jpg",
+        "imageUrl": "https://covers.openlibrary.org/b/isbn/9780465068746-L.jpg",
+        "sourceUrl": "https://openlibrary.org/books/OL3511128M",
+        "sourceName": "Open Library",
+        "title": "The Reflective Practitioner",
+        "author": "Donald A. Schön",
+        "publisher": "Basic Books",
+        "isbn": "9780465068746",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "Basic Books",
+      "originalTitle": "The Reflective Practitioner",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:tasarim"
+      ]
+    },
+    {
+      "id": "changebydesign",
+      "title": "Change by Design",
+      "titleTr": "",
+      "author": "Tim Brown",
+      "aliases": [],
+      "years": [
+        2009
+      ],
+      "categories": [
+        "innovation"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:tasarim",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "IDEO’nun tasarım odaklı düşünmeyi kurumlara anlattığı popüler kitap.",
+          "role": "Popüler sürüm"
+        }
+      ],
+      "notes": [
+        {
+          "text": "IDEO’nun tasarım odaklı düşünmeyi kurumlara anlattığı popüler kitap.",
+          "source": "Özgün kaynaklar · Popüler sürüm"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-changebydesign.jpg",
+        "imageUrl": "https://covers.openlibrary.org/b/isbn/9780061766084-L.jpg",
+        "sourceUrl": "https://openlibrary.org/books/OL23207675M",
+        "sourceName": "Open Library",
+        "title": "Change by Design",
+        "author": "Tim Brown",
+        "publisher": "HarperBusiness",
+        "isbn": "9780061766084",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "HarperBusiness",
+      "originalTitle": "Change by Design",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:tasarim"
+      ]
+    },
+    {
+      "id": "capitalismsocialismanddemocracy",
+      "title": "Capitalism, Socialism and Democracy",
+      "titleTr": "",
+      "author": "Joseph A. Schumpeter",
+      "aliases": [],
+      "years": [
+        1942
+      ],
+      "categories": [
+        "economy",
+        "strategy"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:strateji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "“Yaratıcı yıkım” kavramının ortaya konduğu kitap: yeniliğin eski yapıları yıkarak ekonomiyi sürekli dönüştürmesi.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "“Yaratıcı yıkım” kavramının ortaya konduğu kitap: yeniliğin eski yapıları yıkarak ekonomiyi sürekli dönüştürmesi.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-capitalismsocialismanddemocracy.jpg",
+        "imageUrl": "https://covers.openlibrary.org/b/isbn/9780061330087-L.jpg",
+        "sourceUrl": "https://openlibrary.org/isbn/9780061330087",
+        "sourceName": "Open Library",
+        "title": "Capitalism, Socialism and Democracy",
+        "author": "Joseph A. Schumpeter",
+        "publisher": "Harper Perennial",
+        "isbn": "9780061330087",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "sourceIssue": {
+        "note": "Türkçe çevirileri var (Varlık Yayınları, 1981, çeviren Tunay Akoğlu; daha yeni baskılar), ancak güncel bir baskının künyesi iki ayrı sitede doğrulanamadı."
+      },
+      "originalPublisher": "Harper & Brothers",
+      "originalTitle": "Capitalism, Socialism and Democracy",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:strateji"
+      ]
+    },
+    {
+      "id": "sciencestrategyandwar",
+      "title": "Science, Strategy and War",
+      "titleTr": "",
+      "author": "Frans P. B. Osinga",
+      "aliases": [],
+      "years": [
+        2007
+      ],
+      "categories": [
+        "strategy"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:strateji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "John Boyd’un kendi kitabı yok. OODA döngüsü dâhil strateji kuramını brifinglerinden yola çıkarak en kapsamlı biçimde çözümleyen kitap.",
+          "role": "Boyd’a giriş"
+        }
+      ],
+      "notes": [
+        {
+          "text": "John Boyd’un kendi kitabı yok. OODA döngüsü dâhil strateji kuramını brifinglerinden yola çıkarak en kapsamlı biçimde çözümleyen kitap.",
+          "source": "Özgün kaynaklar · Boyd’a giriş"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-sciencestrategyandwar.jpg",
+        "imageUrl": "https://covers.openlibrary.org/b/isbn/9780415371032-L.jpg",
+        "sourceUrl": "https://openlibrary.org/isbn/9780415371032",
+        "sourceName": "Open Library",
+        "title": "Science, Strategy and War",
+        "author": "Frans P. B. Osinga",
+        "publisher": "Routledge",
+        "isbn": "9780415371032",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalTitle": "Science, Strategy and War",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:strateji"
+      ]
+    },
+    {
+      "id": "boyd",
+      "title": "Boyd",
+      "titleTr": "",
+      "author": "Robert Coram",
+      "aliases": [],
+      "years": [
+        2002
+      ],
+      "categories": [
+        "strategy",
+        "biography"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:strateji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Boyd’un hayatını ve fikirlerini anlatan okunaklı biyografi; Osinga’nın kitabıyla birlikte en iyi başlangıç.",
+          "role": "Boyd’a giriş"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Boyd’un hayatını ve fikirlerini anlatan okunaklı biyografi; Osinga’nın kitabıyla birlikte en iyi başlangıç.",
+          "source": "Özgün kaynaklar · Boyd’a giriş"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-boyd.jpg",
+        "imageUrl": "https://www.hachettebookgroup.com/wp-content/uploads/2017/06/9780316881463.jpg",
+        "sourceUrl": "https://hachettebookgroup.com/?p=13606",
+        "sourceName": "Hachette Book Group",
+        "title": "Boyd",
+        "author": "Robert Coram",
+        "publisher": "Little, Brown and Company",
+        "isbn": "9780316881463",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "originalPublisher": "Little, Brown and Company",
+      "originalTitle": "Boyd",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:strateji"
+      ]
+    },
+    {
+      "id": "grit",
+      "title": "Grit",
+      "titleTr": "Azim: Sabır, Tutku ve Kararlılığın Gücü",
+      "author": "Angela Duckworth",
+      "aliases": [
+        "Azim: Sabır, Tutku ve Kararlılığın Gücü"
+      ],
+      "years": [
+        2016
+      ],
+      "categories": [
+        "psychology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:psikoloji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Azmi uzun vadeli hedeflere yönelik tutku ve sebat olarak anlatan kitap. Kişilik psikolojisindeki sorumluluk (conscientiousness) araştırmalarıyla birlikte okunmalı.",
+          "role": "Popüler sürüm"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Azmi uzun vadeli hedeflere yönelik tutku ve sebat olarak anlatan kitap. Kişilik psikolojisindeki sorumluluk (conscientiousness) araştırmalarıyla birlikte okunmalı.",
+          "source": "Özgün kaynaklar · Popüler sürüm"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Azim: Sabır, Tutku ve Kararlılığın Gücü",
+        "isbn": "9786052994436",
+        "publisher": "Pegasus Yayınları",
+        "translators": [
+          "Öyküm Taner"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/azim-sabir-tutku-ve-kararliligin-gucu/457097.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.dr.com.tr/kitap/azim-sabir-tutku-ve-kararliligin-gucu/angela-duckworth/basvuru/kisisel-gelisim/urunno=0001751132001",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-10-21",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786052994436) ve Pegasus Yayınları yayınevini gösteriyor; çevirmen: Öyküm Taner. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/originals-grit.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:5724672/wi:500/wh:b27be10d6",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/azim-sabir-tutku-ve-kararliligin-gucu/457097.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Azim: Sabır, Tutku ve Kararlılığın Gücü",
+        "author": "Angela Duckworth",
+        "publisher": "Pegasus Yayınları",
+        "isbn": "9786052994436",
+        "language": "tr",
+        "checkedAt": "2026-10-21",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "translationResearch": {
+        "status": "available",
+        "stage1": {
+          "decision": "available",
+          "reviewer": "claude-stage1-o-001",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.kitapyurdu.com/kitap/azim-sabir-tutku-ve-kararliligin-gucu/457097.html",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.kitapyurdu.com/index.php?route=product/search&filter_name=Angela%20Duckworth",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.bkmkitap.com/azim-sabir-tutku-ve-kararligin-gucu",
+              "type": "retailer"
+            },
+            {
+              "url": "https://www.idefix.com/azim-sabir-tutku-ve-kararliligin-gucu-p-1520097",
+              "type": "retailer"
+            }
+          ]
+        },
+        "stage2": {
+          "decision": "available",
+          "reviewer": "claude-stage2-o-001",
+          "checkedAt": "2026-10-21",
+          "sources": [
+            {
+              "url": "https://www.dr.com.tr/search?q=9786052994436",
+              "type": "retailer"
+            }
+          ]
+        },
+        "edition": {
+          "title": "Azim: Sabır, Tutku ve Kararlılığın Gücü",
+          "publisher": "Pegasus Yayınları",
+          "isbn": "9786052994436",
+          "translators": [
+            "Öyküm Taner"
+          ],
+          "year": 2018
+        }
+      },
+      "originalPublisher": "Scribner",
+      "originalTitle": "Grit",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:psikoloji"
+      ]
+    },
+    {
+      "id": "willpower",
+      "title": "Willpower",
+      "titleTr": "",
+      "author": "Roy F. Baumeister and John Tierney",
+      "aliases": [],
+      "years": [
+        2011
+      ],
+      "categories": [
+        "psychology",
+        "productivity"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:psikoloji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "İradenin kullandıkça tükenen bir kaynak olduğu (ego tükenmesi) fikrini anlatan kitap. Etkinin tekrar üretilemediğini gösteren 2016 çalışmasıyla birlikte okunmalı.",
+          "role": "Popüler sürüm"
+        }
+      ],
+      "notes": [
+        {
+          "text": "İradenin kullandıkça tükenen bir kaynak olduğu (ego tükenmesi) fikrini anlatan kitap. Etkinin tekrar üretilemediğini gösteren 2016 çalışmasıyla birlikte okunmalı.",
+          "source": "Özgün kaynaklar · Popüler sürüm"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "cover": {
+        "src": "covers/originals-willpower.jpg",
+        "imageUrl": "https://images1.penguinrandomhouse.com/cover/9780143122234",
+        "sourceUrl": "https://www.penguinrandomhouse.com/books/307740/willpower-by-roy-f-baumeister-and-john-tierney/",
+        "sourceName": "Penguin Random House",
+        "title": "Willpower",
+        "author": "Roy F. Baumeister and John Tierney",
+        "publisher": "Penguin Books",
+        "isbn": "9780143122234",
+        "language": "en",
+        "checkedAt": "2026-10-21",
+        "scope": "Uluslararası baskı kapağı"
+      },
+      "sourceIssue": {
+        "note": "Türkçe baskı adayı: İrade (TUAL Yayınları, 2012). Baskı bir dergi makalesinin kaynakçasında da anılıyor, ancak ISBN ve çevirmen yalnız tek bir sitede görüldüğü için doğrulanmış sayılmadı."
+      },
+      "originalPublisher": "Penguin Press",
+      "originalTitle": "Willpower",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:psikoloji"
+      ]
+    },
+    {
+      "id": "multilabpreregisteredreplicationoftheegodepletioneffect",
+      "title": "A Multilab Preregistered Replication of the Ego-Depletion Effect",
+      "titleTr": "",
+      "author": "Martin S. Hagger and Nikos L. D. Chatzisarantis",
+      "aliases": [],
+      "years": [
+        2016
+      ],
+      "categories": [
+        "psychology",
+        "science"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:psikoloji",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Ego tükenmesi etkisini pek çok laboratuvarda aynı, önceden kayıtlı yöntemle sınayan tekrar çalışması; etki sıfıra yakın çıktı. İrade kitabını okuyorsan bunu da mutlaka oku. Makalenin 64 yazarı var; burada ilk ikisi anılıyor.",
+          "role": "Eleştiri ve sınama"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Ego tükenmesi etkisini pek çok laboratuvarda aynı, önceden kayıtlı yöntemle sınayan tekrar çalışması; etki sıfıra yakın çıktı. İrade kitabını okuyorsan bunu da mutlaka oku. Makalenin 64 yazarı var; burada ilk ikisi anılıyor.",
+          "source": "Özgün kaynaklar · Eleştiri ve sınama"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "format": "article",
+      "publication": {
+        "venue": "Perspectives on Psychological Science",
+        "doi": "10.1177/1745691616652873",
+        "volume": "11",
+        "issue": "4",
+        "pages": "546–573"
+      },
+      "originalTitle": "A Multilab Preregistered Replication of the Ego-Depletion Effect",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:psikoloji"
+      ]
+    },
+    {
+      "id": "comingtechnologicalsingularity",
+      "title": "The Coming Technological Singularity",
+      "titleTr": "",
+      "author": "Vernor Vinge",
+      "aliases": [],
+      "years": [
+        1993
+      ],
+      "categories": [
+        "technology"
+      ],
+      "memberships": [
+        {
+          "collectionId": "ozgun-kaynaklar",
+          "groupId": "ozgun-kaynaklar:tekillik",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+          "note": "Teknolojik tekillik fikrinin temel metni: insanüstü zekânın ortaya çıkmasıyla sonrasını bugünkü modellerle öngörmenin imkânsızlaştığı eşik. İnsan zekâsını teknolojiyle güçlendirmeyi (intelligence amplification) ayrı bir gelişme yolu olarak da ele alır.",
+          "role": "Özgün kaynak"
+        }
+      ],
+      "notes": [
+        {
+          "text": "Teknolojik tekillik fikrinin temel metni: insanüstü zekânın ortaya çıkmasıyla sonrasını bugünkü modellerle öngörmenin imkânsızlaştığı eşik. İnsan zekâsını teknolojiyle güçlendirmeyi (intelligence amplification) ayrı bir gelişme yolu olarak da ele alır.",
+          "source": "Özgün kaynaklar · Özgün kaynak"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "originals"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "format": "essay",
+      "publication": {
+        "venue": "VISION-21 sempozyumu bildirileri, NASA Conference Publication 10129",
+        "readUrl": "https://edoras.sdsu.edu/~vinge/misc/singularity.html"
+      },
+      "originalTitle": "The Coming Technological Singularity",
+      "addedAt": "2026-10-21",
+      "collectionIds": [
+        "ozgun-kaynaklar"
+      ],
+      "groupIds": [
+        "ozgun-kaynaklar:tekillik"
+      ]
+    },
+    {
       "id": "elestirelokuma",
       "title": "Eleştirel Okuma",
       "titleTr": "Eleştirel Okuma",
@@ -69509,12 +72958,18 @@
       "short": "Temel okumalar",
       "description": "Katalogdaki belirli eserleri daha verimli okumak için önerilen giriş, bağlam ve eşlik kitapları. İlişkiler zorunlu önkoşul değil, editoryal öğrenme sırasıdır.",
       "source": "https://github.com/karacaismail/kitaps",
+      "context": {
+        "purpose": "Katalogdaki kümeleri daha verimli okumak için dışarıdan gelen giriş, bağlam ve eşlik kitapları.",
+        "criterion": "Her kitap, katalogdaki belirli kitapları açan bir anahtar olmalı; “genel kültür için iyi olur” diye hiçbir şey eklenmedi. Türkçe baskısı doğrulanamayanlar özgün adıyla gösterilir.",
+        "verdict": "Hepsini baştan okumak gerekmiyor. Baştan okunacaklar kataloğun her yerini açar; yaklaşık dört aylık bir başlangıçtır. Geri kalanlar kümeye gelince okunur: piyasa kitaplarına başlarken Malkiel, Osmanlı biyografilerine başlarken İnalcık, Frankfurt Okulu’na gelince Martin Jay, yapay zekâya gelince Bostrom. Yöntem olarak sürekli uygulananlar: her biyografiden önce konusunun Çok Kısa Bir Giriş kitabı (Dost Kitabevi), her Rus romanının yanında Nabokov’un Rus Edebiyatı Dersleri. Yönetimde Grove’un Yüksek Çıktılı Yönetim’i Drucker’dan bile önce okunabilir, çünkü en somut olanı. Cesur Yeni Dünya’yı Orwell’in 1984’üyle yan yana okumak, iki kitabın da neden hâlâ tartışıldığını gösterir."
+      },
       "origin": "foundations",
       "mark": "T",
       "tag": "Küme anahtarı",
       "note": "Belirli katalog kitaplarını daha verimli okumayı sağlayan temel ve eşlik kitapları.",
-      "count": 50,
+      "count": 61,
       "groupIds": [
+        "foundations:baslangic",
         "foundations:method",
         "foundations:economy",
         "foundations:markets",
@@ -69587,13 +73042,43 @@
       "origin": "shelf",
       "mark": "RAF",
       "tag": "Raf taraması",
-      "note": "Değerlendirmedeki tablo biçimli öncelik listeleri aktarılan metinde yer almadığı için yalnızca adıyla anılan kitaplar alındı. Öncelikler not ve alt küme olarak tutulur, puana eklenmez; puanlar diğer kitaplarla aynı motordan gelir. Yeni Türkçe baskılar iki ayrı sitede doğrulandı.",
-      "count": 31,
+      "note": "Değerlendirmedeki tablo biçimli öncelik listeleri aktarılan metinde yer almadığı için yalnızca adıyla anılan kitaplar alındı. Öncelikler not ve alt küme olarak tutulur, puana eklenmez; puanlar diğer kitaplarla aynı motordan gelir. Yeni Türkçe baskılar iki ayrı sitede doğrulandı. 21 Ekim 2026’da ikinci bir fotoğraf değerlendirmesi eklendi: Sosyolojik Düşünmek öncelikli okuma, İnsanlık 2.0 seçerek okunacak uzun vadeli bir kitap.",
+      "count": 33,
       "groupIds": [
         "raf-degerlendirmesi:oncelikli",
         "raf-degerlendirmesi:uzun-vadeli",
         "raf-degerlendirmesi:ihtiyaca-gore",
         "raf-degerlendirmesi:kizim-icin"
+      ]
+    },
+    {
+      "id": "ozgun-kaynaklar",
+      "title": "Popüler kavramların özgün kaynakları",
+      "short": "Özgün kaynaklar",
+      "description": "Yönetimde ve psikolojide sık tekrarlanan kavramların ilk ortaya konduğu kitap ve makaleler, yanlarında popüler sürümleri ve gerektiğinde eleştirileri: gelişim zihniyeti, psikolojik güvenlik, çevik yöntemler ve yalın girişim, OKR, hizmetkâr liderlik, farkındalık, tasarım odaklı düşünme, strateji, akış, azim, irade ve teknolojik tekillik.",
+      "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+      "context": {
+        "purpose": "Bugün sık tekrarlanan kavramları popüler anlatımlarından değil, ilk ortaya konduğu metinden ve koşullarından öğrenmek.",
+        "criterion": "Her başlıkta özgün kaynak ile popüler sürüm ayrı tutuldu; gerektiğinde bir eleştiri ya da tekrar çalışması eklendi. Türkçe baskı yalnız iki ayrı sitede doğrulandığında gösterilir; basım ve stok durumu kontrol edilmedi.",
+        "verdict": "Kaynak okumak istiyorsan özgün kaynaklardan başla. Zamanın sınırlıysa üç metinle başla: Deming’in Krizden Çıkış’ı (bütün sistem düşüncesinin temeli), Rittel ve Webber’in makalesi (kısa, çok yoğun) ve Edmondson’ın 1999 makalesi. Üçü de bugün sıkça tekrarlanan fikirlerin özgün koşullarını gösterir. Bir düzeltme: PDCA döngüsünün kökü Deming’e değil Walter Shewhart’a gider; Deming onu yaygınlaştırdı."
+      },
+      "origin": "originals",
+      "mark": "ÖZ",
+      "tag": "Özgün kaynak",
+      "note": "Roller (özgün kaynak, popüler sürüm, eleştiri) not ve alt küme olarak tutulur, puana eklenmez. Makale ve denemeler kitaplarla birlikte listelenir; baskı yerine yayın bilgisini ve metnin bağlantısını gösterir. Teknolojik tekillik başlığı, rafta görülen İnsanlık 2.0 için yapılan değerlendirmeden gelir.",
+      "count": 39,
+      "groupIds": [
+        "ozgun-kaynaklar:zihniyet",
+        "ozgun-kaynaklar:psikolojik-guvenlik",
+        "ozgun-kaynaklar:cevik-yalin",
+        "ozgun-kaynaklar:okr",
+        "ozgun-kaynaklar:hizmetkar-liderlik",
+        "ozgun-kaynaklar:farkindalik",
+        "ozgun-kaynaklar:tasarim",
+        "ozgun-kaynaklar:strateji",
+        "ozgun-kaynaklar:psikoloji",
+        "ozgun-kaynaklar:tekillik",
+        "ozgun-kaynaklar:ilk-uc"
       ]
     },
     {
@@ -70280,6 +73765,12 @@
       "count": 6
     },
     {
+      "id": "foundations:baslangic",
+      "collectionId": "foundations",
+      "title": "Baştan okunacaklar: kataloğun her yerini açanlar",
+      "count": 12
+    },
+    {
       "id": "foundations:method",
       "collectionId": "foundations",
       "title": "Okuma yöntemi",
@@ -70319,31 +73810,31 @@
       "id": "foundations:sociology",
       "collectionId": "foundations",
       "title": "Sosyoloji",
-      "count": 2
+      "count": 3
     },
     {
       "id": "foundations:history",
       "collectionId": "foundations",
       "title": "Tarih omurgası",
-      "count": 10
+      "count": 12
     },
     {
       "id": "foundations:technology",
       "collectionId": "foundations",
       "title": "Teknoloji ve yapay zekâ",
-      "count": 3
+      "count": 4
     },
     {
       "id": "foundations:enterprise",
       "collectionId": "foundations",
       "title": "Girişimcilik ve ürün",
-      "count": 2
+      "count": 5
     },
     {
       "id": "foundations:literature",
       "collectionId": "foundations",
       "title": "Rus edebiyatı ve karşılaştırmalı kurgu",
-      "count": 6
+      "count": 7
     },
     {
       "id": "foundations:japan",
@@ -70458,13 +73949,13 @@
       "id": "raf-degerlendirmesi:oncelikli",
       "collectionId": "raf-degerlendirmesi",
       "title": "Öncelikli okumalar",
-      "count": 15
+      "count": 16
     },
     {
       "id": "raf-degerlendirmesi:uzun-vadeli",
       "collectionId": "raf-degerlendirmesi",
       "title": "Uzun vadeli okuma",
-      "count": 1
+      "count": 2
     },
     {
       "id": "raf-degerlendirmesi:ihtiyaca-gore",
@@ -70477,6 +73968,72 @@
       "collectionId": "raf-degerlendirmesi",
       "title": "Kızım için",
       "count": 2
+    },
+    {
+      "id": "ozgun-kaynaklar:zihniyet",
+      "collectionId": "ozgun-kaynaklar",
+      "title": "Gelişim zihniyeti ve öz-yeterlik",
+      "count": 4
+    },
+    {
+      "id": "ozgun-kaynaklar:psikolojik-guvenlik",
+      "collectionId": "ozgun-kaynaklar",
+      "title": "Psikolojik güvenlik",
+      "count": 4
+    },
+    {
+      "id": "ozgun-kaynaklar:cevik-yalin",
+      "collectionId": "ozgun-kaynaklar",
+      "title": "Çevik yöntemler, Scrum ve yalın girişim",
+      "count": 8
+    },
+    {
+      "id": "ozgun-kaynaklar:okr",
+      "collectionId": "ozgun-kaynaklar",
+      "title": "OKR ve hedeflerle yönetim",
+      "count": 3
+    },
+    {
+      "id": "ozgun-kaynaklar:hizmetkar-liderlik",
+      "collectionId": "ozgun-kaynaklar",
+      "title": "Hizmetkâr liderlik",
+      "count": 2
+    },
+    {
+      "id": "ozgun-kaynaklar:farkindalik",
+      "collectionId": "ozgun-kaynaklar",
+      "title": "Farkındalık (mindfulness)",
+      "count": 2
+    },
+    {
+      "id": "ozgun-kaynaklar:tasarim",
+      "collectionId": "ozgun-kaynaklar",
+      "title": "Tasarım odaklı düşünme",
+      "count": 4
+    },
+    {
+      "id": "ozgun-kaynaklar:strateji",
+      "collectionId": "ozgun-kaynaklar",
+      "title": "Strateji",
+      "count": 6
+    },
+    {
+      "id": "ozgun-kaynaklar:psikoloji",
+      "collectionId": "ozgun-kaynaklar",
+      "title": "Akış, azim ve irade",
+      "count": 4
+    },
+    {
+      "id": "ozgun-kaynaklar:tekillik",
+      "collectionId": "ozgun-kaynaklar",
+      "title": "Teknolojik tekillik",
+      "count": 2
+    },
+    {
+      "id": "ozgun-kaynaklar:ilk-uc",
+      "collectionId": "ozgun-kaynaklar",
+      "title": "Zamanın sınırlıysa ilk üç metin",
+      "count": 3
     },
     {
       "id": "preparation:1",
@@ -70501,17 +74058,17 @@
     {
       "id": "strategy",
       "label": "Strateji ve rekabet",
-      "count": 76
+      "count": 79
     },
     {
       "id": "management",
       "label": "Yönetim ve liderlik",
-      "count": 114
+      "count": 126
     },
     {
       "id": "enterprise",
       "label": "Girişimcilik",
-      "count": 65
+      "count": 68
     },
     {
       "id": "marketing",
@@ -70526,47 +74083,47 @@
     {
       "id": "psychology",
       "label": "Psikoloji ve davranış",
-      "count": 69
+      "count": 81
     },
     {
       "id": "productivity",
       "label": "Üretkenlik ve alışkanlıklar",
-      "count": 37
+      "count": 38
     },
     {
       "id": "systems",
       "label": "Sistemler ve operasyon",
-      "count": 32
+      "count": 36
     },
     {
       "id": "finance",
       "label": "Finans ve yatırım",
-      "count": 90
+      "count": 91
     },
     {
       "id": "economy",
       "label": "Ekonomi ve toplum",
-      "count": 153
+      "count": 155
     },
     {
       "id": "technology",
       "label": "Teknoloji ve yapay zekâ",
-      "count": 70
+      "count": 73
     },
     {
       "id": "innovation",
       "label": "Yenilik ve tasarım",
-      "count": 30
+      "count": 35
     },
     {
       "id": "history",
       "label": "Tarih",
-      "count": 116
+      "count": 117
     },
     {
       "id": "biography",
       "label": "Biyografi ve anı",
-      "count": 116
+      "count": 117
     },
     {
       "id": "politics",
@@ -70576,7 +74133,7 @@
     {
       "id": "ethics",
       "label": "Etik ve kurumsal sorumluluk",
-      "count": 63
+      "count": 64
     },
     {
       "id": "climate",
@@ -70586,7 +74143,7 @@
     {
       "id": "literature",
       "label": "Edebiyat",
-      "count": 31
+      "count": 32
     },
     {
       "id": "philosophy",
@@ -70601,7 +74158,7 @@
     {
       "id": "science",
       "label": "Bilim ve öğrenme",
-      "count": 28
+      "count": 31
     }
   ],
   "sourceTags": {
@@ -71568,6 +75125,7 @@
     "foundations:dialecticalimagination": "dialecticalimagination",
     "foundations:thinkingsociologically": "thinkingsociologically",
     "foundations:sociology": "sociology",
+    "foundations:corrosionofcharacter": "corrosionofcharacter",
     "foundations:littlehistoryoftheworld": "littlehistoryoftheworld",
     "foundations:sapiensabriefhistoryofhumankind": "sapiensabriefhistoryofhumankind",
     "foundations:gunsgermsandsteel": "gunsgermsandsteel",
@@ -71578,17 +75136,24 @@
     "foundations:natashasdance": "natashasdance",
     "foundations:genghiskhanandthemakingofthemodernworld": "genghiskhanandthemakingofthemodernworld",
     "foundations:十个词汇里的中国": "十个词汇里的中国",
+    "foundations:ottomanempiretheclassicalage13001600": "ottomanempiretheclassicalage13001600",
+    "foundations:howasiaworks": "howasiaworks",
     "foundations:superintelligence": "superintelligence",
     "foundations:artificialintelligenceaguideforthinkinghumans": "artificialintelligenceaguideforthinkinghumans",
     "foundations:attentionmerchants": "attentionmerchants",
+    "foundations:innovators": "innovators",
     "foundations:zerotoone": "zerotoone",
     "foundations:fourstepstotheepiphany": "fourstepstotheepiphany",
+    "foundations:howtogetstartupideas": "howtogetstartupideas",
+    "foundations:dothingsthatdontscale": "dothingsthatdontscale",
+    "foundations:defaultaliveordefaultdead": "defaultaliveordefaultdead",
     "foundations:lecturesonrussianliterature": "lecturesonrussianliterature",
     "foundations:капитанскаядочка": "капитанскаядочка",
     "foundations:шинель": "шинель",
     "foundations:нос": "нос",
     "foundations:отцыидети": "отцыидети",
     "foundations:nineteeneightyfour": "nineteeneightyfour",
+    "foundations:kopegiyledolasankadinotuzyedisecmeoyku": "kopegiyledolasankadinotuzyedisecmeoyku",
     "foundations:bushidothesoulofjapan": "bushidothesoulofjapan",
     "foundations:wayofzen": "wayofzen",
     "children:pippi": "pippilangstrump",
@@ -71747,6 +75312,47 @@
     "shelf:dunyayi-degistiren-makine": "machinethatchangedtheworld",
     "shelf:stratejik-ikna": "thankyouforarguing",
     "shelf:zen-ogreten-kedi": "catwhotaughtzen",
+    "shelf:sosyolojik-dusunmek": "thinkingsociologically",
+    "shelf:insanlik-2-0": "singularityisnear",
+    "originals:mindset": "mindset",
+    "originals:selfefficacytowardaunifyingtheoryofbehavioralchange": "selfefficacytowardaunifyingtheoryofbehavioralchange",
+    "originals:selfefficacytheexerciseofcontrol": "selfefficacytheexerciseofcontrol",
+    "originals:helplessness": "helplessness",
+    "originals:psychologicalsafetyandlearningbehaviorinworkteams": "psychologicalsafetyandlearningbehaviorinworkteams",
+    "originals:personalandorganizationalchangethroughgroupmethods": "personalandorganizationalchangethroughgroupmethods",
+    "originals:fearlessorganization": "fearlessorganization",
+    "originals:teaming": "teaming",
+    "originals:toyotaproductionsystem": "toyotaproductionsystem",
+    "originals:outofthecrisis": "outofthecrisis",
+    "originals:neweconomics": "neweconomics",
+    "originals:statisticalmethodfromtheviewpointofqualitycontrol": "statisticalmethodfromtheviewpointofqualitycontrol",
+    "originals:newnewproductdevelopmentgame": "newnewproductdevelopmentgame",
+    "originals:spiralmodelofsoftwaredevelopmentandenhancement": "spiralmodelofsoftwaredevelopmentandenhancement",
+    "originals:scrum": "scrumtheartofdoingtwicetheworkinhalfthetime",
+    "originals:leanstartup": "leanstartup",
+    "originals:practiceofmanagement": "practiceofmanagement",
+    "originals:highoutputmanagement": "highoutputmanagement",
+    "originals:measurewhatmatters": "measurewhatmatters",
+    "originals:servantasleader": "servantasleader",
+    "originals:servantleadership": "servantleadership",
+    "originals:fullcatastropheliving": "fullcatastropheliving",
+    "originals:mcmindfulness": "mcmindfulness",
+    "originals:sciencesoftheartificial": "sciencesoftheartificial",
+    "originals:dilemmasinageneraltheoryofplanning": "dilemmasinageneraltheoryofplanning",
+    "originals:reflectivepractitioner": "reflectivepractitioner",
+    "originals:changebydesign": "changebydesign",
+    "originals:capitalismsocialismanddemocracy": "capitalismsocialismanddemocracy",
+    "originals:competitivestrategy": "competitivestrategy",
+    "originals:sciencestrategyandwar": "sciencestrategyandwar",
+    "originals:boyd": "boyd",
+    "originals:blueoceanstrategy": "blueoceanstrategy",
+    "originals:goodstrategybadstrategy": "goodstrategybadstrategy",
+    "originals:flow": "flow",
+    "originals:grit": "grit",
+    "originals:willpower": "willpower",
+    "originals:multilabpreregisteredreplicationoftheegodepletioneffect": "multilabpreregisteredreplicationoftheegodepletioneffect",
+    "originals:comingtechnologicalsingularity": "comingtechnologicalsingularity",
+    "originals:singularityisnear": "singularityisnear",
     "preparation:hazirlik-01": "elestirelokuma",
     "preparation:hazirlik-02": "dusunmeninalfabesi",
     "preparation:hazirlik-03": "adimadimmatematikessizbirgorselrehber",
@@ -71762,10 +75368,11 @@
     "atlasEntries": 619,
     "localBooks": 52,
     "kitapsRecords": 170,
-    "foundationalBooks": 50,
+    "foundationalBooks": 58,
     "preparationRecommendations": 10,
     "entrepreneurshipBooks": 35,
     "childrenLibraryBooks": 125,
-    "shelfReviewBooks": 31
+    "shelfReviewBooks": 33,
+    "originalSourceWorks": 39
   }
 }

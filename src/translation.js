@@ -1,3 +1,5 @@
+import {publicationUrl,workFormat} from './workFormat.js';
+
 // A missing search result never proves that a translation does not exist.
 const TURKISH_ONLY_LETTERS=/[ğĞşŞıİ]/;
 const SOURCE_NOTES_URL='https://github.com/karacaismail/kitaps/blob/main/data/kitaplar.md';
@@ -53,6 +55,8 @@ export function translationStatus(book) {
  if(research?.status==='available'&&researchSource)return {status:'available',label:'Türkçe var',description:'Türkçe baskı iki bağımsız araştırma aşamasında doğrulandı. Künye bilgilerini kitap ayrıntısında karşılaştır.',source:researchSource};
  if(research?.status==='unavailable'&&researchSource)return {status:'unavailable',label:'Türkçe yok',description:research.scopeNote,source:researchSource};
  const edition=turkishEdition(book);
+ const format=workFormat(book);
+ if(format&&!edition)return {status:'unverified',label:'Türkçe belirsiz',description:`${format.label}: Türkçe çevirisi araştırılmadı. Özgün metin yayın bilgisindeki bağlantıda.`,source:publicationUrl(book.publication)};
  if(edition)return {status:'available',label:'Türkçe var',description:edition.basis==='source-note'?'Türkçe baskı, kaynak listesinin doğrulanmış çeviri notunda kayıtlı. Künye bilgilerini kitap ayrıntısında karşılaştır.':'Türkçe baskı kaydı bulundu. Çevirmen ve ISBN bilgilerini kitap ayrıntısında karşılaştır.',source:edition.sourceUrl||book.cover?.sourceUrl};
  return {status:'unverified',label:'Türkçe belirsiz',description:'Türkçe baskı henüz doğrulanamadı. Bu, çevirisi olmadığı anlamına gelmez. Varsa gösterilen kapak uluslararası baskıya aittir.',source:book.cover?.sourceUrl};
 }

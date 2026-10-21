@@ -38,6 +38,12 @@ test('readable book URLs resolve every title without collisions',()=>{
  const slugs=catalog.books.map(bookSlug);assert.equal(new Set(slugs).size,catalog.books.length);
  for(const b of catalog.books)assert.equal(decodeRoute('?book='+bookSlug(b),catalog).book,b.id);
 });
+test('a corrected author credit keeps the book’s shared URL',()=>{
+ const smartChoices=catalog.books.find(b=>b.id==='smartchoices');
+ assert.equal(smartChoices.author,'John S. Hammond, Ralph L. Keeney & Howard Raiffa');
+ assert.equal(decodeRoute('?book=smart-choices-by-john-s-hammond-et-al',catalog).book,'smartchoices');
+ assert.equal(decodeRoute('?book=the-economist-numbers-guide-by-richard-stuteley',catalog).book,'economistnumbersguide');
+});
 test('translation absence is never inferred from an original cover or translated title',()=>{
  assert.equal(translationStatus({titleTr:'Türkçe bir ad',cover:{language:'en'}}).status,'unverified');
  assert.equal(translationStatus({cover:{language:'tr'}}).status,'available');

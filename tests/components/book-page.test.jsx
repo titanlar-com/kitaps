@@ -37,6 +37,25 @@ describe('EditionSummary', () => {
     expect(screen.queryByText(/Türkçe baskı doğrulanamadı/)).toBeNull();
   });
 
+  it('gives an article its publication and text instead of an edition to buy', () => {
+    const article = book('dilemmasinageneraltheoryofplanning');
+    renderWithTheme(<EditionSummary book={article}/>);
+    expect(screen.getByRole('heading', { name: 'Yayın bilgisi' })).toBeTruthy();
+    expect(screen.getByText('Makale')).toBeTruthy();
+    expect(screen.getByText(new RegExp(article.publication.venue))).toBeTruthy();
+    expect(screen.getAllByRole('link', { name: /Metni oku|DOI kaydını aç|Yayın sayfasını aç/ }).length).toBeGreaterThan(0);
+    expect(screen.getByRole('link', { name: /Google Akademik/ })).toBeTruthy();
+    expect(screen.queryByText(/Google Alışveriş/)).toBeNull();
+    expect(screen.queryByText('Çevirmen')).toBeNull();
+  });
+
+  it('gives an essay its text link and no scholarly search', () => {
+    renderWithTheme(<EditionSummary book={book('dothingsthatdontscale')}/>);
+    expect(screen.getByText('Deneme')).toBeTruthy();
+    expect(screen.getByRole('link', { name: /Metni oku/ }).getAttribute('href')).toMatch(/^https:\/\/paulgraham\.com\//);
+    expect(screen.queryByRole('link', { name: /Google Akademik/ })).toBeNull();
+  });
+
   it('names the translator and evidence of a verified edition', () => {
     renderWithTheme(<EditionSummary book={book('competitivestrategy')}/>);
     expect(screen.getByText('Gülen Ulubilgen')).toBeTruthy();

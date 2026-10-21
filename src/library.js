@@ -2,7 +2,7 @@ import { displayTitle } from './translation.js';
 
 export const STATE_LABELS = { onemli: 'Favori', alinacak: 'Alınacak', alindi: 'Satın alındı', okunuyor: 'Okunuyor', okundu: 'Okundu', araverildi: 'Ara verdim', birakildi: 'Bıraktım' };
 export const QUALITY_LABELS = { ok: 'Kaynakta doğrulanmış', warn: 'Baskı / çeviri uyarısı', unverified: 'Künye eksik', avoid: 'Kaçınılacak baskı notu' };
-export const ORIGIN_LABELS = { atlas: 'Kitap Atlası', local: 'Okuma Kümeleri', kitaps: 'Kitaps', entrepreneurship: 'Girişimcilik araştırması', foundations: 'Temel okumalar araştırması', preparation: 'Ön hazırlık araştırması', children: 'Çocuk kütüphanesi araştırması', shelf: 'Raf taraması değerlendirmesi' };
+export const ORIGIN_LABELS = { atlas: 'Kitap Atlası', local: 'Okuma Kümeleri', kitaps: 'Kitaps', entrepreneurship: 'Girişimcilik araştırması', foundations: 'Temel okumalar araştırması', preparation: 'Ön hazırlık araştırması', children: 'Çocuk kütüphanesi araştırması', shelf: 'Raf taraması değerlendirmesi', originals: 'Özgün kaynaklar araştırması' };
 export const emptyFilters = () => ({ query: '', categories: [], collections: [], groups: [], states: [], authors: [], origins: [], awards: [], awardYears: [], qualities: [], addedDates: [], categoryMode: 'any', collectionMode: 'any', hasEdition: false, shared: false, yearMin: '', yearMax: '' });
 // A day such as "2026-10-04" read as "4 Ekim 2026", independent of the reader's time zone.
 const dayFormat = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -85,12 +85,15 @@ export function filterCount(f) {
 const routeFields={categories:'category',collections:'collection',groups:'group',states:'status',authors:'author',origins:'source',awards:'award',awardYears:'award-year',qualities:'edition-status',addedDates:'added'};
 const englishValues={onemli:'important',alinacak:'wishlist',alindi:'purchased',okunuyor:'reading',araverildi:'paused',birakildi:'abandoned',okundu:'finished',Kazanan:'winner','Kısa liste':'shortlist','Uzun liste':'longlist'};
 const originalValues=Object.fromEntries(Object.entries(englishValues).map(([key,value])=>[value,key]));
-const englishBookTitles={'преступлениеинаказание':'Crime and Punishment','братьякарамазовы':'The Brothers Karamazov','запискиизподполья':'Notes from Underground','идиот':'The Idiot','воинаимир':'War and Peace','аннакаренина':'Anna Karenina','смертьиванаильича':'The Death of Ivan Ilyich','чемлюдиживы':'What Men Live By','шинель':'The Overcoat','нос':'The Nose'};
+const englishBookTitles={'преступлениеинаказание':'Crime and Punishment','братьякарамазовы':'The Brothers Karamazov','запискиизподполья':'Notes from Underground','идиот':'The Idiot','воинаимир':'War and Peace','аннакаренина':'Anna Karenina','смертьиванаильича':'The Death of Ivan Ilyich','чемлюдиживы':'What Men Live By','шинель':'The Overcoat','нос':'The Nose',
+ // Bandura's 1977 article and his 1997 book share the words before their colon.
+ 'selfefficacytowardaunifyingtheoryofbehavioralchange':'Self-Efficacy Toward a Unifying Theory of Behavioral Change'};
 const asciiSlug=value=>String(value||'').normalize('NFKD').replace(/ı/g,'i').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+// A book whose author credit was corrected keeps the author line its URL was first built from.
 export function bookSlug(book){
  const original=englishBookTitles[book.id]||book.title.split(':')[0];
  const readableTitle=asciiSlug(original)||asciiSlug(book.titleTr)||asciiSlug(book.id)||'book';
- return `${readableTitle}-by-${asciiSlug(book.author)||'unknown'}`.slice(0,200);
+ return `${readableTitle}-by-${asciiSlug(book.slugAuthor||book.author)||'unknown'}`.slice(0,200);
 }
 // The owner's fixed rule (AGENTS.md): page sizes are multiples of 24, so the 2-, 3- and
 // 4-column catalog grids always end on a full row. The first one is the default.

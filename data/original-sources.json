@@ -1,0 +1,1019 @@
+{
+ "id": "ozgun-kaynaklar",
+ "title": "Popüler kavramların özgün kaynakları",
+ "short": "Özgün kaynaklar",
+ "description": "Yönetimde ve psikolojide sık tekrarlanan kavramların ilk ortaya konduğu kitap ve makaleler, yanlarında popüler sürümleri ve gerektiğinde eleştirileri: gelişim zihniyeti, psikolojik güvenlik, çevik yöntemler ve yalın girişim, OKR, hizmetkâr liderlik, farkındalık, tasarım odaklı düşünme, strateji, akış, azim, irade ve teknolojik tekillik.",
+ "source": "https://github.com/titanlar-com/kitaps/blob/main/data/original-sources.json",
+ "checkedAt": "2026-10-21",
+ "context": {
+  "purpose": "Bugün sık tekrarlanan kavramları popüler anlatımlarından değil, ilk ortaya konduğu metinden ve koşullarından öğrenmek.",
+  "criterion": "Her başlıkta özgün kaynak ile popüler sürüm ayrı tutuldu; gerektiğinde bir eleştiri ya da tekrar çalışması eklendi. Türkçe baskı yalnız iki ayrı sitede doğrulandığında gösterilir; basım ve stok durumu kontrol edilmedi.",
+  "verdict": "Kaynak okumak istiyorsan özgün kaynaklardan başla. Zamanın sınırlıysa üç metinle başla: Deming’in Krizden Çıkış’ı (bütün sistem düşüncesinin temeli), Rittel ve Webber’in makalesi (kısa, çok yoğun) ve Edmondson’ın 1999 makalesi. Üçü de bugün sıkça tekrarlanan fikirlerin özgün koşullarını gösterir. Bir düzeltme: PDCA döngüsünün kökü Deming’e değil Walter Shewhart’a gider; Deming onu yaygınlaştırdı."
+ },
+ "note": "Roller (özgün kaynak, popüler sürüm, eleştiri) not ve alt küme olarak tutulur, puana eklenmez. Makale ve denemeler kitaplarla birlikte listelenir; baskı yerine yayın bilgisini ve metnin bağlantısını gösterir. Teknolojik tekillik başlığı, rafta görülen İnsanlık 2.0 için yapılan değerlendirmeden gelir.",
+ "groups": [
+  {
+   "id": "zihniyet",
+   "title": "Gelişim zihniyeti ve öz-yeterlik"
+  },
+  {
+   "id": "psikolojik-guvenlik",
+   "title": "Psikolojik güvenlik"
+  },
+  {
+   "id": "cevik-yalin",
+   "title": "Çevik yöntemler, Scrum ve yalın girişim"
+  },
+  {
+   "id": "okr",
+   "title": "OKR ve hedeflerle yönetim"
+  },
+  {
+   "id": "hizmetkar-liderlik",
+   "title": "Hizmetkâr liderlik"
+  },
+  {
+   "id": "farkindalik",
+   "title": "Farkındalık (mindfulness)"
+  },
+  {
+   "id": "tasarim",
+   "title": "Tasarım odaklı düşünme"
+  },
+  {
+   "id": "strateji",
+   "title": "Strateji"
+  },
+  {
+   "id": "psikoloji",
+   "title": "Akış, azim ve irade"
+  },
+  {
+   "id": "tekillik",
+   "title": "Teknolojik tekillik"
+  },
+  {
+   "id": "ilk-uc",
+   "title": "Zamanın sınırlıysa ilk üç metin"
+  }
+ ],
+ "books": [
+  {
+   "key": "mindset",
+   "group": "zihniyet",
+   "role": "Popüler sürüm",
+   "title": "Mindset",
+   "author": "Carol S. Dweck",
+   "originalLanguage": "en",
+   "categories": [
+    "psychology"
+   ],
+   "reason": "Gelişim zihniyeti kavramını yaygınlaştıran kitap. Önce bunu oku, sonra Bandura’nın 1977 tarihli makalesine bak: ikisi arasındaki derinlik farkı hemen görünür.",
+   "year": 2006,
+   "titleTr": "Aklını En Doğru Şekilde Kullan",
+   "edition": {
+    "title": "Aklını En Doğru Şekilde Kullan",
+    "isbn": "9786053845539",
+    "publisher": "Yakamoz Yayıncılık",
+    "translators": [
+     "Uğurcan Kaya"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/aklini-en-dogru-sekilde-kullan/407054.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/kitap/aklini-en-dogru-sekilde-kullan/s-dweck/basvuru/psikoloji-bilimi/urunno=0000000427552",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-21",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786053845539) ve Yakamoz Yayıncılık yayınevini gösteriyor; çevirmen: Uğurcan Kaya. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/originals-mindset.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12177410/wi:500/wh:114c44736",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/aklini-en-dogru-sekilde-kullan/407054.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Aklını En Doğru Şekilde Kullan",
+    "author": "Carol S. Dweck",
+    "publisher": "Yakamoz Yayıncılık",
+    "isbn": "9786053845539",
+    "language": "tr",
+    "checkedAt": "2026-10-21",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "selfefficacytowardaunifyingtheoryofbehavioralchange",
+   "group": "zihniyet",
+   "role": "Özgün kaynak",
+   "title": "Self-Efficacy: Toward a Unifying Theory of Behavioral Change",
+   "author": "Albert Bandura",
+   "originalLanguage": "en",
+   "categories": [
+    "psychology"
+   ],
+   "reason": "Öz-yeterlik kavramını ortaya koyan makale: bir işi başarabileceğine dair inancın, kişinin neye girişeceğini, ne kadar çaba göstereceğini ve güçlük karşısında ne kadar dayanacağını belirlemesi.",
+   "format": "article",
+   "year": 1977,
+   "publication": {
+    "venue": "Psychological Review",
+    "volume": "84",
+    "issue": "2",
+    "pages": "191–215",
+    "doi": "10.1037/0033-295X.84.2.191"
+   }
+  },
+  {
+   "key": "selfefficacytheexerciseofcontrol",
+   "group": "zihniyet",
+   "role": "Özgün kaynak",
+   "title": "Self-Efficacy: The Exercise of Control",
+   "author": "Albert Bandura",
+   "originalLanguage": "en",
+   "categories": [
+    "psychology"
+   ],
+   "reason": "Öz-yeterlik kuramının kapsamlı hâli: Bandura kuramı yirmi yılda biriken araştırmayla sağlık, eğitim, iş ve toplu eylem alanlarına genişletir.",
+   "year": 1997,
+   "cover": {
+    "src": "covers/originals-selfefficacytheexerciseofcontrol.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780716728504-L.jpg",
+    "sourceUrl": "https://openlibrary.org/books/OL1011521M",
+    "sourceName": "Open Library",
+    "title": "Self-Efficacy: The Exercise of Control",
+    "author": "Albert Bandura",
+    "publisher": "W. H. Freeman",
+    "isbn": "9780716728504",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "helplessness",
+   "group": "zihniyet",
+   "role": "Özgün kaynak",
+   "title": "Helplessness",
+   "author": "Martin E. P. Seligman",
+   "originalLanguage": "en",
+   "categories": [
+    "psychology"
+   ],
+   "reason": "Öğrenilmiş çaresizlik araştırmalarının kitabı: sonuçları kontrol edemeyeceğini öğrenen canlının denemeyi bırakması ve bunun depresyon, gelişim ve ölümle ilişkisi.",
+   "year": 1975,
+   "cover": {
+    "src": "covers/originals-helplessness.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780716707516-L.jpg",
+    "sourceUrl": "https://openlibrary.org/isbn/9780716707516",
+    "sourceName": "Open Library",
+    "title": "Helplessness",
+    "author": "Martin E. P. Seligman",
+    "publisher": "W. H. Freeman",
+    "isbn": "9780716707516",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "psychologicalsafetyandlearningbehaviorinworkteams",
+   "group": "psikolojik-guvenlik",
+   "role": "Özgün kaynak",
+   "title": "Psychological Safety and Learning Behavior in Work Teams",
+   "author": "Amy Edmondson",
+   "originalLanguage": "en",
+   "categories": [
+    "management",
+    "psychology"
+   ],
+   "reason": "Kavramı ölçütüyle birlikte tanımlayan makale: ekipte soru sormanın, hatayı söylemenin ve yardım istemenin kişiler arası bir risk sayılmaması ve bunun ekibin öğrenmesine etkisi.",
+   "format": "article",
+   "extraGroups": [
+    {
+     "id": "ilk-uc",
+     "order": 3,
+     "reason": "Zamanın sınırlıysa üçüncü metin: bugün sıkça tekrarlanan psikolojik güvenlik fikrinin özgün tanımı ve koşulları."
+    }
+   ],
+   "year": 1999,
+   "publication": {
+    "venue": "Administrative Science Quarterly",
+    "volume": "44",
+    "issue": "2",
+    "pages": "350–383",
+    "doi": "10.2307/2666999"
+   }
+  },
+  {
+   "key": "personalandorganizationalchangethroughgroupmethods",
+   "group": "psikolojik-guvenlik",
+   "role": "Özgün kaynak",
+   "title": "Personal and Organizational Change Through Group Methods",
+   "author": "Edgar H. Schein and Warren G. Bennis",
+   "originalLanguage": "en",
+   "categories": [
+    "management",
+    "psychology"
+   ],
+   "reason": "Kavramın kökü: Schein ve Bennis, grup yöntemleriyle kişisel ve örgütsel değişim üzerine bu kitapta insanların değişebilmesi için kendini güvende hissetmesi gerektiğini tartışır.",
+   "year": 1965,
+   "issue": "Türkçe baskısı doğrulanamadı. Kapak gösterilmiyor: bulunan tek görsel kitabın gerçek kapağı değildi."
+  },
+  {
+   "key": "fearlessorganization",
+   "group": "psikolojik-guvenlik",
+   "role": "Popüler sürüm",
+   "title": "The Fearless Organization",
+   "author": "Amy C. Edmondson",
+   "originalLanguage": "en",
+   "categories": [
+    "management",
+    "psychology"
+   ],
+   "reason": "Edmondson’ın kavramı kurumlar için anlattığı kitap. Makaleden daha okunaklı; kavramın yanlış anlaşılmasına karşı da en iyi koruma.",
+   "year": 2018,
+   "cover": {
+    "src": "covers/originals-fearlessorganization.jpg",
+    "imageUrl": "https://media.wiley.com/product_data/coverImage300/47/11194772/1119477247.jpg",
+    "sourceUrl": "https://www.wiley.com/en-us/The+Fearless+Organization%3A+Creating+Psychological+Safety+in+the+Workplace+for+Learning%2C+Innovation%2C+and+Growth-p-9781119477242",
+    "sourceName": "Wiley",
+    "title": "The Fearless Organization",
+    "author": "Amy C. Edmondson",
+    "publisher": "John Wiley & Sons",
+    "isbn": "9781119477242",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "teaming",
+   "group": "psikolojik-guvenlik",
+   "role": "Popüler sürüm",
+   "title": "Teaming",
+   "author": "Amy C. Edmondson",
+   "originalLanguage": "en",
+   "categories": [
+    "management"
+   ],
+   "reason": "Ekiplerin sabit takımlar yerine iş üstünde bir araya gelip birlikte öğrenmesini anlatan kitap; psikolojik güvenliği ekip çalışmasının günlük pratiğine bağlar.",
+   "year": 2012,
+   "cover": {
+    "src": "covers/originals-teaming.jpg",
+    "imageUrl": "https://media.wiley.com/product_data/coverImage300/3X/07879709/078797093X.jpg",
+    "sourceUrl": "https://www.wiley.com/en-us/Teaming%3A+How+Organizations+Learn%2C+Innovate%2C+and+Compete+in+the+Knowledge+Economy-p-9780787970932",
+    "sourceName": "Wiley",
+    "title": "Teaming",
+    "author": "Amy C. Edmondson",
+    "publisher": "Jossey-Bass",
+    "isbn": "9780787970932",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "toyotaproductionsystem",
+   "group": "cevik-yalin",
+   "role": "Özgün kaynak",
+   "existingId": "toyotaproductionsystem",
+   "reason": "Yalın düşüncenin kaynağı: Toyota üretim sistemini kuran Ohno’nun kendi anlatımı. Yalın girişimdeki israfı azaltma ve akış fikirleri buradan gelir."
+  },
+  {
+   "key": "outofthecrisis",
+   "group": "cevik-yalin",
+   "role": "Özgün kaynak",
+   "existingId": "outofthecrisis",
+   "reason": "Deming’in yönetim için on dört ilkesi ve sistem görüşü: kaliteyi son denetim değil süreç belirler. Bugünkü sistem düşüncesinin temeli.",
+   "extraGroups": [
+    {
+     "id": "ilk-uc",
+     "order": 1,
+     "reason": "Zamanın sınırlıysa ilk metin: bütün sistem düşüncesinin temeli."
+    }
+   ]
+  },
+  {
+   "key": "neweconomics",
+   "group": "cevik-yalin",
+   "role": "Özgün kaynak",
+   "title": "The New Economics",
+   "author": "W. Edwards Deming",
+   "originalLanguage": "en",
+   "categories": [
+    "systems",
+    "management"
+   ],
+   "reason": "Deming’in son kitabı: sistemi, değişkenliği, bilgiyi ve insan psikolojisini birlikte ele alan derin bilgi sistemi ve planla-uygula-incele-önlem al döngüsü.",
+   "year": 1993,
+   "cover": {
+    "src": "covers/originals-neweconomics.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780911379051-L.jpg",
+    "sourceUrl": "https://openlibrary.org/books/OL1571542M",
+    "sourceName": "Open Library",
+    "title": "The New Economics",
+    "author": "W. Edwards Deming",
+    "publisher": "Massachusetts Institute of Technology, Center for Advanced Engineering Study",
+    "isbn": "9780911379051",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "statisticalmethodfromtheviewpointofqualitycontrol",
+   "group": "cevik-yalin",
+   "role": "Özgün kaynak",
+   "title": "Statistical Method from the Viewpoint of Quality Control",
+   "author": "Walter A. Shewhart",
+   "originalLanguage": "en",
+   "categories": [
+    "systems"
+   ],
+   "reason": "Planla-uygula-kontrol et-önlem al (PDCA) döngüsünün kökü Walter Shewhart’a gider; Deming onu yaygınlaştırdı. Süreçteki değişkenliği istatistikle izleme fikrinin kaynağı.",
+   "year": 1939,
+   "cover": {
+    "src": "covers/originals-statisticalmethodfromtheviewpointofqualitycontro.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780486652320-L.jpg",
+    "sourceUrl": "https://openlibrary.org/books/OL2723003M",
+    "sourceName": "Open Library",
+    "title": "Statistical Method from the Viewpoint of Quality Control",
+    "author": "Walter A. Shewhart",
+    "publisher": "Dover",
+    "isbn": "9780486652320",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "newnewproductdevelopmentgame",
+   "group": "cevik-yalin",
+   "role": "Özgün kaynak",
+   "title": "The New New Product Development Game",
+   "author": "Hirotaka Takeuchi and Ikujiro Nonaka",
+   "originalLanguage": "en",
+   "categories": [
+    "innovation",
+    "management"
+   ],
+   "reason": "Scrum adının geldiği makale: ürün geliştirmede işi aşamadan aşamaya devretmek yerine topu ragbideki gibi birlikte taşıyan, kendi kendini örgütleyen ekipler.",
+   "format": "article",
+   "year": 1986,
+   "publication": {
+    "venue": "Harvard Business Review",
+    "pageUrl": "https://hbr.org/1986/01/the-new-new-product-development-game"
+   }
+  },
+  {
+   "key": "spiralmodelofsoftwaredevelopmentandenhancement",
+   "group": "cevik-yalin",
+   "role": "Özgün kaynak",
+   "title": "A Spiral Model of Software Development and Enhancement",
+   "author": "Barry W. Boehm",
+   "originalLanguage": "en",
+   "categories": [
+    "technology",
+    "systems"
+   ],
+   "reason": "Yazılımı riskleri erkenden görerek tekrarlanan döngülerle geliştirme fikrinin erken tarifi; çevik yöntemlerin öncülerinden.",
+   "format": "article",
+   "year": 1986,
+   "publication": {
+    "venue": "ACM SIGSOFT Software Engineering Notes",
+    "volume": "11",
+    "issue": "4",
+    "pages": "14–24",
+    "doi": "10.1145/12944.12948"
+   }
+  },
+  {
+   "key": "scrum",
+   "group": "cevik-yalin",
+   "role": "Popüler sürüm",
+   "existingId": "scrumtheartofdoingtwicetheworkinhalfthetime",
+   "reason": "Scrum’ı kuranlardan birinin yöntemi anlattığı popüler kitap."
+  },
+  {
+   "key": "leanstartup",
+   "group": "cevik-yalin",
+   "role": "Popüler sürüm",
+   "existingId": "leanstartup",
+   "reason": "Yalın üretimden ve bilimsel deneyden gelen fikirleri girişimciliğe taşıyan popüler kitap."
+  },
+  {
+   "key": "practiceofmanagement",
+   "group": "okr",
+   "role": "Özgün kaynak",
+   "title": "The Practice of Management",
+   "author": "Peter F. Drucker",
+   "originalLanguage": "en",
+   "categories": [
+    "management"
+   ],
+   "reason": "Hedeflerle yönetim (MBO) kavramının ortaya konduğu kitap; Drucker yönetimi burada ayrı bir uğraş olarak tanımlar.",
+   "year": 1954,
+   "cover": {
+    "src": "covers/originals-practiceofmanagement.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780060878979-L.jpg",
+    "sourceUrl": "https://openlibrary.org/books/OL7283402M",
+    "sourceName": "Open Library",
+    "title": "The Practice of Management",
+    "author": "Peter F. Drucker",
+    "publisher": "Collins",
+    "isbn": "9780060878979",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   },
+   "issue": "Türkçe baskısı: Yönetim Uygulaması (İnkılap Kitabevi, 1996, çeviren E. Sabri Yarmalı, ISBN 9789751010209). Baskı tükenmiş; künye bir üniversite kütüphanesinde ve iki kitapçıda görülüyor, ancak iki aşamalı inceleme tamamlanmadığı için doğrulanmış sayılmadı."
+  },
+  {
+   "key": "highoutputmanagement",
+   "group": "okr",
+   "role": "Özgün kaynak",
+   "existingId": "highoutputmanagement",
+   "reason": "Grove’un Intel’de kurduğu hedef ve temel sonuç sistemi; OKR’ın doğrudan kaynağı."
+  },
+  {
+   "key": "measurewhatmatters",
+   "group": "okr",
+   "role": "Popüler sürüm",
+   "title": "Measure What Matters",
+   "author": "John Doerr",
+   "originalLanguage": "en",
+   "categories": [
+    "management"
+   ],
+   "reason": "OKR’ı Intel’de Grove’dan öğrenen Doerr’ın yöntemi şirketlere anlattığı kitap.",
+   "year": 2018,
+   "titleTr": "Önemli Olanı Ölç - OKR: 10 Kat Büyümek için Basit Bir Yöntem",
+   "edition": {
+    "title": "Önemli Olanı Ölç - OKR: 10 Kat Büyümek için Basit Bir Yöntem",
+    "isbn": "9786056902468",
+    "publisher": "Buzdağı Yayınevi",
+    "translators": [
+     "Ali Atav"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/onemli-olani-olc-okr-10-kat-buyumek-icin-basit-bir-yontem/531864.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.pandora.com.tr/kitap/onemli-olani-olc-okr-10-kat-buyumek-icin-basit-bir-yontem/730718",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-21",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve pandora.com.tr aynı ISBN'i (9786056902468) ve Buzdağı Yayınevi yayınevini gösteriyor; çevirmen: Ali Atav. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/originals-measurewhatmatters.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11634073/wi:500/wh:3d8ba91ad",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/onemli-olani-olc-okr-10-kat-buyumek-icin-basit-bir-yontem/531864.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Önemli Olanı Ölç - OKR: 10 Kat Büyümek için Basit Bir Yöntem",
+    "author": "John Doerr",
+    "publisher": "Buzdağı Yayınevi",
+    "isbn": "9786056902468",
+    "language": "tr",
+    "checkedAt": "2026-10-21",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "servantasleader",
+   "group": "hizmetkar-liderlik",
+   "role": "Özgün kaynak",
+   "title": "The Servant as Leader",
+   "author": "Robert K. Greenleaf",
+   "originalLanguage": "en",
+   "categories": [
+    "management"
+   ],
+   "reason": "Kavramı ortaya koyan kısa deneme. Hizmetkâr liderliği ölçütüyle birlikte buradan öğrenebilirsin: hizmet edilenler kişi olarak gelişiyor, daha sağlıklı, daha bilge, daha özgür ve daha bağımsız oluyorlar mı? Deneme bugün Greenleaf Center for Servant Leadership tarafından yayımlanıyor.",
+   "format": "essay",
+   "year": 1970,
+   "publication": {
+    "venue": "Center for Applied Studies",
+    "pageUrl": "https://greenleaf.org/product/the-servant-as-leader/"
+   }
+  },
+  {
+   "key": "servantleadership",
+   "group": "hizmetkar-liderlik",
+   "role": "Özgün kaynak",
+   "title": "Servant Leadership",
+   "author": "Robert K. Greenleaf",
+   "originalLanguage": "en",
+   "categories": [
+    "management"
+   ],
+   "reason": "Greenleaf’in kavramı ortaya koyan denemesini ve kurumlar üzerine yazılarını bir araya getiren kitap.",
+   "year": 1977,
+   "cover": {
+    "src": "covers/originals-servantleadership.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780809105540-L.jpg",
+    "sourceUrl": "https://openlibrary.org/books/OL3554155M",
+    "sourceName": "Open Library",
+    "title": "Servant Leadership",
+    "author": "Robert K. Greenleaf",
+    "publisher": "Paulist Press",
+    "isbn": "9780809105540",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "fullcatastropheliving",
+   "group": "farkindalik",
+   "role": "Özgün kaynak",
+   "title": "Full Catastrophe Living",
+   "author": "Jon Kabat-Zinn",
+   "originalLanguage": "en",
+   "categories": [
+    "psychology"
+   ],
+   "reason": "Kabat-Zinn’in bir hastanede kurduğu farkındalığa dayalı stres azaltma programının kitabı; kavramın en güvenilir kaynağı.",
+   "year": 1990,
+   "issue": "Türkçe baskı adayı: Mindfulness’in İyileştirici Gücü (Diyojen Yayıncılık, ISBN 9786254434044). Alt başlığı ve sayfa sayısı bu esere işaret ediyor, ancak özgün adı gösteren bağımsız bir kaynak bulunamadığı için doğrulanmış sayılmadı. Kapak da bu yüzden eklenmedi."
+  },
+  {
+   "key": "mcmindfulness",
+   "group": "farkindalik",
+   "role": "Eleştiri ve sınama",
+   "title": "McMindfulness",
+   "author": "Ronald E. Purser",
+   "originalLanguage": "en",
+   "categories": [
+    "psychology",
+    "ethics"
+   ],
+   "reason": "Farkındalığın kurumsal sürümünün eleştirisi: stresi bireyin sorunu gibi ele alıp onu doğuran koşulları görünmez kılması.",
+   "year": 2019,
+   "cover": {
+    "src": "covers/originals-mcmindfulness.jpg",
+    "imageUrl": "https://images4.penguinrandomhouse.com/cover/9781912248315",
+    "sourceUrl": "https://penguinrandomhouse.com/books/600158/mcmindfulness-by-ronald-purser",
+    "sourceName": "Penguin Random House",
+    "title": "McMindfulness",
+    "author": "Ronald E. Purser",
+    "publisher": "Repeater Books",
+    "isbn": "9781912248315",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "sciencesoftheartificial",
+   "group": "tasarim",
+   "role": "Özgün kaynak",
+   "title": "The Sciences of the Artificial",
+   "author": "Herbert A. Simon",
+   "originalLanguage": "en",
+   "categories": [
+    "innovation",
+    "science"
+   ],
+   "reason": "Tasarımı bir bilim alanı olarak ele alan kitap: mevcut bir durumu tercih edilen bir duruma dönüştürmenin yolunu arayan herkes tasarım yapar.",
+   "year": 1969,
+   "cover": {
+    "src": "covers/originals-sciencesoftheartificial.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780262691918-L.jpg",
+    "sourceUrl": "https://openlibrary.org/books/OL975566M",
+    "sourceName": "Open Library",
+    "title": "The Sciences of the Artificial",
+    "author": "Herbert A. Simon",
+    "publisher": "MIT Press",
+    "isbn": "9780262691918",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "dilemmasinageneraltheoryofplanning",
+   "group": "tasarim",
+   "role": "Özgün kaynak",
+   "title": "Dilemmas in a General Theory of Planning",
+   "author": "Horst W. J. Rittel and Melvin M. Webber",
+   "originalLanguage": "en",
+   "categories": [
+    "innovation",
+    "systems"
+   ],
+   "reason": "“Çetrefil sorun” (wicked problem) kavramını ortaya koyan makale: tanımı tartışmalı, kesin bir doğru cevabı olmayan ve her çözümü yeni bir sorun doğuran planlama sorunları.",
+   "format": "article",
+   "extraGroups": [
+    {
+     "id": "ilk-uc",
+     "order": 2,
+     "reason": "Zamanın sınırlıysa ikinci metin: kısa ama çok yoğun."
+    }
+   ],
+   "year": 1973,
+   "publication": {
+    "venue": "Policy Sciences",
+    "volume": "4",
+    "issue": "2",
+    "pages": "155–169",
+    "doi": "10.1007/BF01405730"
+   }
+  },
+  {
+   "key": "reflectivepractitioner",
+   "group": "tasarim",
+   "role": "Özgün kaynak",
+   "title": "The Reflective Practitioner",
+   "author": "Donald A. Schön",
+   "originalLanguage": "en",
+   "categories": [
+    "innovation",
+    "management"
+   ],
+   "reason": "Profesyonellerin iş üstünde düşünerek nasıl öğrendiğini, eylem içinde düşünmeyi anlatan kitap.",
+   "year": 1983,
+   "cover": {
+    "src": "covers/originals-reflectivepractitioner.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780465068746-L.jpg",
+    "sourceUrl": "https://openlibrary.org/books/OL3511128M",
+    "sourceName": "Open Library",
+    "title": "The Reflective Practitioner",
+    "author": "Donald A. Schön",
+    "publisher": "Basic Books",
+    "isbn": "9780465068746",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "changebydesign",
+   "group": "tasarim",
+   "role": "Popüler sürüm",
+   "title": "Change by Design",
+   "author": "Tim Brown",
+   "originalLanguage": "en",
+   "categories": [
+    "innovation"
+   ],
+   "reason": "IDEO’nun tasarım odaklı düşünmeyi kurumlara anlattığı popüler kitap.",
+   "year": 2009,
+   "cover": {
+    "src": "covers/originals-changebydesign.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780061766084-L.jpg",
+    "sourceUrl": "https://openlibrary.org/books/OL23207675M",
+    "sourceName": "Open Library",
+    "title": "Change by Design",
+    "author": "Tim Brown",
+    "publisher": "HarperBusiness",
+    "isbn": "9780061766084",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "capitalismsocialismanddemocracy",
+   "group": "strateji",
+   "role": "Özgün kaynak",
+   "title": "Capitalism, Socialism and Democracy",
+   "author": "Joseph A. Schumpeter",
+   "originalLanguage": "en",
+   "categories": [
+    "economy",
+    "strategy"
+   ],
+   "reason": "“Yaratıcı yıkım” kavramının ortaya konduğu kitap: yeniliğin eski yapıları yıkarak ekonomiyi sürekli dönüştürmesi.",
+   "year": 1942,
+   "cover": {
+    "src": "covers/originals-capitalismsocialismanddemocracy.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780061330087-L.jpg",
+    "sourceUrl": "https://openlibrary.org/isbn/9780061330087",
+    "sourceName": "Open Library",
+    "title": "Capitalism, Socialism and Democracy",
+    "author": "Joseph A. Schumpeter",
+    "publisher": "Harper Perennial",
+    "isbn": "9780061330087",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   },
+   "issue": "Türkçe çevirileri var (Varlık Yayınları, 1981, çeviren Tunay Akoğlu; daha yeni baskılar), ancak güncel bir baskının künyesi iki ayrı sitede doğrulanamadı."
+  },
+  {
+   "key": "competitivestrategy",
+   "group": "strateji",
+   "role": "Özgün kaynak",
+   "existingId": "competitivestrategy",
+   "reason": "Sektör yapısı ve beş güç çözümlemesinin kaynağı."
+  },
+  {
+   "key": "sciencestrategyandwar",
+   "group": "strateji",
+   "role": "Boyd’a giriş",
+   "title": "Science, Strategy and War",
+   "author": "Frans P. B. Osinga",
+   "originalLanguage": "en",
+   "categories": [
+    "strategy"
+   ],
+   "reason": "John Boyd’un kendi kitabı yok. OODA döngüsü dâhil strateji kuramını brifinglerinden yola çıkarak en kapsamlı biçimde çözümleyen kitap.",
+   "year": 2007,
+   "cover": {
+    "src": "covers/originals-sciencestrategyandwar.jpg",
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780415371032-L.jpg",
+    "sourceUrl": "https://openlibrary.org/isbn/9780415371032",
+    "sourceName": "Open Library",
+    "title": "Science, Strategy and War",
+    "author": "Frans P. B. Osinga",
+    "publisher": "Routledge",
+    "isbn": "9780415371032",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "boyd",
+   "group": "strateji",
+   "role": "Boyd’a giriş",
+   "title": "Boyd",
+   "author": "Robert Coram",
+   "originalLanguage": "en",
+   "categories": [
+    "strategy",
+    "biography"
+   ],
+   "reason": "Boyd’un hayatını ve fikirlerini anlatan okunaklı biyografi; Osinga’nın kitabıyla birlikte en iyi başlangıç.",
+   "year": 2002,
+   "cover": {
+    "src": "covers/originals-boyd.jpg",
+    "imageUrl": "https://www.hachettebookgroup.com/wp-content/uploads/2017/06/9780316881463.jpg",
+    "sourceUrl": "https://hachettebookgroup.com/?p=13606",
+    "sourceName": "Hachette Book Group",
+    "title": "Boyd",
+    "author": "Robert Coram",
+    "publisher": "Little, Brown and Company",
+    "isbn": "9780316881463",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   }
+  },
+  {
+   "key": "blueoceanstrategy",
+   "group": "strateji",
+   "role": "Popüler sürüm",
+   "existingId": "blueoceanstrategy",
+   "reason": "Rekabetin henüz olmadığı yeni pazar alanları yaratmayı anlatan popüler strateji kitabı."
+  },
+  {
+   "key": "goodstrategybadstrategy",
+   "group": "strateji",
+   "role": "Hem yeni hem derin",
+   "existingId": "goodstrategybadstrategy",
+   "reason": "Hem yeni hem derin olan istisna: iyi stratejinin çekirdeğini, yani teşhisi, yol gösterici ilkeyi ve birbirini destekleyen eylemleri anlatır."
+  },
+  {
+   "key": "flow",
+   "group": "psikoloji",
+   "role": "Özgün kaynak",
+   "existingId": "flow",
+   "reason": "Akış kavramını ortaya koyan kitap; hâlâ popüler yorumlarından daha derin."
+  },
+  {
+   "key": "grit",
+   "group": "psikoloji",
+   "role": "Popüler sürüm",
+   "title": "Grit",
+   "author": "Angela Duckworth",
+   "originalLanguage": "en",
+   "categories": [
+    "psychology"
+   ],
+   "reason": "Azmi uzun vadeli hedeflere yönelik tutku ve sebat olarak anlatan kitap. Kişilik psikolojisindeki sorumluluk (conscientiousness) araştırmalarıyla birlikte okunmalı.",
+   "year": 2016,
+   "titleTr": "Azim: Sabır, Tutku ve Kararlılığın Gücü",
+   "edition": {
+    "title": "Azim: Sabır, Tutku ve Kararlılığın Gücü",
+    "isbn": "9786052994436",
+    "publisher": "Pegasus Yayınları",
+    "translators": [
+     "Öyküm Taner"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/azim-sabir-tutku-ve-kararliligin-gucu/457097.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/kitap/azim-sabir-tutku-ve-kararliligin-gucu/angela-duckworth/basvuru/kisisel-gelisim/urunno=0001751132001",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-21",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786052994436) ve Pegasus Yayınları yayınevini gösteriyor; çevirmen: Öyküm Taner. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/originals-grit.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:5724672/wi:500/wh:b27be10d6",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/azim-sabir-tutku-ve-kararliligin-gucu/457097.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Azim: Sabır, Tutku ve Kararlılığın Gücü",
+    "author": "Angela Duckworth",
+    "publisher": "Pegasus Yayınları",
+    "isbn": "9786052994436",
+    "language": "tr",
+    "checkedAt": "2026-10-21",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "willpower",
+   "group": "psikoloji",
+   "role": "Popüler sürüm",
+   "title": "Willpower",
+   "author": "Roy F. Baumeister and John Tierney",
+   "originalLanguage": "en",
+   "categories": [
+    "psychology",
+    "productivity"
+   ],
+   "reason": "İradenin kullandıkça tükenen bir kaynak olduğu (ego tükenmesi) fikrini anlatan kitap. Etkinin tekrar üretilemediğini gösteren 2016 çalışmasıyla birlikte okunmalı.",
+   "year": 2011,
+   "cover": {
+    "src": "covers/originals-willpower.jpg",
+    "imageUrl": "https://images1.penguinrandomhouse.com/cover/9780143122234",
+    "sourceUrl": "https://www.penguinrandomhouse.com/books/307740/willpower-by-roy-f-baumeister-and-john-tierney/",
+    "sourceName": "Penguin Random House",
+    "title": "Willpower",
+    "author": "Roy F. Baumeister and John Tierney",
+    "publisher": "Penguin Books",
+    "isbn": "9780143122234",
+    "language": "en",
+    "checkedAt": "2026-10-21",
+    "scope": "Uluslararası baskı kapağı"
+   },
+   "issue": "Türkçe baskı adayı: İrade (TUAL Yayınları, 2012). Baskı bir dergi makalesinin kaynakçasında da anılıyor, ancak ISBN ve çevirmen yalnız tek bir sitede görüldüğü için doğrulanmış sayılmadı."
+  },
+  {
+   "key": "multilabpreregisteredreplicationoftheegodepletioneffect",
+   "group": "psikoloji",
+   "role": "Eleştiri ve sınama",
+   "title": "A Multilab Preregistered Replication of the Ego-Depletion Effect",
+   "author": "Martin S. Hagger and Nikos L. D. Chatzisarantis",
+   "originalLanguage": "en",
+   "categories": [
+    "psychology",
+    "science"
+   ],
+   "reason": "Ego tükenmesi etkisini pek çok laboratuvarda aynı, önceden kayıtlı yöntemle sınayan tekrar çalışması; etki sıfıra yakın çıktı. İrade kitabını okuyorsan bunu da mutlaka oku. Makalenin 64 yazarı var; burada ilk ikisi anılıyor.",
+   "format": "article",
+   "year": 2016,
+   "publication": {
+    "venue": "Perspectives on Psychological Science",
+    "doi": "10.1177/1745691616652873",
+    "volume": "11",
+    "issue": "4",
+    "pages": "546–573"
+   }
+  },
+  {
+   "key": "comingtechnologicalsingularity",
+   "group": "tekillik",
+   "role": "Özgün kaynak",
+   "title": "The Coming Technological Singularity",
+   "author": "Vernor Vinge",
+   "originalLanguage": "en",
+   "categories": [
+    "technology"
+   ],
+   "reason": "Teknolojik tekillik fikrinin temel metni: insanüstü zekânın ortaya çıkmasıyla sonrasını bugünkü modellerle öngörmenin imkânsızlaştığı eşik. İnsan zekâsını teknolojiyle güçlendirmeyi (intelligence amplification) ayrı bir gelişme yolu olarak da ele alır.",
+   "format": "essay",
+   "year": 1993,
+   "publication": {
+    "venue": "VISION-21 sempozyumu bildirileri, NASA Conference Publication 10129",
+    "readUrl": "https://edoras.sdsu.edu/~vinge/misc/singularity.html"
+   }
+  },
+  {
+   "key": "singularityisnear",
+   "group": "tekillik",
+   "role": "Popüler sürüm",
+   "existingId": "singularityisnear",
+   "reason": "Tekilliği insan ve makine zekâsının birleşmesi ve biyolojik sınırların aşılması olarak anlatan kitap. 2045 Kurzweil’in öngörüsüdür, doğrulanmış bir tarih değil; Kurzweil de “tekillik” sözcüğünü bir metafor olarak kullandığını söyler."
+  }
+ ],
+ "links": [
+  {
+   "type": "sequence",
+   "first": "mindset",
+   "then": "selfefficacytowardaunifyingtheoryofbehavioralchange",
+   "why": "Önce Dweck’i, sonra Bandura’nın 1977 makalesini oku: popüler sürümle özgün kaynak arasındaki derinlik farkı hemen görünür.",
+   "next": "Gelişim zihniyetinin dayandığı soruyu, inancın davranışı nasıl değiştirdiğini, kavramın ilk ortaya konduğu makaleden okumak için."
+  },
+  {
+   "type": "sequence",
+   "first": "selfefficacytowardaunifyingtheoryofbehavioralchange",
+   "then": "selfefficacytheexerciseofcontrol",
+   "why": "Makale kavramı ortaya koyar; kitap aynı kuramı yirmi yıllık araştırmayla genişletir.",
+   "next": "Öz-yeterlik kuramını sonraki araştırmalarıyla birlikte okumak için."
+  },
+  {
+   "type": "sequence",
+   "first": "personalandorganizationalchangethroughgroupmethods",
+   "then": "psychologicalsafetyandlearningbehaviorinworkteams",
+   "why": "Edmondson’ın makalesinin dayandığı kök: insanların değişebilmesi için kendini güvende hissetmesi gerektiği fikri burada tartışılır.",
+   "next": "Kavramın iş ekipleri üzerinde tanımlandığı ve sınandığı makale."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "psychologicalsafetyandlearningbehaviorinworkteams",
+    "fearlessorganization"
+   ],
+   "reason": "Makale kavramı ölçütüyle tanımlar; kitap aynı yazarın daha okunaklı anlatımıdır ve kavramın yanlış anlaşılmasına karşı korur."
+  },
+  {
+   "type": "sequence",
+   "first": "statisticalmethodfromtheviewpointofqualitycontrol",
+   "then": "outofthecrisis",
+   "why": "Deming’in yaygınlaştırdığı iyileştirme döngüsü ve süreçteki değişkenliği istatistikle izleme fikri Shewhart’ın bu kitabına dayanır.",
+   "next": "Shewhart’ın yöntemini bütün bir yönetim anlayışına dönüştüren kitap."
+  },
+  {
+   "type": "sequence",
+   "first": "outofthecrisis",
+   "then": "neweconomics",
+   "why": "Deming’in son kitabı, Krizden Çıkış’taki ilkeleri derin bilgi sistemiyle bir araya getirir.",
+   "next": "Aynı ilkelerin Deming’in son kitabındaki toplu hâli."
+  },
+  {
+   "type": "sequence",
+   "first": "newnewproductdevelopmentgame",
+   "then": "scrum",
+   "why": "Scrum adı ve kendi kendini örgütleyen ekip fikri bu makaleden gelir.",
+   "next": "Makaledeki ekip modelinin yazılım geliştirmede yönteme dönüşmüş hâli."
+  },
+  {
+   "type": "sequence",
+   "first": "toyotaproductionsystem",
+   "then": "leanstartup",
+   "why": "Yalın girişim, Toyota’da doğan yalın üretim fikirlerini girişimciliğe uyarlar.",
+   "next": "Ohno’nun israf ve akış fikirlerinin girişimciliğe uyarlanmış hâli."
+  },
+  {
+   "type": "sequence",
+   "first": "practiceofmanagement",
+   "then": "highoutputmanagement",
+   "why": "Grove’un Intel’deki hedef sistemi, Drucker’ın hedeflerle yönetim fikrinin uygulamasıdır.",
+   "next": "Hedeflerle yönetimin Intel’de OKR’a dönüşmüş hâli."
+  },
+  {
+   "type": "sequence",
+   "first": "highoutputmanagement",
+   "then": "measurewhatmatters",
+   "why": "Doerr OKR’ı Intel’de Grove’dan öğrendi; kitap Grove’un sistemini yaygınlaştırır.",
+   "next": "Grove’un hedef sisteminin bugünkü yaygın hâli."
+  },
+  {
+   "type": "sequence",
+   "first": "servantasleader",
+   "then": "servantleadership",
+   "why": "Kitap, kavramı ortaya koyan kısa denemeyle başlar ve onu kurumlara genişletir.",
+   "next": "Denemedeki fikrin kurumlar için geliştirilmiş hâli."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "fullcatastropheliving",
+    "mcmindfulness"
+   ],
+   "reason": "Biri yöntemi kaynağından anlatır; diğeri yöntemin kurumlarda nasıl kullanıldığını eleştirir."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "dilemmasinageneraltheoryofplanning",
+    "changebydesign"
+   ],
+   "reason": "Biri tasarımın uğraştığı sorunların özgün tanımı, diğeri tasarım odaklı düşünmenin popüler sürümü; birlikte okununca popüler anlatıda neyin sadeleştiği görülür."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "sciencestrategyandwar",
+    "boyd"
+   ],
+   "reason": "Boyd’un kendi kitabı yok: biri fikirlerini çözümler, diğeri hayatını anlatır; birlikte en iyi başlangıç."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "willpower",
+    "multilabpreregisteredreplicationoftheegodepletioneffect"
+   ],
+   "reason": "Kitabın dayandığı ego tükenmesi etkisi, çok merkezli tekrar çalışmasında üretilemedi; ikisi birlikte okunmalı."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "comingtechnologicalsingularity",
+    "singularityisnear"
+   ],
+   "reason": "Vinge eşiği insanüstü zekânın ortaya çıkışına bağlar; Kurzweil insan ve makine zekâsının birleşmesini öne çıkarır. Birlikte okununca “tekillik” sözcüğünün iki ayrı anlamı ayrılır."
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 {
  "note": "Each cover's real resolution and, where one existed, the larger copy of the same image from the same source that replaced it. Written by scripts/upgrade-covers.py.",
- "checkedAt": "2026-10-05",
+ "checkedAt": "2026-10-21",
  "target": 540,
  "covers": {
   "covers/00300821ba7a54b2.jpg": {
@@ -9610,6 +9610,22 @@
    },
    "status": "kept-no-larger-copy"
   },
+  "covers/foundation-corrosionofcharacter.jpg": {
+   "bookId": "corrosionofcharacter",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 672,
+    "effective": 672,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:11914585/wi:1600",
+    "hashDistance": 3
+   }
+  },
   "covers/foundation-fourstepstotheepiphany.jpg": {
    "bookId": "fourstepstotheepiphany",
    "from": {
@@ -9626,6 +9642,14 @@
    },
    "status": "kept-no-larger-copy"
   },
+  "covers/foundation-kopegiyledolasankadinotuzyedisecmeoyku.jpg": {
+   "bookId": "kopegiyledolasankadinotuzyedisecmeoyku",
+   "from": {
+    "width": 352,
+    "effective": 352
+   },
+   "status": "kept-no-larger-copy"
+  },
   "covers/foundation-nose.jpg": {
    "bookId": "нос",
    "from": {
@@ -9633,6 +9657,15 @@
     "effective": 320
    },
    "status": "kept-no-larger-copy"
+  },
+  "covers/foundation-ottomanempiretheclassicalage13001600.jpg": {
+   "bookId": "ottomanempiretheclassicalage13001600",
+   "from": {
+    "width": 643,
+    "effective": 643,
+    "watermark": true
+   },
+   "status": "kept"
   },
   "covers/foundation-overcoat.jpg": {
    "bookId": "шинель",
@@ -10004,6 +10037,182 @@
    },
    "status": "kept-no-larger-copy"
   },
+  "covers/originals-boyd.jpg": {
+   "bookId": "boyd",
+   "from": {
+    "width": 1677,
+    "effective": 1174
+   },
+   "status": "kept"
+  },
+  "covers/originals-capitalismsocialismanddemocracy.jpg": {
+   "bookId": "capitalismsocialismanddemocracy",
+   "from": {
+    "width": 313,
+    "effective": 313
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-changebydesign.jpg": {
+   "bookId": "changebydesign",
+   "from": {
+    "width": 333,
+    "effective": 333
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-fearlessorganization.jpg": {
+   "bookId": "fearlessorganization",
+   "from": {
+    "width": 300,
+    "effective": 300
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-grit.jpg": {
+   "bookId": "grit",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 960,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:5724672/wi:1600",
+    "hashDistance": 1
+   }
+  },
+  "covers/originals-helplessness.jpg": {
+   "bookId": "helplessness",
+   "from": {
+    "width": 324,
+    "effective": 324
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-mcmindfulness.jpg": {
+   "bookId": "mcmindfulness",
+   "from": {
+    "width": 286,
+    "effective": 286
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-measurewhatmatters.jpg": {
+   "bookId": "measurewhatmatters",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 960,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:11634073/wi:1600",
+    "hashDistance": 0
+   }
+  },
+  "covers/originals-mindset.jpg": {
+   "bookId": "mindset",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1120,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:12177410/wi:1600",
+    "hashDistance": 1
+   }
+  },
+  "covers/originals-neweconomics.jpg": {
+   "bookId": "neweconomics",
+   "from": {
+    "width": 322,
+    "effective": 322
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-practiceofmanagement.jpg": {
+   "bookId": "practiceofmanagement",
+   "from": {
+    "width": 323,
+    "effective": 323
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-reflectivepractitioner.jpg": {
+   "bookId": "reflectivepractitioner",
+   "from": {
+    "width": 341,
+    "effective": 341
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-sciencesoftheartificial.jpg": {
+   "bookId": "sciencesoftheartificial",
+   "from": {
+    "width": 323,
+    "effective": 323
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-sciencestrategyandwar.jpg": {
+   "bookId": "sciencestrategyandwar",
+   "from": {
+    "width": 346,
+    "effective": 346
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-selfefficacytheexerciseofcontrol.jpg": {
+   "bookId": "selfefficacytheexerciseofcontrol",
+   "from": {
+    "width": 372,
+    "effective": 372
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-servantleadership.jpg": {
+   "bookId": "servantleadership",
+   "from": {
+    "width": 295,
+    "effective": 295
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-statisticalmethodfromtheviewpointofqualitycontro.jpg": {
+   "bookId": "statisticalmethodfromtheviewpointofqualitycontrol",
+   "from": {
+    "width": 296,
+    "effective": 296
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-teaming.jpg": {
+   "bookId": "teaming",
+   "from": {
+    "width": 300,
+    "effective": 300
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/originals-willpower.jpg": {
+   "bookId": "willpower",
+   "from": {
+    "width": 293,
+    "effective": 293
+   },
+   "status": "kept-no-larger-copy"
+  },
   "covers/preparation-hazirlik-01.jpg": {
    "bookId": "elestirelokuma",
    "from": {
@@ -10248,6 +10457,22 @@
     "watermark": true
    },
    "status": "kept"
+  },
+  "covers/shelf-singularityisnear.jpg": {
+   "bookId": "singularityisnear",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1120,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:11921999/wi:1600",
+    "hashDistance": 1
+   }
   },
   "covers/shelf-sinirlar.jpg": {
    "bookId": "boundaries",

@@ -44,6 +44,12 @@ test('every cover has a large copy and a small copy for phones and thumbnails', 
  }
 });
 
+test('every cover in the catalog has its resolution record', () => {
+ // A run for a few covers (--only) must not drop the records of all the others.
+ const missing = covers.filter(src => !upgrades.covers[src]);
+ assert.deepEqual(missing, []);
+});
+
 test('a cover replaced after review says why', () => {
  const reviewed = Object.entries(upgrades.covers).filter(([, entry]) => entry.status === 'replaced-by-review');
  for (const [src, entry] of reviewed) {

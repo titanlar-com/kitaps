@@ -5381,6 +5381,334 @@
         ],
         "year": 2019
       }
+    },
+    "mindset": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/aklini-en-dogru-sekilde-kullan/407054.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://catalog.koc.k12.tr/bib/55367",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786053845539",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=Carol%20Dweck",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Aklını En Doğru Şekilde Kullan",
+        "publisher": "Yakamoz Yayıncılık",
+        "isbn": "9786053845539",
+        "translators": [
+          "Uğurcan Kaya"
+        ]
+      }
+    },
+    "grit": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/azim-sabir-tutku-ve-kararliligin-gucu/457097.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/index.php?route=product/search&filter_name=Angela%20Duckworth",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.bkmkitap.com/azim-sabir-tutku-ve-kararligin-gucu",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/azim-sabir-tutku-ve-kararliligin-gucu-p-1520097",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786052994436",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Azim: Sabır, Tutku ve Kararlılığın Gücü",
+        "publisher": "Pegasus Yayınları",
+        "isbn": "9786052994436",
+        "translators": [
+          "Öyküm Taner"
+        ],
+        "year": 2018
+      }
+    },
+    "measurewhatmatters": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/onemli-olani-olc-okr-10-kat-buyumek-icin-basit-bir-yontem/531864.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786056902468",
+            "type": "retailer"
+          },
+          {
+            "url": "https://kureansiklopedi.com/tr/detay/onemli-olani-olc-kitap-14cbb",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.pandora.com.tr/kitap/onemli-olani-olc-okr-10-kat-buyumek-icin-basit-bir-yontem/730718",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/%C3%96nemli-Olan%C4%B1-%C3%96l%C3%A7-B%C3%BCy%C3%BCmek-Y%C3%B6ntem/dp/6056902463",
+            "type": "retailer"
+          },
+          {
+            "url": "https://1000kitap.com/kitap/onemli-olani-olc--202802",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Önemli Olanı Ölç - OKR: 10 Kat Büyümek için Basit Bir Yöntem",
+        "publisher": "Buzdağı Yayınevi",
+        "isbn": "9786056902468",
+        "translators": [
+          "Ali Atav"
+        ],
+        "year": 2020
+      }
+    },
+    "singularityisnear": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/insanlik-20/393072.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://acikerisim.gelisim.edu.tr/items/6b4c45f5-24c3-44e5-ba3a-9f5bfedd3e0d/full",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://1000kitap.com/kitap/insanlik-2-0--59828",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786051712550",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "İnsanlık 2.0: Tekilliğe Doğru Biyolojisini Aşan İnsan",
+        "publisher": "Alfa Yayınları",
+        "isbn": "9786051712550",
+        "translators": [
+          "Mine Şengel"
+        ],
+        "year": 2016
+      }
+    },
+    "corrosionofcharacter": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/karakter-asinmasi-yeni-kapitalizmde-isin-kisilik-uzerindeki-etkileri/50042.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/kitap/karakter-asinmasi/arastirma-tarih/sosyoloji/urunno=0000000190314",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.ayrintiyayingrubu.com/kitap/karakter-asinmasi-2/",
+            "type": "publisher"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Karakter Aşınması: Yeni Kapitalizmde İşin Kişilik Üzerindeki Etkileri",
+        "publisher": "Ayrıntı Yayınları",
+        "isbn": "9789755393704",
+        "translators": [
+          "Barış Yıldırım"
+        ]
+      }
+    },
+    "ottomanempiretheclassicalage13001600": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/osmanli-imparatorlugu-klasik-cag-13001600/501208.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/kitap/osmanli-imparatorlugu-klasik-cag-1300-1600/halil-inalcik/arastirma-tarih/tarih/osmanli-tarihi/urunno=0001807561001",
+            "type": "retailer"
+          },
+          {
+            "url": "https://catalog.khas.edu.tr/bib/25011",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://kronikkitap.com/kitap/osmanli-imparatorlugu-klasik-cag/",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.bkmkitap.com/halil-inalcik-seti-6-kitap-takim",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.biyografiler.com/kitap/osmanli-imparatorlugu-klasik-cag-(1300-1600)",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Osmanlı İmparatorluğu Klasik Çağ (1300-1600)",
+        "publisher": "Kronik Kitap",
+        "isbn": "9786057635099",
+        "translators": [
+          "Ruşen Sezer"
+        ],
+        "year": 2019
+      }
+    },
+    "kopegiyledolasankadinotuzyedisecmeoyku": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/kopegiyle-dolasan-kadin-ciltsiz-otuz-yedi-secme-oyku/87023.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://catalog.khas.edu.tr/bib/42964",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/kopegiyle-dolasan-kadin-ciltli-otuz-yedi-secme-oyku/87024.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/yazar/anton-pavlovic-cehov-260105",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.iskultur.com.tr/kopegiyle-dolasan-kadin-otuz-yedi-secme-oyku.aspx",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.iskultur.com.tr/yazarlar/anton-cehov",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.iskultur.com.tr/hikayeler.aspx",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.iskultur.com.tr/hikayeler-kisaltilmis-metin.aspx",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.biyografiler.com/kitap/kopegiyle-dolasan-kadin--(ciltsiz)-otuz-yedi-secme-oyku",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Köpeğiyle Dolaşan Kadın: Otuz Yedi Seçme Öykü",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9789754588767",
+        "translators": [
+          "Ergin Altay"
+        ],
+        "year": 2006
+      }
     }
   }
 }

@@ -32,6 +32,24 @@ def foreign_title(value,turkish):
 PUBLISHER_FIXES={'Wiley & Sons, Incorporated, John':'John Wiley & Sons','Oxford University Press, Incorporated, Oxford University Press':'Oxford University Press'}
 def clean_cover(cover):
  return {**cover,'publisher':PUBLISHER_FIXES[cover['publisher']]} if cover.get('publisher') in PUBLISHER_FIXES else cover
+# The Personal MBA list shortens co-authors to "et al", misspells two names and
+# drops a space. The catalog credits the authors as the books print them; the
+# fixes apply after merging, so source matching still sees the list's own text.
+AUTHOR_FIXES={'smartchoices':'John S. Hammond, Ralph L. Keeney & Howard Raiffa','crucialconversations':'Kerry Patterson, Joseph Grenny, Ron McMillan & Al Switzler','newleaders100dayactionplan':'George B. Bradt, Jayme A. Check & Jorge Pedraza','marketingmetrics':'Paul W. Farris, Neil T. Bendle, Phillip E. Pfeifer & David J. Reibstein','seeingwhatsnext':'Clayton M. Christensen, Scott D. Anthony & Erik A. Roth','universalprinciplesofdesign':'William Lidwell, Kritina Holden & Jill Butler','yourmoneyoryourlife':'Vicki Robin & Joe Dominguez','economistnumbersguide':'Richard Stutely','aguidetothegoodlife':'William B. Irvine','poweroffullengagement':'Jim Loehr & Tony Schwartz'}
+WORK_FORMATS={'article','essay'}
+def apply_format(b,item):
+ """Articles and essays are listed like books but name where they appeared."""
+ if not item.get('format'):return
+ assert item['format'] in WORK_FORMATS,(b['id'],item['format'])
+ # A work listed by where it appeared has no edition or cover to contradict that.
+ assert not b.get('verifiedEdition') and not b.get('cover'),b['id']
+ publication=item.get('publication') or {}
+ assert publication.get('venue') and any(publication.get(field) for field in ('readUrl','doi','pageUrl')),b['id']
+ for field in ('readUrl','pageUrl'):assert not publication.get(field) or publication[field].startswith('https://'),(b['id'],field)
+ b['format']=item['format'];b['publication']=publication
+def source_label(url):
+ host=re.sub(r'^www\.','',re.sub(r'^https://([^/]+).*$',r'\1',url))
+ return 'Bibliyografik kayıt · Open Library' if host=='openlibrary.org' else 'Kaynak · '+host
 categoryNames={'strategy':'Strateji ve rekabet','management':'Yönetim ve liderlik','enterprise':'Girişimcilik','marketing':'Pazarlama ve satış','communication':'İletişim ve müzakere','psychology':'Psikoloji ve davranış','productivity':'Üretkenlik ve alışkanlıklar','systems':'Sistemler ve operasyon','finance':'Finans ve yatırım','economy':'Ekonomi ve toplum','technology':'Teknoloji ve yapay zekâ','innovation':'Yenilik ve tasarım','history':'Tarih','biography':'Biyografi ve anı','politics':'Siyaset ve jeopolitik','ethics':'Etik ve kurumsal sorumluluk','climate':'İklim ve sürdürülebilirlik','literature':'Edebiyat','philosophy':'Felsefe','children':'Çocuk','science':'Bilim ve öğrenme'}
 def addcat(b,*cats):
  for c in cats:
@@ -176,21 +194,46 @@ for group in entrepreneurship['groups']:
   mapping['entrepreneurship:'+key(item['title'])]=b['id'];addcat(b,'enterprise')
 # Foundational books are maintained as a separate editorial dataset. Their
 # unlock relationships are guidance, not hard prerequisites or fixed scores.
-collections.append({k:v for k,v in foundations.items() if k!='groups'}|{'origin':'foundations','mark':'T','tag':'Küme anahtarı','note':'Belirli katalog kitaplarını daha verimli okumayı sağlayan temel ve eşlik kitapları.'})
+FOUNDATION_DATA={'groups','start','links','notes'}
+collections.append({k:v for k,v in foundations.items() if k not in FOUNDATION_DATA}|{'origin':'foundations','mark':'T','tag':'Küme anahtarı','note':'Belirli katalog kitaplarını daha verimli okumayı sağlayan temel ve eşlik kitapları.'})
 foundation_links=[]
+# The books to read first open the whole catalog. Their group leads the
+# collection; most of them are keys listed below, a few are catalog books.
+start=foundations.get('start')
+if start:
+ start_gid=foundations['id']+':'+start['id'];groups.append({'id':start_gid,'collectionId':foundations['id'],'title':start['title']})
 for group in foundations['groups']:
  gid=foundations['id']+':'+group['id'];groups.append({'id':gid,'collectionId':foundations['id'],'title':group['title']})
  for item in group['books']:
-  b=getbook(item['title'],item['author'],'foundations',extraTitles=[item.get('titleTr','')])
-  b['originalTitle']=item['title']
-  if item.get('titleTr') and item['titleTr']!=item['title'] and not b['titleTr']:b['titleTr']=item['titleTr']
-  if item.get('year') and item['year'] not in b['years']:b['years'].append(item['year'])
-  addcat(b,*item['categories']);note(b,item['reason'],'Temel okumalar araştırması')
-  member(b,foundations['id'],gid,source=item['sourceUrl'],note=item['reason'])
-  if item.get('cover'):b['cover']=clean_cover(item['cover'])
-  else:b['sourceIssue']={'note':'Eser katalogda korunuyor; güvenilir ve baskıyla eşleşen kapak henüz doğrulanmadı.'}
-  foundation_links.append((b['id'],item.get('unlocks',[]),item.get('companions',[]),item['reason'],item['sourceUrl']))
-  mapping['foundations:'+key(item['title'])]=b['id']
+  # A catalog book can be a key too: it keeps its identity and gains the unlocks.
+  if item.get('existingId'):
+   b=books[item['existingId']]
+   if 'foundations' not in b['origins']:b['origins'].append('foundations')
+  else:
+   b=getbook(item['title'],item['author'],'foundations',extraTitles=[item.get('titleTr','')])
+   # A new key must not silently merge into an unrelated catalog book; a catalog book is named by existingId.
+   assert b['origins']==['foundations'],(item['title'],b['id'],b['origins'])
+   # A translator's selection of stories has no single original title.
+   if item.get('originalTitle',item['title']):b['originalTitle']=item.get('originalTitle',item['title'])
+   if item.get('titleTr') and item['titleTr']!=item['title'] and not b['titleTr']:b['titleTr']=item['titleTr']
+   if item.get('year') and item['year'] not in b['years']:b['years'].append(item['year'])
+   if item.get('cover'):b['cover']=clean_cover(item['cover'])
+   elif item.get('issue'):b['sourceIssue']={'note':item['issue']}
+   elif not item.get('format'):b['sourceIssue']={'note':'Eser katalogda korunuyor; güvenilir ve baskıyla eşleşen kapak henüz doğrulanmadı.'}
+   if item.get('edition'):b['verifiedEdition']={k:v for k,v in item['edition'].items() if k=='translators' or v not in (None,'',[])}
+   apply_format(b,item)
+  addcat(b,*item.get('categories',[]));note(b,item['reason'],'Temel okumalar araştırması')
+  member(b,foundations['id'],gid,source=item.get('sourceUrl'),note=item['reason'])
+  foundation_links.append((b['id'],item.get('unlocks',[]),item.get('companions',[]),item['reason'],item.get('sourceUrl')))
+  mapping['foundations:'+(item.get('existingId') or key(item['title']))]=b['id']
+if start:
+ for order,reference in enumerate(start['books'],1):
+  b=books[mapping.get('foundations:'+reference,reference)]
+  if 'foundations' not in b['origins']:b['origins'].append('foundations')
+  member(b,foundations['id'],start_gid,source=foundations['source'],note=start['note'],order=order)
+for bid,text in foundations.get('notes',{}).items():
+ assert bid in books,bid
+ note(books[bid],text,'Temel okumalar araştırması')
 covers={**(read('data/international-covers.json') if (ROOT/'data/international-covers.json').exists() else {}),**read('data/turkish-covers.json')}
 for bid,cover in covers.items():
  assert bid in books,bid
@@ -249,24 +292,28 @@ if children:
   if item.get('cover') and (not item.get('existingId') or item.get('replaceEdition')):b['cover']=item['cover']
   if item.get('issue'):b['sourceIssue']={'note':item['issue']}
   if item.get('keepTitle'):b['titleTr']=item['titleTr']
-# Recommendations read from photographs of bookstore shelves: which visible books
-# suit the reader, and under which conditions. New Turkish editions are verified
-# on two websites. Priorities stay notes and group names; the engine scores these
+# Two editorial reviews share one shape: recommendations read from photographs
+# of bookstore shelves (which visible books suit the reader, and under which
+# conditions), and the original sources behind popular concepts beside their
+# popular versions. New Turkish editions are verified on two websites.
+# Priorities and roles stay notes and group names; the engine scores these
 # books like every other, and look-alike warnings become notes on the real work.
-shelf=read('data/shelf-review.json') if (ROOT/'data/shelf-review.json').exists() else None
-shelf_links=[];shelf_purposes={}
-if shelf:
- cid=shelf['id']
- collections.append({k:shelf[k] for k in ('id','title','short','description','source','context')}|{'origin':'shelf','mark':'RAF','tag':'Raf taraması','note':shelf['note']})
- for group in shelf['groups']:groups.append({'id':cid+':'+group['id'],'collectionId':cid,'title':group['title']})
- for item in shelf['books']:
-  b=books[item['existingId']] if item.get('existingId') else getbook(item['title'],item['author'],'shelf',extraTitles=[item['titleTr']])
-  if 'shelf' not in b['origins']:b['origins'].append('shelf')
+REVIEWS=[('data/shelf-review.json','shelf','RAF','Raf taraması'),('data/original-sources.json','originals','ÖZ','Özgün kaynak')]
+reviews={};review_links=[];review_purposes={}
+for path,origin,mark,tag in REVIEWS:
+ if not (ROOT/path).exists():continue
+ review=reviews[origin]=read(path);cid=review['id']
+ collections.append({k:review[k] for k in ('id','title','short','description','source','context')}|{'origin':origin,'mark':mark,'tag':tag,'note':review['note']})
+ for group in review['groups']:groups.append({'id':cid+':'+group['id'],'collectionId':cid,'title':group['title']})
+ for item in review['books']:
+  b=books[item['existingId']] if item.get('existingId') else getbook(item['title'],item['author'],origin,extraTitles=[item.get('titleTr','')])
+  if origin not in b['origins']:b['origins'].append(origin)
   # A new recommendation must not silently merge into an unrelated catalog book.
-  assert item.get('existingId') or b['origins']==['shelf'],(item['key'],b['id'])
-  mapping['shelf:'+item['key']]=b['id']
+  assert item.get('existingId') or b['origins']==[origin],(item['key'],b['id'])
+  mapping[origin+':'+item['key']]=b['id']
   if not item.get('existingId'):
-   b['titleTr']=item['titleTr'];b['originalLanguage']=item['originalLanguage']
+   if item.get('titleTr'):b['titleTr']=item['titleTr']
+   b['originalLanguage']=item['originalLanguage']
    if item['originalLanguage']!='tr':offer_original(b,item['title'],1)
    if item.get('year') and item['year'] not in b['years']:b['years'].append(item['year'])
    if item.get('edition'):
@@ -274,16 +321,22 @@ if shelf:
     if item['originalLanguage']=='tr':b['verifiedEdition']['originalLanguage']='tr'
    if item.get('cover'):b['cover']=item['cover']
    if item.get('issue'):b['sourceIssue']={'note':item['issue']}
+   apply_format(b,item)
   addcat(b,*item.get('categories',[]))
   if item.get('childAge'):b['childAge']=item['childAge']
-  if item.get('purpose'):shelf_purposes[b['id']]=item['purpose']
+  if item.get('purpose'):review_purposes[b['id']]=item['purpose']
+  # A role (original source, popular version, critique) names the note's source.
+  label=review['short']+(' · '+item['role'] if item.get('role') else '')
   for placement in [{'id':item['group'],'reason':item['reason']},*item.get('extraGroups',[])]:
-   note(b,placement['reason'],shelf['short'])
-   member(b,cid,cid+':'+placement['id'],source=shelf['source'],note=placement['reason'])
- for bid,text in shelf.get('lookAlikes',{}).items():
+   note(b,placement['reason'],label)
+   extra={k:v for k,v in (('role',item.get('role')),('order',placement.get('order'))) if v}
+   member(b,cid,cid+':'+placement['id'],source=review['source'],note=placement['reason'],**extra)
+ for bid,text in review.get('lookAlikes',{}).items():
   assert bid in books,bid
-  note(books[bid],text,shelf['short'])
- shelf_links=shelf['links']
+  note(books[bid],text,review['short'])
+ review_links.extend((origin,link) for link in review.get('links',[]))
+shelf=reviews.get('shelf')
+review_links.extend(('foundations',link) for link in foundations.get('links',[]))
 # This source contains ten ordered recommendations. Two already exist in the
 # foundational collection, so membership is merged instead of duplicating the
 # work. The supplied order remains editorial metadata, never a fixed score.
@@ -313,10 +366,11 @@ for item in preparation['books']:
  preparation_links.append((b['id'],item['ornekHedefEserler'],item['onerilmeNedeni']))
  mapping['preparation:'+item['id']]=b['id']
 for b in books.values():
- if any(origin in b['origins'] for origin in ['entrepreneurship','foundations']) and not b.get('cover') and not b.get('sourceIssue'):
+ if any(origin in b['origins'] for origin in ['entrepreneurship','foundations']) and not b.get('cover') and not b.get('sourceIssue') and not b.get('format'):
   b['sourceIssue']={'note':'Kapak görseli eser ve baskı kimliğiyle birlikte henüz yerel kataloğa alınmadı; doğrulanmış bibliyografik kayıt görünür tutuluyor.'}
 translation_records=validate_manifest(read('data/translation-availability.json'),set(books))
 for bid,research in translation_records.items():
+ assert not books[bid].get('format'),(bid,'articles and essays show their publication, not a Turkish edition')
  books[bid]['translationResearch']=research
  edition_title=(research.get('edition') or {}).get('title','').strip()
  if research['status']=='available' and edition_title:
@@ -350,6 +404,11 @@ for bid,b in books.items():
   b['addedAt']=added
 undated=[bid for bid in books if bid not in added_dates]
 if undated:print(len(undated),'books have no added date; run scripts/infer-added-dates.py --write, then merge again:',', '.join(undated[:8]))
+for bid,author in AUTHOR_FIXES.items():
+ assert bid in books,bid
+ # Book URLs are built from the author line; the corrected credit must not break shared links.
+ books[bid]['slugAuthor']=books[bid]['author']
+ books[bid]['author']=author
 for b in books.values():
  if not b['categories']:addcat(b,'management')
  b['collectionIds']=list(dict.fromkeys(m['collectionId'] for m in b['memberships']));b['groupIds']=list(dict.fromkeys(m['groupId'] for m in b['memberships']))
@@ -367,7 +426,7 @@ if children:
   if route.get('replaceCategoryRoute') and current is not None:readingGuides['routes'][current]=entry
   else:readingGuides['routes'].append(entry)
 for foundation_id,target_ids,companion_ids,reason,source_url in foundation_links:
- readingGuides['sources'].setdefault(foundation_id,[]).append({'label':'Bibliyografik kayıt · Open Library','url':source_url})
+ if source_url:readingGuides['sources'].setdefault(foundation_id,[]).append({'label':source_label(source_url),'url':source_url})
  foundation_override=readingGuides['overrides'].setdefault(foundation_id,{'before':[],'after':[]})
  for target_id in target_ids:
   if target_id not in books:continue
@@ -394,25 +453,25 @@ for preparation_id,target_titles,reason in preparation_links:
   target_id=candidates[0];target_override=readingGuides['overrides'].setdefault(target_id,{'before':[],'after':[]})
   if not any(item['id']==preparation_id for item in target_override['before']):target_override['before'].append({'id':preparation_id,'reason':reason})
   if not any(item['id']==target_id for item in source_override['after']):source_override['after'].append({'id':target_id,'reason':'Bu hazırlıkta çalışılan kavramları katalogdaki bu eser üzerinde uygulayabilirsin.'})
-# Shelf relations come from the review's own advice or from plain facts about the
-# books (same authors, same system, same subject). A sequence is a suggested
+# Review relations come from the review's own advice or from plain facts about
+# the books (same authors, same system, same subject). A sequence is a suggested
 # order, never a requirement; companions are read side by side.
-def shelf_book(reference):
- bid=mapping.get('shelf:'+reference,reference)
- assert bid in books,reference
+def review_book(origin,reference):
+ bid=mapping.get(origin+':'+reference,reference)
+ assert bid in books,(origin,reference)
  return bid
 # A book keeps a reading purpose it already had.
-for bid,purpose in shelf_purposes.items():readingGuides['purposes'].setdefault(bid,purpose)
-for link in shelf_links:
+for bid,purpose in review_purposes.items():readingGuides['purposes'].setdefault(bid,purpose)
+for origin,link in review_links:
  if link['type']=='sequence':
-  first,then=shelf_book(link['first']),shelf_book(link['then'])
+  first,then=review_book(origin,link['first']),review_book(origin,link['then'])
   then_override=readingGuides['overrides'].setdefault(then,{'before':[],'after':[]})
   first_override=readingGuides['overrides'].setdefault(first,{'before':[],'after':[]})
   if not any(item['id']==first for item in then_override['before']):then_override['before'].append({'id':first,'reason':link['why']})
   if not any(item['id']==then for item in first_override['after']):first_override['after'].append({'id':then,'reason':link['next']})
  else:
   assert link['type']=='companion',link
-  left,right=(shelf_book(reference) for reference in link['books'])
+  left,right=(review_book(origin,reference) for reference in link['books'])
   for one,other in ((left,right),(right,left)):
    companions=readingGuides['overrides'].setdefault(one,{'before':[],'after':[]}).setdefault('companions',[])
    if not any(item['id']==other for item in companions):companions.append({'id':other,'reason':link['reason']})
@@ -422,11 +481,12 @@ def checked_dates():
  for record in translation_records.values():yield from (record['stage1']['checkedAt'],record['stage2']['checkedAt'])
  for item in preparation['books']:yield item.get('dogrulamaTarihi')
  for record in fact_records.values():yield from (record['stage1']['checkedAt'],record['stage2']['checkedAt'])
- if shelf:yield from (item['edition'].get('checkedAt') for item in shelf['books'] if item.get('edition'))
+ for review in reviews.values():yield from (item['edition'].get('checkedAt') for item in review['books'] if item.get('edition'))
+ for group in foundations['groups']:yield from (item['edition'].get('checkedAt') for item in group['books'] if item.get('edition'))
 # The catalog date follows its newest verified evidence, never the build clock.
 latest=max(value for value in checked_dates() if isinstance(value,str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}',value))
 updated=f"{int(latest[8:10])} {MONTHS[int(latest[5:7])-1]} {latest[:4]}"
-result={'updated':updated,'readingGuides':readingGuides,'books':list(books.values()),'collections':collections,'groups':groups,'categories':[{'id':k,'label':v,'count':sum(k in b['categories'] for b in books.values())} for k,v in categoryNames.items()],'sourceTags':local['tags'],'mapping':mapping,'sourceCounts':{'atlasEntries':sum(len(g['books']) for c in atlas['collections'] for g in c['groups']),'localBooks':len(local['books']),'kitapsRecords':len(kitaps['books']),'foundationalBooks':sum(len(group['books']) for group in foundations['groups']),'preparationRecommendations':len(preparation['books']),'entrepreneurshipBooks':sum(len(group['books']) for group in entrepreneurship['groups']),'childrenLibraryBooks':len(children['books']) if children else 0,'shelfReviewBooks':len(shelf['books']) if shelf else 0}}
+result={'updated':updated,'readingGuides':readingGuides,'books':list(books.values()),'collections':collections,'groups':groups,'categories':[{'id':k,'label':v,'count':sum(k in b['categories'] for b in books.values())} for k,v in categoryNames.items()],'sourceTags':local['tags'],'mapping':mapping,'sourceCounts':{'atlasEntries':sum(len(g['books']) for c in atlas['collections'] for g in c['groups']),'localBooks':len(local['books']),'kitapsRecords':len(kitaps['books']),'foundationalBooks':sum(len(group['books']) for group in foundations['groups']),'preparationRecommendations':len(preparation['books']),'entrepreneurshipBooks':sum(len(group['books']) for group in entrepreneurship['groups']),'childrenLibraryBooks':len(children['books']) if children else 0,'shelfReviewBooks':len(shelf['books']) if shelf else 0,'originalSourceWorks':len(reviews['originals']['books']) if 'originals' in reviews else 0}}
 (ROOT/'src/catalog.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
 print(len(books),'books',len(collections),'collections',len(groups),'groups')
 print('Edition records',sum(len(b['editions']) for b in books.values()))

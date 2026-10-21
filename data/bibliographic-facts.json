@@ -19190,6 +19190,1191 @@
           }
         ]
       }
+    },
+    "selfefficacytheexerciseofcontrol": {
+      "firstPublicationYear": 1997,
+      "firstPublisher": "W. H. Freeman",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Self-Efficacy_(book)",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://openlibrary.org/works/OL3356970W/editions.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://search.worldcat.org/th/title/self-efficacy-the-exercise-of-control/oclc/36074515",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://vufind.katalog.k.utb.cz/Record/69302",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "helplessness": {
+      "firstPublicationYear": 1975,
+      "firstPublisher": "W. H. Freeman",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://librarycatalog.ecu.edu/catalog/53",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/9780716707516",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.abebooks.com/9780716707516/Helplessness-Depression-Development-Death-Seligman-0716707519/plp",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://library.iut.ac.ir/Inventory/100/13110.htm",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://cmc.marmot.org/Record/.b1217418x",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "mindset": {
+      "firstPublicationYear": 2006,
+      "firstPublisher": "Random House",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/books/OL8363726M/Mindset",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://porchlightbooks.com/product/mindset-the-new-psychology-of-success--carol-s-dweck/isbn/9781400062751",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://discover.library.unt.edu/catalog/b3853903",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.schweitzer-online.de/buch/Dweck/Mindset/9781400062751/A13178775/",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "selfefficacytowardaunifyingtheoryofbehavioralchange": {
+      "firstPublicationYear": 1977,
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://api.crossref.org/works/10.1037/0033-295X.84.2.191",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://longevity.stanford.edu/self-efficacy-toward-a-unifying-theory-of-behavior-change/",
+            "type": "official"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=847061",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://verdi.cs.ucl.ac.uk/constructDB/publications/bandura-selfefficacy-1977.html",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "psychologicalsafetyandlearningbehaviorinworkteams": {
+      "firstPublicationYear": 1999,
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://api.crossref.org/works/10.2307/2666999",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://dash.harvard.edu/entities/publication/13a7b031-0fdd-45ec-a7e0-2b80e2bc679f",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.2307/2666999?fields=title,venue,year,journal,authors,openAccessPdf,publicationDate",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://web.mit.edu/curhan/www/docs/Articles/15341_Readings/Group_Performance/Edmondson%20Psychological%20safety.pdf",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "personalandorganizationalchangethroughgroupmethods": {
+      "firstPublicationYear": 1965,
+      "firstPublisher": "John Wiley & Sons",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/books/OL961175M",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://bemis2.marmot.org/Record/.b12120169",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://discovery.nypl.org/research/research-catalog/bib/b12988796",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://libcat.library.tamu.edu/Record/in00000281035",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "fearlessorganization": {
+      "firstPublicationYear": 2018,
+      "firstPublisher": "John Wiley & Sons",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.wiley.com/en-us/The+Fearless+Organization%3A+Creating+Psychological+Safety+in+the+Workplace+for+Learning%2C+Innovation%2C+and+Growth-p-9781119477242",
+            "type": "publisher"
+          },
+          {
+            "url": "https://ipac.mckinneytexas.org/Record/355522",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://campusstore.miamioh.edu/fearless-organization-creating/bk/9781119477242",
+            "type": "retailer"
+          },
+          {
+            "url": "https://assets.thestorygraph.com/books/2142784c-02b9-473f-8937-89c6841bba02",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "teaming": {
+      "firstPublicationYear": 2012,
+      "firstPublisher": "Jossey-Bass",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.wiley.com/en-us/Teaming%3A+How+Organizations+Learn%2C+Innovate%2C+and+Compete+in+the+Knowledge+Economy-p-9780787970932",
+            "type": "publisher"
+          },
+          {
+            "url": "https://porchlightbooks.com/product/teaming--amy-edmondson",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://vufind.wit.edu/Record/w1336679",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/9780787970932",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "fullcatastropheliving": {
+      "firstPublicationYear": 1990,
+      "firstPublisher": "Delacorte Press",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/isbn/0385298978",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Full_Catastrophe_Living",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://catalog.saclibrary.org/Record/.b1245509x",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://ins.swanlibraries.net/Record/a1986595",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "mcmindfulness": {
+      "firstPublicationYear": 2019,
+      "firstPublisher": "Repeater Books",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://penguinrandomhouse.com/books/600158/mcmindfulness-by-ronald-purser",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.penguin.com.au/books/mcmindfulness-9781912248315",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://newbooksnetwork.com/ronald-e-purser-mcmindfulness-how-mindfulness-became-the-new-capitalist-spirituality-repeater-books-2019/",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://mitpressbookstore.mit.edu/book/9781912248315",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "grit": {
+      "firstPublicationYear": 2016,
+      "firstPublisher": "Scribner",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/isbn/9781501111105",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://catalog.library.nashville.org/Record/CARL0000485407",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://libcat.arlingtonva.us/Record/148960",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://catalog.sclsnj.org/Record/560698",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "willpower": {
+      "firstPublicationYear": 2011,
+      "firstPublisher": "Penguin Press",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/isbn/9781594203077",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.publishersweekly.com/9781594203077",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Willpower:_Rediscovering_the_Greatest_Human_Strength",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://dergipark.org.tr/en/pub/kuifd/article/981797",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.edge.org/3rd_culture/bios/baumeister.html",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "multilabpreregisteredreplicationoftheegodepletioneffect": {
+      "firstPublicationYear": 2016,
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://api.crossref.org/works/10.1177/1745691616652873",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://kops.uni-konstanz.de/entities/publication/b014f185-b8d7-4fb7-85de-173bc46581f1",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-001",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=27474142",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1177/1745691616652873?fields=title,year,journal,openAccessPdf,publicationDate,isOpenAccess",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "neweconomics": {
+      "firstPublicationYear": 1993,
+      "firstPublisher": "Massachusetts Institute of Technology, Center for Advanced Engineering Study",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/works/OL3190934W/editions.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/W._Edwards_Deming",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.ebsco.com/research-starters/history/w-edwards-deming",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://mitpressbookstore.mit.edu/book/9780262535939",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.emerald.com/jmh-arc/article/doi/10.1108/jmh_arc.1999.15805hae.001/231197/Annotated-bibliography-on-the-Deming-philosophy",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "newnewproductdevelopmentgame": {
+      "firstPublicationYear": 1986,
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://hbr.org/1986/01/the-new-new-product-development-game",
+            "type": "publisher"
+          },
+          {
+            "url": "https://store.hbr.org/product/new-new-product-development-game/86116",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Hirotaka_Takeuchi",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.ics.hub.hit-u.ac.jp/research/business_magazine/1986",
+            "type": "official"
+          },
+          {
+            "url": "https://www.projectmanagement.com/articles/265883/the-japanese-origins-of-scrum",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "spiralmodelofsoftwaredevelopmentandenhancement": {
+      "firstPublicationYear": 1986,
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://api.crossref.org/works/10.1145/12944.12948",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://api.crossref.org/works/10.1109/2.59",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Spiral_model",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://oreilly.com/library/view/process-for-system/9780133488562/bib01.html",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://docs.edtechhub.org/lib/A29EGW7U",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://doi.org/api/handles/10.1145/12944.12948",
+            "type": "official"
+          }
+        ]
+      }
+    },
+    "statisticalmethodfromtheviewpointofqualitycontrol": {
+      "firstPublicationYear": 1939,
+      "firstPublisher": "The Graduate School, The Department of Agriculture",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/search.json?title=statistical+method+from+the+viewpoint+of+quality+control&fields=key,title,first_publish_year,publisher,isbn,edition_count&limit=5",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://ageconsearch.umn.edu/record/327285/files/GradSchoolQualityControl.pdf",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://ci.nii.ac.jp/ncid/BA01171931?l=en",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://mathshistory.st-andrews.ac.uk/Biographies/Shewhart/",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "practiceofmanagement": {
+      "firstPublicationYear": 1954,
+      "firstPublisher": "Harper & Brothers",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://search.worldcat.org/title/practice-of-management/oclc/230717",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://raptisrarebooks.com/?p=58537",
+            "type": "retailer"
+          },
+          {
+            "url": "https://openlibrary.org/search.json?title=the+practice+of+management&author=drucker&fields=key,title,first_publish_year,publisher,publish_year,isbn&limit=3",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.abebooks.com/first-edition/Practice-Management-Peter-F-Drucker-Harper/32188032427/bd",
+            "type": "retailer"
+          },
+          {
+            "url": "https://ci.nii.ac.jp/ncid/BA01427988?l=en",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Peter_Drucker",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "measurewhatmatters": {
+      "firstPublicationYear": 2018,
+      "firstPublisher": "Portfolio",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.penguinrandomhouse.com/books/546304",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.porchlightbooks.com/products/measure-what-matters-john-doerr-9780525536222",
+            "type": "retailer"
+          },
+          {
+            "url": "https://blackwells.co.uk/bookshop/product/Measure-What-Matters-by-John-E-Doerr-author/9780525536222",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "servantasleader": {
+      "firstPublicationYear": 1970,
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://greenleaf.org/robert-k-greenleaf-biography/",
+            "type": "rights-holder"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Robert_K._Greenleaf",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://openlibrary.org/search.json?q=title%3A%22servant+as+leader%22+author%3Agreenleaf&fields=key,title,first_publish_year,publisher,publish_year,publish_place,isbn&limit=5",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://search.worldcat.org/title/The-servant-as-leader/oclc/6510114",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://repository.gonzaga.edu/ijsl/vol5/iss1/1",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.ebsco.com/research-starters/business-and-management/servant-leadership",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "servantleadership": {
+      "firstPublicationYear": 1977,
+      "firstPublisher": "Paulist Press",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/isbn/9780809102204.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://openlibrary.org/search.json?q=title%3A%22servant+leadership%22+author%3Agreenleaf&fields=key,title,subtitle,first_publish_year,publisher,publish_year,isbn&limit=5",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://greenleaf.org/robert-k-greenleaf-biography/",
+            "type": "rights-holder"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.abebooks.com/9780809102204/Servant-leadership-journey-nature-legitimate-080910220X/plp",
+            "type": "retailer"
+          },
+          {
+            "url": "https://cmc.marmot.org/Record/.b30579922",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.scirp.org/reference/referencespapers?referenceid=2517438",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "sciencesoftheartificial": {
+      "firstPublicationYear": 1969,
+      "firstPublisher": "M.I.T. Press",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://ci.nii.ac.jp/ncid/BA03782084?l=en",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.computerhistory.org/collections/catalog/102676898",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.science.org/doi/10.1126/science.165.3896.886.b",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://search.worldcat.org/title/sciences-of-the-artificial/oclc/4087",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "dilemmasinageneraltheoryofplanning": {
+      "firstPublicationYear": 1973,
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://api.crossref.org/works/10.1007/BF01405730",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://letr.org.uk/references/item/306.html",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://link.springer.com/article/10.1007/BF01405730",
+            "type": "publisher"
+          }
+        ]
+      }
+    },
+    "reflectivepractitioner": {
+      "firstPublicationYear": 1983,
+      "firstPublisher": "Basic Books",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/isbn/9780465068746.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://openlibrary.org/search.json?title=the+reflective+practitioner&author=sch%C3%B6n&fields=key,title,first_publish_year,publisher,publish_year,isbn&limit=3",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://books.google.com.tr/books/about/Reflective_Practitioner.html?id=oYNHAAAAMAAJ&redir_esc=y",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.tandfonline.com/doi/abs/10.1080/0158037880100206",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "changebydesign": {
+      "firstPublicationYear": 2009,
+      "firstPublisher": "HarperBusiness",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/isbn/9780061766084.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.goodreads.com/work/editions/6866613-change-by-design-how-design-thinking-transforms-organizations-and-inspi?page=1",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-002",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.porchlightbooks.com/products/change-by-design-tim-brown-9780061766084",
+            "type": "retailer"
+          },
+          {
+            "url": "https://cmc.marmot.org/Record/.b29883593",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://designthinking.ideo.com/blog/change-by-design-revised-and-updated",
+            "type": "author"
+          }
+        ]
+      }
+    },
+    "capitalismsocialismanddemocracy": {
+      "firstPublicationYear": 1942,
+      "firstPublisher": "Harper & Brothers",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Capitalism,_Socialism_and_Democracy",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/9780061330087",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://find.library.upenn.edu/catalog/998035533503681",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "sciencestrategyandwar": {
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://scholarlypublications.universiteitleiden.nl/handle/1887/4211793",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.routledge.com/Science-Strategy-and-War-The-Strategic-Theory-of-John-Boyd-1st-Edition/Osinga/p/book/9780415459525",
+            "type": "publisher"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/9780415371032",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.kinokuniya.co.jp/f/dsg-12-EY00001315",
+            "type": "retailer"
+          },
+          {
+            "url": "https://d-n-i.net/osinga/science_and_strategy.htm",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "boyd": {
+      "firstPublicationYear": 2002,
+      "firstPublisher": "Little, Brown and Company",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://hachettebookgroup.com/?p=13606",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.publishersweekly.com/9780316881463",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.ahml.info/catalog/record/1696928",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://catalog.washoecountylibrary.us/Record/10497",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "comingtechnologicalsingularity": {
+      "firstPublicationYear": 1993,
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://edoras.sdsu.edu/~vinge/misc/singularity.html",
+            "type": "author"
+          },
+          {
+            "url": "https://ntrs.nasa.gov/citations/19940022856",
+            "type": "official"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://quoteinvestigator.com/2018/05/07/superhuman/",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "singularityisnear": {
+      "firstPublicationYear": 2005,
+      "firstPublisher": "Viking",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Singularity_Is_Near",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://catalog.washoecountylibrary.us/Record/74090",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.singularity.com/pressrelease.html",
+            "type": "author"
+          }
+        ]
+      }
+    },
+    "corrosionofcharacter": {
+      "firstPublicationYear": 1998,
+      "firstPublisher": "W. W. Norton & Company",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/isbn/0393046788",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://hunterdon.aspendiscovery.org/Record/1364660",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://koha.hv.se/bib/921443",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "ottomanempiretheclassicalage13001600": {
+      "firstPublicationYear": 1973,
+      "firstPublisher": "Weidenfeld & Nicolson",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://ci.nii.ac.jp/ncid/BA03476510?l=en",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S0041977X00127727",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.abebooks.com/9780297994909/Ottoman-Empire-Classical-Age-1300-1600-0297994905/plp",
+            "type": "retailer"
+          },
+          {
+            "url": "https://kronikkitap.com/kitap/osmanli-imparatorlugu-klasik-cag/",
+            "type": "publisher"
+          }
+        ]
+      }
+    },
+    "howtogetstartupideas": {
+      "firstPublicationYear": 2012,
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://paulgraham.com/startupideas.html",
+            "type": "author"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://libraryofllm.com/sources/pg-how-to-get-startup-ideas",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://fndrlist.com/resources/paul-graham-how-to-get-startup-ideas",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "dothingsthatdontscale": {
+      "firstPublicationYear": 2013,
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://paulgraham.com/ds.html",
+            "type": "author"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://x.com/paulg/status/356487132006711296",
+            "type": "author"
+          },
+          {
+            "url": "https://www.inc.com/business-insider/paul-grahams-counter-intuitive-startup-advice-do-things-that-dont-scale.html",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "defaultaliveordefaultdead": {
+      "firstPublicationYear": 2015,
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://paulgraham.com/aord.html",
+            "type": "author"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://x.com/paulg/status/654449287317733376",
+            "type": "author"
+          },
+          {
+            "url": "https://libraryofllm.com/sources/pg-default-alive-dead",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "kopegiyledolasankadinotuzyedisecmeoyku": {
+      "originalLanguage": "ru",
+      "stage1": {
+        "reviewer": "claude-stage1-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://catalog.khas.edu.tr/bib/42964",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-o-003",
+        "checkedAt": "2026-10-21",
+        "sources": [
+          {
+            "url": "https://www.biyografiler.com/kitap/kopegiyle-dolasan-kadin--(ciltsiz)-otuz-yedi-secme-oyku",
+            "type": "bibliographic"
+          }
+        ]
+      }
     }
   }
 }

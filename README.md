@@ -2,7 +2,7 @@
 
 [Canlı site](https://karacaismail.github.io/kitaps/) · [JavaScript gerektirmeyen katalog](https://karacaismail.github.io/kitaps/catalog/)
 
-Kitap kimliklerini, Türkçe baskıları, kitaplar arasındaki hazırlık ve eşlik ilişkilerini ve açıklanabilir bir okuma önceliğini bir araya getiren okuma kataloğu. Ekim 2026 itibarıyla 920 eser, 29 küme, 140 alt küme ve 21 kategori içerir. Güncel sayılar sitede ve `src/catalog.json` içinde katalogdan hesaplanır.
+Kitap kimliklerini, Türkçe baskıları, kitaplar arasındaki hazırlık ve eşlik ilişkilerini ve açıklanabilir bir okuma önceliğini bir araya getiren okuma kataloğu. Ekim 2026 itibarıyla 956 eser (makale ve denemeler dahil), 30 küme, 152 alt küme ve 21 kategori içerir. Güncel sayılar sitede ve `src/catalog.json` içinde katalogdan hesaplanır.
 
 ## Özellikler
 
@@ -15,6 +15,7 @@ Kitap kimliklerini, Türkçe baskıları, kitaplar arasındaki hazırlık ve eş
 - Varsayılan sıralama okuma önceliğidir. Her kitabın puanı beş katalog ölçütünden gelir. Detay sayfasının sonunda her ölçütün katkısı ve kanıtı görünür.
 - Satın alma, favori, okuma durumu, okuma kaydı ve kişisel sıra puanı değiştirmez. Kural [ADR 001](docs/ADR-001-reading-priority-and-state.md) içinde açıklanır.
 - Kitap detayında okuma amacı, gerekçeli önce/sonra/birlikte okuma önerileri, Türkçe baskı, yayınevi, çevirmen ve ISBN.
+- Önerilen makale ve denemeler de kitaplarla birlikte listelenir. Kapak yerinde ve kartta "Makale" ya da "Deneme" yazar. Kitap sayfası baskı ve satın alma bağlantıları yerine yayımlandığı yeri, DOI'yi ve varsa ücretsiz metnin bağlantısını gösterir.
 - Sayfa başına 24, 48, 96, 192 veya 384 kitap gösterilir (varsayılan 24). Her sayfa boyutu 2, 3 ve 4 sütuna tam bölünür; dolu bir sayfanın son satırında boşluk kalmaz. Sütun sayıları ve sayfa boyutları proje sahibinin kesin kuralıdır (bkz. `AGENTS.md`). Sayfa, filtre, sıralama ve açık kitap okunabilir URL parametrelerinde tutulur; geri tuşu, yenileme ve paylaşılan bağlantı aynı görünümü açar.
 - Altbilgide bütün kitapları JSON olarak indirme: kimlik, Türkçe ad, özgün ad, özgün yayınevi, yazarlar, önerilen çevirmenler, Türkiye yayınevi, Türkçe ISBN ve ilk yayın yılı.
 
@@ -40,6 +41,9 @@ Anahtar tarayıcıda saklanır. `karacaismail.github.io` altındaki bütün Page
 - Baskı künyeleri `data/edition-verification.json` ve `data/translator-research.json` içinde kaynaklarıyla tutulur. Künye doğrulaması çeviri kalitesi karşılaştırması değildir.
 - Çocuk kütüphanesi `data/children-library.json` içindedir: ebeveynin seçtiği kitaplar, BookTrust, TIME, School Library Journal, Scholastic ve MEB 100 Temel Eser listeleriyle karşılaştırıldı. Her Türkçe baskı ISBN, yayınevi ve çevirmen üzerinden iki ayrı sitede doğrulandı; doğrulanamayanlarda kitap sayfası gerekçeyi gösterir. Dış listeler (IBBY Türkiye onur listesi dahil) tek bir araştırma adımında birlikte incelendiği için okuma önceliğinde tek seçki sayılır.
 - Eklenme günleri `data/added-dates.json` içindedir ve git geçmişinden çıkarılır: ilk Kitaps sitesinin commit'leri (2 Eylül 2026), Kitap Atlası çalışma kopyasının commit'leri (26 Eylül 2026) ve bu depo. Bir kitabın günü, kitabı kimliği, ilk Kitaps anahtarı veya atlas anahtarıyla içeren ilk commit'in tarihidir; başlık benzerliği kullanılmaz. Henüz commit edilmemiş kitaplar çalışma günü tarihini alır.
+- Temel okumalar ve küme anahtarları `data/foundational-reading.json` içindedir. Her kitap, katalogdaki belirli kitapları açan bir anahtardır; ilişkiler zorunlu önkoşul değil, önerilen okuma sırasıdır. Katalogdaki bir kitap da anahtar olabilir (`existingId`). "Baştan okunacaklar" alt kümesi kataloğun her yerini açan kitapları sırasıyla verir. Kümeye gelince okunacaklar ve yöntem notları kümenin açıklamasındadır.
+- Popüler kavramların özgün kaynakları `data/original-sources.json` içindedir. Gelişim zihniyeti, psikolojik güvenlik, çevik yöntemler, OKR, hizmetkâr liderlik, farkındalık, tasarım odaklı düşünme, strateji, akış/azim/irade ve teknolojik tekillik başlıklarında her eserin rolü yazılıdır: özgün kaynak, popüler sürüm ya da eleştiri. Yeni Türkçe baskılar iki ayrı sitede ve bağımsız ikinci aşamada doğrulandı. Roller not ve alt küme olarak kalır, puana eklenmez.
+- Personal MBA listesi ortak yazarları "et al" diye kısaltır ve iki adı yanlış yazar (Joel Dominguez, Richard Stuteley). Katalog bu kitapların yazarlarını kitapların kendi künyesindeki gibi gösterir (`scripts/merge-data.py`, `AUTHOR_FIXES`).
 - Raf taraması değerlendirmesi `data/shelf-review.json` içindedir: fotoğraflanan kitap raflarından yapılan okuma önerileri, öncelik ve koşul notlarıyla. Yeni Türkçe baskılar iki ayrı sitede doğrulandı. Benzer adlı ya da karışabilecek kitaplar kümenin notunda ve ilgili kitabın sayfasında belirtilir. Öncelikler not olarak kalır, puana eklenmez.
 - Eseri veya baskısı belirsiz kayıtlarda kapak yerine açıklama gösterilir. Yanlış eserle eşleşen kapaklar `data/rejected-cover-matches.json` içinde gerekçesiyle korunur.
 - Her kapağın iki kopyası vardır: `public/covers/` (en çok 720 px, 2x masaüstü ekranları) ve `public/covers/sm/` (en çok 400 px, telefonlar ve küçük kapaklar). Tarayıcı `srcset` ile gösterilen boyuta ve ekran yoğunluğuna uyanı indirir.

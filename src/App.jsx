@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Accordion, ActionIcon, Alert, Anchor, Badge, Box, Button, Card, Container, Group, MantineProvider, Modal, Paper, Stack, Text, TextInput, Tabs, ThemeIcon, Title, Tooltip, createTheme, defaultVariantColorsResolver, localStorageColorSchemeManager } from '@mantine/core';
-import { IconLink, IconArrowLeft, IconArrowRight, IconArrowUpRight, IconBook2, IconShoppingBagCheck, IconBooks, IconCheck, IconChevronRight, IconDownload, IconFilter, IconHeart, IconLayersIntersect, IconListNumbers, IconSearch, IconX } from '@tabler/icons-react';
+import { IconLink, IconArrowLeft, IconArrowRight, IconArrowUpRight, IconBook2, IconFileText, IconShoppingBagCheck, IconBooks, IconCheck, IconChevronRight, IconDownload, IconFilter, IconHeart, IconLayersIntersect, IconListNumbers, IconSearch, IconX } from '@tabler/icons-react';
 import '@mantine/core/styles.css';
 import '@fontsource-variable/literata/wght.css';
 import '@fontsource-variable/literata/wght-italic.css';
@@ -13,6 +13,7 @@ import EditionGuide from './components/EditionGuide';
 import CatalogPagination from './components/CatalogPagination';
 import TranslationStatus from './components/TranslationStatus';
 import { displayTitle,translationStatus,turkishEdition } from './translation';
+import { workFormat } from './workFormat';
 import { applySeo,seoState } from './seo';
 import ThemeToggle from './components/ThemeToggle';
 import CategoryPill from './components/CategoryPill';
@@ -118,17 +119,22 @@ const COVER_SIZES={
 const smallCover=src=>src.replace(/^covers\//,'covers/sm/');
 function BookCover({book:b,onOpen=null,detail=false,read=false,size=detail?'detail':'card'}) {
  const [failed,setFailed]=useState(false);
- const cover=b.cover;
+ const cover=b.cover,format=workFormat(b);
  // The single-file export embeds one copy of each cover instead.
  const embedded=cover&&globalThis.__KITAP_COVERS__?.[cover.src];
- const content=cover&&!failed?<img src={embedded||`./${cover.src}`} srcSet={embedded?undefined:`./${smallCover(cover.src)} 400w, ./${cover.src} 720w`} sizes={embedded?undefined:COVER_SIZES[size]} alt={`${cover.title} — ${cover.publisher}, ${cover.language==='tr'?'Türkçe':'Uluslararası'} baskı kapağı`} width="240" height="360" loading={detail?'eager':'lazy'} decoding="async" onError={()=>setFailed(true)}/>:<span className="cover-placeholder" aria-hidden="true"><span className="cover-placeholder-title">{displayTitle(b)}</span><span className="cover-placeholder-author">{b.author}</span><span className="cover-placeholder-note"><IconBook2 size={18} stroke={1.5}/></span></span>;
+ const content=cover&&!failed?<img src={embedded||`./${cover.src}`} srcSet={embedded?undefined:`./${smallCover(cover.src)} 400w, ./${cover.src} 720w`} sizes={embedded?undefined:COVER_SIZES[size]} alt={`${cover.title} — ${cover.publisher}, ${cover.language==='tr'?'Türkçe':'Uluslararası'} baskı kapağı`} width="240" height="360" loading={detail?'eager':'lazy'} decoding="async" onError={()=>setFailed(true)}/>:<span className="cover-placeholder" aria-hidden="true">{format&&<span className="cover-placeholder-kind">{format.label}</span>}<span className="cover-placeholder-title">{displayTitle(b)}</span><span className="cover-placeholder-author">{b.author}</span><span className="cover-placeholder-note">{format?<IconFileText size={18} stroke={1.5}/>:<IconBook2 size={18} stroke={1.5}/>}</span></span>;
  const stage=`cover-stage${read?' is-read':''}`;
  return detail?<div className={`${stage} cover-stage-detail`}>{content}</div>:<button className={`${stage} cover-open`} onClick={()=>onOpen(b.id)} aria-label={`${displayTitle(b)} ayrıntılarını aç`}>{content}</button>;
 }
 // Small covers beside related books and in the reading queue.
 const ThumbCover=props=><BookCover {...props} size="thumb"/>;
-// A card names the Turkish publisher once a Turkish edition is known.
-const cardPublisher=b=>(['available','original'].includes(translationStatus(b).status)&&turkishEdition(b)?.publisher)||b.cover?.publisher||'';
+// A card names the Turkish publisher once a Turkish edition is known, and an
+// article or essay names what it is and where it appeared.
+const cardPublisher=b=>{
+ const format=workFormat(b);
+ if(format)return [format.label,b.publication?.venue].filter(Boolean).join(' · ');
+ return (['available','original'].includes(translationStatus(b).status)&&turkishEdition(b)?.publisher)||b.cover?.publisher||'';
+};
 function BookCard({book:b,ranking,states,onOpen,onToggle,queue,onAdd,onQueue}) {
  const marks=states[b.id]||[],saved=marks.includes('onemli'),owned=marks.includes('alindi');
  const reading=marks.filter(s=>!['onemli','alindi','okundu'].includes(s)),publisher=cardPublisher(b),title=displayTitle(b);
@@ -174,7 +180,7 @@ function BookDetail({book:b,ranking,onClose,onOpen,onBack,hasBack,states,onToggl
     <Accordion.Item value="personal"><Accordion.Control>Okuma kaydım ve kişisel notlarım</Accordion.Control><Accordion.Panel><ReadingPanel book={b} record={personal.reading[b.id]} states={states[b.id]||[]} onToggle={onToggle} onChange={onReading} queue={personal.queue} onAdd={onAdd} onQueue={onQueue} storageError={storageError}/></Accordion.Panel></Accordion.Item>
     <Accordion.Item value="sources"><Accordion.Control>Kaynaklar ve küme üyelikleri · {b.collectionIds.length}</Accordion.Control><Accordion.Panel><Stack gap="md"><Group gap={8}>{b.origins.map(id=><SourceBadge id={id} key={id}/>)}</Group>
      {b.notes.map((n,i)=><Box className="note-block" key={i}><Text>{n.text}</Text><Text c="dimmed" mt={6}>{n.source}</Text></Box>)}
-     {b.collectionIds.map(id=>{const memberships=b.memberships.filter(m=>m.collectionId===id);return <Paper key={id} withBorder p="md"><Button variant="subtle" className="membership-link" onClick={()=>onCollection(id)} rightSection={<IconArrowRight size={18}/>}>{collectionMap[id].title}</Button><Text c="dimmed" mt="sm">{[...new Set(memberships.map(m=>groupMap[m.groupId].title))].join(' · ')}</Text>{memberships.filter(m=>m.award).map(m=><Badge key={m.groupId} mt="sm">{m.awardYear} · {m.award}</Badge>)}{memberships.find(m=>m.source)&&<Anchor className="source-link" href={memberships.find(m=>m.source).source} target="_blank" rel="noreferrer">Özgün kaynağı aç <IconArrowUpRight size={17}/></Anchor>}</Paper>})}
+     {b.collectionIds.map(id=>{const memberships=b.memberships.filter(m=>m.collectionId===id);return <Paper key={id} withBorder p="md"><Button variant="subtle" className="membership-link" onClick={()=>onCollection(id)} rightSection={<IconArrowRight size={18}/>}>{collectionMap[id].title}</Button><Text c="dimmed" mt="sm">{[...new Set(memberships.map(m=>groupMap[m.groupId].title))].join(' · ')}</Text>{memberships.filter(m=>m.award).map(m=><Badge key={m.groupId} mt="sm">{m.awardYear} · {m.award}</Badge>)}{[...new Set(memberships.map(m=>m.role).filter(Boolean))].map(role=><Badge key={role} mt="sm" variant="light">{role}</Badge>)}{memberships.find(m=>m.source)&&<Anchor className="source-link" href={memberships.find(m=>m.source).source} target="_blank" rel="noreferrer">Özgün kaynağı aç <IconArrowUpRight size={17}/></Anchor>}</Paper>})}
      {b.tags.length>0&&<Text c="dimmed">Kaynak dosyanın etiketleri: {b.tags.map(t=>catalog.sourceTags[t]).join(' · ')}.</Text>}
     </Stack></Accordion.Panel></Accordion.Item>
    </Accordion>
