@@ -6,15 +6,21 @@ import {spawnSync} from 'node:child_process';
 const root=new URL('..',import.meta.url);
 const manifest=JSON.parse(readFileSync(new URL('../data/translation-availability.json',import.meta.url)));
 const catalogIds=JSON.parse(readFileSync(new URL('../src/catalog.json',import.meta.url))).books.map(book=>book.id);
-// The scripts import each other by module name, as they do when run from scripts/.
-const validate=(input,ids=['sample'])=>spawnSync('python3',['-c',`import json,sys
+// The scripts import each other by module name, as they do when run from scripts/. The manifest
+// goes in on stdin: Linux refuses a single argument over 128 KiB, and the manifest is larger.
+const validate=(input,ids=['sample'])=>{
+ const result=spawnSync('python3',['-c',`import json,sys
 sys.path.insert(0,'scripts')
 from translation_availability import validate_manifest
+data=json.load(sys.stdin)
 try:
- validate_manifest(json.loads(sys.argv[1]), set(json.loads(sys.argv[2])))
+ validate_manifest(data['input'], set(data['ids']))
 except ValueError as error:
  print(error)
- sys.exit(1)`,JSON.stringify(input),JSON.stringify(ids)],{cwd:root,encoding:'utf8'});
+ sys.exit(1)`],{cwd:root,encoding:'utf8',input:JSON.stringify({input,ids})});
+ assert.equal(result.error,undefined,'the validator started');
+ return result;
+};
 const source=(url,type='publisher')=>({url,type});
 const stages=status=>({
  stage1:{decision:status,reviewer:'araştırmacı-a',checkedAt:'2026-09-28',sources:[source('https://example.com/a')]},
