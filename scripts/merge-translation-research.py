@@ -12,6 +12,7 @@ import json
 import re
 from collections import Counter
 from datetime import date
+from days import newest_day
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -66,7 +67,7 @@ def validate_date(value: str, context: str) -> None:
         parsed = date.fromisoformat(value)
     except ValueError as error:
         raise InvalidResult(f"{context} is not a valid date") from error
-    require(parsed <= date.today(), f"{context} cannot be in the future")
+    require(parsed <= newest_day(), f"{context} cannot be in the future")
 
 
 def host(url: str) -> str:

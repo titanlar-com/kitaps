@@ -17,6 +17,7 @@ import json
 import re
 from collections import Counter
 from datetime import date
+from days import newest_day
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -136,7 +137,7 @@ def calendar_day(value: str) -> str:
         parsed = date.fromisoformat(value)
     except ValueError as error:
         raise argparse.ArgumentTypeError(f'{value!r} is not a YYYY-MM-DD day') from error
-    if len(value) != 10 or parsed > date.today():
+    if len(value) != 10 or parsed > newest_day():
         raise argparse.ArgumentTypeError(f'{value!r} must be a YYYY-MM-DD day, not in the future')
     return value
 

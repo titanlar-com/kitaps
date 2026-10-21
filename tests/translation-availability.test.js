@@ -6,8 +6,10 @@ import {spawnSync} from 'node:child_process';
 const root=new URL('..',import.meta.url);
 const manifest=JSON.parse(readFileSync(new URL('../data/translation-availability.json',import.meta.url)));
 const catalogIds=JSON.parse(readFileSync(new URL('../src/catalog.json',import.meta.url))).books.map(book=>book.id);
+// The scripts import each other by module name, as they do when run from scripts/.
 const validate=(input,ids=['sample'])=>spawnSync('python3',['-c',`import json,sys
-from scripts.translation_availability import validate_manifest
+sys.path.insert(0,'scripts')
+from translation_availability import validate_manifest
 try:
  validate_manifest(json.loads(sys.argv[1]), set(json.loads(sys.argv[2])))
 except ValueError as error:
@@ -25,6 +27,19 @@ test('translation availability manifest declares its decision and evidence polic
  assert.ok(Object.keys(manifest.records).length>0,'researched records are present');
  const result=validate(manifest,catalogIds);
  assert.equal(result.status,0,result.stdout);
+});
+
+// A day recorded in Türkiye's evening is still tomorrow for CI's UTC clock (the deploy of
+// 24b5503 failed this way). A day counts as future only once no time zone has reached it.
+test('a check made today anywhere on Earth is not in the future, the day after that is',()=>{
+ const day=offset=>new Date(Date.now()+(14+offset*24)*3600e3).toISOString().slice(0,10);
+ const record=checkedAt=>({sample:{status:'available',...stages('available'),edition:{title:'Örnek Kitap',publisher:'Örnek Yayınları',isbn:'9780000000002'}}});
+ const at=checkedAt=>{const records=record();for(const stage of ['stage1','stage2'])records.sample[stage]={...records.sample[stage],checkedAt};return {schemaVersion:1,records};};
+ const newest=validate(at(day(0)));
+ assert.equal(newest.status,0,newest.stdout);
+ const future=validate(at(day(1)));
+ assert.equal(future.status,1);
+ assert.match(future.stdout,/cannot be in the future/);
 });
 
 test('available, unavailable and original decisions require matching independent review',()=>{

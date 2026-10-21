@@ -1,5 +1,6 @@
 """Validation for independently researched Turkish translation decisions."""
 from datetime import date
+from days import newest_day
 from urllib.parse import urlparse
 
 STATUSES = {"available", "unavailable", "original"}
@@ -27,7 +28,7 @@ def _validate_date(value, path):
         parsed = date.fromisoformat(value)
     except ValueError as error:
         raise ValueError(f"{path} must be an ISO date") from error
-    _require(parsed <= date.today(), f"{path} cannot be in the future")
+    _require(parsed <= newest_day(), f"{path} cannot be in the future")
 
 
 def _validate_stage(stage, status, path):

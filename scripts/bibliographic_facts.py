@@ -5,6 +5,7 @@ first publisher) carries two review stages by different reviewers whose
 evidence comes from different web domains, mirroring the translation policy.
 """
 from datetime import date
+from days import newest_day
 from urllib.parse import urlparse
 
 from translation_availability import SOURCE_TYPES
@@ -26,7 +27,7 @@ def _stage(stage, path):
     _require(isinstance(stage.get("reviewer"), str) and stage["reviewer"].strip(), f"{path}.reviewer is required")
     checked = stage.get("checkedAt")
     _require(isinstance(checked, str), f"{path}.checkedAt must be an ISO date")
-    _require(date.fromisoformat(checked) <= date.today(), f"{path}.checkedAt cannot be in the future")
+    _require(date.fromisoformat(checked) <= newest_day(), f"{path}.checkedAt cannot be in the future")
     sources = stage.get("sources")
     _require(isinstance(sources, list) and sources, f"{path}.sources must contain evidence")
     for index, source in enumerate(sources):
