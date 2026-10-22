@@ -203,24 +203,29 @@ html[data-focus-mode="keyboard"] label:has(>input:focus-visible)::after,
 html[data-focus-mode="keyboard"] .book-card h3:has(>.title-button:focus-visible)::after{content:"";position:absolute;z-index:3;inset-inline:max(4px,10%);bottom:calc(-1 * (var(--focus-gap) + var(--focus-bar)));height:var(--focus-bar);background:var(--focus);pointer-events:none}
 /* Mantine clips a button's overflow, which would hide the bar; the card title keeps its two-line
    clamp, so its bar is drawn under the heading instead. */
-html[data-focus-mode="keyboard"] :is(.mantine-Button-root,.mantine-ActionIcon-root):focus-visible{overflow:visible}
+html[data-focus-mode="keyboard"] :is(.mantine-Button-root,.mantine-ActionIcon-root,.mantine-Alert-root):focus-visible{overflow:visible}
+/* A clipping button may shrink below its content in a row; it keeps doing so when focus lifts the clip. */
+:where(.mantine-Button-root){min-width:0}
 .book-card h3{position:relative}
 html[data-focus-mode="keyboard"] .book-card .title-button:focus-visible::after{content:none}
 /* A link inside running text may wrap onto several lines; a thick underline marks every line of it. */
 html[data-focus-mode="keyboard"] :is(p,li,dd,td,blockquote) a[href]:not(.mantine-Button-root,.mantine-ActionIcon-root):focus-visible{text-decoration:underline var(--focus-bar) var(--focus);text-underline-offset:var(--focus-gap)}
 html[data-focus-mode="keyboard"] :is(p,li,dd,td,blockquote) a[href]:not(.mantine-Button-root,.mantine-ActionIcon-root):focus-visible::after{content:none}
-/* Firefox also stops on a scrolling panel. Its bar runs along the panel's top and stays there
-   while the panel scrolls. */
-html[data-focus-mode="keyboard"] :is(.mantine-Drawer-body,.mantine-Modal-body):focus-visible::before{content:"";position:sticky;top:0;z-index:3;display:block;height:var(--focus-bar);margin-bottom:calc(-1 * var(--focus-bar));background:var(--focus);pointer-events:none}
+/* Firefox also stops on a scrolling panel (the filter sheet's body). Its bar runs along the
+   panel's top and stays there while the panel scrolls. The main content, focused by the skip link
+   and when a dialog closes, keeps its bar just under the sticky header (--header-block, App.jsx). */
+html[data-focus-mode="keyboard"] #main-content:focus-visible::before{content:"";position:sticky;top:var(--header-block,0px);z-index:3;display:block;height:var(--focus-bar);margin-bottom:calc(-1 * var(--focus-bar));background:var(--focus);pointer-events:none}
+html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{content:"";position:sticky;top:0;z-index:3;display:block;height:var(--focus-bar);margin-bottom:calc(-1 * var(--focus-bar));background:var(--focus);pointer-events:none}
 .mantine-Input-input:is([data-error],[aria-invalid="true"]){border-color:var(--mantine-color-error)}
 /* Forced colours: the one exception, a 2px CanvasText outline in keyboard mode only. */
 @media (forced-colors:active){
  html[data-focus-mode="keyboard"] :focus-visible{outline:2px solid CanvasText}
- html[data-focus-mode="keyboard"] :focus-visible::after,html[data-focus-mode="keyboard"] :is(.mantine-Input-wrapper,label,.book-card h3)::after,html[data-focus-mode="keyboard"] :is(.mantine-Drawer-body,.mantine-Modal-body):focus-visible::before{display:none}
+ html[data-focus-mode="keyboard"] :focus-visible::after,html[data-focus-mode="keyboard"] :is(.mantine-Input-wrapper,label,.book-card h3)::after,html[data-focus-mode="keyboard"] :is(#main-content,.mantine-Drawer-body):focus-visible::before{display:none}
+ html[data-focus-mode="keyboard"] :is(p,li,dd,td,blockquote) a[href]:not(.mantine-Button-root,.mantine-ActionIcon-root):focus-visible{text-decoration-thickness:auto;text-underline-offset:auto}
  /* A hidden input has no outline to show; its option keeps the bar, in the system text colour. */
  html[data-focus-mode="keyboard"] .filter-choice:has(input:focus-visible)::after{display:block;forced-color-adjust:none;background:CanvasText}
  /* Edge lines keep their meaning: the system text colour, and the highlight on the active tab only. */
- [data-edge]::before{forced-color-adjust:none;background:CanvasText}
+ [data-edge][data-edge]::before{forced-color-adjust:none;background:CanvasText}
  .main-tabs .mantine-Tabs-tab::before{background:transparent}
  .main-tabs .mantine-Tabs-tab[data-active]::before{background:Highlight}
  /* The outline stands apart from a cover, and inside the sheet's top edge on the grip; the
@@ -256,6 +261,8 @@ html[data-focus-mode="keyboard"] :is(.mantine-Drawer-body,.mantine-Modal-body):f
 /* Mantine's own transitions follow the same curve (AGENT.md motion contract); its JavaScript
    transitions get the curve and durations from the theme in App.jsx. */
 :where([class*="mantine-"]),:where([class*="mantine-"])::before,:where([class*="mantine-"])::after{transition-timing-function:var(--motion-ease)!important}
+/* Mantine's own fixed durations (button and icon loaders, accordion items, progress) take the token. */
+.mantine-Button-root::before,.mantine-Button-inner,.mantine-ActionIcon-icon,.mantine-Accordion-item,.mantine-Progress-section{transition-duration:var(--motion-fast)}
 
 /* ---------- Mantine normalisation ---------- */
 .mantine-Text-root,.mantine-Input-input,.mantine-InputWrapper-label,.mantine-InputWrapper-description,.mantine-InputWrapper-error,.mantine-Button-root,.mantine-Select-option,.mantine-MultiSelect-option,.mantine-Combobox-option,.mantine-Pill-root,.mantine-Chip-label,.mantine-Checkbox-label,.mantine-Switch-label,.mantine-Accordion-label,.mantine-Divider-label,.mantine-Tabs-tab,.mantine-Tooltip-tooltip,.mantine-Pagination-control,.mantine-Pagination-label,.mantine-Combobox-groupLabel{font-size:1rem;line-height:1.5}
@@ -330,7 +337,7 @@ html[data-focus-mode="keyboard"] :is(.mantine-Drawer-body,.mantine-Modal-body):f
 .main-tabs .mantine-Tabs-tab{--edge-width:2px;--edge-color:transparent;flex:1 1 0;justify-content:center;gap:8px;min-height:44px;margin-bottom:-1px;padding:0 6px;border:0;border-radius:0;background:none;color:var(--muted);font-weight:600;transition:color var(--motion-fast) var(--motion-ease)}
 .main-tabs .mantine-Tabs-tab:hover{--edge-color:var(--line-strong);background:none;color:var(--ink)}
 .main-tabs .mantine-Tabs-tab[data-active]{--edge-color:var(--accent);color:var(--ink)}
-/* The tab list scrolls sideways, so a tab's focus bar sits inside it, above the selection line. */
+/* A tab's focus bar sits inside the tab, above its selection line, not on the header rule. */
 html[data-focus-mode="keyboard"] .main-tabs .mantine-Tabs-tab:focus-visible::after{inset-inline:22%;bottom:8px}
 .main-tabs .mantine-Tabs-tabSection{margin:0;flex:none}
 .main-tabs .mantine-Tabs-tabLabel{flex:none}
@@ -397,9 +404,7 @@ main{padding-top:20px}
 .results-heading h1,.results-heading h2{margin:0 0 2px;font-size:clamp(1.625rem,1.25rem + 1.3vw,2.25rem);line-height:1.15;letter-spacing:-.02em}
 .results-heading .mantine-Group-root{gap:2px}
 .results-heading .mantine-Button-root{padding-inline:10px}
-/* After a page change focus moves to the main content; in keyboard mode its heading gets the bar. */
-.results-heading :is(h1,h2){position:relative}
-html[data-focus-mode="keyboard"] #main-content:focus-visible .results-heading :is(h1,h2)::after{content:"";position:absolute;inset-inline:0 auto;width:min(100%,8em);bottom:calc(-1 * (var(--focus-gap) + var(--focus-bar)));height:var(--focus-bar);background:var(--focus)}
+.results-heading h1{position:relative}
 
 /* Parent's library for the years before ten. */
 .age-library{margin-top:18px;padding:20px 22px;border:1px solid var(--line);border-radius:var(--radius-lg);background:linear-gradient(135deg,var(--accent-soft),var(--surface) 70%);box-shadow:var(--shadow-sm)}

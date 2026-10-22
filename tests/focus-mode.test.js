@@ -35,3 +35,29 @@ test('a control whose bar the window or a scrolling panel cuts off counts as hid
  assert.equal(hidesBar(control(450,495,panel)),true,'the bar falls below a scrolling panel');
  assert.equal(hidesBar(control(200,300,panel)),false);
 });
+
+// The reveal path: two frames after a keyboard focus that the browser did not scroll, a control
+// whose bar is cut off is brought into view; one the browser is already moving is left alone.
+test('keyboard mode brings a half-visible control into view when the browser does not',async()=>{
+ const frames=[];globalThis.requestAnimationFrame=callback=>frames.push(callback);
+ const flush=()=>{while(frames.length)frames.shift()()};
+ const view={innerHeight:800,getComputedStyle:()=>({overflowY:'visible'})};
+ const doc={defaultView:view,body:{},activeElement:null};
+ const control=top=>{const node={top,scrolled:0,ownerDocument:doc,parentElement:null,getBoundingClientRect:()=>({top:node.top,bottom:node.top+400,height:400}),scrollIntoView:()=>{node.scrolled++}};return node};
+ const root={dataset:{}};const target=new EventTarget();
+ const stop=trackFocusMode(root,target);
+ const focus=node=>{doc.activeElement=node;const event=new Event('focusin');Object.defineProperty(event,'target',{value:node});target.dispatchEvent(event)};
+ const half=control(416);
+ focus(half);flush();
+ assert.equal(half.scrolled,0,'nothing happens outside keyboard mode');
+ const tab=new Event('keydown');tab.key='Tab';target.dispatchEvent(tab);
+ focus(half);flush();
+ assert.equal(half.scrolled,1,'a half-visible cover is brought into view');
+ const whole=control(100);
+ focus(whole);flush();
+ assert.equal(whole.scrolled,0,'a control in view stays where it is');
+ const moving=control(416);
+ focus(moving);moving.top=300;flush();
+ assert.equal(moving.scrolled,0,'a control the browser is scrolling is left to the browser');
+ stop();delete globalThis.requestAnimationFrame;
+});

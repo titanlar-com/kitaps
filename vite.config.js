@@ -26,19 +26,7 @@ export default defineConfig(({ mode }) => {
     base: './',
     plugins: [
       react(),
-      ...(standalone ? [viteSingleFile()] : [{
-        // The page's text waits for the Latin Outfit file; preloading it starts the download with
-        // the HTML instead of after the stylesheet. The standalone file carries its font inline.
-        name: 'preload-interface-font',
-        apply: 'build',
-        transformIndexHtml: {
-          order: 'post',
-          handler(html, ctx) {
-            const font = Object.keys(ctx.bundle || {}).find(name => /outfit-latin-wght-normal[^/]*\.woff2$/.test(name));
-            return font ? html.replace('</head>', `<link rel="preload" href="./${font}" as="font" type="font/woff2" crossorigin>\n</head>`) : html;
-          }
-        }
-      }]),
+      ...(standalone ? [viteSingleFile()] : []),
       {
         name: 'include-third-party-notices',
         transformIndexHtml: {

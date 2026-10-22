@@ -21,7 +21,7 @@ function rules(text){
   let depth=0,start=0,head='';
   for(let i=0;i<chunk.length;i++){
    if(chunk[i]==='{'){if(depth===0){head=chunk.slice(start,i).trim();start=i+1}depth++}
-   else if(chunk[i]==='}'){depth--;if(depth===0){const body=chunk.slice(start,i);if(/^@(media|supports|container|layer)/.test(head))walk(body,`${media} ${head}`.trim());else if(!head.startsWith('@'))found.push({media,selector:head,body});start=i+1}}
+   else if(chunk[i]==='}'){depth--;if(depth===0){const body=chunk.slice(start,i);if(/^@(media|supports|container|layer|starting-style)/.test(head))walk(body,`${media} ${head}`.trim());else if(!head.startsWith('@'))found.push({media,selector:head,body});start=i+1}}
   }
  };
  walk(source,'');
@@ -37,10 +37,13 @@ const focusBar=rule=>/data-focus-mode="keyboard"/.test(rule.selector);
 // the edge of a box; it is the one drawing of this kind.
 const ribbonFold=rule=>/^\.state-ribbon::after$/.test(rule.selector);
 
-// Custom properties set on :root (both themes), so a width written as a token is still measured.
-const tokens={};
-for(const rule of all)if(/^(:root|html)\b/.test(rule.selector))for(const decl of decls(rule.body,'--[\\w-]+'))tokens[decl.name]??=decl.value;
-const resolve=(value,depth=0)=>depth>6?value:value.replace(/var\((--[\w-]+)(?:,\s*([^()]*))?\)/g,(_,name,fallback)=>tokens[name]!==undefined?resolve(tokens[name],depth+1):fallback??'0');
+// Custom properties from every rule (both themes, and the ones a component sets for itself). A token
+// stands for all of its values, so the widest one is measured; an unknown token keeps its fallback.
+const tokenValues=list=>{const found={};for(const rule of list)for(const decl of decls(rule.body,'--[\\w-]+'))(found[decl.name]??=new Set()).add(decl.value);return found};
+const tokens=tokenValues(all);
+// The tokens in scope: the stylesheets', and a sample's own while a sample is checked.
+let known=tokens;
+const resolve=(value,depth=0)=>depth>6?value:value.replace(/var\((--[\w-]+)(?:,\s*([^()]*))?\)/g,(_,name,fallback)=>known[name]?[...known[name]].map(item=>resolve(item,depth+1)).join(' '):fallback??'');
 /** The largest length in a value, in CSS px (16px to the rem and em; thin, medium and thick). */
 const width=value=>{
  const text=resolve(value);
@@ -48,12 +51,14 @@ const width=value=>{
  const keywords=[...text.matchAll(/\b(thin|medium|thick)\b/g)].map(([,word])=>({thin:1,medium:3,thick:5}[word]));
  return Math.max(0,...lengths,...keywords);
 };
-const invisible=value=>/\b(transparent|none|hidden)\b/.test(resolve(value));
+// Only what is written decides invisibility: a token that is transparent in one rule may be a colour in another.
+const invisible=value=>/\b(transparent|none|hidden)\b/.test(value);
 /** Splits a list at its top-level commas (not the ones inside a function). */
 const layers=value=>{const out=[];let depth=0,start=0;for(let i=0;i<value.length;i++){if(value[i]==='(')depth++;else if(value[i]===')')depth--;else if(value[i]===','&&depth===0){out.push(value.slice(start,i).trim());start=i+1}}out.push(value.slice(start).trim());return out.filter(Boolean)};
 
 function edgeOffenders(list){
  const offenders=[];
+ known={...tokens,...tokenValues(list)};
  for(const rule of list){
   if(edgeSystem(rule)||ribbonFold(rule))continue;
   const where=`${rule.path} ${rule.selector}`;
@@ -66,22 +71,37 @@ function edgeOffenders(list){
    const sides=resolve(decl.value).split(/\s+/).map(width);
    if(sides.length>1&&Math.max(...sides)>=2&&new Set(sides).size>1)offenders.push(`${where}: border-width:${decl.value}`);
   }
+  // One side coloured differently from the others on a border two pixels or wider.
+  const wide=decls(rule.body,'border(?:-width)?').some(decl=>width(decl.value)>=2&&!/\bnone\b/.test(decl.value));
+  if(wide)for(const decl of decls(rule.body,'border-(?:left|right|top|bottom|inline-start|inline-end|block-start|block-end|inline|block)-color'))if(!invisible(decl.value))offenders.push(`${where}: ${decl.name} on a ${'wide'} border`);
+  // A hard-edged gradient strip or a border image paints a line along an edge as well.
+  for(const decl of decls(rule.body,'background(?:-image)?|border-image(?:-source)?')){
+   if(/^border-image/.test(decl.name)&&!/^none/.test(decl.value))offenders.push(`${where}: ${decl.name}`);
+   for(const gradient of decl.value.matchAll(/linear-gradient\(([^;]*)\)/g)){
+    const stops=[...gradient[1].matchAll(/(-?\d*\.?\d+)(px|rem|em)/g)].map(match=>Number(match[1])*(match[2]==='px'?1:16));
+    if(stops.some(stop=>stop>0&&stop<=8))offenders.push(`${where}: a gradient strip`);
+   }
+  }
   for(const decl of decls(rule.body,'box-shadow')){
    for(const layer of layers(resolve(decl.value))){
     if(/\binset\b/.test(layer))offenders.push(`${where}: inset shadow`);
     // A shadow with no blur and an offset is a line along one edge.
-    const numbers=[...layer.replace(/(rgba?|hsla?|color-mix|oklch|lab|lch)\([^)]*\)/g,'').matchAll(/(-?\d*\.?\d+)(px|rem|em)?/g)].map(match=>Number(match[1])*(match[2]==='rem'||match[2]==='em'?16:1));
+    const numbers=[...layer.replace(/(rgba?|hsla?|color-mix|oklch|lab|lch)\([^)]*\)|#[\da-f]{3,8}\b/gi,'').matchAll(/(-?\d*\.?\d+)(px|rem|em)?/g)].map(match=>Number(match[1])*(match[2]==='rem'||match[2]==='em'?16:1));
     if(numbers.length>=2&&(numbers[2]??0)===0&&Math.max(Math.abs(numbers[0]),Math.abs(numbers[1]))>=2&&!/\binset\b/.test(layer))offenders.push(`${where}: an unblurred offset shadow draws an edge line`);
    }
   }
-  // A thin pseudo-element along one side is an edge line too, unless it is the keyboard focus bar.
-  if(/::?(before|after)/.test(rule.selector)&&!focusBar(rule)&&/position\s*:\s*(absolute|fixed)/.test(rule.body)){
+  // A thin pseudo-element along one side is an edge line too. The keyboard focus bar is the one
+  // allowed thin line: horizontal, under the control or along a panel's top; a vertical one is a stripe.
+  if(/::?(before|after)/.test(rule.selector)&&/position\s*:\s*(absolute|fixed|sticky)/.test(rule.body)){
    const size=name=>decls(rule.body,name).map(decl=>width(decl.value))[0];
    const filled=decls(rule.body,'background(?:-color)?').some(decl=>!invisible(decl.value));
-   const thin=[size('width'),size('height'),size('inline-size'),size('block-size')].some(value=>value!==undefined&&value>0&&value<=8);
-   if(filled&&thin)offenders.push(`${where}: an edge line drawn outside the edge system`);
+   const thin=value=>value!==undefined&&value>0&&value<=8;
+   const vertical=thin(size('width'))||thin(size('inline-size'));
+   const horizontal=thin(size('height'))||thin(size('block-size'));
+   if(filled&&(vertical||(horizontal&&!focusBar(rule))))offenders.push(`${where}: an edge line drawn outside the edge system`);
   }
  }
+ known=tokens;
  return offenders;
 }
 test('an accent line on an edge is drawn only by the one edge system',()=>{
@@ -102,7 +122,7 @@ function focusOffenders(list){
    if(!none&&!allowed)offenders.push(`${rule.path} ${rule.selector}: ${decl.name}:${decl.value}`);
   }
   if(/:focus/.test(rule.selector)&&decls(rule.body,'box-shadow').some(decl=>!/^none/.test(decl.value)))offenders.push(`${rule.path} ${rule.selector}: box-shadow on focus`);
-  if(/:focus/.test(rule.selector)&&decls(rule.body,'border(?:-color|-style|-width)?').some(decl=>!invisible(decl.value)))offenders.push(`${rule.path} ${rule.selector}: border on focus`);
+  if(/:focus/.test(rule.selector)&&decls(rule.body,'border(?!-radius|-[a-z-]*-radius)[a-z-]*').some(decl=>!invisible(decl.value)))offenders.push(`${rule.path} ${rule.selector}: border on focus`);
   if(/:focus-within/.test(rule.selector)&&decls(rule.body,'(?:border|outline|box-shadow)[a-z-]*').length)offenders.push(`${rule.path} ${rule.selector}: frame on :focus-within`);
   // A focus indicator outside keyboard mode would show on a mouse click as well.
   if(/:focus-visible/.test(rule.selector)&&/::?(before|after)/.test(rule.selector)&&!focusBar(rule)&&decls(rule.body,'content').some(decl=>decl.value!=='none'))offenders.push(`${rule.path} ${rule.selector}: focus indicator outside keyboard mode`);
@@ -161,7 +181,7 @@ test('the JavaScript motion values are the stylesheet tokens',()=>{
 
 function componentMotionOffenders(list){
  const offenders=[];
- const allowed=/^(MOTION_EASE|MOTION_MS|MOTION_FAST_MS|TOOLTIP_DELAY_MS|transition\(\w*\)|motion|toastExit|reduced\?0:MOTION_MS)$/;
+ const allowed=/^(MOTION_EASE|MOTION_MS|MOTION_FAST_MS|TOOLTIP_DELAY_MS|transition\(\w*\))$/;
  for(const file of list){
   if(file.path==='src/motion.js')continue;
   // While a finger drags the book sheet it follows the finger without a transition; this is direct
@@ -174,6 +194,8 @@ function componentMotionOffenders(list){
    if(!allowed.test(value))offenders.push(`${file.path}: ${name} ${value}`);
   }
   for(const match of text.matchAll(/\btransition\s*:\s*['`]([^'`]+)['`]/g))offenders.push(`${file.path}: inline transition ${match[1]}`);
+  // Web Animations take the same curve and durations.
+  for(const match of text.matchAll(/\.animate\([^)]*\)/g))if(!/easing\s*:\s*MOTION_EASE/.test(match[0])||!/duration\s*:\s*MOTION_\w+/.test(match[0]))offenders.push(`${file.path}: animate() without the motion values`);
  }
  return offenders;
 }
@@ -194,11 +216,18 @@ test('the gates reject every banned pattern',()=>{
   '.a{box-shadow:0 1px 2px #0002,-3px 0 0 red}',
   '.a::before{content:"";position:absolute;inset-block:0;left:0;width:3px;background:red}',
   '@layer parts{.a{border-top:4px solid red}}',
+  '.a{--stripe:4px}.b{border-left:var(--stripe) solid red}',
+  '.a{border:2px solid var(--line);border-left-color:var(--accent)}',
+  '.a{background:linear-gradient(90deg,var(--accent) 4px,transparent 4px)}',
+  '.a{border-image:linear-gradient(red,blue) 1}',
+  '.a{box-shadow:#a65a38 -3px 0 0}',
+  'html[data-focus-mode="keyboard"] .a:focus-visible::after{content:"";position:absolute;inset-block:0;left:0;width:3px;background:red}',
  ])assert.ok(edgeOffenders(sample(text)).length,text);
  for(const text of [
   '.a:focus-visible{outline:2px solid red}',
   '.a:focus{box-shadow:0 0 0 3px red}',
   '.a:focus{border-color:red}',
+  '.a:focus-visible{border-left-color:red}',
   '.a:focus-within{border-color:red}',
   '.a:focus-visible::after{content:""}',
   '@media (forced-colors:active){.a:focus-visible{outline:2px solid CanvasText}}',
@@ -219,6 +248,8 @@ test('the gates reject every banned pattern',()=>{
   '<Tooltip openDelay={500}/>',
   '<Collapse transitionTimingFunction="ease"/>',
   '<div style={{transition:\'opacity 1s\'}}/>',
+  '<Transition exitDuration={toastExit}/>',
+  'node.animate([{opacity:0},{opacity:1}],{duration:200,easing:"ease"})',
  ])assert.ok(componentMotionOffenders([{path:'sample.jsx',text}]).length,text);
  // What the project does on purpose stays allowed.
  assert.deepEqual(edgeOffenders(sample('[data-edge="start"]::before{inset-block:0;width:var(--edge-width)}.a{border-bottom:1px solid var(--line)}.a{box-shadow:0 18px 50px -12px #0005}')),[]);

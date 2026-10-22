@@ -204,6 +204,12 @@ test('controls move with the contract curve, never jump when pressed, and keep s
   await page.goto('./?book=good-to-great-by-jim-collins');
   const button = page.locator('.detail-actions').getByRole('button', { name: 'Favori', exact: true });
   await expect(button).toBeVisible();
+  // Mantine's own fixed transitions (button inner, accordion items) take the tokens as well.
+  for (const selector of ['.mantine-Button-inner', '.mantine-Accordion-item']) {
+    const timing = await page.locator(selector).first().evaluate(element => { const style = getComputedStyle(element); return { duration: style.transitionDuration, curve: style.transitionTimingFunction }; });
+    expect(timing.duration.split(',').map(value => value.trim()).every(value => value === '0.15s'), `${selector} ${timing.duration}`).toBe(true);
+    expect(timing.curve.split(/,\s*(?=cubic|ease|linear|step)/).every(value => value === 'cubic-bezier(0.65, 0, 0.35, 1)'), `${selector} ${timing.curve}`).toBe(true);
+  }
   const curve = await button.evaluate(element => getComputedStyle(element).transitionTimingFunction);
   expect(curve.split(',').length > 3 ? curve.split(/,\s*(?=cubic)/)[0] : curve).toBe('cubic-bezier(0.65, 0, 0.35, 1)');
   await button.scrollIntoViewIfNeeded();
@@ -233,7 +239,10 @@ test('no readable text is smaller than 14 CSS px when the covers do not load', a
       // The small covers load lazily; bring one into view so its request is made and fails.
       await page.locator('.mantine-Drawer-content .related-cover').first().scrollIntoViewIfNeeded();
       await expect(page.locator('.mantine-Drawer-content .related-cover .cover-placeholder').first()).toBeAttached();
+      // So the queue, measured next, has a cover of its own.
+      await page.locator('.detail-actions').getByRole('button', { name: /Sırama ekle/ }).click();
     }
+    if (url.includes('queue')) await expect(page.locator('.queue-cover .cover-placeholder').first()).toBeAttached();
     const small = await page.evaluate(() => [...document.querySelectorAll('.cover-placeholder *')].filter(element => {
       const own = [...element.childNodes].some(node => node.nodeType === 3 && node.textContent.trim());
       const box = element.getBoundingClientRect(); const style = getComputedStyle(element);
@@ -243,34 +252,49 @@ test('no readable text is smaller than 14 CSS px when the covers do not load', a
   }
 });
 
-// The keyboard focus bar of every stop Tab reaches: drawn, not cut off by a panel or the window,
-// at least 3:1 against what is behind it, and a bar rather than a frame (at most 8 px tall).
+// The keyboard focus indicator of every stop Tab reaches: drawn only in keyboard mode, no frame
+// around the control, not cut off by a panel or the window, not covered by other content, at least
+// 3:1 against what is behind it, and a bar rather than a frame (2 to 8 px tall).
 const barOf = () => {
   const element = document.activeElement;
   if (!element || element === document.body) return null;
   const root = document.documentElement;
   const name = (element.getAttribute('aria-label') || element.textContent || element.className).trim().slice(0, 40);
-  const holders = [element, element.parentElement, element.closest('.mantine-Input-wrapper'), element.closest('label')].filter(Boolean);
-  const look = () => holders.map(node => { const style = getComputedStyle(node, '::after'); return style.content === 'none' || style.display === 'none' ? '' : `${style.height} ${style.backgroundColor}`; });
-  const on = look(); const mode = root.dataset.focusMode; delete root.dataset.focusMode; const off = look(); root.dataset.focusMode = mode;
-  const index = on.findIndex((value, i) => value && value !== off[i]);
+  const holders = [element, element.parentElement, element.closest('.filter-choice, .mantine-Input-wrapper'), element.closest('label')].filter(Boolean);
+  const after = node => { const style = getComputedStyle(node, '::after'); return style.content === 'none' || style.display === 'none' ? '' : `${style.height} ${style.backgroundColor} ${style.bottom}`; };
+  const own = () => { const style = getComputedStyle(element); return { frame: `${style.outlineStyle} ${style.outlineWidth} | ${style.boxShadow} | ${style.borderTopColor} ${style.borderRightColor} ${style.borderBottomColor} ${style.borderLeftColor} ${style.borderTopWidth}`, deco: `${style.textDecorationLine} ${style.textDecorationThickness} ${style.textDecorationColor}` }; };
+  const before = () => { const style = getComputedStyle(element, '::before'); return style.content === 'none' || style.display === 'none' ? '' : `${style.height} ${style.backgroundColor}`; };
+  const snap = () => ({ after: holders.map(after), ...own(), before: before() });
+  const on = snap(); const mode = root.dataset.focusMode; delete root.dataset.focusMode; const off = snap(); root.dataset.focusMode = mode;
+  const ring = getComputedStyle(element).outlineStyle !== 'none' || on.frame !== off.frame;
   const rgba = value => { const m = value.match(/rgba?\(([^)]+)\)/); if (!m) return null; const p = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return { r: p[0], g: p[1], b: p[2], a: p.length > 3 ? p[3] : 1 }; };
   const luminance = c => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; }; return .2126 * f(c.r) + .7152 * f(c.g) + .0722 * f(c.b); };
-  const composite = (x, y) => { const layers = []; for (const node of document.elementsFromPoint(x, y)) { const c = rgba(getComputedStyle(node).backgroundColor); if (c && c.a > 0) { layers.push(c); if (c.a >= 1) break; } } let back = { r: 255, g: 255, b: 255, a: 1 }; for (const c of layers.reverse()) back = { r: c.r * c.a + back.r * (1 - c.a), g: c.g * c.a + back.g * (1 - c.a), b: c.b * c.a + back.b * (1 - c.a), a: 1 }; return back; };
+  const composite = (x, y, skip) => { const layers = []; for (const node of document.elementsFromPoint(x, y)) { if (node === skip) continue; const c = rgba(getComputedStyle(node).backgroundColor); if (c && c.a > 0) { layers.push(c); if (c.a >= 1) break; } } let back = { r: 255, g: 255, b: 255, a: 1 }; for (const c of layers.reverse()) back = { r: c.r * c.a + back.r * (1 - c.a), g: c.g * c.a + back.g * (1 - c.a), b: c.b * c.a + back.b * (1 - c.a), a: 1 }; return back; };
   const ratio = (a, b) => { const [high, low] = [luminance(a), luminance(b)].sort((p, q) => q - p); return (high + .05) / (low + .05); };
+  // Whether the point shows the holder's own bar: the bar is made hit-testable for a moment.
+  const shows = (holder, x, y) => {
+    if (x < 0 || y < 0 || x >= innerWidth || y >= innerHeight) return false;
+    let probe = document.getElementById('bar-probe');
+    if (!probe) { probe = document.createElement('style'); probe.id = 'bar-probe'; probe.textContent = '[data-bar-probe]::after{pointer-events:auto!important}'; document.head.append(probe); }
+    holder.setAttribute('data-bar-probe', '');
+    const hit = document.elementFromPoint(x, y);
+    holder.removeAttribute('data-bar-probe');
+    return Boolean(hit) && (hit === holder || holder.contains(hit));
+  };
+  const index = on.after.findIndex((value, i) => value && value !== off.after[i]);
   if (index < 0) {
     // A link in running text is marked by a thick underline on every line instead.
-    const deco = getComputedStyle(element);
-    if (/underline/.test(deco.textDecorationLine) && parseFloat(deco.textDecorationThickness) >= 2) {
-      const box = element.getClientRects()[0];
-      return { name, height: parseFloat(deco.textDecorationThickness), width: box.width, clippedBy: null, onScreen: box.bottom <= innerHeight && box.top >= 0, contrast: ratio(rgba(deco.textDecorationColor), composite(box.left + 2, box.top + box.height / 2)) };
+    if (on.deco !== off.deco && /underline/.test(on.deco)) {
+      const style = getComputedStyle(element); const line = element.getClientRects()[0];
+      const hit = document.elementFromPoint(line.left + 2, line.top + line.height / 2);
+      return { name, ring, height: parseFloat(style.textDecorationThickness), width: line.width, clippedBy: null, covered: !(hit && (hit === element || element.contains(hit))), onScreen: line.bottom <= innerHeight && line.top >= 0, contrast: ratio(rgba(style.textDecorationColor), composite(line.left + 2, line.top + line.height / 2)) };
     }
-    // A scrolling panel draws its bar along its top (::before, position: sticky).
-    const before = getComputedStyle(element, '::before');
-    return { name, panel: before.content !== 'none' && parseFloat(before.height) >= 2 };
+    // The main content and a scrolling panel draw their bar along their top (::before, sticky).
+    if (on.before && on.before !== off.before && element.matches('#main-content, .mantine-Drawer-body')) return { name, ring, panel: true };
+    return { name, ring, missing: true };
   }
-  const holder = holders[index]; const style = getComputedStyle(holder, '::after'); const own = getComputedStyle(holder); const box = holder.getBoundingClientRect();
-  const bar = { left: box.left + parseFloat(own.borderLeftWidth) + parseFloat(style.left), top: box.top + parseFloat(own.borderTopWidth) + parseFloat(style.top), width: parseFloat(style.width), height: parseFloat(style.height) };
+  const holder = holders[index]; const style = getComputedStyle(holder, '::after'); const box = holder.getBoundingClientRect(); const holderStyle = getComputedStyle(holder);
+  const bar = { left: box.left + parseFloat(holderStyle.borderLeftWidth) + parseFloat(style.left), top: box.top + parseFloat(holderStyle.borderTopWidth) + parseFloat(style.top), width: parseFloat(style.width), height: parseFloat(style.height) };
   bar.right = bar.left + bar.width; bar.bottom = bar.top + bar.height;
   let clippedBy = null;
   for (let node = holder; node && node !== root; node = node.parentElement) {
@@ -281,15 +305,28 @@ const barOf = () => {
     const y = cs.overflowY === 'visible' ? [bar.top, bar.bottom] : [Math.max(bar.top, r.top), Math.min(bar.bottom, r.bottom)];
     if (Math.max(0, x[1] - x[0]) * Math.max(0, y[1] - y[0]) < bar.width * bar.height * .95) { clippedBy = node.className || node.tagName; break; }
   }
-  const x = Math.min(innerWidth - 1, Math.max(0, bar.left + bar.width / 2)), y = Math.min(innerHeight - 1, Math.max(0, bar.top + bar.height / 2));
-  return { name, height: bar.height, width: bar.width, clippedBy, onScreen: bar.top >= -.5 && bar.bottom <= innerHeight + .5, contrast: ratio(rgba(style.backgroundColor), composite(x, y)) };
+  const x = bar.left + bar.width / 2, y = bar.top + bar.height / 2;
+  const onScreen = bar.top >= -.5 && bar.bottom <= innerHeight + .5;
+  return { name, ring, height: bar.height, width: bar.width, clippedBy, onScreen, covered: onScreen && !clippedBy && !shows(holder, x, y), contrast: ratio(rgba(style.backgroundColor), composite(Math.min(innerWidth - 1, Math.max(0, x)), Math.min(innerHeight - 1, Math.max(0, y)))) };
+};
+const problemsOf = (where, bar) => {
+  const found = [];
+  if (bar.ring) found.push(`${where} · ${bar.name}: a frame around the control`);
+  if (bar.missing) found.push(`${where} · ${bar.name}: no focus indicator`);
+  if (bar.missing || bar.panel) return found;
+  if (bar.clippedBy) found.push(`${where} · ${bar.name}: cut off by ${bar.clippedBy}`);
+  if (!bar.onScreen) found.push(`${where} · ${bar.name}: outside the window`);
+  if (bar.covered) found.push(`${where} · ${bar.name}: covered by other content`);
+  if (bar.height > 8 || bar.height < 2) found.push(`${where} · ${bar.name}: ${bar.height}px tall`);
+  if (bar.contrast < 3) found.push(`${where} · ${bar.name}: ${bar.contrast.toFixed(2)}:1`);
+  return found;
 };
 // The page scrolls smoothly to a focused control; Firefox starts a frame or two late.
-const settle = page => page.evaluate(() => new Promise(done => { let last = '', still = 0; const start = performance.now(); const tick = () => { const now = [scrollY, ...[...document.querySelectorAll('.mantine-Drawer-body, .mantine-Modal-body')].map(node => node.scrollTop)].join(); still = now === last ? still + 1 : 0; last = now; if ((still >= 6 && performance.now() - start > 150) || performance.now() - start > 2500) done(); else requestAnimationFrame(tick); }; requestAnimationFrame(tick); }));
+const settle = page => page.evaluate(() => new Promise(done => { let last = '', still = 0; const start = performance.now(); const tick = () => { const now = [scrollY, ...[...document.querySelectorAll('.mantine-Drawer-body, .mantine-Drawer-content, .mantine-Modal-content')].map(node => node.scrollTop)].join(); still = now === last ? still + 1 : 0; last = now; if ((still >= 6 && performance.now() - start > 150) || performance.now() - start > 2500) done(); else requestAnimationFrame(tick); }; requestAnimationFrame(tick); }));
 
 for (const [colorScheme, width] of [['light', 320], ['dark', 1280]]) {
   test(`every keyboard stop shows its focus bar whole and at 3:1, ${colorScheme} theme at ${width} px`, async ({ browser, browserName }) => {
-    test.slow();
+    test.setTimeout(420_000);
     const context = await browser.newContext({ colorScheme, viewport: { width, height: 800 } });
     await isolate(context);
     const page = await context.newPage();
@@ -299,47 +336,101 @@ for (const [colorScheme, width] of [['light', 320], ['dark', 1280]]) {
       ['catalog', async () => { await page.goto('./'); await expect(page.locator('.book-card').first()).toBeVisible(); }, 45],
       ['book', async () => { await page.goto('./?book=good-to-great-by-jim-collins'); await expect(page.locator('.mantine-Drawer-content .edition-summary')).toBeVisible(); }, 35],
       ['collections', async () => { await page.goto('./?view=collections'); await expect(page.locator('#main-content')).toBeVisible(); }, 25],
-      ...Object.entries(OPENED).filter(([name]) => ['filters', 'toast', 'sync'].includes(name)).map(([name, open]) => [name, () => open(page), 25]),
+      ['notes', async () => { await page.goto('./?view=notes'); await expect(page.getByRole('heading', { name: 'Birleşimin kapsamı' })).toBeVisible(); }, 25],
+      ['queue', async () => { await page.goto('./?view=queue'); await expect(page.locator('#main-content')).toBeVisible(); }, 15],
+      ['favorites', () => OPENED.favorites(page), 15],
+      ['filters', () => OPENED.filters(page), 20],
+      // A long option list scrolls inside the sheet as Tab moves down it.
+      ['filter options', async () => { await OPENED.filters(page); await page.locator('.filter-section-link').first().click(); await expect(page.locator('.filter-choice').first()).toBeVisible(); }, 30],
+      // The toast is last in the page, and a Tab to a control under it closes it at once; so the walk
+      // starts on its close button, moves to "Geri al" and comes back.
+      ['toast', async () => { await OPENED.toast(page); await page.locator('.library-toast-close').focus(); }, [tab, browserName === 'webkit' ? 'Alt+Shift+Tab' : 'Shift+Tab']],
+      ['sync', () => OPENED.sync(page), 25],
     ];
     const problems = [];
     let measured = 0;
     for (const [view, open, stops] of views) {
       await open();
       await page.waitForTimeout(300);
-      for (let step = 0; step < stops; step++) {
-        await page.keyboard.press(tab);
+      for (const key of Array.isArray(stops) ? stops : Array(stops).fill(tab)) {
+        await page.keyboard.press(key);
         await settle(page);
         const bar = await page.evaluate(barOf);
         if (!bar) continue;
         measured++;
-        if (bar.panel === false) problems.push(`${view} · ${bar.name}: no focus bar`);
-        if (bar.panel !== undefined) continue;
-        if (bar.clippedBy) problems.push(`${view} · ${bar.name}: cut off by ${bar.clippedBy}`);
-        if (!bar.onScreen) problems.push(`${view} · ${bar.name}: outside the window`);
-        if (bar.height > 8 || bar.height < 2) problems.push(`${view} · ${bar.name}: ${bar.height}px tall`);
-        if (bar.contrast < 3) problems.push(`${view} · ${bar.name}: ${bar.contrast.toFixed(2)}:1`);
+        problems.push(...problemsOf(view, bar));
       }
       await page.evaluate(() => localStorage.clear());
     }
     expect([...new Set(problems)]).toEqual([]);
-    expect(measured, 'enough stops were measured').toBeGreaterThan(60);
+    expect(measured, 'enough stops were measured').toBeGreaterThan(120);
     await context.close();
   });
 }
 
+// Programmatic focus keeps the indicator (AGENT.md): the skip link's target, a sheet's title and
+// the sync status that takes focus after connecting.
+test('focus moved by the page keeps a visible indicator in keyboard mode', async ({ page, browserName }) => {
+  await isolate(page.context());
+  const tab = browserName === 'webkit' ? 'Alt+Tab' : 'Tab';
+  await page.goto('./?view=queue');
+  await expect(page.locator('#main-content')).toBeVisible();
+  await page.keyboard.press(tab);
+  await expect(page.locator('.skip-link')).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#main-content')).toBeFocused();
+  const header = await page.locator('.site-header').evaluate(node => node.getBoundingClientRect().height);
+  const main = await page.locator('#main-content').evaluate(node => { const style = getComputedStyle(node, '::before'); return { content: style.content, position: style.position, top: parseFloat(style.top), height: parseFloat(style.height) }; });
+  expect(main.content, 'the main content shows a bar').not.toBe('none');
+  expect(main.position).toBe('sticky');
+  expect(Math.abs(main.top - header), 'the bar sits just under the sticky header').toBeLessThan(1);
+  expect(main.height).toBeGreaterThanOrEqual(2);
+  // The filter sheet's title takes focus when the sheet opens from the keyboard.
+  await page.goto('./');
+  const filters = page.getByRole('button', { name: /^Filtreler/ }).first();
+  await page.keyboard.press(tab);
+  await filters.focus();
+  await page.keyboard.press('Enter');
+  const title = page.locator('.filter-sheet .mantine-Drawer-title');
+  await expect(title).toBeFocused();
+  // Measured once the sheet has finished sliding in.
+  await page.waitForTimeout(400);
+  await settle(page);
+  expect(problemsOf('sheet title', await page.evaluate(barOf))).toEqual([]);
+  // The sync status takes focus after a successful connect; it must not clip its bar.
+  await page.keyboard.press('Escape');
+  await OPENED.sync(page);
+  const status = page.locator('.sync-modal [role="status"]').first();
+  await page.keyboard.press(tab);
+  await status.focus();
+  await page.waitForTimeout(400);
+  await settle(page);
+  expect(problemsOf('sync status', await page.evaluate(barOf))).toEqual([]);
+});
+
 test('in forced colours a hidden option input keeps its bar, edge lines keep their meaning and the active tab is highlighted', async ({ page, browserName }) => {
   test.skip(browserName !== 'chromium', 'Playwright emulates forced colours in Chromium only.');
   await isolate(page.context());
+  // Without images every cover shows its placeholder, whose spine is an edge line.
+  await page.route(/\.(jpe?g|png|webp|avif)(\?.*)?$/, route => route.fulfill({ status: 404, body: '' }));
   await page.emulateMedia({ forcedColors: 'active' });
   await page.goto('./');
-  await expect(page.locator('.book-card').first()).toBeVisible();
+  await expect(page.locator('.book-card .cover-placeholder').first()).toBeVisible();
+  // The system colours as this browser resolves them.
+  const system = await page.evaluate(() => Object.fromEntries(['CanvasText', 'Highlight'].map(name => { const probe = document.createElement('div'); probe.style.cssText = `forced-color-adjust:none;background:${name}`; document.body.append(probe); const value = getComputedStyle(probe).backgroundColor; probe.remove(); return [name, value]; })));
+  const line = locator => locator.evaluate(node => getComputedStyle(node, '::before').backgroundColor);
+  expect(await line(page.locator('.book-card .cover-placeholder').first()), 'a placeholder spine').toBe(system.CanvasText);
   const tabs = await page.locator('.main-tabs .mantine-Tabs-tab').evaluateAll(nodes => nodes.map(node => ({ active: node.hasAttribute('data-active'), line: getComputedStyle(node, '::before').backgroundColor })));
-  const transparent = 'rgba(0, 0, 0, 0)';
-  expect(tabs.filter(tab => tab.active).map(tab => tab.line).every(line => line !== transparent), 'the active tab has a line').toBe(true);
-  expect(tabs.filter(tab => !tab.active).map(tab => tab.line).every(line => line === transparent), 'the other tabs have none').toBe(true);
-  const placeholderEdge = await page.evaluate(() => { const node = document.querySelector('[data-edge]:not(.mantine-Tabs-tab)'); return node && getComputedStyle(node, '::before').backgroundColor; });
-  if (placeholderEdge) expect(placeholderEdge).not.toBe(transparent);
-  await page.getByRole('button', { name: /^Filtreler/ }).first().click();
+  expect(tabs.filter(tab => tab.active).map(tab => tab.line), 'the active tab').toEqual([system.Highlight]);
+  expect(tabs.filter(tab => !tab.active).every(tab => tab.line === 'rgba(0, 0, 0, 0)'), 'the other tabs have no line').toBe(true);
+  // The filter sheet opened from the keyboard: its title has the outline, a hidden option input its bar.
+  await page.keyboard.press('Tab');
+  await page.getByRole('button', { name: /^Filtreler/ }).first().focus();
+  await page.keyboard.press('Enter');
+  const title = page.locator('.filter-sheet .mantine-Drawer-title');
+  await expect(title).toBeFocused();
+  await expect(title).toHaveCSS('outline-style', 'solid');
+  await expect(title).toHaveCSS('outline-width', '2px');
   await page.locator('.filter-section-link').first().click();
   const option = page.locator('.filter-choice input').first();
   await expect(option).toBeAttached();
@@ -347,5 +438,5 @@ test('in forced colours a hidden option input keeps its bar, edge lines keep the
   await option.focus();
   const bar = await option.evaluate(input => { const style = getComputedStyle(input.closest('.filter-choice'), '::after'); return { shown: style.content !== 'none' && style.display !== 'none' && parseFloat(style.height) >= 2, color: style.backgroundColor }; });
   expect(bar.shown, 'the option shows a focus bar').toBe(true);
-  expect(bar.color).not.toBe(transparent);
+  expect(bar.color).toBe(system.CanvasText);
 });

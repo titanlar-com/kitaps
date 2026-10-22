@@ -45,7 +45,9 @@ const NotesPage=React.lazy(()=>import('./components/NotesPage'));
 // One motion curve and duration for every JavaScript transition (AGENT.md motion contract),
 // from src/motion.js; styles.css holds the same values as --motion-ease and --motion-base.
 const motion={transitionProps:{duration:MOTION_MS,timingFunction:MOTION_EASE}};
-const TOAST_MOTION={in:{opacity:1,translate:'0 0'},out:{opacity:0,translate:'0 8px'},transitionProperty:'opacity, translate'};
+// A leaving toast no longer takes the pointer.
+/** @type {import('@mantine/core').MantineTransition} */
+const TOAST_MOTION={in:{opacity:1,translate:'0 0'},out:{opacity:0,translate:'0 8px',pointerEvents:'none'},transitionProperty:'opacity, translate'};
 // Tonal and default buttons keep a boundary of at least 3:1 against every surface (WCAG 1.4.11),
 // so a button never melts into its panel. Badges, alerts and icons stay without a frame.
 /** @param {{variant?: string, color?: string}} props */
@@ -231,15 +233,27 @@ function AtlasApp() {
  const [draft,setDraft]=useState(emptyFilters);
  const [bookTrail,setBookTrail]=useState([]);
  const [copied,setCopied]=useState(false);
- const [transfer,setTransfer]=useState(null);const lastTransfer=useRef(null);const [toastExit,setToastExit]=useState(MOTION_MS);
+ const [transfer,setTransfer]=useState(null);const [toastShown,setToastShown]=useState(false);
+ // The sticky header's height, for the main content's focus bar just under it (styles.css).
+ const headerRef=useRef(null);
+ useEffect(()=>{
+  const header=headerRef.current;
+  if(!header||typeof ResizeObserver!=='function')return;
+  const root=document.documentElement;
+  const observer=new ResizeObserver(()=>root.style.setProperty('--header-block',`${header.getBoundingClientRect().height}px`));
+  observer.observe(header);
+  return()=>{observer.disconnect();root.style.removeProperty('--header-block')};
+ },[]);
  const [guideOpened,setGuideOpened]=useState(false);
  const [syncOpened,setSyncOpened]=useState(false);
  const transferOrigin=useRef(null);
- // A toast that would cover the control just focused leaves at once instead of fading out over it.
+ // The toast fades out the way it came in and is removed once its exit has run. A toast that would
+ // cover the control just focused is removed at once instead (AGENT.md: hidden content is not kept
+ // visible for an animation, and WCAG 2.4.11).
  const dismissTransfer=useCallback(how=>{
   const restoreFocus=document.activeElement?.closest('.library-toast');
-  setToastExit(how==='at-once'?0:MOTION_MS);
-  setTransfer(null);
+  setToastShown(false);
+  if(how==='at-once')setTransfer(null);
   if(restoreFocus){
    const target=transferOrigin.current?.isConnected?transferOrigin.current:document.querySelector('.header-library');
    target?.focus({preventScroll:true});
@@ -266,7 +280,7 @@ function AtlasApp() {
  const onToggle=(id,key,trigger=document.activeElement)=>{
   const marking=!(states[id]||[]).includes(key);
   setStates(prev=>({...prev,[id]:toggleState(prev[id],key)}));
-  if(key==='alindi'){transferOrigin.current=trigger;setTransfer({id,owned:marking});}
+  if(key==='alindi'){transferOrigin.current=trigger;setTransfer({id,owned:marking});setToastShown(true);}
   if(marking&&['okunuyor','okundu'].includes(key))setPersonal(prev=>{
    const field=key==='okunuyor'?'startedAt':'finishedAt';const record=cleanReading(prev.reading[id]);
    return {...prev,reading:{...prev.reading,[id]:{...record,[field]:record[field]||todayLocal()}}};
@@ -287,20 +301,18 @@ function AtlasApp() {
  // closes both on one Escape otherwise: the dialog's handler runs first and closes it, React
  // re-renders between the two window listeners, and the sheet's handler then sees itself uncovered.
  const [syncCovering,setSyncCovering]=useState(false);
- const openSync=event=>{syncOpener.current=event?.currentTarget??document.activeElement;setTransfer(null);setSyncCovering(true);setSyncOpened(true)};
+ const openSync=event=>{syncOpener.current=event?.currentTarget??document.activeElement;setToastShown(false);setSyncCovering(true);setSyncOpened(true)};
  // Connecting removes the notice whose button opened the dialog; focus then goes to the main content.
  // Focus returns to the button that opened the dialog. When connecting removed it, focus stays
  // in the open book sheet (on its sync status), never behind it; otherwise on the main content.
  const syncClosed=()=>{setSyncCovering(false);const opener=syncOpener.current;(opener?.isConnected?opener:document.querySelector('.detail-drawer .sync-status-text')??document.getElementById('main-content'))?.focus({preventScroll:true})};
  const copyLink=async()=>{try{await navigator.clipboard.writeText(window.location.href);setCopied(true);setTimeout(()=>setCopied(false),2000)}catch{setCopied(false)}};
  // The toast leaves the way it came: the last notice stays rendered while it fades out.
- if(transfer)lastTransfer.current=transfer;
- const shownTransfer=transfer||lastTransfer.current;
- const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true"><Transition mounted={Boolean(transfer)} duration={MOTION_MS} exitDuration={toastExit} timingFunction={MOTION_EASE} transition={TOAST_MOTION}>{style=>shownTransfer&&<LibraryToast key={`${shownTransfer.id}-${shownTransfer.owned}`} style={style} book={byId[shownTransfer.id]} owned={shownTransfer.owned} onClose={dismissTransfer} onUndo={()=>{setStates(prev=>({...prev,[shownTransfer.id]:toggleState(prev[shownTransfer.id],'alindi')}));dismissTransfer()}}/>}</Transition></div>;
+ const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true"><Transition mounted={toastShown&&Boolean(transfer)} duration={MOTION_MS} exitDuration={MOTION_MS} timingFunction={MOTION_EASE} transition={TOAST_MOTION} onExited={()=>setTransfer(null)}>{style=>transfer&&<LibraryToast key={`${transfer.id}-${transfer.owned}`} style={style} leaving={!toastShown} book={byId[transfer.id]} owned={transfer.owned} onClose={dismissTransfer} onUndo={()=>{setStates(prev=>({...prev,[transfer.id]:toggleState(prev[transfer.id],'alindi')}));dismissTransfer()}}/>}</Transition></div>;
  const activeTab=['owned','favorites'].includes(view)?'books':['books','queue','collections'].includes(view)?view:null;
  return <><a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();document.getElementById('main-content').focus()}}>İçeriğe geç</a>
   <Tabs className="main-section-tabs" value={activeTab} onChange={v=>v&&navigate({...route,view:v,book:null,page:1})}>
-    <header className="site-header"><div className="site-header-inner"><Group renderRoot={props=><a href="./" {...props}/>} className="brand-link" aria-label="Kitaplık · filtresiz ana sayfa" gap={6} wrap="nowrap" onClick={e=>{if(e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey){e.preventDefault();window.history.pushState(null,'',window.location.pathname);setRoute({view:'books',book:null,sort:'reading',filters:emptyFilters(),page:1,pageSize:DEFAULT_PAGE_SIZE});setBookTrail([]);window.scrollTo({top:0,behavior:'instant'})}}}><ThemeIcon size={42} radius="md" color="brand"><IconBooks size={26} stroke={1.6}/></ThemeIcon><Text className="brand">Kitaplık</Text></Group><Tabs.List className="main-tabs" aria-label="Kitaplık bölümleri">{[{id:'books',name:'Kitaplar',icon:IconBook2},{id:'queue',name:'Sıram',icon:IconListNumbers},{id:'collections',name:'Kümeler',icon:IconLayersIntersect}].map(item=><Tabs.Tab key={item.id} value={item.id} data-edge="bottom" leftSection={<item.icon size={19}/>}>{item.name}</Tabs.Tab>)}</Tabs.List><nav className="header-shortcuts" aria-label="Hızlı erişim"><Tooltip label="Kızım için"><ActionIcon className="header-children" size={48} variant={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'filled':'subtle'} aria-label="Kızım için" aria-current={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'page':undefined} onClick={()=>goCategory('children')}><GirlIcon size={29}/></ActionIcon></Tooltip><Tooltip label="Favoriler"><ActionIcon className="header-favorites" size={48} variant={view==='favorites'?'filled':'subtle'} aria-label="Favoriler" aria-current={view==='favorites'?'page':undefined} onClick={()=>{navigate({...route,view:'favorites',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><IconHeart size={29} fill={view==='favorites'?'currentColor':'none'}/></ActionIcon></Tooltip><Tooltip label={`Kitaplığım · ${ownedCount} kitap`}><ActionIcon className="header-library" size={48} variant={view==='owned'?'filled':'subtle'} aria-label={`Kitaplığım · ${ownedCount} kitap`} aria-current={view==='owned'?'page':undefined} onClick={()=>{navigate({...route,view:'owned',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><BookshelfIcon size={29}/></ActionIcon></Tooltip></nav><ThemeToggle/></div></header>
+    <header className="site-header" ref={headerRef}><div className="site-header-inner"><Group renderRoot={props=><a href="./" {...props}/>} className="brand-link" aria-label="Kitaplık · filtresiz ana sayfa" gap={6} wrap="nowrap" onClick={e=>{if(e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey){e.preventDefault();window.history.pushState(null,'',window.location.pathname);setRoute({view:'books',book:null,sort:'reading',filters:emptyFilters(),page:1,pageSize:DEFAULT_PAGE_SIZE});setBookTrail([]);window.scrollTo({top:0,behavior:'instant'})}}}><ThemeIcon size={42} radius="md" color="brand"><IconBooks size={26} stroke={1.6}/></ThemeIcon><Text className="brand">Kitaplık</Text></Group><Tabs.List className="main-tabs" aria-label="Kitaplık bölümleri">{[{id:'books',name:'Kitaplar',icon:IconBook2},{id:'queue',name:'Sıram',icon:IconListNumbers},{id:'collections',name:'Kümeler',icon:IconLayersIntersect}].map(item=><Tabs.Tab key={item.id} value={item.id} data-edge="bottom" leftSection={<item.icon size={19}/>}>{item.name}</Tabs.Tab>)}</Tabs.List><nav className="header-shortcuts" aria-label="Hızlı erişim"><Tooltip label="Kızım için"><ActionIcon className="header-children" size={48} variant={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'filled':'subtle'} aria-label="Kızım için" aria-current={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'page':undefined} onClick={()=>goCategory('children')}><GirlIcon size={29}/></ActionIcon></Tooltip><Tooltip label="Favoriler"><ActionIcon className="header-favorites" size={48} variant={view==='favorites'?'filled':'subtle'} aria-label="Favoriler" aria-current={view==='favorites'?'page':undefined} onClick={()=>{navigate({...route,view:'favorites',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><IconHeart size={29} fill={view==='favorites'?'currentColor':'none'}/></ActionIcon></Tooltip><Tooltip label={`Kitaplığım · ${ownedCount} kitap`}><ActionIcon className="header-library" size={48} variant={view==='owned'?'filled':'subtle'} aria-label={`Kitaplığım · ${ownedCount} kitap`} aria-current={view==='owned'?'page':undefined} onClick={()=>{navigate({...route,view:'owned',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><BookshelfIcon size={29}/></ActionIcon></Tooltip></nav><ThemeToggle/></div></header>
   <Container size={1200} className="app-shell" px={{base:8,sm:24}}>
 
    <main id="main-content" tabIndex={-1}>
@@ -312,7 +324,7 @@ function AtlasApp() {
      {['owned','favorites'].includes(view)&&<Title order={1} className="visually-hidden">{view==='owned'?'Kitaplığım':'Favorilerim'}</Title>}
      <div className="search-panel" role="search">
       <TextInput className="catalog-search" label={view==='owned'?'Kitaplığımda ara':view==='favorites'?'Favorilerimde ara':'Katalogda ara'} placeholder="Kitap, yazar, çevirmen…" leftSection={<IconSearch size={21}/>} rightSectionWidth={44} rightSection={filters.query?<ActionIcon variant="subtle" aria-label="Aramayı temizle" onClick={()=>changeFilters({...filters,query:''})}><IconX size={20}/></ActionIcon>:null} value={filters.query} onChange={e=>changeFilters({...filters,query:e.currentTarget.value})}/>
-      <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setTransfer(null);setDraft(filters);setOpened(true)}}>Filtreler{activeCount?` · ${activeCount}`:''}</Button><WrappingSelect aria-label="Kitapları sırala" value={sort} onChange={v=>setRoute(r=>({...r,sort:v||'reading',page:1}))} data={[{value:'reading',label:'Okuma önceliği'},{value:'shared',label:'En çok kesişen'},{value:'title',label:'Kitap adı · A–Z'},{value:'author',label:'Yazar · A–Z'},{value:'newest',label:'Yayın yılı · yeni'},{value:'added',label:'Eklenme · yeni'},{value:'saved',label:'Favoriler önce'}]}/></div>
+      <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setToastShown(false);setDraft(filters);setOpened(true)}}>Filtreler{activeCount?` · ${activeCount}`:''}</Button><WrappingSelect aria-label="Kitapları sırala" value={sort} onChange={v=>setRoute(r=>({...r,sort:v||'reading',page:1}))} data={[{value:'reading',label:'Okuma önceliği'},{value:'shared',label:'En çok kesişen'},{value:'title',label:'Kitap adı · A–Z'},{value:'author',label:'Yazar · A–Z'},{value:'newest',label:'Yayın yılı · yeni'},{value:'added',label:'Eklenme · yeni'},{value:'saved',label:'Favoriler önce'}]}/></div>
       <ActiveFilters filters={filters} onChange={changeFilters}/>
      </div>
      {view==='books'&&!filterCount(filters)&&<section className="reading-route" aria-label="Nereden başlamalı?"><div><Text fw={500}>Nereden başlamalı?</Text><Text>{collectionMap.core?.count} kitaplık çekirdek, düşünceden uygulamaya.</Text></div><Button variant="white" color="brand" rightSection={<IconArrowRight size={19}/>} onClick={()=>goCollection('core')}>Seçkiye git</Button></section>}

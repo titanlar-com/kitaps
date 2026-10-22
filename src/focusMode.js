@@ -14,7 +14,9 @@ export function trackFocusMode(root=document.documentElement,target=window){
   const start=element.getBoundingClientRect().top;
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
    if(element.ownerDocument.activeElement!==element||element.getBoundingClientRect().top!==start)return;
-   if(hidesBar(element))element.scrollIntoView({block:'nearest'});
+   // A field draws its bar under its wrapper or option, so that box is the one brought into view.
+   const holder=element.matches?.('input,textarea,select')?element.closest('.filter-choice,.mantine-Input-wrapper,label')??element:element;
+   if(hidesBar(holder))holder.scrollIntoView({block:'nearest'});
   }));
  };
  // Capture phase, so a widget that stops the event still lets the mode change.
