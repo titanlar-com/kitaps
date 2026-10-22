@@ -5,19 +5,23 @@
 export function trackFocusMode(root=document.documentElement,target=window){
  const keyboard=event=>{if(event.key==='Tab')root.dataset.focusMode='keyboard'};
  const pointer=()=>{delete root.dataset.focusMode};
- // Firefox scrolls a focused control into view only when none of it shows, so the bar under a
- // half-visible control can stay off the screen. When the browser has not moved the control two
- // frames after it took focus, keyboard mode brings it into view with its bar.
+ // Browsers scroll a focused control into view, not the bar under it: Firefox only when none of
+ // the control shows, WebKit a field just to the panel's edge. Once the browser's own scroll has
+ // stopped, keyboard mode brings the control into view with its bar if the bar is still cut off.
  const reveal=event=>{
   const element=event.target;
   if(root.dataset.focusMode!=='keyboard'||typeof element?.getBoundingClientRect!=='function')return;
-  const start=element.getBoundingClientRect().top;
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-   if(element.ownerDocument.activeElement!==element||element.getBoundingClientRect().top!==start)return;
-   // A field draws its bar under its wrapper or option, so that box is the one brought into view.
-   const holder=element.matches?.('input,textarea,select')?element.closest('.filter-choice,.mantine-Input-wrapper,label')??element:element;
+  // A field draws its bar under its wrapper or option, so that box is the one measured.
+  const holder=element.matches?.('input,textarea,select')?element.closest('.filter-choice,.mantine-Input-wrapper,label')??element:element;
+  let last=Number.NaN,still=0,frames=0;
+  const check=()=>{
+   if(element.ownerDocument.activeElement!==element)return;
+   const top=holder.getBoundingClientRect().top;
+   still=top===last?still+1:0;last=top;
+   if(still<2&&++frames<90){requestAnimationFrame(check);return}
    if(hidesBar(holder))holder.scrollIntoView({block:'nearest'});
-  }));
+  };
+  requestAnimationFrame(check);
  };
  // Capture phase, so a widget that stops the event still lets the mode change.
  const capture={capture:true};

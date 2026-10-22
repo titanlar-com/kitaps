@@ -204,6 +204,8 @@ html[data-focus-mode="keyboard"] .book-card h3:has(>.title-button:focus-visible)
 /* Mantine clips a button's overflow, which would hide the bar; the card title keeps its two-line
    clamp, so its bar is drawn under the heading instead. */
 html[data-focus-mode="keyboard"] :is(.mantine-Button-root,.mantine-ActionIcon-root,.mantine-Alert-root):focus-visible{overflow:visible}
+/* When the browser scrolls a control into view it leaves room for the bar under it, in the page and in a dialog. */
+:where(a,button,input,select,textarea,summary,[tabindex],.mantine-Input-wrapper,.filter-choice){scroll-margin-block-end:calc(var(--focus-gap) + var(--focus-bar) + 6px)}
 /* A clipping button may shrink below its content in a row; it keeps doing so when focus lifts the clip. */
 :where(.mantine-Button-root){min-width:0}
 .book-card h3{position:relative}

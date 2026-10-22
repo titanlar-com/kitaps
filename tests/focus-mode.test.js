@@ -36,8 +36,8 @@ test('a control whose bar the window or a scrolling panel cuts off counts as hid
  assert.equal(hidesBar(control(200,300,panel)),false);
 });
 
-// The reveal path: two frames after a keyboard focus that the browser did not scroll, a control
-// whose bar is cut off is brought into view; one the browser is already moving is left alone.
+// The reveal path: once a keyboard focus has stopped moving, a control whose bar is still cut off
+// is brought into view; one the browser has already brought far enough is left alone.
 test('keyboard mode brings a half-visible control into view when the browser does not',async()=>{
  const frames=[];globalThis.requestAnimationFrame=callback=>frames.push(callback);
  const flush=()=>{while(frames.length)frames.shift()()};
@@ -57,7 +57,10 @@ test('keyboard mode brings a half-visible control into view when the browser doe
  focus(whole);flush();
  assert.equal(whole.scrolled,0,'a control in view stays where it is');
  const moving=control(416);
- focus(moving);moving.top=300;flush();
- assert.equal(moving.scrolled,0,'a control the browser is scrolling is left to the browser');
+ focus(moving);frames.shift()();moving.top=300;flush();
+ assert.equal(moving.scrolled,0,'a control the browser brought fully into view stays there');
+ const short=control(416);
+ focus(short);frames.shift()();short.top=395;flush();
+ assert.equal(short.scrolled,1,'a control the browser left with its bar cut off is brought the rest of the way');
  stop();delete globalThis.requestAnimationFrame;
 });
