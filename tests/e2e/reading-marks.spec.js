@@ -147,13 +147,20 @@ test('on the book page the ribbons stay on the cover and clear of the title, eve
   }
 });
 
-test('keyboard focus on a marked cover shows its focus bar, never a ring, and the ribbons stay on the cover', async ({ page }) => {
+// Each ribbon's box relative to its cover, so a page scroll on focus is not counted as a move.
+const ribbonBoxes = card => card.locator('.state-ribbon').evaluateAll(nodes => nodes.map(node => { const box = node.getBoundingClientRect(); const cover = node.closest('.book-visual').querySelector('.cover-open').getBoundingClientRect(); return [box.x - cover.x, box.y - cover.y, box.width, box.height].map(Math.round); }));
+
+test('keyboard focus on a marked cover shows its focus bar, never a ring, and the ribbons keep their place', async ({ page }) => {
   await page.goto(BOOK);
   await markPurchasedAndRead(page);
   await page.goto('./?view=library');
   const card = page.locator('.book-card[data-book-id="goodtogreat"]');
   const cover = card.locator('.cover-open');
   await expect(card.locator('.state-ribbon')).toHaveCount(2);
+  // Off the card, so its hover lift is not measured; then past the lift's transition.
+  await page.mouse.move(1, 1);
+  await page.waitForTimeout(400);
+  const resting = await ribbonBoxes(card);
   await keyboardFocus(page, cover);
   expect(await cover.evaluate(element => element.matches(':focus-visible'))).toBe(true);
   await expect(cover).toHaveCSS('outline-style', 'none');
@@ -161,10 +168,8 @@ test('keyboard focus on a marked cover shows its focus bar, never a ring, and th
   expect(bar, 'a focus bar under the cover').not.toBeNull();
   const coverBox = await cover.boundingBox();
   expect(bar.top, 'the bar sits below the cover, apart from its edge').toBeGreaterThan(coverBox.y + coverBox.height);
-  for (const ribbon of await card.locator('.state-ribbon').all()) {
-    const box = await ribbon.boundingBox();
-    expect(box.x + box.width).toBeLessThanOrEqual(coverBox.x + coverBox.width + 0.5);
-  }
+  // The bar is under the cover and the ribbons on top of it, so nothing moves when focus arrives.
+  expect(await ribbonBoxes(card)).toEqual(resting);
 });
 
 test('in forced colours each ribbon keeps an outline', async ({ browser, browserName }) => {
@@ -175,8 +180,14 @@ test('in forced colours each ribbon keeps an outline', async ({ browser, browser
   await page.goto(BOOK);
   await markPurchasedAndRead(page);
   await page.goto('./?view=library');
-  const ribbon = page.locator('.book-card[data-book-id="goodtogreat"] .state-ribbon').first();
+  const card = page.locator('.book-card[data-book-id="goodtogreat"]');
+  const ribbon = card.locator('.state-ribbon').first();
   await expect(ribbon).toHaveCSS('border-top-style', 'solid');
+  // With keyboard focus the cover has an outline; the ribbons move inside its edge, off the outline.
+  const cover = card.locator('.cover-open');
+  await keyboardFocus(page, cover);
+  const coverBox = await cover.boundingBox();
+  for (const box of await ribbonBoxes(card)) expect(box[0] + box[2]).toBeLessThanOrEqual(Math.round(coverBox.width) + 1);
   await context.close();
 });
 

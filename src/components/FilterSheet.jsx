@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { transition } from '../motion';
 import { ActionIcon, Button, Drawer, NumberInput, TextInput } from '@mantine/core';
 import { useReducedMotion } from '@mantine/hooks';
 import { IconArrowLeft, IconArrowRight, IconBooks, IconCalendar, IconCalendarPlus, IconCheck, IconChevronRight, IconListCheck, IconSearch, IconTags, IconUser, IconWriting } from '@tabler/icons-react';
@@ -91,7 +92,7 @@ export default function FilterSheet({ opened, onClose, value: f, onChange, onRes
   return () => { visual.removeEventListener('resize', resize); visual.removeEventListener('scroll', resize); };
  }, [opened]);
 
- return <Drawer.Root opened={opened} onClose={onClose} position="bottom" size="90dvh" className="filter-sheet" padding={0} transitionProps={{ duration: reducedMotion ? 0 : 220, timingFunction: 'ease-in-out' }} styles={viewport ? { inner: { height: viewport.height, top: viewport.top, bottom: 'auto' }, content: { height: viewport.panelHeight } } : undefined}>
+ return <Drawer.Root opened={opened} onClose={onClose} position="bottom" size="90dvh" className="filter-sheet" padding={0} transitionProps={transition(reducedMotion)} styles={viewport ? { inner: { height: viewport.height, top: viewport.top, bottom: 'auto' }, content: { height: viewport.panelHeight } } : undefined}>
   <Drawer.Overlay backgroundOpacity={.45} blur={3} />
   <Drawer.Content aria-describedby="filter-sheet-description">
    <Drawer.Header>

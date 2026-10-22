@@ -3,7 +3,7 @@ import { ActionIcon, Button } from '@mantine/core';
 import { IconBooks, IconShoppingBagCheck, IconX } from '@tabler/icons-react';
 import { displayTitle } from '../translation';
 
-export default function LibraryToast({ book, owned, onClose, onUndo }) {
+export default function LibraryToast({ book, owned, onClose, onUndo, style }) {
  const root = useRef(null);
  const [hovered, setHovered] = useState(false);
  const [focused, setFocused] = useState(false);
@@ -18,13 +18,13 @@ export default function LibraryToast({ book, owned, onClose, onUndo }) {
    if (!root.current || root.current.contains(event.target)) return;
    const target = event.target.getBoundingClientRect?.();
    const toast = root.current.getBoundingClientRect();
-   if (target?.width && target.height && target.bottom > toast.top && target.top < toast.bottom && target.right > toast.left && target.left < toast.right) onClose();
+   if (target?.width && target.height && target.bottom > toast.top && target.top < toast.bottom && target.right > toast.left && target.left < toast.right) onClose('at-once');
   };
   document.addEventListener('focusin', revealFocus);
   return () => document.removeEventListener('focusin', revealFocus);
  }, [onClose]);
 
- return <div ref={root} className="library-toast" data-owned={owned || undefined}
+ return <div ref={root} className="library-toast" style={style} data-owned={owned || undefined}
   onPointerEnter={e => { if (e.pointerType === 'mouse') setHovered(true); }} onPointerLeave={() => setHovered(false)}
   onFocusCapture={() => setFocused(true)} onBlurCapture={e => { if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false); }}>
   <span className="library-toast-icon" aria-hidden="true">{owned ? <IconShoppingBagCheck size={28} /> : <IconBooks size={28} />}</span>

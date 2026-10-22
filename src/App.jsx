@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Accordion, ActionIcon, Alert, Anchor, Badge, Box, Button, Card, Container, Group, MantineProvider, Modal, Paper, Stack, Text, TextInput, Tabs, ThemeIcon, Title, Tooltip, createTheme, defaultVariantColorsResolver, localStorageColorSchemeManager } from '@mantine/core';
+import { Accordion, ActionIcon, Alert, Anchor, Badge, Box, Button, Card, Container, Group, MantineProvider, Modal, Paper, Stack, Text, TextInput, Tabs, ThemeIcon, Title, Tooltip, Transition, createTheme, defaultVariantColorsResolver, localStorageColorSchemeManager } from '@mantine/core';
 import { IconLink, IconArrowLeft, IconArrowRight, IconArrowUpRight, IconBook2, IconFileText, IconShoppingBagCheck, IconBooks, IconCheck, IconChevronRight, IconDownload, IconFilter, IconHeart, IconLayersIntersect, IconListNumbers, IconSearch, IconX } from '@tabler/icons-react';
 import '@mantine/core/styles.css';
 import '@fontsource-variable/outfit/wght.css';
@@ -36,16 +36,20 @@ import { ReadingPriorityEngine, ReadingRankingViewModel } from './ranking/Readin
 import { PERSONAL_KEY, cleanPersonal, cleanReading, addToQueue, moveInQueue, todayLocal } from './reading';
 import {createBooksExport} from './catalogExport';
 import { STATE_LABELS, QUALITY_LABELS, ORIGIN_LABELS, emptyFilters, prepareBooks, filterBooks, sortBooks, toggleState, migrateStates, filterCount, decodeRoute, encodeRoute, normalize, booksForShelf, DEFAULT_PAGE_SIZE, formatDay } from './library';
+import { MOTION_EASE, MOTION_MS } from './motion';
 import './styles.css';
 
 const AccessibilityAudit=import.meta.env.DEV?React.lazy(()=>import('./components/AccessibilityAudit')):null;
 // Notes carry the Markdown renderer and the full source notes; load them on demand.
 const NotesPage=React.lazy(()=>import('./components/NotesPage'));
-// One motion curve and duration for every JavaScript transition (AGENT.md motion contract);
-// styles.css holds the same values as --motion-ease and --motion-base.
-const MOTION_EASE='cubic-bezier(.65, 0, .35, 1)';
-const MOTION_MS=200;
+// One motion curve and duration for every JavaScript transition (AGENT.md motion contract),
+// from src/motion.js; styles.css holds the same values as --motion-ease and --motion-base.
 const motion={transitionProps:{duration:MOTION_MS,timingFunction:MOTION_EASE}};
+const TOAST_MOTION={in:{opacity:1,translate:'0 0'},out:{opacity:0,translate:'0 8px'},transitionProperty:'opacity, translate'};
+// Tonal and default buttons keep a boundary of at least 3:1 against every surface (WCAG 1.4.11),
+// so a button never melts into its panel. Badges, alerts and icons stay without a frame.
+/** @param {{variant?: string, color?: string}} props */
+const controlBorder=({variant,color})=>variant==='light'?`1px solid ${!color||color==='brand'?'var(--accent-border)':'var(--control-border)'}`:variant==='default'?'1px solid var(--control-border)':undefined;
 const FONT='"Outfit Variable", Outfit, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
 const theme = createTheme({
  fontFamily:FONT, primaryColor:'brand', primaryShade:{light:7,dark:3}, defaultRadius:'md', cursorType:'pointer', autoContrast:true,
@@ -55,19 +59,15 @@ const theme = createTheme({
  // Brick red: shade 7 carries white text in the light scheme, shade 3 dark text in the dark one.
  // Mantine picks filled text once, from the light shade, so the dark scheme kept white text on
  // the light brick (2.3:1); the accent ink is the checked pair for the accent in both schemes.
- // Tonal and default controls keep a boundary of at least 3:1 against every surface (WCAG 1.4.11),
- // so a button never melts into its panel.
  variantColorResolver:input=>{
   const colors=defaultVariantColorsResolver(input);
   if(input.variant==='filled'&&input.color==='brand')return {...colors,color:'var(--accent-ink)'};
-  if(input.variant==='light')return {...colors,border:`1px solid ${input.color==='brand'||!input.color?'var(--accent-border)':'var(--control-border)'}`};
-  if(input.variant==='default')return {...colors,border:'1px solid var(--control-border)'};
   return colors;
  },
  colors:{brand:['#fcf1ec','#f6e4da','#eec7b2','#ef9a70','#e07f52','#c9612f','#b04d24','#9a3f1e','#7a3014','#5c230e']},
  fontSizes:{xs:'1rem',sm:'1rem',md:'1rem',lg:'1.125rem',xl:'1.25rem'},
  headings:{fontFamily:FONT,fontWeight:'600',sizes:{h1:{fontSize:'2.25rem',lineHeight:'1.15'},h2:{fontSize:'1.75rem',lineHeight:'1.2'},h3:{fontSize:'1.25rem',lineHeight:'1.3'},h4:{fontSize:'1.0625rem',lineHeight:'1.35'}}},
- components:{Button:{defaultProps:{size:'md'}},ActionIcon:{defaultProps:{size:44}},TextInput:{defaultProps:{size:'md'}},Select:{defaultProps:{size:'md',comboboxProps:motion}},MultiSelect:{defaultProps:{size:'md',comboboxProps:motion}},Badge:{defaultProps:{size:'lg',variant:'light',radius:'sm'}},Drawer:{defaultProps:{...motion,closeButtonProps:{'aria-label':'Kapat'},overlayProps:{backgroundOpacity:.35,blur:3}}},Modal:{defaultProps:motion},Popover:{defaultProps:motion},Tooltip:{defaultProps:motion},Combobox:{defaultProps:motion},Accordion:{defaultProps:{transitionDuration:MOTION_MS}}}
+ components:{Button:Button.extend({defaultProps:{size:'md'},vars:(_,props)=>({root:{'--button-bd':controlBorder(props)}})}),ActionIcon:ActionIcon.extend({defaultProps:{size:44},vars:(_,props)=>({root:{'--ai-bd':controlBorder(props)}})}),TextInput:{defaultProps:{size:'md'}},Select:{defaultProps:{size:'md',comboboxProps:motion}},MultiSelect:{defaultProps:{size:'md',comboboxProps:motion}},Badge:{defaultProps:{size:'lg',variant:'light',radius:'sm'}},Drawer:{defaultProps:{...motion,closeButtonProps:{'aria-label':'Kapat'},overlayProps:{backgroundOpacity:.35,blur:3}}},Modal:{defaultProps:motion},Popover:{defaultProps:motion},Tooltip:{defaultProps:motion},Combobox:{defaultProps:motion},Accordion:{defaultProps:{transitionDuration:MOTION_MS}},Collapse:{defaultProps:{transitionDuration:MOTION_MS,transitionTimingFunction:MOTION_EASE}}}
 });
 const books=prepareBooks(catalog.books);
 const bookIds=books.map(book=>book.id);
@@ -231,12 +231,14 @@ function AtlasApp() {
  const [draft,setDraft]=useState(emptyFilters);
  const [bookTrail,setBookTrail]=useState([]);
  const [copied,setCopied]=useState(false);
- const [transfer,setTransfer]=useState(null);
+ const [transfer,setTransfer]=useState(null);const lastTransfer=useRef(null);const [toastExit,setToastExit]=useState(MOTION_MS);
  const [guideOpened,setGuideOpened]=useState(false);
  const [syncOpened,setSyncOpened]=useState(false);
  const transferOrigin=useRef(null);
- const dismissTransfer=useCallback(()=>{
+ // A toast that would cover the control just focused leaves at once instead of fading out over it.
+ const dismissTransfer=useCallback(how=>{
   const restoreFocus=document.activeElement?.closest('.library-toast');
+  setToastExit(how==='at-once'?0:MOTION_MS);
   setTransfer(null);
   if(restoreFocus){
    const target=transferOrigin.current?.isConnected?transferOrigin.current:document.querySelector('.header-library');
@@ -291,7 +293,10 @@ function AtlasApp() {
  // in the open book sheet (on its sync status), never behind it; otherwise on the main content.
  const syncClosed=()=>{setSyncCovering(false);const opener=syncOpener.current;(opener?.isConnected?opener:document.querySelector('.detail-drawer .sync-status-text')??document.getElementById('main-content'))?.focus({preventScroll:true})};
  const copyLink=async()=>{try{await navigator.clipboard.writeText(window.location.href);setCopied(true);setTimeout(()=>setCopied(false),2000)}catch{setCopied(false)}};
- const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true">{transfer&&<LibraryToast key={`${transfer.id}-${transfer.owned}`} book={byId[transfer.id]} owned={transfer.owned} onClose={dismissTransfer} onUndo={()=>{setStates(prev=>({...prev,[transfer.id]:toggleState(prev[transfer.id],'alindi')}));dismissTransfer()}}/>}</div>;
+ // The toast leaves the way it came: the last notice stays rendered while it fades out.
+ if(transfer)lastTransfer.current=transfer;
+ const shownTransfer=transfer||lastTransfer.current;
+ const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true"><Transition mounted={Boolean(transfer)} duration={MOTION_MS} exitDuration={toastExit} timingFunction={MOTION_EASE} transition={TOAST_MOTION}>{style=>shownTransfer&&<LibraryToast key={`${shownTransfer.id}-${shownTransfer.owned}`} style={style} book={byId[shownTransfer.id]} owned={shownTransfer.owned} onClose={dismissTransfer} onUndo={()=>{setStates(prev=>({...prev,[shownTransfer.id]:toggleState(prev[shownTransfer.id],'alindi')}));dismissTransfer()}}/>}</Transition></div>;
  const activeTab=['owned','favorites'].includes(view)?'books':['books','queue','collections'].includes(view)?view:null;
  return <><a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();document.getElementById('main-content').focus()}}>İçeriğe geç</a>
   <Tabs className="main-section-tabs" value={activeTab} onChange={v=>v&&navigate({...route,view:v,book:null,page:1})}>
