@@ -2,10 +2,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Accordion, ActionIcon, Alert, Anchor, Badge, Box, Button, Card, Container, Group, MantineProvider, Modal, Paper, Stack, Text, TextInput, Tabs, ThemeIcon, Title, Tooltip, createTheme, defaultVariantColorsResolver, localStorageColorSchemeManager } from '@mantine/core';
 import { IconLink, IconArrowLeft, IconArrowRight, IconArrowUpRight, IconBook2, IconFileText, IconShoppingBagCheck, IconBooks, IconCheck, IconChevronRight, IconDownload, IconFilter, IconHeart, IconLayersIntersect, IconListNumbers, IconSearch, IconX } from '@tabler/icons-react';
 import '@mantine/core/styles.css';
-import '@fontsource-variable/literata/wght.css';
-import '@fontsource-variable/literata/wght-italic.css';
+import '@fontsource-variable/outfit/wght.css';
 import catalog from './catalog.json';
-import SpotlightCard from './components/SpotlightCard';
 import ReadingPanel, { QueueButton } from './components/ReadingPanel';
 import ReadingQueue from './components/ReadingQueue';
 import BookDiscovery, { ReadingPurpose } from './components/BookDiscovery';
@@ -43,16 +41,33 @@ import './styles.css';
 const AccessibilityAudit=import.meta.env.DEV?React.lazy(()=>import('./components/AccessibilityAudit')):null;
 // Notes carry the Markdown renderer and the full source notes; load them on demand.
 const NotesPage=React.lazy(()=>import('./components/NotesPage'));
+// One motion curve and duration for every JavaScript transition (AGENT.md motion contract);
+// styles.css holds the same values as --motion-ease and --motion-base.
+const MOTION_EASE='cubic-bezier(.65, 0, .35, 1)';
+const MOTION_MS=200;
+const motion={transitionProps:{duration:MOTION_MS,timingFunction:MOTION_EASE}};
+const FONT='"Outfit Variable", Outfit, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
 const theme = createTheme({
- fontFamily:'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif', primaryColor:'brand', primaryShade:{light:7,dark:3}, defaultRadius:'md', cursorType:'pointer', autoContrast:true,
+ fontFamily:FONT, primaryColor:'brand', primaryShade:{light:7,dark:3}, defaultRadius:'md', cursorType:'pointer', autoContrast:true,
+ // Focus is shown by the central keyboard mode (src/focusMode.js), never by Mantine's ring; a
+ // pressed control does not jump; reduced motion is respected.
+ focusRing:'never', activeClassName:'', respectReducedMotion:true,
  // Brick red: shade 7 carries white text in the light scheme, shade 3 dark text in the dark one.
  // Mantine picks filled text once, from the light shade, so the dark scheme kept white text on
  // the light brick (2.3:1); the accent ink is the checked pair for the accent in both schemes.
- variantColorResolver:input=>{const colors=defaultVariantColorsResolver(input);return input.variant==='filled'&&input.color==='brand'?{...colors,color:'var(--accent-ink)'}:colors},
+ // Tonal and default controls keep a boundary of at least 3:1 against every surface (WCAG 1.4.11),
+ // so a button never melts into its panel.
+ variantColorResolver:input=>{
+  const colors=defaultVariantColorsResolver(input);
+  if(input.variant==='filled'&&input.color==='brand')return {...colors,color:'var(--accent-ink)'};
+  if(input.variant==='light')return {...colors,border:`1px solid ${input.color==='brand'||!input.color?'var(--accent-border)':'var(--control-border)'}`};
+  if(input.variant==='default')return {...colors,border:'1px solid var(--control-border)'};
+  return colors;
+ },
  colors:{brand:['#fcf1ec','#f6e4da','#eec7b2','#ef9a70','#e07f52','#c9612f','#b04d24','#9a3f1e','#7a3014','#5c230e']},
  fontSizes:{xs:'1rem',sm:'1rem',md:'1rem',lg:'1.125rem',xl:'1.25rem'},
- headings:{fontFamily:'"Literata Variable", Georgia, serif',fontWeight:'600',sizes:{h1:{fontSize:'2.25rem',lineHeight:'1.15'},h2:{fontSize:'1.75rem',lineHeight:'1.2'},h3:{fontSize:'1.25rem',lineHeight:'1.3'},h4:{fontSize:'1.0625rem',lineHeight:'1.35'}}},
- components:{Button:{defaultProps:{size:'md'}},ActionIcon:{defaultProps:{size:44}},TextInput:{defaultProps:{size:'md'}},Select:{defaultProps:{size:'md'}},MultiSelect:{defaultProps:{size:'md'}},Badge:{defaultProps:{size:'lg',variant:'light',radius:'sm'}},Drawer:{defaultProps:{closeButtonProps:{'aria-label':'Kapat'},overlayProps:{backgroundOpacity:.35,blur:3}}}}
+ headings:{fontFamily:FONT,fontWeight:'600',sizes:{h1:{fontSize:'2.25rem',lineHeight:'1.15'},h2:{fontSize:'1.75rem',lineHeight:'1.2'},h3:{fontSize:'1.25rem',lineHeight:'1.3'},h4:{fontSize:'1.0625rem',lineHeight:'1.35'}}},
+ components:{Button:{defaultProps:{size:'md'}},ActionIcon:{defaultProps:{size:44}},TextInput:{defaultProps:{size:'md'}},Select:{defaultProps:{size:'md',comboboxProps:motion}},MultiSelect:{defaultProps:{size:'md',comboboxProps:motion}},Badge:{defaultProps:{size:'lg',variant:'light',radius:'sm'}},Drawer:{defaultProps:{...motion,closeButtonProps:{'aria-label':'Kapat'},overlayProps:{backgroundOpacity:.35,blur:3}}},Modal:{defaultProps:motion},Popover:{defaultProps:motion},Tooltip:{defaultProps:motion},Combobox:{defaultProps:motion},Accordion:{defaultProps:{transitionDuration:MOTION_MS}}}
 });
 const books=prepareBooks(catalog.books);
 const bookIds=books.map(book=>book.id);
@@ -123,7 +138,7 @@ function BookCover({book:b,onOpen=null,detail=false,read=false,size=detail?'deta
  const cover=b.cover,format=workFormat(b);
  // The single-file export embeds one copy of each cover instead.
  const embedded=cover&&globalThis.__KITAP_COVERS__?.[cover.src];
- const content=cover&&!failed?<img src={embedded||`./${cover.src}`} srcSet={embedded?undefined:`./${smallCover(cover.src)} 400w, ./${cover.src} 720w`} sizes={embedded?undefined:COVER_SIZES[size]} alt={`${cover.title} — ${cover.publisher}, ${cover.language==='tr'?'Türkçe':'Uluslararası'} baskı kapağı`} width="240" height="360" loading={detail?'eager':'lazy'} decoding="async" onError={()=>setFailed(true)}/>:<span className="cover-placeholder" aria-hidden="true">{format&&<span className="cover-placeholder-kind">{format.label}</span>}<span className="cover-placeholder-title">{displayTitle(b)}</span><span className="cover-placeholder-author">{b.author}</span><span className="cover-placeholder-note">{format?<IconFileText size={18} stroke={1.5}/>:<IconBook2 size={18} stroke={1.5}/>}</span></span>;
+ const content=cover&&!failed?<img src={embedded||`./${cover.src}`} srcSet={embedded?undefined:`./${smallCover(cover.src)} 400w, ./${cover.src} 720w`} sizes={embedded?undefined:COVER_SIZES[size]} alt={`${cover.title} — ${cover.publisher}, ${cover.language==='tr'?'Türkçe':'Uluslararası'} baskı kapağı`} width="240" height="360" loading={detail?'eager':'lazy'} decoding="async" onError={()=>setFailed(true)}/>:<span className="cover-placeholder" data-edge="start" aria-hidden="true">{format&&<span className="cover-placeholder-kind">{format.label}</span>}<span className="cover-placeholder-title">{displayTitle(b)}</span><span className="cover-placeholder-author">{b.author}</span><span className="cover-placeholder-note">{format?<IconFileText size={18} stroke={1.5}/>:<IconBook2 size={18} stroke={1.5}/>}</span></span>;
  const stage=`cover-stage${read?' is-read':''}`;
  return detail?<div className={`${stage} cover-stage-detail`}>{content}</div>:<button className={`${stage} cover-open`} onClick={()=>onOpen(b.id)} aria-label={`${displayTitle(b)} ayrıntılarını aç`}>{content}</button>;
 }
@@ -280,7 +295,7 @@ function AtlasApp() {
  const activeTab=['owned','favorites'].includes(view)?'books':['books','queue','collections'].includes(view)?view:null;
  return <><a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();document.getElementById('main-content').focus()}}>İçeriğe geç</a>
   <Tabs className="main-section-tabs" value={activeTab} onChange={v=>v&&navigate({...route,view:v,book:null,page:1})}>
-    <header className="site-header"><div className="site-header-inner"><Group renderRoot={props=><a href="./" {...props}/>} className="brand-link" aria-label="Kitaplık · filtresiz ana sayfa" gap={6} wrap="nowrap" onClick={e=>{if(e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey){e.preventDefault();window.history.pushState(null,'',window.location.pathname);setRoute({view:'books',book:null,sort:'reading',filters:emptyFilters(),page:1,pageSize:DEFAULT_PAGE_SIZE});setBookTrail([]);window.scrollTo({top:0,behavior:'instant'})}}}><ThemeIcon size={42} radius="md" color="brand"><IconBooks size={26} stroke={1.6}/></ThemeIcon><Text className="brand">Kitaplık</Text></Group><Tabs.List className="main-tabs" aria-label="Kitaplık bölümleri">{[{id:'books',name:'Kitaplar',icon:IconBook2},{id:'queue',name:'Sıram',icon:IconListNumbers},{id:'collections',name:'Kümeler',icon:IconLayersIntersect}].map(item=><Tabs.Tab key={item.id} value={item.id} leftSection={<item.icon size={19}/>}>{item.name}</Tabs.Tab>)}</Tabs.List><nav className="header-shortcuts" aria-label="Hızlı erişim"><Tooltip label="Kızım için"><ActionIcon className="header-children" size={48} variant={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'filled':'subtle'} aria-label="Kızım için" aria-current={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'page':undefined} onClick={()=>goCategory('children')}><GirlIcon size={29}/></ActionIcon></Tooltip><Tooltip label="Favoriler"><ActionIcon className="header-favorites" size={48} variant={view==='favorites'?'filled':'subtle'} aria-label="Favoriler" aria-current={view==='favorites'?'page':undefined} onClick={()=>{navigate({...route,view:'favorites',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><IconHeart size={29} fill={view==='favorites'?'currentColor':'none'}/></ActionIcon></Tooltip><Tooltip label={`Kitaplığım · ${ownedCount} kitap`}><ActionIcon className="header-library" size={48} variant={view==='owned'?'filled':'subtle'} aria-label={`Kitaplığım · ${ownedCount} kitap`} aria-current={view==='owned'?'page':undefined} onClick={()=>{navigate({...route,view:'owned',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><BookshelfIcon size={29}/></ActionIcon></Tooltip></nav><ThemeToggle/></div></header>
+    <header className="site-header"><div className="site-header-inner"><Group renderRoot={props=><a href="./" {...props}/>} className="brand-link" aria-label="Kitaplık · filtresiz ana sayfa" gap={6} wrap="nowrap" onClick={e=>{if(e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey){e.preventDefault();window.history.pushState(null,'',window.location.pathname);setRoute({view:'books',book:null,sort:'reading',filters:emptyFilters(),page:1,pageSize:DEFAULT_PAGE_SIZE});setBookTrail([]);window.scrollTo({top:0,behavior:'instant'})}}}><ThemeIcon size={42} radius="md" color="brand"><IconBooks size={26} stroke={1.6}/></ThemeIcon><Text className="brand">Kitaplık</Text></Group><Tabs.List className="main-tabs" aria-label="Kitaplık bölümleri">{[{id:'books',name:'Kitaplar',icon:IconBook2},{id:'queue',name:'Sıram',icon:IconListNumbers},{id:'collections',name:'Kümeler',icon:IconLayersIntersect}].map(item=><Tabs.Tab key={item.id} value={item.id} data-edge="bottom" leftSection={<item.icon size={19}/>}>{item.name}</Tabs.Tab>)}</Tabs.List><nav className="header-shortcuts" aria-label="Hızlı erişim"><Tooltip label="Kızım için"><ActionIcon className="header-children" size={48} variant={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'filled':'subtle'} aria-label="Kızım için" aria-current={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'page':undefined} onClick={()=>goCategory('children')}><GirlIcon size={29}/></ActionIcon></Tooltip><Tooltip label="Favoriler"><ActionIcon className="header-favorites" size={48} variant={view==='favorites'?'filled':'subtle'} aria-label="Favoriler" aria-current={view==='favorites'?'page':undefined} onClick={()=>{navigate({...route,view:'favorites',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><IconHeart size={29} fill={view==='favorites'?'currentColor':'none'}/></ActionIcon></Tooltip><Tooltip label={`Kitaplığım · ${ownedCount} kitap`}><ActionIcon className="header-library" size={48} variant={view==='owned'?'filled':'subtle'} aria-label={`Kitaplığım · ${ownedCount} kitap`} aria-current={view==='owned'?'page':undefined} onClick={()=>{navigate({...route,view:'owned',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><BookshelfIcon size={29}/></ActionIcon></Tooltip></nav><ThemeToggle/></div></header>
   <Container size={1200} className="app-shell" px={{base:8,sm:24}}>
 
    <main id="main-content" tabIndex={-1}>
@@ -295,7 +310,7 @@ function AtlasApp() {
       <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setTransfer(null);setDraft(filters);setOpened(true)}}>Filtreler{activeCount?` · ${activeCount}`:''}</Button><WrappingSelect aria-label="Kitapları sırala" value={sort} onChange={v=>setRoute(r=>({...r,sort:v||'reading',page:1}))} data={[{value:'reading',label:'Okuma önceliği'},{value:'shared',label:'En çok kesişen'},{value:'title',label:'Kitap adı · A–Z'},{value:'author',label:'Yazar · A–Z'},{value:'newest',label:'Yayın yılı · yeni'},{value:'added',label:'Eklenme · yeni'},{value:'saved',label:'Favoriler önce'}]}/></div>
       <ActiveFilters filters={filters} onChange={changeFilters}/>
      </div>
-     {view==='books'&&!filterCount(filters)&&<SpotlightCard className="reading-route" spotlightColor="rgba(225,238,173,.13)"><div><Text fw={500}>Nereden başlamalı?</Text><Text>{collectionMap.core?.count} kitaplık çekirdek, düşünceden uygulamaya.</Text></div><Button variant="white" color="brand" rightSection={<IconArrowRight size={19}/>} onClick={()=>goCollection('core')}>Seçkiye git</Button></SpotlightCard>}
+     {view==='books'&&!filterCount(filters)&&<section className="reading-route" aria-label="Nereden başlamalı?"><div><Text fw={500}>Nereden başlamalı?</Text><Text>{collectionMap.core?.count} kitaplık çekirdek, düşünceden uygulamaya.</Text></div><Button variant="white" color="brand" rightSection={<IconArrowRight size={19}/>} onClick={()=>goCollection('core')}>Seçkiye git</Button></section>}
      {view==='books'&&childrenShelf(filters)&&onlyFilters(filters,['categories'])&&<AgeLibrary onGroup={goCollection}/>}
      {view==='books'&&sort==='reading'&&<ReadingPrioritySummary ranking={readingRanking}/>}
      <div className="results-heading" ref={resultsRef}><div><Title order={['owned','favorites'].includes(view)?2:1}>{resultsTitle(filters,view)}</Title><Text c="dimmed" role="status" aria-live="polite">{filtered.length} eser{filtered.length?` · ${((currentPage-1)*pageSize)+1}–${Math.min(currentPage*pageSize,filtered.length)} gösteriliyor`:''}</Text></div><Group gap={4}>{filterCount(filters)>0&&<Button variant="subtle" onClick={()=>changeFilters(emptyFilters())}>Temizle</Button>}<Tooltip label={copied?'Bağlantı kopyalandı':'Bağlantıyı kopyala'}><ActionIcon variant="subtle" aria-label={copied?'Bağlantı kopyalandı':'Bağlantıyı kopyala'} onClick={copyLink}>{copied?<IconCheck size={22}/>:<IconLink size={22}/>}</ActionIcon></Tooltip></Group></div>

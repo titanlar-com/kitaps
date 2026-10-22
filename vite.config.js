@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { viteSingleFile } from 'vite-plugin-singlefile';
 import { readFileSync } from 'node:fs';
 
-const notices = ['REACT-BITS-LICENSE.md', 'FONT-LICENSES.txt']
+const notices = ['FONT-LICENSES.txt']
   .map(file => readFileSync(new URL(file, import.meta.url), 'utf8')).join('\n\n');
 const catalog = JSON.parse(readFileSync(new URL('src/catalog.json', import.meta.url), 'utf8'));
 

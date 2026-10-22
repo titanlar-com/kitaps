@@ -23,6 +23,17 @@ async function markPurchasedAndRead(page) {
 
 const overlaps = (a, b) => a.x < b.x + b.width && b.x < a.x + a.width && a.y < b.y + b.height && b.y < a.y + a.height;
 
+// Keyboard mode starts only with Tab (src/focusMode.js); a focus made after it shows the focus bar.
+const keyboardFocus = async (page, locator) => { await page.keyboard.press('Tab'); await locator.focus(); };
+// The bar drawn under a focused control (or under its field wrapper or option label), as a box.
+const focusBar = locator => locator.evaluate(element => {
+  const holder = element.matches('input, textarea, select') ? element.closest('.filter-choice, .mantine-Input-wrapper, label') : element;
+  const style = getComputedStyle(holder, '::after');
+  if (style.content === 'none' || style.display === 'none' || parseFloat(style.height) < 2) return null;
+  const box = holder.getBoundingClientRect(); const bottom = box.bottom - parseFloat(style.bottom);
+  return { top: bottom - parseFloat(style.height), bottom, left: box.left, right: box.right, outline: getComputedStyle(element).outlineStyle };
+});
+
 test('read and purchased books show ribbons and a half-grey cover on the book page, the card and the queue', async ({ page }) => {
   await page.goto(BOOK);
   const hero = page.locator('.detail-hero');
@@ -136,19 +147,20 @@ test('on the book page the ribbons stay on the cover and clear of the title, eve
   }
 });
 
-test('keyboard focus on a marked cover keeps its focus ring clear of the ribbons', async ({ page }) => {
+test('keyboard focus on a marked cover shows its focus bar, never a ring, and the ribbons stay on the cover', async ({ page }) => {
   await page.goto(BOOK);
   await markPurchasedAndRead(page);
   await page.goto('./?view=library');
   const card = page.locator('.book-card[data-book-id="goodtogreat"]');
   const cover = card.locator('.cover-open');
   await expect(card.locator('.state-ribbon')).toHaveCount(2);
-  // A key press first, so the browser treats the following focus as keyboard focus.
-  await page.keyboard.press('Shift');
-  await cover.focus();
+  await keyboardFocus(page, cover);
   expect(await cover.evaluate(element => element.matches(':focus-visible'))).toBe(true);
-  await expect(cover).toHaveCSS('outline-style', 'solid');
+  await expect(cover).toHaveCSS('outline-style', 'none');
+  const bar = await focusBar(cover);
+  expect(bar, 'a focus bar under the cover').not.toBeNull();
   const coverBox = await cover.boundingBox();
+  expect(bar.top, 'the bar sits below the cover, apart from its edge').toBeGreaterThan(coverBox.y + coverBox.height);
   for (const ribbon of await card.locator('.state-ribbon').all()) {
     const box = await ribbon.boundingBox();
     expect(box.x + box.width).toBeLessThanOrEqual(coverBox.x + coverBox.width + 0.5);

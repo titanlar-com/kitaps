@@ -74,6 +74,17 @@ const brokenWords = (texts, line) => texts.evaluateAll((elements, line) => eleme
   return found;
 }), line);
 
+// Keyboard mode starts only with Tab (src/focusMode.js); a focus made after it shows the focus bar.
+const keyboardFocus = async (page, locator) => { await page.keyboard.press('Tab'); await locator.focus(); };
+// The bar drawn under a focused control (or under its field wrapper or option label), as a box.
+const focusBar = locator => locator.evaluate(element => {
+  const holder = element.matches('input, textarea, select') ? element.closest('.filter-choice, .mantine-Input-wrapper, label') : element;
+  const style = getComputedStyle(holder, '::after');
+  if (style.content === 'none' || style.display === 'none' || parseFloat(style.height) < 2) return null;
+  const box = holder.getBoundingClientRect(); const bottom = box.bottom - parseFloat(style.bottom);
+  return { top: bottom - parseFloat(style.height), bottom, left: box.left, right: box.right, outline: getComputedStyle(element).outlineStyle };
+});
+
 test('the shared state is read from GitHub in a real browser, without CORS errors', async ({ page }) => {
   const errors = consoleErrors(page);
   await page.goto('./?view=notes');
@@ -405,12 +416,13 @@ test('long select values wrap instead of being cut off at 320 px with 200% text'
     expect(await clipped(sort), font).toEqual([]);
     expect(await shownValue(sort), font).toBe('Okuma önceliği');
   }
-  // One focus indicator, on the field itself.
+  // One focus indicator: a bar under the field, nothing around it.
   await page.getByRole('button', { name: /^Filtreler/ }).focus();
   await page.keyboard.press('Tab');
   await expect(sort).toBeFocused();
   await expect(sort).toHaveCSS('outline-style', 'none');
-  await expect(sort).toHaveCSS('box-shadow', /3px/);
+  await expect(sort).toHaveCSS('box-shadow', 'none');
+  expect(await focusBar(sort), 'a focus bar under the sort field').not.toBeNull();
   // The keyboard opens the options, moves through them and picks one; Space opens, Escape closes.
   await page.keyboard.press('ArrowDown');
   await expect(sort).toHaveAttribute('aria-expanded', 'true');
@@ -512,7 +524,7 @@ test('titles keep whole words and move their controls below them at 320 px with 
   await isolate(context);
   const page = await context.newPage();
   const views = [
-    { path: './', box: '.reading-route', title: '.reading-route .mantine-Text-root:first-child', text: '.reading-route.card-spotlight>div', controls: '.reading-route .mantine-Button-root' },
+    { path: './', box: '.reading-route', title: '.reading-route .mantine-Text-root:first-child', text: '.reading-route>div', controls: '.reading-route .mantine-Button-root' },
     { path: './?q=zzzz', box: '.results-heading', title: '.results-heading h1', text: '.results-heading>div:first-child', controls: '.results-heading>div:last-child' },
   ];
   for (const { path, box, title, text, controls } of views) {
@@ -625,21 +637,19 @@ test('the sheet and the toast turn compact just below their limits with 200% tex
   await context.close();
 });
 
-test('the phone sheet grip shows its whole focus ring', async ({ browser }) => {
+test('the phone sheet grip shows its whole focus bar inside the sheet', async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 375, height: 812 }, isMobile: true, hasTouch: true });
   const page = await context.newPage();
   await page.goto('./?book=good-to-great-by-jim-collins');
   const grip = page.locator('.sheet-grip');
   await expect(grip).toBeVisible();
-  await page.keyboard.press('Shift');
-  await grip.focus();
-  // The ring must start inside the sheet, whose top edge clips anything above it.
-  const clear = await grip.evaluate(element => {
-    const style = getComputedStyle(element);
-    const ringTop = element.getBoundingClientRect().top - parseFloat(style.outlineOffset) - parseFloat(style.outlineWidth);
-    return element.matches(':focus-visible') && ringTop >= element.closest('.mantine-Drawer-content').getBoundingClientRect().top;
-  });
-  expect(clear).toBe(true);
+  await keyboardFocus(page, grip);
+  // The bar must sit inside the sheet, whose edges clip anything outside them.
+  const bar = await focusBar(grip);
+  expect(bar, 'a focus bar under the grip').not.toBeNull();
+  const sheet = await page.locator('.mantine-Drawer-content').boundingBox();
+  expect(bar.top >= sheet.y && bar.bottom <= sheet.y + sheet.height).toBe(true);
+  await expect(grip).toHaveCSS('outline-style', 'none');
   await context.close();
 });
 
@@ -654,10 +664,10 @@ test('books can be filtered by the day they were added to the library', async ({
   await page.getByRole('button', { name: /Eklenme tarihi/ }).click();
   const option = page.getByRole('checkbox', { name: `${label} · ${count} kitap` });
   await expect(option).toBeChecked();
-  // The hidden checkbox's keyboard focus is drawn on the whole option.
-  await page.keyboard.press('Shift');
-  await option.focus();
-  await expect(page.locator('.filter-choice').filter({ has: option })).toHaveCSS('outline-style', 'solid');
+  // The hidden checkbox's keyboard focus bar is drawn under the whole option, nothing around it.
+  await keyboardFocus(page, option);
+  await expect(page.locator('.filter-choice').filter({ has: option })).toHaveCSS('outline-style', 'none');
+  expect(await focusBar(option), 'a focus bar under the option').not.toBeNull();
   await page.addScriptTag({ content: axeSource });
   const violations = await page.evaluate(async () => (await window.axe.run(document.querySelector('.filter-sheet .mantine-Drawer-content') || document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] } })).violations.map(item => item.id));
   expect(violations).toEqual([]);

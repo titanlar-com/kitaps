@@ -131,7 +131,7 @@ export default function FilterSheet({ opened, onClose, value: f, onChange, onRes
       <fieldset className="filter-fieldset"><legend>İlk yayın yılı</legend><div className="filter-year-range">
        <NumberInput label="En erken" placeholder="Sınır yok" value={f.yearMin} onChange={v => set('yearMin', v)} min={-3000} max={2100} allowDecimal={false} hideControls autoComplete="off" />
        <NumberInput label="En geç" placeholder="Sınır yok" value={f.yearMax} onChange={v => set('yearMax', v)} min={-3000} max={2100} allowDecimal={false} hideControls autoComplete="off" aria-invalid={invalidYears || undefined} aria-describedby={invalidYears ? 'filter-year-error' : undefined} />
-      </div>{invalidYears && <p id="filter-year-error" className="filter-error" role="alert">En geç yıl, en erken yıldan küçük olamaz.</p>}<p className="filter-hint">Aralık seçildiğinde yayın yılı bilinmeyen kitaplar gösterilmez.</p></fieldset>
+      </div>{invalidYears && <p id="filter-year-error" className="filter-error" data-edge="start" role="alert">En geç yıl, en erken yıldan küçük olamaz.</p>}<p className="filter-hint">Aralık seçildiğinde yayın yılı bilinmeyen kitaplar gösterilmez.</p></fieldset>
       <Choices title="FT ödülü" options={['Kazanan', 'Kısa liste', 'Uzun liste'].map(value => ({ value, label: value }))} value={f.awards} onChange={v => set('awards', v)} />
       <Choices title="FT ödül yılı" options={Array.from({ length: 22 }, (_, i) => ({ value: String(2026 - i), label: String(2026 - i) }))} value={f.awardYears} onChange={v => set('awardYears', v)} compact />
      </>}

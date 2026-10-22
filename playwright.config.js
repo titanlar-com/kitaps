@@ -6,7 +6,7 @@ import { defineConfig, devices } from '@playwright/test';
 // 4173) must not stand in for the build under test. E2E_PORT lets sessions in
 // separate worktrees run their suites side by side.
 const port = Number(process.env.E2E_PORT) || 4317;
-const layoutChecks = { testMatch: /(reading-marks|catalog-grid|sync|site)\.spec\.js/, grep: /reading-marks|catalog-grid|sync\.spec|200% text|room for them/ };
+const layoutChecks = { testMatch: /(reading-marks|catalog-grid|sync|site|ui-quality)\.spec\.js/, grep: /reading-marks|catalog-grid|sync\.spec|ui-quality|200% text|room for them/ };
 
 export default defineConfig({
   testDir: 'tests/e2e',

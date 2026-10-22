@@ -27,7 +27,7 @@
  padding: 10px 0; background: transparent; color: var(--ink); border: 0;
  border-bottom: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
  text-align: left; cursor: pointer; border-radius: 0;
- transition: background-color 180ms ease-in-out;
+ transition: background-color var(--motion-fast) var(--motion-ease);
 }
 .filter-section-link:last-child { border-bottom: 0; }
 .filter-section-link:hover { background: var(--soft); }
@@ -49,15 +49,16 @@
  position: relative; display: flex; align-items: center; gap: 12px; min-height: 48px;
  padding: 12px; border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
  border-radius: 12px; background: var(--surface); color: var(--ink); cursor: pointer;
- line-height: 1.4; transition: background-color 160ms ease-in-out, border-color 160ms ease-in-out;
+ line-height: 1.4; transition: background-color var(--motion-fast) var(--motion-ease), border-color var(--motion-fast) var(--motion-ease);
 }
 .filter-choice input { position: absolute; width: 1px; height: 1px; opacity: 0; margin: 0; }
 .filter-choice-mark { display: flex; align-items: center; justify-content: center; flex: 0 0 20px; height: 20px; border: 1px solid var(--control-line); border-radius: 6px; }
 .filter-choice[data-checked] { background: var(--soft); border-color: var(--accent-text); }
 .filter-choice[data-checked] .filter-choice-mark { background: var(--accent-text); color: var(--paper); border-color: var(--accent-text); }
 .filter-choice:hover { background: var(--soft); }
-/* The real checkbox is hidden, so its keyboard focus is drawn on the whole option. */
-.filter-choice:has(input:focus-visible) { outline: 2px solid var(--focus); outline-offset: -1px; }
+/* The real checkbox is hidden; its keyboard focus bar is drawn under the whole option. */
+html[data-focus-mode="keyboard"] .filter-choice:has(input:focus-visible)::after { content: ""; position: absolute; inset-inline: 10%; bottom: calc(-1 * (var(--focus-gap) + var(--focus-bar))); height: var(--focus-bar); background: var(--focus); pointer-events: none; }
+.filter-choice { position: relative; }
 .filter-option-search { margin-bottom: 12px; }
 .filter-option-search .mantine-InputWrapper-label { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); }
 .filter-option-search .mantine-Input-input { min-height: 48px; }
@@ -67,7 +68,7 @@
 .filter-year-range .mantine-Input-input { padding-inline: 12px; }
 .filter-choices-compact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .filter-choices-compact .filter-choice { gap: 6px; padding: 10px 6px; justify-content: center; }
-.filter-error { color: var(--ink); padding-left: 12px; border-left: 3px solid var(--accent-text); line-height: 1.5; margin: 12px 0; font-weight: 500; }
+.filter-error { --edge-color: var(--accent-text); color: var(--ink); padding-left: 12px; line-height: 1.5; margin: 12px 0; font-weight: 500; }
 .filter-sheet-footer {
  flex: 0 0 auto; padding: 12px 16px max(16px, env(safe-area-inset-bottom));
  border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); background: var(--surface);

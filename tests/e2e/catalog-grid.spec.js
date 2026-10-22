@@ -93,8 +93,8 @@ test('covers that load late leave the cards and the footer where they were', asy
     await page.goto('./', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.books-grid > .book-card')).toHaveCount(24);
     // WebKit settles document.fonts.ready only after the load event, which a held cover can delay,
-    // so the test waits for the font faces themselves: the title font in, none still loading.
-    await expect.poll(() => page.evaluate(() => [...document.fonts].some(face => face.family.includes('Literata') && face.status === 'loaded') && [...document.fonts].every(face => face.status !== 'loading')), { message: `${width}px: fonts load` }).toBe(true);
+    // so the test waits for the font faces themselves: the interface font in, none still loading.
+    await expect.poll(() => page.evaluate(() => [...document.fonts].some(face => face.family.includes('Outfit') && face.status === 'loaded') && [...document.fonts].every(face => face.status !== 'loading')), { message: `${width}px: fonts load` }).toBe(true);
     expect(await covers.evaluateAll(images => images.filter(image => image.naturalWidth > 0).length), `${width}px: no cover has arrived yet`).toBe(0);
     const before = await layout();
     holding = false;

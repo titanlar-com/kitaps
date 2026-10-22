@@ -6,7 +6,7 @@ Kitap kimliklerini, Türkçe baskıları, kitaplar arasındaki hazırlık ve eş
 
 ## Özellikler
 
-- Kapakların öne çıktığı raf düzeni: telefonda 2 (yatayda da), tablette 3, masaüstünde 4 sütun; daha geniş ekranda da 4. Açık ve koyu tema; başlıklarda Literata, arayüzde cihazın kendi yazı tipi. Telefonda ilk ekranda kitap kartları görünür.
+- Kapakların öne çıktığı raf düzeni: telefonda 2 (yatayda da), tablette 3, masaüstünde 4 sütun; daha geniş ekranda da 4. Açık ve koyu tema; başlıklar dahil bütün arayüz Outfit ile yazılır. Telefonda ilk ekranda kitap kartları görünür.
 - Üst menüde yalnız simgeler: Kızım için (çocuk kitapları), Favoriler (kalp) ve Kitaplığım (raf).
 - Kızım için: 13 yaşına kadar temel kütüphane. Yaş bantlarına (3–5, 5–7, 7–8, 8–10, 10–11, 11–12, 12–13) ve iki çekirdek seçkiye (Çekirdek 14 · 10 yaş öncesi, İlk altı · 10–13) göre gruplanır; her kitapta önerilen yaş, gerekiyorsa ebeveyn notu ve iki sitede doğrulanmış Türkçe baskı bulunur. Okuma rotaları: resimli kitaplardan ilk romanlara yaş rotası, 10 yaşında başlayan çocuk için ilk beş kitap ve 10–13 yaş için dört başlangıç yolu (okumaya isteksiz, macera, insan ilişkileri, felsefi sorular).
 - Çocuk kitapları okuma önceliğinde kendi aralarında sıralanır (çocuk kitapları arasında #1, #2 …) ve genel kataloğun ardından gelir.
@@ -102,4 +102,4 @@ Geliştirme ortamında Control+Alt+A ile erişilebilirlik denetimi açılabilir.
 
 ## Lisanslar
 
-React Bits SpotlightCard: MIT + Commons Clause (`REACT-BITS-LICENSE.md`). Literata yazı tipi: SIL Open Font License (`FONT-LICENSES.txt`). Kullanılan diğer arayüz kitaplıkları kendi lisanslarına tabidir.
+Outfit yazı tipi: SIL Open Font License (`FONT-LICENSES.txt`). Kullanılan diğer arayüz kitaplıkları kendi lisanslarına tabidir.

@@ -14,9 +14,9 @@ Son kontrol: 28 Eylül 2026. Kontrollerin çoğu otomatik testlere bağlıdır; 
 
 ## Görsel dil
 
-- Kitap adları, sayfa başlıkları ve logo Literata ile yazılır; site bu yazı tipini kendisi sunar. Arayüz metni cihazın kendi yazı tipini kullanır (iPhone ve Mac'te SF, Android'de Roboto, Windows'ta Segoe UI); böylece ikinci bir yazı tipi indirilmez.
+- Başlıklar, kitap adları, logo ve arayüz metni tek yazı tipiyle, Outfit ile yazılır (proje sahibinin varsayılan yazı tipi); site bu yazı tipini kendisi sunar, yüklenene kadar cihazın kendi yazı tipi görünür. En küçük okunabilir metin 14 CSS px'tir; `tests/e2e/ui-quality.spec.js` dört tarayıcı profilinde bunu ölçer.
 - Açık tema sıcak kâğıt zemin (#f6f3ee), beyaz yüzeyler ve tek bir tuğla kırmızısı vurgu (#9a3f1e) kullanır. Koyu tema aynı yapıyı nötr koyu yüzeylerle kurar; vurgu rengi açılır (#ef9a70).
-- Metin renkleri iki temada da WCAG AA sınırının üstündedir. En düşük değerler: açık temada soluk metin 5,35:1, vurgu 5,49:1; koyu temada soluk metin 5,60:1. Form alanı kenarları zemine karşı en az 3,27:1'dir.
+- Metin renkleri iki temada da WCAG AA sınırının üstündedir. En düşük değerler: açık temada soluk metin 5,35:1, vurgu 5,49:1; koyu temada soluk metin 5,60:1. Form alanı ve düğme sınırları her yüzeye karşı en az 3:1'dir (WCAG 1.4.11; açık temada en düşük 3,55:1, koyu temada 3,92:1).
 - Renkler tek bir değişken kümesinden gelir (`src/styles.css` başı); Mantine bileşenleri de aynı değişkenleri kullanır.
 
 ## Katalog ve kart düzeni
@@ -60,7 +60,7 @@ Otomatik tarama bütün WCAG ölçütlerinin veya her ekran okuyucu/cihaz birle�
 ## Performans
 
 - Site parçalı derlenir: uygulama kodu, katalog verisi, React, Mantine ve simgeler ayrı ve uzun süre önbelleklenebilir dosyalardır.
-- Literata değişken ve alt kümelere bölünmüş dosyalardır; tarayıcı yalnız sayfadaki karakterlerin alt kümesini indirir (Türkçe için yaklaşık 95 KB). Arayüz yazı tipi indirilmez.
+- Outfit değişken ve alt kümelere bölünmüş dosyalardır (Latin ve Latin genişletilmiş, ikisi birlikte yaklaşık 48 KB); tarayıcı yalnız sayfadaki karakterlerin alt kümesini indirir.
 - Notlar sayfası, Markdown işleyicisi ve ham kaynak arşivleri yalnızca gerektiğinde yüklenir.
 - `npm run export` kapakları gömülü tek dosyalık sürümü ayrıca üretir.
 
