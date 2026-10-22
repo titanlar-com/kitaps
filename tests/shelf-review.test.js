@@ -9,7 +9,7 @@ const read=path=>JSON.parse(fs.readFileSync(new URL(path,import.meta.url)));
 const shelf=read('../data/shelf-review.json');
 const originals=read('../data/original-sources.json');
 // Later reviews that may list a shelf book again, by naming it with existingId.
-const laterReviews={originals,founders:read('../data/management-founders.json'),managerprep:read('../data/manager-foundations.json'),managerareas:read('../data/manager-reading-areas.json'),shelfphotos:read('../data/shelf-photos.json')};
+const laterReviews={originals,founders:read('../data/management-founders.json'),managerprep:read('../data/manager-foundations.json'),managerareas:read('../data/manager-reading-areas.json'),shelfphotos:read('../data/shelf-photos.json'),peker:read('../data/peker-videos.json'),stoic:read('../data/stoicism-for-managers.json')};
 const catalog=read('../src/catalog.json');
 const byId=Object.fromEntries(catalog.books.map(book=>[book.id,book]));
 const resolve=reference=>catalog.mapping[`shelf:${reference}`]||reference;

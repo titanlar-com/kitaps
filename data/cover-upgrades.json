@@ -9846,14 +9846,6 @@
    },
    "status": "kept"
   },
-  "covers/foundation-tr-enchiridion.jpg": {
-   "bookId": "enchiridion",
-   "from": {
-    "width": 320,
-    "effective": 320
-   },
-   "status": "kept-no-larger-copy"
-  },
   "covers/foundation-tr-history-western-philosophy.jpg": {
    "bookId": "historyofwesternphilosophy",
    "from": {
@@ -10405,6 +10397,320 @@
    },
    "status": "kept-no-larger-copy"
   },
+  "covers/peker-birguntekbasina.jpg": {
+   "bookId": "birguntekbasina",
+   "from": {
+    "width": 670,
+    "effective": 335,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/peker-crazyladiesofpearlstreet.jpg": {
+   "bookId": "crazyladiesofpearlstreet",
+   "from": {
+    "width": 200,
+    "effective": 200,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 560,
+    "effective": 560,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:146283/wi:1600",
+    "hashDistance": 0
+   }
+  },
+  "covers/peker-cyranodebergerac.jpg": {
+   "bookId": "cyranodebergerac",
+   "from": {
+    "width": 200,
+    "effective": 200,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 480,
+    "effective": 480,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:61691/wi:1600",
+    "hashDistance": 6
+   }
+  },
+  "covers/peker-eigersanction.jpg": {
+   "bookId": "eigersanction",
+   "from": {
+    "width": 222,
+    "effective": 222,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 560,
+    "effective": 560,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:11567561/wi:1600",
+    "hashDistance": 0
+   }
+  },
+  "covers/peker-foolsdie.jpg": {
+   "bookId": "foolsdie",
+   "from": {
+    "width": 697,
+    "effective": 697,
+    "watermark": true
+   },
+   "status": "kept"
+  },
+  "covers/peker-godfatherreturns.jpg": {
+   "bookId": "godfatherreturns",
+   "from": {
+    "width": 500,
+    "effective": 425,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/peker-greywolf.jpg": {
+   "bookId": "greywolfmustafakemalanintimatestudyofadictator",
+   "from": {
+    "width": 233,
+    "effective": 233
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 380,
+    "effective": 380,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://i.dr.com.tr/originals/0001728094001-1.jpg",
+    "hashDistance": 0
+   }
+  },
+  "covers/peker-halilkutpasa.jpg": {
+   "bookId": "halilkutpasakutulamareninmuzafferkomutani",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1600,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:5294933/wi:1600",
+    "hashDistance": 2
+   }
+  },
+  "covers/peker-herseyseninlebaslar.jpg": {
+   "bookId": "herseyseninlebaslar",
+   "from": {
+    "width": 400,
+    "effective": 400,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 672,
+    "effective": 672,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:11755395/wi:1600",
+    "hashDistance": 0
+   }
+  },
+  "covers/peker-hotnightinthecity.jpg": {
+   "bookId": "hotnightinthecity",
+   "from": {
+    "width": 534,
+    "effective": 534,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 800,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:11269130/wi:1600",
+    "hashDistance": 0
+   }
+  },
+  "covers/peker-hzali.jpg": {
+   "bookId": "hzaliislamindogusuveilkayriliklar",
+   "from": {
+    "width": 500,
+    "effective": 425,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/peker-incidentattwentymile.jpg": {
+   "bookId": "incidentattwentymile",
+   "from": {
+    "width": 500,
+    "effective": 350,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1600,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:7457660/wi:1600",
+    "hashDistance": 0
+   }
+  },
+  "covers/peker-josephfouche.jpg": {
+   "bookId": "josephfouchebildniseinespolitischenmenschen",
+   "from": {
+    "width": 255,
+    "effective": 255
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/peker-lespardaillan.jpg": {
+   "bookId": "lespardaillan",
+   "from": {
+    "width": 557,
+    "effective": 557,
+    "watermark": true
+   },
+   "status": "kept"
+  },
+  "covers/peker-manualdoguerreirodaluz.jpg": {
+   "bookId": "manualdoguerreirodaluz",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/peker-omerta.jpg": {
+   "bookId": "omerta",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 960,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:11993873/wi:1600",
+    "hashDistance": 0
+   }
+  },
+  "covers/peker-prophetoutcast.jpg": {
+   "bookId": "prophetoutcasttrotsky19291940",
+   "from": {
+    "width": 500,
+    "effective": 350,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/peker-safahat.jpg": {
+   "bookId": "safahat",
+   "from": {
+    "width": 320,
+    "effective": 320
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/peker-shibumi.jpg": {
+   "bookId": "shibumi",
+   "from": {
+    "width": 668,
+    "effective": 668,
+    "watermark": true
+   },
+   "status": "kept"
+  },
+  "covers/peker-sixgravestomunich.jpg": {
+   "bookId": "sixgravestomunich",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/peker-soncuret.jpg": {
+   "bookId": "soncuret",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 960,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:11282764/wi:1600",
+    "hashDistance": 1
+   }
+  },
+  "covers/peker-summerofkatya.jpg": {
+   "bookId": "summerofkatya",
+   "from": {
+    "width": 571,
+    "effective": 571,
+    "watermark": true
+   },
+   "status": "kept"
+  },
+  "covers/peker-thefamily.jpg": {
+   "bookId": "family",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1120,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:11709672/wi:1600",
+    "hashDistance": 1
+   }
+  },
+  "covers/peker-themain.jpg": {
+   "bookId": "main",
+   "from": {
+    "width": 85,
+    "effective": 85,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1600,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:260166/wi:1600",
+    "hashDistance": 2
+   }
+  },
+  "covers/peker-unizhennyeioskorblennye.jpg": {
+   "bookId": "униженныеиоскорбленные",
+   "from": {
+    "width": 1106,
+    "effective": 1106
+   },
+   "status": "kept"
+  },
+  "covers/peker-wickedmessenger.jpg": {
+   "bookId": "wickedmessengerbobdylanandthe1960s",
+   "from": {
+    "width": 320,
+    "effective": 320,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
   "covers/preparation-hazirlik-01.jpg": {
    "bookId": "elestirelokuma",
    "from": {
@@ -10829,6 +11135,22 @@
     "width": 800,
     "effective": 800,
     "watermark": true
+   },
+   "status": "kept"
+  },
+  "covers/stoic-devitabeata.jpg": {
+   "bookId": "devitabeatadebrevitatevitae",
+   "from": {
+    "width": 1106,
+    "effective": 1106
+   },
+   "status": "kept"
+  },
+  "covers/tr-enchiridion.jpg": {
+   "bookId": "enchiridion",
+   "from": {
+    "width": 1105,
+    "effective": 1105
    },
    "status": "kept"
   },

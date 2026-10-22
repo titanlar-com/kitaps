@@ -4,6 +4,7 @@ import json,re,unicodedata,hashlib
 from datetime import date
 from translation_availability import validate_manifest
 from bibliographic_facts import validate_facts
+from days import newest_day
 ROOT=Path(__file__).resolve().parents[1]
 def read(p):return json.loads((ROOT/p).read_text())
 atlas=read('data/sources/atlas-v1.json'); local=read('data/sources/okuma-kumeleri.json'); kitaps=read('data/sources/kitaps.json'); entrepreneurship=read('data/sources/entrepreneurship-curriculum.json'); foundations=read('data/foundational-reading.json'); preparation=read('data/preparatory-reading-tr.json'); preparation_covers=read('data/preparatory-reading-covers.json')
@@ -325,7 +326,7 @@ def add_review_item(review,origin,item):
   note(b,placement['reason'],label)
   extra={k:v for k,v in (('role',item.get('role')),('order',placement.get('order'))) if v}
   member(b,cid,cid+':'+placement['id'],source=review['source'],note=placement['reason'],**extra)
-REVIEWS=[('data/shelf-review.json','shelf','RAF','Raf taraması'),('data/original-sources.json','originals','ÖZ','Özgün kaynak'),('data/management-founders.json','founders','YD','Kurucu eserler'),('data/manager-foundations.json','managerprep','YA','Yönetici adayı'),('data/manager-reading-areas.json','managerareas','OA','Okuma alanları'),('data/shelf-photos.json','shelfphotos','RF','Raf fotoğrafı')]
+REVIEWS=[('data/shelf-review.json','shelf','RAF','Raf taraması'),('data/original-sources.json','originals','ÖZ','Özgün kaynak'),('data/management-founders.json','founders','YD','Kurucu eserler'),('data/manager-foundations.json','managerprep','YA','Yönetici adayı'),('data/manager-reading-areas.json','managerareas','OA','Okuma alanları'),('data/shelf-photos.json','shelfphotos','RF','Raf fotoğrafı'),('data/peker-videos.json','peker','SP','Peker videoları'),('data/stoicism-for-managers.json','stoic','ST','Stoacılık')]
 reviews={};review_links=[];review_purposes={};deferred_reviews=[]
 for path,origin,mark,tag in REVIEWS:
  if not (ROOT/path).exists():continue
@@ -383,6 +384,22 @@ for bid,research in translation_records.items():
   previous=books[bid]['titleTr']
   if previous and previous!=edition_title and previous not in books[bid]['aliases']:books[bid]['aliases'].append(previous)
   books[bid]['titleTr']=edition_title
+# A page count belongs to a printing, so it is kept per ISBN (scripts/fetch-page-counts.py);
+# each book carries the counts of the ISBNs its page can show, and the page picks the one it shows.
+def isbn13(value):
+ value=re.sub(r'[^0-9Xx]','',value or '').upper()
+ if len(value)==10:
+  core='978'+value[:9];value=core+str((10-sum(int(d)*(3 if i%2 else 1) for i,d in enumerate(core))%10)%10)
+ return value if re.fullmatch(r'\d{13}',value) else ''
+page_counts=read('data/page-counts.json')['records'] if (ROOT/'data/page-counts.json').exists() else {}
+for isbn,record in page_counts.items():
+ assert isbn13(isbn)==isbn and isinstance(record['pages'],int) and 0<record['pages']<20000,(isbn,record)
+ assert record['sourceUrl'].startswith('https://') and record['sourceName'] and date.fromisoformat(record['checkedAt'])<=newest_day(),(isbn,record)
+def attach_page_counts(b):
+ isbns={isbn13(value) for value in [(b.get('verifiedEdition') or {}).get('isbn'),((b.get('translationResearch') or {}).get('edition') or {}).get('isbn'),(b.get('cover') or {}).get('isbn')] if value}
+ found={isbn:{k:page_counts[isbn][k] for k in ('pages','sourceUrl','sourceName')} for isbn in sorted(isbns) if isbn in page_counts}
+ if found:b['pageCounts']=found
+ else:b.pop('pageCounts',None)
 # Researched original-edition facts fill gaps; curated source values stay.
 fact_records=validate_facts(read('data/bibliographic-facts.json'),set(books))
 for bid,fact in fact_records.items():
@@ -481,6 +498,7 @@ for origin,link in review_links:
   for one,other in ((left,right),(right,left)):
    companions=readingGuides['overrides'].setdefault(one,{'before':[],'after':[]}).setdefault('companions',[])
    if not any(item['id']==other for item in companions):companions.append({'id':other,'reason':link['reason']})
+for b in books.values():attach_page_counts(b)
 MONTHS=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık']
 def checked_dates():
  for edition in read('data/edition-verification.json').values():yield edition.get('checkedAt')
@@ -492,7 +510,7 @@ def checked_dates():
 # The catalog date follows its newest verified evidence, never the build clock.
 latest=max(value for value in checked_dates() if isinstance(value,str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}',value))
 updated=f"{int(latest[8:10])} {MONTHS[int(latest[5:7])-1]} {latest[:4]}"
-result={'updated':updated,'readingGuides':readingGuides,'books':list(books.values()),'collections':collections,'groups':groups,'categories':[{'id':k,'label':v,'count':sum(k in b['categories'] for b in books.values())} for k,v in categoryNames.items()],'sourceTags':local['tags'],'mapping':mapping,'sourceCounts':{'atlasEntries':sum(len(g['books']) for c in atlas['collections'] for g in c['groups']),'localBooks':len(local['books']),'kitapsRecords':len(kitaps['books']),'foundationalBooks':sum(len(group['books']) for group in foundations['groups']),'preparationRecommendations':len(preparation['books']),'entrepreneurshipBooks':sum(len(group['books']) for group in entrepreneurship['groups']),'childrenLibraryBooks':len(children['books']) if children else 0,'shelfReviewBooks':len(shelf['books']) if shelf else 0,'originalSourceWorks':len(reviews['originals']['books']) if 'originals' in reviews else 0,'managementFounderWorks':len(reviews['founders']['books']) if 'founders' in reviews else 0,'managerProgramBooks':len(reviews['managerprep']['books']) if 'managerprep' in reviews else 0,'managerAreaBooks':len(reviews['managerareas']['books']) if 'managerareas' in reviews else 0,'shelfPhotoBooks':len(reviews['shelfphotos']['books']) if 'shelfphotos' in reviews else 0}}
+result={'updated':updated,'readingGuides':readingGuides,'books':list(books.values()),'collections':collections,'groups':groups,'categories':[{'id':k,'label':v,'count':sum(k in b['categories'] for b in books.values())} for k,v in categoryNames.items()],'sourceTags':local['tags'],'mapping':mapping,'sourceCounts':{'atlasEntries':sum(len(g['books']) for c in atlas['collections'] for g in c['groups']),'localBooks':len(local['books']),'kitapsRecords':len(kitaps['books']),'foundationalBooks':sum(len(group['books']) for group in foundations['groups']),'preparationRecommendations':len(preparation['books']),'entrepreneurshipBooks':sum(len(group['books']) for group in entrepreneurship['groups']),'childrenLibraryBooks':len(children['books']) if children else 0,'shelfReviewBooks':len(shelf['books']) if shelf else 0,'originalSourceWorks':len(reviews['originals']['books']) if 'originals' in reviews else 0,'managementFounderWorks':len(reviews['founders']['books']) if 'founders' in reviews else 0,'managerProgramBooks':len(reviews['managerprep']['books']) if 'managerprep' in reviews else 0,'managerAreaBooks':len(reviews['managerareas']['books']) if 'managerareas' in reviews else 0,'shelfPhotoBooks':len(reviews['shelfphotos']['books']) if 'shelfphotos' in reviews else 0,'pekerVideoBooks':len(reviews['peker']['books']) if 'peker' in reviews else 0,'stoicBooks':len(reviews['stoic']['books']) if 'stoic' in reviews else 0}}
 (ROOT/'src/catalog.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
 print(len(books),'books',len(collections),'collections',len(groups),'groups')
 print('Edition records',sum(len(b['editions']) for b in books.values()))

@@ -2498,5 +2498,19 @@
     "checkedAt": "2026-10-22",
     "scope": "Türkçe baskı kapağı",
     "matchMethod": "manual-source-review"
+  },
+  "enchiridion": {
+    "src": "covers/tr-enchiridion.jpg",
+    "imageUrl": "https://img.iskultur.com.tr/webp/2019/08/enkheiridion-4.jpg",
+    "sourceUrl": "https://www.iskultur.com.tr/enkheiridion.aspx",
+    "sourceName": "iskultur.com.tr",
+    "title": "Enkheiridion",
+    "author": "Epictetus",
+    "publisher": "Türkiye İş Bankası Kültür Yayınları",
+    "isbn": "9786052958469",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı",
+    "matchMethod": "manual-source-review"
   }
 }

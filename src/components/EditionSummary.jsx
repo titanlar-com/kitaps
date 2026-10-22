@@ -3,6 +3,7 @@ import { Alert,Anchor,Button,Group,Paper,Text,Title } from '@mantine/core';
 import { IconShoppingBag,IconPhoto,IconArrowUpRight,IconSchool } from '@tabler/icons-react';
 import { recommendedTranslation,translationStatus,turkishEdition } from '../translation';
 import { publicationLine,workFormat } from '../workFormat';
+import { pageCount } from '../pages';
 
 const EVIDENCE={
  research:'Türkçe baskı iki bağımsız araştırma aşamasında doğrulandı.',
@@ -45,14 +46,17 @@ export default function EditionSummary({book}){
  const params=new URLSearchParams({q:query});
  const evidence=edition?(edition.basis==='verified'?EVIDENCE[edition.sourceType]||EVIDENCE.retailer:EVIDENCE[edition.basis]):'';
  const otherEdition=recommended&&!edition?.translators.length&&recommended.publisher&&recommended.publisher!==edition?.publisher;
+ const pages=pageCount(book);
  return <Paper component="section" withBorder radius="lg" p="lg" className="edition-summary" aria-label="Yayınevi, çevirmen ve kitabı bul">
   <Title order={3} mb="md">{original?'Baskı bilgisi':'Baskı ve çevirmen'}</Title>{book.sourceIssue&&<Alert color="orange" title="Baskı seçerken dikkat" mb="md">{book.sourceIssue.note}</Alert>}
   <dl className="edition-facts">
    <div><dt>Yayınevi</dt><dd>{edition?.publisher||c?.publisher||'Henüz doğrulanmadı'}</dd></div>
    {!original&&<div><dt>Çevirmen</dt><dd>{edition?.translators.length?edition.translators.join(' · '):recommended?`${recommended.translators.join(' · ')}${otherEdition?` (${recommended.publisher})`:''}`:'Henüz doğrulanmadı'}</dd></div>}
    {(edition?.isbn||c?.isbn)&&<div><dt>ISBN</dt><dd>{edition?.isbn||c?.isbn}</dd></div>}
+   <div><dt>Sayfa sayısı</dt><dd>{pages?pages.pages:'Henüz doğrulanmadı'}</dd></div>
   </dl>
   {evidence&&<Text className="edition-evidence" mt="md">{evidence}{c&&edition?.isbn&&c.isbn&&edition.isbn!==c.isbn?' Kapak farklı bir baskıya ait.':''}</Text>}
+  {pages&&<Text c="dimmed" mt="sm">Sayfa sayısı bu ISBN’in <Anchor href={pages.sourceUrl} target="_blank" rel="noreferrer">{pages.sourceName}</Anchor> kaydından.</Text>}
   {!edition?.translators.length&&recommended?.basis==='source-note'&&<Text c="dimmed" mt="sm">Çevirmen, kaynak listesinin güven puanıyla önerdiği çeviriden alındı.</Text>}
   {status==='unavailable'&&<Text c="dimmed" mt="md">Kaynaklara göre Türkçe baskısı yok.{c?' Gösterilen kapak uluslararası baskıya aittir.':''}</Text>}
   {status==='unverified'&&<Text c="dimmed" mt="md">Türkçe baskı doğrulanamadı.{c?' Gösterilen kapak uluslararası baskıya aittir.':''}</Text>}

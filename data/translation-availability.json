@@ -2089,22 +2089,34 @@
       "status": "available",
       "stage1": {
         "decision": "available",
-        "reviewer": "claude-stage1-o-014",
-        "checkedAt": "2026-09-28",
+        "reviewer": "claude-stage1-p-005",
+        "checkedAt": "2026-10-22",
         "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/ahlak-mektuplari/452779.html",
+            "type": "retailer"
+          },
           {
             "url": "https://www.dr.com.tr/search?q=9786058259393",
             "type": "retailer"
+          },
+          {
+            "url": "https://opact.sdu.edu.tr/vufind/Record/1058/Details",
+            "type": "library-catalog"
           }
         ]
       },
       "stage2": {
         "decision": "available",
-        "reviewer": "claude-stage2-o-014",
-        "checkedAt": "2026-09-28",
+        "reviewer": "claude-stage2-p-005",
+        "checkedAt": "2026-10-22",
         "sources": [
           {
-            "url": "https://www.kitapsepeti.com/arama?q=Ahlak+Mektuplar%C4%B1+Seneca",
+            "url": "https://www.jaguarkitap.com/ahlak-mektuplari",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.nadirkitap.com/ahlak-mektuplari-epistulae-morales-seneca-kitap45855038.html",
             "type": "retailer"
           }
         ]
@@ -2114,7 +2126,7 @@
         "publisher": "Jaguar Kitap",
         "isbn": "9786058259393",
         "translators": [
-          "Türkan Uzel"
+          "Türkân Uzel"
         ]
       }
     },
@@ -7071,6 +7083,1241 @@
           "Aysun Babacan"
         ],
         "year": 2015
+      }
+    },
+    "omerta": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/omerta/625943.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789753904070",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/omerta-suskunluk-yasasi/31233.html",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.istanbulkitapcisi.com/omerta",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Omerta-Mario-Puzo/dp/975390407X",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.kitantik.com/product/Omerta_1br9qfwlg4ddwxy155u",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Omerta",
+        "publisher": "E Yayınları",
+        "isbn": "9789753904070",
+        "translators": [
+          "Zeynep Umuroğlu Çetinol"
+        ],
+        "year": 2022
+      }
+    },
+    "foolsdie": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/aptallar-erken-olur/9306.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789753901451",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.istanbulkitapcisi.com/aptallar-erken-olur",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.bkmkitap.com/aptallar-erken-olur",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Aptallar-Erken-%C3%96l%C3%BCr-Mario-Puzo/dp/9753901453",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.goodreads.com/author/list/14414928.Osman_etin_Deniztekin",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Aptallar Erken Ölür",
+        "publisher": "E Yayınları",
+        "isbn": "9789753901451",
+        "translators": [
+          "Osman Deniztekin"
+        ],
+        "year": 2024
+      }
+    },
+    "family": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/aile/561444.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789753904018",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.biyografiler.com/kitap/aile_1450090927",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.yaykoop.com/aile",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.kitapberlin.com/aile-2",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.storytel.com/tr/books/aile-2400986",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.pandora.com.tr/kitap/aile/128921",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Aile",
+        "publisher": "E Yayınları",
+        "isbn": "9789753904018",
+        "translators": [
+          "Selvin Kayahan"
+        ],
+        "year": 2023
+      }
+    },
+    "sixgravestomunich": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/munihe-kadar-6-mezar/268612.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789753902915",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.istanbulkitapcisi.com/munihe-kadar-6-mezar",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.pandora.com.tr/kitap/munihe-kadar-6-mezar/253232",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Münih'e Kadar 6 Mezar",
+        "publisher": "E Yayınları",
+        "isbn": "9789753902915",
+        "translators": [
+          "Hamide Koyukan"
+        ],
+        "year": 2021
+      }
+    },
+    "godfatherreturns": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/babanin-donusu/75393.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789751024015",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.illakitap.com/babanin-donusu",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.kitapsec.com/mobil/babanin-donusu-inkilap-kitabevi_urn462865.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Baban%C4%B1n-D%C3%B6n%C3%BC%C5%9F%C3%BC-MARK-WINEGARDNER/dp/9751024013",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Baba'nın Dönüşü",
+        "publisher": "İnkılap Kitabevi",
+        "isbn": "9789751024015",
+        "translators": [
+          "Özlem Gültekin"
+        ],
+        "year": 2005
+      }
+    },
+    "prophetoutcasttrotsky19291940": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/kovulan-sosyalist-trocki-19291940/420601.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786051714745",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.alfayayinlari.com/kisi-goster.php?kisi=112164",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.kitapsec.com/Products/Kovulan-Sosyalist-Trocki-Alfa-Yayinlari-142551.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Kovulan-Sosyalist-Tro%C3%A7ki-1929-1940/dp/605171474X",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Kovulan Sosyalist Troçki (1929-1940)",
+        "publisher": "Alfa Yayınları",
+        "isbn": "9786051714745",
+        "translators": [
+          "Rasih Güran"
+        ],
+        "year": 2017
+      }
+    },
+    "униженныеиоскорбленные": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.iskultur.com.tr/ezilenler.aspx",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789944883146",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/ezilenler-hasan-ali-yucel-klasikleri-p-218242",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.sadecekitap.com/ezilenler",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.bkmkitap.com/ezilenler-30649",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/EZ%C4%B0LENLER-Kolektif/dp/994488314X",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Ezilenler",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9789944883146",
+        "translators": [
+          "Nihal Yalaza Taluy"
+        ],
+        "year": 2008
+      }
+    },
+    "cyranodebergerac": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/cyrano-de-bergerac/56878.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789751412966",
+            "type": "retailer"
+          },
+          {
+            "url": "https://remzi.com.tr/files/books/1369/dosya/cyrano-de-bergerac-on-izleme.pdf",
+            "type": "publisher-preview"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.pandora.com.tr/urun/cyrano-de-bergerac/5508",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Cyrano-Bergerac-Edmond-Rostand/dp/975141296X",
+            "type": "retailer"
+          },
+          {
+            "url": "https://katalog.ibb.gov.tr/yordam/?p=1&dil=0&alan=kunyeYayinlayan_txt&q=Remzi+Kitabevi&fq%5B%5D=kunyeYazar_str:%22Rostand,+Edmond%22",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.iskultur.com.tr/cyrano-de-bergerac.aspx",
+            "type": "publisher"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Cyrano de Bergerac",
+        "publisher": "Remzi Kitabevi",
+        "isbn": "9789751412966",
+        "translators": [
+          "Nuriye Yiğitler"
+        ],
+        "year": 2008
+      }
+    },
+    "lespardaillan": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/pardayanlar-1-pardayanlar/595981.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786057639585",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=Pardayanlar",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://dedalus.com.tr/kitap/pardayanlar-1/",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Pardayanlar-1-Michel-Zevaco/dp/6057639588",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Pardayanlar-Seti-Kitap-Michel-Zevaco/dp/605763957X",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Pardayanlar 1 - Pardayanlar",
+        "publisher": "Dedalus Kitap",
+        "isbn": "9786057639585",
+        "translators": [
+          "Murat Sertoğlu"
+        ]
+      }
+    },
+    "josephfouchebildniseinespolitischenmenschen": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.canyayinlari.com/joseph-fouche-9789750733666",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789750733666",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/joseph-fouche-bir-politikacinin-portesi-p-189632",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/joseph-fouche-bir-politikacinin-portresi/96571.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://1000kitap.com/kitap/joseph-fouche--347582?hl=tr",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://tamadres.com/joseph-fouche-bir-politikacinin-portresi-stefan-zweig-kitabi-026950-9789750733666",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Joseph Fouché: Bir Politikacının Portresi",
+        "publisher": "Can Yayınları",
+        "isbn": "9789750733666",
+        "translators": [
+          "Zehra Kurttekin"
+        ]
+      }
+    },
+    "manualdoguerreirodaluz": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/isigin-savascisinin-elkitabi/50812.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789750737107",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.canyayinlari.com/isigin-savascisinin-el-kitabi-9789750737107",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.pandora.com.tr/kitap/isigin-savascisinin-elkitabi/632218",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.bkmkitap.com/isigin-savascisinin-elkitabi-300031",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Işığın Savaşçısının Elkitabı",
+        "publisher": "Can Yayınları",
+        "isbn": "9789750737107",
+        "translators": [
+          "İlknur Özdemir"
+        ],
+        "year": 2003
+      }
+    },
+    "greywolfmustafakemalanintimatestudyofadictator": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/kitap/bozkurt-mustafa-kemal/edebiyat/biyografi-oto-biyografi/urunno=0001728094001",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.pandora.com.tr/kitap/bozkurt-mustafa-kemal/598316",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com.tr/Bozkurt-Mustafa-Kemal-Atat-C3-BCrk-C3-BCn-Cevab-C4-B1-dp-6057707125/dp/6057707125/ref=dp_ob_image_bk",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.kaynakyayinlari.com/bozkurt-mustafa-kemal-p364245.html",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.bkmkitap.com/bozkurt-mustafa-kemal-ve-ataturkun-cevabi",
+            "type": "retailer"
+          },
+          {
+            "url": "https://tamadres.com/bozkurt-mustafa-kemal-harold-c-armstrong-kitabi-211075-9786057707123",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Bozkurt Mustafa Kemal",
+        "publisher": "Kaynak Yayınları",
+        "isbn": "9786057707123",
+        "translators": [
+          "Gül Çağalı Güven"
+        ],
+        "year": 2017
+      }
+    },
+    "wickedmessengerbobdylanandthe1960s": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/hayirsiz-peygamber-bob-dylan/534440.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.nadirkitap.com/hayirsiz-peygamber-bob-dylan-mike-marquese-kitap45422181.html",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://parisyayinlari.com/kitaplarimiz/hayirsiz-peygamber-bob-dylanmike-marqusee",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.garantikitap.com/kitap/hayirsiz-peygamber-bob-dylan-mike-marqusee-9786056887215",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/kitap/hayirsiz-peygamber-bob-dylan/mike-marqusee/edebiyat/biyografi-oto-biyografi/urunno=0001865151001",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Hayırsız Peygamber Bob Dylan",
+        "publisher": "Paris Yayınları",
+        "isbn": "9786056887215",
+        "translators": [
+          "Çağatay Ünaltay"
+        ],
+        "year": 2020
+      }
+    },
+    "safahat": {
+      "status": "original",
+      "stage1": {
+        "decision": "original",
+        "reviewer": "claude-stage1-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.bkmkitap.com/safahat-75357",
+            "type": "retailer"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/9789754733976",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/safahat/420919.html",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "original",
+        "reviewer": "claude-stage2-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9789754733976",
+            "type": "retailer"
+          }
+        ]
+      },
+      "originalLanguage": "tr"
+    },
+    "soncuret": {
+      "status": "original",
+      "stage1": {
+        "decision": "original",
+        "reviewer": "claude-stage1-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/son-curet/556694.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/9786254440489",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.idefix.com/sia-son-curet-p-286776",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "original",
+        "reviewer": "claude-stage2-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786254440489",
+            "type": "retailer"
+          }
+        ]
+      },
+      "originalLanguage": "tr"
+    },
+    "hzaliislamindogusuveilkayriliklar": {
+      "status": "original",
+      "stage1": {
+        "decision": "original",
+        "reviewer": "claude-stage1-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/hz-ali-islamin-dogusu-ve-ilk-ayriliklar/328374.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.biyografiler.com/kitap/hz-ali--islamin-dogusu-ve-ilk-ayriliklar",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "original",
+        "reviewer": "claude-stage2-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786051416922",
+            "type": "retailer"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/9786051416922",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "originalLanguage": "tr"
+    },
+    "herseyseninlebaslar": {
+      "status": "original",
+      "stage1": {
+        "decision": "original",
+        "reviewer": "claude-stage1-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/her-sey-seninle-baslar-kisisel-kurtulus-savasinizi-baslatin/75338.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/9786051067315",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "original",
+        "reviewer": "claude-stage2-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786051067315",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/her-sey-seninle-baslar-p-209420",
+            "type": "retailer"
+          }
+        ]
+      },
+      "originalLanguage": "tr"
+    },
+    "birguntekbasina": {
+      "status": "original",
+      "stage1": {
+        "decision": "original",
+        "reviewer": "claude-stage1-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/isbn/9786053140177",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/bir-gun-tek-basina/374755.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/bir-gun-tek-basina-p-224782",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "original",
+        "reviewer": "claude-stage2-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786053140177",
+            "type": "retailer"
+          }
+        ]
+      },
+      "originalLanguage": "tr"
+    },
+    "halilkutpasakutulamareninmuzafferkomutani": {
+      "status": "original",
+      "stage1": {
+        "decision": "original",
+        "reviewer": "claude-stage1-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/kutul-amarenin-muzaffer-komutani-halil-kut-pasa/449270.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.bkmkitap.com/halil-kut-pasa-kutul-amarenin-muzaffer-komutani",
+            "type": "retailer"
+          },
+          {
+            "url": "https://catalog.khas.edu.tr/bib/20927",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "original",
+        "reviewer": "claude-stage2-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9789752430303",
+            "type": "retailer"
+          }
+        ]
+      },
+      "originalLanguage": "tr"
+    },
+    "shibumi": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/sibumi/9293.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/kitap/sibumi/edebiyat/roman/macera/urunno=0000000058913",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.istanbulkitapcisi.com/sibumi",
+            "type": "retailer"
+          },
+          {
+            "url": "https://catalog.koc.k12.tr/bib/18384",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.bkmkitap.com/sibumi",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/sibumi-p-195384",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Şibumi",
+        "publisher": "E Yayınları",
+        "isbn": "9789753900799",
+        "translators": [
+          "Belkıs Dişbudak Çorakçı"
+        ]
+      }
+    },
+    "eigersanction": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/infazci/9297.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://openlibrary.org/search.json?author=Trevanian&fields=key,title,first_publish_year,edition_count,isbn,publisher&offset=30&limit=50",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9789753901055",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.turkedebiyati.org/?p=43243",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "İnfazcı",
+        "publisher": "E Yayınları",
+        "isbn": "9789753901055",
+        "translators": [
+          "Şen Süer Kaya"
+        ]
+      }
+    },
+    "incidentattwentymile": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/yirminci-mil/27379.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.istanbulkitapcisi.com/yirminci-mil",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.idefix.com/e-yayinlari-yirminci-mil-p-195535",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9789753901499",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.turkedebiyati.org/?p=43243",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Yirminci Mil",
+        "publisher": "E Yayınları",
+        "isbn": "9789753901499",
+        "translators": [
+          "Şen Süer Kaya"
+        ]
+      }
+    },
+    "summerofkatya": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/katyanin-yazi/9294.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/kitap/katyanin-yazi/edebiyat/roman/macera/urunno=0000000058909",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.bkmkitap.com/katyanin-yazi",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.istanbulkitapcisi.com/katyanin-yazi",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Katya'nın Yazı",
+        "publisher": "E Yayınları",
+        "isbn": "9789753900737",
+        "translators": [
+          "Belkıs Dişbudak Çorakçı"
+        ]
+      }
+    },
+    "main": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/kasaba-ofke-kotu-bir-silah-fakat-buyuk-bir-aractir/9296.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://openlibrary.org/search.json?author=Trevanian&fields=key,title,first_publish_year,edition_count,isbn,publisher&offset=30&limit=50",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9789753900942",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.turkedebiyati.org/?p=43243",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Kasaba",
+        "publisher": "E Yayınları",
+        "isbn": "9789753900942",
+        "translators": [
+          "Şen Süer Kaya"
+        ]
+      }
+    },
+    "hotnightinthecity": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/kentte-sicak-gece/31186.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://openlibrary.org/search.json?author=Trevanian&fields=key,title,first_publish_year,edition_count,isbn,publisher&offset=30&limit=50",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.bkmkitap.com/kentte-sicak-gece",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789753901680",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.goodreads.com/author/list/5374003",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Kentte Sıcak Gece",
+        "publisher": "E Yayınları",
+        "isbn": "9789753901680",
+        "translators": [
+          "Neşe Olcaytu"
+        ]
+      }
+    },
+    "crazyladiesofpearlstreet": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.istanbulkitapcisi.com/inci-sokagi",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/inci-sokagitrevanian/80185.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://openlibrary.org/search.json?author=Trevanian&fields=key,title,first_publish_year,edition_count,isbn,publisher&offset=30&limit=50",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://katalogkanuni.taa.gov.tr/client/en_US/default/search/detailnonmodal/ent:$002f$002fSD_ILS$002f0$002fSD_ILS:6488/ada",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9789753902076",
+            "type": "retailer"
+          }
+        ]
+      },
+      "edition": {
+        "title": "İnci Sokağı",
+        "publisher": "E Yayınları",
+        "isbn": "9789753902076",
+        "translators": [
+          "Belkıs Dişbudak Çorakçı"
+        ]
+      }
+    },
+    "devitabeatadebrevitatevitae": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-005",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.iskultur.com.tr/mutlu-yasam-uzerine-yasamin-kisaligi-uzerine.aspx",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.pandora.com.tr/kitap/mutlu-yasam-uzerine-yasamin-kisaligi-uzerine/670248",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-005",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786052956441",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.nadirkitap.com/mutlu-yasam-uzerine-yasamin-kisaligi-uzerine-seneca-kitap48371816.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://haber.sol.org.tr/yazarlar/atilla-ozsever/bilgelik-erdemli-olmaktir-411387",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Mutlu Yaşam Üzerine – Yaşamın Kısalığı Üzerine",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9786052956441",
+        "translators": [
+          "C. Cengiz Çevik"
+        ],
+        "year": 2018
+      }
+    },
+    "enchiridion": {
+      "status": "available",
+      "stage1": {
+        "decision": "available",
+        "reviewer": "claude-stage1-p-005",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.iskultur.com.tr/enkheiridion.aspx",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.kitapyurdu.com/kitap/enkheiridion-karton-kapak/510477.html",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "decision": "available",
+        "reviewer": "claude-stage2-p-005",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786052958469",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.ciceksepeti.com/enkheiridion-hasan-ali-yucel-klasikleri-kcm89162185",
+            "type": "retailer"
+          },
+          {
+            "url": "https://1000kitap.com/kitap/enkheiridion--173889",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "edition": {
+        "title": "Enkheiridion",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9786052958469",
+        "translators": [
+          "C. Cengiz Çevik"
+        ],
+        "year": 2019
       }
     }
   }

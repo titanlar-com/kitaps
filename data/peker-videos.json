@@ -1,0 +1,1236 @@
+{
+ "id": "sedat-peker-videolari",
+ "title": "Sedat Peker’in videolarında geçen kitaplar",
+ "short": "Peker videoları",
+ "description": "Sedat Peker’in 2020 ve 2021 açıklama videolarında masada ya da arkadaki tahtada görülen, konuşmasında andığı ya da okunmasını önerdiği kitaplar ve Haziran 2021’de Twitter’da önerdiği Trevanian sırası.",
+ "source": "https://github.com/titanlar-com/kitaps/blob/main/data/peker-videos.json",
+ "checkedAt": "2026-10-22",
+ "context": {
+  "purpose": "Videolarda geçtiği için çok aranan kitapları doğru künyeleriyle bulmak; hangisinin gerçekten önerildiğini, hangisinin yalnız kadrajda durduğunu ayırmak.",
+  "criterion": "Bir kitap, haber kaynakları onu belirli bir videoya ya da tweet zincirine bağlıyorsa alındı; 2020 videolarındaki iki biyografi tek ayrıntılı kaynakta geçiyor. Masadaki ve tahtadaki kitaplar öneri değildir: Peker onlara konuşmasında değinmedi, anlamı basın yükledi. Türkçe baskı yalnız iki ayrı sitede doğrulandığında gösterilir; gösterilen baskı, videodaki nüshanın baskısı olmayabilir.",
+  "verdict": "Peker’in kendi ağzıyla okunmasını istediği ya da konusunu anlattığı kitaplar: Bir Gün Tek Başına, Cyrano de Bergerac, Sistemde 50 Yıl, Savaş Sanatı, Işığın Savaşçısının El Kitabı ve Trevanian sırası. İnternette dolaşan “20 kitap” listeleri birbirinden kopyalanmış; Prens bu listelerde geçiyor, ama kaynaklar onu belirli bir videoya bağlamakta ayrışıyor."
+ },
+ "note": "Kataloğa alınmayanlar: Meydan Larousse (bir çocukluk anısında geçen çok ciltli ansiklopedi); adı verilmeden anılan yazar ve şairler (Nazım Hikmet, Neyzen Tevfik, Necip Fazıl Kısakürek ve başkaları); retweet edilen Aslan Avı; kişisel sitesindeki ve okur platformlarındaki listeler ile arşiv fotoğraflarındaki kitaplar. Bunların videolarda geçtiğine dair kanıt yok. Peker’in adına yayımlanan Ben Asla Unutmam’dan videolarda söz edilmedi. Roller ve sıralar not ve alt küme olarak tutulur, puana eklenmez.",
+ "groups": [
+  {
+   "id": "tavsiye",
+   "title": "Açıkça önerdikleri"
+  },
+  {
+   "id": "video-2021",
+   "title": "2021 serisinde masada ve tahtada"
+  },
+  {
+   "id": "video-2020",
+   "title": "2020 videolarında masada"
+  },
+  {
+   "id": "sozlu",
+   "title": "Konuşmasında andığı eserler"
+  },
+  {
+   "id": "trevanian",
+   "title": "Twitter’da önerdiği Trevanian sırası"
+  }
+ ],
+ "books": [
+  {
+   "key": "birguntekbasina",
+   "group": "tavsiye",
+   "role": "Açık tavsiye",
+   "title": "Bir Gün Tek Başına",
+   "author": "Vedat Türkali",
+   "originalLanguage": "tr",
+   "categories": [
+    "literature"
+   ],
+   "reason": "9. videoda (6 Haziran 2021) izleyicilere açıkça okumalarını önerdi ve ülkenin durumunu romana benzetti; ardından kitabın internet stokları tükendi. Türkali’nin 27 Mayıs 1960 öncesinde geçen ilk romanı (1974).",
+   "year": 1974,
+   "titleTr": "Bir Gün Tek Başına",
+   "edition": {
+    "title": "Bir Gün Tek Başına",
+    "isbn": "9786053140177",
+    "publisher": "Ayrıntı Yayınları",
+    "translators": [],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/bir-gun-tek-basina/374755.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9786053140177",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786053140177) ve Ayrıntı Yayınları yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-birguntekbasina.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12071011/mh:1000/wh:19227392a",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/bir-gun-tek-basina/374755.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Bir Gün Tek Başına",
+    "author": "Vedat Türkali",
+    "publisher": "Ayrıntı Yayınları",
+    "isbn": "9786053140177",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "cyranodebergerac",
+   "group": "tavsiye",
+   "role": "Açık tavsiye",
+   "title": "Cyrano de Bergerac",
+   "author": "Edmond Rostand",
+   "originalLanguage": "fr",
+   "categories": [
+    "literature"
+   ],
+   "reason": "8. videoda (30 Mayıs 2021) oyundaki “İstemem, eksik olsun” tiradını bir bakana gönderme olarak kullandı ve izleyicilere okumalarını önerdi. Rostand’ın gurur, bağımsızlık ve karşılıksız aşk üzerine oyunu (1897).",
+   "year": 1898,
+   "titleTr": "Cyrano de Bergerac",
+   "edition": {
+    "title": "Cyrano de Bergerac",
+    "isbn": "9789751412966",
+    "publisher": "Remzi Kitabevi",
+    "translators": [
+     "Nuriye Yiğitler"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/cyrano-de-bergerac/56878.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.iskultur.com.tr/cyrano-de-bergerac.aspx",
+    "secondSourceType": "publisher",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve iskultur.com.tr aynı ISBN'i (9789751412966) ve Remzi Kitabevi yayınevini gösteriyor; çevirmen: Nuriye Yiğitler. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-cyranodebergerac.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:61691/mh:1000/wh:cc50056ea",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/cyrano-de-bergerac/56878.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Cyrano de Bergerac",
+    "author": "Edmond Rostand",
+    "publisher": "Remzi Kitabevi",
+    "isbn": "9789751412966",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "extraGroups": [
+    {
+     "id": "sozlu",
+     "reason": "Tiradını videoda aktardı."
+    }
+   ]
+  },
+  {
+   "key": "fiftyyearsinthesystem",
+   "group": "tavsiye",
+   "role": "Açık tavsiye",
+   "title": "Fifty Years in the System",
+   "author": "Jimmy Laing",
+   "originalLanguage": "en",
+   "categories": [
+    "biography"
+   ],
+   "reason": "10. videoda (20 Haziran 2021) kitabı cezaevinde okuduğunu söyleyip konusunu özetledi; kendisinden daha kötü kaderli insanların hayatlarını incelediğini anlatırken andı. Bir kaynağa göre arkadaki tahtada da duruyordu; bu kare kare doğrulanmadı.",
+   "year": 1989,
+   "issue": "Türkçesi: Sistemde 50 Yıl – Bir İnsanın Sağlığını Kanıtlama Savaşı (Assos Yayınları, 1999, çeviren İsmail Ersevim). Baskının ISBN’i bulunamadığı için doğrulanmış sayılmadı."
+  },
+  {
+   "key": "artofwar",
+   "group": "tavsiye",
+   "role": "Açık tavsiye",
+   "existingId": "孫子兵法sunzibingfa",
+   "reason": "8 Mayıs 2020 videosunda karşıtlarına okumalarını önerdi."
+  },
+  {
+   "key": "manualdoguerreirodaluz",
+   "group": "tavsiye",
+   "role": "Açık tavsiye",
+   "title": "Manual do Guerreiro da Luz",
+   "author": "Paulo Coelho",
+   "originalLanguage": "pt",
+   "categories": [
+    "literature",
+    "philosophy"
+   ],
+   "reason": "8 Mayıs 2020 videosunda Savaş Sanatı ile birlikte karşıtlarına okumalarını önerdi.",
+   "year": 1997,
+   "titleTr": "Işığın Savaşçısının Elkitabı",
+   "edition": {
+    "title": "Işığın Savaşçısının Elkitabı",
+    "isbn": "9789750737107",
+    "publisher": "Can Yayınları",
+    "translators": [
+     "İlknur Özdemir"
+    ],
+    "sourceUrl": "https://www.canyayinlari.com/isigin-savascisinin-el-kitabi-9789750737107",
+    "sourceType": "publisher",
+    "secondSourceUrl": "https://www.pandora.com.tr/kitap/isigin-savascisinin-elkitabi/632218",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "canyayinlari.com ve pandora.com.tr aynı ISBN'i (9789750737107) ve Can Yayınları yayınevini gösteriyor; çevirmen: İlknur Özdemir. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-manualdoguerreirodaluz.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11839053/wi:500/wh:dc2f95528",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/isigin-savascisinin-elkitabi/50812.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Işığın Savaşçısının Elkitabı",
+    "author": "Paulo Coelho",
+    "publisher": "Can Yayınları",
+    "isbn": "9789750737107",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "extraGroups": [
+    {
+     "id": "video-2021",
+     "reason": "10. videoda (20 Haziran 2021) arka planda duruyordu."
+    }
+   ]
+  },
+  {
+   "key": "omerta",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "title": "Omertà",
+   "author": "Mario Puzo",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "1. videoda (2 Mayıs 2021) masadaydı; basın başlığı “suskunluk yasasını bozma” mesajı olarak yorumladı. Puzo’nun ölümünden sonra yayımlanan, bir mafya liderinin öldürülmesinin ardından aile, sadakat ve intikamı işleyen romanı (2000). Videodaki nüsha İnkılap baskısıydı; gösterilen baskı E Yayınları’nın bugünkü baskısı.",
+   "year": 2000,
+   "titleTr": "Omerta",
+   "edition": {
+    "title": "Omerta",
+    "isbn": "9789753904070",
+    "publisher": "E Yayınları",
+    "translators": [
+     "Zeynep Umuroğlu Çetinol"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/omerta/625943.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.istanbulkitapcisi.com/omerta",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve istanbulkitapcisi.com aynı ISBN'i (9789753904070) ve E Yayınları yayınevini gösteriyor; çevirmen: Zeynep Umuroğlu Çetinol. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-omerta.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11993873/wi:500/wh:027c3401d",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/omerta/625943.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Omerta",
+    "author": "Mario Puzo",
+    "publisher": "E Yayınları",
+    "isbn": "9789753904070",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "foolsdie",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "title": "Fools Die",
+   "author": "Mario Puzo",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "1. (2 Mayıs) ve 4. videoda (13 Mayıs 2021) masadaydı. Las Vegas’ın kumar dünyasını ve Hollywood’u bir yazar-kumarbazın gözünden anlatan roman (1978).",
+   "year": 1978,
+   "titleTr": "Aptallar Erken Ölür",
+   "edition": {
+    "title": "Aptallar Erken Ölür",
+    "isbn": "9789753901451",
+    "publisher": "E Yayınları",
+    "translators": [
+     "Osman Deniztekin"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/aptallar-erken-olur/9306.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.istanbulkitapcisi.com/aptallar-erken-olur",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve istanbulkitapcisi.com aynı ISBN'i (9789753901451) ve E Yayınları yayınevini gösteriyor; çevirmen: Osman Deniztekin. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-foolsdie.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11903049/mh:1000/wh:bd53a49e0",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/aptallar-erken-olur/9306.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Aptallar Erken Ölür",
+    "author": "Mario Puzo",
+    "publisher": "E Yayınları",
+    "isbn": "9789753901451",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "prophetoutcast",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "title": "The Prophet Outcast: Trotsky, 1929–1940",
+   "author": "Isaac Deutscher",
+   "originalLanguage": "en",
+   "categories": [
+    "biography",
+    "history",
+    "politics"
+   ],
+   "reason": "2. videoda (6 Mayıs 2021) masadaydı; basın yurt dışına çıkmasıyla özdeşleştirdi. Deutscher’in üç ciltlik Troçki biyografisinin sürgün yıllarını anlatan son cildi (1963).",
+   "year": 1963,
+   "titleTr": "Kovulan Sosyalist Troçki (1929-1940)",
+   "edition": {
+    "title": "Kovulan Sosyalist Troçki (1929-1940)",
+    "isbn": "9786051714745",
+    "publisher": "Alfa Yayınları",
+    "translators": [
+     "Rasih Güran"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kovulan-sosyalist-trocki-19291940/420601.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.alfayayinlari.com/kisi-goster.php?kisi=112164",
+    "secondSourceType": "publisher",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve alfayayinlari.com aynı ISBN'i (9786051714745) ve Alfa Yayınları yayınevini gösteriyor; çevirmen: Rasih Güran. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-prophetoutcast.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:3429244/wi:500/wh:762745025",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kovulan-sosyalist-trocki-19291940/420601.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Kovulan Sosyalist Troçki (1929-1940)",
+    "author": "Isaac Deutscher",
+    "publisher": "Alfa Yayınları",
+    "isbn": "9786051714745",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "powerlaws",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "existingId": "48lawsofpower",
+   "reason": "2. videoda (6 Mayıs 2021) Troçki biyografisinin yanında masadaydı."
+  },
+  {
+   "key": "godfatherreturns",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "title": "The Godfather Returns",
+   "author": "Mark Winegardner",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "3. videoda (9 Mayıs 2021) masadaydı; basın başlığı bir “dönüş” iddiası olarak okudu. Puzo’nun Baba romanının yayıncısının seçtiği yazarca yazılmış devamı (2004).",
+   "year": 2004,
+   "titleTr": "Baba'nın Dönüşü",
+   "edition": {
+    "title": "Baba'nın Dönüşü",
+    "isbn": "9789751024015",
+    "publisher": "İnkılap Kitabevi",
+    "translators": [
+     "Özlem Gültekin"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/babanin-donusu/75393.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.illakitap.com/babanin-donusu",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve illakitap.com aynı ISBN'i (9789751024015) ve İnkılap Kitabevi yayınevini gösteriyor; çevirmen: Özlem Gültekin. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-godfatherreturns.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:271279/wi:500/wh:8b01887f5",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/babanin-donusu/75393.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Baba'nın Dönüşü",
+    "author": "Mark Winegardner",
+    "publisher": "İnkılap Kitabevi",
+    "isbn": "9789751024015",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "wickedmessenger",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "title": "Wicked Messenger: Bob Dylan and the 1960s",
+   "author": "Mike Marqusee",
+   "originalLanguage": "en",
+   "categories": [
+    "biography",
+    "history"
+   ],
+   "reason": "5. videoda (16 Mayıs 2021) masadaydı; ardından satışları arttı ve Türkçe yayıncısı ikinci baskıya geçti. Dylan’ın müziğini 1960’ların Amerikan siyaseti ve sivil haklar hareketiyle birlikte inceler.",
+   "year": 2005,
+   "titleTr": "Hayırsız Peygamber Bob Dylan",
+   "edition": {
+    "title": "Hayırsız Peygamber Bob Dylan",
+    "isbn": "9786056887215",
+    "publisher": "Paris Yayınları",
+    "translators": [
+     "Çağatay Ünaltay"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/hayirsiz-peygamber-bob-dylan/534440.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://parisyayinlari.com/kitaplarimiz/hayirsiz-peygamber-bob-dylanmike-marqusee",
+    "secondSourceType": "publisher",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve parisyayinlari.com aynı ISBN'i (9786056887215) ve Paris Yayınları yayınevini gösteriyor; çevirmen: Çağatay Ünaltay. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-wickedmessenger.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11129168/mh:1000/wh:48205ab4b",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/hayirsiz-peygamber-bob-dylan/534440.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Hayırsız Peygamber Bob Dylan",
+    "author": "Mike Marqusee",
+    "publisher": "Paris Yayınları",
+    "isbn": "9786056887215",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "soncuret",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "title": "Son Cüret",
+   "author": "Yılmaz Özdil",
+   "originalLanguage": "tr",
+   "categories": [
+    "history"
+   ],
+   "reason": "6. videoda (20 Mayıs 2021) masadaydı. Millî Mücadele’nin başlangıcını Mustafa Kemal ve arkadaşlarının Anadolu’ya geçişi üzerinden anlatan popüler tarih (2020).",
+   "year": 2020,
+   "titleTr": "Son Cüret",
+   "edition": {
+    "title": "Son Cüret",
+    "isbn": "9786254440489",
+    "publisher": "Sia Kitap",
+    "translators": [],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/son-curet/556694.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9786254440489",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786254440489) ve Sia Kitap yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-soncuret.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11282764/wi:500/wh:f2726216a",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/son-curet/556694.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Son Cüret",
+    "author": "Yılmaz Özdil",
+    "publisher": "Sia Kitap",
+    "isbn": "9786254440489",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "hzali",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "title": "Hz. Ali: İslam’ın Doğuşu ve İlk Ayrılıklar",
+   "author": "Oral Çalışlar",
+   "originalLanguage": "tr",
+   "categories": [
+    "history"
+   ],
+   "reason": "7. videoda (23 Mayıs 2021) arkadaki tahtanın altındaki üç kitaptan biriydi. İslam’ın ilk dönemindeki siyasal ayrılıkları Hz. Ali üzerinden inceler.",
+   "titleTr": "Hz. Ali: İslam'ın Doğuşu ve İlk Ayrılıklar",
+   "edition": {
+    "title": "Hz. Ali: İslam'ın Doğuşu ve İlk Ayrılıklar",
+    "isbn": "9786051416922",
+    "publisher": "Everest Yayınları",
+    "translators": [],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/hz-ali-islamin-dogusu-ve-ilk-ayriliklar/328374.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9786051416922",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786051416922) ve Everest Yayınları yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-hzali.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:5945839/wi:500/wh:c323e44b5",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/hz-ali-islamin-dogusu-ve-ilk-ayriliklar/328374.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Hz. Ali: İslam'ın Doğuşu ve İlk Ayrılıklar",
+    "author": "Oral Çalışlar",
+    "publisher": "Everest Yayınları",
+    "isbn": "9786051416922",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "herseyseninlebaslar",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "title": "Her Şey Seninle Başlar",
+   "author": "Mümin Sekman",
+   "originalLanguage": "tr",
+   "categories": [
+    "psychology",
+    "productivity"
+   ],
+   "reason": "7. videoda (23 Mayıs 2021) tahtanın altındaydı. Öğrenilmiş çaresizlik ve davranış değişimi üzerine bir kişisel gelişim kitabı. Bir derlemede yanlışlıkla Ayşe Kulin’e atfedildi.",
+   "titleTr": "Her Şey Seninle Başlar: Kişisel Kurtuluş Savaşınızı Başlatın!",
+   "edition": {
+    "title": "Her Şey Seninle Başlar: Kişisel Kurtuluş Savaşınızı Başlatın!",
+    "isbn": "9786051067315",
+    "publisher": "Alfa Yayınları",
+    "translators": [],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/her-sey-seninle-baslar-kisisel-kurtulus-savasinizi-baslatin/75338.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9786051067315",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9786051067315) ve Alfa Yayınları yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-herseyseninlebaslar.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11755395/mh:1000/wh:5865801e6",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/her-sey-seninle-baslar-kisisel-kurtulus-savasinizi-baslatin/75338.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Her Şey Seninle Başlar: Kişisel Kurtuluş Savaşınızı Başlatın!",
+    "author": "Mümin Sekman",
+    "publisher": "Alfa Yayınları",
+    "isbn": "9786051067315",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "unizhennyeioskorblennye",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "title": "Униженные и оскорблённые",
+   "author": "Fyodor Mihayloviç Dostoyevski",
+   "originalLanguage": "ru",
+   "categories": [
+    "literature"
+   ],
+   "reason": "7. videoda (23 Mayıs 2021) tahtanın altındaydı. Dostoyevski’nin sürgünden sonra yazdığı ilk büyük roman (1861): yoksulluk, gurur ve sömürü içinde birbirine bağlanan insanlar. Videodaki nüsha İletişim’in Ezilmiş ve Aşağılanmışlar baskısıydı; gösterilen baskı İş Bankası’nın Ezilenler çevirisi.",
+   "year": 1861,
+   "titleTr": "Ezilenler",
+   "edition": {
+    "title": "Ezilenler",
+    "isbn": "9789944883146",
+    "publisher": "Türkiye İş Bankası Kültür Yayınları",
+    "translators": [
+     "Nihal Yalaza Taluy"
+    ],
+    "sourceUrl": "https://www.iskultur.com.tr/ezilenler.aspx",
+    "sourceType": "publisher",
+    "secondSourceUrl": "https://www.sadecekitap.com/ezilenler",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "iskultur.com.tr ve sadecekitap.com aynı ISBN'i (9789944883146) ve Türkiye İş Bankası Kültür Yayınları yayınevini gösteriyor; çevirmen: Nihal Yalaza Taluy. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-unizhennyeioskorblennye.jpg",
+    "imageUrl": "https://img.iskultur.com.tr/webp/2008/04/ezilenler-5.jpg",
+    "sourceUrl": "https://www.iskultur.com.tr/ezilenler.aspx",
+    "sourceName": "iskultur.com.tr",
+    "title": "Ezilenler",
+    "author": "Fyodor Mihayloviç Dostoyevski",
+    "publisher": "Türkiye İş Bankası Kültür Yayınları",
+    "isbn": "9789944883146",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "thefamily",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "title": "The Family",
+   "author": "Mario Puzo and Carol Gino",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "8. videoda (30 Mayıs 2021) tahtanın altında, 9. videoda (6 Haziran) masadaydı. Puzo’nun Borgia ailesini anlatan, ölümünden sonra Carol Gino’nun tamamladığı romanı (2001).",
+   "year": 2001,
+   "titleTr": "Aile",
+   "edition": {
+    "title": "Aile",
+    "isbn": "9789753904018",
+    "publisher": "E Yayınları",
+    "translators": [
+     "Selvin Kayahan"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/aile/561444.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.pandora.com.tr/kitap/aile/128921",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve pandora.com.tr aynı ISBN'i (9789753904018) ve E Yayınları yayınevini gösteriyor; çevirmen: Selvin Kayahan. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-thefamily.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11709672/wi:500/wh:0e22c6215",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/aile/561444.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Aile",
+    "author": "Mario Puzo and Carol Gino",
+    "publisher": "E Yayınları",
+    "isbn": "9789753904018",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "sixgravestomunich",
+   "group": "video-2021",
+   "role": "Kadrajda, öneri değil",
+   "title": "Six Graves to Munich",
+   "author": "Mario Puzo",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "9. videoda (6 Haziran 2021) Aile ile birlikte masadaydı. Puzo’nun Mario Cleri takma adıyla yayımladığı, işkencecilerini tek tek arayan bir savaş gazisinin intikam romanı (1967).",
+   "year": 1967,
+   "titleTr": "Münih'e Kadar 6 Mezar",
+   "edition": {
+    "title": "Münih'e Kadar 6 Mezar",
+    "isbn": "9789753902915",
+    "publisher": "E Yayınları",
+    "translators": [
+     "Hamide Koyukan"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/munihe-kadar-6-mezar/268612.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.pandora.com.tr/kitap/munihe-kadar-6-mezar/253232",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve pandora.com.tr aynı ISBN'i (9789753902915) ve E Yayınları yayınevini gösteriyor; çevirmen: Hamide Koyukan. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-sixgravestomunich.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11471265/wi:500/wh:ccb936b0f",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/munihe-kadar-6-mezar/268612.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Münih'e Kadar 6 Mezar",
+    "author": "Mario Puzo",
+    "publisher": "E Yayınları",
+    "isbn": "9789753902915",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "greywolf",
+   "group": "video-2020",
+   "role": "Kadrajda, öneri değil",
+   "title": "Grey Wolf: Mustafa Kemal, An Intimate Study of a Dictator",
+   "author": "H. C. Armstrong",
+   "originalLanguage": "en",
+   "categories": [
+    "biography",
+    "history"
+   ],
+   "reason": "Mayıs 2020 videolarından birinde (kaynaklarda 12 ya da 13 Mayıs) masadaydı; videoda kitaba değinmedi ve bunu ayrıntılı veren tek kaynak var. İngiliz bir subay-yazarın 1932’de yayımladığı, yorumları tartışmalı Mustafa Kemal portresi.",
+   "year": 1932,
+   "titleTr": "Bozkurt Mustafa Kemal",
+   "edition": {
+    "title": "Bozkurt Mustafa Kemal",
+    "isbn": "9786057707123",
+    "publisher": "Kaynak Yayınları",
+    "translators": [
+     "Gül Çağalı Güven"
+    ],
+    "sourceUrl": "https://www.kaynakyayinlari.com/bozkurt-mustafa-kemal-p364245.html",
+    "sourceType": "publisher",
+    "secondSourceUrl": "https://www.bkmkitap.com/bozkurt-mustafa-kemal-ve-ataturkun-cevabi",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kaynakyayinlari.com ve bkmkitap.com aynı ISBN'i (9786057707123) ve Kaynak Yayınları yayınevini gösteriyor; çevirmen: Gül Çağalı Güven. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-greywolf.jpg",
+    "imageUrl": "https://i.dr.com.tr/cache/500x400-0/originals/0001728094001-1.jpg",
+    "sourceUrl": "https://www.dr.com.tr/kitap/bozkurt-mustafa-kemal/edebiyat/biyografi-oto-biyografi/urunno=0001728094001",
+    "sourceName": "dr.com.tr",
+    "title": "Bozkurt Mustafa Kemal",
+    "author": "H. C. Armstrong",
+    "publisher": "Kaynak Yayınları",
+    "isbn": "9786057707123",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "halilkutpasa",
+   "group": "video-2020",
+   "role": "Kadrajda, öneri değil",
+   "title": "Halil Kut Paşa: Kûtü’l Amâre’nin Muzaffer Komutanı",
+   "author": "Mehmet Emin Dinç",
+   "originalLanguage": "tr",
+   "categories": [
+    "biography",
+    "history"
+   ],
+   "reason": "20 Mayıs 2020 videosunda masadaydı; videoda kitaba değinmedi ve bunu ayrıntılı veren tek kaynak var. Halil Kut Paşa’nın askerî hayatını ve Kûtü’l Amâre zaferini anlatan biyografi.",
+   "titleTr": "Kutü'l Amare'nin Muzaffer Komutanı Halil Kut Paşa",
+   "edition": {
+    "title": "Kutü'l Amare'nin Muzaffer Komutanı Halil Kut Paşa",
+    "isbn": "9789752430303",
+    "publisher": "Kronik Kitap",
+    "translators": [],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kutul-amarenin-muzaffer-komutani-halil-kut-pasa/449270.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9789752430303",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9789752430303) ve Kronik Kitap yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-halilkutpasa.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:5294933/wi:500/wh:b3911d74a",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kutul-amarenin-muzaffer-komutani-halil-kut-pasa/449270.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Kutü'l Amare'nin Muzaffer Komutanı Halil Kut Paşa",
+    "author": "Mehmet Emin Dinç",
+    "publisher": "Kronik Kitap",
+    "isbn": "9789752430303",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "safahat",
+   "group": "sozlu",
+   "role": "Sözlü atıf",
+   "title": "Safahat",
+   "author": "Mehmet Âkif Ersoy",
+   "originalLanguage": "tr",
+   "categories": [
+    "literature"
+   ],
+   "reason": "5. videoda (16 Mayıs 2021) Safahat’tan ezbere uzun bir bölüm okudu; belirli bir baskı gösterilmedi. Mehmet Âkif’in yedi kitaplık şiir külliyatı.",
+   "year": 1911,
+   "titleTr": "Safahat",
+   "edition": {
+    "title": "Safahat",
+    "isbn": "9789754733976",
+    "publisher": "Beyan Yayınları",
+    "translators": [],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/safahat/420919.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9789754733976",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9789754733976) ve Beyan Yayınları yayınevini gösteriyor. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-safahat.jpg",
+    "imageUrl": "https://bkmcdn03.witcdn.net/safahat-75357-11537350-75-B.jpg",
+    "sourceUrl": "https://www.bkmkitap.com/safahat-75357",
+    "sourceName": "bkmkitap.com",
+    "title": "Safahat",
+    "author": "Mehmet Âkif Ersoy",
+    "publisher": "Beyan Yayınları",
+    "isbn": "9789754733976",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "josephfouche",
+   "group": "sozlu",
+   "role": "Sözlü atıf",
+   "title": "Joseph Fouché. Bildnis eines politischen Menschen",
+   "author": "Stefan Zweig",
+   "originalLanguage": "de",
+   "categories": [
+    "biography",
+    "history",
+    "politics"
+   ],
+   "reason": "2. ve 4. videoda (6 ve 13 Mayıs 2021) iki ayrı kişiyi Fouché’ye benzetti; kitap gösterilmedi, kitapla bağı basın kurdu. Zweig’ın Fransız Devrimi’nden Restorasyon’a her rejimde ayakta kalan polis nazırı Fouché’yi anlatan portresi (1929).",
+   "year": 1929,
+   "titleTr": "Joseph Fouché: Bir Politikacının Portresi",
+   "edition": {
+    "title": "Joseph Fouché: Bir Politikacının Portresi",
+    "isbn": "9789750733666",
+    "publisher": "Can Yayınları",
+    "translators": [
+     "Zehra Kurttekin"
+    ],
+    "sourceUrl": "https://www.canyayinlari.com/joseph-fouche-9789750733666",
+    "sourceType": "publisher",
+    "secondSourceUrl": "https://www.kitapyurdu.com/kitap/joseph-fouche-bir-politikacinin-portresi/96571.html",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "canyayinlari.com ve kitapyurdu.com aynı ISBN'i (9789750733666) ve Can Yayınları yayınevini gösteriyor; çevirmen: Zehra Kurttekin. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-josephfouche.jpg",
+    "imageUrl": "https://i.dr.com.tr/cache/500x400-0/originals/0000000241259-1.jpg",
+    "sourceUrl": "https://www.dr.com.tr/search?q=9789750733666",
+    "sourceName": "dr.com.tr",
+    "title": "Joseph Fouché: Bir Politikacının Portresi",
+    "author": "Stefan Zweig",
+    "publisher": "Can Yayınları",
+    "isbn": "9789750733666",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "lespardaillan",
+   "group": "sozlu",
+   "role": "Sözlü atıf",
+   "title": "Les Pardaillan",
+   "author": "Michel Zévaco",
+   "originalLanguage": "fr",
+   "categories": [
+    "literature"
+   ],
+   "reason": "4. videoda (13 Mayıs 2021, yaklaşık 15:32) seriyi gençken okuduğunu ve cezaevinde dolabında gören bir müdürle aralarında geçen konuşmayı anlattı; okuduğu yaşı kaynaklar 12 ve 14 olarak farklı veriyor. Fransa’nın din savaşları döneminde geçen çok ciltli tarihî macera serisi.",
+   "year": 1902,
+   "titleTr": "Pardayanlar 1 - Pardayanlar",
+   "edition": {
+    "title": "Pardayanlar 1 - Pardayanlar",
+    "isbn": "9786057639585",
+    "publisher": "Dedalus Kitap",
+    "translators": [
+     "Murat Sertoğlu"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/pardayanlar-1-pardayanlar/595981.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://dedalus.com.tr/kitap/pardayanlar-1/",
+    "secondSourceType": "publisher",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dedalus.com.tr aynı ISBN'i (9786057639585) ve Dedalus Kitap yayınevini gösteriyor; çevirmen: Murat Sertoğlu. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-lespardaillan.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12168572/mh:1000/wh:d4a879d4c",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/pardayanlar-1-pardayanlar/595981.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Pardayanlar 1 - Pardayanlar",
+    "author": "Michel Zévaco",
+    "publisher": "Dedalus Kitap",
+    "isbn": "9786057639585",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "prince",
+   "group": "sozlu",
+   "role": "Sözlü atıf",
+   "existingId": "ilprincipe",
+   "reason": "Bir derlemeye göre 6. videoda (20 Mayıs 2021) Machiavelli’yi anarak devleti yönetenin devletin çıkarı için bazen yalan söylediği fikrini aktardı; başka bir derleme bu atfı belirli bir videoya bağlayamadı."
+  },
+  {
+   "key": "shibumi",
+   "group": "trevanian",
+   "role": "Tweet önerisi",
+   "title": "Shibumi",
+   "author": "Trevanian",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "10 Haziran 2021 tweet zincirinde önerdiği sırada 1. kitap. Go oyununun felsefesini ve aikidonun ruhunu anlatırken önerdiği ilk kitap; 1990’da cezaevinde okuduğunu yazdı. Batıyı gizlice yöneten bir şirketler birliğine karşı Go felsefesiyle yetişmiş bir suikastçının hikâyesi (1979).",
+   "year": 1979,
+   "titleTr": "Şibumi",
+   "edition": {
+    "title": "Şibumi",
+    "isbn": "9789753900799",
+    "publisher": "E Yayınları",
+    "translators": [
+     "Belkıs Dişbudak Çorakçı"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/sibumi/9293.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.bkmkitap.com/sibumi",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve bkmkitap.com aynı ISBN'i (9789753900799) ve E Yayınları yayınevini gösteriyor; çevirmen: Belkıs Dişbudak Çorakçı. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-shibumi.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12058268/mh:1000/wh:c66233fa0",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/sibumi/9293.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Şibumi",
+    "author": "Trevanian",
+    "publisher": "E Yayınları",
+    "isbn": "9789753900799",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "eigersanction",
+   "group": "trevanian",
+   "role": "Tweet önerisi",
+   "title": "The Eiger Sanction",
+   "author": "Trevanian",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "10 Haziran 2021 tweet zincirinde önerdiği sırada 2. kitap. Bir sanat profesörü-suikastçının Eiger’e tırmanan bir ekipte hedefini aradığı ilk romanı (1972).",
+   "year": 1972,
+   "titleTr": "İnfazcı",
+   "edition": {
+    "title": "İnfazcı",
+    "isbn": "9789753901055",
+    "publisher": "E Yayınları",
+    "translators": [
+     "Şen Süer Kaya"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/infazci/9297.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9789753901055",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9789753901055) ve E Yayınları yayınevini gösteriyor; çevirmen: Şen Süer Kaya. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-eigersanction.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11567561/mh:1000/wh:eadc8b4ec",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/infazci/9297.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "İnfazcı",
+    "author": "Trevanian",
+    "publisher": "E Yayınları",
+    "isbn": "9789753901055",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "loosanction",
+   "group": "trevanian",
+   "role": "Tweet önerisi",
+   "title": "The Loo Sanction",
+   "author": "Trevanian",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "10 Haziran 2021 tweet zincirinde önerdiği sırada 3. kitap. İnfazcı’nın devamı: aynı kahramanın Londra’da geçen ikinci macerası (1973).",
+   "year": 1973,
+   "issue": "Türkçesi: Hesaplaşma (E Yayınları, ISBN 9789753904155). Çevirmen kaynaklarda farklı geçiyor (Ebru Çanlıoğlu, Zeynep Umuroğlu Çetinol) ve ISBN ikinci, bağımsız bir sitede görülemedi; bu yüzden doğrulanmış sayılmadı."
+  },
+  {
+   "key": "incidentattwentymile",
+   "group": "trevanian",
+   "role": "Tweet önerisi",
+   "title": "Incident at Twenty-Mile",
+   "author": "Trevanian",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "10 Haziran 2021 tweet zincirinde önerdiği sırada 4. kitap. Wyoming’de bir maden kasabasında geçen western (1998).",
+   "year": 1998,
+   "titleTr": "Yirminci Mil",
+   "edition": {
+    "title": "Yirminci Mil",
+    "isbn": "9789753901499",
+    "publisher": "E Yayınları",
+    "translators": [
+     "Şen Süer Kaya"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/yirminci-mil/27379.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9789753901499",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9789753901499) ve E Yayınları yayınevini gösteriyor; çevirmen: Şen Süer Kaya. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-incidentattwentymile.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:7457660/wi:500/wh:e4fd4c896",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/yirminci-mil/27379.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Yirminci Mil",
+    "author": "Trevanian",
+    "publisher": "E Yayınları",
+    "isbn": "9789753901499",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "summerofkatya",
+   "group": "trevanian",
+   "role": "Tweet önerisi",
+   "title": "The Summer of Katya",
+   "author": "Trevanian",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "10 Haziran 2021 tweet zincirinde önerdiği sırada 5. kitap. Birinci Dünya Savaşı öncesinde Bask ülkesinde geçen psikolojik gerilim (1983).",
+   "year": 1983,
+   "titleTr": "Katya'nın Yazı",
+   "edition": {
+    "title": "Katya'nın Yazı",
+    "isbn": "9789753900737",
+    "publisher": "E Yayınları",
+    "translators": [
+     "Belkıs Dişbudak Çorakçı"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/katyanin-yazi/9294.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.bkmkitap.com/katyanin-yazi",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve bkmkitap.com aynı ISBN'i (9789753900737) ve E Yayınları yayınevini gösteriyor; çevirmen: Belkıs Dişbudak Çorakçı. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-summerofkatya.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12167866/mh:1000/wh:f1498a230",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/katyanin-yazi/9294.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Katya'nın Yazı",
+    "author": "Trevanian",
+    "publisher": "E Yayınları",
+    "isbn": "9789753900737",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "themain",
+   "group": "trevanian",
+   "role": "Tweet önerisi",
+   "title": "The Main",
+   "author": "Trevanian",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "10 Haziran 2021 tweet zincirinde önerdiği sırada 6. kitap. Montreal’in eski bir mahallesinde bir polis müfettişini anlatan polisiye (1976).",
+   "year": 1976,
+   "titleTr": "Kasaba",
+   "edition": {
+    "title": "Kasaba",
+    "isbn": "9789753900942",
+    "publisher": "E Yayınları",
+    "translators": [
+     "Şen Süer Kaya"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kasaba-ofke-kotu-bir-silah-fakat-buyuk-bir-aractir/9296.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9789753900942",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve dr.com.tr aynı ISBN'i (9789753900942) ve E Yayınları yayınevini gösteriyor; çevirmen: Şen Süer Kaya. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-themain.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:260166/mh:1000/wh:18ffc32fa",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kasaba-ofke-kotu-bir-silah-fakat-buyuk-bir-aractir/9296.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Kasaba",
+    "author": "Trevanian",
+    "publisher": "E Yayınları",
+    "isbn": "9789753900942",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "hotnightinthecity",
+   "group": "trevanian",
+   "role": "Tweet önerisi",
+   "title": "Hot Night in the City",
+   "author": "Trevanian",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "10 Haziran 2021 tweet zincirinde önerdiği sırada 7. kitap. Yazarın öykü kitabı (2000).",
+   "year": 2000,
+   "titleTr": "Kentte Sıcak Gece",
+   "edition": {
+    "title": "Kentte Sıcak Gece",
+    "isbn": "9789753901680",
+    "publisher": "E Yayınları",
+    "translators": [
+     "Neşe Olcaytu"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kentte-sicak-gece/31186.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://www.bkmkitap.com/kentte-sicak-gece",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve bkmkitap.com aynı ISBN'i (9789753901680) ve E Yayınları yayınevini gösteriyor; çevirmen: Neşe Olcaytu. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-hotnightinthecity.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11269130/mh:1000/wh:8a6258590",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/kentte-sicak-gece/31186.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "Kentte Sıcak Gece",
+    "author": "Trevanian",
+    "publisher": "E Yayınları",
+    "isbn": "9789753901680",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  },
+  {
+   "key": "crazyladiesofpearlstreet",
+   "group": "trevanian",
+   "role": "Tweet önerisi",
+   "title": "The Crazyladies of Pearl Street",
+   "author": "Trevanian",
+   "originalLanguage": "en",
+   "categories": [
+    "literature"
+   ],
+   "reason": "10 Haziran 2021 tweet zincirinde önerdiği sırada 8. kitap. Yazarın ölümünden önceki son kitabı (2005); çocukluğundan izler taşır. Peker sıranın en sonunda okunmasını istedi.",
+   "year": 2005,
+   "titleTr": "İnci Sokağı",
+   "edition": {
+    "title": "İnci Sokağı",
+    "isbn": "9789753902076",
+    "publisher": "E Yayınları",
+    "translators": [
+     "Belkıs Dişbudak Çorakçı"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/inci-sokagitrevanian/80185.html",
+    "sourceType": "retailer",
+    "secondSourceUrl": "https://katalogkanuni.taa.gov.tr/client/en_US/default/search/detailnonmodal/ent:$002f$002fSD_ILS$002f0$002fSD_ILS:6488/ada",
+    "secondSourceType": "library-catalog",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "kitapyurdu.com ve katalogkanuni.taa.gov.tr aynı ISBN'i (9789753902076) ve E Yayınları yayınevini gösteriyor; çevirmen: Belkıs Dişbudak Çorakçı. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/peker-crazyladiesofpearlstreet.jpg",
+    "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:146283/mh:1000/wh:65e53d606",
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/inci-sokagitrevanian/80185.html",
+    "sourceName": "kitapyurdu.com",
+    "title": "İnci Sokağı",
+    "author": "Trevanian",
+    "publisher": "E Yayınları",
+    "isbn": "9789753902076",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   }
+  }
+ ],
+ "links": [
+  {
+   "type": "sequence",
+   "first": "shibumi",
+   "then": "eigersanction",
+   "why": "Peker’in Twitter’da önerdiği Trevanian okuma sırasında bir önceki kitap.",
+   "next": "Peker’in önerdiği Trevanian sırasında sonraki kitap."
+  },
+  {
+   "type": "sequence",
+   "first": "eigersanction",
+   "then": "loosanction",
+   "why": "Peker’in Twitter’da önerdiği Trevanian okuma sırasında bir önceki kitap.",
+   "next": "Peker’in önerdiği Trevanian sırasında sonraki kitap."
+  },
+  {
+   "type": "sequence",
+   "first": "loosanction",
+   "then": "incidentattwentymile",
+   "why": "Peker’in Twitter’da önerdiği Trevanian okuma sırasında bir önceki kitap.",
+   "next": "Peker’in önerdiği Trevanian sırasında sonraki kitap."
+  },
+  {
+   "type": "sequence",
+   "first": "incidentattwentymile",
+   "then": "summerofkatya",
+   "why": "Peker’in Twitter’da önerdiği Trevanian okuma sırasında bir önceki kitap.",
+   "next": "Peker’in önerdiği Trevanian sırasında sonraki kitap."
+  },
+  {
+   "type": "sequence",
+   "first": "summerofkatya",
+   "then": "themain",
+   "why": "Peker’in Twitter’da önerdiği Trevanian okuma sırasında bir önceki kitap.",
+   "next": "Peker’in önerdiği Trevanian sırasında sonraki kitap."
+  },
+  {
+   "type": "sequence",
+   "first": "themain",
+   "then": "hotnightinthecity",
+   "why": "Peker’in Twitter’da önerdiği Trevanian okuma sırasında bir önceki kitap.",
+   "next": "Peker’in önerdiği Trevanian sırasında sonraki kitap."
+  },
+  {
+   "type": "sequence",
+   "first": "hotnightinthecity",
+   "then": "crazyladiesofpearlstreet",
+   "why": "Peker’in Twitter’da önerdiği Trevanian okuma sırasında bir önceki kitap.",
+   "next": "Peker’in önerdiği Trevanian sırasında sonraki kitap."
+  }
+ ]
+}

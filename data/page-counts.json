@@ -1,0 +1,3936 @@
+{
+ "schemaVersion": 1,
+ "policy": "Sayfa sayısı baskıya aittir ve ISBN ile tutulur. Yalnız aynı ISBN’i gösteren bir sayfadan ya da o ISBN’in kaydından alınır: kataloğun zaten kaynak gösterdiği baskı sayfası, Open Library, Google Books ya da ISBN ile bulunan kitapyurdu.com ürünü.",
+ "records": {
+  "9780029250907": {
+   "pages": 557,
+   "sourceUrl": "https://openlibrary.org/isbn/9780029250907",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780029253618": {
+   "pages": 855,
+   "sourceUrl": "https://openlibrary.org/isbn/9780029253618",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780060110925": {
+   "pages": 839,
+   "sourceUrl": "https://openlibrary.org/isbn/9780060110925",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780060523800": {
+   "pages": 292,
+   "sourceUrl": "https://openlibrary.org/isbn/9780060523800",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780060548780": {
+   "pages": 400,
+   "sourceUrl": "https://openlibrary.org/isbn/9780060548780",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780060731137": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9780060731137",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780060845797": {
+   "pages": 256,
+   "sourceUrl": "https://openlibrary.org/isbn/9780060845797",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780060913601": {
+   "pages": 277,
+   "sourceUrl": "https://openlibrary.org/isbn/9780060913601",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780060915803": {
+   "pages": 135,
+   "sourceUrl": "https://openlibrary.org/isbn/9780060915803",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780060937386": {
+   "pages": 704,
+   "sourceUrl": "https://openlibrary.org/isbn/9780060937386",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780061330087": {
+   "pages": 448,
+   "sourceUrl": "https://openlibrary.org/isbn/9780061330087",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780061339202": {
+   "pages": 336,
+   "sourceUrl": "https://openlibrary.org/isbn/9780061339202",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780061345012": {
+   "pages": 368,
+   "sourceUrl": "https://openlibrary.org/isbn/9780061345012",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780061766084": {
+   "pages": 264,
+   "sourceUrl": "https://openlibrary.org/isbn/9780061766084",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780071359160": {
+   "pages": 246,
+   "sourceUrl": "https://openlibrary.org/isbn/9780071359160",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780071418591": {
+   "pages": 107,
+   "sourceUrl": "https://openlibrary.org/isbn/9780071418591",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780071499934": {
+   "pages": 160,
+   "sourceUrl": "https://openlibrary.org/isbn/9780071499934",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780071752855": {
+   "pages": 225,
+   "sourceUrl": "https://openlibrary.org/isbn/9780071752855",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780130296047": {
+   "pages": 278,
+   "sourceUrl": "https://openlibrary.org/isbn/9780130296047",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780134085968": {
+   "pages": 464,
+   "sourceUrl": "https://openlibrary.org/isbn/9780134085968",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780134629469": {
+   "pages": 440,
+   "sourceUrl": "https://openlibrary.org/isbn/9780134629469",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780140167153": {
+   "pages": 384,
+   "sourceUrl": "https://openlibrary.org/isbn/9780140167153",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780142001103": {
+   "pages": 224,
+   "sourceUrl": "https://openlibrary.org/isbn/9780142001103",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780142001905": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9780142001905",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780143118244": {
+   "pages": 640,
+   "sourceUrl": "https://openlibrary.org/isbn/9780143118244",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780143122234": {
+   "pages": 291,
+   "sourceUrl": "https://openlibrary.org/isbn/9780143122234",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780195374612": {
+   "pages": 326,
+   "sourceUrl": "https://openlibrary.org/isbn/9780195374612",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780201483406": {
+   "pages": 521,
+   "sourceUrl": "https://openlibrary.org/isbn/9780201483406",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780231143721": {
+   "pages": 320,
+   "sourceUrl": "https://openlibrary.org/isbn/9780231143721",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780256178944": {
+   "pages": 764,
+   "sourceUrl": "https://openlibrary.org/isbn/9780256178944",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780262002745": {
+   "pages": 204,
+   "sourceUrl": "https://openlibrary.org/isbn/9780262002745",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780262611466": {
+   "pages": 348,
+   "sourceUrl": "https://openlibrary.org/isbn/9780262611466",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780262691918": {
+   "pages": 231,
+   "sourceUrl": "https://openlibrary.org/isbn/9780262691918",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780273656388": {
+   "pages": 384,
+   "sourceUrl": "https://openlibrary.org/isbn/9780273656388",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780273663560": {
+   "pages": 270,
+   "sourceUrl": "https://openlibrary.org/isbn/9780273663560",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780307720740": {
+   "pages": 588,
+   "sourceUrl": "https://openlibrary.org/isbn/9780307720740",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780312240462": {
+   "pages": 288,
+   "sourceUrl": "https://openlibrary.org/isbn/9780312240462",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780312263218": {
+   "pages": 176,
+   "sourceUrl": "https://openlibrary.org/isbn/9780312263218",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780312284541": {
+   "pages": 384,
+   "sourceUrl": "https://openlibrary.org/isbn/9780312284541",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780316178310": {
+   "pages": 173,
+   "sourceUrl": "https://openlibrary.org/isbn/9780316178310",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780316346627": {
+   "pages": 301,
+   "sourceUrl": "https://openlibrary.org/isbn/9780316346627",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780316881463": {
+   "pages": 320,
+   "sourceUrl": "https://openlibrary.org/isbn/9780316881463",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780321426772": {
+   "pages": 178,
+   "sourceUrl": "https://openlibrary.org/isbn/9780321426772",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780321525659": {
+   "pages": 229,
+   "sourceUrl": "https://openlibrary.org/isbn/9780321525659",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780345376251": {
+   "pages": 332,
+   "sourceUrl": "https://openlibrary.org/isbn/9780345376251",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780345485922": {
+   "pages": 464,
+   "sourceUrl": "https://openlibrary.org/isbn/9780345485922",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780374257835": {
+   "pages": 336,
+   "sourceUrl": "https://openlibrary.org/isbn/9780374257835",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780375701047": {
+   "pages": 642,
+   "sourceUrl": "https://openlibrary.org/isbn/9780375701047",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780375758256": {
+   "pages": 288,
+   "sourceUrl": "https://openlibrary.org/isbn/9780375758256",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780385042352": {
+   "pages": 472,
+   "sourceUrl": "https://openlibrary.org/isbn/9780385042352",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780385349949": {
+   "pages": 228,
+   "sourceUrl": "https://openlibrary.org/isbn/9780385349949",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780385420563": {
+   "pages": 314,
+   "sourceUrl": "https://openlibrary.org/isbn/9780385420563",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780385475259": {
+   "pages": 252,
+   "sourceUrl": "https://openlibrary.org/isbn/9780385475259",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780385499842": {
+   "pages": 307,
+   "sourceUrl": "https://openlibrary.org/isbn/9780385499842",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780385502894": {
+   "pages": 352,
+   "sourceUrl": "https://openlibrary.org/isbn/9780385502894",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780385503860": {
+   "pages": 320,
+   "sourceUrl": "https://openlibrary.org/isbn/9780385503860",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780385512466": {
+   "pages": 176,
+   "sourceUrl": "https://openlibrary.org/isbn/9780385512466",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780393052763": {
+   "pages": 302,
+   "sourceUrl": "https://openlibrary.org/isbn/9780393052763",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780393057652": {
+   "pages": 288,
+   "sourceUrl": "https://openlibrary.org/isbn/9780393057652",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780394567846": {
+   "pages": 561,
+   "sourceUrl": "https://openlibrary.org/isbn/9780394567846",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780415371032": {
+   "pages": 313,
+   "sourceUrl": "https://openlibrary.org/isbn/9780415371032",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780425062654": {
+   "pages": 111,
+   "sourceUrl": "https://openlibrary.org/isbn/9780425062654",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780446672313": {
+   "pages": 272,
+   "sourceUrl": "https://openlibrary.org/isbn/9780446672313",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780446674553": {
+   "pages": 232,
+   "sourceUrl": "https://openlibrary.org/isbn/9780446674553",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780446676670": {
+   "pages": 224,
+   "sourceUrl": "https://openlibrary.org/isbn/9780446676670",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780452273160": {
+   "pages": 264,
+   "sourceUrl": "https://openlibrary.org/isbn/9780452273160",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780465024773": {
+   "pages": 434,
+   "sourceUrl": "https://openlibrary.org/isbn/9780465024773",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780465068746": {
+   "pages": 374,
+   "sourceUrl": "https://openlibrary.org/isbn/9780465068746",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780470182024": {
+   "pages": 375,
+   "sourceUrl": "https://openlibrary.org/isbn/9780470182024",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780471249542": {
+   "pages": 237,
+   "sourceUrl": "https://openlibrary.org/isbn/9780471249542",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780471292944": {
+   "pages": 336,
+   "sourceUrl": "https://openlibrary.org/isbn/9780471292944",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780471303527": {
+   "pages": 446,
+   "sourceUrl": "https://openlibrary.org/isbn/9780471303527",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780471380719": {
+   "pages": 442,
+   "sourceUrl": "https://openlibrary.org/isbn/9780471380719",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780471384557": {
+   "pages": 272,
+   "sourceUrl": "https://openlibrary.org/isbn/9780471384557",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780471405559": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9780471405559",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780471478676": {
+   "pages": 205,
+   "sourceUrl": "https://openlibrary.org/isbn/9780471478676",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780471703082": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9780471703082",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780486652320": {
+   "pages": 155,
+   "sourceUrl": "https://openlibrary.org/isbn/9780486652320",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780534344818": {
+   "pages": 352,
+   "sourceUrl": "https://openlibrary.org/isbn/9780534344818",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780553562835": {
+   "pages": 272,
+   "sourceUrl": "https://openlibrary.org/isbn/9780553562835",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780596517717": {
+   "pages": 400,
+   "sourceUrl": "https://openlibrary.org/isbn/9780596517717",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780596527051": {
+   "pages": 192,
+   "sourceUrl": "https://openlibrary.org/isbn/9780596527051",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780609608395": {
+   "pages": 141,
+   "sourceUrl": "https://openlibrary.org/isbn/9780609608395",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780609610572": {
+   "pages": 278,
+   "sourceUrl": "https://openlibrary.org/isbn/9780609610572",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780670881116": {
+   "pages": 179,
+   "sourceUrl": "https://openlibrary.org/isbn/9780670881116",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780670881338": {
+   "pages": 286,
+   "sourceUrl": "https://openlibrary.org/isbn/9780670881338",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780671671648": {
+   "pages": 251,
+   "sourceUrl": "https://openlibrary.org/isbn/9780671671648",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780674840317": {
+   "pages": 309,
+   "sourceUrl": "https://openlibrary.org/isbn/9780674840317",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780679734161": {
+   "pages": 251,
+   "sourceUrl": "https://openlibrary.org/isbn/9780679734161",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780679762881": {
+   "pages": 243,
+   "sourceUrl": "https://openlibrary.org/isbn/9780679762881",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780679805274": {
+   "pages": 48,
+   "sourceUrl": "https://openlibrary.org/isbn/9780679805274",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780684823058": {
+   "pages": 730,
+   "sourceUrl": "https://openlibrary.org/isbn/9780684823058",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780684845111": {
+   "pages": 269,
+   "sourceUrl": "https://openlibrary.org/isbn/9780684845111",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780684847436": {
+   "pages": 406,
+   "sourceUrl": "https://openlibrary.org/isbn/9780684847436",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780691149134": {
+   "pages": 480,
+   "sourceUrl": "https://openlibrary.org/isbn/9780691149134",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780691183251": {
+   "pages": 528,
+   "sourceUrl": "https://openlibrary.org/isbn/9780691183251",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780692563496": {
+   "pages": 274,
+   "sourceUrl": "https://openlibrary.org/isbn/9780692563496",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780712680301": {
+   "pages": 389,
+   "sourceUrl": "https://openlibrary.org/isbn/9780712680301",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780716707516": {
+   "pages": 250,
+   "sourceUrl": "https://openlibrary.org/isbn/9780716707516",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780716728504": {
+   "pages": 604,
+   "sourceUrl": "https://openlibrary.org/isbn/9780716728504",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780738206714": {
+   "pages": 272,
+   "sourceUrl": "https://openlibrary.org/isbn/9780738206714",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780738208985": {
+   "pages": 260,
+   "sourceUrl": "https://openlibrary.org/isbn/9780738208985",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780738209128": {
+   "pages": 311,
+   "sourceUrl": "https://openlibrary.org/isbn/9780738209128",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780743201148": {
+   "pages": 272,
+   "sourceUrl": "https://openlibrary.org/isbn/9780743201148",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780743235273": {
+   "pages": 256,
+   "sourceUrl": "https://openlibrary.org/isbn/9780743235273",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780786148257": {
+   "pages": 200,
+   "sourceUrl": "https://openlibrary.org/isbn/9780786148257",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780786865956": {
+   "pages": 192,
+   "sourceUrl": "https://openlibrary.org/isbn/9780786865956",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780787940041": {
+   "pages": 453,
+   "sourceUrl": "https://openlibrary.org/isbn/9780787940041",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780787952754": {
+   "pages": 312,
+   "sourceUrl": "https://openlibrary.org/isbn/9780787952754",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780787955113": {
+   "pages": 224,
+   "sourceUrl": "https://openlibrary.org/isbn/9780787955113",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780787957292": {
+   "pages": 250,
+   "sourceUrl": "https://openlibrary.org/isbn/9780787957292",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780787957858": {
+   "pages": 300,
+   "sourceUrl": "https://openlibrary.org/isbn/9780787957858",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780787970932": {
+   "pages": 272,
+   "sourceUrl": "https://openlibrary.org/isbn/9780787970932",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780787984915": {
+   "pages": 416,
+   "sourceUrl": "https://openlibrary.org/isbn/9780787984915",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780787987756": {
+   "pages": 208,
+   "sourceUrl": "https://openlibrary.org/isbn/9780787987756",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780793185689": {
+   "pages": 192,
+   "sourceUrl": "https://openlibrary.org/isbn/9780793185689",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780800718275": {
+   "pages": 352,
+   "sourceUrl": "https://openlibrary.org/isbn/9780800718275",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780805011944": {
+   "pages": 351,
+   "sourceUrl": "https://openlibrary.org/isbn/9780805011944",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780809105540": {
+   "pages": 370,
+   "sourceUrl": "https://openlibrary.org/isbn/9780809105540",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780812929355": {
+   "pages": 329,
+   "sourceUrl": "https://openlibrary.org/isbn/9780812929355",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780814473436": {
+   "pages": 262,
+   "sourceUrl": "https://openlibrary.org/isbn/9780814473436",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780836221671": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9780836221671",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780875843018": {
+   "pages": 278,
+   "sourceUrl": "https://openlibrary.org/isbn/9780875843018",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780875846514": {
+   "pages": 322,
+   "sourceUrl": "https://openlibrary.org/isbn/9780875846514",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780875847191": {
+   "pages": 281,
+   "sourceUrl": "https://openlibrary.org/isbn/9780875847191",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780875848198": {
+   "pages": 254,
+   "sourceUrl": "https://openlibrary.org/isbn/9780875848198",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780875848419": {
+   "pages": 345,
+   "sourceUrl": "https://openlibrary.org/isbn/9780875848419",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780875848570": {
+   "pages": 242,
+   "sourceUrl": "https://openlibrary.org/isbn/9780875848570",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780875848631": {
+   "pages": 352,
+   "sourceUrl": "https://openlibrary.org/isbn/9780875848631",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780911379051": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9780911379051",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780915299195": {
+   "pages": 155,
+   "sourceUrl": "https://openlibrary.org/isbn/9780915299195",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780930641009": {
+   "pages": 206,
+   "sourceUrl": "https://openlibrary.org/isbn/9780930641009",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780932633019": {
+   "pages": 228,
+   "sourceUrl": "https://openlibrary.org/isbn/9780932633019",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780964712157": {
+   "pages": 180,
+   "sourceUrl": "https://openlibrary.org/isbn/9780964712157",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780970601902": {
+   "pages": 221,
+   "sourceUrl": "https://openlibrary.org/isbn/9780970601902",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780970601995": {
+   "pages": 280,
+   "sourceUrl": "https://openlibrary.org/isbn/9780970601995",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780979368103": {
+   "pages": 192,
+   "sourceUrl": "https://openlibrary.org/isbn/9780979368103",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780981454221": {
+   "pages": 97,
+   "sourceUrl": "https://openlibrary.org/isbn/9780981454221",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9780989645232": {
+   "pages": 192,
+   "sourceUrl": "https://openlibrary.org/isbn/9780989645232",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781118443613": {
+   "pages": 236,
+   "sourceUrl": "https://openlibrary.org/isbn/9781118443613",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781119477242": {
+   "pages": 256,
+   "sourceUrl": "https://openlibrary.org/isbn/9781119477242",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781119550099": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9781119550099",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781250185969": {
+   "pages": 368,
+   "sourceUrl": "https://openlibrary.org/isbn/9781250185969",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781400077304": {
+   "pages": 832,
+   "sourceUrl": "https://openlibrary.org/isbn/9781400077304",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781400081882": {
+   "pages": 160,
+   "sourceUrl": "https://openlibrary.org/isbn/9781400081882",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781400831630": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9781400831630",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781403975812": {
+   "pages": 272,
+   "sourceUrl": "https://openlibrary.org/isbn/9781403975812",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781405300490": {
+   "pages": 352,
+   "sourceUrl": "https://openlibrary.org/isbn/9781405300490",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781411601727": {
+   "pages": 243,
+   "sourceUrl": "https://openlibrary.org/isbn/9781411601727",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781416595243": {
+   "pages": 320,
+   "sourceUrl": "https://openlibrary.org/isbn/9781416595243",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781422103289": {
+   "pages": 272,
+   "sourceUrl": "https://openlibrary.org/isbn/9781422103289",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781422119150": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9781422119150",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781422121061": {
+   "pages": 208,
+   "sourceUrl": "https://openlibrary.org/isbn/9781422121061",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781422144114": {
+   "pages": 284,
+   "sourceUrl": "https://openlibrary.org/isbn/9781422144114",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781422187395": {
+   "pages": 260,
+   "sourceUrl": "https://openlibrary.org/isbn/9781422187395",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781481173506": {
+   "pages": 78,
+   "sourceUrl": "https://openlibrary.org/isbn/9781481173506",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781500619213": {
+   "pages": 108,
+   "sourceUrl": "https://openlibrary.org/isbn/9781500619213",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781524760076": {
+   "pages": 408,
+   "sourceUrl": "https://openlibrary.org/isbn/9781524760076",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781563523304": {
+   "pages": 258,
+   "sourceUrl": "https://openlibrary.org/isbn/9781563523304",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781578511242": {
+   "pages": 314,
+   "sourceUrl": "https://openlibrary.org/isbn/9781578511242",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781578516445": {
+   "pages": 208,
+   "sourceUrl": "https://openlibrary.org/isbn/9781578516445",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781578517503": {
+   "pages": 320,
+   "sourceUrl": "https://openlibrary.org/isbn/9781578517503",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781578518524": {
+   "pages": 288,
+   "sourceUrl": "https://openlibrary.org/isbn/9781578518524",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781578519514": {
+   "pages": 214,
+   "sourceUrl": "https://openlibrary.org/isbn/9781578519514",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781578601790": {
+   "pages": 340,
+   "sourceUrl": "https://openlibrary.org/isbn/9781578601790",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781580087735": {
+   "pages": 394,
+   "sourceUrl": "https://openlibrary.org/isbn/9781580087735",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781587991639": {
+   "pages": 272,
+   "sourceUrl": "https://openlibrary.org/isbn/9781587991639",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781591391104": {
+   "pages": 208,
+   "sourceUrl": "https://openlibrary.org/isbn/9781591391104",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781591391340": {
+   "pages": 324,
+   "sourceUrl": "https://openlibrary.org/isbn/9781591391340",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781591391852": {
+   "pages": 312,
+   "sourceUrl": "https://openlibrary.org/isbn/9781591391852",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781591393245": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9781591393245",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781591397991": {
+   "pages": 286,
+   "sourceUrl": "https://openlibrary.org/isbn/9781591397991",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781591399681": {
+   "pages": 221,
+   "sourceUrl": "https://openlibrary.org/isbn/9781591399681",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781591840213": {
+   "pages": 160,
+   "sourceUrl": "https://openlibrary.org/isbn/9781591840213",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781591841517": {
+   "pages": 288,
+   "sourceUrl": "https://openlibrary.org/isbn/9781591841517",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781591842408": {
+   "pages": 335,
+   "sourceUrl": "https://openlibrary.org/isbn/9781591842408",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781591846604": {
+   "pages": 480,
+   "sourceUrl": "https://openlibrary.org/isbn/9781591846604",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781591847847": {
+   "pages": 326,
+   "sourceUrl": "https://openlibrary.org/isbn/9781591847847",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781592535873": {
+   "pages": 272,
+   "sourceUrl": "https://openlibrary.org/isbn/9781592535873",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781592858491": {
+   "pages": 137,
+   "sourceUrl": "https://openlibrary.org/isbn/9781592858491",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781595620156": {
+   "pages": 192,
+   "sourceUrl": "https://openlibrary.org/isbn/9781595620156",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781595629982": {
+   "pages": 280,
+   "sourceUrl": "https://openlibrary.org/isbn/9781595629982",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781605095257": {
+   "pages": 190,
+   "sourceUrl": "https://openlibrary.org/isbn/9781605095257",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781611800128": {
+   "pages": 160,
+   "sourceUrl": "https://openlibrary.org/isbn/9781611800128",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781884731266": {
+   "pages": 400,
+   "sourceUrl": "https://openlibrary.org/isbn/9781884731266",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781885167606": {
+   "pages": 220,
+   "sourceUrl": "https://openlibrary.org/isbn/9781885167606",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9781912248315": {
+   "pages": 304,
+   "sourceUrl": "https://openlibrary.org/isbn/9781912248315",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9784805316160": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9784805316160",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050058017": {
+   "pages": 142,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/gizli-yediler-1-kitap/111708.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050201277": {
+   "pages": 408,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/eski-yunan-tarihoncesinden-helenistik-caga/272636.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050204704": {
+   "pages": 376,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/secme-sanati/376356.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050204933": {
+   "pages": 448,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ekonomi-rehberi/389092.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050205695": {
+   "pages": 160,
+   "sourceUrl": "https://openlibrary.org/isbn/9786050205695",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050624830": {
+   "pages": 384,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/insanlik-icin-yapay-zeka-yapay-zeka-ve-kontrol-problemi/589125.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050671353": {
+   "pages": 352,
+   "sourceUrl": "https://www.dr.com.tr/kitap/cok-yonlu-basari-icin-neden-cok-seyle-ilgilenmeliyiz/david-epstein/egitim-basvuru/kisisel-gelisim/urunno=0001891324001",
+   "sourceName": "dr.com.tr",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050822038": {
+   "pages": 256,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/icimdeki-muzik/389502.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050822649": {
+   "pages": 320,
+   "sourceUrl": "https://openlibrary.org/isbn/9786050822649",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050845938": {
+   "pages": 288,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kaos-icindeki-dunyada-kapitalizmi-yeniden-tasarlamak/628036.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050918441": {
+   "pages": 281,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/lean-in-sinirlarini-zorla-kadinlar-is-ve-liderlik-istegi/328503.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050932607": {
+   "pages": 376,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yaraticilik-as/387378.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050939897": {
+   "pages": 296,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/8020-kurali/414257.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786050981483": {
+   "pages": 224,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/degisime-liderlik-etmek/573720.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051030753": {
+   "pages": 674,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sok-doktrini-felaket-kapitalizminin-yukselisi/148874.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051032887": {
+   "pages": 496,
+   "sourceUrl": "https://www.kitapsepeti.com/rekabet-stratejisi-132392",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051033006": {
+   "pages": 288,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/girisimcilik-tutkusu/380227.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051033204": {
+   "pages": 264,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bir-lider-olabilmek/395596.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051067315": {
+   "pages": 240,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/her-sey-seninle-baslar-kisisel-kurtulus-savasinizi-baslatin/75338.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051068626": {
+   "pages": 62,
+   "sourceUrl": "https://www.kitapsepeti.com/tentenin-maceralari-mavi-lotus",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051331423": {
+   "pages": 688,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/orgutsel-davranis-organizational-behavior/269493.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051414898": {
+   "pages": 136,
+   "sourceUrl": "https://www.kitapsepeti.com/agir-roman",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051416922": {
+   "pages": 250,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/hz-ali-islamin-dogusu-ve-ilk-ayriliklar/328374.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051511054": {
+   "pages": 160,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/beden-ve-yuz-yapisi-ile-karakter-analizi/22549.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051710815": {
+   "pages": 1100,
+   "sourceUrl": "https://openlibrary.org/isbn/9786051710815",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051711881": {
+   "pages": 310,
+   "sourceUrl": "https://www.kitapsepeti.com/osmanli-imparatorlugunun-kurulusu-102339",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051712550": {
+   "pages": 720,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/insanlik-20/393072.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051714745": {
+   "pages": 616,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kovulan-sosyalist-trocki-19291940/420601.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051719467": {
+   "pages": 430,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sherlock-holmesun-maceralari/596546.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051719719": {
+   "pages": 366,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bilimin-kisa-tarihi-buyuk-patlamadan-dijital-caga/512933.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051733838": {
+   "pages": 648,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/9786051733838/452785.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051733968": {
+   "pages": 289,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/cografya-mahkumlari/455457.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051735863": {
+   "pages": 48,
+   "sourceUrl": "https://openlibrary.org/isbn/9786051735863",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051736938": {
+   "pages": 360,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bulbulu-oldurmek/533797.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051738796": {
+   "pages": 440,
+   "sourceUrl": "https://www.dr.com.tr/kitap/gorunmez-kadinlar/egitim-basvuru/aile-cocuk/kadin-erkek-iliskisi/urunno=0001912120001",
+   "sourceName": "dr.com.tr",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051881225": {
+   "pages": 88,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/babamin-ejderhasi/425559.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051981048": {
+   "pages": 616,
+   "sourceUrl": "https://www.kitapsepeti.com/leonardo-da-vinci-69170",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051983608": {
+   "pages": 632,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/aci-imparatorlugu-sackler-hanedaninin-gizli-tarihi/701490.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786051984391": {
+   "pages": 320,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kabile-bizi-ayiran-kulturel-icguduler-bir-araya-gelmemizi-de-saglayabilir-mi/760404.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052116784": {
+   "pages": 392,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/super-zekayapay-zeka-uygulamalari-tehlikeler-ve-stratejiler/489615.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052189825": {
+   "pages": 480,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yapay-zeka-imparatorlugu/765091.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052202067": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/the-second-machine-age-akilli-teknolojiler-devrinde-calisma-ilerleme-ve-refah/374370.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052202159": {
+   "pages": 287,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ilk-90-gun-gecis-donemindeki-yoneticiler-icin-kanitlanmis-stratejiler/350002.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052202296": {
+   "pages": 232,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kendinizi-yonetmek/307383.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052202708": {
+   "pages": 324,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji/309970.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052205945": {
+   "pages": 176,
+   "sourceUrl": "https://www.kitapsepeti.com/durdurulamayan-insanlik",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052250006": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapsepeti.com/sen-bitti-dediginde",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052250716": {
+   "pages": 320,
+   "sourceUrl": "https://www.kitapsepeti.com/iste-bu-fikir-tutar",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052261057": {
+   "pages": 428,
+   "sourceUrl": "https://www.kitapsepeti.com/amac",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052261682": {
+   "pages": 344,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/supertahmin/450688.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052261804": {
+   "pages": 136,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/etkileme-ve-ikna/490377.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052261873": {
+   "pages": 288,
+   "sourceUrl": "https://openlibrary.org/isbn/9786052261873",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052314142": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9786052314142",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052314326": {
+   "pages": 330,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/brotopya/534445.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052314708": {
+   "pages": 274,
+   "sourceUrl": "https://www.dr.com.tr/Kitap/Yalin-Startup/Eric-Ries/Egitim-Basvuru/is-Ekonomi-Hukuk/Yonetim-is-Gelistirme-Kalite/urunno=0002003003001",
+   "sourceName": "dr.com.tr",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052314791": {
+   "pages": 248,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ciddi-ciddi-mizah/642604.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052856864": {
+   "pages": 112,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/siir-saldim-gokyuzune/255823.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052858097": {
+   "pages": 240,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/cukurlar/658106.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052859964": {
+   "pages": 112,
+   "sourceUrl": "https://www.kitapsepeti.com/yuan-huanin-kulubesi-517143",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052950289": {
+   "pages": 284,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/anne-frankin-hatira-defteri/424443.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052950524": {
+   "pages": 112,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/alice-harikalar-diyarinda/426369.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052954027": {
+   "pages": 156,
+   "sourceUrl": "https://www.kitapsepeti.com/kendime-dusunceler-154613",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052956267": {
+   "pages": 272,
+   "sourceUrl": "https://www.kitapsepeti.com/dorian-grayin-portresi",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052956441": {
+   "pages": 104,
+   "sourceUrl": "https://openlibrary.org/isbn/9786052956441",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052958049": {
+   "pages": 1084,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/buyuk-petro-ciltli/507586.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052958469": {
+   "pages": 120,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/enkheiridion-karton-kapak/510477.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052959824": {
+   "pages": 532,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/denizler-altinda-yirmi-bin-fersah/521230.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052982365": {
+   "pages": 888,
+   "sourceUrl": "https://www.kitapsepeti.com/arthasastra",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052990742": {
+   "pages": 472,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/aradigin-her-sey-jeff-bezos-ve-amazon-cagi/414224.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052993019": {
+   "pages": 304,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/momo/434330.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052993125": {
+   "pages": 512,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bitmeyecek-oyku/439777.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052993323": {
+   "pages": 104,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yaramaz-emil-ciltli/441276.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052993897": {
+   "pages": 624,
+   "sourceUrl": "https://openlibrary.org/isbn/9786052993897",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052994436": {
+   "pages": 384,
+   "sourceUrl": "https://openlibrary.org/isbn/9786052994436",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052994573": {
+   "pages": 664,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/tufek-mikrop-ve-celik-karton-kapak/476507.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052995204": {
+   "pages": 184,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/mio-benim-miom/468187.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052997451": {
+   "pages": 352,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/factfulness-dunya-hakkinda-yanilmamizin-on-nedeni-ve-neden-her-sey-aslinda-sandiginizdan-daha-iyi-ciltli/516260.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052997918": {
+   "pages": 184,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/icsel-yasam/525227.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052997932": {
+   "pages": 496,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/akilli-insanlarin-mantiksiz-kararlari/518802.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052998090": {
+   "pages": 272,
+   "sourceUrl": "https://openlibrary.org/isbn/9786052998090",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052998380": {
+   "pages": 352,
+   "sourceUrl": "https://www.kitapsepeti.com/atomik-aliskanliklar",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786052999691": {
+   "pages": 568,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/nasil-hata-yapmazsiniz-matematiksel-dusunmenin-gucu/570532.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053140177": {
+   "pages": 752,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bir-gun-tek-basina/374755.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053223382": {
+   "pages": 310,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/inovasyon-ve-girisimcilik-uygulama-ve-ilkeler/413356.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053320890": {
+   "pages": 544,
+   "sourceUrl": "https://openlibrary.org/isbn/9786053320890",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053321170": {
+   "pages": 100,
+   "sourceUrl": "https://www.kitapsepeti.com/ivan-ilyicin-olumu-204152",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053322146": {
+   "pages": 216,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/omer-seyfettinden-secme-hikayeler-buyuk-boy/352759.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053322696": {
+   "pages": 80,
+   "sourceUrl": "https://openlibrary.org/isbn/9786053322696",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053322771": {
+   "pages": 768,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yirmi-birinci-yuzyilda-kapital-ciltli/351496.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053324485": {
+   "pages": 968,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/nietzsche-ciltli/369303.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053324652": {
+   "pages": 548,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji-sanati-oyun-kurami-ile-is-hayatinda-basari/369307.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053325086": {
+   "pages": 656,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bismarck/373332.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053325482": {
+   "pages": 440,
+   "sourceUrl": "https://www.kitapsepeti.com/ekmegimi-kazanirken-98443",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053326915": {
+   "pages": 808,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/irak-krali-i-faysal-ciltli/390941.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053326960": {
+   "pages": 32,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yayazula/390949.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053329206": {
+   "pages": 280,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/define-adasi/415232.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053337997": {
+   "pages": 692,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/pazarlama-yonetimi/470320.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053430421": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapsepeti.com/durtme",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053435679": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ciplak-ekonomi/368459.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053435785": {
+   "pages": 104,
+   "sourceUrl": "https://www.kitapsepeti.com/kumkurdu-332516",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053437451": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/mucize-ciltli/380090.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053437598": {
+   "pages": 528,
+   "sourceUrl": "https://www.kitapsepeti.com/kendi-kendine-mba",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053439721": {
+   "pages": 144,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/pippi-uzuncorap-ciltli/414535.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053439738": {
+   "pages": 104,
+   "sourceUrl": "https://www.kitapsepeti.com/samatali-koy-334187",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053601005": {
+   "pages": 516,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/hababam-sinifi/249205.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053604228": {
+   "pages": 590,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/john-locke/267826.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053604341": {
+   "pages": 572,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/korkunc-ivan/269814.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053605553": {
+   "pages": 636,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/olof-palme/274741.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053607540": {
+   "pages": 640,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/afrikali-leo/289348.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053607878": {
+   "pages": 342,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sarah-bernhardt/296948.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053608318": {
+   "pages": 496,
+   "sourceUrl": "https://openlibrary.org/isbn/9786053608318",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053608523": {
+   "pages": 188,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/konstantinos-paleologos/304130.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053754268": {
+   "pages": 144,
+   "sourceUrl": "https://www.kitapsepeti.com/zaman-makinesi-216904",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053756255": {
+   "pages": 72,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/palto/414637.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786053845539": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/aklini-en-dogru-sekilde-kullan/407054.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054137930": {
+   "pages": 776,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/protestan-etigi-ve-kapitalizmin-ruhu/716016.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054160655": {
+   "pages": 240,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/iktisadi-anlamak/396735.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054160747": {
+   "pages": 520,
+   "sourceUrl": "https://openlibrary.org/isbn/9786054160747",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054412457": {
+   "pages": 130,
+   "sourceUrl": "https://www.kitapsepeti.com/insan-ne-ile-yasar-83530",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054435258": {
+   "pages": 64,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/siki-dostlar-kurbaga-ve-murbaga/252954.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054498833": {
+   "pages": 412,
+   "sourceUrl": "https://openlibrary.org/isbn/9786054498833",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054584949": {
+   "pages": 340,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sazan-avi-manipulasyon-ve-hile-ekonomisi/416849.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054603619": {
+   "pages": 104,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yasasin-c-harfi-kardesligi/316413.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054603947": {
+   "pages": 160,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/postayla-gelen-deniz-kabugu/346303.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054650453": {
+   "pages": 220,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/hizli-cocuklar-bir-wall-street-isyani/360879.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054729043": {
+   "pages": 300,
+   "sourceUrl": "https://openlibrary.org/isbn/9786054729043",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786054729852": {
+   "pages": 520,
+   "sourceUrl": "https://www.kitapsepeti.com/gelecegi-kesfedenler",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055029357": {
+   "pages": 412,
+   "sourceUrl": "https://openlibrary.org/isbn/9786055029357",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055056384": {
+   "pages": 127,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kariyer-yonetimi-sirlari/352237.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055056674": {
+   "pages": 128,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/pazarlama-sirlari/372114.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055134228": {
+   "pages": 330,
+   "sourceUrl": "https://openlibrary.org/isbn/9786055134228",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055286101": {
+   "pages": 40,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/pezzettino/282477.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055286767": {
+   "pages": 40,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/frederick/367384.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055515447": {
+   "pages": 352,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kitaplari-nasil-okumali/262985.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055524302": {
+   "pages": 184,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/mukemmel-olmamanin-hediyeleri-olmaniz-gerektigini-ousundugunuz-kisiyi-birakin-oldugunuz-kisiyi-kucaklayin/294002.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055648480": {
+   "pages": 64,
+   "sourceUrl": "https://www.kitapsepeti.com/mumiler-ve-buyuk-sel-baskini",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055655433": {
+   "pages": 568,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/rekabet-uzerine/243854.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055655525": {
+   "pages": 256,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bedava/243168.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055655563": {
+   "pages": 238,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ben-kalender-mesrebim/243855.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055655808": {
+   "pages": 344,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/super-sirket/253521.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055755461": {
+   "pages": 208,
+   "sourceUrl": "https://openlibrary.org/isbn/9786055755461",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055755614": {
+   "pages": 256,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/drive-nasil-motive-oluruz-nasil-motive-ederiz/243393.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786055888282": {
+   "pages": 392,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/marie-curie-bir-bilimkadinin-olaganustu-yasamoykusu/293643.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056321757": {
+   "pages": 624,
+   "sourceUrl": "https://openlibrary.org/isbn/9786056321757",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056625176": {
+   "pages": 314,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/dunyanin-merkezine-yolculuk/484149.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056669323": {
+   "pages": 224,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/purdikkat/432139.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056685828": {
+   "pages": 320,
+   "sourceUrl": "https://openlibrary.org/isbn/9786056685828",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056685842": {
+   "pages": 464,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/elon-musk-tesla-spacex-ve-muhtesem-gelecegin-pesinde/391704.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056685873": {
+   "pages": 416,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/akis-mutluluk-bilimi/424705.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056722165": {
+   "pages": 448,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/dikkat-tacirleri/432930.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056887215": {
+   "pages": 384,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/hayirsiz-peygamber-bob-dylan/534440.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056902437": {
+   "pages": 416,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/radikal-samimiyet-insanliginizi-kaybetmeden-iyi-lider-olun/517977.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056902468": {
+   "pages": 352,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/onemli-olani-olc-okr-10-kat-buyumek-icin-basit-bir-yontem/531864.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056902499": {
+   "pages": 416,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kotu-kan-bir-silikon-vadisi-girisimindeki-sirlar-ve-yalanlar/541559.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056913204": {
+   "pages": 480,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/stratejik-ikna/589174.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056949524": {
+   "pages": 312,
+   "sourceUrl": "https://openlibrary.org/isbn/9786056949524",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786056956157": {
+   "pages": 296,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bedava-muzik-bir-mucit-bir-patron-ve-bir-hirsiz-muzik-endustrisini-nasil-altust-etti/533775.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057081179": {
+   "pages": 256,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/etkin-yonetici-dogru-olani-basarmak-icin-bir-rehber/608558.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057109903": {
+   "pages": 128,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/dunya-cocukla-kardes-dunya-cocuklari-siir-atlasi-1/602345.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057272713": {
+   "pages": 272,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/mukemmelin-pesinde/641442.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057272720": {
+   "pages": 376,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/dunyayi-degistiren-makine/680622.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057272768": {
+   "pages": 288,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/iyi-yazmak-uzerine-duz-yazi-icin-yol-haritasi/673476.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057347114": {
+   "pages": 112,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/planetarium/638403.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057454089": {
+   "pages": 432,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/filtresiz-instagram-is-dunyasini-sohreti-ve-kulturu-nasil-donusturdu/586552.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057525383": {
+   "pages": 300,
+   "sourceUrl": "https://openlibrary.org/isbn/9786057525383",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057525710": {
+   "pages": 254,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/this-is-marketing-iste-pazarlama/515736.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057635099": {
+   "pages": 380,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/osmanli-imparatorlugu-klasik-cag-13001600/501208.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057639585": {
+   "pages": 580,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/pardayanlar-1-pardayanlar/595981.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057665942": {
+   "pages": 160,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/duygusal-zeka-ve-liderlik/520220.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057685421": {
+   "pages": 328,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/her-seyin-degeri-kuresel-ekonomide-uretenler-ve-el-koyanlar/552446.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057707123": {
+   "pages": 488,
+   "sourceUrl": "https://openlibrary.org/isbn/9786057707123",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057789853": {
+   "pages": 304,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ustunluk-yapay-zeka-chatgpt-ve-dunyanin-kaderini-degistirecek-yaris/761995.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057947949": {
+   "pages": 576,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/cokus-finansal-krizlerle-dolu-bir-on-yil-dunyayi-nasil-degistirdi/578095.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786057977410": {
+   "pages": 400,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yeni-iklim-savasi/634479.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786058012745": {
+   "pages": 96,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/nasreddin-hoca-fikralari/547401.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786058053618": {
+   "pages": 1152,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sosyoloji-8-edisyon/105993.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786058060609": {
+   "pages": 377,
+   "sourceUrl": "https://openlibrary.org/isbn/9786058060609",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786058213258": {
+   "pages": 400,
+   "sourceUrl": "https://openlibrary.org/isbn/9786058213258",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786058259393": {
+   "pages": 500,
+   "sourceUrl": "https://openlibrary.org/isbn/9786058259393",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786058487475": {
+   "pages": 288,
+   "sourceUrl": "https://www.kitapsepeti.com/scrum-iki-kati-isi-yari-zamanda-yapma-sanati",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786059059664": {
+   "pages": 320,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/is-bitirici/62978.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786059248266": {
+   "pages": 204,
+   "sourceUrl": "https://www.kitapsepeti.com/toyota-ruhu",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786059248457": {
+   "pages": 360,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/borsada-rastgele-seyir/92920.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786059248976": {
+   "pages": 309,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/oyun-teorisi-ve-ortaklasa-rekabet/23207.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786059405119": {
+   "pages": 28,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/gokdelene-giren-bulut/418182.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786059604451": {
+   "pages": 184,
+   "sourceUrl": "https://openlibrary.org/isbn/9786059604451",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786059702812": {
+   "pages": 352,
+   "sourceUrl": "https://openlibrary.org/isbn/9786059702812",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786059933599": {
+   "pages": 40,
+   "sourceUrl": "https://openlibrary.org/isbn/9786059933599",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786059952750": {
+   "pages": 200,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/haritada-kaybolmak/80608.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786253800772": {
+   "pages": 224,
+   "sourceUrl": "https://www.kitapsepeti.com/desperonun-oykusu-560299",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786253840235": {
+   "pages": 176,
+   "sourceUrl": "https://www.kitapsepeti.com/hammurabi-514767",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786253840457": {
+   "pages": 176,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/pal-sokagi-cocuklari/722179.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786253840754": {
+   "pages": 444,
+   "sourceUrl": "https://www.kitapsepeti.com/macellan-519325",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786253841089": {
+   "pages": 560,
+   "sourceUrl": "https://www.kitapsepeti.com/cengiz-han-526780",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254059384": {
+   "pages": 296,
+   "sourceUrl": "https://www.dr.com.tr/kitap/guzel-yasam-kilavuzu-antik-stoaci-sevinc-sanati/william-b-irvine/felsefe/felsefe-bilimi/urunno=0001969189001",
+   "sourceName": "dr.com.tr",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254059827": {
+   "pages": 304,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/theodora/613855.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254101229": {
+   "pages": 424,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kucuk-aliskanliklar/583502.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254105098": {
+   "pages": 160,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/catidaki-karlsson-ciltli/684338.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254106415": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/atomik-aliskanliklar-calisma-kitabi-istediginiz-hayati-insa-etmeniz-icin-basit-egzersizler/740853.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254141539": {
+   "pages": 368,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/telafi-projesi-secimlerimizin-sinirlarini-ve-dusunce-seklimizi-degistiren-bir-dostluk-hikayesi/617378.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254144127": {
+   "pages": 176,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/zen-ogreten-kedi/726768.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254145858": {
+   "pages": 392,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/nasil-zengin-olunur/690201.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254169144": {
+   "pages": 176,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/narnia-gunlukleri-2-aslan-cadi-ve-dolap/645041.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254181566": {
+   "pages": 136,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/peter-pan/631804.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254293740": {
+   "pages": 760,
+   "sourceUrl": "https://www.kitapsepeti.com/budha",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254294822": {
+   "pages": 104,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/doktor-dolittlein-hikayesi-kisaltilmis-metin/656262.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254295652": {
+   "pages": 584,
+   "sourceUrl": "https://www.kitapsepeti.com/immanuel-kant-450763",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254295669": {
+   "pages": 772,
+   "sourceUrl": "https://www.kitapsepeti.com/hegel-445565",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254296635": {
+   "pages": 368,
+   "sourceUrl": "https://www.kitapsepeti.com/robespierre-455555",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254296642": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapsepeti.com/tolkien-454680",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254296659": {
+   "pages": 952,
+   "sourceUrl": "https://www.kitapsepeti.com/charles-darwin-460911",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254296666": {
+   "pages": 632,
+   "sourceUrl": "https://www.kitapsepeti.com/schopenhauer-459325",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254297342": {
+   "pages": 1212,
+   "sourceUrl": "https://www.kitapsepeti.com/churchill-468629",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254297366": {
+   "pages": 456,
+   "sourceUrl": "https://www.kitapsepeti.com/simon-bolivar-467366",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254297373": {
+   "pages": 288,
+   "sourceUrl": "https://www.kitapsepeti.com/perikles-467367",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298271": {
+   "pages": 368,
+   "sourceUrl": "https://www.kitapsepeti.com/jack-london-481831",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298530": {
+   "pages": 584,
+   "sourceUrl": "https://www.kitapsepeti.com/paul-dirac",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298608": {
+   "pages": 356,
+   "sourceUrl": "https://www.kitapsepeti.com/kubilay-han-492241",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298615": {
+   "pages": 468,
+   "sourceUrl": "https://www.kitapsepeti.com/john-stuart-mill-490371",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298622": {
+   "pages": 552,
+   "sourceUrl": "https://www.kitapsepeti.com/kierkegaard-490386",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298639": {
+   "pages": 640,
+   "sourceUrl": "https://www.kitapsepeti.com/leibniz-490373",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298646": {
+   "pages": 640,
+   "sourceUrl": "https://www.kitapsepeti.com/beethoven-490387",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298653": {
+   "pages": 664,
+   "sourceUrl": "https://www.kitapsepeti.com/caesar",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298851": {
+   "pages": 224,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/modern-prens-karton-kapak/697013.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298967": {
+   "pages": 232,
+   "sourceUrl": "https://www.kitapsepeti.com/pollyanna-494871",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298981": {
+   "pages": 764,
+   "sourceUrl": "https://www.kitapsepeti.com/mozart-494892",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254298998": {
+   "pages": 690,
+   "sourceUrl": "https://www.kitapsepeti.com/carice-katerina-494900",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254299001": {
+   "pages": 568,
+   "sourceUrl": "https://www.kitapsepeti.com/selahaddin-eyyubi-494899",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254299315": {
+   "pages": 592,
+   "sourceUrl": "https://www.kitapsepeti.com/benjamin-franklin-498269",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254299322": {
+   "pages": 568,
+   "sourceUrl": "https://www.kitapsepeti.com/descartes-498270",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254299681": {
+   "pages": 584,
+   "sourceUrl": "https://www.kitapsepeti.com/jean-jacques-rousseau-501381",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254299698": {
+   "pages": 392,
+   "sourceUrl": "https://www.kitapsepeti.com/jane-austen-501383",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254299933": {
+   "pages": 472,
+   "sourceUrl": "https://www.kitapsepeti.com/marco-polo-502655",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254299971": {
+   "pages": 720,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/gabriel-garca-mrquez-karton-kapak/709954.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254340710": {
+   "pages": 216,
+   "sourceUrl": "https://www.kitapsepeti.com/ekiplerin-bes-temel-aksakligi-442830",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254345524": {
+   "pages": 424,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/21inci-yuzyil-sirketi/745523.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254440489": {
+   "pages": 456,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/son-curet/556694.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254493614": {
+   "pages": 800,
+   "sourceUrl": "https://www.kitapsepeti.com/fatih-sultan-mehmed-ve-zamani-ciltli",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254497162": {
+   "pages": 48,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/galyali-asteriks/643081.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786254499937": {
+   "pages": 800,
+   "sourceUrl": "https://www.kitapsepeti.com/savas-uzerine-470927",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786255511614": {
+   "pages": 36,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/guvercin-otobusu-kullanmasin/361110.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786255544414": {
+   "pages": 472,
+   "sourceUrl": "https://www.kitapsepeti.com/guc-yasasi",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786255587299": {
+   "pages": 320,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ikinci-beyninizi-kurun-dijital-yasaminizi-duzenleyip-yaraticiliginizi-artirmanin/729350.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786255634825": {
+   "pages": 404,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ensitifikasyon/767587.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786255688026": {
+   "pages": 368,
+   "sourceUrl": "https://www.kitapsepeti.com/buyuk-isler-nasil-basarilir",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786255813008": {
+   "pages": 320,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sirket-performansi/728245.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786255835567": {
+   "pages": 272,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bana-ne-oluyor-iyi-ve-anlamli-bir-hayati-kurmanin-yollari/746790.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786255942227": {
+   "pages": 112,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/akilli-kararlar-icin-stratejik-dusunme-yontemleri/712521.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786255989185": {
+   "pages": 200,
+   "sourceUrl": "https://www.kitapsepeti.com/engeller-yolun-ta-kendisidir",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256036277": {
+   "pages": 328,
+   "sourceUrl": "https://www.kitapsepeti.com/olumlu-dusunmenin-gucu-485971",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256149397": {
+   "pages": 736,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/elon-musk/703743.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256182080": {
+   "pages": 296,
+   "sourceUrl": "https://www.dr.com.tr/kitap/iyi-isler-uygulamasi/basvuru/is-ekonomi-hukuk/yonetim-is-gelistirme-kalite/urunno=0002151245001",
+   "sourceName": "dr.com.tr",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256228528": {
+   "pages": 464,
+   "sourceUrl": "https://www.kitapsepeti.com/buyuk-konstantin-501992",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256228566": {
+   "pages": 224,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/hayalini-yorganina-gore-uzat-basariyla-zehirlenmis-bir-toplumda-duymaniz-gerekenler/709405.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256324749": {
+   "pages": 152,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/heidi/708395.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256324992": {
+   "pages": 72,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/define-adasi/717613.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256353336": {
+   "pages": 192,
+   "sourceUrl": "https://www.kitapsepeti.com/prens-455486",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256366985": {
+   "pages": 64,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/tavsan-peterin-masali/705824.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256377158": {
+   "pages": 32,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/elmer/640863.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256377981": {
+   "pages": 312,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sokak-kodcusu-kirilmasi-gereken-kurallar-ve-onlari-kirmanin-yollari/681619.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256385344": {
+   "pages": 72,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/shackletonin-seruveni/687653.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256478886": {
+   "pages": 302,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/her-zamanki-gibi-degisen-dunyanin-hic-degismeyen-olgulari-uzerine-zamansiz-dersler/687472.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256489530": {
+   "pages": 496,
+   "sourceUrl": "https://www.dr.com.tr/kitap/arastirma-makaleleri-tezler-ve-bitirme-tezleri-yazarlari-icin-el-kitabi/egitim-ve-sinav-kitaplari/akademik-kitaplar/diger/urunno=0002075127001",
+   "sourceName": "dr.com.tr",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256534377": {
+   "pages": 312,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/george-ve-evrene-acilan-gizli-anahtar/678317.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256548114": {
+   "pages": 416,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/satilik-dunya-para-guc-ve-yeryuzu-kaynaklarini-takas-eden-tuccarlar/758612.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256570207": {
+   "pages": 520,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/iktidar-ve-teknoloji/664866.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256584266": {
+   "pages": 696,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/buyuk-duzleyici-tas-devrinden-bugune-siddet-ve-esitsizligin-tarihi/670287.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256611214": {
+   "pages": 232,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sihirli-kelimeler-istediginizi-elde-etmek-icin-ne-soylemelisiniz/675770.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256661899": {
+   "pages": 384,
+   "sourceUrl": "https://www.kitapsepeti.com/keloglan-masallari-533065",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256666504": {
+   "pages": 432,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yaklasan-dalga-teknoloji-guc-ve-21yuzyilin-en-buyuk-ikilemi/684522.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256774667": {
+   "pages": 512,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/askeri-stratejinin-temelleri-kuramcilar/680664.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256839151": {
+   "pages": 368,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/umutsuzluktan-olmek-ve-kapitalizmin-gelecegi/674986.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256989108": {
+   "pages": 192,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ikinci-dunya-savasi-infografik-ciltli/637093.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256989276": {
+   "pages": 1024,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/napoleon-hayati/642276.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786256999985": {
+   "pages": 80,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yurekdede-ile-padisah/645895.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257005784": {
+   "pages": 617,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kulturlerin-yorumlanmasi/563791.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257027052": {
+   "pages": 256,
+   "sourceUrl": "https://openlibrary.org/isbn/9786257027052",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257112932": {
+   "pages": 488,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/makinedeki-kan-buyuk-teknolojiye-isyanin-kokenleri/689680.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257191043": {
+   "pages": 392,
+   "sourceUrl": "https://www.kitapsepeti.com/jim-simons-piyasalarin-sifresini-cozen-adam",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257221207": {
+   "pages": 108,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/istatistik-ile-nasil-yalan-soylenir/489899.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257232296": {
+   "pages": 288,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/once-kar/612937.html?publisher_id=10230",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257312332": {
+   "pages": 240,
+   "sourceUrl": "https://openlibrary.org/isbn/9786257312332",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257314626": {
+   "pages": 488,
+   "sourceUrl": "https://www.kitapsepeti.com/einstein-yasami-ve-evreni",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257344234": {
+   "pages": 788,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/gozetleme-kapitalizmi-cagi/594488.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257543699": {
+   "pages": 384,
+   "sourceUrl": "https://www.kitapsepeti.com/turk-mitolojisi-atlasi",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257804073": {
+   "pages": 344,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/calisilmayan-bir-dunya/574170.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257966702": {
+   "pages": 64,
+   "sourceUrl": "https://openlibrary.org/isbn/9786257966702",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257999144": {
+   "pages": 256,
+   "sourceUrl": "https://openlibrary.org/isbn/9786257999144",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9786257999403": {
+   "pages": 328,
+   "sourceUrl": "https://www.dr.com.tr/Kitap/Kucuk-Kadinlar-Modern-Klasikler-142/Louisa-May-Alcott/Edebiyat/Roman/Dunya-Klasik/urunno=0001863625001",
+   "sourceName": "dr.com.tr",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258026115": {
+   "pages": 360,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kuralsizlik-kuraldir-netflix-ve-kultur-degisimi/665304.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258177671": {
+   "pages": 473,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/net-pozitif/642312.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258327991": {
+   "pages": 224,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/pinokyo/630221.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258346206": {
+   "pages": 176,
+   "sourceUrl": "https://www.kitapsepeti.com/kitleler-psikolojisi-572725",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258361230": {
+   "pages": 136,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/busido-japonyanin-ruhu/642193.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258475937": {
+   "pages": 168,
+   "sourceUrl": "https://www.kitapsepeti.com/hagakure-sakli-yapraklar",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258489279": {
+   "pages": 256,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/isinizi-yeniden-kesfedin/612973.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258489477": {
+   "pages": 440,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/samsungun-yukselisis/628276.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258489972": {
+   "pages": 264,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/evet-dedirtme-sanati-odun-vermeden-anlasmaya-varmak/671090.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258533361": {
+   "pages": 320,
+   "sourceUrl": "https://www.kitapsepeti.com/dost-kazanma-ve-insanlari-etkileme-sanati-582870",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258590487": {
+   "pages": 294,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/can-alici-gorusmeler/761857.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258733426": {
+   "pages": 456,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/zenginligin-5-turu/740908.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258988574": {
+   "pages": 157,
+   "sourceUrl": "https://www.kitapsepeti.com/mukaddime-576102",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786258988734": {
+   "pages": 97,
+   "sourceUrl": "https://www.kitapsepeti.com/ermis-579129",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786259284415": {
+   "pages": 40,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ben-jane-ciltli/746496.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786259286785": {
+   "pages": 160,
+   "sourceUrl": "https://www.kitapsepeti.com/abartma-tozu-588809",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786259654591": {
+   "pages": 40,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sapkami-geri-istiyorum/741066.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9786259890166": {
+   "pages": 112,
+   "sourceUrl": "https://www.kitapsepeti.com/bes-cember-kitabi-459716",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750506031": {
+   "pages": 250,
+   "sourceUrl": "https://openlibrary.org/isbn/9789750506031",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750507496": {
+   "pages": 496,
+   "sourceUrl": "https://openlibrary.org/isbn/9789750507496",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750508097": {
+   "pages": 255,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/tarih-nedir/61275.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750511448": {
+   "pages": 423,
+   "sourceUrl": "https://openlibrary.org/isbn/9789750511448",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750516849": {
+   "pages": 769,
+   "sourceUrl": "https://openlibrary.org/isbn/9789750516849",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750517310": {
+   "pages": 198,
+   "sourceUrl": "https://openlibrary.org/isbn/9789750517310",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750517457": {
+   "pages": 1035,
+   "sourceUrl": "https://openlibrary.org/isbn/9789750517457",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750522109": {
+   "pages": 230,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sosyolojiye-cagri-humanist-bir-perspektif/429672.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750525193": {
+   "pages": 400,
+   "sourceUrl": "https://www.kitapsepeti.com/seksen-gunde-devrialem-219539",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750537516": {
+   "pages": 420,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/gizli-bahce/695323.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750701689": {
+   "pages": 128,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/vanilya-kokulu-mektuplar-ciltsiz/77285.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750701696": {
+   "pages": 82,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/puf-pufpuf-cuf-cufcuf-ve-cino/46054.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750707797": {
+   "pages": 104,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yaman-tilki/95017.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750707810": {
+   "pages": 252,
+   "sourceUrl": "https://www.kitapsepeti.com/matilda",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750710100": {
+   "pages": 252,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/koca-sevimli-dev/120819.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750718533": {
+   "pages": 352,
+   "sourceUrl": "https://www.dr.com.tr/kitap/1984/george-orwell/edebiyat/roman/dunya-roman/urunno=0000000064038",
+   "sourceName": "dr.com.tr",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750718595": {
+   "pages": 48,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/vahsi-seyler-ulkesinde/335239.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750719387": {
+   "pages": 152,
+   "sourceUrl": "https://openlibrary.org/isbn/9789750719387",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750724435": {
+   "pages": 112,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kucuk-prens/10233.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750733666": {
+   "pages": 284,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/joseph-fouche-bir-politikacinin-portresi/96571.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750737107": {
+   "pages": 160,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/isigin-savascisinin-elkitabi/50812.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750738388": {
+   "pages": 1880,
+   "sourceUrl": "https://www.kitapsepeti.com/savas-ve-baris-188186",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750738609": {
+   "pages": 200,
+   "sourceUrl": "https://openlibrary.org/isbn/9789750738609",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750738951": {
+   "pages": 256,
+   "sourceUrl": "https://openlibrary.org/isbn/9789750738951",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750740978": {
+   "pages": 376,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/simit-ekonomisi-21yuzyil-iktisatcisi-gibi-dusunmenin-yedi-yolu/512660.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750753664": {
+   "pages": 64,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/harold-ve-mor-tebesir/594084.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750758638": {
+   "pages": 56,
+   "sourceUrl": "https://www.kitapsepeti.com/reading-zindani-baladi-380551",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750766060": {
+   "pages": 392,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/musashi-i-kitap-kilic-ve-delikanli/745951.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750766381": {
+   "pages": 72,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/mutlu-prens/95444.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750812866": {
+   "pages": 64,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/balina-ile-mandalina/99307.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750816390": {
+   "pages": 632,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/robinson-crusoe/48363.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750820984": {
+   "pages": 319,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/paranin-yukselisi-dunyanin-finansal-tarihi/262909.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750822285": {
+   "pages": 64,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sincap-siirler/271911.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750834660": {
+   "pages": 256,
+   "sourceUrl": "https://www.kitapsepeti.com/harry-potter-ve-felsefe-tasi-resimli-ozel-baski",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750842535": {
+   "pages": 264,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sogutlerdeki-ruzgar/255630.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750843440": {
+   "pages": 164,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/winnie-the-pooh/477879.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750844751": {
+   "pages": 109,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sevdali-bulut-karton-kapak/517986.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750845222": {
+   "pages": 185,
+   "sourceUrl": "https://openlibrary.org/isbn/9789750845222",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750850813": {
+   "pages": 36,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/iyi-geceler-ay/591483.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750853494": {
+   "pages": 168,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/oz-buyucusu/614476.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750858215": {
+   "pages": 272,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/tom-sawyerin-maceralari/655388.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750867613": {
+   "pages": 312,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/deha-denen-mit-isyancilarin-canavarlarin-ve-kural-tanimazlarin-tehlikeli-cazibesi/746439.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789750868290": {
+   "pages": 320,
+   "sourceUrl": "https://www.kitapsepeti.com/cocuk-kalbi-578515",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751010209": {
+   "pages": 424,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yonetim-uygulamasi/7505.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751010322": {
+   "pages": 383,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/gelecegi-kazanmak/7493.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751017154": {
+   "pages": 456,
+   "sourceUrl": "https://openlibrary.org/isbn/9789751017154",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751017727": {
+   "pages": 228,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/demiryolu-cocuklari/8093.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751024015": {
+   "pages": 575,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/babanin-donusu/75393.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751045508": {
+   "pages": 328,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/la-fontaine-masallari/8126.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751047236": {
+   "pages": 384,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/calikusu/7419.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751409881": {
+   "pages": 750,
+   "sourceUrl": "https://www.kitapsepeti.com/ataturk-119265",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751411204": {
+   "pages": 160,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ezop-masallari/85168.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751412966": {
+   "pages": 280,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/cyrano-de-bergerac/56878.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751413215": {
+   "pages": 392,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/iletisim-catismalari-ve-empati-sanatta-ve-gunluk-yasamda/122399.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751416117": {
+   "pages": 192,
+   "sourceUrl": "https://openlibrary.org/isbn/9789751416117",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789751418869": {
+   "pages": 264,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/siddetsiz-iletisim/253037.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752100831": {
+   "pages": 622,
+   "sourceUrl": "https://openlibrary.org/isbn/9789752100831",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752109148": {
+   "pages": 767,
+   "sourceUrl": "https://www.kitapsepeti.com/33-stratejide-savas",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752122949": {
+   "pages": 40,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sihirli-okul-otobusu-insan-vucudunda/453386.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752430303": {
+   "pages": 240,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kutul-amarenin-muzaffer-komutani-halil-kut-pasa/449270.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752430419": {
+   "pages": 384,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/cengiz-han/455606.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752430525": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/robotlarin-yukselisi-yapay-zeka-ve-issiz-bir-gelecek-tehlikesi/460808.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752500280": {
+   "pages": 101,
+   "sourceUrl": "https://openlibrary.org/isbn/9789752500280",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752500341": {
+   "pages": 176,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/genel-ve-endustriyel-yonetim/66980.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752733084": {
+   "pages": 272,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ronja-haydut-kizi/91325.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752733732": {
+   "pages": 368,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/hobbit/98228.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752863125": {
+   "pages": 60,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/comert-agac/127437.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752893337": {
+   "pages": 788,
+   "sourceUrl": "https://openlibrary.org/isbn/9789752893337",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752977563": {
+   "pages": 444,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji-haritalari/85618.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789752980907": {
+   "pages": 296,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/iktisat-dusunurleri-buyuk-iktisat-dusunurlerinin-yasamlari-ve-fikirleri/55577.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753221085": {
+   "pages": 438,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kalici-olmak/13404.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753310079": {
+   "pages": 248,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/is-hayatinda-kopekbaliklariyla-yuzmek/17045.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753311908": {
+   "pages": 84,
+   "sourceUrl": "https://www.kitapsepeti.com/peynirimi-kim-kapti-254069",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753426985": {
+   "pages": 248,
+   "sourceUrl": "https://openlibrary.org/isbn/9789753426985",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753440530": {
+   "pages": 416,
+   "sourceUrl": "https://www.kitapsepeti.com/peloponnesos-savaslari",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753482561": {
+   "pages": 168,
+   "sourceUrl": "https://www.kitapsepeti.com/halime-kaptan-291712",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753484640": {
+   "pages": 56,
+   "sourceUrl": "https://openlibrary.org/isbn/9789753484640",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753630313": {
+   "pages": 436,
+   "sourceUrl": "https://www.kitapsepeti.com/besinci-disiplin",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753634397": {
+   "pages": 621,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bilimsel-arastirmanin-mantigi/12596.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753900737": {
+   "pages": 208,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/katyanin-yazi/9294.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753900799": {
+   "pages": 454,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sibumi/9293.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753900942": {
+   "pages": 304,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kasaba-ofke-kotu-bir-silah-fakat-buyuk-bir-aractir/9296.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753901055": {
+   "pages": 288,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/infazci/9297.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753901451": {
+   "pages": 592,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/aptallar-erken-olur/9306.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753901499": {
+   "pages": 288,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yirminci-mil/27379.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753901680": {
+   "pages": 256,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kentte-sicak-gece/31186.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753902076": {
+   "pages": 480,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/inci-sokagitrevanian/80185.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753902915": {
+   "pages": 144,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/munihe-kadar-6-mezar/268612.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753904018": {
+   "pages": 432,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/aile/561444.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789753904070": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/omerta/625943.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754034967": {
+   "pages": 36,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/boyle-bir-kuyrukla-ne-yapardin/122889.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754050929": {
+   "pages": 160,
+   "sourceUrl": "https://openlibrary.org/isbn/9789754050929",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754052978": {
+   "pages": 172,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yurdumu-ozledim/3464.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754059809": {
+   "pages": 288,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/monun-gizemi/17655.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754341966": {
+   "pages": 438,
+   "sourceUrl": "https://www.kitapsepeti.com/duygusal-zeka-270004",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754345315": {
+   "pages": 568,
+   "sourceUrl": "https://www.kitapsepeti.com/hizli-ve-yavas-dusunme",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754345445": {
+   "pages": 608,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/antikirilganlik/395394.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754346534": {
+   "pages": 472,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/etkili-insanlarin-7-aliskanligi/1138.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754580631": {
+   "pages": 752,
+   "sourceUrl": "https://openlibrary.org/isbn/9789754580631",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754583496": {
+   "pages": 108,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/olumsuz-aile/46546.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754588767": {
+   "pages": 682,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kopegiyle-dolasan-kadin-ciltsiz-otuz-yedi-secme-oyku/87023.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754589023": {
+   "pages": 687,
+   "sourceUrl": "https://www.kitapsepeti.com/suc-ve-ceza-37912",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754682649": {
+   "pages": 64,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/hayvanlarla-konusan-cocuk/77783.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754760583": {
+   "pages": 112,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/okkes-otoparkta/118584.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754940480": {
+   "pages": 304,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/zikkimin-koku/4551.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789754949162": {
+   "pages": 223,
+   "sourceUrl": "https://openlibrary.org/isbn/9789754949162",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755100920": {
+   "pages": 172,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kucuk-hafiyeler-emil-ve-dedektifler/10060.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755100937": {
+   "pages": 188,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ucan-sinif/9942.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755100982": {
+   "pages": 208,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/charlienin-cikolata-fabrikasi-ciltsiz/83308.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755103082": {
+   "pages": 104,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kucuk-pitircik/13617.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755108049": {
+   "pages": 168,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/dev-seftali/13614.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755109725": {
+   "pages": 56,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kucuk-kara-balik-ciltsiz/30121.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755391960": {
+   "pages": 304,
+   "sourceUrl": "https://openlibrary.org/isbn/9789755391960",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755393704": {
+   "pages": 192,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/karakter-asinmasi-yeni-kapitalizmde-isin-kisilik-uzerindeki-etkileri/50042.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755399454": {
+   "pages": 480,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/diyalektik-imgelem-frankfurt-okulunun-tarihi-ve-calismalari-19231950/350168.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755539164": {
+   "pages": 584,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/strateji-dolayli-tutum/51432.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755870687": {
+   "pages": 16,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/velinin-kurabiyesi/51181.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755874173": {
+   "pages": 32,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bil-bakalim-seni-ne-kadar-seviyorum/89916.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789755992860": {
+   "pages": 272,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/satisin-psikolojisi/459476.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789756060216": {
+   "pages": 335,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yuksek-performans-teknikleri/92923.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789756093160": {
+   "pages": 208,
+   "sourceUrl": "https://openlibrary.org/isbn/9789756093160",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789756093245": {
+   "pages": 224,
+   "sourceUrl": "https://openlibrary.org/isbn/9789756093245",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789756176863": {
+   "pages": 342,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/cinnet-panik-ve-cokus-mali-krizler-tarihi/93335.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789756227404": {
+   "pages": 40,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/adalet-ve-haksizlik-citir-citir-felsefe-2-kitap/85433.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789756227435": {
+   "pages": 39,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/gercekten-ve-yalanciktan-citir-citir-felsefe-3-kitap/88238.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789756227466": {
+   "pages": 40,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bildiklerimiz-ve-bilmediklerimiz-citir-citir-felsefe-6-kitap/90971.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789756227992": {
+   "pages": 112,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/bunun-adi-findel/101773.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789756237779": {
+   "pages": 392,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/baris-istiyorsan-savasa-hazir-ol/74850.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789756388006": {
+   "pages": 496,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/six-sigma-yolu/282294.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789756902165": {
+   "pages": 272,
+   "sourceUrl": "https://www.kitapsepeti.com/cesur-yeni-dunya",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789757004431": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/iyiden-mukemmel-sirkete/61177.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789757004561": {
+   "pages": 560,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/turbulans-cagi/112036.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789757004707": {
+   "pages": 304,
+   "sourceUrl": "https://openlibrary.org/isbn/9789757004707",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789757501350": {
+   "pages": 352,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/sanayi-ve-imparatorluk/7253.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789757549215": {
+   "pages": 32,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ac-tirtil/240673.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789758142859": {
+   "pages": 174,
+   "sourceUrl": "https://www.kitapsepeti.com/konrad-ya-da-konserve-kutusundan-cikan-cocuk",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789758296323": {
+   "pages": 187,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/permission-marketingizinli-pazarlamayabancilari-dosta-dostlari-musteriye-donusturmek/31783.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789758535538": {
+   "pages": 384,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/yalancinin-pokeri/100241.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789758828203": {
+   "pages": 258,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/mavi-okyanus-stratejisi/76370.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789759038458": {
+   "pages": 224,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/simdiki-cocuklar-harika/73558.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789759850272": {
+   "pages": 419,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/krizden-cikis/26629.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789759961985": {
+   "pages": 143,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/takim-oyunu/126393.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789759964948": {
+   "pages": 272,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/etkili-satis-egitimi/346745.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944383615": {
+   "pages": 420,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/vikinomi/102742.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944383646": {
+   "pages": 662,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/iknanin-psikolojisi/32697.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944383677": {
+   "pages": 336,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/asla-yalniz-yeme-basariyla-basarisizlik-arasindaki-ince-cizgi-iliskinin-gucu/104760.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944383837": {
+   "pages": 360,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/kendi-isini-kurmak-isteyen-girisimcinin-el-kitabi/114527.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944383974": {
+   "pages": 232,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/is-dunyasinda-zirveye-giden-yol/118457.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944694469": {
+   "pages": 127,
+   "sourceUrl": "https://www.kitapsepeti.com/yilankale",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944699792": {
+   "pages": 72,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/annem-neden-cildirdi/363350.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944717281": {
+   "pages": 96,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/vapurlari-seven-cocuk/137370.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944717519": {
+   "pages": 96,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/pat-karikatur-okulu/242977.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944827287": {
+   "pages": 231,
+   "sourceUrl": "https://www.kitapsepeti.com/andersen-masallari-97153",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944829199": {
+   "pages": 327,
+   "sourceUrl": "https://openlibrary.org/isbn/9789944829199",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944829571": {
+   "pages": 119,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/ayi-paddington/357365.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944829670": {
+   "pages": 152,
+   "sourceUrl": "https://www.kitapyurdu.com/kitap/marti-jonathan-livingston/17070.html",
+   "sourceName": "kitapyurdu.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944880985": {
+   "pages": 1025,
+   "sourceUrl": "https://www.kitapsepeti.com/karamazov-kardesler-36462",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944883146": {
+   "pages": 396,
+   "sourceUrl": "https://openlibrary.org/isbn/9789944883146",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944884013": {
+   "pages": 139,
+   "sourceUrl": "https://www.kitapsepeti.com/yeraltindan-notlar-180362",
+   "sourceName": "kitapsepeti.com",
+   "checkedAt": "2026-10-22"
+  },
+  "9789944885454": {
+   "pages": 259,
+   "sourceUrl": "https://openlibrary.org/isbn/9789944885454",
+   "sourceName": "Open Library",
+   "checkedAt": "2026-10-22"
+  }
+ }
+}

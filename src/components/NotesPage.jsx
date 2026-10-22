@@ -65,6 +65,8 @@ export default function NotesPage({states,setStates,personal,setPersonal,sync}) 
     {counts.managerProgramBooks>0&&<div><dt>{ORIGIN_LABELS.managerprep}</dt><dd>{counts.managerProgramBooks} kitap</dd></div>}
     {counts.managerAreaBooks>0&&<div><dt>{ORIGIN_LABELS.managerareas}</dt><dd>{counts.managerAreaBooks} kitap</dd></div>}
     {counts.shelfPhotoBooks>0&&<div><dt>{ORIGIN_LABELS.shelfphotos}</dt><dd>{counts.shelfPhotoBooks} kitap</dd></div>}
+    {counts.pekerVideoBooks>0&&<div><dt>{ORIGIN_LABELS.peker}</dt><dd>{counts.pekerVideoBooks} kitap</dd></div>}
+    {counts.stoicBooks>0&&<div><dt>{ORIGIN_LABELS.stoic}</dt><dd>{counts.stoicBooks} kitap</dd></div>}
     <div><dt>Birleşik katalog</dt><dd>{catalog.books.length} benzersiz eser</dd></div>
    </dl>
    <Group mt="md" gap={8}>{Object.keys(ORIGIN_LABELS).map(id=><SourceBadge id={id} key={id}/>)}</Group>

@@ -1,0 +1,196 @@
+{
+ "id": "yonetici-icin-stoacilik",
+ "title": "Yönetici için Stoacılık",
+ "short": "Stoacılık",
+ "description": "Koşullar değişirken akılcı, adil ve tutarlı davranmayı geliştiren bir yaşam felsefesi olarak Stoacılık, yöneticiliğe uyarlanmış altı kitapla: Epiktetos, Marcus Aurelius, Seneca ve çağdaş bir giriş.",
+ "source": "https://github.com/titanlar-com/kitaps/blob/main/data/stoicism-for-managers.json",
+ "checkedAt": "2026-10-22",
+ "context": {
+  "purpose": "“Sonucu elde etmeye çalışırken nasıl bir insana ve yöneticiye dönüşüyorum?” sorusu üzerine okumak. Stoacılık MÖ 300 dolaylarında Kıbrıslı Zenon tarafından Atina’da kuruldu; Epiktetos, Seneca ve Marcus Aurelius günümüze ulaşan eserleriyle en tanınan temsilcileridir. Öğretinin merkezinde, iyi yaşamın temelinin karakter ve erdemli davranış olduğu düşüncesi bulunur.",
+  "criterion": "Dört temel erdemin yöneticilikteki karşılığı, önerinin kendi uygulama yorumuyla: bilgelik, bildiğini varsaydığından ayırmak ve karar vermeden önce durumu anlamak; adalet, yetkiyi, ücretleri, iş yükünü ve değerlendirmeleri hakkaniyetle yönetmek; cesaret, zor konuşmaları yapmak, hatayı kabul etmek ve gerektiğinde güçlü birine itiraz edebilmek; ölçülülük, öfkeyi, egoyu ve güç kullanma isteğini sınırlamak. Bir başka temel ayrım, seçimine bağlı olanlarla sonucunu belirleyemediğin şeyleri ayırmaktır: hazırlığını ve davranışını geliştirebilirsin, müşterinin kararını garanti edemezsin. Türkçe baskı yalnız iki ayrı sitede doğrulandığında gösterilir.",
+  "verdict": "Yalnız üç kitap alınacaksa Enkheiridion, Kendime Düşünceler ve Mutlu Yaşam Üzerine – Yaşamın Kısalığı Üzerine; klasiklerin kısa anlatımı açıklamasız gelirse Pigliucci önce okunur. Okuduğunu uygulamak için, örneğin ekip bir teslim tarihini kaçırdığında üç soru: Olgu ne, benim eklediğim yorum ne? Benim sorumluluğum ne? Hangi davranışım ilkelerime uygun? Her gün yazılı cevaplanacak soru: Bugün hangi kararım olmak istediğim yöneticiyle uyumluydu, hangisini yarın düzelteceğim?"
+ },
+ "note": "Öncelik sırası ve yöneticilik karşılıkları önerinin uygulama yorumudur; not ve alt küme olarak tutulur, puana eklenmez.",
+ "groups": [
+  {
+   "id": "oncelik",
+   "title": "Öncelik sırası"
+  },
+  {
+   "id": "ilk-uc",
+   "title": "İlk alışverişte üç kitap"
+  },
+  {
+   "id": "aciklayici",
+   "title": "Açıklayıcı başlangıç"
+  }
+ ],
+ "books": [
+  {
+   "key": "enchiridion",
+   "group": "oncelik",
+   "role": "Öncelik 1",
+   "existingId": "enchiridion",
+   "reason": "Adı “el kitabı” anlamına gelir. Başkalarının onayı, eleştirisi ve kararları karşısında kendi davranış alanını belirlemek için kısa, yoğun bir temel metin. Öneride Türkiye İş Bankası Kültür Yayınları’nın Enkheiridion baskısı (çeviren C. Cengiz Çevik).",
+   "extraGroups": [
+    {
+     "id": "oncelik",
+     "order": 1,
+     "reason": "Öncelikte 1."
+    },
+    {
+     "id": "ilk-uc",
+     "order": 1,
+     "reason": "İlk alışverişte alınacak üç kitaptan biri."
+    }
+   ]
+  },
+  {
+   "key": "meditations",
+   "group": "oncelik",
+   "role": "Öncelik 2",
+   "existingId": "meditations",
+   "reason": "Yetki kullanırken egoyu sorgulamak, zor insanlarla çalışırken göreve ve ilkelere dönmek için; bir imparatorun kendine yazdığı hatırlatmalar. Öneride Türkiye İş Bankası Kültür Yayınları baskısı (çeviren Yunus Emre Ceren).",
+   "extraGroups": [
+    {
+     "id": "oncelik",
+     "order": 2,
+     "reason": "Öncelikte 2."
+    },
+    {
+     "id": "ilk-uc",
+     "order": 2,
+     "reason": "İlk alışverişte alınacak üç kitaptan biri."
+    }
+   ]
+  },
+  {
+   "key": "devitabeata",
+   "group": "oncelik",
+   "role": "Öncelik 3",
+   "title": "De vita beata; De brevitate vitae",
+   "author": "Seneca",
+   "originalLanguage": "la",
+   "categories": [
+    "philosophy"
+   ],
+   "reason": "Başarının, servetin ve meşguliyetin hayattaki yerini sorgulamak; zamanın hangi amaçlara verildiğini değerlendirmek için. Seneca’nın iki diyaloğu tek ciltte.",
+   "titleTr": "Mutlu Yaşam Üzerine – Yaşamın Kısalığı Üzerine",
+   "edition": {
+    "title": "Mutlu Yaşam Üzerine – Yaşamın Kısalığı Üzerine",
+    "isbn": "9786052956441",
+    "publisher": "Türkiye İş Bankası Kültür Yayınları",
+    "translators": [
+     "C. Cengiz Çevik"
+    ],
+    "sourceUrl": "https://www.iskultur.com.tr/mutlu-yasam-uzerine-yasamin-kisaligi-uzerine.aspx",
+    "sourceType": "publisher",
+    "secondSourceUrl": "https://www.dr.com.tr/search?q=9786052956441",
+    "secondSourceType": "retailer",
+    "checkedAt": "2026-10-22",
+    "basis": "two-stage check",
+    "note": "iskultur.com.tr ve dr.com.tr aynı ISBN'i (9786052956441) ve Türkiye İş Bankası Kültür Yayınları yayınevini gösteriyor; çevirmen: C. Cengiz Çevik. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+   },
+   "cover": {
+    "src": "covers/stoic-devitabeata.jpg",
+    "imageUrl": "https://img.iskultur.com.tr/webp/2018/08/mutlu-yasam-uzerine-4.jpg",
+    "sourceUrl": "https://www.iskultur.com.tr/mutlu-yasam-uzerine-yasamin-kisaligi-uzerine.aspx",
+    "sourceName": "iskultur.com.tr",
+    "title": "Mutlu Yaşam Üzerine – Yaşamın Kısalığı Üzerine",
+    "author": "Seneca",
+    "publisher": "Türkiye İş Bankası Kültür Yayınları",
+    "isbn": "9786052956441",
+    "language": "tr",
+    "checkedAt": "2026-10-22",
+    "scope": "Türkçe baskı kapağı"
+   },
+   "extraGroups": [
+    {
+     "id": "oncelik",
+     "order": 3,
+     "reason": "Öncelikte 3."
+    },
+    {
+     "id": "ilk-uc",
+     "order": 3,
+     "reason": "İlk alışverişte alınacak üç kitaptan biri."
+    }
+   ]
+  },
+  {
+   "key": "deira",
+   "group": "oncelik",
+   "role": "Öncelik 4",
+   "title": "De ira",
+   "author": "Seneca",
+   "originalLanguage": "la",
+   "categories": [
+    "philosophy",
+    "psychology"
+   ],
+   "reason": "Tepkiyi ertelemek; öfkenin değerlendirmeyi ve cezalandırma isteğini nasıl etkilediğini incelemek için. Özellikle geri bildirim ve çatışma anlarına uygulanır.",
+   "issue": "Türkçe baskı adayı: Öfke Üzerine (Doğu Batı Yayınları, çeviren A. Doğucan Hanegelioğlu, ISBN 9786258123111); öneride Nurcan Kızık Ünal çevirisi anılıyor. İkinci, bağımsız bir kaynakta görülemediği için doğrulanmış sayılmadı.",
+   "extraGroups": [
+    {
+     "id": "oncelik",
+     "order": 4,
+     "reason": "Öncelikte 4."
+    }
+   ]
+  },
+  {
+   "key": "epistulae",
+   "group": "oncelik",
+   "role": "Öncelik 5",
+   "existingId": "epistulaemoralesadlucilium",
+   "reason": "Zaman, dostluk, korku, servet, ölüm ve karakter üzerine uzun süreli bir düşünme pratiği; tek seferde bitirmek yerine mektup mektup okunur. Öneride Jaguar Kitap’ın Latince aslından çevirisi (çeviren Türkân Uzel).",
+   "extraGroups": [
+    {
+     "id": "oncelik",
+     "order": 5,
+     "reason": "Öncelikte 5."
+    }
+   ]
+  },
+  {
+   "key": "howtobeastoic",
+   "group": "aciklayici",
+   "role": "Açıklayıcı başlangıç",
+   "title": "How to Be a Stoic",
+   "author": "Massimo Pigliucci",
+   "originalLanguage": "en",
+   "categories": [
+    "philosophy",
+    "psychology"
+   ],
+   "reason": "Klasiklerdeki düşüncelerin gerekçelerini ve günlük hayata nasıl uygulanacağını çağdaş örneklerle anlamak için; klasiklerin kısa anlatımı açıklamasız gelirse onlardan önce okunur.",
+   "year": 2017,
+   "issue": "Türkçe baskı adayı: Stoacı Olmanın Yolu: Modern Yaşam İçin Antik Felsefe (Pegasus Yayınları, çeviren Ayşe Nur Aksu Sezgin, ISBN 9786254106569). İkinci, bağımsız bir kaynakta görülemediği için doğrulanmış sayılmadı."
+  }
+ ],
+ "links": [
+  {
+   "type": "sequence",
+   "first": "howtobeastoic",
+   "then": "enchiridion",
+   "why": "Klasiklerin kısa ve keskin anlatımı açıklamasız gelirse, Stoacı düşüncenin gerekçelerini çağdaş örneklerle anlatan bu kitap önce okunur.",
+   "next": "Açıklayıcı girişten sonra Stoacılığın kısa temel metni."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "enchiridion",
+    "meditations"
+   ],
+   "reason": "Marcus Aurelius Kendime Düşünceler’de Epiktetos’un söylevlerinden söz eder ve yararlandığını anlatır; ikisi de kişinin kendi seçimine bağlı olanı ayırmayı öğretir."
+  },
+  {
+   "type": "companion",
+   "books": [
+    "devitabeata",
+    "epistulae"
+   ],
+   "reason": "İkisi de Seneca’nın: diyaloglar zaman ve mutluluğu kısa bir tartışmada, mektuplar aynı konuları uzun bir düşünme pratiğinde işler."
+  }
+ ]
+}

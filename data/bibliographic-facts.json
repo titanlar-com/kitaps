@@ -21417,6 +21417,963 @@
           }
         ]
       }
+    },
+    "omerta": {
+      "firstPublicationYear": 2000,
+      "firstPublisher": "Random House",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Omert%C3%A0_(novel)",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.publishersweekly.com/9780375502545",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kirkusreviews.com/book-reviews/mario-puzo/omerta/",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "foolsdie": {
+      "firstPublicationYear": 1978,
+      "firstPublisher": "G. P. Putnam's Sons",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Fools_Die",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.thirdmindbooks.com/pages/books/6174/mario-puzo/fools-die",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "family": {
+      "firstPublicationYear": 2001,
+      "firstPublisher": "ReganBooks",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Family_(Puzo_novel)",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www2.publishersweekly.com/9780060394455",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.abebooks.com/9780060394455/Family-Novel-Puzo-Mario-0060394455/plp",
+            "type": "retailer"
+          },
+          {
+            "url": "https://catalog.freelibrary.org/Record/167263",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "sixgravestomunich": {
+      "firstPublicationYear": 1967,
+      "firstPublisher": "Banner Books",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Six_Graves_to_Munich",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://penguinrandomhouse.com/books/306908/six-graves-to-munich-by-mario-puzo",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://archive.org/details/sixgravestomunic00cler",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.abebooks.com/book-search/author/mario-cleri/first-edition/",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "godfatherreturns": {
+      "firstPublicationYear": 2004,
+      "firstPublisher": "Random House",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Godfather_Returns",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/books/OL3329475M/The_godfather_returns",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.amazon.com/Godfather-Returns-Mark-Winegardner/dp/1400061016",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "fiftyyearsinthesystem": {
+      "firstPublicationYear": 1989,
+      "firstPublisher": "Mainstream Publishing",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.abebooks.com/9781851582327/Fifty-Years-System-Laing-Jimmy-1851582320/plp",
+            "type": "retailer"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/9781851582327",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.abebooks.com/9780552138925/Fifty-Years-System-Laing-Jimmy-0552138924/plp",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.worldofbooks.com/en-au/products/9781851582327",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.tandfonline.com/doi/abs/10.1080/09585189108407653",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.goodreads.com/en/book/show/17053928-fifty-years-in-the-system",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "prophetoutcasttrotsky19291940": {
+      "firstPublicationYear": 1963,
+      "firstPublisher": "Oxford University Press",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://catalog.americanacademy.de/bib/2878",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Isaac_Deutscher",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-001",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.abebooks.co.uk/first-edition/Prophet-Outcast-Trotsky-1929-1940-Deutscher-Isaac/31626581278/bd",
+            "type": "retailer"
+          },
+          {
+            "url": "https://openlibrary.org/books/OL4092092M/The_prophet_outcast--Trotsky_1929-1940",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "униженныеиоскорбленные": {
+      "firstPublicationYear": 1861,
+      "firstPublisher": "Время (Vremya), journal",
+      "originalLanguage": "ru",
+      "stage1": {
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Humiliated_and_Insulted",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://ru.wikipedia.org/wiki/Униженные_и_оскорблённые",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://rvb.ru/dostoevski/02comm/21.htm",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://fantlab.ru/work228621",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://philolog.petrsu.ru/filolog/vremja.htm",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "cyranodebergerac": {
+      "firstPublicationYear": 1898,
+      "firstPublisher": "Librairie Charpentier et Fasquelle",
+      "originalLanguage": "fr",
+      "stage1": {
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://fr.wikipedia.org/wiki/Cyrano_de_Bergerac_(Rostand)",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.livre-rare-book.com/book/5472636/65343",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.camillesourget.com/en/ouvrages/cyrano-de-bergerac-comedie-heroique-en-cinq-actes-en-vers-representee-a-paris-sur-le-theatre-de-la-porte-saint-martin-le-28-decembre-1897/",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.abebooks.com/first-edition/Cyrano-Bergerac-Rostand-Edmond-1868-1918/31231584269/bd",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "lespardaillan": {
+      "firstPublicationYear": 1902,
+      "firstPublisher": "La Petite République (newspaper serial)",
+      "originalLanguage": "fr",
+      "stage1": {
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://fr.wikipedia.org/wiki/Les_Pardaillan",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://fr.wikisource.org/wiki/Livre:La_Petite_r%C3%A9publique,_1902_(extrait_Par_le_fer_et_par_l%E2%80%99amour,_chapitre_XLVI).djvu",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.gutenberg.org/ebooks/13207",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://gallica.bnf.fr/accueil/fr/html/michel-zevaco-est-mort-il-y-a-100-ans",
+            "type": "national-bibliography"
+          }
+        ]
+      }
+    },
+    "josephfouchebildniseinespolitischenmenschen": {
+      "firstPublicationYear": 1929,
+      "firstPublisher": "Insel-Verlag",
+      "originalLanguage": "de",
+      "stage1": {
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://de.wikipedia.org/wiki/Joseph_Fouché._Bildnis_eines_politischen_Menschen",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Joseph_Fouche:_Portrait_of_a_Politician",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.zvab.com/erstausgabe/Joseph-Fouch%C3%A9-Bildnis-politischen-Menschen-Zweig/32134894113/bd",
+            "type": "retailer"
+          },
+          {
+            "url": "https://search.worldcat.org/title/Joseph-Fouche-Bildnis-eines-politischen-Menschen/oclc/422720",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "manualdoguerreirodaluz": {
+      "firstPublicationYear": 1997,
+      "firstPublisher": "Editora Objetiva",
+      "originalLanguage": "pt",
+      "stage1": {
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.estantevirtual.com.br/livro/manual-do-guerreiro-da-luz-FVT-3418-000-BK",
+            "type": "retailer"
+          },
+          {
+            "url": "https://abebooks.com/9788573021394/Manual-Guerreiro-Luz-Paulo-Coelho-857302139X/plp",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.skoob.com.br/manual-do-guerreiro-da-luz-153ed327278.html",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://books.google.com/books/about/Manual_do_guerreiro_da_luz.html?id=CIUtAAAAYAAJ",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.britannica.com/topic/Manual-of-The-Warrior-of-Light",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "greywolfmustafakemalanintimatestudyofadictator": {
+      "firstPublicationYear": 1932,
+      "firstPublisher": "Arthur Barker",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://libcat.library.tamu.edu/Record/in00000447363",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.routledge.com/Grey-Wolf---Mustafa-Kemal-An-Intimate-Study-of-a-Dictator/Ritter/p/book/9781138999565",
+            "type": "publisher"
+          },
+          {
+            "url": "https://ci.nii.ac.jp/ncid/BA03018287",
+            "type": "library-catalog"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.abebooks.com/Grey-Wolf-Mustafa-Kemal-Intimate-Study/32106866720/bd",
+            "type": "retailer"
+          },
+          {
+            "url": "https://dergipark.org.tr/en/pub/aamd/issue/55749/759478",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://search.worldcat.org/title/Grey-Wolf-Mustafa-Kemal-an-intimate-study-of-a-dictator/oclc/251329299",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "wickedmessengerbobdylanandthe1960s": {
+      "firstPublicationYear": 2005,
+      "firstPublisher": "Seven Stories Press",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.penguinrandomhouse.com/books/213893/wicked-messenger-by-mike-marqusee/",
+            "type": "publisher"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Chimes_of_Freedom:_The_Politics_of_Bob_Dylan%27s_Art",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-002",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.sevenstories.com/books/3858-wicked-messenger",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.worldcat.org/title/wicked-messenger-bob-dylan-and-the-1960s-chimes-of-freedom-revised-and-expanded/oclc/58594958",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "safahat": {
+      "firstPublicationYear": 1911,
+      "originalLanguage": "tr",
+      "stage1": {
+        "reviewer": "claude-stage1-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://islamansiklopedisi.org.tr/safahat",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://tr.wikipedia.org/wiki/Safahat",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://kureansiklopedi.com/tr/detay/safahat-2",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.turkedebiyati.org/?p=39131",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "soncuret": {
+      "firstPublicationYear": 2020,
+      "firstPublisher": "Sia Kitap",
+      "originalLanguage": "tr",
+      "stage1": {
+        "reviewer": "claude-stage1-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kitapyurdu.com/kitap/son-curet/556694.html",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.cumhuriyet.com.tr/haber/yilmaz-ozdil-yeni-kitabi-son-cureti-anlatti-milli-mucadele-aslinda-suruyor-1774051",
+            "type": "author"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9786254440489",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.sabah.com.tr/yazarlar/ardic/2020/10/14/yilmazin-son-kitabi/amp",
+            "type": "official"
+          }
+        ]
+      }
+    },
+    "herseyseninlebaslar": {
+      "originalLanguage": "tr",
+      "stage1": {
+        "reviewer": "claude-stage1-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://katalog.bilecik.edu.tr/bib/18834",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.milliyet.com.tr/yazarlar/melih-asik/her-sey-seninle-1208001",
+            "type": "official"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.biyografiler.com/kimdir/mumin-sekman",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.dr.com.tr/search?q=9786051067315",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "birguntekbasina": {
+      "firstPublicationYear": 1974,
+      "originalLanguage": "tr",
+      "stage1": {
+        "reviewer": "claude-stage1-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://tr.wikipedia.org/wiki/Bir_G%C3%BCn_Tek_Ba%C5%9F%C4%B1na",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.turkedebiyati.org/vedat-turkali/",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://bianet.org/haber/vedat-turkali-1-eylul-baris-gunu-nde-ugurlanacak-178262",
+            "type": "official"
+          }
+        ]
+      }
+    },
+    "halilkutpasakutulamareninmuzafferkomutani": {
+      "firstPublisher": "Kronik Kitap",
+      "originalLanguage": "tr",
+      "stage1": {
+        "reviewer": "claude-stage1-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://catalog.khas.edu.tr/bib/20927",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://openlibrary.org/isbn/9789752430303",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-003",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.dr.com.tr/search?q=9789752430303",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "shibumi": {
+      "firstPublicationYear": 1979,
+      "firstPublisher": "Crown Publishers",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Shibumi_(novel)",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://openlibrary.org/works/OL1882140W/editions.json?limit=50",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kirkusreviews.com/book-reviews/trevanian-5/shibumi/",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "eigersanction": {
+      "firstPublicationYear": 1972,
+      "firstPublisher": "Crown Publishers",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Eiger_Sanction_(novel)",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://openlibrary.org/works/OL1882136W/editions.json",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kirkusreviews.com/book-reviews/trevanian-5/the-eiger-sanction/",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "loosanction": {
+      "firstPublicationYear": 1973,
+      "firstPublisher": "Crown Publishers",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/works/OL1882137W/editions.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Loo_Sanction",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kirkusreviews.com/book-reviews/trevanian-5/the-loo-sanction/",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "incidentattwentymile": {
+      "firstPublicationYear": 1998,
+      "firstPublisher": "St. Martin's Press",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/works/OL1882135W/editions.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.publishersweekly.com/9780312192334",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://catalog.saclibrary.org/Record/.b14251358",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://m.csmonitor.com/1999/0701/p23s3.html",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "summerofkatya": {
+      "firstPublicationYear": 1983,
+      "firstPublisher": "Crown Publishers",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/works/OL1882138W/editions.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.bookstellyouwhy.com/pages/books/30707/trevanian/the-summer-of-katya-1st-edition-1st-printing",
+            "type": "retailer"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.kirkusreviews.com/book-reviews/trevanian-5/the-summer-of-katya/",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "main": {
+      "firstPublicationYear": 1976,
+      "firstPublisher": "Harcourt Brace Jovanovich",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/works/OL1882139W/editions.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.kirkusreviews.com/book-reviews/trevanian-5/the-main/",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://libcat.library.tamu.edu/Record/in00000605280",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "hotnightinthecity": {
+      "firstPublicationYear": 2000,
+      "firstPublisher": "St. Martin's Press (Thomas Dunne Books)",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/works/OL1882129W/editions.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.publishersweekly.com/9780312242022",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://catalog.ocln.org/Record/118183",
+            "type": "library-catalog"
+          }
+        ]
+      }
+    },
+    "crazyladiesofpearlstreet": {
+      "firstPublicationYear": 2005,
+      "firstPublisher": "Crown Publishers",
+      "originalLanguage": "en",
+      "stage1": {
+        "reviewer": "claude-stage1-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/works/OL1882134W/editions.json",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.publishersweekly.com/9781400080366",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-004",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.penguinrandomhouse.com/books/180238/the-crazyladies-of-pearl-street-by-trevanian/9781400080373",
+            "type": "rights-holder"
+          }
+        ]
+      }
+    },
+    "devitabeatadebrevitatevitae": {
+      "originalLanguage": "la",
+      "stage1": {
+        "reviewer": "claude-stage1-p-005",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://www.iskultur.com.tr/mutlu-yasam-uzerine-yasamin-kisaligi-uzerine.aspx",
+            "type": "publisher"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/De_Vita_Beata",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-005",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://resolve.cambridge.org/core/journals/journal-of-roman-studies/article/de-brevitate-vitae/0F6A48C15F0B8D6BEEDC553094461AF0",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://intertextual.bible/book/seneca-on-the-happy-life",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "deira": {
+      "originalLanguage": "la",
+      "stage1": {
+        "reviewer": "claude-stage1-p-005",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/De_Ira",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-005",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://classicalstudies.org/self-divided-dialogical-self-senecas-de-ira",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://intertextual.bible/book/seneca-on-the-happy-life",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://reference.org/facts/De_Ira/try7S3Bc",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "howtobeastoic": {
+      "firstPublicationYear": 2017,
+      "originalLanguage": "en",
+      "originalTitle": "How to Be a Stoic",
+      "stage1": {
+        "reviewer": "claude-stage1-p-005",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://hachettebookgroupusdistribution.com/titles/massimo-pigliucci/how-to-be-a-stoic/9780465097968",
+            "type": "publisher"
+          },
+          {
+            "url": "https://www.penguin.co.uk/books/433196/how-to-be-a-stoic-by-massimo-pigliucci/9781846045073",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-p-005",
+        "checkedAt": "2026-10-22",
+        "sources": [
+          {
+            "url": "https://huntsbookshop.com/products/9781846045073",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.goodreads.com/work/editions/52114948",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://thehumanist.com/?p=20377",
+            "type": "bibliographic"
+          }
+        ]
+      }
     }
   }
 }

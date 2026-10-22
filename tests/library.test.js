@@ -32,7 +32,8 @@ test('the researched entrepreneurship route is unique and stays below the reques
  }
 });
 test('non-Latin titles and missing original titles remain distinct',()=>{
- assert.equal(filter({query:'Dostoyevski'}).length,5);
+ // Six Dostoyevski works since Ezilenler (Униженные и оскорблённые) joined with the Peker videos list.
+ assert.equal(filter({query:'Dostoyevski'}).length,6);
  assert.ok(filter({query:'Abartma Tozu'}).length===1);
  assert.ok(filter({query:'Yılankale'}).length===1);
 });

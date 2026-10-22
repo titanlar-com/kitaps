@@ -38,6 +38,13 @@ describe('EditionSummary', () => {
     expect(screen.queryByText(/Türkçe baskı doğrulanamadı/)).toBeNull();
   });
 
+  it('shows the page count of the printing it shows, and where it was read', () => {
+    renderWithTheme(<EditionSummary book={book('oncompetition')}/>);
+    expect(screen.getByText('Sayfa sayısı')).toBeTruthy();
+    expect(screen.getByText(String(book('oncompetition').pageCounts['9786055655433'].pages))).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'kitapyurdu.com' })).toBeTruthy();
+  });
+
   it('gives an article its publication and text instead of an edition to buy', () => {
     const article = book('dilemmasinageneraltheoryofplanning');
     renderWithTheme(<EditionSummary book={article}/>);

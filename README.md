@@ -2,7 +2,7 @@
 
 [Canlı site](https://titanlar-com.github.io/kitaps/) · [JavaScript gerektirmeyen katalog](https://titanlar-com.github.io/kitaps/catalog/)
 
-Kitap kimliklerini, Türkçe baskıları, kitaplar arasındaki hazırlık ve eşlik ilişkilerini ve açıklanabilir bir okuma önceliğini bir araya getiren okuma kataloğu. Ekim 2026 itibarıyla 988 eser (makale ve denemeler dahil), 34 küme, 190 alt küme ve 21 kategori içerir. Güncel sayılar sitede ve `src/catalog.json` içinde katalogdan hesaplanır.
+Kitap kimliklerini, Türkçe baskıları, kitaplar arasındaki hazırlık ve eşlik ilişkilerini ve açıklanabilir bir okuma önceliğini bir araya getiren okuma kataloğu. Ekim 2026 itibarıyla 1019 eser (makale ve denemeler dahil), 36 küme, 198 alt küme ve 21 kategori içerir. Güncel sayılar sitede ve `src/catalog.json` içinde katalogdan hesaplanır.
 
 ## Özellikler
 
@@ -52,6 +52,9 @@ Anahtar tarayıcıda saklanır. Kuruluşun özel alan adı kullanmayan bütün P
 - Yönetici adayının temel okumaları `data/manager-foundations.json` içindedir: yönetim klasiklerinden önce işletme, finans, karar, ekonomi ve veri okuryazarlığı; insan ve örgüt; sistem kurmak ve yönetimi uygulamak. Üç aşamalı on iki kitaplık program, "İlk üç", "Kısa yol" ve "İlk kez insan yönetecekler için" seçkileri ile her kitabın hazırladığı yönetim klasiği (Drucker, Porter, Deming, Weber, Collins, Christensen) burada. Önceki bir kümede bulunan kitaplar kümeye `existingId` ile katılır; ön hazırlık rotasından gelen kitaplar o rota yüklendikten sonra bağlanır.
 - Yöneticinin okuma alanları `data/manager-reading-areas.json` içindedir: doğrudan yönetim sorumlulukları için on üç alan ve düşünsel derinlik için altı alan, her alanda bir başlangıç kitabı, ardından okunacaklar, derinleşme okumaları (Popper, Geertz, Mills) ve iki öncelik sırası. Önerideki her alanın yardım ettiği yönetim sorusu, o alanın kitabının notunda yazar.
 - Raftaki kitaplar `data/shelf-photos.json` içindedir: kitaplığın sahibinin raflarından fotoğrafladığı kitaplar; her fotoğraf günü bir alt kümedir (`2026-10-22`). Rafta bulunmak satın alındı işareti değildir. Katalogda olan bir eser yeni kayıt olmaz, kümeye katılır.
+- Sedat Peker’in 2020–2021 videolarında geçen kitaplar `data/peker-videos.json` içindedir: açıkça önerdikleri, masada ya da tahtada görünenler (öneri değil), konuşmasında andığı eserler ve Twitter’da önerdiği Trevanian sırası ayrı alt kümelerdedir. Doğrulanamayan iddialar ve kataloğa alınmayanlar kümenin notunda yazar.
+- Yönetici için Stoacılık `data/stoicism-for-managers.json` içindedir: Epiktetos, Marcus Aurelius ve Seneca’dan öncelik sırasıyla beş klasik, ilk alışverişte üç kitap ve Pigliucci’nin açıklayıcı girişi; dört erdemin yöneticilik karşılıkları ve günlük üç soru kümenin bağlamında.
+- Sayfa sayısı baskıya aittir ve ISBN ile `data/page-counts.json` içinde tutulur (`scripts/fetch-page-counts.py`): kitap sayfası gösterdiği ISBN’in sayfa sayısını ve okunduğu kaynağı yazar; başka bir baskının sayısı kullanılmaz, bulunamayan sayı “Henüz doğrulanmadı” olarak kalır.
 - Raf taraması değerlendirmesi `data/shelf-review.json` içindedir: fotoğraflanan kitap raflarından yapılan okuma önerileri, öncelik ve koşul notlarıyla. Yeni Türkçe baskılar iki ayrı sitede doğrulandı. Benzer adlı ya da karışabilecek kitaplar kümenin notunda ve ilgili kitabın sayfasında belirtilir. Öncelikler not olarak kalır, puana eklenmez.
 - Eseri veya baskısı belirsiz kayıtlarda kapak yerine açıklama gösterilir. Yanlış eserle eşleşen kapaklar `data/rejected-cover-matches.json` içinde gerekçesiyle korunur.
 - Her kapağın iki kopyası vardır: `public/covers/` (en çok 720 px, 2x masaüstü ekranları) ve `public/covers/sm/` (en çok 400 px, telefonlar ve küçük kapaklar). Tarayıcı `srcset` ile gösterilen boyuta ve ekran yoğunluğuna uyanı indirir.
