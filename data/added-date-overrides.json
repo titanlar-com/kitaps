@@ -1,0 +1,12 @@
+{
+ "schemaVersion": 1,
+ "policy": "Proje sahibinin kararıyla bazı eklenme günleri tek gün olarak gösterilir. data/added-dates.json her kitabın gerçek ilk commit gününü kanıtıyla tutmaya devam eder; katalog ve site gösterilen günü buradaki taşımaya göre yazar.",
+ "moves": [
+  {
+   "from": "2026-10-21",
+   "to": "2026-10-22",
+   "decidedAt": "2026-10-22",
+   "note": "21 ve 22 Ekim 2026 eklemeleri tek gün, 22 Ekim olarak gösterilir."
+  }
+ ]
+}

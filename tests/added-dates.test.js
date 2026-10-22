@@ -7,13 +7,16 @@ const catalog=read('../src/catalog.json');
 const dates=read('../data/added-dates.json');
 const shelf=read('../data/shelf-review.json');
 const byId=Object.fromEntries(catalog.books.map(book=>[book.id,book]));
+// The owner shows some days as one; the records keep the real day.
+const moves=Object.fromEntries(read('../data/added-date-overrides.json').moves.map(move=>[move.from,move.to]));
+const shown=day=>moves[day]||day;
 
 test('every book carries the day it entered the library, as recorded with its evidence',()=>{
  for(const book of catalog.books){
   const record=dates.records[book.id];
   assert.ok(record,`${book.id}: run scripts/infer-added-dates.py --write, then merge again`);
   assert.match(book.addedAt,/^\d{4}-\d{2}-\d{2}$/,book.id);
-  assert.equal(book.addedAt,record.date,book.id);
+  assert.equal(book.addedAt,shown(record.date),book.id);
   assert.ok(['kitaps','kitap-atlasi','kitaplik'].includes(record.repository),book.id);
   // Only a book not yet committed lacks a commit; every other date names one.
   assert.equal(record.commit===null,record.matchedBy==='working-tree',book.id);
@@ -36,7 +39,14 @@ test('added dates follow the library\'s history: Kitaps, then Kitap Atlası, the
   const book=byId[catalog.mapping[`shelf:${item.key}`]];
   const day=item.edition?.checkedAt||shelf.checkedAt;
   if(item.existingId)assert.ok(book.addedAt<'2026-10-04',item.key);
-  else assert.equal(book.addedAt,day,item.key);
+  else assert.equal(book.addedAt,shown(day),item.key);
  }
  assert.deepEqual([...new Set(shelf.books.filter(item=>!item.existingId).map(item=>item.edition?.checkedAt||shelf.checkedAt))].sort(),['2026-10-04','2026-10-21']);
+});
+
+test('the owner\'s merged days show as one, while the records keep the real day',()=>{
+ for(const [from,to] of Object.entries(moves)){
+  assert.ok(Object.values(dates.records).some(record=>record.date===from),`${from} has recorded books`);
+  assert.ok(!catalog.books.some(book=>book.addedAt===from),`${from} is shown as ${to}`);
+ }
 });

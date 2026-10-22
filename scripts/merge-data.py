@@ -420,9 +420,13 @@ for b in books.values():
 # scripts/infer-added-dates.py. A book without one is new: run that script and
 # merge again (tests/added-dates.test.js fails while any date is missing).
 added_dates=read('data/added-dates.json')['records'] if (ROOT/'data/added-dates.json').exists() else {}
+# The owner may show some days as one (data/added-date-overrides.json); the records above keep
+# each book's real first day with its evidence.
+date_moves={move['from']:move['to'] for move in (read('data/added-date-overrides.json')['moves'] if (ROOT/'data/added-date-overrides.json').exists() else [])}
+assert all(re.fullmatch(r'\d{4}-\d{2}-\d{2}',day) for pair in date_moves.items() for day in pair) and not set(date_moves)&set(date_moves.values()),date_moves
 for bid,b in books.items():
  if bid in added_dates:
-  added=added_dates[bid]['date']
+  added=date_moves.get(added_dates[bid]['date'],added_dates[bid]['date'])
   assert re.fullmatch(r'\d{4}-\d{2}-\d{2}',added) and date.fromisoformat(added),(bid,added)
   b['addedAt']=added
 undated=[bid for bid in books if bid not in added_dates]
