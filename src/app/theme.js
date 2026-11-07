@@ -1,6 +1,6 @@
 // Moved verbatim from App.jsx (architecture plan, phase 1, 7 November 2026).
 import { Accordion, ActionIcon, Badge, Button, Modal, TextInput, Tooltip, createTheme, defaultVariantColorsResolver } from '@mantine/core';
-import { MOTION_EASE, MOTION_MS } from '../motion';
+import { MOTION_EASE, MOTION_MS, TOOLTIP_DELAY_MS } from '../motion.js';
 
 // One motion curve and duration for every JavaScript transition (AGENT.md motion contract),
 // from src/motion.js; styles.css holds the same values as --motion-ease and --motion-base.
@@ -27,7 +27,11 @@ export const theme = createTheme({
  colors:{brand:['#fcf0ee','#f6e3df','#ecc2ba','#f0907d','#e0705c','#c95443','#b54434','#a3392b','#7c2a1f','#5a1f17']},
  // Mantine's corner sizes are the stylesheet's tokens, so every component keeps the same small corners.
  radius:{xs:'var(--radius-xs)',sm:'var(--radius-sm)',md:'var(--radius)',lg:'var(--radius-lg)',xl:'var(--radius-lg)'},
- fontSizes:{xs:'1rem',sm:'1rem',md:'1rem',lg:'1.125rem',xl:'1.25rem'},
- headings:{fontFamily:FONT,fontWeight:'600',sizes:{h1:{fontSize:'2.25rem',lineHeight:'1.15'},h2:{fontSize:'1.75rem',lineHeight:'1.2'},h3:{fontSize:'1.25rem',lineHeight:'1.3'},h4:{fontSize:'1.0625rem',lineHeight:'1.35'}}},
- components:{Button:Button.extend({defaultProps:{size:'md'},vars:(_,props)=>({root:{'--button-bd':controlBorder(props)}})}),ActionIcon:ActionIcon.extend({defaultProps:{size:44},vars:(_,props)=>({root:{'--ai-bd':controlBorder(props)}})}),TextInput:{defaultProps:{size:'md'}},Select:{defaultProps:{size:'md',comboboxProps:motion}},MultiSelect:{defaultProps:{size:'md',comboboxProps:motion}},Badge:{defaultProps:{size:'lg',variant:'light',radius:'sm'}},Drawer:{defaultProps:{...motion,closeButtonProps:{'aria-label':'Kapat'},overlayProps:{backgroundOpacity:.35,blur:3}}},Modal:{defaultProps:motion},Popover:{defaultProps:motion},Tooltip:{defaultProps:motion},Combobox:{defaultProps:motion},Accordion:{defaultProps:{transitionDuration:MOTION_MS}},SegmentedControl:{defaultProps:{transitionDuration:MOTION_MS,transitionTimingFunction:MOTION_EASE}},Collapse:{defaultProps:{transitionDuration:MOTION_MS,transitionTimingFunction:MOTION_EASE}}}
+ // The redesign's scale (docs/UI-REDESIGN.md): secondary text steps down to 14 and 15 px, never below.
+ fontSizes:{xs:'0.875rem',sm:'0.9375rem',md:'1rem',lg:'1.125rem',xl:'1.25rem'},
+ lineHeights:{xs:'1.4',sm:'1.45',md:'1.55',lg:'1.55',xl:'1.6'},
+ headings:{fontFamily:FONT,fontWeight:'650',sizes:{h1:{fontSize:'2.5rem',lineHeight:'1.1'},h2:{fontSize:'1.875rem',lineHeight:'1.15'},h3:{fontSize:'1.375rem',lineHeight:'1.25'},h4:{fontSize:'1.125rem',lineHeight:'1.35'},h5:{fontSize:'1rem',lineHeight:'1.4'},h6:{fontSize:'0.9375rem',lineHeight:'1.4'}}},
+ // Elevation comes from the stylesheet's tokens, so both schemes and every component share it.
+ shadows:{xs:'var(--shadow-xs)',sm:'var(--shadow-sm)',md:'var(--shadow-md)',lg:'var(--shadow-lg)',xl:'var(--shadow-xl)'},
+ components:{Button:Button.extend({defaultProps:{size:'md'},vars:(_,props)=>({root:{'--button-bd':controlBorder(props)}})}),ActionIcon:ActionIcon.extend({defaultProps:{size:44},vars:(_,props)=>({root:{'--ai-bd':controlBorder(props)}})}),TextInput:{defaultProps:{size:'md'}},Select:{defaultProps:{size:'md',comboboxProps:motion}},MultiSelect:{defaultProps:{size:'md',comboboxProps:motion}},Badge:{defaultProps:{size:'lg',variant:'light',radius:'sm'}},Drawer:{defaultProps:{...motion,closeButtonProps:{'aria-label':'Kapat'},overlayProps:{backgroundOpacity:.35,blur:3}}},Modal:{defaultProps:motion},Popover:{defaultProps:motion},Tooltip:{defaultProps:motion},Combobox:{defaultProps:motion},Accordion:{defaultProps:{transitionDuration:MOTION_MS}},Menu:{defaultProps:{...motion,shadow:'md'}},HoverCard:{defaultProps:{...motion,shadow:'lg',openDelay:TOOLTIP_DELAY_MS}},Spoiler:{defaultProps:{transitionDuration:MOTION_MS}},FloatingIndicator:{defaultProps:{transitionDuration:MOTION_MS}},Card:{defaultProps:{radius:'lg',padding:'lg'}},Paper:{defaultProps:{radius:'lg'}},Timeline:{defaultProps:{bulletSize:28,lineWidth:2}},Progress:{defaultProps:{radius:'xl'}},SegmentedControl:{defaultProps:{transitionDuration:MOTION_MS,transitionTimingFunction:MOTION_EASE}},Collapse:{defaultProps:{transitionDuration:MOTION_MS,transitionTimingFunction:MOTION_EASE}}}
 });
