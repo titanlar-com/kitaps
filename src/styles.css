@@ -947,8 +947,9 @@ main{padding-top:20px;padding-bottom:32px}
 .reading-summary-share-value{font-size:var(--text-xl);font-weight:650;line-height:1.1}
 .reading-summary-stats{display:flex;flex:999 1 30rem;flex-wrap:wrap;gap:var(--gap-xs);margin:0;padding:0;list-style:none}
 .reading-summary-stats>li{flex:1 1 7.5rem;min-width:0}
-.reading-summary-stat{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"icon value" "icon label";align-items:center;column-gap:var(--stack-gap);width:100%;min-height:var(--touch-target);padding:var(--gap-xs) var(--stack-gap);border-radius:var(--radius);background:var(--surface);color:var(--ink);transition:background-color var(--motion-fast) var(--motion-ease)}
-.reading-summary-stat:hover{background:var(--surface-2)}
+.reading-summary-stat{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"icon value" "icon label";align-items:center;column-gap:var(--stack-gap);width:100%;min-height:var(--touch-target);padding:var(--gap-xs) var(--stack-gap);border-radius:var(--radius);background:transparent;color:var(--ink);transition:background-color var(--motion-fast) var(--motion-ease)}
+/* A count is known by its icon and words, with no filled box that would need a 3:1 boundary (WCAG 1.4.11). */
+.reading-summary-stat:hover{background:var(--panel-hover)}
 .reading-summary-icon{grid-area:icon}
 .reading-summary-value{grid-area:value;font-size:var(--text-lg);font-weight:650;line-height:1.2}
 .reading-summary-label{grid-area:label;color:var(--muted);font-size:var(--text-sm);line-height:1.3}
