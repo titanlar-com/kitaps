@@ -27,8 +27,8 @@ test('footer exports every catalog book as a self-describing JSON file',()=>{
 });
 
 test('footer shows creation and catalog update dates separately in one format',()=>{
- assert.match(app,/Yaratılış · 27 Eylül 2026/);
- assert.match(app,/Güncelleme · \{catalog\.updated\}/);
+ assert.match(app,/Yaratılış: 27 Eylül 2026/);
+ assert.match(app,/Güncelleme: \{catalog\.updated\}/);
  assert.match(app,/<Text fw=\{600\}>Kitaplık<\/Text>/,'the footer uses the product name');
 });
 

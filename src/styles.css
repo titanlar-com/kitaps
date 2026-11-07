@@ -9,39 +9,41 @@
  /* Titles use the same face; the name stays for component styles written against it. */
  --serif:var(--sans);
 
- --paper:#f6f3ee;
+ --paper:#f3f5f7;
  --surface:#ffffff;
- --surface-2:#f0ebe3;
- --surface-3:#e7e0d5;
- --ink:#1f1b17;
- --ink-2:#4a433b;
- --muted:#675e55;
- --line:#e5ded3;
- --line-strong:#d2c8ba;
- --control-line:#7d7366;
+ --surface-2:#e9edf1;
+ --surface-3:#dde2e8;
+ --ink:#14181d;
+ --ink-2:#363d46;
+ --muted:#555e69;
+ --line:#dbe0e6;
+ --line-strong:#c2c9d1;
+ --control-line:#6f7883;
  /* A control's own boundary keeps 3:1 against every surface it sits on (WCAG 1.4.11). */
- --control-border:#7d7366;
- --accent-border:#a65a38;
- --accent:#9a3f1e;
- --accent-hover:#84351a;
+ --control-border:#6f7883;
+ --accent-border:#ad5a4e;
+ --accent:#a3392b;
+ --accent-hover:#8a2f23;
  --accent-ink:#ffffff;
- --accent-soft:#f6e4da;
- --accent-soft-hover:#f0d5c6;
- --accent-strong:#7a3014;
+ --accent-soft:#f6e3df;
+ --accent-soft-hover:#efd3cc;
+ --accent-strong:#7c2a1f;
  /* Keyboard focus is drawn in ink, so it never reads as the accent of a selected item. */
  --focus:var(--ink);
- --ok:#0f6b62;
+ --ok:#0e6b63;
  --bad:#b42318;
- --hero:#2a211b;
- --hero-ink:#f7efe6;
- --hero-muted:#d9cbbb;
+ --hero:#1b2127;
+ --hero-ink:#eef1f4;
+ --hero-muted:#c2c9d1;
  --hero-button-hover:#ffffff;
- --shadow-sm:0 1px 2px rgb(31 27 23 / 6%);
- --shadow-md:0 1px 2px rgb(31 27 23 / 5%),0 8px 24px -12px rgb(31 27 23 / 18%);
- --cover-shadow:0 1px 1px rgb(31 27 23 / 10%),0 10px 22px -10px rgb(31 27 23 / 45%);
- --radius-sm:8px;
- --radius:12px;
- --radius-lg:18px;
+ --shadow-sm:0 1px 2px rgb(20 24 29 / 6%);
+ --shadow-md:0 1px 2px rgb(20 24 29 / 5%),0 8px 24px -12px rgb(20 24 29 / 18%);
+ --cover-shadow:0 1px 1px rgb(20 24 29 / 10%),0 10px 22px -10px rgb(20 24 29 / 45%);
+ /* Corners stay small: a control or field 8px, a panel or sheet 12px, a small mark 4px. */
+ --radius-xs:4px;
+ --radius-sm:6px;
+ --radius:8px;
+ --radius-lg:12px;
  /* Motion (AGENT.md motion contract): one symmetric curve for entering and leaving, and
     positive durations. Only the reduced-motion branch below may switch motion off. */
  --motion-ease:cubic-bezier(.65,0,.35,1);
@@ -87,7 +89,7 @@
  --status-line-gap:8px;
  --icon-text-offset:.15em;
  --cover-mark-shadow:0 2px 8px rgb(0 0 0 / 24%);
- --cover-badge-bg:rgb(24 19 15 / 82%);
+ --cover-badge-bg:rgb(17 21 26 / 82%);
  --cover-badge-ink:#ffffff;
  --cover-badge-divider:rgb(255 255 255 / 45%);
  --read-cover-grayscale:50%;
@@ -124,39 +126,39 @@
  --mantine-color-brand-outline:var(--accent);
  --mantine-color-orange-light-color:#883700;
  --mantine-color-grape-light-color:#74348b;
- --mantine-color-gray-light-color:#44403c;
+ --mantine-color-gray-light-color:#3b4148;
  --mantine-color-teal-light-color:#0b5a52;
 }
 :root[data-mantine-color-scheme='dark']{
  color-scheme:dark;
- --paper:#141210;
- --surface:#1c1916;
- --surface-2:#25211d;
- --surface-3:#2f2a25;
- --ink:#f2ede6;
- --ink-2:#d4ccc1;
- --muted:#aaa094;
- --line:#312c27;
- --line-strong:#473f37;
- --control-line:#8f8579;
- --control-border:#8f8579;
- --accent-border:#b07a5e;
- --accent:#ef9a70;
- --accent-hover:#f5ab86;
- --accent-ink:#1f1b17;
- --accent-soft:#3a2519;
- --accent-soft-hover:#47301f;
- --accent-strong:#f5b894;
+ --paper:#111418;
+ --surface:#181c21;
+ --surface-2:#20252b;
+ --surface-3:#292f36;
+ --ink:#edf0f3;
+ --ink-2:#c8ced6;
+ --muted:#a1a9b3;
+ --line:#2a3037;
+ --line-strong:#3a414a;
+ --control-line:#848d98;
+ --control-border:#848d98;
+ --accent-border:#b9776b;
+ --accent:#f0907d;
+ --accent-hover:#f5a594;
+ --accent-ink:#14181d;
+ --accent-soft:#3a2420;
+ --accent-soft-hover:#472c27;
+ --accent-strong:#f6b3a6;
  --focus:var(--ink);
  --ok:#7fd6c9;
  --bad:#ffb1a6;
- --hero:#2b221c;
- --hero-ink:#f7efe6;
- --hero-muted:#d9cbbb;
+ --hero:#20272e;
+ --hero-ink:#eef1f4;
+ --hero-muted:#c2c9d1;
  --shadow-sm:0 1px 2px rgb(0 0 0 / 40%);
  --shadow-md:0 1px 2px rgb(0 0 0 / 40%),0 10px 28px -14px rgb(0 0 0 / 70%);
  --cover-shadow:0 1px 1px rgb(0 0 0 / 50%),0 12px 26px -10px rgb(0 0 0 / 80%);
- --ribbon-read-fold:#a39b90;
+ --ribbon-read-fold:#9aa3ad;
  --ribbon-owned-ink:var(--paper);
  --ribbon-owned-fold:#4f9a8f;
 
@@ -175,7 +177,7 @@
  --mantine-color-brand-outline:var(--accent);
  --mantine-color-orange-light-color:#ffd3b1;
  --mantine-color-grape-light-color:#ecc3f5;
- --mantine-color-gray-light-color:#d6d3d1;
+ --mantine-color-gray-light-color:#d3d8de;
  --mantine-color-teal-light-color:#99e6da;
 }
 
@@ -285,9 +287,9 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
 .mantine-Button-root{min-height:44px;border-radius:var(--radius);font-weight:600;letter-spacing:0}
 .mantine-Button-label{align-items:center}
 .mantine-ActionIcon-root,.mantine-CloseButton-root,.mantine-InputClearButton-root{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;min-width:44px;min-height:44px;border-radius:var(--radius)}
-.mantine-Badge-root{height:auto;min-height:28px;padding:3px 10px;border-radius:999px;font-size:.875rem;font-weight:600;line-height:1.4;text-transform:none;letter-spacing:0;white-space:normal}
+.mantine-Badge-root{height:auto;min-height:28px;padding:3px 10px;border-radius:var(--radius-sm);font-size:.875rem;font-weight:600;line-height:1.4;text-transform:none;letter-spacing:0;white-space:normal}
 .mantine-Badge-label{white-space:normal}
-.mantine-Pill-root{flex:0 1 auto;min-width:0;max-width:100%;height:auto;min-height:44px;padding-inline-start:12px;border-radius:10px;background:var(--surface-2);color:var(--ink);white-space:normal}
+.mantine-Pill-root{flex:0 1 auto;min-width:0;max-width:100%;height:auto;min-height:44px;padding-inline-start:12px;border-radius:var(--radius-sm);background:var(--surface-2);color:var(--ink);white-space:normal}
 .mantine-Pill-label{display:block;flex:1 1 auto;min-width:0;height:auto;padding-block:8px;line-height:1.5;white-space:normal;overflow-wrap:normal}
 .mantine-Pill-remove{flex:0 0 44px;min-width:44px;min-height:44px;height:auto;align-self:stretch}
 .mantine-PillGroup-group{align-items:center}
@@ -326,7 +328,7 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
 .brand-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:4px 10px 4px 4px;border-radius:var(--radius);color:var(--ink);text-decoration:none}
 .brand-link:hover{background:var(--surface-2)}
 .brand-link:hover .brand{text-decoration:none}
-.brand-link .mantine-ThemeIcon-root{width:36px;min-width:36px;height:36px;border-radius:10px;background:var(--accent);color:var(--accent-ink)}
+.brand-link .mantine-ThemeIcon-root{width:36px;min-width:36px;height:36px;border-radius:var(--radius);background:var(--accent);color:var(--accent-ink)}
 .brand{font-family:var(--serif);font-size:1.3125rem;font-weight:650;letter-spacing:-.02em;line-height:1.1}
 .header-shortcuts{display:flex;align-items:center;gap:2px}
 .header-shortcuts .mantine-ActionIcon-root{width:44px;height:44px;border:0;border-radius:var(--radius);background:transparent;color:var(--ink-2)}
@@ -367,13 +369,13 @@ main{padding-top:20px}
 .search-panel{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
 .search-panel>.mantine-TextInput-root{min-width:0}
 .catalog-search .mantine-InputWrapper-label{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
-.catalog-search .mantine-Input-input{min-height:52px;padding-left:48px;border-radius:14px;font-size:1.0625rem;box-shadow:var(--shadow-sm)}
+.catalog-search .mantine-Input-input{min-height:52px;padding-left:48px;border-radius:var(--radius);font-size:1.0625rem;box-shadow:var(--shadow-sm)}
 .catalog-search .mantine-Input-section[data-position=left]{width:48px;color:var(--muted)}
 .search-tools{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px}
-.search-tools .mantine-Button-root{min-height:52px;padding-inline:16px;border-radius:14px}
-.search-tools .mantine-Input-input{min-height:52px;border-radius:14px;font-weight:500}
+.search-tools .mantine-Button-root{min-height:52px;padding-inline:16px;border-radius:var(--radius)}
+.search-tools .mantine-Input-input{min-height:52px;border-radius:var(--radius);font-weight:500}
 .active-filters{grid-column:1/-1}
-.active-filters .mantine-Button-root{height:auto;min-height:40px;padding:.4rem .75rem;border-radius:999px;font-weight:600}
+.active-filters .mantine-Button-root{height:auto;min-height:40px;padding:.4rem .75rem;border-radius:var(--radius);font-weight:600}
 .active-filters .mantine-Button-label{white-space:normal;text-align:left}
 @media (min-width:40em){
  .search-panel{grid-template-columns:minmax(0,1fr) auto;align-items:start}
@@ -426,7 +428,7 @@ main{padding-top:20px}
 .age-library h2{margin:0;font-size:1.375rem;line-height:1.25}
 .age-library p{margin:.35rem 0 0;color:var(--ink-2);max-width:62ch}
 .age-bands{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.age-bands .mantine-Button-root{min-height:44px;border-radius:999px;padding-inline:14px}
+.age-bands .mantine-Button-root{min-height:44px;border-radius:var(--radius);padding-inline:14px}
 .age-bands .mantine-Button-root[data-variant=default]{background:var(--surface)}
 
 /* ---------- Book grid ---------- */
@@ -443,14 +445,14 @@ main{padding-top:20px}
 @media (orientation:landscape) and (max-height:31em) and (max-width:64.99em){.books-grid{--books-columns:2}}
 
 .book-card{display:flex;flex-direction:column;min-width:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible;cursor:pointer}
-.book-card:hover .cover-stage img{transform:translateY(-3px);box-shadow:0 1px 1px rgb(31 27 23 / 10%),0 18px 30px -12px rgb(31 27 23 / 50%)}
+.book-card:hover .cover-stage img{transform:translateY(-3px);box-shadow:0 1px 1px rgb(20 24 29 / 10%),0 18px 30px -12px rgb(20 24 29 / 50%)}
 .book-visual{position:relative}
 /* Every cover sits in a 2:3 frame that keeps its size when the cover arrives, so nothing below it moves.
    Size containment keeps WebKit from stretching the frame to a taller cover's own proportions, and lets
    the cover be capped at the frame's height (100cqh) in every engine; engines without container
    units keep the frame through max-height:100%, as Chromium and Firefox always have. */
 .cover-stage{display:flex;align-items:flex-end;justify-content:center;width:100%;aspect-ratio:2/3;container-type:size;margin:0;padding:0;border:0;background:none;color:var(--muted)}
-.cover-open{cursor:pointer;border-radius:6px}
+.cover-open{cursor:pointer;border-radius:var(--radius-sm)}
 /* Small source images scale up to the stage; contain keeps their proportions, and a cover taller
    than 2:3 is shown whole inside the frame, with the frame's surface beside it. */
 .cover-stage img{display:block;width:100%;height:auto;max-height:100%;max-height:100cqh;object-fit:contain;object-position:center bottom;border-radius:3px 6px 6px 3px;background:var(--surface-2);box-shadow:var(--cover-shadow);transition:transform var(--motion-base) var(--motion-ease),box-shadow var(--motion-base) var(--motion-ease)}
@@ -470,7 +472,7 @@ main{padding-top:20px}
 .cover-placeholder-note{position:absolute;right:10px;bottom:8px;color:var(--muted)}
 .cover-placeholder-note svg{display:block}
 
-.reading-priority-badge{height:auto;min-height:24px;padding:2px 8px;border:0;border-radius:999px;background:var(--cover-badge-bg);color:var(--cover-badge-ink);box-shadow:var(--cover-mark-shadow);font-size:var(--cover-mark-font);font-weight:700;font-variant-numeric:tabular-nums;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.reading-priority-badge{height:auto;min-height:24px;padding:2px 8px;border:0;border-radius:var(--radius-sm);background:var(--cover-badge-bg);color:var(--cover-badge-ink);box-shadow:var(--cover-mark-shadow);font-size:var(--cover-mark-font);font-weight:700;font-variant-numeric:tabular-nums;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .reading-priority-badge .mantine-Badge-label{display:flex;align-items:center;gap:6px}
 .reading-priority-badge .priority-score{padding-left:6px;border-left:1px solid var(--cover-badge-divider);font-weight:500;opacity:.9}
 
@@ -521,7 +523,7 @@ main{padding-top:20px}
 @media (prefers-reduced-motion:reduce){.cover-stage img,.book-card:hover .cover-stage img,.book-card:hover .cover-marks{transform:none;transition:none}}
 
 /* Translation status: a symbol plus a short word, colour is never the only cue. */
-.translation-status{display:inline-flex;align-items:center;gap:6px;min-height:28px;max-width:100%;padding:0;border-radius:6px;color:var(--muted);font-size:.875rem;font-weight:600;line-height:1.3;text-align:left}
+.translation-status{display:inline-flex;align-items:center;gap:6px;min-height:28px;max-width:100%;padding:0;border-radius:var(--radius-sm);color:var(--muted);font-size:.875rem;font-weight:600;line-height:1.3;text-align:left}
 .translation-status-mark{display:inline-flex;align-items:center;justify-content:center;flex:0 0 20px;width:20px;height:20px;border:1.5px solid currentColor;border-radius:50%}
 /* With very large text the word can be wider than a card; it breaks there rather than overflowing. */
 .translation-status-word{min-width:0;overflow-wrap:anywhere}
@@ -534,7 +536,7 @@ main{padding-top:20px}
 .detail-translation-status:empty{display:none}
 
 /* Category links keep a 44px hit area around a compact tinted label. */
-.category-link{display:inline-flex;align-items:center;max-width:100%;min-height:44px;min-width:44px;border-radius:999px;text-decoration:none;--category-bg:#e7efe2;--category-fg:#2f4a29}
+.category-link{display:inline-flex;align-items:center;max-width:100%;min-height:44px;min-width:44px;border-radius:var(--radius-sm);text-decoration:none;--category-bg:#e7efe2;--category-fg:#2f4a29}
 .category-link[data-tone=blue]{--category-bg:#e2edf5;--category-fg:#24475d}
 .category-link[data-tone=lavender]{--category-bg:#eee8f6;--category-fg:#513d67}
 .category-link[data-tone=peach]{--category-bg:#f8e8de;--category-fg:#6d432a}
@@ -548,7 +550,7 @@ main{padding-top:20px}
 :root[data-mantine-color-scheme=dark] .category-link[data-tone=sand]{--category-bg:#3d3825;--category-fg:#f1eac8}
 :root[data-mantine-color-scheme=dark] .category-link[data-tone=rose]{--category-bg:#452d36;--category-fg:#f4dce4}
 :root[data-mantine-color-scheme=dark] .category-link[data-tone=mint]{--category-bg:#263d33;--category-fg:#d2eee0}
-.category-pill.mantine-Pill-root{display:inline-flex;align-items:center;min-height:32px;padding:4px 12px;border:0;border-radius:999px;background:var(--category-bg);color:var(--category-fg);font-size:.9375rem;font-weight:600;line-height:1.3}
+.category-pill.mantine-Pill-root{display:inline-flex;align-items:center;min-height:32px;padding:4px 12px;border:0;border-radius:var(--radius-sm);background:var(--category-bg);color:var(--category-fg);font-size:.9375rem;font-weight:600;line-height:1.3}
 .category-pill .mantine-Pill-label{display:block;padding:0;line-height:1.3;white-space:normal}
 .category-link:hover .category-pill{filter:brightness(.97);text-decoration:underline;text-underline-offset:3px}
 
@@ -644,7 +646,7 @@ main{padding-top:20px}
 }
 
 /* Mobile bottom sheet with a centred drag grip. */
-.book-sheet .mantine-Drawer-content{max-height:92dvh;border-radius:20px 20px 0 0}
+.book-sheet .mantine-Drawer-content{max-height:92dvh;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
 .book-sheet .mantine-Drawer-header{position:sticky;top:0;z-index:3;padding-top:26px;background:var(--paper)}
 .sheet-grip{position:absolute;top:0;left:50%;display:flex;align-items:center;justify-content:center;width:72px;min-height:28px;padding:0;border:0;background:none;transform:translateX(-50%);touch-action:none;cursor:grab}
 .sheet-grip:active{cursor:grabbing}
@@ -653,7 +655,7 @@ main{padding-top:20px}
 .detail-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px!important}
 .detail-actions .mantine-Group-root{gap:8px}
 /* With very large text a label wraps inside its button instead of pushing the sheet sideways. */
-.detail-actions .mantine-Button-root{height:auto;max-width:100%;padding-block:.5rem;border-radius:999px}
+.detail-actions .mantine-Button-root{height:auto;max-width:100%;padding-block:.5rem;border-radius:var(--radius)}
 .detail-actions .mantine-Button-label{white-space:normal}
 /* Where this device's marks stand, on a row of its own under the mark buttons. With nothing
    to say it stays in the accessibility tree as a live region but takes no room. */
@@ -744,7 +746,7 @@ main{padding-top:20px}
    it moves above the title, so a word that fits the line is not broken. */
 .collection-summary{flex:1 1 8em}
 .collections-accordion .mantine-Accordion-content{padding:4px 16px 18px}
-.collections-accordion .mantine-ThemeIcon-root{border-radius:12px;background:var(--accent-soft);color:var(--accent-strong);font-family:var(--serif)}
+.collections-accordion .mantine-ThemeIcon-root{border-radius:var(--radius);background:var(--accent-soft);color:var(--accent-strong);font-family:var(--serif)}
 /* Button labels wrap; a word longer than its line breaks instead of widening the list past the
    screen. The gap to the arrow keeps its default size as the text grows. */
 .collections-accordion .mantine-Button-label{white-space:normal;overflow-wrap:anywhere}
@@ -831,7 +833,7 @@ main{padding-top:20px}
 
 /* ---------- Purchase confirmation ---------- */
 .library-toast{position:fixed;bottom:max(16px,env(safe-area-inset-bottom));left:50%;z-index:310;display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:start;gap:12px;width:calc(100% - 24px);max-width:520px;padding:16px 12px 16px 16px;border:1px solid var(--line-strong);border-radius:var(--radius-lg);background:var(--surface);color:var(--ink);box-shadow:0 18px 50px -12px rgb(0 0 0 / 35%);transform:translateX(-50%)}
-.library-toast-icon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:var(--surface-2);color:var(--accent)}
+.library-toast-icon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius);background:var(--surface-2);color:var(--accent)}
 .library-toast[data-owned] .library-toast-icon{background:#e0eee7;color:#236344}
 :root[data-mantine-color-scheme=dark] .library-toast[data-owned] .library-toast-icon{background:#173122;color:#a6d9b9}
 .library-toast-message{min-width:0}
@@ -885,7 +887,7 @@ main{padding-top:20px}
  .catalog-search .mantine-Input-input{min-height:48px;font-size:1rem}
  .search-tools{gap:8px}
  .search-tools .mantine-Button-root,.search-tools .mantine-Input-input{min-height:48px}
- .reading-route{margin-top:12px;padding:10px 12px 10px 16px;border-radius:14px}
+ .reading-route{margin-top:12px;padding:10px 12px 10px 16px;border-radius:var(--radius-lg)}
  .reading-route .mantine-Text-root+.mantine-Text-root{display:none}
  .priority-summary{margin-top:6px}
  .results-heading{margin:12px 0 12px}
