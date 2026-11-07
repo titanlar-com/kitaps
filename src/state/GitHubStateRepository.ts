@@ -133,7 +133,9 @@ const header = (response: Response, name: string): string => response.headers?.g
 /** How many commits one history read lists; fewer means the whole history was read. */
 const HISTORY_PAGE_SIZE = 100;
 /** The history is read from this long before a write, as this device's clock may be off. */
-const HISTORY_CLOCK_MARGIN_MS = 24 * 60 * 60 * 1000;
+const HISTORY_CLOCK_MARGIN_MS = 3 * 24 * 60 * 60 * 1000;
+/** The history only settles a guess, so a slow answer does not hold up the page's read. */
+const HISTORY_TIMEOUT_MS = 5_000;
 const HISTORY_RETRY_MS = 60_000;
 const newWriteId = (): string => globalThis.crypto?.randomUUID?.() ?? `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
 /** Two sent versions with the same stamps and values, whichever writes sent them. */
@@ -173,8 +175,9 @@ export class GitHubStateRepository {
    * be tried again (see resolveUnanswered). */
   private askedHistory = '';
   private historyRetryAt = 0;
-  /** state.json's blob sha as this page last read or wrote it ('' for no file). */
+  /** state.json's blob sha as this page last read or wrote it ('' for no file), and when. */
   private knownSha?: string;
+  private knownShaAt = 0;
   /** The books (`book:<id>`) and queue a PUT under way writes, and that PUT's write id. */
   private readonly sending = new Map<string, string>();
   /** Whether `newest` was read or written in this visit, rather than kept from an earlier one. */
@@ -632,8 +635,9 @@ export class GitHubStateRepository {
    * tells which: a version a listed write sent is marked landed. A write the history does
    * not list can never land once state.json's blob is no longer the one it was written on
    * (GitHub takes a write only on the current blob), so a version all of whose writes are
-   * like that is dropped. The history is read from a day before the oldest open write, to
-   * allow for this device's clock; a full page proves nothing. Without a key, when GitHub
+   * like that is dropped, judged on a blob read after the write was sent. The history is
+   * read from three days before the oldest open write, to allow for this device's clock; a
+   * full page proves nothing. Without a key, when GitHub
    * cannot answer, or for a write still on its way from this page, nothing changes and the
    * merge goes by stamps. Each set of open writes is asked about once per page; a failed
    * lookup is tried again a minute later. */
@@ -654,7 +658,7 @@ export class GitHubStateRepository {
     let messages: string[];
     let complete: boolean;
     try {
-      const response = await this.request(this.commitsUrl(new Date(oldest - HISTORY_CLOCK_MARGIN_MS).toISOString()), { headers: this.headers(token) });
+      const response = await this.request(this.commitsUrl(new Date(oldest - HISTORY_CLOCK_MARGIN_MS).toISOString()), { headers: this.headers(token) }, HISTORY_TIMEOUT_MS);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const list = await response.json() as unknown;
       if (!Array.isArray(list)) throw new Error('Not a commit list.');
@@ -666,7 +670,8 @@ export class GitHubStateRepository {
     }
     this.askedHistory = question;
     const listed = (write: SentWrite): boolean => messages.some(message => message.includes(`(write ${write.id})`));
-    const lost = (write: SentWrite): boolean => complete && !listed(write) && write.sha !== current;
+    // Only a blob read after the write was sent shows that it can no longer land.
+    const lost = (write: SentWrite): boolean => complete && !listed(write) && write.sha !== current && this.knownShaAt >= Date.parse(write.at);
     const mutations = this.readPending().mutations;
     const bases = this.readBasis(mutations);
     let changed = false;
@@ -742,7 +747,7 @@ export class GitHubStateRepository {
       const sha = typeof written?.content?.sha === 'string' ? written.content.sha : undefined;
       // No ETag: the next read is unconditional, but the next write can start here.
       this.cached = sha ? { etag: '', file: { document: structuredClone(merged), sha } } : undefined;
-      if (sha) this.knownSha = sha;
+      if (sha) this.noteSha(sha);
       this.remember(merged);
       return merged;
     }
@@ -843,10 +848,10 @@ export class GitHubStateRepository {
     const etag = conditional ? this.cached?.etag : undefined;
     const response = await this.request(`${this.contentsUrl()}?ref=${encodeURIComponent(this.branch)}`, { headers: this.headers(token, etag) });
     if (response.status === 304 && this.cached) return structuredClone(this.cached.file);
-    if (response.status === 404 && allowMissing) { this.knownSha = ''; return { document: emptyStateDocument() }; }
+    if (response.status === 404 && allowMissing) { this.noteSha(''); return { document: emptyStateDocument() }; }
     if (!response.ok) throw this.errorForResponse(response);
     const file = await this.parseContents(response);
-    if (file.sha) this.knownSha = file.sha;
+    if (file.sha) this.noteSha(file.sha);
     const nextEtag = header(response, 'ETag');
     this.cached = nextEtag ? { etag: nextEtag, file: structuredClone(file) } : undefined;
     return file;
@@ -1069,6 +1074,11 @@ export class GitHubStateRepository {
     return `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repository)}/contents/${this.path.split('/').map(encodeURIComponent).join('/')}`;
   }
 
+  private noteSha(sha: string): void {
+    this.knownSha = sha;
+    this.knownShaAt = this.clock().getTime();
+  }
+
   /** state.json's commits on the branch, newest first. */
   private commitsUrl(since: string): string {
     return `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repository)}/commits?path=${encodeURIComponent(this.path)}&sha=${encodeURIComponent(this.branch)}&since=${encodeURIComponent(since)}&per_page=${HISTORY_PAGE_SIZE}`;
@@ -1091,8 +1101,8 @@ export class GitHubStateRepository {
     };
   }
 
-  private async request(url: string, init: RequestInit): Promise<Response> {
-    const signal = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(REQUEST_TIMEOUT_MS) : undefined;
+  private async request(url: string, init: RequestInit, timeout = REQUEST_TIMEOUT_MS): Promise<Response> {
+    const signal = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(timeout) : undefined;
     try {
       return await this.fetcher(url, { ...init, cache: 'no-store', ...(signal ? { signal } : {}) });
     } catch (error) {

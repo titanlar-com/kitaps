@@ -1175,6 +1175,35 @@ test('a write another page still has on its way is not taken for one that never 
  assert.deepEqual(server.file.books.a.value.states,[],'the undo reaches GitHub');
 });
 
+test('a page that has not read since another page sent does not judge that page’s write',async()=>{
+ const server=writableGitHub();let now=Date.parse(timestamp(10));
+ const local=withToken();
+ const stale=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:server.fetch});
+ const read=await stale.load();
+ // Another device changes another book, so the file moves on.
+ const computer=new GitHubStateRepository({storage:withToken(),clock:()=>new Date(now),fetch:server.fetch});
+ await computer.load();
+ computer.queueBookState('z',{states:['alindi']},undefined,{states:[]});
+ await computer.flushPending();
+ // A second page of this browser reads the new file and sends an edit; its answer will be lost.
+ now=Date.parse(timestamp(20));
+ const sender=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:server.fetch});
+ await sender.load();
+ sender.queueBookState('a',{states:['onemli']},undefined,{states:[]});
+ let open;server.gate=new Promise(resolve=>{open=resolve;});server.lose=true;
+ const sending=sender.flushPending().catch(()=>undefined);
+ await new Promise(resolve=>setImmediate(resolve));
+ // The first page shows the file it last read while that write is still on its way.
+ now=Date.parse(timestamp(25));
+ await stale.loadWithPending(read);
+ open();await sending;
+ assert.deepEqual(server.file.books.a.value.states,['onemli'],'the write landed');
+ // The reader takes the mark off on the first page: that reaches GitHub.
+ stale.queueBookState('a',{states:[]},undefined,{states:['onemli']});
+ await stale.flushPending();
+ assert.deepEqual(server.file.books.a.value.states,[],'the undo reaches GitHub');
+});
+
 test('an edit made on the view after an unanswered send is based on that view, so a later removal stays',async()=>{
  const server=writableGitHub();let now=Date.parse(timestamp(30));
  const local=withToken();
