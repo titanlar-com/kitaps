@@ -12,15 +12,13 @@ test.beforeEach(async ({ context, browserName }) => {
   await context.route('https://api.github.com/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
 });
 
-test('the header keeps its links, four section tabs, shortcuts and theme switch', async ({ page }) => {
+test('the header keeps its logo link, four section tabs, the purchases switch, shortcuts and theme switch', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('./');
   await expect(page.getByRole('banner')).toMatchAriaSnapshot(`
     - banner:
       - link "Kitaplık · filtresiz ana sayfa":
         - /url: ./
-        - img
-        - paragraph: Kitaplık
       - tablist "Kitaplık bölümleri":
         - tab "Kitaplar" [selected]:
           - img
@@ -34,6 +32,7 @@ test('the header keeps its links, four section tabs, shortcuts and theme switch'
         - tab "Kitapçılar":
           - img
           - text: Kitapçılar
+      - switch "Satın aldıklarımı gösterme" [checked]
       - navigation "Hızlı erişim":
         - button "Kızım için"
         - button "Favoriler":

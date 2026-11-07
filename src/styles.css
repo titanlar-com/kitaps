@@ -211,6 +211,7 @@ html[data-focus-mode="keyboard"] .mantine-Input-wrapper:has(:is(input,textarea,s
 html[data-focus-mode="keyboard"] label:has(>input:focus-visible)::after,
 html[data-focus-mode="keyboard"] .mantine-SegmentedControl-input:focus-visible+.mantine-SegmentedControl-label::after,
 html[data-focus-mode="keyboard"] .mantine-Checkbox-inner:has(>input:focus-visible)::after,
+html[data-focus-mode="keyboard"] .mantine-Switch-body:has(.mantine-Switch-input:focus-visible)::after,
 html[data-focus-mode="keyboard"] .book-card h3:has(>.title-button:focus-visible)::after{content:"";position:absolute;z-index:3;inset-inline:max(4px,10%);bottom:calc(-1 * (var(--focus-gap) + var(--focus-bar)));height:var(--focus-bar);background:var(--focus);pointer-events:none}
 /* A segmented choice's label clips its overflow; its bar is drawn inside it, above its lower edge. */
 html[data-focus-mode="keyboard"] .mantine-SegmentedControl-input:focus-visible+.mantine-SegmentedControl-label::after{inset-inline:20%;bottom:3px}
@@ -238,7 +239,7 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
  html[data-focus-mode="keyboard"] :focus-visible::after,html[data-focus-mode="keyboard"] :is(.mantine-Input-wrapper,label,.book-card h3)::after,html[data-focus-mode="keyboard"] :is(#main-content,.mantine-Drawer-body):focus-visible::before{display:none}
  html[data-focus-mode="keyboard"] :is(p,li,dd,td,blockquote) a[href]:not(.mantine-Button-root,.mantine-ActionIcon-root):focus-visible{text-decoration-thickness:auto;text-underline-offset:auto}
  /* A hidden input has no outline to show; its option keeps the bar, in the system text colour. */
- html[data-focus-mode="keyboard"] .filter-choice:has(input:focus-visible)::after{display:block;forced-color-adjust:none;background:CanvasText}
+ html[data-focus-mode="keyboard"] :is(.filter-choice:has(input:focus-visible),.mantine-Switch-body:has(.mantine-Switch-input:focus-visible))::after{display:block;forced-color-adjust:none;background:CanvasText}
  /* Edge lines keep their meaning: the system text colour, and the highlight on the active tab only. */
  [data-edge][data-edge]::before{forced-color-adjust:none;background:CanvasText}
  .main-tabs .mantine-Tabs-tab::before{background:transparent}
@@ -330,8 +331,15 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
 .site-header-inner{display:flex;flex-wrap:wrap;align-items:stretch;column-gap:8px;max-width:1200px;min-height:64px;margin:0 auto;padding:0 8px}
 .site-header-inner>.brand-link,.site-header-inner>.header-shortcuts,.site-header-inner>.theme-toggle{align-self:center;margin-block:10px}
 .site-header-inner>.header-shortcuts{margin-left:auto}
+/* "Satın aldıklarımı gösterme" sits left of the shortcuts. Its name is read out at every width and
+   shown beside it from 80em; on narrower screens the switch shows its icon and a tooltip. */
+.site-header-inner>.header-switch{align-self:center;margin-left:auto}
+.header-switch+.header-shortcuts{margin-left:0}
+.header-switch .mantine-Switch-body{align-items:center;min-height:var(--touch-target);padding-inline:6px;cursor:pointer}
+.header-switch .mantine-Switch-label{color:var(--ink-2);font-weight:500;white-space:nowrap}
+@media (max-width:79.99em){.header-switch .mantine-Switch-labelWrapper{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
 @media (min-width:48em){.site-header-inner{padding-inline:24px}}
-.brand-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:4px 10px 4px 4px;border-radius:var(--radius);color:var(--ink);text-decoration:none}
+.brand-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:4px;border-radius:var(--radius);color:var(--ink);text-decoration:none}
 .brand-link:hover{background:var(--surface-2)}
 .brand-link:hover .brand{text-decoration:none}
 .brand-link .mantine-ThemeIcon-root{width:36px;min-width:36px;height:36px;border-radius:var(--radius);background:var(--accent);color:var(--accent-ink)}
@@ -342,7 +350,6 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
 .header-shortcuts .mantine-ActionIcon-root[aria-current=page]{border:1px solid var(--accent-border);background:var(--accent-soft);color:var(--accent-strong)}
 .theme-toggle.mantine-ActionIcon-root{width:44px;height:44px;border:1px solid var(--control-border);border-radius:var(--radius);background:var(--surface);color:var(--ink-2)}
 .theme-toggle.mantine-ActionIcon-root:hover{background:var(--surface-2);color:var(--ink)}
-@media (max-width:22em){.brand-link .mantine-ThemeIcon-root{display:none}.brand-link{padding-left:6px}}
 
 /* Section tabs sit in the header: beside the wordmark on wide screens, as a
    second full-width row on phones. The active line meets the header rule. When

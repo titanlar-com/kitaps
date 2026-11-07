@@ -577,6 +577,8 @@ test('the purchase toast keeps its title words whole at 320 px with 200% text', 
   const context = await browser.newContext({ viewport: { width: 320, height: 900 } });
   await isolate(context);
   await enlargeTextFromStart(context);
+  // The same card is marked and unmarked, so purchased books stay in the catalogue here.
+  await context.addInitScript(() => localStorage.setItem('kitaplik:hide-owned:v1', 'off'));
   const large = await context.newPage();
   await large.goto('./');
   const owned = large.locator('.book-card .cover-owned').first();
@@ -654,6 +656,8 @@ test('the phone sheet grip shows its whole focus bar inside the sheet', async ({
 });
 
 test('books can be filtered by the day they were added to the library', async ({ page }) => {
+  // Counted over the whole catalogue: purchased books stay in it for this test.
+  await page.addInitScript(() => localStorage.setItem('kitaplik:hide-owned:v1', 'off'));
   const catalog = JSON.parse(readFileSync(new URL('../../src/catalog.json', import.meta.url), 'utf8'));
   const latest = catalog.books.map(book => book.addedAt).sort().at(-1);
   const count = catalog.books.filter(book => book.addedAt === latest).length;
