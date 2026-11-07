@@ -55,6 +55,17 @@ Bu testleri kuralı gevşetmek için değiştirme.
 
 Okuma durumları, sahiplik, favoriler ve okuma sırası herkese açık `titanlar-com/kitaps-state` deposundaki `state.json` dosyasında tutulur. Kitapçı rotaları aynı depodaki `routes.json` dosyasındadır. Depo silinmemeli, özel yapılmamalı ve arşivlenmemelidir, çünkü anahtarı olmayan cihazlar durumu buradan okur. Deponun sağlığını `npm run check:state` denetler. Tasarım ve yazma anahtarı kuralları `docs/ADR-001-reading-priority-and-state.md` içindedir. Anahtar, token veya başka bir sır depoya yazılmaz.
 
+## Veri mimarisi (ADR 003)
+
+Arayüze giden verinin mimarisi `docs/ADR-003-data-architecture.md` içindedir. Kısa kurallar:
+
+- Arayüze giden veri `src/core` içinde durur. Çekirdek React, Mantine, JSX, CSS, Vite içe aktarmaları ve tarayıcı nesneleri kullanamaz. `tests/architecture.test.js` bunu denetler ve kapıyı gevşetmek yasaktır.
+- Yeni türetilmiş veri bir bileşenin içine değil, `src/core` içine testli bir sorgu olarak girer. Bileşen veriyi görünüm modelinden alır ve yalnız gösterir.
+- Bugünkü davranış `tests/fixtures/characterization` altındaki altın kayıtlarla sabitlidir. Bu kayıtlar yalnız bilinçli ve incelenmiş bir davranış değişikliğinde `node tests/characterization/record.mjs` ile yeniden yazılır. Başarısız bir testi geçirmek için asla yeniden yazılmaz.
+- Kitap kimliği ve adresi değişmez (`tests/book-identity.test.js`). Yeni kitaplar kilide `node tests/characterization/record-identity.mjs` ile eklenir.
+- Yerel depolama anahtarları yeniden adlandırılmaz. Yeni bir anahtar, onu getiren değişiklikte `tests/storage-keys.test.js` listesine eklenir.
+- `state.json` şema 2, `routes.json` şema 1 ve `src/state/merge.ts` kuralları donmuştur.
+
 ## Arayüz
 
 - **Tokenlar:** Renk, köşe yarıçapı, gölge, odak ve kapak işaretleri `src/styles.css` başındaki tokenlarla yönetilir. Boşlukların bir kısmı henüz sabit piksel değeridir; yeni değerleri token olarak ekle.
