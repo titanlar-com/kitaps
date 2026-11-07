@@ -1,6 +1,8 @@
 # ADR 003: Arayüze giden verinin mimarisi
 
-Tarih: 8 Kasım 2026. Durum: kabul edildi. Bağımsız bir standart incelemesi kaydı "değişikliklerle hazır" buldu. İstenen değişiklikler bu sürüme işlendi. Kayıt, ADR 002'nin bazı kararlarının yerine geçer (aşağıda "ADR 002'den değişenler").
+Tarih: 8 Kasım 2026. Durum: kabul edildi.
+
+Bağımsız bir standart incelemesi kaydı "değişikliklerle hazır" buldu ve istenen değişiklikler işlendi. Doğrulama turu tek bir açık madde buldu: sınır kapısı yerel adların kapsamını görmüyordu. Bu da kapatıldı. İnceleme bir onay değil, kanıttır. Kayıt, proje sahibinin "soru sorma, karar ver" talimatı (22 Ekim 2026) uyarınca kabul edildi. Kayıt, ADR 002'nin bazı kararlarının yerine geçer (aşağıda "ADR 002'den değişenler").
 
 ## Sorun
 
@@ -146,7 +148,7 @@ Eklenmeyecekler: Redux, MobX, Zustand, RxJS, Zod gibi doğrulama kitaplıkları,
 - **Sürüm kuralı.** Alan eklemek sürümü değiştirmez. Alan kaldırmak, yeniden adlandırmak ya da anlamını değiştirmek ana sürümü artırır. Şema sürümü, içerik revizyonu, sıralama politikası sürümü, dışa aktarma sürümü ve yedek sürümü ayrı kavramlardır.
 - **Eşitleme dosyaları.** `state.json` şema 2 ve `routes.json` şema 1 bu çalışma boyunca donar. Bu dosyalar ileride değişecekse, eski okuyucu ve eski yazıcıyla karma sürüm testleri önce yazılır. Bir göç fonksiyonu tek başına eski bir yazıcının yeni alanı silmesini önleyemez.
 - **Kimlik.** Kitap kimliği hiç değişmez.
-  - Ad düzeltmesinde kimlik, `scripts/merge-data.py` içindeki `getbook(..., canonical=...)` anahtarıyla korunur. Eski adres kısaltması `slugAuthor` ya da `englishBookTitles` gibi bir alanla korunur.
+  - Ad düzeltmesinde kimlik korunur. `scripts/merge-data.py` içinde Kitap Atlası kaynakları için `getbook(..., canonical=...)`, diğer kaynaklar için mevcut kitaba bağlanan `existingId` kullanılır. Eski adres kısaltması `slugAuthor` ya da `englishBookTitles` gibi bir alanla korunur.
   - Bugün bir yönlendirme yok: `?book=` yalnız güncel kimliği ya da güncel kısaltmayı açar. `mapping`, Python'un kaynak anahtarlarını kitaplara bağlayan tablosudur. `legacyKeys` yalnız eski `kitaps:states:v1` işaretlerini taşır.
   - Gerçek bir yeniden adlandırma ayrı ve incelenmiş bir değişiklik ister. `tests/book-identity.test.js`, kilitli her kitabın kimliğini ve adresini korur.
 - **Yerel depolama.** Anahtar adları yeniden adlandırılmaz (`tests/storage-keys.test.js`). Anahtarların içindeki değer biçimleri de donar, çünkü eski ve yeni sekmeler aynı anahtarları paylaşır. Okuma kaydı ancak önce şu test yazıldıktan sonra sınırda normalleştirilir: her uzak biçim için `readingPayload(cleanReading(x))`, `readingPayload(x)` ile aynı olmalıdır.
@@ -229,7 +231,8 @@ Her taşınan saf modülün eski kopyası, çekirdekteki karşılığı geldiği
    - Kitap ekleyen oturumlarla sıra konuşularak yapılır.
 3. **Mağaza ilkeli ve React bağlayıcısı (tamamlandı).** `createStore`, `derived` ve `useViewModel` yazıldı.
 4. **Katalog çekirdeği (tamamlandı).**
-   - Süzme, sıralama ve raf kuralları ile `translation.js` ve `workFormat.js` çekirdeğe taşındı. Eski yollar cephe oldu. Statik SEO çıktısı ana hatla bayt bayt aynı.
+   - Süzme, sıralama ve raf kuralları ile `translation.js` ve `workFormat.js` çekirdeğe taşındı. Eski yollar cephe oldu.
+   - Gerçek kataloğun statik SEO çıktısı, `main` dalındaki çıktıyla bayt bayt aynıydı. Bu tek seferlik bir karşılaştırmaydı. Kayıtlı test, dondurulmuş kesitin `static-seo` altın kaydıdır.
    - Katalog dizini ve katalog listesi görünüm modeli yazıldı. Liste, altın kayıtlara birebir eşit.
 5. **SEO çekirdeği kullanır (başladı).**
    - Statik sayfa üreticisi kataloğu tam sözleşmeyle açıyor.
@@ -249,6 +252,7 @@ Her taşınan saf modülün eski kopyası, çekirdekteki karşılığı geldiği
      - Bu aşama bağımsız incelemeden geçer.
    - **7b. Ekran ekran bağlama.**
      - Her ekran bağlanmadan önce erişilebilirlik ağacı kaydı alınır (K11).
+     - Bugünkü geri tuşu davranışı da bağlamadan önce sabitlenir: geri tuşu kitap izini temizler ve katalogdan açılan kitap geri gidilerek kapanır. Bu kural tasarımda `Navigator`'ın temel adımlarından kurulur. Zor olursa çekirdek, değişikliğin tarayıcıdan geldiğini bildiren bir işaret ekler.
      - Ekranın ihtiyaç duyduğu özellik görünüm modeli bu sırada yazılır (K6).
      - `src/app/listing.js` ve `catalogData.js` cepheye çevrilir ve kullanılmayan modüller listesi küçülür.
      - Gecikmeli yüklenen verinin ilk pakete girmediği bir derleme listesi ya da ağ testiyle kanıtlanır.
@@ -261,10 +265,11 @@ Her taşınan saf modülün eski kopyası, çekirdekteki karşılığı geldiği
 
 `tests/architecture.test.js`, `npm test` içinde çalışır.
 - `src/core/` yalnız kendisini ve K2'de adı geçen modülleri içe aktarabilir.
-- K2'de sayılan arayüz teknolojileri ve tarayıcı nesneleri çekirdekte yasaktır. Kapı dosyaları TypeScript derleyicisiyle okur. Bu yüzden bir metindeki kelime, bir nesne alanı ya da yerel bir değişken yasak sayılmaz. Gerçek bir kullanım da gözden kaçmaz.
+- K2'de sayılan arayüz teknolojileri ve tarayıcı nesneleri çekirdekte yasaktır. Kapı, çekirdeği TypeScript derleyicisiyle yalnız ES2023 kütüphanesine karşı derler ve her adı kendi kapsamında çözer. Çözülemeyen her ad bir ihlaldir: `window`, `document`, `matchMedia`, `process` gibi tarayıcı ve Node nesneleri. `globalThis` de adıyla yasaktır. Bu yüzden bir metindeki kelime, bir nesne alanı ya da yerel bir değişken yasak sayılmaz. Bir fonksiyondaki yerel bir ad, başka bir yerdeki gerçek kullanımı da gizlemez.
 - `src/core/` altındaki her dosya düz Node'da içe aktarılabilir olmalıdır.
 - Kapı, her kural ihlalini yakaladığını ve temiz kodu geçirdiğini bir öz testle kanıtlar.
-- Her çekirdek ve bağdaştırıcı modülü `src/main.jsx` ya da bir Node betiği tarafından kullanılır, ya da adıyla "arayüzü bekleyenler" listesindedir.
+- Her çekirdek ve bağdaştırıcı modülü `src/main.jsx` ya da bir Node betiği tarafından kullanılır, ya da adıyla "arayüzü bekleyenler" listesindedir. Liste yalnız küçülebilir: testteki üst sınır her bağlamada düşürülür, yükseltmek bağımsız inceleme ister.
+- Ekran modellerinin klasörü (`src/screens/`) açıldığında aynı kapı onu da denetler.
 - Arayüz bağlandıktan sonra eklenecek kural: arayüz `catalog.json`'u, `data/` dosyalarını ve GitHub depolarını doğrudan içe aktaramaz.
 
 ## Riskler

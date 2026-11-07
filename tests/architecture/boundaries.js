@@ -15,8 +15,6 @@ const ALLOWED_OUTSIDE = [
   file => file === path.join(SRC, 'site.js'),
   file => file === path.join(SRC, 'views.js'),
 ];
-/** Globals that exist only in a browser (or mean the page's own state there). */
-const BROWSER_GLOBALS = new Set(['window', 'document', 'localStorage', 'sessionStorage', 'navigator', 'location', 'history', 'globalThis']);
 
 export const filesUnder = dir => !fs.existsSync(dir) ? [] : fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
   const full = path.join(dir, entry.name);
@@ -40,33 +38,36 @@ export function specifiers(source) {
   return found;
 }
 
-/** Names the file declares itself: a local `document` is not the browser's. */
-function declaredNames(source) {
-  const names = new Set();
-  const visit = node => {
-    if ((ts.isVariableDeclaration(node) || ts.isParameter(node) || ts.isFunctionDeclaration(node) || ts.isClassDeclaration(node) || ts.isBindingElement(node) || ts.isImportSpecifier(node) || ts.isImportClause(node) || ts.isNamespaceImport(node)) && node.name && ts.isIdentifier(node.name)) names.add(node.name.text);
-    ts.forEachChild(node, visit);
-  };
-  visit(source);
-  return names;
-}
-
-/** Browser globals the code reads: identifiers that are neither a property name nor declared in the file. */
-function browserGlobalUses(source) {
-  const declared = declaredNames(source);
-  const uses = [];
-  const visit = node => {
-    if (ts.isIdentifier(node) && BROWSER_GLOBALS.has(node.text) && !declared.has(node.text)) {
-      const parent = node.parent;
-      const isName = (ts.isPropertyAccessExpression(parent) && parent.name === node)
-        || ((ts.isPropertyAssignment(parent) || ts.isPropertyDeclaration(parent) || ts.isPropertySignature(parent) || ts.isMethodDeclaration(parent) || ts.isMethodSignature(parent) || ts.isGetAccessor(parent) || ts.isSetAccessor(parent) || ts.isEnumMember(parent)) && parent.name === node)
-        || ts.isQualifiedName(parent) || ts.isTypeReferenceNode(parent) || ts.isImportSpecifier(parent) || ts.isExportSpecifier(parent);
-      if (!isName) uses.push(node.text);
-    }
-    ts.forEachChild(node, visit);
-  };
-  visit(source);
-  return [...new Set(uses)];
+/**
+ * Globals a file reads that plain JavaScript does not have. The files are compiled together
+ * with the ES2023 library only (no DOM, no Node types), so the compiler resolves every name in
+ * its own scope: a local `document` in one function never hides the real `document.title` in
+ * another, and any browser or Node global (window, matchMedia, addEventListener, process, …)
+ * stays unresolved and is reported. `globalThis` exists in plain JavaScript, so it is named.
+ */
+function undeclaredGlobals(files) {
+  const program = ts.createProgram(files, { allowJs: true, checkJs: false, noEmit: true, target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext, moduleResolution: ts.ModuleResolutionKind.Bundler, allowImportingTsExtensions: true, lib: ['lib.es2023.d.ts'], types: [] });
+  const checker = program.getTypeChecker();
+  const found = new Map(files.map(file => [path.resolve(file), new Set()]));
+  for (const file of files) {
+    const source = program.getSourceFile(file);
+    const visit = node => {
+      if (ts.isIdentifier(node)) {
+        const parent = node.parent;
+        const isName = (ts.isPropertyAccessExpression(parent) && parent.name === node)
+          || ((ts.isPropertyAssignment(parent) || ts.isPropertyDeclaration(parent) || ts.isPropertySignature(parent) || ts.isMethodDeclaration(parent) || ts.isMethodSignature(parent) || ts.isGetAccessor(parent) || ts.isSetAccessor(parent) || ts.isEnumMember(parent) || ts.isPropertyAccessExpression(parent.parent ?? parent)) && parent.name === node)
+          || (ts.isQualifiedName(parent) && parent.right === node) || ts.isLabeledStatement(parent) || ts.isBreakOrContinueStatement(parent)
+          || (ts.isImportSpecifier(parent) || ts.isExportSpecifier(parent)) || ts.isMetaProperty(parent);
+        if (!isName) {
+          const symbol = ts.isShorthandPropertyAssignment(parent) ? checker.getShorthandAssignmentValueSymbol(parent) : checker.getSymbolAtLocation(node);
+          if (!symbol || node.text === 'globalThis') found.get(path.resolve(file)).add(node.text);
+        }
+      }
+      ts.forEachChild(node, visit);
+    };
+    visit(source);
+  }
+  return found;
 }
 
 const usesImportMetaEnv = source => {
@@ -83,6 +84,8 @@ const usesImportMetaEnv = source => {
 export function coreViolations(coreRoot) {
   const root = path.resolve(coreRoot);
   const problems = [];
+  const code = filesUnder(root).filter(file => /\.(js|ts)$/.test(file));
+  const globals = code.length ? undeclaredGlobals(code) : new Map();
   for (const file of filesUnder(root)) {
     const name = path.relative(root, file);
     if (!/\.(js|ts)$/.test(file)) { problems.push(`${name}: only .js and .ts files belong in the core`); continue; }
@@ -94,7 +97,7 @@ export function coreViolations(coreRoot) {
       if (target.startsWith(root + path.sep) || ALLOWED_OUTSIDE.some(allowed => allowed(target))) continue;
       problems.push(`${name}: imports outside the core (${path.relative(SRC, target)})`);
     }
-    for (const global of browserGlobalUses(source)) problems.push(`${name}: uses the browser global ${global}`);
+    for (const global of globals.get(path.resolve(file)) ?? []) problems.push(`${name}: uses the global ${global}, which plain JavaScript does not have`);
     if (usesImportMetaEnv(source)) problems.push(`${name}: reads import.meta.env`);
   }
   return problems;

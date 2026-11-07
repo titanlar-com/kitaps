@@ -20,7 +20,7 @@ test('every module of the data core loads in plain Node', async () => {
 
 test('the gate catches each kind of violation and passes code that keeps the rules', () => {
   const found = coreViolations(path.join(fixtures, 'violations')).map(line => line.split(':')[0]).sort();
-  assert.deepEqual(found, ['css-import.js', 'document.js', 'env.js', 'global-this.js', 'history.js', 'jsx-import.js', 'location.js', 'mantine-import.js', 'nested/outside.js', 'raw-import.js', 'react-import.js', 'storage.js', 'view.jsx', 'window-probe.js']);
+  assert.deepEqual(found, ['css-import.js', 'document.js', 'env.js', 'global-this.js', 'history.js', 'jsx-import.js', 'location.js', 'mantine-import.js', 'media.js', 'nested/outside.js', 'raw-import.js', 'react-import.js', 'scoped.js', 'storage.js', 'view.jsx', 'window-probe.js']);
   assert.deepEqual(coreViolations(path.join(fixtures, 'clean')), []);
 });
 
@@ -55,4 +55,6 @@ test('every core and adapter module is used by the app or a build script, or lis
   const modules = [...filesUnder(path.join(src, 'core')), ...filesUnder(path.join(src, 'adapters'))];
   const unreached = modules.filter(file => !reached.has(file)).map(file => path.relative(src, file)).sort();
   assert.deepEqual(unreached, WAITING_FOR_THE_UI);
+  // Lower this whenever a module is bound; raising it needs an independent review.
+  assert.ok(WAITING_FOR_THE_UI.length <= 9, 'the list only shrinks');
 });

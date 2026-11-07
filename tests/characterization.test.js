@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { catalogListing } from '../src/app/listing.js';
+import { displayTitle } from '../src/translation.js';
 import { characterizeListing, characterizeRanking, characterizeSeo, characterizeStaticSeo, readFixture, readGolden } from './characterization/oracle.js';
 
 // Characterization (ADR 003, phase 0): before the data architecture moves, what the UI
@@ -38,4 +39,11 @@ test('the golden files exercise every case they claim to', () => {
   assert.deepEqual(empty, [], 'queries that match nothing');
   assert.ok(golden['page 999 of 24'].currentPage < 999, 'a page past the end shows the last page');
   assert.ok(golden['view books, hide owned true'].shelf < golden['view books, hide owned false'].shelf, 'hiding purchases takes books out');
+  // K12 item 1 is pinned only if the frozen catalogue has books that share a shown title but
+  // not an author, and item 3 only if hiding purchases changes what a page tells search engines.
+  const byTitle = new Map();
+  for (const book of catalog.books) byTitle.set(displayTitle(book).toLocaleLowerCase('tr'), [...(byTitle.get(displayTitle(book).toLocaleLowerCase('tr')) ?? []), book.author]);
+  assert.ok([...byTitle.values()].some(authors => new Set(authors).size > 1), 'a shown title shared by different authors');
+  const seo = readGolden('seo');
+  assert.ok(Object.keys(seo).some(name => name.endsWith(' (purchases hidden)') && JSON.stringify(seo[name]) !== JSON.stringify(seo[name.replace(' (purchases hidden)', '')] ?? null)), 'hiding purchases changes a page');
 });
