@@ -40,11 +40,21 @@ test('every bookstore the four notes name is listed once, open or not',()=>{
  assert.match(byId['remzi-suadiye'].about,/19 Ağustos 2026/);
 });
 
-test('the route walked on 7 November 2026 is Minoa Pera, then Mephisto Beyoğlu, then Homer',()=>{
- const visit=data.visits.find(item=>item.date==='2026-11-07');
- assert.ok(visit);
- assert.deepEqual(visit.stops,['minoa-pera','mephisto-beyoglu','homer-galatasaray']);
- for(const item of [...data.visits,...data.routes])for(const id of item.stops){
+test('the plan follows the owner’s order: Beyoğlu today, then Kanyon, Akmerkez and Nişantaşı, then Kadıköy and İçerenköy',()=>{
+ assert.deepEqual(data.plan.map(item=>item.id).slice(0,3),['beyoglu','kanyon-akmerkez-nisantasi','kadikoy-icerenkoy']);
+ const today=data.plan[0];
+ assert.equal(today.date,'2026-11-07');
+ assert.deepEqual(today.stops,['minoa-pera','mephisto-beyoglu','homer-galatasaray']);
+ assert.deepEqual(data.plan[1].stops,['remzi-kanyon','dr-kanyon','remzi-akmerkez','pandora-nisantasi','remzi-rumeli']);
+ assert.deepEqual(data.plan[2].stops,['imge-kadikoy','penguen-icerenkoy']);
+ // What comes next is a suggestion, marked as one, made of stores the plan does not visit yet.
+ const next=data.plan.at(-1);
+ assert.equal(next.suggested,true);
+ const planned=new Set(data.plan.slice(0,-1).flatMap(item=>item.stops));
+ for(const id of next.stops)assert.ok(!planned.has(id),id);
+ // A store may be on several routes: the standard routes reuse planned ones.
+ assert.ok(data.routes.some(route=>route.stops.includes('minoa-pera')));
+ for(const item of [...data.plan,...data.routes])for(const id of item.stops){
   assert.ok(byId[id],`${item.title}: ${id}`);
   assert.notEqual(byId[id].status,'closed',`${item.title} sends no one to a closed shop`);
  }
@@ -76,9 +86,19 @@ test('links are clean https addresses and phone numbers can be dialled',()=>{
 test('every explanation on the page is written in whole sentences',()=>{
  const prose=[data.intro,...data.notes,
   ...data.stores.flatMap(store=>[store.about,store.caution,store.hours,store.transit,store.size]),
-  ...data.visits.map(item=>item.note),...data.routes.map(item=>item.why),...data.topics.map(item=>item.why)].filter(Boolean);
+  ...data.plan.map(item=>item.note),...data.routes.map(item=>item.why),...data.topics.map(item=>item.why)].filter(Boolean);
  for(const text of prose){
   assert.doesNotMatch(text,/;|—|·|→|←/,text);
   assert.match(text,/[.!?]$/,`ends as a sentence: ${text}`);
  }
+});
+
+// The route planner orders stops by distance; each open store in the city has an approximate
+// position inside Istanbul for that, and nothing else uses it.
+test('every open store with an address has an approximate position inside Istanbul',()=>{
+ for(const store of data.stores.filter(store=>store.status==='open'&&store.side!=='both'&&store.id!=='robinson-crusoe')){
+  assert.ok(store.geo,`${store.id} has a position`);
+  assert.ok(store.geo.lat>40.8&&store.geo.lat<41.3&&store.geo.lng>28.5&&store.geo.lng<29.4,`${store.id} is in Istanbul`);
+ }
+ assert.match(data.geoNote,/yaklaşık/);
 });

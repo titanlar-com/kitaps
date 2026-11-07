@@ -39,11 +39,14 @@ export function trackFocusMode(root=document.documentElement,target=window){
 
 // Room below a control for its focus bar: --focus-gap and --focus-bar in styles.css, and a margin.
 const BAR_ROOM=12;
-/** Whether the window or a scrolling panel cuts off the control or the bar under it. */
+/** Whether the window, the fixed footer bar or a scrolling panel cuts off the control or the bar under it. */
 export function hidesBar(element){
  const box=element.getBoundingClientRect();const view=element.ownerDocument.defaultView;
  const cut=(top,bottom)=>box.height+BAR_ROOM<=bottom-top&&(box.top<top||box.bottom+BAR_ROOM>bottom);
- if(cut(0,view.innerHeight))return true;
+ // The footer bar covers the foot of the window (--dock-height in styles.css).
+ const root=element.ownerDocument.documentElement;
+ const dock=root?parseFloat(view.getComputedStyle(root).getPropertyValue?.('--dock-height'))||0:0;
+ if(cut(0,view.innerHeight-dock))return true;
  for(let node=element.parentElement;node&&node!==element.ownerDocument.body;node=node.parentElement){
   if(!/auto|scroll/.test(view.getComputedStyle(node).overflowY))continue;
   const panel=node.getBoundingClientRect();

@@ -61,13 +61,10 @@ const hidePage = page => page.evaluate(() => {
   Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' });
   document.dispatchEvent(new Event('visibilitychange'));
 });
-// The footer sits below the book covers, which start loading only once it is scrolled into
-// view. Each cover keeps its 2:3 frame (catalog-grid.spec.js checks it), so the click does
-// not wait for them: a footer that moved under the pointer would be a bug.
+// The footer bar stays at the bottom of the screen; its menu holds "Cihaz eşitleme".
 const openSyncFromFooter = async page => {
-  const button = page.getByRole('button', { name: 'Cihaz eşitleme' });
-  await button.scrollIntoViewIfNeeded();
-  await button.click();
+  await page.locator('.footer-dock').click();
+  await page.getByRole('dialog', { name: 'Menü' }).getByRole('button', { name: 'Cihaz eşitleme' }).click();
 };
 const markPurchased = async page => {
   await page.goto(`./?book=${BOOK.slug}`);

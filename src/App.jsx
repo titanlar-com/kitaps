@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Accordion, ActionIcon, Alert, Anchor, Badge, Box, Button, Card, Container, Group, MantineProvider, Modal, Paper, Stack, Text, TextInput, Tabs, ThemeIcon, Title, Tooltip, Transition, createTheme, defaultVariantColorsResolver, localStorageColorSchemeManager } from '@mantine/core';
-import { IconLink, IconArrowLeft, IconArrowRight, IconArrowUpRight, IconBook2, IconBuildingStore, IconFileText, IconShoppingBagCheck, IconBooks, IconCheck, IconChevronRight, IconDownload, IconFilter, IconHeart, IconLayersIntersect, IconListNumbers, IconSearch, IconX } from '@tabler/icons-react';
+import { IconLink, IconArrowLeft, IconArrowRight, IconArrowUpRight, IconBook2, IconBuildingStore, IconLanguage, IconRefresh, IconFileText, IconShoppingBagCheck, IconBooks, IconCheck, IconChevronRight, IconDownload, IconFilter, IconHeart, IconLayersIntersect, IconListNumbers, IconSearch, IconX } from '@tabler/icons-react';
 import '@mantine/core/styles.css';
 import '@fontsource-variable/outfit/wght.css';
 import catalog from './catalog.json';
@@ -14,6 +14,7 @@ import { displayTitle,translationStatus,turkishEdition } from './translation';
 import { workFormat } from './workFormat';
 import { applySeo,seoState } from './seo';
 import ThemeToggle from './components/ThemeToggle';
+import FooterMenu from './components/FooterMenu';
 import CategoryPill from './components/CategoryPill';
 import EditionSummary from './components/EditionSummary';
 import BookSheet from './components/BookSheet';
@@ -44,6 +45,8 @@ const AccessibilityAudit=import.meta.env.DEV?React.lazy(()=>import('./components
 const NotesPage=React.lazy(()=>import('./components/NotesPage'));
 // The bookstores page carries its own data (data/bookstores.json); it loads when opened.
 const BookstoresPage=React.lazy(()=>import('./components/BookstoresPage'));
+// The name of each section, shown on the footer bar beside "Menü".
+const SECTION_NAMES={books:'Kitaplar',queue:'Sıram',collections:'Kümeler',bookstores:'Kitapçılar',notes:'Notlar ve kaynaklar',favorites:'Favoriler',owned:'Kitaplığım'};
 // One motion curve and duration for every JavaScript transition (AGENT.md motion contract),
 // from src/motion.js; styles.css holds the same values as --motion-ease and --motion-base.
 const motion={transitionProps:{duration:MOTION_MS,timingFunction:MOTION_EASE}};
@@ -74,7 +77,7 @@ const theme = createTheme({
  radius:{xs:'var(--radius-xs)',sm:'var(--radius-sm)',md:'var(--radius)',lg:'var(--radius-lg)',xl:'var(--radius-lg)'},
  fontSizes:{xs:'1rem',sm:'1rem',md:'1rem',lg:'1.125rem',xl:'1.25rem'},
  headings:{fontFamily:FONT,fontWeight:'600',sizes:{h1:{fontSize:'2.25rem',lineHeight:'1.15'},h2:{fontSize:'1.75rem',lineHeight:'1.2'},h3:{fontSize:'1.25rem',lineHeight:'1.3'},h4:{fontSize:'1.0625rem',lineHeight:'1.35'}}},
- components:{Button:Button.extend({defaultProps:{size:'md'},vars:(_,props)=>({root:{'--button-bd':controlBorder(props)}})}),ActionIcon:ActionIcon.extend({defaultProps:{size:44},vars:(_,props)=>({root:{'--ai-bd':controlBorder(props)}})}),TextInput:{defaultProps:{size:'md'}},Select:{defaultProps:{size:'md',comboboxProps:motion}},MultiSelect:{defaultProps:{size:'md',comboboxProps:motion}},Badge:{defaultProps:{size:'lg',variant:'light',radius:'sm'}},Drawer:{defaultProps:{...motion,closeButtonProps:{'aria-label':'Kapat'},overlayProps:{backgroundOpacity:.35,blur:3}}},Modal:{defaultProps:motion},Popover:{defaultProps:motion},Tooltip:{defaultProps:motion},Combobox:{defaultProps:motion},Accordion:{defaultProps:{transitionDuration:MOTION_MS}},Collapse:{defaultProps:{transitionDuration:MOTION_MS,transitionTimingFunction:MOTION_EASE}}}
+ components:{Button:Button.extend({defaultProps:{size:'md'},vars:(_,props)=>({root:{'--button-bd':controlBorder(props)}})}),ActionIcon:ActionIcon.extend({defaultProps:{size:44},vars:(_,props)=>({root:{'--ai-bd':controlBorder(props)}})}),TextInput:{defaultProps:{size:'md'}},Select:{defaultProps:{size:'md',comboboxProps:motion}},MultiSelect:{defaultProps:{size:'md',comboboxProps:motion}},Badge:{defaultProps:{size:'lg',variant:'light',radius:'sm'}},Drawer:{defaultProps:{...motion,closeButtonProps:{'aria-label':'Kapat'},overlayProps:{backgroundOpacity:.35,blur:3}}},Modal:{defaultProps:motion},Popover:{defaultProps:motion},Tooltip:{defaultProps:motion},Combobox:{defaultProps:motion},Accordion:{defaultProps:{transitionDuration:MOTION_MS}},SegmentedControl:{defaultProps:{transitionDuration:MOTION_MS,transitionTimingFunction:MOTION_EASE}},Collapse:{defaultProps:{transitionDuration:MOTION_MS,transitionTimingFunction:MOTION_EASE}}}
 });
 const books=prepareBooks(catalog.books);
 const bookIds=books.map(book=>book.id);
@@ -296,6 +299,7 @@ function AtlasApp() {
  const onQueue=()=>{navigate({...route,view:'queue',book:null,page:1});window.scrollTo({top:0,behavior:'instant'})};
  const onOpen=id=>{setBookTrail(book?[...bookTrail,book]:[]);if(!book){openedFromCatalog.current=true;navigate({...route,book:id})}else setRoute(r=>({...r,book:id}))};
  const previousBook=()=>{const id=bookTrail.at(-1);if(id){setBookTrail(bookTrail.slice(0,-1));setRoute(r=>({...r,book:id}))}};
+ const goView=next=>{navigate({...route,view:next,book:null,page:1,...(['favorites','owned'].includes(next)?{filters:emptyFilters()}:{})});window.scrollTo({top:0,behavior:'instant'})};
  const onBrowse=()=>{navigate({...route,view:'books',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})};
  const goCollection=(id,gid)=>{navigate({...route,view:'books',book:null,page:1,filters:{...emptyFilters(),collections:[id],groups:gid?[gid]:[]}});window.scrollTo({top:0,behavior:'instant'})};
  const goCategory=id=>{const next={...route,view:'books',book:null,page:1,filters:{...emptyFilters(),categories:[id]}};window.history.pushState(null,'',window.location.pathname+'?'+encodeRoute(next,catalog));setRoute(next);window.scrollTo({top:0,behavior:'instant'})};
@@ -344,7 +348,25 @@ function AtlasApp() {
     <Tabs.Panel value="bookstores">{view==='bookstores'&&<React.Suspense fallback={<Text c="dimmed" role="status">Kitapçılar yükleniyor…</Text>}><BookstoresPage/></React.Suspense>}</Tabs.Panel>
     {view==='notes'&&<section aria-labelledby="notes-heading"><Title id="notes-heading" order={1} className="visually-hidden">Kaynaklar ve notlar</Title><React.Suspense fallback={<Text c="dimmed" role="status">Notlar yükleniyor…</Text>}><NotesPage states={states} setStates={setStates} personal={personal} setPersonal={setPersonal} sync={githubSync}/></React.Suspense></section>}
    </main>
-   <footer className="site-footer"><div className="footer-meta"><Text fw={600}>Kitaplık</Text><Text>Yaratılış: 27 Eylül 2026</Text><Text>Güncelleme: {catalog.updated}</Text></div><div className="footer-links"><Button variant="subtle" leftSection={<IconDownload size={18}/>} onClick={exportAllBooks}>Kitapları JSON indir</Button><Button variant="subtle" onClick={()=>setGuideOpened(true)}>Çeviri rehberi</Button><Button variant="subtle" onClick={openSync}>Cihaz eşitleme</Button><Button variant="subtle" onClick={()=>{navigate({...route,view:'notes',book:null,page:1});window.scrollTo({top:0,behavior:'instant'})}}>Notlar</Button></div></footer>
+   <FooterMenu current={SECTION_NAMES[view]} groups={[
+    {id:'sections',title:'Bölümler',items:[
+     {label:'Kitaplar',icon:IconBook2,current:view==='books',onSelect:onBrowse},
+     {label:'Sıram',icon:IconListNumbers,current:view==='queue',onSelect:onQueue},
+     {label:'Kümeler',icon:IconLayersIntersect,current:view==='collections',onSelect:()=>goView('collections')},
+     {label:'Kitapçılar',icon:IconBuildingStore,current:view==='bookstores',onSelect:()=>goView('bookstores')},
+     {label:'Notlar ve kaynaklar',icon:IconFileText,current:view==='notes',onSelect:()=>goView('notes')},
+    ]},
+    {id:'shortcuts',title:'Kısayollar',items:[
+     {label:'Kızım için',icon:GirlIcon,current:view==='books'&&childrenShelf(filters),onSelect:()=>goCategory('children')},
+     {label:'Favoriler',icon:IconHeart,current:view==='favorites',onSelect:()=>goView('favorites')},
+     {label:`Kitaplığım: ${ownedCount} kitap`,icon:BookshelfIcon,current:view==='owned',onSelect:()=>goView('owned')},
+    ]},
+    {id:'tools',title:'Araçlar',items:[
+     {label:'Çeviri rehberi',icon:IconLanguage,onSelect:()=>setGuideOpened(true)},
+     {label:'Cihaz eşitleme',icon:IconRefresh,onSelect:()=>openSync()},
+     {label:'Kitapları JSON indir',icon:IconDownload,onSelect:exportAllBooks},
+    ]},
+   ]} meta={<><Text fw={600}>Kitaplık</Text><Text>Yaratılış: 27 Eylül 2026</Text><Text>Güncelleme: {catalog.updated}</Text></>}/>
   </Container>
   </Tabs>
   <SyncMergeDialog sync={githubSync}/>

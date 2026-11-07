@@ -18,12 +18,14 @@ test('personal sections keep one semantic h1 without restoring intro copy',()=>{
 });
 
 test('footer Notes navigation writes browser history through navigate',()=>{
- assert.match(app,/onClick=\{\(\)=>\{navigate\(\{\.\.\.route,view:'notes',book:null,page:1\}\)/);
+ // The footer menu (FooterMenu.jsx) reaches Notes through goView, which writes history with navigate.
+ assert.match(app,/const goView=next=>\{navigate\(\{\.\.\.route,view:next,book:null,page:1/);
+ assert.match(app,/\{label:'Notlar ve kaynaklar',icon:IconFileText,current:view==='notes',onSelect:\(\)=>goView\('notes'\)\}/);
 });
 
 test('footer exports every catalog book as a self-describing JSON file',()=>{
  assert.match(app,/const exportAllBooks=\(\)=>download\('kitaplik-tum-kitaplar\.json',createBooksExport\(catalog\)\)/);
- assert.match(app,/onClick=\{exportAllBooks\}>Kitapları JSON indir<\/Button>/);
+ assert.match(app,/\{label:'Kitapları JSON indir',icon:IconDownload,onSelect:exportAllBooks\}/);
 });
 
 test('footer shows creation and catalog update dates separately in one format',()=>{

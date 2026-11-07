@@ -84,6 +84,15 @@ Kaynak veride hiçbir kitaba doğrudan puan yazılmaz.
   - Alan bazında son yazan kazanır kuralı aksi halde bir tarafı sessizce silerdi. Karardan sonra sonuç hemen gönderilir.
 - **Şema 1:** Kitap başına sıra konumu taşıyan eski dosyalar okunurken şema 2'ye çevrilir.
 
+### Rota kaydı (`routes.json`, şema 1)
+
+Kitapçılar sayfasındaki rota oluşturucu, kaydedilen rotaları aynı depoda ayrı bir dosyaya yazar: `kitaps-state/routes.json`. Rotalar `state.json` dosyasına konmaz. Böylece durum şeması, birleştirme kuralları ve eski sürümle açık kalmış sekmeler rotalardan etkilenmez. Karar 7 Kasım 2026 tarihlidir.
+
+- **Kayıt:** Her rota ayrı bir kayıttır: kimlik, ad, isteğe bağlı tarih, sıralı kitapçı kimlikleri, not ve gezildi işareti. Silinen rota, silindiği zamanı taşıyan boş bir kayıt olarak kalır. Böylece silme de eşitlenir.
+- **Birleştirme:** İki cihazın kaydı rota rota birleşir. Aynı rotada daha yeni kayıt kazanır. Farklı rotalar ikisi de korunur.
+- **Yazma:** Değişiklik önce bu cihazda saklanır (`kitapatlasi:routes:pending:v1`). Cihaz eşitlemesinin anahtarı varsa dosya hemen yazılır. GitHub sürüm çakışması bildirirse dosya yeniden okunur, birleştirilir ve en çok üç kez yeniden denenir. Anahtar yoksa ya da yazım başarısız olursa değişiklik cihazda bekler ve sonraki kayıtta gönderilir.
+- **Kod:** `src/state/routeRegistry.ts` (kayıt, birleştirme, GitHub istemcisi), `src/routes/planner.js` (yakınlığa göre sıralama ve sıradaki rota önerisi), `src/routes/useRouteRegistry.js` (React görünümüne bağlantı). Testler `tests/route-registry.test.js`, `tests/route-planner.test.js` ve `tests/e2e/route-planner.spec.js` içindedir.
+
 ### Yazma anahtarı
 
 - Yalnızca ince ayarlı (fine-grained) kişisel erişim anahtarı (`github_pat_`) kabul edilir. Klasik ve OAuth anahtarları istek gönderilmeden reddedilir. GitHub'ın yanıtında klasik kapsam (`X-OAuth-Scopes`) görünen anahtar da kaydedilmez.

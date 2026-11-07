@@ -57,10 +57,13 @@ test('the Kitapçılar tab opens the page with the day’s route and every store
   await page.getByRole('tab', { name: 'Kitapçılar' }).click();
   await expect(page).toHaveURL(/[?&]view=bookstores\b/);
   await expect(page.getByRole('heading', { level: 1, name: 'Kitapçılar' })).toBeVisible();
-  // The route walked on 7 November 2026, in order.
-  const visit = page.locator('.bookstore-visit');
-  await expect(visit.getByRole('heading', { level: 2 })).toContainText('7 Kasım 2026');
-  await expect(visit.locator('ol > li h3')).toHaveText(['Minoa Pera', 'Mephisto Beyoğlu', 'Homer Kitabevi']);
+  // The plan in the owner's order: Beyoğlu on 7 November 2026, then Kanyon, Akmerkez and
+  // Nişantaşı, then Kadıköy and İçerenköy, then a suggestion marked as one.
+  const visits = page.locator('.bookstore-visit');
+  await expect(visits.locator('h3')).toHaveText(data.plan.map(visit => visit.title));
+  await expect(visits.first().locator('ol > li h4')).toHaveText(['Minoa Pera', 'Mephisto Beyoğlu', 'Homer Kitabevi']);
+  await expect(visits.nth(1).locator('ol > li h4')).toHaveText(['Remzi Kitabevi Kanyon', 'D&R Kanyon', 'Remzi Kitabevi Akmerkez', 'Pandora Nişantaşı', 'Remzi Kitabevi Rumeli Caddesi']);
+  await expect(visits.last()).toContainText('Öneri');
   // Every store has its own entry, closed ones in their own part of the page.
   for (const store of data.stores) await expect(page.locator(`#store-${store.id}`), store.id).toHaveCount(1);
   await expect(page.locator('.bookstores-closed #store-remzi-suadiye')).toHaveCount(1);

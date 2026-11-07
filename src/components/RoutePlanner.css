@@ -1,0 +1,21 @@
+/* Route planner (RoutePlanner.jsx), on the Kitapçılar page. */
+.route-planner{display:grid;align-content:start;gap:var(--stack-gap)}
+.route-planner>.mantine-Text-root{max-width:70ch}
+.route-draft{display:grid;gap:var(--stack-gap);padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
+.route-draft-stops{display:grid;gap:4px;margin:0;padding-inline-start:1.5em}
+.route-draft-stops li{margin:0}
+.route-draft-name{display:inline-block;min-width:0;margin-inline-end:8px;overflow-wrap:break-word}
+.route-draft-moves{display:inline-flex;gap:2px}
+.route-draft-length,.route-saved-date{color:var(--muted)}
+.route-draft-tools{display:flex;flex-wrap:wrap;gap:8px}
+.route-draft-tools .mantine-Button-root{min-height:var(--touch-target);height:auto;max-width:100%;padding-block:.5rem}
+.route-draft-tools .mantine-Button-label{white-space:normal;text-align:start}
+.route-draft-fields{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--stack-gap)}
+@media (min-width:40em){.route-draft-fields{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}}
+.route-status:empty{display:none}
+.route-status[data-kind="error"]{color:var(--bad)}
+.route-saved-list{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap)}
+@media (min-width:48em){.route-saved-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.route-saved{display:grid;align-content:start;gap:8px;padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
+.route-saved ol{margin:0;padding-inline-start:1.25em}
+.route-saved-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}

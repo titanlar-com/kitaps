@@ -2,6 +2,7 @@ import React from 'react';
 import { Badge, Button, Text, Title } from '@mantine/core';
 import { IconExternalLink, IconMapPin, IconPhone } from '@tabler/icons-react';
 import data from '../../data/bookstores.json';
+import RoutePlanner from './RoutePlanner';
 import './BookstoresPage.css';
 
 // Istanbul bookstores from the owner's research notes, with the routes walked (data/bookstores.json).
@@ -73,16 +74,25 @@ export default function BookstoresPage() {
    <Text className="bookstores-updated">Son güncelleme {longDay(data.updated)}. Bilgiler {longDay(data.checkedAt)} tarihli notlardan alındı.</Text>
   </header>
 
-  {data.visits.map(visit => <section key={visit.date} className="bookstore-visit" aria-labelledby={`visit-${visit.date}`}>
-   <Title order={2} id={`visit-${visit.date}`}>{visit.title}</Title>
-   <Text>{visit.note}</Text>
-   <ol className="bookstore-stops">{visit.stops.map(id => <li key={id}>
-    <Title order={3}><StoreLink id={id} /></Title>
-    <Text className="bookstore-place">{place(byId[id])}</Text>
-    <Text>{byId[id].address}</Text>
-    <MapButton store={byId[id]} />
-   </li>)}</ol>
-  </section>)}
+  <section className="bookstore-plan" aria-labelledby="bookstore-plan">
+   <Title order={2} id="bookstore-plan">Gezi planı</Title>
+   <Text>Geziler sırayla. Tarihi belli olmayanlar sıradaki günlere kalıyor, sonuncusu benim önerim.</Text>
+   {data.plan.map((visit, index) => <article key={visit.id} className="bookstore-visit" data-suggested={visit.suggested || undefined} aria-labelledby={`visit-${visit.id}`}>
+    <div className="bookstore-head">
+     <Title order={3} id={`visit-${visit.id}`}>{visit.title}</Title>
+     <Badge color={visit.suggested ? 'gray' : 'brand'}>{visit.suggested ? 'Öneri' : visit.date ? longDay(visit.date) : `${index + 1}. gezi`}</Badge>
+    </div>
+    <Text>{visit.note}</Text>
+    <ol className="bookstore-stops">{visit.stops.map(id => <li key={id}>
+     <Title order={4}><StoreLink id={id} /></Title>
+     <Text className="bookstore-place">{place(byId[id])}</Text>
+     <Text>{byId[id].address}</Text>
+     <MapButton store={byId[id]} />
+    </li>)}</ol>
+   </article>)}
+  </section>
+
+  <RoutePlanner stores={data.stores} plannedStops={data.plan.filter(visit => !visit.suggested).flatMap(visit => visit.stops)} />
 
   <section className="bookstore-topics" aria-labelledby="bookstore-topics">
    <Title order={2} id="bookstore-topics">Konuya göre nereye gidilir?</Title>

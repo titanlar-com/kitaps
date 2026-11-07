@@ -64,3 +64,13 @@ test('keyboard mode brings a half-visible control into view when the browser doe
  assert.equal(short.scrolled,1,'a control the browser left with its bar cut off is brought the rest of the way');
  stop();delete globalThis.requestAnimationFrame;
 });
+
+// The fixed footer bar covers the foot of the window, so a control under it counts as hidden.
+test('a control under the fixed footer bar counts as hidden',()=>{
+ const root={};
+ const view={innerHeight:800,getComputedStyle:node=>node===root?{overflowY:'visible',getPropertyValue:name=>name==='--dock-height'?'56px':''}:{overflowY:'visible'}};
+ const doc={defaultView:view,body:{},documentElement:root};
+ const control=(top,bottom)=>({getBoundingClientRect:()=>({top,bottom,height:bottom-top}),ownerDocument:doc,parentElement:null});
+ assert.equal(hidesBar(control(600,720)),false,'above the bar with room for the focus bar');
+ assert.equal(hidesBar(control(690,760)),true,'its focus bar would fall under the footer bar');
+});

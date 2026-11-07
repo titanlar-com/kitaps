@@ -12,7 +12,7 @@ const isolate = context => Promise.all([
 ]);
 const VIEWS = { catalog: './', book: './?book=good-to-great-by-jim-collins', notes: './?view=notes', queue: './?view=queue', collections: './?view=collections', bookstores: './?view=bookstores' };
 // The bookstores page loads on demand; it is measured once its heading is on the screen.
-const pageReady = page => page.getByRole('heading', { level: 1, name: 'Kitapçılar' }).waitFor();
+const pageReady = (page, name = 'Kitapçılar') => page.getByRole('heading', { level: 1, name }).waitFor();
 // Views reached by an action rather than an address, measured after VIEWS.
 const OPENED = {
   favorites: async page => { await page.goto('./?view=favorites'); },
@@ -265,7 +265,8 @@ const barOf = () => {
   if (!element || element === document.body) return null;
   const root = document.documentElement;
   const name = (element.getAttribute('aria-label') || element.textContent || element.className).trim().slice(0, 40);
-  const holders = [element, element.parentElement, element.closest('.filter-choice, .mantine-Input-wrapper'), element.closest('label')].filter(Boolean);
+  // A hidden radio's label follows it (Mantine SegmentedControl).
+  const holders = [element, element.parentElement, element.closest('.filter-choice, .mantine-Input-wrapper'), element.closest('label'), element.matches('input') && element.nextElementSibling?.matches('label') ? element.nextElementSibling : null].filter(Boolean);
   const after = node => { const style = getComputedStyle(node, '::after'); return style.content === 'none' || style.display === 'none' ? '' : `${style.height} ${style.backgroundColor} ${style.bottom}`; };
   const own = () => { const style = getComputedStyle(element); return { frame: `${style.outlineStyle} ${style.outlineWidth} | ${style.boxShadow} | ${style.borderTopColor} ${style.borderRightColor} ${style.borderBottomColor} ${style.borderLeftColor} ${style.borderTopWidth}`, deco: `${style.textDecorationLine} ${style.textDecorationThickness} ${style.textDecorationColor}` }; };
   const before = () => { const style = getComputedStyle(element, '::before'); return style.content === 'none' || style.display === 'none' ? '' : `${style.height} ${style.backgroundColor}`; };
@@ -327,7 +328,7 @@ const problemsOf = (where, bar) => {
   return found;
 };
 // The page scrolls smoothly to a focused control; Firefox starts a frame or two late.
-const settle = page => page.evaluate(() => new Promise(done => { let last = '', still = 0; const start = performance.now(); const tick = () => { const now = [scrollY, ...[...document.querySelectorAll('.mantine-Drawer-body, .mantine-Drawer-content, .mantine-Modal-content')].map(node => node.scrollTop)].join(); still = now === last ? still + 1 : 0; last = now; if ((still >= 6 && performance.now() - start > 150) || performance.now() - start > 2500) done(); else requestAnimationFrame(tick); }; requestAnimationFrame(tick); }));
+const settle = page => page.evaluate(() => new Promise(done => { let last = '', still = 0; const start = performance.now(); const tick = () => { const now = [scrollY, ...[...document.querySelectorAll('.mantine-Drawer-body, .mantine-Drawer-content, .mantine-Modal-content')].map(node => node.scrollTop)].join(); still = now === last ? still + 1 : 0; last = now; if ((still >= 10 && performance.now() - start > 300) || performance.now() - start > 3000) done(); else requestAnimationFrame(tick); }; requestAnimationFrame(tick); }));
 
 for (const [colorScheme, width] of [['light', 320], ['dark', 1280]]) {
   test(`every keyboard stop shows its focus bar whole and at 3:1, ${colorScheme} theme at ${width} px`, async ({ browser, browserName }) => {
@@ -344,6 +345,8 @@ for (const [colorScheme, width] of [['light', 320], ['dark', 1280]]) {
       ['notes', async () => { await page.goto('./?view=notes'); await expect(page.getByRole('heading', { name: 'Birleşimin kapsamı' })).toBeVisible(); }, 25],
       ['queue', async () => { await page.goto('./?view=queue'); await expect(page.locator('#main-content')).toBeVisible(); }, 15],
       ['bookstores', async () => { await page.goto('./?view=bookstores'); await pageReady(page); }, 35],
+      // The footer bar and its menu.
+      ['footer menu', async () => { await page.goto('./'); await page.locator('.footer-dock').click(); await page.getByRole('dialog', { name: 'Menü' }).waitFor(); }, 16],
       ['favorites', () => OPENED.favorites(page), 15],
       ['filters', () => OPENED.filters(page), 20],
       // A long option list scrolls inside the sheet as Tab moves down it.
