@@ -45,7 +45,14 @@ Her aşama bütün testler geçerek kendi başına yayına çıkar. Taşımadan 
    - Adres çözümü (`library.js`), sayfa başlıkları (`seo.js`), üst menü sekmeleri, alt menü bölümleri ve alt çubuktaki bölüm adı bu tablodan okunuyor.
    - Yeni bir sayfa artık tabloya bir satır, uygulamaya bir simge ve bir panel olarak ekleniyor.
    - Üst menü en çok dört sekme taşır, kural `tests/views.test.js` ile korunuyor.
-3. **İş kurallarını test önce çıkarma.**
+3. **İş kurallarını test önce çıkarma (başladı).**
+   - Tamamlananlar:
+     - `catalogListing` (`src/app/listing.js`): raf, süzme, sıralama ve sayfa kesimi.
+     - `stampReadingDate` (`src/reading.js`): "okunuyor" ve "okundu" işaretinde tarihin bir kez yazılması.
+     - `longDay` (`src/dates.js`): üç kopya tek yere indi.
+     - Fuar takviminin site adresi artık `SITE_URL` sabitinden türetiliyor.
+     - Testler `tests/app-logic.test.js` ve `tests/dates.test.js` içinde.
+   - Kalanlar aşağıda.
    - Çıkarılacak parçalar:
      - `catalogListing` (rafa göre liste, sayfa sınırı, boş durum);
      - `applyMark` (işaret ve otomatik okuma tarihleri);

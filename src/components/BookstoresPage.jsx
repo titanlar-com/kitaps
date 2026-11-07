@@ -4,6 +4,7 @@ import { IconExternalLink, IconMapPin, IconPhone } from '@tabler/icons-react';
 import data from '../../data/bookstores.json';
 import RoutePlanner from './RoutePlanner';
 import './BookstoresPage.css';
+import { longDay } from '../dates.js';
 
 // Istanbul bookstores from the owner's research notes, with the routes walked (data/bookstores.json).
 const byId = Object.fromEntries(data.stores.map(store => [store.id, store]));
@@ -13,7 +14,6 @@ const FACTS = [['address', 'Adres'], ['phone', 'Telefon'], ['hours', 'Saat'], ['
 
 const mapUrl = store => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${store.name}, ${store.address}`)}`;
 const telUrl = phone => `tel:+90${phone.replace(/\D/g, '').replace(/^0/, '')}`;
-const longDay = iso => new Date(`${iso}T12:00:00Z`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Istanbul' });
 const place = store => store.area && store.area !== store.district ? `${store.area}, ${store.district}` : store.district;
 const opens = { target: '_blank', rel: 'noopener noreferrer' };
 const NewTab = () => <span className="visually-hidden"> (yeni sekmede açılır)</span>;

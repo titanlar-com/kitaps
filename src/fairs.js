@@ -1,5 +1,9 @@
 // Book fair calendar helpers (data/book-fairs.json, BookFairsPage.jsx). Dates are calendar days
 // in ISO form; "today" is the Istanbul calendar day, whatever zone the device is in.
+import { SITE_URL } from './site.js';
+
+// Calendar events carry the site's host, so the address is written in one place (src/site.js).
+const UID_HOST = new URL(SITE_URL).host;
 const MONTHS = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
 const parts = iso => { const [year, month, day] = iso.split('-').map(Number); return { year, month, day }; };
 
@@ -49,7 +53,7 @@ export function fairCalendar(fair, now = new Date()) {
  const stamp = now.toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
  const lines = [
   'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Kitaplik//Kitap fuarlari//TR', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT',
-  `UID:${fair.id}-${fair.start}@titanlar-com.github.io`, `DTSTAMP:${stamp}`,
+  `UID:${fair.id}-${fair.start}@${UID_HOST}`, `DTSTAMP:${stamp}`,
   `DTSTART;VALUE=DATE:${compact(fair.start)}`, `DTEND;VALUE=DATE:${compact(dayAfter(fair.end || fair.start))}`,
   `SUMMARY:${icsText(fair.name)}`,
   `LOCATION:${icsText([fair.venue, fair.city].filter(Boolean).join(', '))}`,

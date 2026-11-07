@@ -5,6 +5,7 @@ import data from '../../data/book-fairs.json';
 import { fairCalendar, fairsFrom, formatRange, groupByMonth, todayInIstanbul } from '../fairs';
 import { download } from '../download';
 import './BookFairsPage.css';
+import { longDay } from '../dates.js';
 
 // The book fair calendar (data/book-fairs.json). Finished fairs leave the list by themselves;
 // a date only counts as announced when the organiser or the fair's own site gives it.
@@ -16,7 +17,6 @@ const STATUS = {
 const SCOPES = [{ value: 'all', label: 'Tümü' }, { value: 'tr', label: 'Türkiye' }, { value: 'world', label: 'Yurt dışı' }];
 const inScope = scope => fair => scope === 'all' || (scope === 'tr') === (fair.country === 'Türkiye');
 const opens = { target: '_blank', rel: 'noopener noreferrer' };
-const longDay = iso => new Date(`${iso}T12:00:00Z`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Istanbul' });
 
 function Fair({ fair, open = false }) {
  const status = STATUS[fair.status];

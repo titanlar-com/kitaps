@@ -5,12 +5,12 @@ import { newRouteId } from '../state/routeRegistry.ts';
 import { orderStops, routeLengthKm, suggestNextRoute } from '../routes/planner.js';
 import { useRouteRegistry } from '../routes/useRouteRegistry.js';
 import './RoutePlanner.css';
+import { longDay } from '../dates.js';
 
 // The route planner on the Kitapçılar page: pick stores, order them by distance or by hand, give
 // the route a name and a day, and save it. Saved routes go to routes.json in kitaps-state.
 const MAX_STOPS = 12;
 const SIDES = [['europe', 'Avrupa yakası'], ['asia', 'Anadolu yakası']];
-const longDay = iso => new Date(`${iso}T12:00:00Z`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Istanbul' });
 const km = value => value.toLocaleString('tr-TR', { maximumFractionDigits: 1 });
 const move = (list, index, step) => { const next = [...list]; const [item] = next.splice(index, 1); next.splice(index + step, 0, item); return next; };
 

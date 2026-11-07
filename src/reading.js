@@ -30,6 +30,13 @@ export function readingErrors(record) {
   dates:r.startedAt&&r.finishedAt&&r.finishedAt<r.startedAt?'Bitiş tarihi, başlama tarihinden önce olamaz.':null
  };
 }
+// Marking a book as being read or read writes its start or finish day, unless one is already
+// written (ADR 002, phase 3). Any other mark leaves the reading record as it is.
+export function stampReadingDate(personal,id,key,today) {
+ if(!['okunuyor','okundu'].includes(key))return personal;
+ const field=key==='okunuyor'?'startedAt':'finishedAt';const record=cleanReading(personal.reading[id]);
+ return {...personal,reading:{...personal.reading,[id]:{...record,[field]:record[field]||today}}};
+}
 export function todayLocal(date=new Date()) {return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;}
 export function restorePersonal(current,input,bookIds) {
  const clean=cleanPersonal(input,bookIds);
