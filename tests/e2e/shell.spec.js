@@ -60,3 +60,23 @@ test('the header lifts off the page once the page scrolls, and settles back at t
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
   await expect(header).not.toHaveAttribute('data-scrolled', 'true');
 });
+
+// While the marker catches up with tabs that reflow (here: text enlarged as the page loads), it
+// must never push the page sideways, not even for a frame (book-fairs and bookstores 200% tests).
+test('at 320 px with 200% text the marker never pushes the page sideways while it settles', async ({ browser }) => {
+  for (const url of ['./', './?view=fairs', './?view=bookstores']) {
+    const context = await browser.newContext({ viewport: { width: 320, height: 800 } });
+    await context.addInitScript(() => {
+      document.addEventListener('DOMContentLoaded', () => { document.documentElement.style.fontSize = '200%'; });
+      window.__widest = 0;
+      const sample = () => { window.__widest = Math.max(window.__widest, document.documentElement.scrollWidth - window.innerWidth); requestAnimationFrame(sample); };
+      requestAnimationFrame(sample);
+    });
+    const page = await context.newPage();
+    await page.goto(url);
+    await expect(page.locator('main')).toBeVisible();
+    await page.waitForTimeout(1000);
+    expect(await page.evaluate(() => window.__widest), `${url}: the widest overflow in any frame`).toBe(0);
+    await context.close();
+  }
+});

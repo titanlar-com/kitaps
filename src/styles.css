@@ -378,7 +378,9 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
 .main-tabs .mantine-Tabs-tab:hover{--edge-color:var(--line-strong);background:none;color:var(--ink)}
 /* The chosen section's line is the sliding marker below; the tab itself only darkens. */
 .main-tabs .mantine-Tabs-tab[data-active]{--edge-color:transparent;color:var(--ink)}
-.main-tabs.mantine-Tabs-list{position:relative}
+/* The marker follows the tabs a frame late when they reflow; it is clipped to the list so it
+   never pushes the page sideways meanwhile. The block axis stays open for the focus bar. */
+.main-tabs.mantine-Tabs-list{position:relative;overflow-x:clip}
 /* The marker is drawn by the one edge system; it stays absolutely placed by Mantine. */
 .main-tabs-indicator[data-edge]{position:absolute;--edge-width:2px;--edge-color:var(--accent);pointer-events:none}
 /* A tab's focus bar sits inside the tab, above its selection line, not on the header rule. */
