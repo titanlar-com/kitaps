@@ -26,10 +26,11 @@ for (const width of [320, 390, 1280]) {
     await page.locator('.footer-dock').click();
     const sheet = page.getByRole('dialog', { name: 'Menü' });
     await expect(sheet).toBeVisible();
-    await page.waitForTimeout(400);
-    const box = await page.locator('.footer-menu .mantine-Drawer-content').boundingBox();
+    // The sheet slides in; it is measured once it rests on the foot of the screen, however slow the machine.
+    const content = page.locator('.footer-menu .mantine-Drawer-content');
+    await expect.poll(async () => { const rest = await content.boundingBox(); return Math.round(rest.y + rest.height); }, { timeout: 5000 }).toBe(800);
+    const box = await content.boundingBox();
     expect(Math.abs(box.height - 400), `half the screen: ${box.height}`).toBeLessThanOrEqual(2);
-    expect(Math.abs(box.y + box.height - 800)).toBeLessThanOrEqual(1);
     for (const name of ITEMS) await expect(sheet.getByRole('button', { name, exact: typeof name === 'string' }), String(name)).toHaveCount(1);
     await expect(sheet).toContainText('Güncelleme:');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -60,13 +61,15 @@ test('the end of the page and the purchase toast stay clear of the footer bar', 
   await page.setViewportSize({ width: 390, height: 800 });
   await page.goto('./');
   await expect(page.locator('.book-card').first()).toBeVisible();
-  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-  await page.waitForTimeout(600);
+  await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+  await page.waitForTimeout(300);
   const bar = await page.locator('.site-footer').boundingBox();
   const last = await page.locator('.catalog-pagination').boundingBox();
   expect(last.y + last.height, 'the pagination ends above the bar').toBeLessThanOrEqual(bar.y);
-  await page.evaluate(() => window.scrollTo(0, 0));
+  // Back to the top at once (the page scrolls smoothly), then mark a purchase to raise the toast.
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
   await page.locator('.book-card .cover-owned').first().click();
+  await expect(page.locator('.library-toast')).toBeVisible();
   const toast = await page.locator('.library-toast').boundingBox();
   expect(toast.y + toast.height, 'the toast sits above the bar').toBeLessThanOrEqual(bar.y);
 });
