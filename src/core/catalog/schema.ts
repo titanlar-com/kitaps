@@ -49,7 +49,8 @@ export interface BookRecord {
   origins: string[];
   legacyKeys: string[];
   tags: string[];
-  addedAt: IsoDay;
+  /** Missing for a book merged before scripts/infer-added-dates.py dated it. */
+  addedAt?: IsoDay;
   collectionIds: string[];
   groupIds: string[];
   cover?: Record<string, unknown>;

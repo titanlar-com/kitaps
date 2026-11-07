@@ -9,7 +9,8 @@
     "allowJs": true,
     "checkJs": false,
     "resolveJsonModule": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "erasableSyntaxOnly": true
   },
   "include": ["src/**/*.ts"]
 }

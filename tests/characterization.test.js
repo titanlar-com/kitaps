@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { catalogListing } from '../src/app/listing.js';
-import { characterizeListing, characterizeRanking, characterizeSeo, readFixture, readGolden } from './characterization/oracle.js';
+import { characterizeListing, characterizeRanking, characterizeSeo, characterizeStaticSeo, readFixture, readGolden } from './characterization/oracle.js';
 
 // Characterization (ADR 003, phase 0): before the data architecture moves, what the UI
 // receives today is pinned on a frozen cut of the catalogue (tests/fixtures/characterization).
@@ -25,6 +25,10 @@ test('every address decodes, re-encodes and describes itself to search engines a
   const actual = characterizeSeo(catalogListing, catalog);
   assert.deepEqual(Object.keys(actual), Object.keys(golden), 'the same addresses');
   for (const address of Object.keys(golden)) assert.deepEqual(actual[address], golden[address], address);
+});
+
+test('the build writes the same static pages for the frozen catalogue as on 8 November 2026', () => {
+  assert.deepEqual(characterizeStaticSeo(), readGolden('static-seo'));
 });
 
 test('the golden files exercise every case they claim to', () => {

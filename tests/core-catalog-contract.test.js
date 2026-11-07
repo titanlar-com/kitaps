@@ -52,4 +52,7 @@ test('the full contract names each defect and keeps the data as it is', () => {
   }
   // Missing optional evidence is not a defect: an unknown page count or author stays unknown.
   assert.deepEqual(validateCatalog(small([book('a', { cover: undefined, pageCounts: undefined, author: '' })])), []);
+  // Python leaves a new book undated and only warns; the contract is not stricter than the build.
+  const { addedAt, ...undated } = book('b');
+  assert.deepEqual(validateCatalog(small([undated])), []);
 });

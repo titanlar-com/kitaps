@@ -33,14 +33,21 @@ export interface RouteCodec {
 
 export interface NavigationSnapshot {
   readonly route: Route;
-  /** The books opened before the current one from a book page, to step back along. */
-  readonly bookTrail: readonly string[];
 }
 
+/**
+ * Steps a design composes. How a book sheet stacks (a trail of books, "closing goes back when
+ * the book was opened from the catalogue") is the design's policy, not the core's (ADR 003, K6).
+ */
 export interface NavigationCommands {
+  /** Opens a book as a new history entry. */
   openBook(id: string): void;
+  /** Shows another book in the same history entry. */
+  showBook(id: string): void;
+  /** Closes the book in place. */
   closeBook(): void;
-  previousBook(): void;
+  /** The previous history entry; the route follows when the browser reports the change. */
+  back(): void;
   goView(view: string): void;
   goHome(): void;
   openCollection(id: string, groupId?: string): void;
@@ -57,60 +64,38 @@ export interface NavigationCommands {
  * The controller of MVC (ADR 003, K9): it turns the address bar and the history into a route
  * and back, as App.jsx does today. Every change is written back to the address in today's
  * form, so a legacy address is corrected in place. A new page, a view, a shelf, a collection
- * or a book opened from the catalogue is a history entry; sort, filters and corrections are not.
+ * or an opened book is a history entry; sort, filters and corrections are not.
  */
 export function createNavigator({ location, codec }: { location: LocationPort; codec: RouteCodec }): ViewModel<NavigationSnapshot, NavigationCommands> {
   const urlFor = (route: Route): string => {
     const encoded = codec.encode(route);
     return location.path() + (encoded ? `?${encoded}` : '');
   };
-  const state = createStore<NavigationSnapshot>({ route: codec.decode(location.current()), bookTrail: [] });
-  /** A book opened from the catalogue: closing it goes back in the history instead. */
-  let openedFromCatalog = false;
+  const state = createStore<NavigationSnapshot>({ route: codec.decode(location.current()) });
   location.replace(urlFor(state.getSnapshot().route));
 
-  const commit = (route: Route, { push = false, bookTrail = state.getSnapshot().bookTrail }: { push?: boolean; bookTrail?: readonly string[] } = {}): void => {
-    const current = state.getSnapshot();
-    if (push) location.push(urlFor(route));
-    if (current.route === route && current.bookTrail === bookTrail) return;
-    if (!push && JSON.stringify(current.route) === JSON.stringify(route) && current.bookTrail === bookTrail) return;
-    state.set({ route, bookTrail });
-    location.replace(urlFor(route));
-  };
   const route = (): Route => state.getSnapshot().route;
-  const navigate = (next: Route, bookTrail?: readonly string[]): void => commit(next, { push: true, bookTrail });
+  const commit = (next: Route, { push = false }: { push?: boolean } = {}): void => {
+    if (push) location.push(urlFor(next));
+    if (!push && JSON.stringify(route()) === JSON.stringify(next)) return;
+    state.set({ route: next });
+    location.replace(urlFor(next));
+  };
+  const navigate = (next: Route): void => commit(next, { push: true });
 
-  const stop = location.onChange(() => {
-    openedFromCatalog = false;
-    commit(codec.decode(location.current()), { bookTrail: [] });
-  });
+  const stop = location.onChange(() => commit(codec.decode(location.current())));
 
   const commands: NavigationCommands = {
-    openBook(id) {
-      const current = route();
-      if (!current.book) {
-        openedFromCatalog = true;
-        navigate({ ...current, book: id }, []);
-      } else commit({ ...current, book: id }, { bookTrail: [...state.getSnapshot().bookTrail, current.book] });
-    },
-    closeBook() {
-      if (openedFromCatalog) {
-        openedFromCatalog = false;
-        location.back();
-      } else commit({ ...route(), book: null });
-    },
-    previousBook() {
-      const trail = state.getSnapshot().bookTrail;
-      const id = trail.at(-1);
-      if (id) commit({ ...route(), book: id }, { bookTrail: trail.slice(0, -1) });
-    },
+    openBook(id) { navigate({ ...route(), book: id }); },
+    showBook(id) { commit({ ...route(), book: id }); },
+    closeBook() { commit({ ...route(), book: null }); },
+    back() { location.back(); },
     goView(view) {
       navigate({ ...route(), view, book: null, page: 1, ...(viewById[view]?.shelf ? { filters: emptyFilters() } : {}) });
     },
     goHome() {
       location.push(location.path());
-      openedFromCatalog = false;
-      commit(codec.decode(''), { bookTrail: [] });
+      commit(codec.decode(''));
     },
     openCollection(id, groupId) {
       navigate({ ...route(), view: 'books', book: null, page: 1, filters: { ...emptyFilters(), collections: [id], groups: groupId ? [groupId] : [] } });

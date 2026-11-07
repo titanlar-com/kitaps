@@ -1321,5 +1321,341 @@
    "interactive": "https://titanlar-com.github.io/kitaps/",
    "ogType": "website"
   }
+ },
+ "(home) (purchases hidden)": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "",
+  "seo": {
+   "title": "Tüm kitaplar | Kitaplık",
+   "description": "Tüm kitaplar: 126 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 126 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?sort=title&page=2 (purchases hidden)": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "title",
+   "book": null,
+   "page": 2,
+   "pageSize": 24
+  },
+  "encoded": "sort=title&page=2",
+  "seo": {
+   "title": "Tüm kitaplar — Sayfa 2 | Kitaplık",
+   "description": "Tüm kitaplar: 126 kitap; 25–48 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "index,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
+   "prev": "https://titanlar-com.github.io/kitaps/catalog/",
+   "next": "https://titanlar-com.github.io/kitaps/catalog/page/3/",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 126 kitap; 25–48 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
+    "mainEntity": {
+     "@type": "ItemList",
+     "numberOfItems": 126,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 25,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/fatih-sultan-mehmed-ve-zamani-by-franz-babinger/",
+       "name": "Fatih Sultan Mehmed ve Zamanı"
+      },
+      {
+       "@type": "ListItem",
+       "position": 26,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-wisdom-of-finance-by-mihir-desai/",
+       "name": "Finans Bilgeliği & Risk ve Getiri Dünyasında İnsanlığı Keşfetmek"
+      },
+      {
+       "@type": "ListItem",
+       "position": 27,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/finansci-olmayanlar-icin-finans-by-hakan-ozerol/",
+       "name": "Finansçı Olmayanlar İçin Finans"
+      },
+      {
+       "@type": "ListItem",
+       "position": 28,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/flash-crash-by-liam-vaughan/",
+       "name": "Flash Crash"
+      },
+      {
+       "@type": "ListItem",
+       "position": 29,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/frontierlands-by-hazel-sheffield/",
+       "name": "Frontierlands"
+      },
+      {
+       "@type": "ListItem",
+       "position": 30,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-innovators-by-walter-isaacson/",
+       "name": "Geleceği Keşfedenler & Dijital Çağın Biyografisi"
+      },
+      {
+       "@type": "ListItem",
+       "position": 31,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/administration-industrielle-et-generale-by-henri-fayol/",
+       "name": "Genel ve Endüstriyel Yönetim"
+      },
+      {
+       "@type": "ListItem",
+       "position": 32,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/gigged-by-sarah-kessler/",
+       "name": "Gigged"
+      },
+      {
+       "@type": "ListItem",
+       "position": 33,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-e-myth-revisited-by-michael-e-gerber/",
+       "name": "Girişimcilik Tutkusu"
+      },
+      {
+       "@type": "ListItem",
+       "position": 34,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/godnatt-alfons-aberg-by-gunilla-bergstrom/",
+       "name": "Godnatt Alfons Åberg"
+      },
+      {
+       "@type": "ListItem",
+       "position": 35,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-age-of-surveillance-capitalism-by-shoshana-zuboff/",
+       "name": "Gözetleme Kapitalizmi Çağı: Ürünün \"Sen\" Olduğu Çağda İnsanın Geleceği İçin Savaş"
+      },
+      {
+       "@type": "ListItem",
+       "position": 36,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/grimm-masallari-by-grimm-kardesler/",
+       "name": "Grimm Masalları"
+      },
+      {
+       "@type": "ListItem",
+       "position": 37,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/hedgehogging-by-barton-biggs/",
+       "name": "Hedgehogging"
+      },
+      {
+       "@type": "ListItem",
+       "position": 38,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/high-output-management-by-andrew-s-grove/",
+       "name": "High Output Management"
+      },
+      {
+       "@type": "ListItem",
+       "position": 39,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/house-of-cards-by-william-cohan/",
+       "name": "House of Cards"
+      },
+      {
+       "@type": "ListItem",
+       "position": 40,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/how-to-make-millions-with-your-ideas-by-dan-kennedy/",
+       "name": "How to Make Millions with Your Ideas"
+      },
+      {
+       "@type": "ListItem",
+       "position": 41,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/imagining-india-by-nandan-nilekani/",
+       "name": "Imagining India"
+      },
+      {
+       "@type": "ListItem",
+       "position": 42,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-48-laws-of-power-by-robert-greene/",
+       "name": "İktidar (Güç Sahibi Olmanın 48 Yasası)"
+      },
+      {
+       "@type": "ListItem",
+       "position": 43,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-death-of-ivan-ilyich-by-lev-nikolayevic-tolstoy/",
+       "name": "İvan İlyiç’in Ölümü"
+      },
+      {
+       "@type": "ListItem",
+       "position": 44,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-case-for-good-jobs-by-zeynep-ton/",
+       "name": "İyi İşler Uygulaması"
+      },
+      {
+       "@type": "ListItem",
+       "position": 45,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/jean-jacques-rousseau-by-leo-damrosch/",
+       "name": "Jean-Jacques Rousseau"
+      },
+      {
+       "@type": "ListItem",
+       "position": 46,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-summer-of-katya-by-trevanian/",
+       "name": "Katya'nın Yazı"
+      },
+      {
+       "@type": "ListItem",
+       "position": 47,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-art-of-the-start-2-0-by-guy-kawasaki/",
+       "name": "Kendi İşini Kurmak İsteyen Girişimcinin El Kitabı"
+      },
+      {
+       "@type": "ListItem",
+       "position": 48,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/konstantinos-paleologos-by-donald-m-nicol/",
+       "name": "Konstantinos Paleologos"
+      }
+     ]
+    }
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?status=purchased (purchases hidden)": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [
+     "alindi"
+    ],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "status=purchased",
+  "seo": {
+   "title": "Tüm kitaplar | Kitaplık",
+   "description": "Tüm kitaplar: 0 kitap. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 0 kitap. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?view=library (purchases hidden)": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "owned",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "view=library",
+  "seo": {
+   "title": "Kitaplığım | Kitaplık",
+   "description": "Kitaplığım: 18 kitap; 1–18 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Kitaplığım",
+    "description": "Kitaplığım: 18 kitap; 1–18 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
  }
 }

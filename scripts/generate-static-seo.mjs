@@ -7,9 +7,13 @@ import { readingGuide } from '../src/recommendations.js';
 import { splitAuthors } from '../src/authors.js';
 import { publicationLine,publicationLinkLabel,publicationUrl,workFormat } from '../src/workFormat.js';
 import { SITE_URL } from '../src/site.js';
+import { openCatalog } from '../src/core/catalog/contract.ts';
 
 const projectRoot=fileURLToPath(new URL('../',import.meta.url));
-const catalog=JSON.parse(fs.readFileSync(path.join(projectRoot,'src/catalog.json'),'utf8'));
+// The catalogue passes the core's full contract before any page is written (ADR 003). A second
+// argument names another catalogue, as the characterization tests do with their frozen cut.
+const catalogPath=path.resolve(process.argv[3]||path.join(projectRoot,'src/catalog.json'));
+const catalog=openCatalog(JSON.parse(fs.readFileSync(catalogPath,'utf8')),{validate:'full'}).document;
 const outputRoot=path.resolve(process.argv[2]||path.join(projectRoot,'dist'));
 if(path.basename(outputRoot)!=='dist')throw new Error(`Static SEO output must be a dist directory: ${outputRoot}`);
 const catalogRoot=path.join(outputRoot,'catalog');

@@ -59,7 +59,8 @@ export function validateCatalog(input: unknown): string[] {
     const lists = BOOK_LISTS.filter(field => !Array.isArray(book[field]));
     for (const field of lists) problems.push(`${name}: ${field} must be a list`);
     if (lists.length) return;
-    if (!isDay(book.addedAt)) problems.push(`${name}: addedAt is not a calendar day`);
+    // A book without an added day is new; tests/added-dates.test.js asks for it, as Python does.
+    if (book.addedAt !== undefined && !isDay(book.addedAt)) problems.push(`${name}: addedAt is not a calendar day`);
     if (!book.years.every(year => Number.isInteger(year))) problems.push(`${name}: years must be whole numbers`);
     for (const id of book.collectionIds) if (!collections.has(id)) problems.push(`${name}: collection ${id} does not exist`);
     for (const id of book.groupIds) if (!groups.has(id)) problems.push(`${name}: group ${id} does not exist`);

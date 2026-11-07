@@ -37,50 +37,43 @@ test('the first address is read, and a legacy address is written back in today\'
   assert.equal(open('').url(), '', 'the home address stays empty');
 });
 
-test('a book opened from the catalogue is a history entry, and closing it goes back', () => {
+test('opening a book adds a history entry; back returns to the list, closing stays in place', () => {
   const { route, url, go, history } = open('?sort=title');
   go.openBook(first.id);
   assert.equal(route().book, first.id);
   assert.equal(url(), `?sort=title&book=${bookSlug(first)}`);
   assert.equal(history.entries.length, 2);
+  go.back();
+  assert.equal(route().book, null, 'the browser reported the change and the route followed');
+  assert.equal(history.index, 0);
+  go.openBook(second.id);
   go.closeBook();
   assert.equal(route().book, null);
   assert.equal(url(), '?sort=title');
-  assert.equal(history.index, 0, 'back to the catalogue entry');
+  assert.equal(history.index, 1, 'closing in place keeps the entry');
 });
 
-test('a book opened from a book replaces it and can step back along the trail; a direct link closes in place', () => {
-  const { navigator, route, url, go, history } = open('');
+test('showing another book replaces the entry, so a design can keep its own trail of books', () => {
+  const { route, go, history } = open('');
   go.openBook(first.id);
-  go.openBook(second.id);
+  go.showBook(second.id);
   assert.equal(route().book, second.id);
-  assert.deepEqual(navigator.getSnapshot().bookTrail, [first.id]);
-  assert.equal(history.entries.length, 2, 'the second book replaced the entry');
-  go.previousBook();
-  assert.equal(route().book, first.id);
-  assert.deepEqual(navigator.getSnapshot().bookTrail, []);
+  assert.equal(history.entries.length, 2);
   const direct = open(`?book=${second.id}`);
   direct.go.closeBook();
   assert.equal(direct.route().book, null);
   assert.equal(direct.history.entries.length, 1, 'a book opened by link closes without leaving the page');
   assert.equal(direct.url(), '');
-  assert.ok(url().includes('book='));
 });
 
-test('the back button reads the address again and clears the book trail', () => {
-  const { navigator, route, go } = open('');
+test('the back button reads the address again; changing the page closes the book', () => {
+  const { route, go, history } = open('');
   go.openBook(first.id);
-  go.openBook(second.id);
   go.changePage(2);
   assert.equal(route().book, null, 'changing the page closes the book');
-  navigator.dispose();
-  const again = open('');
-  again.go.openBook(first.id);
-  again.go.openBook(second.id);
-  again.history.index = 0;
-  for (const listener of again.history.listeners) listener();
-  assert.equal(again.route().book, null);
-  assert.deepEqual(again.navigator.getSnapshot().bookTrail, []);
+  history.index = 0;
+  for (const listener of history.listeners) listener();
+  assert.deepEqual(route(), codec.decode(''));
 });
 
 test('views, shelves, collections, categories and pages are history entries; sort and filters replace', () => {
@@ -109,13 +102,12 @@ test('a page past the end is corrected in place, and the home link resets everyt
   assert.equal(route().page, 3);
   assert.equal(history.entries.length, 1);
   go.openBook(first.id);
-  go.openBook(second.id);
   go.goHome();
   assert.deepEqual(route(), codec.decode(''));
-  assert.deepEqual(navigator.getSnapshot().bookTrail, []);
+  assert.equal(navigator.getSnapshot().route.book, null);
 });
 
-test('the snapshot is the same object until the route or the trail changes', () => {
+test('the snapshot is the same object until the route changes', () => {
   const { navigator, go } = open('');
   const before = navigator.getSnapshot();
   assert.equal(navigator.getSnapshot(), before);
