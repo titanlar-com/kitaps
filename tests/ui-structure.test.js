@@ -74,3 +74,11 @@ test('removed card category component stays unused',()=>{
  const bookCard=fs.readFileSync(new URL('../src/app/BookCard.jsx',import.meta.url),'utf8');
  assert.doesNotMatch(bookCard,/CategoryPill|card-categories|category-more/);
 });
+
+// The reading band and the catalogue grid treat a phone held sideways as a phone with one query.
+test('the JavaScript phone-landscape query is the grid stylesheet\'s', async () => {
+ const { PHONE_LANDSCAPE_QUERY } = await import('../src/app/media.js');
+ const css = fs.readFileSync(new URL('../src/styles.css', import.meta.url), 'utf8');
+ const squash = text => text.replace(/\s+/g, '');
+ assert.ok(squash(css).includes(`@media${squash(PHONE_LANDSCAPE_QUERY)}{.books-grid{--books-columns:2}}`));
+});

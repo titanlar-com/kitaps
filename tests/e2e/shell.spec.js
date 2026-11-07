@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import fs from 'node:fs';
 
 // The redesign's application shell (docs/UI-REDESIGN.md, phase 2, 8 November 2026): the
 // shortcuts count favourites and purchases, a marker slides under the chosen section, and the
@@ -22,8 +23,8 @@ for (const width of [320, 390, 1280]) {
     await page.goto('./');
     const favorites = page.locator('.header-favorites');
     const library = page.locator('.header-library');
-    await expect(favorites).toHaveAccessibleName('Favoriler · 2 kitap');
-    await expect(library).toHaveAccessibleName('Kitaplığım · 1 kitap');
+    await expect(favorites).toHaveAccessibleName('Favoriler: 2 kitap');
+    await expect(library).toHaveAccessibleName('Kitaplığım: 1 kitap');
     await expect(page.locator('.header-favorites-count .mantine-Indicator-indicator')).toHaveText('2');
     await expect(page.locator('.header-library-count .mantine-Indicator-indicator')).toHaveText('1');
     // The count is part of the name, so screen readers do not read it twice.
@@ -79,4 +80,49 @@ test('at 320 px with 200% text the marker never pushes the page sideways while i
     expect(await page.evaluate(() => window.__widest), `${url}: the widest overflow in any frame`).toBe(0);
     await context.close();
   }
+});
+
+// Review of 8 November 2026: the badge sits on its button, so it must not take the click, and a
+// long count must not run onto the next button.
+test('a click on a counter badge opens its shelf', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 800 });
+  await page.goto('./');
+  const badge = await page.locator('.header-favorites-count .mantine-Indicator-indicator').boundingBox();
+  await page.mouse.click(badge.x + badge.width / 2, badge.y + badge.height / 2);
+  await expect(page).toHaveURL(/view=favorites/);
+});
+
+test('at 320 px long counts stay on their own button', async ({ browser }) => {
+  // 120 favourites and 150 purchases, from the catalogue's own ids.
+  const ids = JSON.parse(fs.readFileSync(new URL('../../src/catalog.json', import.meta.url))).books.map(book => book.id);
+  const states = Object.fromEntries(ids.slice(0, 150).map((id, index) => [id, index < 120 ? ['onemli', 'alindi'] : ['alindi']]));
+  const context = await browser.newContext({ viewport: { width: 320, height: 800 } });
+  await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.request().url().includes('routes.json') ? route.fulfill({ status: 404, json: {} }) : route.fulfill({ json: EMPTY }));
+  await context.route('https://api.github.com/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
+  await context.addInitScript(seed => { if (!sessionStorage.getItem('seeded')) { sessionStorage.setItem('seeded', '1'); localStorage.setItem('kitapatlasi:states:v2', seed); } }, JSON.stringify(states));
+  const page = await context.newPage();
+  await page.goto('./');
+  await expect(page.locator('.header-favorites')).toHaveAccessibleName('Favoriler: 120 kitap');
+  await expect(page.locator('.header-favorites-count .mantine-Indicator-indicator')).toHaveText('99+');
+  const badge = await page.locator('.header-favorites-count .mantine-Indicator-indicator').boundingBox();
+  const next = await page.locator('.header-library').boundingBox();
+  expect(badge.x + badge.width, 'the favourites badge ends before the library button').toBeLessThanOrEqual(next.x + 1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await context.close();
+});
+
+test('in forced colours the section marker takes the system highlight', async ({ browser, browserName }) => {
+  test.skip(browserName !== 'chromium', 'Playwright emulates forced colours in Chromium only.');
+  const context = await browser.newContext({ forcedColors: 'active', viewport: { width: 1280, height: 800 } });
+  const page = await context.newPage();
+  await page.goto('./');
+  const colours = await page.evaluate(() => {
+    const probe = document.body.appendChild(document.createElement('div'));
+    probe.style.background = 'Highlight';
+    const highlight = getComputedStyle(probe).backgroundColor;
+    probe.remove();
+    return { highlight, marker: getComputedStyle(document.querySelector('.main-tabs-indicator'), '::before').backgroundColor };
+  });
+  expect(colours.marker).toBe(colours.highlight);
+  await context.close();
 });

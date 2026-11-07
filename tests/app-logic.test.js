@@ -90,3 +90,15 @@ test('hiding purchases leaves the books the reader asks for by a reading mark', 
  const browsing = catalogListing({ books, states, view: 'books', filters: emptyFilters(), sort: 'title', page: 1, pageSize: 24, rankings: {}, hideOwned: true });
  assert.ok(!browsing.filtered.some(book => book.id === 'goal'));
 });
+
+// Review of 8 November 2026: when a reading-mark filter brings back purchases that the switch
+// hides while browsing, the page says so; the listing reports it.
+test('the listing says when a reading-mark filter shows purchases the switch would hide', () => {
+ const states = { goal: ['alindi', 'okundu'], builttolast: ['okundu'] };
+ const listing = (filters, hideOwned = true, view = 'books') => catalogListing({ books, states, view, filters: { ...emptyFilters(), ...filters }, sort: 'title', page: 1, pageSize: 24, rankings: {}, hideOwned });
+ assert.equal(listing({ states: ['okundu'] }).showsHiddenPurchases, true);
+ assert.equal(listing({ states: ['okundu'] }, false).showsHiddenPurchases, false, 'the switch is off');
+ assert.equal(listing({}).showsHiddenPurchases, false, 'no reading-mark filter');
+ assert.equal(listing({ states: ['okunuyor'] }).showsHiddenPurchases, false, 'no purchased book in the result');
+ assert.equal(listing({ states: ['okundu'] }, true, 'owned').showsHiddenPurchases, false, 'the owned shelf shows purchases anyway');
+});

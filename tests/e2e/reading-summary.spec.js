@@ -44,3 +44,53 @@ test('a count in the band opens its shelf', async ({ page }) => {
   await band(page).getByRole('button', { name: 'Okunan: 1 kitap' }).click();
   await expect(page.locator('.book-card')).toHaveCount(1);
 });
+
+// Review of 8 November 2026.
+for (const [width, height, shown] of [[844, 390, false], [915, 412, false], [767, 900, false], [768, 900, true]]) {
+  test(`at ${width} x ${height} the catalogue ${shown ? 'opens with' : 'leaves out'} the band`, async ({ page }) => {
+    await page.setViewportSize({ width, height });
+    await page.goto('./');
+    await expect(page.locator('.book-card').first()).toBeVisible();
+    await expect(band(page)).toHaveCount(shown ? 1 : 0);
+  });
+}
+
+test('a count taken with the keyboard leaves focus on the main content, not lost on the page', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('./');
+  const count = band(page).getByRole('button', { name: 'Okunan: 1 kitap' });
+  await count.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.book-card')).toHaveCount(1);
+  await expect.poll(() => page.evaluate(() => document.activeElement?.id)).toBe('main-content');
+});
+
+test('on Sıram the queue comes first and the band after it; its own count stays on the page', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  await page.goto('./?view=queue');
+  await expect(band(page)).toBeVisible();
+  const first = await page.evaluate(() => {
+    const summary = document.querySelector('.reading-summary');
+    const queue = document.querySelector('.reading-queue, [aria-label="Okuma sıram"], .queue-list, .queue-empty');
+    return Boolean(queue) && Boolean(queue.compareDocumentPosition(summary) & Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+  expect(first, 'the queue precedes the band').toBe(true);
+  const before = await page.evaluate(() => history.length);
+  await band(page).getByRole('button', { name: /^Sıramda:/ }).click();
+  expect(await page.evaluate(() => history.length)).toBe(before);
+  await expect(page).toHaveURL(/view=queue/);
+});
+
+test('with purchases hidden, a reading-mark filter counts and lists the purchased books and says so', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('./');
+  await expect(page.locator('.purchases-note')).toHaveCount(0);
+  await page.getByRole('button', { name: /^Filtreler/ }).click();
+  await page.getByRole('dialog').getByRole('button', { name: /^Okuma durumum/ }).click();
+  await page.getByRole('dialog').getByRole('checkbox', { name: /^Okundu/ }).check({ force: true });
+  // The sheet's live count already includes the purchased read book.
+  await expect(page.locator('.filter-result-total')).toHaveText('1 kitap eşleşiyor');
+  await page.getByRole('dialog').getByRole('button', { name: 'Kitapları göster' }).click();
+  await expect(page.locator('.book-card')).toHaveCount(1);
+  await expect(page.locator('.purchases-note')).toHaveText('Satın aldığın kitaplar da listede, çünkü okuma işaretine göre süzdün.');
+});

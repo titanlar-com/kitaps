@@ -29,7 +29,7 @@ Kitaplık, araştırılmış bir okuma kataloğu ve kişisel bir kütüphanedir.
 - **Renk.** Tek vurgu rengi kiremittir. İşlev renkleri anlam taşır: satın alındı turkuaz, okundu mürekkep, uyarı amber. Renk tek başına anlam taşımaz, her durumun bir sözcüğü ve simgesi vardır.
 - **Yazı.** Tek yazı tipi Outfit'tir. Hiyerarşi ağırlık, boyut ve harf aralığıyla kurulur. Sayılar tablo hizalı (tabular) yazılır.
 - **Yoğunluk.** Varsayılan rahat yoğunluktur. Dokunma alanı 44 px'in altına inmez.
-- **Kimlik öğeleri.** Sade açık kitap işareti, kapak gölgesi ve kitap sırtı çizgisi, okuma ilerlemesi için halka göstergeler.
+- **Kimlik öğeleri.** Sade açık kitap işareti, kapak gölgesi ve kitap sırtı çizgisi, okuma ilerlemesi için köşeleri 5 px'i geçmeyen çubuk göstergeler. Halka gösterge kullanılmaz, çünkü proje sahibinin köşe kuralı daireyi dışarıda bırakır.
 
 ## Bileşen haritası
 
@@ -38,7 +38,7 @@ Bütün bileşenler `@mantine/core` 9.6.3 içindedir. Yeni paket yalnız somut b
 | Ekran | Bileşenler |
 |---|---|
 | Uygulama kabuğu | AppShell (üst ve alt bölüm), Tabs ile FloatingIndicator, ActionIcon ile Indicator (sayaçlar), Switch, Menu, Tooltip, Affix (yukarı dön), Kbd (arama kısayolu) |
-| Katalog | Okuma özeti için RingProgress ve NumberFormatter, Paper başlık bandı, TextInput ve Kbd, Chip, Badge, Card ve AspectRatio ile kitap kartı, HoverCard (fareyle önizleme, tek yol değildir), Skeleton, EmptyState, Pagination |
+| Katalog | Okuma özeti için Progress (çubuk) ve Türkçe sayı biçimi, Paper başlık bandı, TextInput ve Kbd, Chip, Badge, Card ve AspectRatio ile kitap kartı, HoverCard (fareyle önizleme, tek yol değildir), Skeleton, EmptyState, Pagination |
 | Kitap ayrıntısı | Drawer, Breadcrumbs, Badge, DataList (baskı ve çeviri bilgisi), Progress (sayfa ilerlemesi), Timeline (okuma geçmişi), Spoiler (uzun notlar), Accordion |
 | Sıram | Timeline ya da Stepper biçiminde sıralı liste, ActionIcon grupları |
 | Kümeler | SimpleGrid, Card, Progress (kümede okunanlar), Avatar.Group (kapak önizlemesi), Badge |

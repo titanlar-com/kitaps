@@ -50,8 +50,8 @@ test('every component the redesign animates uses the one motion curve and durati
     }else wrong.push(`${name}: no motion defaults`);
   }
   assert.deepEqual(wrong,[]);
-  // Mantine's own stylesheet gives these two the generic `ease`; ours puts the contract's curve back.
-  for(const selector of ['.mantine-FloatingIndicator-root','.mantine-RingProgress-curve']){
+  // Mantine's own stylesheet gives the marker the generic `ease`; ours puts the contract's curve back.
+  for(const selector of ['.mantine-FloatingIndicator-root']){
     const rule=new RegExp(`${selector.replace(/[.]/g,'\\.')}[^{]*\\{[^}]*transition-timing-function:var\\(--motion-ease\\)`);
     assert.match(css.replace(/\s+/g,' ').replace(/: /g,':'),rule,`${selector} uses --motion-ease`);
   }
@@ -72,9 +72,10 @@ test('every corner the theme can give is at most 5 px', () => {
     assert.ok(px(size)<=5,`radius.${name}: ${value} = ${size}`);
   }
   // Components whose own default is a circle or a pill take the largest token instead.
-  for(const name of ['Indicator','Avatar','Badge','Chip','Pill','Switch','Radio','Slider','Stepper','Timeline','ThemeIcon','Progress','Skeleton','SegmentedControl','Notification','Kbd','Loader']){
+  for(const name of ['Indicator','Avatar','Badge','Chip','Pill','Switch','Radio','Slider','Stepper','Timeline','ThemeIcon','Progress','Skeleton','SegmentedControl','Notification','Kbd']){
     const radius=theme.components[name]?.defaultProps?.radius;
-    if(name==='Loader')continue;
     assert.ok(radius&&radius in theme.radius,`${name} takes a theme radius, not its own round default (${radius})`);
   }
+  // The default oval loader is a circle; its bars have square-ish ends (review of 8 November 2026).
+  assert.equal(theme.components.Loader?.defaultProps?.type,'bars');
 });
