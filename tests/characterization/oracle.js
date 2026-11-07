@@ -3,7 +3,8 @@
 // 8 November 2026. Any implementation of the same query (the current one, or the new data
 // core) is passed in, so both are held to the same golden files.
 import fs from 'node:fs';
-import { emptyFilters, prepareBooks } from '../../src/library.js';
+import { bookSlug, decodeRoute, emptyFilters, encodeRoute, prepareBooks } from '../../src/library.js';
+import { seoState } from '../../src/seo.js';
 import { ReadingPriorityEngine, ReadingRankingViewModel } from '../../src/ranking/ReadingPriorityEngine.ts';
 
 export const readFixture = () => JSON.parse(fs.readFileSync(new URL('../fixtures/characterization/catalog.json', import.meta.url), 'utf8'));
@@ -100,4 +101,30 @@ export function characterizeListing(listing, catalog) {
 export function characterizeRanking(catalog) {
   const snapshot = new ReadingRankingViewModel(new ReadingPriorityEngine(catalog), () => new Date(0)).build();
   return { version: snapshot.version, ordered: snapshot.ordered.map(item => [item.bookId, item.audience, item.rank, item.ordinal, item.score, item.maturity]) };
+}
+
+/** Addresses a reader or a search engine can open: every view, filters, pages, legacy links, books. */
+export function seoAddresses(catalog) {
+  const [first, second] = [...catalog.books].sort((a, b) => (a.id < b.id ? -1 : 1));
+  const group = catalog.groups.find(item => catalog.books.some(book => book.groupIds.includes(item.id)));
+  return ['', '?sort=title&page=2', '?category=children', `?collection=${catalog.collections[0].id}`, `?group=${group.id}`,
+    '?view=favorites', '?view=library', '?view=queue', '?view=collections', '?view=bookstores', '?view=fairs', '?view=notes',
+    `?book=${encodeURIComponent(bookSlug(first))}`, `?book=${second.id}`, '?q=sava%C5%9F', '?status=important', '?page=999',
+    '?page-size=48&page=2', '?page-size=50&page=3', '?sort=added', '?source=atlas&sort=author', '#overview', `#${catalog.collections[1].id}`,
+    '?f=%7B%22query%22%3A%22a%22%7D', '?category=children&category=no-such-category&year-from=1950&year-to=x'];
+}
+
+/** What a page tells the browser and search engines (title, canonical, robots, structured data),
+ * and the address it writes back, for every address above. */
+export function characterizeSeo(listing, catalog) {
+  const books = prepareBooks(catalog.books);
+  const states = personalStates(books);
+  const rankings = new ReadingRankingViewModel(new ReadingPriorityEngine(catalog), () => new Date(0)).build().byId;
+  return Object.fromEntries(seoAddresses(catalog).map(address => {
+    const route = decodeRoute(address, catalog);
+    const { filtered, pages, currentPage, displayed } = listing({ books, states, rankings, view: route.view, filters: route.filters, sort: route.sort, page: route.page, pageSize: route.pageSize, hideOwned: false });
+    const seo = seoState({ route: { ...route, page: currentPage }, catalog, count: filtered.length, currentPage, totalPages: pages, displayed });
+    // As the page writes it: structured data reaches the browser as JSON, without undefined fields.
+    return [address || '(home)', JSON.parse(JSON.stringify({ route, encoded: encodeRoute(route, catalog), seo }))];
+  }));
 }

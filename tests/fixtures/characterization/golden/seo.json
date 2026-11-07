@@ -1,0 +1,1325 @@
+{
+ "(home)": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "",
+  "seo": {
+   "title": "Tüm kitaplar | Kitaplık",
+   "description": "Tüm kitaplar: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?sort=title&page=2": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "title",
+   "book": null,
+   "page": 2,
+   "pageSize": 24
+  },
+  "encoded": "sort=title&page=2",
+  "seo": {
+   "title": "Tüm kitaplar — Sayfa 2 | Kitaplık",
+   "description": "Tüm kitaplar: 144 kitap; 25–48 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "index,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
+   "prev": "https://titanlar-com.github.io/kitaps/catalog/",
+   "next": "https://titanlar-com.github.io/kitaps/catalog/page/3/",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 144 kitap; 25–48 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
+    "mainEntity": {
+     "@type": "ItemList",
+     "numberOfItems": 144,
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 25,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/circle-of-greed-by-patrick-dillon-carl-cannon/",
+       "name": "Circle of Greed"
+      },
+      {
+       "@type": "ListItem",
+       "position": 26,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/corporate-strategy-by-david-j-collis-ve-cynthia-a-montgomery/",
+       "name": "Corporate Strategy: Resources and the Scope of the Firm"
+      },
+      {
+       "@type": "ListItem",
+       "position": 27,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/karlsson-pa-taket-by-astrid-lindgren/",
+       "name": "Çatıdaki Karlsson"
+      },
+      {
+       "@type": "ListItem",
+       "position": 28,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-genius-myth-by-helen-lewis/",
+       "name": "Deha Denen Mit - İsyancıların, Canavarların ve Kural Tanımazların Tehlikeli Cazibesi"
+      },
+      {
+       "@type": "ListItem",
+       "position": 29,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/disciplined-entrepreneurship-by-bill-aulet/",
+       "name": "Disciplined Entrepreneurship"
+      },
+      {
+       "@type": "ListItem",
+       "position": 30,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-dialectical-imagination-by-martin-jay/",
+       "name": "Diyalektik İmgelem & Frankfurt Okulu'nun Tarihi ve Çalışmaları (1923-1950)"
+      },
+      {
+       "@type": "ListItem",
+       "position": 31,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/dostluk-ekmegi-by-sara-sahinkanat/",
+       "name": "Dostluk Ekmeği"
+      },
+      {
+       "@type": "ListItem",
+       "position": 32,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/v-lyudyah-by-maksim-gorki/",
+       "name": "Ekmeğimi Kazanırken"
+      },
+      {
+       "@type": "ListItem",
+       "position": 33,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/elon-musk-by-walter-isaacson/",
+       "name": "Elon Musk"
+      },
+      {
+       "@type": "ListItem",
+       "position": 34,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/ancient-greece-by-thomas-r-martin/",
+       "name": "Eski Yunan: Tarihöncesinden Helenistik Çağ'a"
+      },
+      {
+       "@type": "ListItem",
+       "position": 35,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/execution-by-larry-bossidy-and-ram-charan/",
+       "name": "Execution & İş Yaptırabilme Disiplini"
+      },
+      {
+       "@type": "ListItem",
+       "position": 36,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/fatih-sultan-mehmed-ve-zamani-by-franz-babinger/",
+       "name": "Fatih Sultan Mehmed ve Zamanı"
+      },
+      {
+       "@type": "ListItem",
+       "position": 37,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-wisdom-of-finance-by-mihir-desai/",
+       "name": "Finans Bilgeliği & Risk ve Getiri Dünyasında İnsanlığı Keşfetmek"
+      },
+      {
+       "@type": "ListItem",
+       "position": 38,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/finansci-olmayanlar-icin-finans-by-hakan-ozerol/",
+       "name": "Finansçı Olmayanlar İçin Finans"
+      },
+      {
+       "@type": "ListItem",
+       "position": 39,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/flash-crash-by-liam-vaughan/",
+       "name": "Flash Crash"
+      },
+      {
+       "@type": "ListItem",
+       "position": 40,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/frontierlands-by-hazel-sheffield/",
+       "name": "Frontierlands"
+      },
+      {
+       "@type": "ListItem",
+       "position": 41,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-innovators-by-walter-isaacson/",
+       "name": "Geleceği Keşfedenler & Dijital Çağın Biyografisi"
+      },
+      {
+       "@type": "ListItem",
+       "position": 42,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/administration-industrielle-et-generale-by-henri-fayol/",
+       "name": "Genel ve Endüstriyel Yönetim"
+      },
+      {
+       "@type": "ListItem",
+       "position": 43,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/gigged-by-sarah-kessler/",
+       "name": "Gigged"
+      },
+      {
+       "@type": "ListItem",
+       "position": 44,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-e-myth-revisited-by-michael-e-gerber/",
+       "name": "Girişimcilik Tutkusu"
+      },
+      {
+       "@type": "ListItem",
+       "position": 45,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/godnatt-alfons-aberg-by-gunilla-bergstrom/",
+       "name": "Godnatt Alfons Åberg"
+      },
+      {
+       "@type": "ListItem",
+       "position": 46,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-age-of-surveillance-capitalism-by-shoshana-zuboff/",
+       "name": "Gözetleme Kapitalizmi Çağı: Ürünün \"Sen\" Olduğu Çağda İnsanın Geleceği İçin Savaş"
+      },
+      {
+       "@type": "ListItem",
+       "position": 47,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/grimm-masallari-by-grimm-kardesler/",
+       "name": "Grimm Masalları"
+      },
+      {
+       "@type": "ListItem",
+       "position": 48,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/hedgehogging-by-barton-biggs/",
+       "name": "Hedgehogging"
+      }
+     ]
+    }
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?category=children": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [
+     "children"
+    ],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "category=children",
+  "seo": {
+   "title": "Çocuk | Kitaplık",
+   "description": "Çocuk: 18 kitap; 1–18 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/category/children/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Çocuk",
+    "description": "Çocuk: 18 kitap; 1–18 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/category/children/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?collection=time": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [
+     "time"
+    ],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "collection=time",
+  "seo": {
+   "title": "TIME · 25 etkili yönetim kitabı | Kitaplık",
+   "description": "TIME · 25 etkili yönetim kitabı: 4 kitap; 1–4 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/collection/time/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "TIME · 25 etkili yönetim kitabı",
+    "description": "TIME · 25 etkili yönetim kitabı: 4 kitap; 1–4 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/collection/time/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?group=time:0": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [
+     "time:0"
+    ],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "group=time%3A0",
+  "seo": {
+   "title": "TIME · Tam seçki | Kitaplık",
+   "description": "TIME · Tam seçki: 4 kitap; 1–4 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/group/time%3A0/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "TIME · Tam seçki",
+    "description": "TIME · Tam seçki: 4 kitap; 1–4 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/group/time%3A0/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?view=favorites": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "favorites",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "view=favorites",
+  "seo": {
+   "title": "Favorilerim | Kitaplık",
+   "description": "Favorilerim: 24 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Favorilerim",
+    "description": "Favorilerim: 24 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?view=library": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "owned",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "view=library",
+  "seo": {
+   "title": "Kitaplığım | Kitaplık",
+   "description": "Kitaplığım: 18 kitap; 1–18 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Kitaplığım",
+    "description": "Kitaplığım: 18 kitap; 1–18 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?view=queue": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "queue",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "view=queue",
+  "seo": {
+   "title": "Okuma sıram | Kitaplık",
+   "description": "Okuma sıram: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Okuma sıram",
+    "description": "Okuma sıram: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?view=collections": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "collections",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "view=collections",
+  "seo": {
+   "title": "Kitap kümeleri | Kitaplık",
+   "description": "Kitap kümeleri: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Kitap kümeleri",
+    "description": "Kitap kümeleri: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?view=bookstores": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "bookstores",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "view=bookstores",
+  "seo": {
+   "title": "Kitapçılar | Kitaplık",
+   "description": "İstanbul'da strateji, işletme ve düşünce kitapları için gezilecek kitapçılar, adresleri ve önerilen rotalar.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Kitapçılar",
+    "description": "İstanbul'da strateji, işletme ve düşünce kitapları için gezilecek kitapçılar, adresleri ve önerilen rotalar.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?view=fairs": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "fairs",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "view=fairs",
+  "seo": {
+   "title": "Kitap fuarları | Kitaplık",
+   "description": "Türkiye'de ve dünyada yaklaşan kitap fuarları, tarihleri, yerleri ve kaynaklarıyla.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Kitap fuarları",
+    "description": "Türkiye'de ve dünyada yaklaşan kitap fuarları, tarihleri, yerleri ve kaynaklarıyla.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?view=notes": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "notes",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "view=notes",
+  "seo": {
+   "title": "Kaynaklar ve notlar | Kitaplık",
+   "description": "Kaynaklar ve notlar: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Kaynaklar ve notlar",
+    "description": "Kaynaklar ve notlar: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?book=the-100-best-business-books-of-all-time-by-jack-covert-todd-sattersten-ve-sally-haldorson": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": "100bestbusinessbooksofalltime",
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "book=the-100-best-business-books-of-all-time-by-jack-covert-todd-sattersten-ve-sally-haldorson",
+  "seo": {
+   "title": "The 100 Best Business Books of All Time — Jack Covert, Todd Sattersten ve Sally Haldorson | Kitaplık",
+   "description": "The 100 Best Business Books of All Time, Jack Covert, Todd Sattersten ve Sally Haldorson. Türkçe baskı, çeviri, yayınevi, kaynak kümeleri ve okuma rotası bilgileri.",
+   "robots": "index,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/books/the-100-best-business-books-of-all-time-by-jack-covert-todd-sattersten-ve-sally-haldorson/",
+   "prev": "",
+   "next": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "The 100 Best Business Books of All Time",
+    "author": {
+     "@type": "Person",
+     "name": "Jack Covert, Todd Sattersten ve Sally Haldorson"
+    },
+    "inLanguage": "en",
+    "isbn": "9781591842408",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-100-best-business-books-of-all-time-by-jack-covert-todd-sattersten-ve-sally-haldorson/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/?book=the-100-best-business-books-of-all-time-by-jack-covert-todd-sattersten-ve-sally-haldorson",
+   "ogType": "book"
+  }
+ },
+ "?book=100yearlife": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": "100yearlife",
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "book=the-100-year-life-by-lynda-gratton-and-andrew-scott",
+  "seo": {
+   "title": "100 Yıllık Yaşam — Lynda Gratton and Andrew Scott | Kitaplık",
+   "description": "100 Yıllık Yaşam, Lynda Gratton and Andrew Scott. Türkçe baskı, çeviri, yayınevi, kaynak kümeleri ve okuma rotası bilgileri.",
+   "robots": "index,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/books/the-100-year-life-by-lynda-gratton-and-andrew-scott/",
+   "prev": "",
+   "next": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "100 Yıllık Yaşam",
+    "author": {
+     "@type": "Person",
+     "name": "Lynda Gratton and Andrew Scott"
+    },
+    "inLanguage": "en",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-100-year-life-by-lynda-gratton-and-andrew-scott/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/?book=the-100-year-life-by-lynda-gratton-and-andrew-scott",
+   "ogType": "book"
+  }
+ },
+ "?q=sava%C5%9F": {
+  "route": {
+   "filters": {
+    "query": "savaş",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "q=sava%C5%9F",
+  "seo": {
+   "title": "Tüm kitaplar | Kitaplık",
+   "description": "Tüm kitaplar: 5 kitap; 1–5 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 5 kitap; 1–5 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?status=important": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [
+     "onemli"
+    ],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "status=important",
+  "seo": {
+   "title": "Tüm kitaplar | Kitaplık",
+   "description": "Tüm kitaplar: 24 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 24 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?page=999": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 999,
+   "pageSize": 24
+  },
+  "encoded": "page=999",
+  "seo": {
+   "title": "Tüm kitaplar — Sayfa 6 | Kitaplık",
+   "description": "Tüm kitaplar: 144 kitap; 121–144 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 144 kitap; 121–144 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?page-size=48&page=2": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 2,
+   "pageSize": 48
+  },
+  "encoded": "page=2&page-size=48",
+  "seo": {
+   "title": "Tüm kitaplar — Sayfa 2 | Kitaplık",
+   "description": "Tüm kitaplar: 144 kitap; 49–96 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 144 kitap; 49–96 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?page-size=50&page=3": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 3,
+   "pageSize": 48
+  },
+  "encoded": "page=3&page-size=48",
+  "seo": {
+   "title": "Tüm kitaplar — Sayfa 3 | Kitaplık",
+   "description": "Tüm kitaplar: 144 kitap; 97–144 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 144 kitap; 97–144 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?sort=added": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "added",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "sort=added",
+  "seo": {
+   "title": "Tüm kitaplar | Kitaplık",
+   "description": "Tüm kitaplar: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?source=atlas&sort=author": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [
+     "atlas"
+    ],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "author",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "source=atlas&sort=author",
+  "seo": {
+   "title": "Tüm kitaplar | Kitaplık",
+   "description": "Tüm kitaplar: 78 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 78 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "#overview": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "collections",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "view=collections",
+  "seo": {
+   "title": "Kitap kümeleri | Kitaplık",
+   "description": "Kitap kümeleri: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Kitap kümeleri",
+    "description": "Kitap kümeleri: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "#pmba": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [],
+    "collections": [
+     "pmba"
+    ],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "collection=pmba",
+  "seo": {
+   "title": "The Personal MBA | Kitaplık",
+   "description": "The Personal MBA: 10 kitap; 1–10 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/collection/pmba/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "The Personal MBA",
+    "description": "The Personal MBA: 10 kitap; 1–10 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/collection/pmba/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?f=%7B%22query%22%3A%22a%22%7D": {
+  "route": {
+   "filters": {
+    "query": "a",
+    "categories": [],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": "",
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "q=a",
+  "seo": {
+   "title": "Tüm kitaplar | Kitaplık",
+   "description": "Tüm kitaplar: 143 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Tüm kitaplar",
+    "description": "Tüm kitaplar: 143 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ },
+ "?category=children&category=no-such-category&year-from=1950&year-to=x": {
+  "route": {
+   "filters": {
+    "query": "",
+    "categories": [
+     "children"
+    ],
+    "collections": [],
+    "groups": [],
+    "states": [],
+    "authors": [],
+    "origins": [],
+    "awards": [],
+    "awardYears": [],
+    "qualities": [],
+    "addedDates": [],
+    "categoryMode": "any",
+    "collectionMode": "any",
+    "hasEdition": false,
+    "shared": false,
+    "yearMin": 1950,
+    "yearMax": ""
+   },
+   "view": "books",
+   "sort": "reading",
+   "book": null,
+   "page": 1,
+   "pageSize": 24
+  },
+  "encoded": "category=children&year-from=1950",
+  "seo": {
+   "title": "Çocuk | Kitaplık",
+   "description": "Çocuk: 10 kitap; 1–10 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "robots": "noindex,follow",
+   "canonical": "https://titanlar-com.github.io/kitaps/catalog/category/children/",
+   "prev": "",
+   "next": "",
+   "structured": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Çocuk",
+    "description": "Çocuk: 10 kitap; 1–10 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "url": "https://titanlar-com.github.io/kitaps/catalog/category/children/"
+   },
+   "interactive": "https://titanlar-com.github.io/kitaps/",
+   "ogType": "website"
+  }
+ }
+}

@@ -3,10 +3,11 @@
 //
 //   node tests/characterization/record.mjs
 import { catalogListing } from '../../src/app/listing.js';
-import { characterizeListing, characterizeRanking, readFixture, writeGolden } from './oracle.js';
+import { characterizeListing, characterizeRanking, characterizeSeo, readFixture, writeGolden } from './oracle.js';
 
 const catalog = readFixture();
 const listing = characterizeListing(catalogListing, catalog);
 writeGolden('catalog-listing', listing);
 writeGolden('reading-ranking', characterizeRanking(catalog));
+writeGolden('seo', characterizeSeo(catalogListing, catalog));
 console.log(`golden files: ${Object.keys(listing).length} listing queries, ${catalog.books.length} ranked books`);
