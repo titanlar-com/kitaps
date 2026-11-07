@@ -91,6 +91,9 @@ const leave = async (page, github) => {
 };
 
 test('everything one device records reaches the other device and a reader without a key', async ({ browser }) => {
+  // Three devices reload the whole app some thirty times; on CI's Linux WebKit that took more
+  // than 60 seconds while still moving on (7 November 2026). The checks stay the same.
+  test.slow();
   const github = fakeGitHub();
   const phone = await device(browser, github, { phone: true });
   const p = phone.page;
