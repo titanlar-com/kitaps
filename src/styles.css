@@ -73,6 +73,11 @@
 
  /* Marks drawn on covers: the priority badge and the reading ribbons. */
  --cover-mark-inset:8px;
+ /* Page rhythm: the gap between a page's sections, inside and between its panels, and in a stack. */
+ --section-gap:40px;
+ --card-inset:20px;
+ --card-gap:16px;
+ --stack-gap:12px;
  --cover-mark-gap:6px;
  --cover-mark-font:.875rem;
  /* The space under an article's or essay's "Makale"/"Deneme" label on a cover placeholder. */
@@ -346,6 +351,14 @@ html[data-focus-mode="keyboard"] .main-tabs .mantine-Tabs-tab:focus-visible::aft
 @media (min-width:56em){
  .main-tabs.mantine-Tabs-list{order:0;flex:0 1 auto;align-self:stretch;margin-left:20px}
  .main-tabs .mantine-Tabs-tab{flex:0 0 auto;padding:0 14px}
+}
+/* On a phone the four sections share one row. When the row is too narrow for an icon beside each
+   label, the icons go and the labels keep their whole words; with enlarged text a tab may still
+   move to a second row. */
+@media (max-width:55.99em){.main-tabs.mantine-Tabs-list{container:main-tabs/inline-size}}
+@container main-tabs (width < 26em){
+ .main-tabs .mantine-Tabs-tabSection{display:none}
+ .main-tabs .mantine-Tabs-tab{flex:1 1 auto;padding:0 4px}
 }
 main{padding-top:20px}
 @media (max-width:39.99em){main{padding-top:12px}}

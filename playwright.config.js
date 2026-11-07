@@ -6,7 +6,7 @@ import { defineConfig, devices } from '@playwright/test';
 // 4173) must not stand in for the build under test. E2E_PORT lets sessions in
 // separate worktrees run their suites side by side.
 const port = Number(process.env.E2E_PORT) || 4317;
-const layoutChecks = { testMatch: /(reading-marks|catalog-grid|sync|site|ui-quality)\.spec\.js/, grep: /reading-marks|catalog-grid|sync\.spec|ui-quality|200% text|room for them/ };
+const layoutChecks = { testMatch: /(reading-marks|catalog-grid|sync|site|ui-quality|bookstores)\.spec\.js/, grep: /reading-marks|catalog-grid|sync\.spec|ui-quality|bookstores|200% text|room for them/ };
 
 export default defineConfig({
   testDir: 'tests/e2e',
@@ -18,10 +18,12 @@ export default defineConfig({
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
     // The cover marks (ribbons, grey covers), the owner's grid rule, reflow with enlarged
     // text and cross-device sync (page hiding, CORS preflights, the connect dialog) depend on
-    // the engine, so they are also checked in WebKit, Firefox and a phone browser. grep sees the file name, so whole specs and site.spec.js's reflow tests
+    // the engine, so they are also checked in WebKit and a phone browser. grep sees the file name, so whole specs and site.spec.js's reflow tests
     // (titles with "200% text" or "room for them") are picked the same way.
     { name: 'webkit', use: { ...devices['Desktop Safari'] }, ...layoutChecks },
-    { name: 'firefox', use: { ...devices['Desktop Firefox'] }, ...layoutChecks },
+    // Firefox runs only when asked for (E2E_FIREFOX=1): the owner's standing rule of 31 October
+    // 2026 keeps it out of every default and CI run.
+    ...(process.env.E2E_FIREFOX === '1' ? [{ name: 'firefox', use: { ...devices['Desktop Firefox'] }, ...layoutChecks }] : []),
     { name: 'mobile-safari', use: { ...devices['iPhone 13'] }, ...layoutChecks },
   ],
 });

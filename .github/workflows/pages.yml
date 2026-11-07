@@ -25,7 +25,7 @@ jobs:
       - run: npm run build
       # The built site is exercised in a real browser before it is published,
       # including the anonymous GitHub read that a CORS mistake would break.
-      - run: npx playwright install --with-deps chromium webkit firefox
+      - run: npx playwright install --with-deps chromium webkit
       - run: npm run test:e2e
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

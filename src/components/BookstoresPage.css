@@ -1,0 +1,43 @@
+/* Bookstores page (BookstoresPage.jsx). Entries are panels set apart by surface tone and space,
+   without frames. */
+.bookstores-page{display:grid;gap:var(--section-gap);padding-block:8px var(--section-gap)}
+.bookstores-page h1{margin:0;font-size:clamp(1.75rem,1.4rem + 1.4vw,2.25rem);line-height:1.15;letter-spacing:-.02em}
+.bookstores-page h2{margin:0;font-size:1.5rem;line-height:1.25}
+.bookstores-page h3{margin:0;font-size:1.1875rem;line-height:1.3}
+.bookstores-page section,.bookstores-intro{display:grid;align-content:start;gap:var(--stack-gap)}
+.bookstores-intro,.bookstores-page section>.mantine-Text-root{max-width:70ch}
+.bookstores-updated,.bookstore-place,.bookstore-sources,.bookstore-why{color:var(--muted)}
+.bookstores-page :is(p,li,dd,h3) a:not(.mantine-Button-root){color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.bookstores-page :is(ul,ol){margin:0;padding-inline-start:1.25em}
+.bookstores-page li+li{margin-top:4px}
+
+.bookstore-list{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap)}
+@media (min-width:48em){.bookstore-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bookstore,.bookstore-route,.bookstore-stops>li{container:bookstore/inline-size;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:10px;min-width:0;padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
+.bookstore-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.bookstore-about{line-height:1.55}
+.bookstore-facts{display:grid;gap:8px;margin:0}
+.bookstore-facts>div{display:grid;grid-template-columns:6em minmax(0,1fr);gap:2px 12px}
+.bookstore-facts dt{color:var(--muted);font-weight:600}
+.bookstore-facts dd{margin:0;overflow-wrap:break-word}
+/* A narrow entry, or one with enlarged text, puts each label above its value. */
+@container bookstore (width < 22em){.bookstore-facts>div{grid-template-columns:minmax(0,1fr)}}
+.bookstore-label,.bookstore-topic{font-weight:600}
+.bookstore-caution{color:var(--ink-2)}
+.bookstore-actions{display:flex;flex-wrap:wrap;gap:8px}
+.bookstore-actions .mantine-Button-root,.bookstore-stops .mantine-Button-root{min-height:var(--touch-target)}
+.bookstore-stops .mantine-Button-root{justify-self:start}
+/* With enlarged text a button's name moves to a second line instead of widening its panel. */
+.bookstores-page .mantine-Button-root{height:auto;max-width:100%;padding-block:.5rem}
+.bookstores-page .mantine-Button-label{white-space:normal;text-align:start}
+.bookstore[data-status="closed"] h3{color:var(--ink-2)}
+
+/* The route of the day: its stops in order, each with its number. */
+.bookstores-page .bookstore-stops{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap);margin:0;padding:0;list-style:none;counter-reset:stop}
+@media (min-width:56em){.bookstores-page .bookstore-stops{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.bookstores-page .bookstore-stops>li{margin:0;counter-increment:stop}
+.bookstore-stops>li::before{content:counter(stop);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:1rem;font-weight:700}
+
+.bookstores-page .bookstore-topics>ul{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap);padding:0;list-style:none}
+@media (min-width:48em){.bookstores-page .bookstore-topics>ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bookstores-page .bookstore-topics>ul>li{display:grid;gap:4px;margin:0}

@@ -1,0 +1,283 @@
+{
+  "checkedAt": "2026-10-22",
+  "updated": "2026-11-07",
+  "intro": "İstanbul'da strateji, işletme ve düşünce kitapları için gezebileceğin kitapçılar bu sayfada. Liste dört ayrı araştırma notundan derlendi ve kapanan mağazaları da gösteriyor.",
+  "visits": [
+    {
+      "date": "2026-11-07",
+      "title": "7 Kasım 2026 gezisi",
+      "stops": ["minoa-pera", "mephisto-beyoglu", "homer-galatasaray"],
+      "note": "Üç kitapçı da Beyoğlu'nda. Böylece geniş genel seçkiyi ve daha özel yayınları aynı gezide görürsün."
+    }
+  ],
+  "topics": [
+    { "topic": "Kurumsal strateji, iş yönetimi, liderlik ve girişimcilik", "stores": ["remzi-kanyon", "remzi-akmerkez"], "why": "Türkçe ve İngilizce iş kitaplarını birlikte incelemek için ilk durak Remzi olur." },
+    { "topic": "İngilizce iş ve strateji kitapları", "stores": ["remzi-akmerkez", "remzi-zorlu", "minoa-akaretler", "pandora-nisantasi"], "why": "İthal iş kitapları bu dört mağazada en geniş hâliyle bulunuyor." },
+    { "topic": "MBA kapsamında işletme, ekonomi ve finans", "stores": ["homer-galatasaray"], "why": "MBA, işletme yüksek lisansı demek. Homer'ın kataloğunda işletme, ekonomi, finans ve ders kitapları bölümleri var." },
+    { "topic": "Strateji, inovasyon ve uluslararası ilişkiler", "stores": ["pandora-nisantasi"], "why": "Pandora'da hem strateji kitapları hem de uluslararası ilişkiler alanında kuramsal eserler var." },
+    { "topic": "Siyaset, tarih, felsefe ve toplum", "stores": ["imge-kadikoy"], "why": "Uluslararası ilişkilerin düşünsel temeli için İmge'nin rafları güçlü." },
+    { "topic": "Akademik işletme, kurumsallaşma ve KOBİ yönetimi", "stores": ["turkmen-beyazit"], "why": "KOBİ, küçük ve orta büyüklükteki işletme demek. Türkmen'de bu alanda ders ve uygulama kitapları yoğun." },
+    { "topic": "Türkçe iş kitaplarında hacim", "stores": ["dr-marmara-forum", "penguen-icerenkoy"], "why": "Türkçe yönetim, liderlik ve ekonomi raflarının en kalabalık hâlini bu iki mağazada görürsün." },
+    { "topic": "Uzun uzun raf gezmek", "stores": ["penguen-icerenkoy", "minoa-pera"], "why": "İki mağaza da büyük, kafeli ve saatlerce kitap karıştırmaya uygun." }
+  ],
+  "routes": [
+    { "id": "strateji-gunu", "title": "Strateji için bir gün", "stops": ["remzi-akmerkez", "dr-kanyon", "minoa-akaretler"], "why": "Akmerkez ile Kanyon metro hattında birbirine yakın. Minoa Akaretler günün sonunda İngilizce kitapları uzun uzun incelemek için uygun." },
+    { "id": "ithal-is-kitaplari", "title": "İthal iş kitapları turu", "stops": ["remzi-zorlu", "dr-zorlu", "remzi-akmerkez", "pandora-nisantasi", "remzi-rumeli"], "why": "İngilizce iş ve strateji kitaplarının büyük kısmını bu turda görürsün. Remzi ile D&R Zorlu aynı alışveriş merkezinde." },
+    { "id": "konu-onceligi", "title": "Konu önceliğine göre", "stops": ["remzi-kanyon", "pandora-nisantasi", "imge-kadikoy"], "why": "Remzi Kanyon yerine Remzi Akmerkez de olur. Penguen İçerenköy geniş raf gezisi için listede kalsın." },
+    { "id": "turkce-hacim", "title": "Türkçe raflarda hacim", "either": true, "stops": ["dr-marmara-forum", "penguen-icerenkoy"], "why": "Avrupa yakasındaysan D&R Marmara Forum'a, Anadolu yakasındaysan Penguen İçerenköy'e git." },
+    { "id": "akademik", "title": "Akademik işletme kaynakları", "stops": ["turkmen-beyazit"], "why": "Türkçe akademik kaynak gerekiyorsa Beyazıt'taki Türkmen Kitabevi'ni ayrı bir gün gez." }
+  ],
+  "notes": [
+    "İnternet kataloğunda görünen her kitap o şubenin rafında olmayabilir. Belirli bir kitap için gitmeden önce şubeyi ara.",
+    "Adres, saat ve büyüklük bilgileri Ekim 2026 araştırma notlarından alındı. Bazı metrekareler açılış dönemi haberlerine dayanıyor ve bugün farklı olabilir.",
+    "Bulamadığın İngilizce kitabı Pandora Nişantaşı'na sipariş edebilirsin. Fiziksel kitapçılar arasında bu hizmeti düzenli sunan yer Pandora.",
+    "Rafta şu başlıkları da ara: rekabet stratejisi, iş modeli, örgütsel davranış, karar verme, davranışsal ekonomi, inovasyon yönetimi, kurumsal finans, jeopolitik ve uluslararası politik ekonomi."
+  ],
+  "stores": [
+    {
+      "id": "minoa-pera", "name": "Minoa Pera", "side": "europe", "district": "Beyoğlu", "area": "Tepebaşı",
+      "address": "Meşrutiyet Cad. No:99, Tepebaşı, Beyoğlu", "status": "open",
+      "about": "Türkçe ve İngilizce, yeni ve ikinci el 60 binden fazla kitap var. Mağaza 2023 sonbaharında tarihi Union Française binasında açıldı. Kafe, bar, restoran ve ortak çalışma alanı da bulunuyor.",
+      "caution": "Kitap keşfi için güçlü bir yer. İşletme ve strateji rafı için birincil adres sayılmıyor. 60 bin sayısı kitap adedi, farklı eser sayısı açıklanmıyor.",
+      "web": "https://minoa.com",
+      "sources": [
+        { "label": "Minoa Pera açılış duyurusu", "url": "https://minoa.com/blogs/news/minoa-pera-aciliyor" },
+        { "label": "Minoa iletişim", "url": "https://minoa.com/pages/contact" }
+      ]
+    },
+    {
+      "id": "mephisto-beyoglu", "name": "Mephisto Beyoğlu", "side": "europe", "district": "Beyoğlu", "area": "İstiklal Caddesi",
+      "address": "İstiklal Cad. No:125, Kuloğlu Mah., Beyoğlu", "phone": "0212 249 06 96", "status": "open",
+      "hours": "Gece yarısına kadar açık.",
+      "size": "Yaklaşık 300 m² kitap ve dergi, 200 m² kırtasiye ve hediyelik, 150 m² müzik ve film alanı var.",
+      "about": "Çok katlı bir kitabevi ve kafesi de var. Farklı raflar arasında dolaşmak isteyen biri için iyi bir seçenek.",
+      "caution": "Ağırlık Türkçe popüler ve edebî yayınlarda. Mephisto'nun Beşiktaş Çarşı şubesi 2026 sonbaharında kapandı. Beyoğlu şubesinin kapandığına dair haber yok.",
+      "sources": [
+        { "label": "Yandex Haritalar kaydı", "url": "https://yandex.com.tr/maps/org/mephisto/1052198257/" }
+      ]
+    },
+    {
+      "id": "homer-galatasaray", "name": "Homer Kitabevi", "side": "europe", "district": "Beyoğlu", "area": "Galatasaray",
+      "address": "Yeni Çarşı Cad. No:52, Galatasaray, Beyoğlu", "status": "open",
+      "about": "Üç katlı ve İngilizce kitapta güçlü. Arkeoloji, eski çağ tarihi, Bizans, sanat, mimarlık ve sosyal bilimler öne çıkıyor. Kataloğunda işletme, ekonomi ve finans bölümü ile Economics of Strategy gibi İngilizce kaynaklar da var.",
+      "caution": "Küçük bağımsız dükkân ölçeğinde. İş ve strateji asıl uzmanlığı değil.",
+      "web": "https://www.homerbooks.com",
+      "sources": [
+        { "label": "Homer işletme, ekonomi ve finans kategorisi", "url": "https://www.homerbooks.com/kategori/isletme-ekonomi-finans" },
+        { "label": "Homer iletişim", "url": "https://www.homerbooks.com/iletisim" },
+        { "label": "Saatolog: İstanbul'un en iyi kitapçıları", "url": "https://saatolog.com.tr/kultur-sanat/guncel/istanbulun-en-iyi-kitapcilari/" }
+      ]
+    },
+    {
+      "id": "ykks-galatasaray", "name": "Yapı Kredi Kültür Sanat Kitabevi", "side": "europe", "district": "Beyoğlu", "area": "Galatasaray",
+      "address": "İstiklal Cad., Galatasaray, Beyoğlu", "status": "open",
+      "about": "Zemin kattan ikinci kata uzanan, yüksek tavanlı bir kitabevi.",
+      "caution": "Ağırlıkla Yapı Kredi Yayınları satıyor. İş ve strateji kitapları için uygun değil."
+    },
+    {
+      "id": "is-kultur-taksim", "name": "İş Kültür Kitabevi Taksim", "side": "europe", "district": "Beyoğlu", "area": "Taksim",
+      "address": "Lamartin Cad. No:5/1, İş Bankası Taksim Şubesi yanı, Beyoğlu", "phone": "0212 238 08 37", "status": "open",
+      "hours": "Pazartesiden cumartesiye 10:00 ile 19:00 arası açık. Öğle arası 14:00 ile 15:00 arası, pazar günü kapalı.",
+      "about": "Yalnız İş Kültür yayınlarını satıyor. İş Dünyası ve İktisat dizileri bulunuyor.",
+      "caution": "Çeşit sınırlı ve mağaza büyük değil. Kitabevi artık İstiklal Caddesi'nde değil, Lamartin Caddesi'nde."
+    },
+    {
+      "id": "robinson-crusoe", "name": "Robinson Crusoe 389", "side": "europe", "district": "Beyoğlu", "area": "Yeni Çarşı Caddesi ve SALT Galata",
+      "address": "Yeni Çarşı Caddesi ve SALT Galata, Beyoğlu", "status": "open",
+      "about": "SALT Beyoğlu'ndan ayrıldıktan sonra küçük şubelerle devam ediyor.",
+      "caution": "Büyük mağaza ölçüsüne uymuyor, iş kitapları için ikincil."
+    },
+    {
+      "id": "kirmizi-kedi-tunel", "name": "Kırmızı Kedi Tünel", "side": "europe", "district": "Beyoğlu", "area": "Tünel",
+      "address": "Tünel, Beyoğlu", "status": "unverified",
+      "about": "Kırmızı Kedi'nin Tünel ve Pera tarafındaki mağazası.",
+      "caution": "Ekim 2026 durumu doğrulanamadı. Sosyal medyada kapandığı yazılıyor, gitmeden önce ara."
+    },
+    {
+      "id": "dr-galataport", "name": "D&R Galataport", "side": "europe", "district": "Beyoğlu", "area": "Karaköy",
+      "address": "Galataport, Karaköy, Beyoğlu", "status": "open",
+      "size": "582 m² ve iki katlı.",
+      "about": "Karaköy'de, iki katlı bir D&R mağazası."
+    },
+    {
+      "id": "pandora-nisantasi", "name": "Pandora Nişantaşı", "side": "europe", "district": "Şişli", "area": "Nişantaşı",
+      "address": "Vali Konağı Cad. No:5, Nişantaşı, Şişli", "phone": "0212 245 16 67", "status": "open",
+      "hours": "Akşam 20:00 civarında kapanıyor.",
+      "transit": "Askerî Müze kapısının tam karşısında.",
+      "about": "Son bir ayda çıkan Türkçe kitapları yüzde 20 indirimle, İngilizce ithal kitapları orijinal kapak fiyatıyla satıyor. Akademik ve mesleki yayınlar ile strateji ve uluslararası ilişkiler rafları güçlü. Stokta olmayan İngilizce kitabı yurt dışından sipariş ediyor.",
+      "caution": "Sipariş süresi için sitesinde iki farklı bilgi var. Şube sayfası İngiltere'den 35, ABD'den 75 gün diyor. Hakkımızda sayfası İngiltere'den 45, ABD'den 60 gün diyor. Mağaza iki katlı ve butik ölçekte.",
+      "web": "https://www.pandora.com.tr",
+      "sources": [
+        { "label": "Pandora Nişantaşı şube sayfası", "url": "https://www.pandora.com.tr/Pandora/Nisantasi" },
+        { "label": "Pandora kataloğunda HBR Strateji", "url": "https://www.pandora.com.tr/kitap/strateji/694037" },
+        { "label": "Time Out İstanbul", "url": "https://www.timeout.com/istanbul/shopping/pandora-kitabevi-beyoglu" }
+      ]
+    },
+    {
+      "id": "remzi-rumeli", "name": "Remzi Kitabevi Rumeli Caddesi", "side": "europe", "district": "Şişli", "area": "Nişantaşı",
+      "address": "Rumeli Caddesi, Nişantaşı, Şişli", "status": "open",
+      "about": "1995'ten beri açık, kafeli bir cadde mağazası. Pandora Nişantaşı ile aynı gün gezilebilir.",
+      "caution": "Mağazanın büyüklüğü bilinmiyor."
+    },
+    {
+      "id": "nezih-nisantasi", "name": "Nezih Nişantaşı", "side": "europe", "district": "Şişli", "area": "Nişantaşı",
+      "address": "Nişantaşı, Şişli", "status": "open",
+      "size": "Üç katlı, 420 m².",
+      "about": "Üst kat kültür kitaplarına ayrılmış.",
+      "caution": "Kırtasiye ağırlıklı, iş kitapları için ikincil bir durak."
+    },
+    {
+      "id": "remzi-kanyon", "name": "Remzi Kitabevi Kanyon", "side": "europe", "district": "Şişli", "area": "Levent",
+      "address": "Kanyon AVM, Büyükdere Cad. No:185, Kat -2, Levent", "status": "open",
+      "transit": "M2 Levent metro istasyonuna kısa yürüme mesafesinde.",
+      "about": "2006'da açıldı ve kafesi var. Remzi'nin İngilizce ithal seçkisinin bir kısmı burada da bulunuyor. İşletme ve yönetim ağırlıklı geziyorsan tek bir yer için ilk seçim.",
+      "caution": "Akmerkez ve Zorlu mağazalarından daha küçük.",
+      "web": "https://remzi.com.tr",
+      "sources": [
+        { "label": "Kanyon mağaza sayfası", "url": "https://www.kanyon.com.tr/markalar/remzi-kitabevi" },
+        { "label": "Remzi hakkında", "url": "https://remzi.com.tr/detay/hakkimizda/" }
+      ]
+    },
+    {
+      "id": "dr-kanyon", "name": "D&R Kanyon", "side": "europe", "district": "Şişli", "area": "Levent",
+      "address": "Kanyon AVM, Kat 1, Büyükdere Cad. No:185, Levent", "phone": "0212 353 08 70", "status": "open",
+      "hours": "Alışveriş merkezi her gün 10:00 ile 22:00 arası açık. Mağazanın saati farklı olabilir.",
+      "transit": "M2 Levent metro istasyonuna kısa yürüme mesafesinde.",
+      "size": "Açılışında 1.500 m² ile İstanbul'un en büyük D&R'ı olarak tanıtılmıştı.",
+      "about": "Kataloğunda İşletme ve İş İdaresi kategorisi var, Porter'ın Rekabet Stratejisi de bu kategoride. Türkçe ve İngilizce ana akım iş kitaplarını aynı ziyarette taramak için dengeli bir seçenek. 17 Mart 2026'da Maye Musk söyleşisi bu mağazada duyuruldu.",
+      "caution": "Mağazada ayrı bir strateji rafı olduğu doğrulanmadı.",
+      "lookFor": ["İyi Strateji Kötü Strateji, Richard P. Rumelt", "Rekabet Stratejisi, Michael E. Porter", "Yalın Startup, Eric Ries", "İş Modeli Üretimi, Alexander Osterwalder ve Yves Pigneur", "HBR Strateji"],
+      "web": "https://www.dr.com.tr"
+    },
+    {
+      "id": "remzi-akmerkez", "name": "Remzi Kitabevi Akmerkez", "side": "europe", "district": "Beşiktaş", "area": "Etiler",
+      "address": "Akmerkez AVM, Nispetiye Cad. No:223, Etiler, Beşiktaş", "phone": "0212 282 25 75", "status": "open",
+      "hours": "Her gün 10:00 ile 22:00 arası açık.",
+      "transit": "M6 Nispetiye metro istasyonu yaklaşık 380 metre uzaklıkta.",
+      "about": "Remzi'nin 1994'te açılan ilk mağazası, iki katlı ve kafeli. Kataloğunda İş ve Yönetim kategorisi var. Türkçe yönetim ve liderlik kitapları ile İngilizce iş kitaplarını birlikte görmek için güçlü.",
+      "caution": "Mağazadaki raf adının İş ve Yönetim olduğu doğrulanmadı.",
+      "lookFor": ["Türk Kültüründe Yönetmek, Acar Baltaş", "Rekabette Fark Yaratan Ekip Çalışması, Acar Baltaş", "Güçlü Şirketleri Yaratan İş Liderleri, Acar Baltaş", "Mağazacılık, Suat Soysal", "Savaş Sanatı, Sun Tzu"],
+      "web": "https://remzi.com.tr",
+      "sources": [
+        { "label": "Remzi hakkında", "url": "https://remzi.com.tr/detay/hakkimizda/" },
+        { "label": "Remzi iletişim", "url": "https://www.remzi.com.tr/detay/iletisim/" }
+      ]
+    },
+    {
+      "id": "remzi-zorlu", "name": "Remzi Kitabevi Zorlu Center", "side": "europe", "district": "Beşiktaş", "area": "Zincirlikuyu",
+      "address": "Zorlu Center, Levazım Mah., Koru Sok. No:2/79, Boğaz Katı, Beşiktaş", "phone": "0212 353 61 41", "status": "open",
+      "about": "Kafeli büyük bir mağaza. 12 ile 18 Ekim 2026 çok satanlar listesinin İngilizce bölümünde Daron Acemoglu, Shane Parrish ve Thomas Erikson'ın kitapları vardı. Ziyaretçiler yabancı kitap raflarını öne çıkarıyor.",
+      "web": "https://remzi.com.tr"
+    },
+    {
+      "id": "dr-zorlu", "name": "D&R Zorlu Center", "side": "europe", "district": "Beşiktaş", "area": "Zincirlikuyu",
+      "address": "Zorlu Center, Beşiktaş", "status": "open",
+      "about": "Remzi Zorlu ile aynı alışveriş merkezinde. İki mağazayı karşılaştırarak gezmek pratik.",
+      "web": "https://www.dr.com.tr"
+    },
+    {
+      "id": "minoa-akaretler", "name": "Minoa Akaretler", "side": "europe", "district": "Beşiktaş", "area": "Vişnezade",
+      "address": "Süleyman Seba Cad. 52/A, Vişnezade, Beşiktaş", "phone": "0212 236 94 52", "status": "open",
+      "hours": "Yaklaşık 08:00 ile gece yarısı arası açık.",
+      "transit": "Valide Çeşme ve Akaretler otobüs durakları yaklaşık 226 metre, M7 Yıldız istasyonu yaklaşık 1,56 km uzaklıkta.",
+      "about": "Minoa'nın 2014'te açılan ilk mağazası, üç katlı ve 80 kişilik bir kafe-brasserie alanı var. Kataloğunda İş Yönetimi koleksiyonu bulunuyor, İngilizce iş ve strateji kitaplarında güçlü. Minoa 2023'te London Book Fair'de Yılın Kitabevi ödülünü aldı.",
+      "caution": "Kitap sayısı için kaynaklar farklı. Bir haber 45 binden fazla kitap diyor, Minoa'nın kendi anlatımı 60 binin üzerinde bir koleksiyondan söz ediyor. Olumsuz yorumlar çoğunlukla kafe servisiyle ilgili.",
+      "lookFor": ["The Crux, Richard Rumelt", "The Business Book, DK", "Built to Last, Jim Collins ve Jerry Porras", "Principles, Ray Dalio", "No Filter, Sarah Frier"],
+      "web": "https://minoa.com"
+    },
+    {
+      "id": "dr-istinyepark", "name": "D&R İstinyePark", "side": "europe", "district": "Sarıyer", "area": "İstinye",
+      "address": "İstinyePark AVM, Kat -1, İstinye, Sarıyer", "status": "open",
+      "size": "Açılışta 1.100 m² ve 100 bin farklı ürün vardı.",
+      "about": "D&R'ın ilk büyük mağaza projesi. Bugün kafeli bir mağaza olarak çalışıyor.",
+      "web": "https://www.dr.com.tr"
+    },
+    {
+      "id": "dr-marmara-forum", "name": "D&R Marmara Forum", "side": "europe", "district": "Bakırköy", "area": "Osmaniye",
+      "address": "Marmara Forum AVM, Osmaniye Mah. Çobançeşme Koşuyolu Blv. No:3, Kat 3, Bakırköy", "phone": "0212 466 64 79", "status": "open",
+      "size": "2011'deki açılışta 3.000 m² ve 130 bin ürün vardı.",
+      "about": "D&R'ın en büyük mağazası olarak açıldı ve içinde kafe var. Türkçe iş, kişisel gelişim ve ekonomi kitaplarında geniş bir seçki beklenir.",
+      "caution": "İş bölümünün derinliği doğrulanamadı. Alanın bir kısmı elektronik, oyuncak ve kırtasiyeye ayrılmış.",
+      "web": "https://www.dr.com.tr"
+    },
+    {
+      "id": "turkmen-beyazit", "name": "Türkmen Kitabevi", "side": "europe", "district": "Fatih", "area": "Beyazıt",
+      "address": "Sahaflar Çarşısı No:16-18-19-22-23, Beyazıt, Fatih", "phone": "0212 512 27 17", "status": "open",
+      "hours": "08:00 ile 20:00 arası açık. Tatil günlerinde saat değişebilir.",
+      "transit": "T1 Beyazıt-Kapalıçarşı tramvay durağı yaklaşık 111 metre, M2 Vezneciler istasyonu yaklaşık 770 metre uzaklıkta.",
+      "about": "Akademik işletme kitaplarında güçlü bir yayınevi ve kitapçı. Sahaflar Çarşısı'nda birden fazla dükkâna yayılıyor. Kataloğunda Yönetim-Organizasyon, İşletme-Muhasebe ve Pazarlama-Satış kategorileri var.",
+      "caution": "İngilizce popüler strateji kitaplarında Minoa ve D&R kadar güçlü değil.",
+      "lookFor": ["İşletme Yönetimi, Göksel Ataman", "İşletme Yönetimi, Mina Özevren", "Dijital Pazarlama, Gülnur Eti İçli ve Nihat K. Anıl", "Pazarlama Yönetimi Açısından Entelektüel Sermaye, Serdar Pirtini", "Aile Şirketlerinde Kurumsallaşma ve Kurumsal Yönetim Uygulamaları, İclal Attila"],
+      "web": "https://www.turkmenkitabevi.com.tr"
+    },
+    {
+      "id": "istanbul-kitapcisi", "name": "İstanbul Kitapçısı", "side": "both", "district": "Birçok ilçe", "area": "İBB Kültür AŞ şubeleri",
+      "address": "Şehrin farklı yerlerinde 20 şube", "status": "open",
+      "about": "İBB Kültür AŞ'nin 20 sabit şubesi var. Odak İstanbul, tarih ve edebiyat.",
+      "caution": "Şubelerin çoğu iskele ya da müze içinde küçük noktalar."
+    },
+    {
+      "id": "penguen-icerenkoy", "name": "Penguen Kitabevi İçerenköy", "side": "asia", "district": "Ataşehir", "area": "İçerenköy",
+      "address": "Küçükbakkalköy Mah., Kayışdağı Cad. No:145 D:2, Ataşehir", "phone": "0534 225 65 96", "status": "open",
+      "hours": "Genellikle 08:00'den 23:00 ile 00:00 arasına kadar açık.",
+      "transit": "İçerenköy metro istasyonunun çıkışında.",
+      "about": "Penguen'in 25. şubesi olarak 10 Haziran 2023'te açıldı. İki katlı ve geniş kafe ve çalışma alanları var. Tek mağazada uzun zaman geçirmek için en güçlü aday, Anadolu yakasında Türkçe iş kitapları için en büyük seçenek.",
+      "caution": "Büyüklük kaynaktan kaynağa değişiyor. Basın 5.000 m² diyor, sahibi Ünal Koçak 1.800 m² kapalı ve 1.200 m² açık alandan söz ediyor. İngilizce ithal kitapta zayıf, alanın bir kısmı kırtasiye ve oyuncağa ayrılmış.",
+      "web": "https://penguenkitabevi.com",
+      "sources": [
+        { "label": "Edebiyat Haber açılış haberi", "url": "https://www.edebiyathaber.net/istanbulun-en-buyuk-kitabevi-10-haziranda-aciliyor/" },
+        { "label": "Penguen mağazaları", "url": "https://penguenkitabevi.com/magazalarimiz" }
+      ]
+    },
+    {
+      "id": "imge-kadikoy", "name": "İmge Kitabevi Kadıköy", "side": "asia", "district": "Kadıköy", "area": "Mühürdar",
+      "address": "Mühürdar Cad. No:80, Kadıköy", "status": "open",
+      "about": "Felsefe, siyaset, tarih ve insan bilimleri ağırlıklı. Felsefe, tarih ve düşünce kitapları arıyorsan ilk ziyaretlerin arasına al.",
+      "web": "https://www.imge.com.tr",
+      "sources": [
+        { "label": "İmge hakkında", "url": "https://www.imge.com.tr/sayfa/1001" }
+      ]
+    },
+    {
+      "id": "nezih-bostanci", "name": "Nezih Bostancı", "side": "asia", "district": "Kadıköy", "area": "Bostancı",
+      "address": "Bostancı Mah., Bağdat Cad. No:550, Kadıköy", "phone": "0216 416 56 06", "status": "open",
+      "hours": "09:00 ile 21:00 arası açık.",
+      "transit": "Bostancı otobüs ve minibüs durakları yaklaşık 50 metre uzaklıkta.",
+      "about": "Yönetim, MBA ve girişimcilik kitapları düzenli bulunuyor. Anadolu yakasında hızlı bir ilk tarama için pratik.",
+      "caution": "Ayrı bir strateji rafı doğrulanmadı. Alanın önemli bir kısmı kırtasiye ve oyuncağa ayrılmış.",
+      "lookFor": ["Yönetim 101", "Görsel MBA, Jason Barron", "Dünyanın En Başarılı Küçük İşletmesi, Michael E. Gerber", "Yeni Nesil İş Modeli", "Teknoloji, İnovasyon ve Girişimcilik"],
+      "web": "https://www.nezih.com.tr"
+    },
+    {
+      "id": "dr-bagdat", "name": "D&R Bağdat Caddesi", "side": "asia", "district": "Kadıköy", "area": "Caddebostan",
+      "address": "Bağdat Cad. No:245-247B, Caddebostan, Kadıköy", "status": "open",
+      "about": "Kafeli bir cadde mağazası. Remzi Suadiye kapandıktan sonra Bağdat Caddesi'ndeki ana zincir seçeneği bu mağaza.",
+      "web": "https://www.dr.com.tr"
+    },
+    {
+      "id": "remzi-suadiye", "name": "Remzi Kitabevi Suadiye", "side": "asia", "district": "Kadıköy", "area": "Suadiye",
+      "address": "Bağdat Caddesi, Suadiye, Kadıköy", "status": "closed",
+      "about": "19 Ağustos 2026'da kapandı. Remzi'nin Anadolu yakasındaki tek mağazasıydı."
+    },
+    {
+      "id": "mephisto-besiktas", "name": "Mephisto Beşiktaş Çarşı", "side": "europe", "district": "Beşiktaş", "area": "Çarşı",
+      "address": "Beşiktaş Çarşı, Beşiktaş", "status": "closed",
+      "about": "Eylül ile Ekim 2026 arasında kapandı. Milliyet bunu 6 Ekim 2026'da haber yaptı."
+    },
+    {
+      "id": "kirmizi-kedi-besiktas", "name": "Kırmızı Kedi Beşiktaş", "side": "europe", "district": "Beşiktaş", "area": "Beşiktaş",
+      "address": "Beşiktaş", "status": "closed",
+      "about": "Kapandı."
+    },
+    {
+      "id": "kabalci-besiktas", "name": "Kabalcı Beşiktaş", "side": "europe", "district": "Beşiktaş", "area": "Beşiktaş",
+      "address": "Beşiktaş", "status": "closed",
+      "about": "2016'da iflas nedeniyle kapandı."
+    },
+    {
+      "id": "pandora-beyoglu", "name": "Pandora Beyoğlu", "side": "europe", "district": "Beyoğlu", "area": "Beyoğlu",
+      "address": "Beyoğlu", "status": "closed",
+      "about": "31 Temmuz 2022'de kapandı. Pandora'nın Nişantaşı mağazası açık."
+    }
+  ]
+}

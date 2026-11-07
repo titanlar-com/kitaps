@@ -52,10 +52,11 @@ export function seoState({route,catalog,count,currentPage,totalPages,displayed})
  if(route.view==='queue')heading='Okuma sıram';
  if(route.view==='owned')heading='Kitaplığım';
  if(route.view==='favorites')heading='Favorilerim';
+ if(route.view==='bookstores')heading='Kitapçılar';
  const title=book?`${displayTitle(book)} — ${book.author} | ${SITE_NAME}`:`${heading}${pageSuffix} | ${SITE_NAME}`;
  const start=count?((currentPage-1)*(route.pageSize||DEFAULT_PAGE_SIZE))+1:0;
  const end=Math.min(currentPage*(route.pageSize||DEFAULT_PAGE_SIZE),count);
- const description=book?`${displayTitle(book)}, ${book.author}. Türkçe baskı, çeviri, yayınevi, kaynak kümeleri ve okuma rotası bilgileri.`:`${heading}: ${count} kitap${count?`; ${start}–${end} arası eserler`:''}. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.`;
+ const description=route.view==='bookstores'&&!book?'İstanbul\'da strateji, işletme ve düşünce kitapları için gezilecek kitapçılar, adresleri ve önerilen rotalar.':book?`${displayTitle(book)}, ${book.author}. Türkçe baskı, çeviri, yayınevi, kaynak kümeleri ve okuma rotası bilgileri.`:`${heading}: ${count} kitap${count?`; ${start}–${end} arası eserler`:''}. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.`;
  const canonicalQuery=encodeRoute(book?cleanRoute(route,book.id):cleanRoute(route),catalog);
  const href=query=>`${siteBase()}${query?'?'+query:''}`;
  const canonical=book?staticBookUrl(book):staticListingUrl(route,indexable?currentPage:1);
