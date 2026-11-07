@@ -1596,7 +1596,7 @@
   "encoded": "status=purchased",
   "seo": {
    "title": "Tüm kitaplar | Kitaplık",
-   "description": "Tüm kitaplar: 0 kitap. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "description": "Tüm kitaplar: 18 kitap; 1–18 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
    "robots": "noindex,follow",
    "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
    "prev": "",
@@ -1605,7 +1605,7 @@
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Tüm kitaplar",
-    "description": "Tüm kitaplar: 0 kitap. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "description": "Tüm kitaplar: 18 kitap; 1–18 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
     "url": "https://titanlar-com.github.io/kitaps/catalog/"
    },
    "interactive": "https://titanlar-com.github.io/kitaps/",

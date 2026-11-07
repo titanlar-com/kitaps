@@ -7,6 +7,9 @@ import * as query from '../src/core/catalog/query.js';
 import * as coreTranslation from '../src/core/catalog/translation.js';
 import * as coreWorkFormat from '../src/core/catalog/workFormat.js';
 import { catalogListing } from '../src/core/catalog/listing.js';
+import * as appListing from '../src/app/listing.js';
+import * as reading from '../src/reading.js';
+import * as coreReading from '../src/core/personal/reading.js';
 import { characterizeListing, readFixture, readGolden } from './characterization/oracle.js';
 
 // The catalogue rules live in the core (ADR 003, phase 3). The old paths stay as facades, so
@@ -29,4 +32,10 @@ test('translation.js and workFormat.js are facades over the core', () => {
   assert.deepEqual(Object.keys(translation).sort(), Object.keys(coreTranslation).sort());
   for (const name of Object.keys(coreTranslation)) assert.equal(translation[name], coreTranslation[name], name);
   for (const name of Object.keys(coreWorkFormat)) assert.equal(workFormat[name], coreWorkFormat[name], name);
+});
+
+test('the app listing and the reading rules are facades over the core', () => {
+  assert.equal(appListing.catalogListing, catalogListing);
+  assert.deepEqual(Object.keys(reading).sort(), Object.keys(coreReading).sort());
+  for (const name of Object.keys(coreReading)) assert.equal(reading[name], coreReading[name], name);
 });

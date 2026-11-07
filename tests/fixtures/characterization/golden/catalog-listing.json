@@ -5726,12 +5726,50 @@
    "afrikalileo"
   ]
  },
- "hidden purchases with the purchased filter, so nothing": {
-  "shelf": 126,
+ "hidden purchases with the purchased filter, which keeps them": {
+  "shelf": 144,
   "ownedCount": 18,
-  "filtered": [],
+  "filtered": [
+   "competitivestrategy",
+   "atomichabits",
+   "33strategiesofwar",
+   "100yearlife",
+   "badblood",
+   "5typesofwealth",
+   "abundance-ezrakleinderekthompson",
+   "afrikalileo",
+   "boom-michaelshnayerson",
+   "dialecticalimagination",
+   "aristocracyoftalent",
+   "driverinthedriverlesscar",
+   "burokrasiveotorite",
+   "adimadimmatematikessizbirgorselrehber",
+   "billionairesrow",
+   "crossingthechasm",
+   "aliceharikalardiyarinda",
+   "charlotteunsevgiagi"
+  ],
   "pages": 1,
   "currentPage": 1,
-  "displayed": []
+  "displayed": [
+   "competitivestrategy",
+   "atomichabits",
+   "33strategiesofwar",
+   "100yearlife",
+   "badblood",
+   "5typesofwealth",
+   "abundance-ezrakleinderekthompson",
+   "afrikalileo",
+   "boom-michaelshnayerson",
+   "dialecticalimagination",
+   "aristocracyoftalent",
+   "driverinthedriverlesscar",
+   "burokrasiveotorite",
+   "adimadimmatematikessizbirgorselrehber",
+   "billionairesrow",
+   "crossingthechasm",
+   "aliceharikalardiyarinda",
+   "charlotteunsevgiagi"
+  ]
  }
 }

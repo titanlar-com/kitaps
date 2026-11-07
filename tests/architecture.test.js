@@ -41,7 +41,6 @@ const WAITING_FOR_THE_UI = [
   'adapters/react/useViewModel.js',
   'core/app.ts',
   'core/catalog/catalog.ts',
-  'core/catalog/listing.js',
   'core/catalog/listingViewModel.ts',
   'core/navigation/navigator.ts',
   'core/settings/settings.ts',
@@ -56,5 +55,5 @@ test('every core and adapter module is used by the app or a build script, or lis
   const unreached = modules.filter(file => !reached.has(file)).map(file => path.relative(src, file)).sort();
   assert.deepEqual(unreached, WAITING_FOR_THE_UI);
   // Lower this whenever a module is bound; raising it needs an independent review.
-  assert.ok(WAITING_FOR_THE_UI.length <= 9, 'the list only shrinks');
+  assert.ok(WAITING_FOR_THE_UI.length <= 8, 'the list only shrinks');
 });

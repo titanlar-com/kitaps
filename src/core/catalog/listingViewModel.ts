@@ -1,7 +1,6 @@
 import { derived, type ReadableStore, type ViewModel } from '../store.ts';
 import type { Catalog } from './catalog.ts';
 import { catalogListing } from './listing.js';
-import { booksForShelf } from './query.js';
 
 export type ShelfView = 'books' | 'favorites' | 'owned';
 export type SortId = 'reading' | 'title' | 'author' | 'shared' | 'newest' | 'added' | 'saved';
@@ -44,7 +43,6 @@ export function createCatalogListingViewModel({ catalog, query, marks }: { catal
   const snapshot = derived([query, marks], (current, states) => {
     const result = catalogListing({ books: catalog.books, states, rankings: catalog.ranking.byId, ...current });
     const total = result.filtered.length;
-    const favoriteCount = booksForShelf(catalog.books, states, 'favorites').length;
     const empty = current.view === 'owned' && !result.ownedCount ? 'owned-empty'
       : current.view === 'favorites' && !result.shelf.length ? 'favorites-empty'
         : total ? null : 'no-match';
@@ -54,7 +52,7 @@ export function createCatalogListingViewModel({ catalog, query, marks }: { catal
       total,
       shelfTotal: result.shelf.length,
       ownedCount: result.ownedCount,
-      favoriteCount,
+      favoriteCount: result.favoriteCount,
       page: result.currentPage,
       pages: result.pages,
       range: total ? { start: (result.currentPage - 1) * current.pageSize + 1, end: Math.min(result.currentPage * current.pageSize, total) } : null,

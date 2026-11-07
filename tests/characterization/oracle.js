@@ -79,7 +79,8 @@ export function listingQueries(books) {
   queries.push(filtered('search and category', { query: 'a', categories: categories.slice(1, 2) }, { sort: 'author' }));
   queries.push(filtered('favourites view, searched', { query: 'a' }, { view: 'favorites' }));
   queries.push(filtered('owned view, a category', { categories: categories.slice(0, 1) }, { view: 'owned', sort: 'added' }));
-  queries.push(filtered('hidden purchases with the purchased filter, so nothing', { states: ['alindi'] }, { hideOwned: true }));
+  // Asking for purchased books by mark keeps them even while purchases are hidden (8 November 2026).
+  queries.push(filtered('hidden purchases with the purchased filter, which keeps them', { states: ['alindi'] }, { hideOwned: true }));
   return queries;
 }
 

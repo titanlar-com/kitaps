@@ -40,7 +40,7 @@ Tek uygulama, tek yayın ve tek depo vardır. Ayrı bir arka uç, veri tabanı, 
 - **Çekirdek (`src/core/`).** Alan kuralları, sorgular, komutlar, mağazalar ve görünüm modelleri burada durur. Çekirdek düz Node 24'te çalışır.
   - Çekirdek şunları kullanamaz: React, Mantine, Tabler, JSX, CSS, `?raw` gibi Vite içe aktarmaları, `import.meta.env`, `window`, `document`, `localStorage`, `sessionStorage`, `navigator`, `location`, `history` ve `globalThis`.
   - Çekirdeğin dışında yalnız şunları içe aktarabilir: `src/state/*.ts`, `src/ranking/*.ts`, `src/site.js` ve `src/views.js`.
-- **Taşınan modüller.** Çekirdeğin ihtiyaç duyduğu başka bir saf modül çekirdeğe taşınır ve eski yolunda bir cephe bırakır. `translation.js` ve `workFormat.js` böyle taşındı. `reading.js`, `recommendations.js`, `authors.js`, `fairs.js`, `dates.js` ve `routes/planner.js` çekirdek onlara ihtiyaç duyduğunda aynı yolla taşınır. Böylece `scripts/generate-static-seo.mjs` gibi içe aktaranlar değişmez.
+- **Taşınan modüller.** Çekirdeğin ihtiyaç duyduğu başka bir saf modül çekirdeğe taşınır ve eski yolunda bir cephe bırakır. `translation.js`, `workFormat.js`, `reading.js` ve `app/listing.js` böyle taşındı. `recommendations.js`, `authors.js`, `fairs.js`, `dates.js` ve `routes/planner.js` çekirdek onlara ihtiyaç duyduğunda aynı yolla taşınır. Böylece `scripts/generate-static-seo.mjs` gibi içe aktaranlar değişmez.
 - **Bağdaştırıcılar (`src/adapters/`).** Tarayıcının ve Node'un dış dünyasını çekirdeğin portlarına bağlar: adres ve geçmiş, depolama, belge başlığı, dosya indirme, saat, yaşam döngüsü olayları ve gecikmeli yüklenen veri dosyaları.
 - **UI bağlayıcısı.** `src/adapters/react/useViewModel.js` bir port bağdaştırıcısı değil, React'in çekirdeğe bağlanma noktasıdır. Arayüz teknolojisi değişirse yalnız bu dosya ve bileşenler değişir.
 - **Arayüz.** Bugün `src/App.jsx`, `src/app/` ve `src/components/` içinde durur. Arayüz çekirdeği kullanır, çekirdek arayüzü bilmez.
@@ -216,7 +216,7 @@ Testlerin yeri bellidir: Node testleri `tests/*.test.js`, bileşen testleri `tes
 
 `tests/ui-structure.test.js` içindeki metin arayan bir denetim yalnız iki şartla emekliye ayrılır. Aynı commit'te en az o kadar güçlü bir davranış testi gelmelidir. Bu yeni testin, davranış bilerek bozulduğunda başarısız olduğu da gösterilmelidir.
 
-Her taşınan saf modülün eski kopyası, çekirdekteki karşılığı geldiği commit'te kaldırılır ve eski yol bir cephe olur. Bunun tek istisnası, ana oturumun yeniden tasarım sırasında değiştirdiği dosyalardır (`src/app/listing.js`, `src/reading.js`). Bunlar yeniden tasarım indikten sonra cepheye çevrilir.
+Her taşınan saf modülün eski kopyası, çekirdekteki karşılığı geldiği commit'te kaldırılır ve eski yol bir cephe olur. `src/app/listing.js` ve `src/reading.js` da yeniden tasarımın ilk aşamaları indikten sonra böyle taşındı.
 
 0. **Güvenlik ağı (tamamlandı).**
    - Katalog listesinin 60 sorgusu ve okuma önceliği sırası sabitlendi.
@@ -254,7 +254,7 @@ Her taşınan saf modülün eski kopyası, çekirdekteki karşılığı geldiği
      - Her ekran bağlanmadan önce erişilebilirlik ağacı kaydı alınır (K11).
      - Bugünkü geri tuşu davranışı da bağlamadan önce sabitlenir: geri tuşu kitap izini temizler ve katalogdan açılan kitap geri gidilerek kapanır. Bu kural tasarımda `Navigator`'ın temel adımlarından kurulur. Zor olursa çekirdek, değişikliğin tarayıcıdan geldiğini bildiren bir işaret ekler.
      - Ekranın ihtiyaç duyduğu özellik görünüm modeli bu sırada yazılır (K6).
-     - `src/app/listing.js` ve `catalogData.js` cepheye çevrilir ve kullanılmayan modüller listesi küçülür.
+     - `catalogData.js` cepheye çevrilir ve kullanılmayan modüller listesi küçülür.
      - Gecikmeli yüklenen verinin ilk pakete girmediği bir derleme listesi ya da ağ testiyle kanıtlanır.
 8. **Eşitleme denetleyicisi.** En yüksek riskli aşama budur.
    - İşlemlerin sırası değişmeden taşınır. Her tarayıcı çağrısı bir portla değiştirilir: yaşam döngüsü, zamanlayıcı, oturum deposu ve dışarıdan verilen depo.
