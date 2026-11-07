@@ -870,6 +870,130 @@ test('an undo after a write whose answer never came is not lost, and resending t
  assert.deepEqual(server.file.queue.value,['a','b']);
 });
 
+// Review of 7 November 2026: a write that reached GitHub without the page hearing back must not
+// bring back what another device removed afterwards, and must not swallow a later undo.
+test('a mark, a note or a queue book another device removed after an unanswered write stays removed',async()=>{
+ const server=writableGitHub();let now=Date.parse(timestamp(10));
+ const phone=withToken();
+ const first=new GitHubStateRepository({storage:phone,clock:()=>new Date(now),fetch:server.fetch});
+ await first.load();
+ first.queueBookState('a',{states:['onemli'],reading:{why:'not'}},undefined,{states:[],reading:null});
+ first.queueQueueState(['a'],undefined,[]);
+ server.lose=true;
+ await assert.rejects(()=>first.flushPending());
+ assert.deepEqual(server.file.books.a.value.states,['onemli'],'the write reached GitHub');
+ // The computer reads the file and takes all three back.
+ now=Date.parse(timestamp(20));
+ const computer=new GitHubStateRepository({storage:withToken(),clock:()=>new Date(now),fetch:server.fetch});
+ await computer.load();
+ computer.queueBookState('a',{states:[],reading:null},undefined,{states:['onemli'],reading:{why:'not'}});
+ computer.queueQueueState([],undefined,['a']);
+ await computer.flushPending();
+ // The phone opens the page again with its old edit still waiting.
+ now=Date.parse(timestamp(30));
+ const reopened=new GitHubStateRepository({storage:phone,clock:()=>new Date(now),fetch:server.fetch});
+ const shown=await reopened.loadWithPending();
+ assert.deepEqual(shown.books.a.value.states,[],'the removed mark stays removed');
+ assert.equal(shown.books.a.value.reading??null,null,'the cleared note stays cleared');
+ assert.deepEqual(shown.queue.value,[],'the removed book stays out of the queue');
+ await reopened.flushPending();
+ assert.deepEqual(server.file.books.a.value.states,[]);
+ assert.equal(server.file.books.a.value.reading??null,null);
+ assert.deepEqual(server.file.queue.value,[]);
+});
+
+test('an undo after a merged write whose answer never came reaches GitHub',async()=>{
+ const server=writableGitHub();let now=Date.parse(timestamp(10));
+ const phone=withToken();
+ const first=new GitHubStateRepository({storage:phone,clock:()=>new Date(now),fetch:server.fetch});
+ await first.load();
+ first.queueBookState('a',{states:['onemli']},undefined,{states:[]});
+ // Meanwhile a computer whose clock runs ahead adds another mark.
+ server.file=document({a:record(50,{states:['alindi']},{states:timestamp(50)})},timestamp(50));server.sha='sha-computer';
+ server.lose=true;
+ await assert.rejects(()=>first.flushPending());
+ assert.deepEqual([...server.file.books.a.value.states].sort(),['alindi','onemli'],'the merged write reached GitHub');
+ // After a reload the reader takes this device's mark off again.
+ now=Date.parse(timestamp(12));
+ const reopened=new GitHubStateRepository({storage:phone,clock:()=>new Date(now),fetch:server.fetch});
+ await reopened.load();
+ reopened.queueBookState('a',{states:['alindi']},undefined,{states:['alindi','onemli']});
+ await reopened.flushPending();
+ assert.deepEqual(server.file.books.a.value.states,['alindi'],'the undo reaches GitHub');
+});
+
+test('a write GitHub refused is not remembered as sent, and a write sent again is remembered once',async()=>{
+ const server=writableGitHub();
+ const local=withToken();
+ const repository=new GitHubStateRepository({storage:local,clock:()=>new Date(timestamp(10)),fetch:async(url,init={})=>init.method==='PUT'&&server.refuse?new Response('{}',{status:403,headers:{'X-RateLimit-Remaining':'0','X-RateLimit-Reset':'2000000000'}}):server.fetch(url,init)});
+ await repository.load();
+ repository.queueBookState('a',{states:['onemli']},undefined,{states:[]});
+ const sentOf=()=>basisOf(local).get(repository.pendingMutations()[0].id).sent??[];
+ server.refuse=true;
+ await assert.rejects(()=>repository.flushPending(),error=>error.code==='rate-limited');
+ assert.deepEqual(sentOf(),[],'a refused write never reached the file');
+ server.refuse=false;
+ server.lose=true;
+ await assert.rejects(()=>repository.flushPending());
+ server.lose=true;
+ await assert.rejects(()=>repository.flushPending());
+ assert.equal(sentOf().length,1,'the same write sent twice is one version');
+});
+
+test('an edit made on a view that merged another device’s change is based on that change, so its later removal stays',async()=>{
+ const start=async()=>{
+  const local=storage();const server={file:document({},timestamp(0))};
+  const repository=new GitHubStateRepository({storage:local,clock:()=>new Date(timestamp(20)),fetch:async()=>raw(server.file)});
+  await repository.load();
+  repository.queueBookState('a',{states:['alindi']},undefined,{states:[]});
+  repository.queueQueueState(['a'],undefined,[]);
+  // A refresh shows the other device's mark and queue book merged with this device's edits.
+  server.file=document({a:record(5,{states:['onemli']},{states:timestamp(5)})},timestamp(5),{updatedAt:timestamp(5),value:['c']});
+  const shown=await repository.loadWithPending();
+  assert.deepEqual([...shown.books.a.value.states].sort(),['alindi','onemli']);
+  assert.deepEqual([...shown.queue.value].sort(),['a','c']);
+  return {local,repository,shown};
+ };
+ const removed=document({a:record(8,{states:[]},{states:timestamp(8)})},timestamp(8),{updatedAt:timestamp(8),value:[]});
+ // The reader adds a mark and a book on top of what the page shows; then the other device
+ // takes its own mark and book back.
+ const added=await start();
+ added.repository.queueBookState('a',{states:[...added.shown.books.a.value.states,'okunuyor']},undefined,{states:added.shown.books.a.value.states});
+ added.repository.queueQueueState([...added.shown.queue.value,'d'],undefined,added.shown.queue.value);
+ const after=applyPendingMutations(removed,added.repository.pendingMutations(),basisOf(added.local));
+ assert.deepEqual([...after.books.a.value.states].sort(),['alindi','okunuyor'],'the other device’s removal stays');
+ assert.deepEqual(after.queue.value,['a','d']);
+ // While the other device keeps its mark and book, both sides' changes stay.
+ const kept=applyPendingMutations(document({a:record(5,{states:['onemli']},{states:timestamp(5)})},timestamp(5),{updatedAt:timestamp(5),value:['c']}),added.repository.pendingMutations(),basisOf(added.local));
+ assert.deepEqual([...kept.books.a.value.states].sort(),['alindi','okunuyor','onemli']);
+ assert.deepEqual([...kept.queue.value].sort(),['a','c','d']);
+ // The reader takes the other device's mark and book off: that removal travels.
+ const dropped=await start();
+ dropped.repository.queueBookState('a',{states:['alindi']},undefined,{states:dropped.shown.books.a.value.states});
+ dropped.repository.queueQueueState(['a'],undefined,dropped.shown.queue.value);
+ const served=document({a:record(5,{states:['onemli']},{states:timestamp(5)})},timestamp(5),{updatedAt:timestamp(5),value:['c']});
+ const result=applyPendingMutations(served,dropped.repository.pendingMutations(),basisOf(dropped.local));
+ assert.deepEqual(result.books.a.value.states,['alindi'],'the reader’s removal of the other device’s mark travels');
+ assert.deepEqual(result.queue.value,['a']);
+});
+
+test('an edit is based on the file the page shows, not on a newer read the page has not shown yet',async()=>{
+ const local=storage();const server={file:document({},timestamp(0))};
+ const repository=new GitHubStateRepository({storage:local,clock:()=>new Date(timestamp(20)),fetch:async()=>raw(server.file)});
+ await repository.load();
+ repository.queueBookState('a',{states:['okunuyor']},undefined,{states:[]});
+ server.file=document({a:record(5,{states:['onemli']},{states:timestamp(5)})},timestamp(5));
+ const shown=await repository.loadWithPending();
+ assert.deepEqual([...shown.books.a.value.states].sort(),['okunuyor','onemli']);
+ // A newer read with another mark arrives, but the page still shows the earlier one.
+ server.file=document({a:record(8,{states:['onemli','alindi']},{states:timestamp(8)})},timestamp(8));
+ const newer=await repository.load();
+ // The reader takes the other device's first mark off.
+ repository.queueBookState('a',{states:['okunuyor']},undefined,{states:shown.books.a.value.states});
+ const result=applyPendingMutations(newer,repository.pendingMutations(),basisOf(local));
+ assert.deepEqual([...result.books.a.value.states].sort(),['alindi','okunuyor'],'the mark from the read not yet shown stays, the removed one goes');
+});
+
 test('edits a damaged record still holds are not sent twice while it cannot be replaced',async()=>{
  const good={id:'g',kind:'book',bookId:'a',updatedAt:timestamp(1),value:{states:['onemli']}};
  const damaged=JSON.stringify({since:timestamp(1),mutations:[good,{id:'x',kind:'book',bookId:'b',updatedAt:'dün',value:{}}]});

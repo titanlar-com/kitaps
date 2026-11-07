@@ -48,7 +48,7 @@ function useHarness(initialStates, initialPersonal) {
   const [states, setStates] = useState(initialStates);
   const [personal, setPersonal] = useState(initialPersonal);
   const sync = useGitHubStateSync({ bookIds: BOOK_IDS, states, setStates, personal, setPersonal });
-  return { sync, states, setStates, personal };
+  return { sync, states, setStates, personal, setPersonal };
 }
 
 describe('useGitHubStateSync on a device that has never synced', () => {
@@ -349,6 +349,42 @@ describe('useGitHubStateSync getting changes off the device', () => {
     vi.stubGlobal('fetch', vi.fn(async () => { throw new TypeError('offline'); }));
     const { result } = renderHook(() => useHarness({}, { queue: [], reading: {} }));
     await waitFor(() => expect(result.current.sync.writeError).toMatch(/karşılaştırılamadı/));
+  });
+
+  it('an edit made while the first read is under way keeps what another device saved meanwhile', async () => {
+    // Review of 7 November 2026: the edit used to be based on the shared value the reader never saw.
+    localStorage.setItem('kitapatlasi:github-state:token:v1', TOKEN);
+    const at = '2026-10-04T09:00:00.000Z';
+    const server = github(remoteDocument({ a: { updatedAt: at, value: { states: ['onemli', 'alindi'] }, stamps: { states: at } } }, { updatedAt: at, value: ['b', 'c'] }));
+    server.readDelay = 80;
+    vi.stubGlobal('fetch', server.fetch);
+    // This device last showed book a with one mark and a queue of one book.
+    const { result } = renderHook(() => useHarness({ a: ['onemli'] }, { queue: ['b'], reading: {} }));
+    act(() => {
+      result.current.setStates({ a: ['onemli', 'okunuyor'] });
+    });
+    await waitFor(() => expect(result.current.sync.status).not.toBe('loading'));
+    await waitFor(() => expect(result.current.sync.pending).toBe(1));
+    act(hidePage);
+    await waitFor(() => expect(putsOf(server)).toHaveLength(1));
+    expect([...server.current().books.a.value.states].sort()).toEqual(['alindi', 'okunuyor', 'onemli']);
+  });
+
+  it('a queue change made while the first read is under way keeps the book another device added', async () => {
+    localStorage.setItem('kitapatlasi:github-state:token:v1', TOKEN);
+    const at = '2026-10-04T09:00:00.000Z';
+    const server = github(remoteDocument({}, { updatedAt: at, value: ['b', 'c'] }));
+    server.readDelay = 80;
+    vi.stubGlobal('fetch', server.fetch);
+    const { result } = renderHook(() => useHarness({}, { queue: ['b'], reading: {} }));
+    act(() => {
+      result.current.setPersonal(previous => ({ ...previous, queue: ['b', 'a'] }));
+    });
+    await waitFor(() => expect(result.current.sync.status).not.toBe('loading'));
+    await waitFor(() => expect(result.current.sync.pending).toBe(1));
+    act(hidePage);
+    await waitFor(() => expect(putsOf(server)).toHaveLength(1));
+    expect([...server.current().queue.value].sort()).toEqual(['a', 'b', 'c']);
   });
 
   it('a change made while a write is under way gets its own write right after it', async () => {

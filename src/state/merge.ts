@@ -126,8 +126,8 @@ const canonical = (value: unknown): string => {
   if (value && typeof value === 'object') return `{${Object.keys(value).sort().filter(key => (value as Record<string, unknown>)[key] !== undefined).map(key => `${JSON.stringify(key)}:${canonical((value as Record<string, unknown>)[key])}`).join(',')}}`;
   return JSON.stringify(value ?? null);
 };
-const same = (left: unknown, right: unknown): boolean => canonical(left) === canonical(right);
-const sameMarks = (left: readonly string[], right: readonly string[]): boolean => same([...left].sort(), [...right].sort());
+export const same = (left: unknown, right: unknown): boolean => canonical(left) === canonical(right);
+export const sameMarks = (left: readonly string[], right: readonly string[]): boolean => same([...left].sort(), [...right].sort());
 
 /** Marks, three-way: what this device removed since its base goes, what it added comes,
  * everything else is the shared file's. Two marks that exclude each other (alinacak and
@@ -233,10 +233,16 @@ export function applyPendingMutations(base: StateDocument, mutations: readonly P
       const shared = queue?.value ?? [];
       const remoteLater = Boolean(queue) && Date.parse(queue!.updatedAt) > Date.parse(mutation.updatedAt);
       if (basis?.kind === 'queue') {
+        const sent = basis.sent ?? [];
         // A send whose answer never came, which the shared queue still carries, is the base.
-        const landed = queue ? [...(basis.sent ?? [])].reverse().find(version => Date.parse(version.stamp) === Date.parse(queue!.updatedAt)) : undefined;
-        const before = landed?.value ?? basis.base;
-        const value = same(shared, before) ? [...mutation.value] : mergeQueue(before, mutation.value, shared, remoteLater);
+        const landed = queue ? [...sent].reverse().find(version => Date.parse(version.stamp) === Date.parse(queue!.updatedAt)) : undefined;
+        // A send the shared queue does not show may have landed and been changed since, or
+        // never landed. Merging it against its first base could bring back what another
+        // device took out, so the later edit wins, as without a basis; a later shared queue
+        // is merged with what was last sent.
+        const unknown = !landed && sent.length > 0;
+        const before = landed?.value ?? (unknown ? sent.at(-1)!.value : basis.base);
+        const value = (unknown && !remoteLater) || same(shared, before) ? [...mutation.value] : mergeQueue(before, mutation.value, shared, remoteLater);
         queue = { updatedAt: later(queue?.updatedAt, mutation.updatedAt)!, value };
       } else {
         if (remoteLater) continue;
@@ -267,17 +273,23 @@ export function applyPendingMutations(base: StateDocument, mutations: readonly P
       const remoteLater = Boolean(remoteStamp) && Date.parse(remoteStamp!) > Date.parse(editedAt);
       const hasBase = Boolean(book) && field in book!.base;
       if (!hasBase && remoteLater) continue;
+      const sent = hasBase ? (book!.sent ?? []).filter(version => field in version.value) : [];
       // A send whose answer never came, which the shared field still carries, is the base.
-      const landed = hasBase && remoteStamp ? [...(book!.sent ?? [])].reverse().find(version => version.stamps[field] && Date.parse(version.stamps[field]!) === Date.parse(remoteStamp) && field in version.value) : undefined;
-      const basePayload = landed?.value ?? book?.base;
+      const landed = remoteStamp ? [...sent].reverse().find(version => version.stamps[field] && Date.parse(version.stamps[field]!) === Date.parse(remoteStamp)) : undefined;
+      // A send the shared field does not show may have landed and been changed since, or
+      // never landed (as with the queue above): the later edit wins, and a later shared
+      // value is merged with what was last sent.
+      const unknown = !landed && sent.length > 0;
+      const basePayload = landed?.value ?? (unknown ? sent.at(-1)!.value : book?.base);
+      const exact = !hasBase || (unknown && !remoteLater);
       if (field === 'states') {
         const mine = mutation.value.states ?? [], theirs = current?.value?.states ?? [];
         const before = hasBase ? basePayload!.states ?? [] : theirs;
-        value.states = !hasBase || sameMarks(theirs, before) ? [...mine] : mergeStates(before, mine, theirs, remoteLater);
+        value.states = exact || sameMarks(theirs, before) ? [...mine] : mergeStates(before, mine, theirs, remoteLater);
       } else {
         const mine = mutation.value.reading ?? null, theirs = current?.value?.reading ?? null;
         const before = hasBase ? basePayload!.reading ?? null : theirs;
-        value.reading = !hasBase || same(theirs, before) ? structuredClone(mine) : mergeReading(before, mine, theirs, remoteLater);
+        value.reading = exact || same(theirs, before) ? structuredClone(mine) : mergeReading(before, mine, theirs, remoteLater);
       }
       stamps[field] = later(remoteStamp, editedAt)!;
       applied = true;

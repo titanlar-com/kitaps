@@ -69,8 +69,20 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
 
  const applyDocument=useCallback((document,baseline,baselineQueue,skip=noSkip())=>{
   const projected=projectPublicState(document,bookIds),records=new Map(Object.entries(projected.records));
-  for(const [id,normalized] of records)if(!skip.books.has(id))known.current.set(id,normalized);
-  if(!skip.queue)knownQueue.current=signature(projected.queue);
+  // A field the reader changed while this read ran keeps its own value on screen, so what this
+  // device last showed of it stays known: the edit is based on that, not on a shared value the
+  // reader never saw (review of 7 November 2026).
+  const shown=latest.current;
+  for(const [id,normalized] of records){
+   if(skip.books.has(id))continue;
+   const earlier=known.current.get(id)??baseline?.get(id);
+   const keepStates=baseline&&signature(baseline.get(id)?.states||[])!==signature(shown.states[id]||[]);
+   const keepReading=baseline&&signature(baseline.get(id)?.reading??null)!==signature(readingPayload(shown.personal,id));
+   known.current.set(id,{...normalized,...(keepStates?{states:earlier?.states??[]}:{}),...(keepReading?{reading:earlier?.reading??null}:{})});
+  }
+  const keepQueue=baselineQueue!==undefined&&baselineQueue!==queueSignature(shown.personal);
+  if(!skip.queue&&!keepQueue)knownQueue.current=signature(projected.queue);
+  else if(!skip.queue&&knownQueue.current===null)knownQueue.current=baselineQueue;
   setStates(previous=>{
    const next={...previous};
    for(const [id,value] of records){

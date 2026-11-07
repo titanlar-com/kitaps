@@ -34,10 +34,12 @@ function fakeGitHub() {
       github.elsewhere.push(`${route.request().method()} ${route.request().url()}`);
       return route.abort();
     });
-    await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.fulfill({ headers: CORS, json: github.file }));
+    // Only state.json is this fake's file; routes.json is not made yet, as on a new repository.
+    await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.request().url().includes('/routes.json') ? route.fulfill({ status: 404, headers: CORS, json: {} }) : route.fulfill({ headers: CORS, json: github.file }));
     await context.route('https://api.github.com/repos/titanlar-com/kitaps-state/**', async route => {
       const request = route.request();
       if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: CORS });
+      if (request.url().includes('/contents/routes.json')) return route.fulfill({ status: 404, headers: CORS, json: { message: 'Not Found' } });
       if (request.url().endsWith('/git/blobs')) return route.fulfill({ status: 201, headers: CORS, json: { sha: 'e69de29' } });
       if (request.method() === 'PUT') {
         const body = request.postDataJSON();

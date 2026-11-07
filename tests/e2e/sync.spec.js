@@ -33,10 +33,12 @@ function fakeGitHub({ canWrite = true, cdnLags = false, refuseKey = false } = {}
       github.elsewhere.push(`${route.request().method()} ${route.request().url()}`);
       return route.abort();
     });
-    await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.fulfill({ headers: CORS, json: cdnLags ? EMPTY : github.file }));
+    // Only state.json is this fake's file; routes.json is not made yet, as on a new repository.
+    await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.request().url().includes('/routes.json') ? route.fulfill({ status: 404, headers: CORS, json: {} }) : route.fulfill({ headers: CORS, json: cdnLags ? EMPTY : github.file }));
     await context.route('https://api.github.com/repos/titanlar-com/kitaps-state/**', async route => {
       const request = route.request();
       if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: CORS });
+      if (request.url().includes('/contents/routes.json')) return route.fulfill({ status: 404, headers: CORS, json: { message: 'Not Found' } });
       if (refuseKey && request.headers().authorization) return route.fulfill({ status: 401, headers: CORS, json: { message: 'Bad credentials' } });
       if (request.url().endsWith('/git/blobs')) {
         github.probes += 1;
