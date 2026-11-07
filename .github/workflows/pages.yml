@@ -20,6 +20,9 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      # The shared state repository is the app's database. A problem there is annotated on the run
+      # but does not block publishing, because the site still works from each device's own copy.
+      - run: npm run check:state -- --warn-only
       - run: npm test
       - run: npm run typecheck
       - run: npm run build

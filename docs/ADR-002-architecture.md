@@ -66,6 +66,13 @@ Her aşama bütün testler geçerek kendi başına yayına çıkar. Taşımadan 
    - `state.json` ve `routes.json` tek bir iç istemciyi paylaşacak.
    - Veri kaybı riski en yüksek adım bu olduğu için ayrı incelemeden geçecek ve eşitleme testleri bütün profillerde çalışacak.
 
+6. **Eşitleme deposunun sağlığı (başladı).**
+   - `titanlar-com/kitaps-state` uygulamanın veritabanı gibi çalışıyor. Depo silinir, özel yapılır, arşivlenir ya da dosyası bozulursa cihazlar sessizce kendi kopyalarıyla kalıyordu.
+   - `src/state/health.ts` depoyu anahtarsız bir okuyucu gibi okur. `state.json` ve `routes.json` dosyalarını uygulamanın kendi okuma kurallarıyla denetler. Katalogda olmayan kitapların kayıtlarını ve listede olmayan kitapçılara giden rotaları uyarı olarak bildirir.
+   - `npm run check:state` raporu Türkçe yazar. CI her gönderimde `--warn-only` ile çalıştırır: sorun, çalışmada bir hata notu olarak görünür ama yayını durdurmaz, çünkü site her cihazın kendi kopyasıyla çalışmaya devam eder.
+   - Denetim yalnız okur ve zamanlanmış bir iş olarak kurulmaz.
+   - Testler `tests/state-health.test.js` içinde ve gerçek ağ yerine sahte bir GitHub kullanıyor.
+
 ## Açık kararlar
 
 - **"Bugün"ün tanımı:** kişisel okuma tarihleri cihazın gününü, fuar takvimi İstanbul'un gününü kullanır. Gerekçe: okuma kişinin yaşadığı gündür, fuarlar Türkiye saatine göre açılıp kapanır.

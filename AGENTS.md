@@ -35,6 +35,7 @@ Bu testleri kuralı gevşetmek için değiştirme.
 - `npm run test:e2e`: önce build gerekir. Paralel worktree'lerde başka bir port kullan, örneğin `E2E_PORT=4517 npm run test:e2e`.
 - Firefox testleri yalnız açıkça istenince çalışır: `E2E_FIREFOX=1 npm run test:e2e`. Varsayılan çalıştırma ve CI Firefox'u kurmaz ve çalıştırmaz (kullanıcının 31 Ekim 2026 kararı, `/Users/w6x/AGENT.md`).
 - Veri değiştiğinde `npm run data` çalıştır (bkz. README).
+- `npm run check:state`: eşitleme deposunu (`titanlar-com/kitaps-state`) anahtarsız okur ve `state.json` ile `routes.json` dosyalarını uygulamanın kurallarıyla denetler. Yalnız okur. CI bunu yayını durdurmadan çalıştırır.
 
 ## Aynı depoda birden çok oturum
 
@@ -49,7 +50,7 @@ Bu testleri kuralı gevşetmek için değiştirme.
 
 ## Kişisel durum deposu
 
-Okuma durumları, sahiplik, favoriler ve okuma sırası herkese açık `titanlar-com/kitaps-state` deposundaki `state.json` dosyasında tutulur. Tasarım ve yazma anahtarı kuralları `docs/ADR-001-reading-priority-and-state.md` içindedir. Anahtar, token veya başka bir sır depoya yazılmaz.
+Okuma durumları, sahiplik, favoriler ve okuma sırası herkese açık `titanlar-com/kitaps-state` deposundaki `state.json` dosyasında tutulur. Kitapçı rotaları aynı depodaki `routes.json` dosyasındadır. Depo silinmemeli, özel yapılmamalı ve arşivlenmemelidir, çünkü anahtarı olmayan cihazlar durumu buradan okur. Deponun sağlığını `npm run check:state` denetler. Tasarım ve yazma anahtarı kuralları `docs/ADR-001-reading-priority-and-state.md` içindedir. Anahtar, token veya başka bir sır depoya yazılmaz.
 
 ## Arayüz
 
