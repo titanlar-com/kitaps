@@ -74,7 +74,8 @@ test('every corner the theme can give is at most 5 px', () => {
   // Components whose own default is a circle or a pill take the largest token instead.
   for(const name of ['Indicator','Avatar','Badge','Chip','Pill','Switch','Radio','Slider','Stepper','Timeline','ThemeIcon','Progress','Skeleton','SegmentedControl','Notification','Kbd']){
     const radius=theme.components[name]?.defaultProps?.radius;
-    assert.ok(radius&&radius in theme.radius,`${name} takes a theme radius, not its own round default (${radius})`);
+    // 0 is allowed: a thin bar (Progress) has square ends, since any corner on it would make a pill.
+    assert.ok(radius===0||(radius&&radius in theme.radius),`${name} takes a theme radius or none, not its own round default (${radius})`);
   }
   // The default oval loader is a circle; its bars have square-ish ends (review of 8 November 2026).
   assert.equal(theme.components.Loader?.defaultProps?.type,'bars');

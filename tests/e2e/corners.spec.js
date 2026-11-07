@@ -10,7 +10,7 @@ test.beforeEach(async ({ context }) => {
     if (sessionStorage.getItem('seeded')) return;
     sessionStorage.setItem('seeded', '1');
     localStorage.setItem('kitapatlasi:states:v2', JSON.stringify({ goal: ['onemli', 'alindi', 'okundu'], meditations: ['okunuyor'] }));
-    localStorage.setItem('kitapatlasi:personal:v1', JSON.stringify({ queue: ['meditations'], reading: {} }));
+    localStorage.setItem('kitapatlasi:personal:v1', JSON.stringify({ queue: ['meditations'], reading: { meditations: { page: 10, totalPages: 100 } } }));
   });
 });
 
@@ -27,6 +27,14 @@ const roundCorners = page => page.evaluate(() => {
         if (value === '0px') continue;
         if (value.includes('%') || value.split(' ').some(part => parseFloat(part) > 5.01)) found.add(`${name(element)}${pseudo ?? ''} ${corner} ${value}`);
       }
+      // A small corner on a thin box still makes a pill: two radii that meet across its short side
+      // (review of 8 November 2026).
+      if (!pseudo) {
+        const box = element.getBoundingClientRect();
+        const short = Math.min(box.width, box.height);
+        const radius = Math.max(...corners.map(corner => parseFloat(style[corner]) || 0));
+        if (short > 0 && radius > 0 && 2 * radius >= short - 0.01) found.add(`${name(element)} is a pill: radius ${radius}px on a ${short.toFixed(1)}px side`);
+      }
     }
   }
   return [...found];
@@ -35,6 +43,8 @@ const roundCorners = page => page.evaluate(() => {
 const PAGES = [
   ['the catalogue', './', null],
   ['a book', './?book=good-to-great-by-jim-collins', null],
+  ['a book with reading progress', './?book=meditations-by-marcus-aurelius', null],
+  ['the priority summary', './', page => page.getByRole('button', { name: /Okuma önceliğine göre sıralı/ }).click()],
   ['the queue', './?view=queue', null],
   ['the collections', './?view=collections', null],
   ['the owned shelf', './?view=library', null],

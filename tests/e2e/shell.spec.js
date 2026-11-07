@@ -25,10 +25,12 @@ for (const width of [320, 390, 1280]) {
     const library = page.locator('.header-library');
     await expect(favorites).toHaveAccessibleName('Favoriler: 2 kitap');
     await expect(library).toHaveAccessibleName('Kitaplığım: 1 kitap');
-    await expect(page.locator('.header-favorites-count .mantine-Indicator-indicator')).toHaveText('2');
-    await expect(page.locator('.header-library-count .mantine-Indicator-indicator')).toHaveText('1');
+    // The count is written inside the button, beside its icon (review of 8 November 2026: a badge
+    // over the icon covered it with enlarged text).
+    await expect(favorites.locator('.shortcut-count')).toHaveText('2');
+    await expect(library.locator('.shortcut-count')).toHaveText('1');
     // The count is part of the name, so screen readers do not read it twice.
-    await expect(page.locator('.header-favorites-count .mantine-Indicator-indicator')).toHaveAttribute('aria-hidden', 'true');
+    await expect(favorites.locator('.shortcut-count')).toHaveAttribute('aria-hidden', 'true');
     // Nothing spills out of the page at this width.
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
@@ -82,34 +84,51 @@ test('at 320 px with 200% text the marker never pushes the page sideways while i
   }
 });
 
-// Review of 8 November 2026: the badge sits on its button, so it must not take the click, and a
-// long count must not run onto the next button.
-test('a click on a counter badge opens its shelf', async ({ page }) => {
+// Review of 8 November 2026: a count must never cover its icon or run onto the next shortcut, at
+// any text size, and a click on it is a click on its button.
+test('a click on a count opens its shelf', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 800 });
   await page.goto('./');
-  const badge = await page.locator('.header-favorites-count .mantine-Indicator-indicator').boundingBox();
-  await page.mouse.click(badge.x + badge.width / 2, badge.y + badge.height / 2);
+  await page.locator('.header-favorites .shortcut-count').click();
   await expect(page).toHaveURL(/view=favorites/);
 });
 
-test('at 320 px long counts stay on their own button', async ({ browser }) => {
-  // 120 favourites and 150 purchases, from the catalogue's own ids.
-  const ids = JSON.parse(fs.readFileSync(new URL('../../src/catalog.json', import.meta.url))).books.map(book => book.id);
-  const states = Object.fromEntries(ids.slice(0, 150).map((id, index) => [id, index < 120 ? ['onemli', 'alindi'] : ['alindi']]));
-  const context = await browser.newContext({ viewport: { width: 320, height: 800 } });
-  await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.request().url().includes('routes.json') ? route.fulfill({ status: 404, json: {} }) : route.fulfill({ json: EMPTY }));
-  await context.route('https://api.github.com/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
-  await context.addInitScript(seed => { if (!sessionStorage.getItem('seeded')) { sessionStorage.setItem('seeded', '1'); localStorage.setItem('kitapatlasi:states:v2', seed); } }, JSON.stringify(states));
-  const page = await context.newPage();
-  await page.goto('./');
-  await expect(page.locator('.header-favorites')).toHaveAccessibleName('Favoriler: 120 kitap');
-  await expect(page.locator('.header-favorites-count .mantine-Indicator-indicator')).toHaveText('99+');
-  const badge = await page.locator('.header-favorites-count .mantine-Indicator-indicator').boundingBox();
-  const next = await page.locator('.header-library').boundingBox();
-  expect(badge.x + badge.width, 'the favourites badge ends before the library button').toBeLessThanOrEqual(next.x + 1);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  await context.close();
-});
+for (const text of ['100%', '150%', '200%']) {
+  test(`at 320 px with ${text} text, long counts stay beside their icons and inside their buttons`, async ({ browser }) => {
+    // 120 favourites and 150 purchases, from the catalogue's own ids.
+    const ids = JSON.parse(fs.readFileSync(new URL('../../src/catalog.json', import.meta.url))).books.map(book => book.id);
+    const states = Object.fromEntries(ids.slice(0, 150).map((id, index) => [id, index < 120 ? ['onemli', 'alindi'] : ['alindi']]));
+    const context = await browser.newContext({ viewport: { width: 320, height: 800 } });
+    await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.request().url().includes('routes.json') ? route.fulfill({ status: 404, json: {} }) : route.fulfill({ json: EMPTY }));
+    await context.route('https://api.github.com/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
+    await context.addInitScript(([seed, size]) => {
+      if (!sessionStorage.getItem('seeded')) { sessionStorage.setItem('seeded', '1'); localStorage.setItem('kitapatlasi:states:v2', seed); }
+      document.addEventListener('DOMContentLoaded', () => { document.documentElement.style.fontSize = size; });
+    }, [JSON.stringify(states), text]);
+    const page = await context.newPage();
+    await page.goto('./');
+    await expect(page.locator('.header-favorites')).toHaveAccessibleName('Favoriler: 120 kitap');
+    await expect(page.locator('.header-favorites .shortcut-count')).toHaveText('120');
+    await expect(page.locator('.header-library .shortcut-count')).toHaveText('150');
+    const overlap = (a, b) => a.x < b.x + b.width - 0.5 && b.x < a.x + a.width - 0.5 && a.y < b.y + b.height - 0.5 && b.y < a.y + a.height - 0.5;
+    const boxes = await page.evaluate(() => [...document.querySelectorAll('.header-shortcuts button')].map(button => ({
+      button: button.getBoundingClientRect().toJSON(),
+      icon: button.querySelector('svg')?.getBoundingClientRect().toJSON(),
+      count: button.querySelector('.shortcut-count')?.getBoundingClientRect().toJSON(),
+    })));
+    for (const [index, { button, icon, count }] of boxes.entries()) {
+      if (!count) continue;
+      expect(overlap(count, icon), `count ${index} is beside its icon`).toBe(false);
+      expect(count.x >= button.x - 0.5 && count.x + count.width <= button.x + button.width + 0.5, `count ${index} is inside its button`).toBe(true);
+    }
+    for (let index = 1; index < boxes.length; index += 1) {
+      const [a, b] = [boxes[index - 1].button, boxes[index].button];
+      expect(overlap(a, b), `shortcuts ${index - 1} and ${index} do not overlap`).toBe(false);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await context.close();
+  });
+}
 
 test('in forced colours the section marker takes the system highlight', async ({ browser, browserName }) => {
   test.skip(browserName !== 'chromium', 'Playwright emulates forced colours in Chromium only.');

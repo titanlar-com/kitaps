@@ -55,14 +55,23 @@ for (const [width, height, shown] of [[844, 390, false], [915, 412, false], [767
   });
 }
 
-test('a count taken with the keyboard leaves focus on the main content, not lost on the page', async ({ page }) => {
+test('a count taken with the keyboard leaves focus on the main content, not lost on the page', async ({ page, browserName }) => {
+  // Safari moves Tab between fields only; Option+Tab reaches every control, as in ui-quality.spec.js.
+  const tab = browserName === 'webkit' ? 'Alt+Tab' : 'Tab';
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('./');
-  const count = band(page).getByRole('button', { name: 'Okunan: 1 kitap' });
-  await count.focus();
+  await expect(band(page)).toBeVisible();
+  // Reach the count with Tab, as a keyboard reader does, so keyboard mode is on.
+  for (let step = 0; step < 40; step += 1) {
+    await page.keyboard.press(tab);
+    if (await page.evaluate(() => document.activeElement?.getAttribute('aria-label') === 'Okunan: 1 kitap')) break;
+  }
+  expect(await page.evaluate(() => document.activeElement?.getAttribute('aria-label'))).toBe('Okunan: 1 kitap');
   await page.keyboard.press('Enter');
   await expect(page.locator('.book-card')).toHaveCount(1);
   await expect.poll(() => page.evaluate(() => document.activeElement?.id)).toBe('main-content');
+  expect(await page.evaluate(() => document.documentElement.dataset.focusMode)).toBe('keyboard');
+  expect(await page.evaluate(() => document.getElementById('main-content').matches(':focus-visible'))).toBe(true);
 });
 
 test('on Sıram the queue comes first and the band after it; its own count stays on the page', async ({ page }) => {
@@ -79,6 +88,8 @@ test('on Sıram the queue comes first and the band after it; its own count stays
   await band(page).getByRole('button', { name: /^Sıramda:/ }).click();
   expect(await page.evaluate(() => history.length)).toBe(before);
   await expect(page).toHaveURL(/view=queue/);
+  // A pointer user sees something happen: the page goes back to the top of the queue.
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
 });
 
 test('with purchases hidden, a reading-mark filter counts and lists the purchased books and says so', async ({ page }) => {
@@ -93,4 +104,6 @@ test('with purchases hidden, a reading-mark filter counts and lists the purchase
   await page.getByRole('dialog').getByRole('button', { name: 'Kitapları göster' }).click();
   await expect(page.locator('.book-card')).toHaveCount(1);
   await expect(page.locator('.purchases-note')).toHaveText('Satın aldığın kitaplar da listede, çünkü okuma işaretine göre süzdün.');
+  // The note is announced with the result count.
+  await expect(page.locator('.results-heading [role="status"] .purchases-note')).toHaveCount(1);
 });

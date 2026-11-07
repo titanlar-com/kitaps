@@ -79,7 +79,7 @@ test('the footer bar names the current section, and its menu keeps every group a
             - listitem:
               - button "Kızım için"
             - listitem:
-              - button "Favoriler"
+              - 'button "Favoriler: 0 kitap"'
             - listitem:
               - 'button "Kitaplığım: 0 kitap"'
         - region "Araçlar":
@@ -105,7 +105,7 @@ const PAGES = [
   ['./?view=bookstores', 'Kitapçılar', { level: 1, name: 'Kitapçılar' }],
   ['./?view=fairs', 'Kitap fuarları', { level: 1, name: 'Kitap fuarları' }],
   ['./?view=notes', 'Notlar ve kaynaklar', { level: 1, name: 'Kaynaklar ve notlar' }],
-  ['./?view=favorites', 'Favoriler', { level: 1, name: 'Favorilerim' }],
+  ['./?view=favorites', /^Favoriler/, { level: 1, name: 'Favorilerim' }],
   ['./?view=library', /^Kitaplığım/, { level: 1, name: 'Kitaplığım' }],
 ];
 for (const [address, item, heading] of PAGES) {

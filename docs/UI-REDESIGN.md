@@ -37,7 +37,7 @@ Bütün bileşenler `@mantine/core` 9.6.3 içindedir. Yeni paket yalnız somut b
 
 | Ekran | Bileşenler |
 |---|---|
-| Uygulama kabuğu | AppShell (üst ve alt bölüm), Tabs ile FloatingIndicator, ActionIcon ile Indicator (sayaçlar), Switch, Menu, Tooltip, Affix (yukarı dön), Kbd (arama kısayolu) |
+| Uygulama kabuğu | AppShell (üst ve alt bölüm), Tabs ile FloatingIndicator, ActionIcon ve yanında sayı (sayaçlar; köşedeki rozet büyük yazıda simgeyi örttüğü için kullanılmaz), Switch, Menu, Tooltip, Affix (yukarı dön), Kbd (arama kısayolu) |
 | Katalog | Okuma özeti için Progress (çubuk) ve Türkçe sayı biçimi, Paper başlık bandı, TextInput ve Kbd, Chip, Badge, Card ve AspectRatio ile kitap kartı, HoverCard (fareyle önizleme, tek yol değildir), Skeleton, EmptyState, Pagination |
 | Kitap ayrıntısı | Drawer, Breadcrumbs, Badge, DataList (baskı ve çeviri bilgisi), Progress (sayfa ilerlemesi), Timeline (okuma geçmişi), Spoiler (uzun notlar), Accordion |
 | Sıram | Timeline ya da Stepper biçiminde sıralı liste, ActionIcon grupları |
