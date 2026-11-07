@@ -1,10 +1,12 @@
 import { viewById, viewFromParam } from './views.js';
-import { displayTitle } from './translation.js';
+import { booksForShelf, emptyFilters, filterBooks, normalize, prepareBooks, sortBooks } from './core/catalog/query.js';
+
+// The filter, sort and shelf rules live in the data core (ADR 003, phase 3).
+export { booksForShelf, emptyFilters, filterBooks, normalize, prepareBooks, sortBooks };
 
 export const STATE_LABELS = { onemli: 'Favori', alinacak: 'Alınacak', alindi: 'Satın alındı', okunuyor: 'Okunuyor', okundu: 'Okundu', araverildi: 'Ara verdim', birakildi: 'Bıraktım' };
 export const QUALITY_LABELS = { ok: 'Kaynakta doğrulanmış', warn: 'Baskı / çeviri uyarısı', unverified: 'Künye eksik', avoid: 'Kaçınılacak baskı notu' };
 export const ORIGIN_LABELS = { atlas: 'Kitap Atlası', local: 'Okuma Kümeleri', kitaps: 'Kitaps', entrepreneurship: 'Girişimcilik araştırması', foundations: 'Temel okumalar araştırması', preparation: 'Ön hazırlık araştırması', children: 'Çocuk kütüphanesi araştırması', shelf: 'Raf taraması değerlendirmesi', originals: 'Özgün kaynaklar araştırması', founders: 'Yönetim kurucuları araştırması', managerprep: 'Yönetici adayı programı', managerareas: 'Yöneticinin okuma alanları', shelfphotos: 'Raf fotoğrafları', peker: 'Sedat Peker videoları', stoic: 'Yönetici için Stoacılık' };
-export const emptyFilters = () => ({ query: '', categories: [], collections: [], groups: [], states: [], authors: [], origins: [], awards: [], awardYears: [], qualities: [], addedDates: [], categoryMode: 'any', collectionMode: 'any', hasEdition: false, shared: false, yearMin: '', yearMax: '' });
 // A day such as "2026-10-04" read as "4 Ekim 2026", independent of the reader's time zone.
 const dayFormat = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 export function formatDay(day) {
@@ -12,52 +14,6 @@ export function formatDay(day) {
  const date = new Date(`${day}T00:00:00Z`);
  // A day that does not exist (2026-02-30) is not shown rather than shown wrong.
  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === day ? dayFormat.format(date) : '';
-}
-export const normalize = value => String(value ?? '').toLocaleLowerCase('tr-TR').replace(/ı/g, 'i').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[’‘]/g, "'");
-export function prepareBooks(books) {
- return books.map(book => ({ ...book, searchText: normalize([book.title, book.titleTr, book.cover?.title, book.cover?.publisher, book.cover?.isbn, book.author, ...book.aliases, ...(book.verifiedEdition?.translators||[]), book.verifiedEdition?.publisher, book.verifiedEdition?.isbn, ...book.editions.flatMap(e => [e.translator,e.publisher,e.turkish,e.original]), ...book.notes.map(n=>n.text)].join(' ')) }));
-}
-const matchesValues = (actual, selected, mode = 'any') => !selected.length || (mode === 'all' ? selected.every(x => actual.includes(x)) : selected.some(x => actual.includes(x)));
-export function filterBooks(books, filters, states = {}) {
- const f = { ...emptyFilters(), ...filters };
- const tokens = normalize(f.query).trim().split(/\s+/).filter(Boolean);
- return books.filter(b => {
-  if (!tokens.every(t => b.searchText.includes(t))) return false;
-  if (!matchesValues(b.categories, f.categories, f.categoryMode)) return false;
-  if (!matchesValues(b.collectionIds, f.collections, f.collectionMode)) return false;
-  if (!matchesValues(b.groupIds, f.groups)) return false;
-  if (!matchesValues(states[b.id] || [], f.states)) return false;
-  if (!matchesValues([b.author], f.authors)) return false;
-  if (!matchesValues(b.origins, f.origins)) return false;
-  if (!matchesValues([b.addedAt], f.addedDates)) return false;
-  if (!matchesValues(b.editions.flatMap(e => e.status || []), f.qualities)) return false;
-  if (f.hasEdition && !b.verifiedEdition && !b.editions.some(e => e.translator || e.publisher)) return false;
-  if (f.shared && b.collectionIds.length < 2) return false;
-  if ((f.yearMin !== '' || f.yearMax !== '') && !b.years.some(y => (f.yearMin === '' || y >= Number(f.yearMin)) && (f.yearMax === '' || y <= Number(f.yearMax)))) return false;
-  // The award and its year must match the SAME membership, not two unrelated records.
-  if ((f.awards.length || f.awardYears.length) && !b.memberships.some(m => m.collectionId === 'ft' && matchesValues([m.award],f.awards) && matchesValues([String(m.awardYear)],f.awardYears))) return false;
-  return true;
- });
-}
-export function sortBooks(books, sort, states = {}, rankings = {}) {
- const collator = new Intl.Collator('tr', { sensitivity: 'base', numeric: true });
- const title = b => displayTitle(b);
- return [...books].sort((a,b) => {
-  const tie = () => collator.compare(title(a),title(b));
-  // General books come before children's books, which are ranked among
-  // themselves. Books with an equal priority share a rank and read
-  // alphabetically by the title the reader sees, never by internal identifiers.
-  const audience = id => rankings[id]?.audience === 'children' ? 1 : 0;
-  const byReading = () => audience(a.id)-audience(b.id)||(rankings[a.id]?.rank??Number.MAX_SAFE_INTEGER)-(rankings[b.id]?.rank??Number.MAX_SAFE_INTEGER)||tie();
-  if (sort === 'reading') return byReading();
-  // Latest additions first; books added on the same day keep their reading order.
-  if (sort === 'added') return (b.addedAt||'').localeCompare(a.addedAt||'') || byReading();
-  if (sort === 'shared') return b.collectionIds.length - a.collectionIds.length || tie();
-  if (sort === 'author') return collator.compare(a.author,b.author) || tie();
-  if (sort === 'newest') return Math.max(0,...b.years) - Math.max(0,...a.years) || tie();
-  if (sort === 'saved') return Number((states[b.id]||[]).includes('onemli')) - Number((states[a.id]||[]).includes('onemli')) || tie();
-  return tie();
- });
 }
 export function toggleState(current, key) {
  const result = new Set(current || []);
@@ -164,6 +120,3 @@ export function plainTextMarkers(text) {
   .replace(/\u{1F6AB}\uFE0F?/gu,'[Bu baskıdan kaçın]');
 }
 
-export function booksForShelf(books,states,shelf='catalog') {
- return books.filter(book=>shelf==='owned'?(states[book.id]||[]).includes('alindi'):shelf==='favorites'?(states[book.id]||[]).includes('onemli'):true);
-}
