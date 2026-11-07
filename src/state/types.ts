@@ -81,17 +81,22 @@ export type PendingStateMutation =
  *   before its first unsent edit, or what this device last sent of it. With a base, the
  *   edit is merged with what another device saved meanwhile (three-way); without one (an
  *   edit queued by older code), the later stamp wins.
- * - `sent`: what this device's writes put in the shared file since the base, newest last,
- *   noted just before each PUT. A write can reach GitHub without the page hearing back (a
- *   phone page closing); when the shared field still carries one of these stamps, that
- *   version is the base. `writes` are the ids of the writes that sent the version, as named
- *   in their commit messages; once state.json's commit history shows one, `landed` is set,
- *   and a version the history shows none of is dropped. */
+ * - `sent`: what this device sent of the edit since the base (its values and edit stamps),
+ *   newest last, noted just before each PUT. A write can reach GitHub without the page
+ *   hearing back (a phone page closing); when the shared field still carries one of these
+ *   stamps, that version is the base. `writes` are the PUTs that sent it; once state.json's
+ *   commit history lists one, `landed` is set, and a version none of whose writes can still
+ *   land is dropped. */
 export type MutationBasis =
   | { kind: 'book'; stamps: Partial<Record<BookField, string>>; base: BookStatePayload; sent?: SentBookVersion[] }
   | { kind: 'queue'; base: string[]; sent?: SentQueueVersion[] };
-export interface SentBookVersion { stamps: Partial<Record<BookField, string>>; value: BookStatePayload; writes?: string[]; landed?: true }
-export interface SentQueueVersion { stamp: string; value: string[]; writes?: string[]; landed?: true }
+export interface SentBookVersion { stamps: Partial<Record<BookField, string>>; value: BookStatePayload; writes?: SentWrite[]; landed?: true }
+export interface SentQueueVersion { stamp: string; value: string[]; writes?: SentWrite[]; landed?: true }
+/** One PUT that sent a version: its id (in the commit message), when this device sent it,
+ * and the blob sha of state.json it was written on ('' when there was no file). GitHub takes
+ * a write only on the current blob, so once another write replaced that blob, a write the
+ * history does not list can never land. */
+export interface SentWrite { id: string; at: string; sha: string }
 /** A write's id in its commit message: `Update Kitaplık state (write <id>)`. */
 export const WRITE_ID_PATTERN = /^[a-z0-9-]{8,64}$/;
 /** At most this many unconfirmed sends are remembered per edit. */

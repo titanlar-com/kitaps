@@ -22,6 +22,7 @@ import {
   type MutationBasis,
   type SentBookVersion,
   type SentQueueVersion,
+  type SentWrite,
   type PendingRecoveryCopy,
   type PendingStateMutation,
   type PendingStore,
@@ -131,6 +132,9 @@ const decodeBase64 = (value: string): string => {
 const header = (response: Response, name: string): string => response.headers?.get?.(name) ?? '';
 /** How many commits one history read lists; fewer means the whole history was read. */
 const HISTORY_PAGE_SIZE = 100;
+/** The history is read from this long before a write, as this device's clock may be off. */
+const HISTORY_CLOCK_MARGIN_MS = 24 * 60 * 60 * 1000;
+const HISTORY_RETRY_MS = 60_000;
 const newWriteId = (): string => globalThis.crypto?.randomUUID?.() ?? `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
 /** Two sent versions with the same stamps and values, whichever writes sent them. */
 const sameVersion = (left: SentBookVersion | SentQueueVersion, right: SentBookVersion | SentQueueVersion): boolean => {
@@ -165,8 +169,12 @@ export class GitHubStateRepository {
   /** The shared file the page last showed, merged with the unsent edits (loadWithPending,
    * flushPending). A folded edit made on that view is based on it. */
   private viewed?: StateDocument;
-  /** The open write ids last asked about in the commit history (see resolveUnanswered). */
+  /** The open writes last asked about in the commit history, and when a failed lookup may
+   * be tried again (see resolveUnanswered). */
   private askedHistory = '';
+  private historyRetryAt = 0;
+  /** state.json's blob sha as this page last read or wrote it ('' for no file). */
+  private knownSha?: string;
   /** The books (`book:<id>`) and queue a PUT under way writes, and that PUT's write id. */
   private readonly sending = new Map<string, string>();
   /** Whether `newest` was read or written in this visit, rather than kept from an earlier one. */
@@ -508,7 +516,8 @@ export class GitHubStateRepository {
   async flushPending(options: SaveOptions = {}): Promise<StateDocument> {
     const snapshot = this.readPending().mutations;
     if (!snapshot.length) return this.load();
-    await this.resolveUnanswered();
+    // A page being left sends at once; the history waits for the next visit.
+    if (!options.keepalive) await this.resolveUnanswered();
     const saved = await this.save(snapshot, options);
     const completed = new Set(snapshot.map(item => item.id));
     const remaining = this.readPending().mutations.filter(item => !completed.has(item.id));
@@ -544,12 +553,12 @@ export class GitHubStateRepository {
     return applyPendingMutations(saved, remaining, this.settled(bases));
   }
 
-  /** Just before a PUT, what it writes is remembered with the edits it carries (see
-   * MutationBasis.sent): the shared values and stamps of `merged` for their fields, and the
-   * write's id, so a later visit can tell whether it landed. The edits pending now get it,
+  /** Just before a PUT, what it sends is remembered with the edits it carries (see
+   * MutationBasis.sent): each edit's own values and edit stamps, which a later merge takes
+   * as the base once the write landed, and the write itself. The edits pending now get it,
    * also one folded meanwhile. The same values sent again stay one version that lists both
    * writes. Returns the books and queue it was noted for. */
-  private noteSending(mutations: readonly PendingStateMutation[], merged: StateDocument, write: string): string[] {
+  private noteSending(mutations: readonly PendingStateMutation[], known: ReadonlyMap<string, MutationBasis>, write: SentWrite): string[] {
     const pending = this.readPending().mutations;
     const bases = this.readBasis(pending);
     const noted: string[] = [];
@@ -557,22 +566,22 @@ export class GitHubStateRepository {
       const key = sendKey(item);
       const target = pending.find(other => sendKey(other) === key);
       const basis = target ? bases.get(target.id) : undefined;
-      if (!target || !basis) continue;
+      const own = known.get(item.id);
+      if (!target || !basis || !own) continue;
       let version: SentBookVersion | SentQueueVersion | undefined;
-      if (basis.kind === 'queue' && item.kind === 'queue' && merged.queue) version = { stamp: merged.queue.updatedAt, value: [...merged.queue.value] };
-      else if (basis.kind === 'book' && item.kind === 'book' && item.value) {
-        const record = merged.books[item.bookId];
-        if (!record?.value) continue;
+      if (basis.kind === 'queue' && item.kind === 'queue') version = { stamp: item.updatedAt, value: [...item.value] };
+      else if (basis.kind === 'book' && own.kind === 'book' && item.kind === 'book' && item.value) {
         const fields = BOOK_FIELDS.filter(field => field in item.value!);
         version = {
-          stamps: Object.fromEntries(fields.map(field => [field, record.stamps?.[field] ?? record.updatedAt])),
-          value: Object.fromEntries(fields.map(field => [field, structuredClone(record.value![field] ?? (field === 'states' ? [] : null))])),
+          stamps: Object.fromEntries(fields.map(field => [field, own.stamps[field] ?? item.updatedAt])),
+          value: Object.fromEntries(fields.map(field => [field, structuredClone(item.value![field] ?? (field === 'states' ? [] : null))])),
         };
       }
       if (!version) continue;
       const sent = [...(basis.sent ?? [])] as Array<SentBookVersion | SentQueueVersion>;
       const index = sent.findIndex(earlier => sameVersion(earlier, version!));
-      if (index >= 0) sent[index] = { ...sent[index], writes: [...(sent[index].writes ?? []), write].slice(-MAX_SENT_VERSIONS) };
+      // At most MAX_SENT_VERSIONS writes per version; a version that reached it is never dropped.
+      if (index >= 0) { if ((sent[index].writes?.length ?? 0) < MAX_SENT_VERSIONS) sent[index] = { ...sent[index], writes: [...(sent[index].writes ?? []), write] }; }
       else sent.push({ ...version, writes: [write] });
       bases.set(target.id, { ...basis, sent: sent.slice(-MAX_SENT_VERSIONS) } as MutationBasis);
       noted.push(key);
@@ -592,9 +601,9 @@ export class GitHubStateRepository {
       const basis = bases.get(item.id);
       if (!basis?.sent || !keys.includes(sendKey(item))) continue;
       const sent = (basis.sent as Array<SentBookVersion | SentQueueVersion>).flatMap(version => {
-        if (!version.writes?.includes(write)) return [version];
+        if (!version.writes?.some(other => other.id === write)) return [version];
         changed = true;
-        const writes = version.writes.filter(other => other !== write);
+        const writes = version.writes.filter(other => other.id !== write);
         return writes.length || version.landed ? [{ ...version, writes }] : [];
       });
       const { sent: _dropped, ...rest } = basis;
@@ -611,7 +620,7 @@ export class GitHubStateRepository {
     const inFlight = new Set(this.sending.values());
     for (const [id, basis] of bases) {
       if (!basis.sent) continue;
-      const sent = (basis.sent as Array<SentBookVersion | SentQueueVersion>).filter(version => version.landed || !version.writes?.length || version.writes.some(write => !inFlight.has(write)));
+      const sent = (basis.sent as Array<SentBookVersion | SentQueueVersion>).filter(version => version.landed || !version.writes?.length || version.writes.some(write => !inFlight.has(write.id)));
       if (sent.length === basis.sent.length) continue;
       const { sent: _inFlight, ...rest } = basis;
       result.set(id, (sent.length ? { ...rest, sent } : rest) as MutationBasis);
@@ -620,36 +629,44 @@ export class GitHubStateRepository {
   }
 
   /** A write whose answer never came either landed or did not. state.json's commit history
-   * tells which, by the write id in the commit message: a version a listed write sent is
-   * marked landed, and one no write in a complete history sent is dropped, so the merge no
-   * longer has to guess. Without a key, or when GitHub cannot answer, nothing changes and
-   * the merge goes by stamps as before. Each set of open writes is asked about once per page. */
+   * tells which: a version a listed write sent is marked landed. A write the history does
+   * not list can never land once state.json's blob is no longer the one it was written on
+   * (GitHub takes a write only on the current blob), so a version all of whose writes are
+   * like that is dropped. The history is read from a day before the oldest open write, to
+   * allow for this device's clock; a full page proves nothing. Without a key, when GitHub
+   * cannot answer, or for a write still on its way from this page, nothing changes and the
+   * merge goes by stamps. Each set of open writes is asked about once per page; a failed
+   * lookup is tried again a minute later. */
   private async resolveUnanswered(): Promise<void> {
     const token = this.readStorage(GITHUB_STATE_TOKEN_KEY)?.trim();
-    if (!token) return;
+    const current = this.knownSha;
+    if (!token || current === undefined) return;
     const inFlight = new Set(this.sending.values());
-    const open = new Set<string>();
+    const open = new Map<string, SentWrite>();
     for (const basis of this.readBasis(this.readPending().mutations).values()) {
       for (const version of (basis.sent ?? []) as Array<SentBookVersion | SentQueueVersion>) {
-        if (!version.landed) for (const write of version.writes ?? []) if (!inFlight.has(write)) open.add(write);
+        if (!version.landed) for (const write of version.writes ?? []) if (!inFlight.has(write.id)) open.set(write.id, write);
       }
     }
-    const question = [...open].sort().join(' ');
-    if (!open.size || this.askedHistory === question) return;
-    this.askedHistory = question;
+    const question = `${current} ${[...open.keys()].sort().join(' ')}`;
+    if (!open.size || this.askedHistory === question || this.clock().getTime() < this.historyRetryAt) return;
+    const oldest = Math.min(...[...open.values()].map(write => Date.parse(write.at)));
     let messages: string[];
     let complete: boolean;
     try {
-      const response = await this.request(this.commitsUrl(), { headers: this.headers(token) });
-      if (!response.ok) return;
+      const response = await this.request(this.commitsUrl(new Date(oldest - HISTORY_CLOCK_MARGIN_MS).toISOString()), { headers: this.headers(token) });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const list = await response.json() as unknown;
-      if (!Array.isArray(list)) return;
+      if (!Array.isArray(list)) throw new Error('Not a commit list.');
       messages = list.map(item => String((item as { commit?: { message?: unknown } })?.commit?.message ?? ''));
       complete = list.length < HISTORY_PAGE_SIZE;
     } catch {
+      this.historyRetryAt = this.clock().getTime() + HISTORY_RETRY_MS;
       return;
     }
-    const listed = new Set([...open].filter(write => messages.some(message => message.includes(`(write ${write})`))));
+    this.askedHistory = question;
+    const listed = (write: SentWrite): boolean => messages.some(message => message.includes(`(write ${write.id})`));
+    const lost = (write: SentWrite): boolean => complete && !listed(write) && write.sha !== current;
     const mutations = this.readPending().mutations;
     const bases = this.readBasis(mutations);
     let changed = false;
@@ -657,11 +674,10 @@ export class GitHubStateRepository {
       const basis = bases.get(item.id);
       if (!basis?.sent) continue;
       const sent = (basis.sent as Array<SentBookVersion | SentQueueVersion>).flatMap(version => {
-        const asked = (version.writes ?? []).filter(write => open.has(write));
-        if (version.landed || !asked.length) return [version];
-        if (asked.some(write => listed.has(write))) { changed = true; return [{ ...version, landed: true as const }]; }
-        // Only the writes asked about are known not to have landed; one still under way may yet.
-        if (complete && asked.length === version.writes!.length) { changed = true; return []; }
+        const writes = version.writes ?? [];
+        if (version.landed || !writes.length) return [version];
+        if (writes.some(write => open.has(write.id) && listed(write))) { changed = true; return [{ ...version, landed: true as const }]; }
+        if (writes.length < MAX_SENT_VERSIONS && writes.every(write => open.has(write.id) && lost(write))) { changed = true; return []; }
         return [version];
       });
       const { sent: _resolved, ...rest } = basis;
@@ -687,13 +703,13 @@ export class GitHubStateRepository {
     for (let attempt = 0; attempt < attempts; attempt += 1) {
       remote ??= await this.readApi(true, true);
       const merged = publicStateDocument(applyPendingMutations(remote.document, mutations, bases));
-      const write = newWriteId();
+      const write: SentWrite = { id: newWriteId(), at: this.clock().toISOString(), sha: remote.sha ?? '' };
       // The file's own time always moves forward, so any copy from before this
       // write is recognisably older (see keepNewest).
       merged.updatedAt = new Date(Math.max(Date.parse(merged.updatedAt), Date.parse(remote.document.updatedAt) + 1, this.clock().getTime())).toISOString();
       const body = JSON.stringify({
         // The id lets a later visit find out from the history whether this write landed.
-        message: `Update Kitaplık state (write ${write})`,
+        message: `Update Kitaplık state (write ${write.id})`,
         content: encodeBase64(`${JSON.stringify(merged, null, 2)}\n`),
         branch: this.branch,
         author: GITHUB_STATE_COMMIT_IDENTITY,
@@ -702,20 +718,20 @@ export class GitHubStateRepository {
       });
       // An offline browser sends nothing, so nothing is remembered as sent.
       if (typeof navigator !== 'undefined' && navigator.onLine === false) throw new GitHubStateRepositoryError('network', 'The browser is offline.');
-      const noted = this.noteSending(mutations, merged, write);
-      for (const key of noted) this.sending.set(key, write);
+      const noted = this.noteSending(mutations, bases, write);
+      for (const key of noted) this.sending.set(key, write.id);
       let response: Response;
       try {
         response = await this.request(this.contentsUrl(), { method: 'PUT', headers: this.headers(token), body, keepalive: options.keepalive === true && body.length < KEEPALIVE_BODY_LIMIT });
       } catch (error) {
         // A request the browser refused while offline never left it.
-        if (typeof navigator !== 'undefined' && navigator.onLine === false) this.forgetSending(noted, write);
+        if (typeof navigator !== 'undefined' && navigator.onLine === false) this.forgetSending(noted, write.id);
         throw error;
       } finally {
-        for (const key of noted) if (this.sending.get(key) === write) this.sending.delete(key);
+        for (const key of noted) if (this.sending.get(key) === write.id) this.sending.delete(key);
       }
       // GitHub's answer, other than a server error, means this write did not land.
-      if (!response.ok && response.status < 500) this.forgetSending(noted, write);
+      if (!response.ok && response.status < 500) this.forgetSending(noted, write.id);
       if ((response.status === 409 || response.status === 422) && attempt < attempts - 1) {
         this.cached = undefined;
         remote = undefined;
@@ -726,6 +742,7 @@ export class GitHubStateRepository {
       const sha = typeof written?.content?.sha === 'string' ? written.content.sha : undefined;
       // No ETag: the next read is unconditional, but the next write can start here.
       this.cached = sha ? { etag: '', file: { document: structuredClone(merged), sha } } : undefined;
+      if (sha) this.knownSha = sha;
       this.remember(merged);
       return merged;
     }
@@ -826,9 +843,10 @@ export class GitHubStateRepository {
     const etag = conditional ? this.cached?.etag : undefined;
     const response = await this.request(`${this.contentsUrl()}?ref=${encodeURIComponent(this.branch)}`, { headers: this.headers(token, etag) });
     if (response.status === 304 && this.cached) return structuredClone(this.cached.file);
-    if (response.status === 404 && allowMissing) return { document: emptyStateDocument() };
+    if (response.status === 404 && allowMissing) { this.knownSha = ''; return { document: emptyStateDocument() }; }
     if (!response.ok) throw this.errorForResponse(response);
     const file = await this.parseContents(response);
+    if (file.sha) this.knownSha = file.sha;
     const nextEtag = header(response, 'ETag');
     this.cached = nextEtag ? { etag: nextEtag, file: structuredClone(file) } : undefined;
     return file;
@@ -1052,8 +1070,8 @@ export class GitHubStateRepository {
   }
 
   /** state.json's commits on the branch, newest first. */
-  private commitsUrl(): string {
-    return `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repository)}/commits?path=${encodeURIComponent(this.path)}&sha=${encodeURIComponent(this.branch)}&per_page=${HISTORY_PAGE_SIZE}`;
+  private commitsUrl(since: string): string {
+    return `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repository)}/commits?path=${encodeURIComponent(this.path)}&sha=${encodeURIComponent(this.branch)}&since=${encodeURIComponent(since)}&per_page=${HISTORY_PAGE_SIZE}`;
   }
 
   private blobsUrl(): string {

@@ -183,7 +183,8 @@ export function mergeQueue(base: readonly string[], local: readonly string[], re
   return result;
 }
 
-const validWrite = (version: Record<string, unknown>): boolean => (version.writes === undefined || (Array.isArray(version.writes) && version.writes.length <= MAX_SENT_VERSIONS && version.writes.every(write => typeof write === 'string' && WRITE_ID_PATTERN.test(write)))) && (version.landed === undefined || version.landed === true);
+const validWrite = (version: Record<string, unknown>): boolean => (version.writes === undefined || (Array.isArray(version.writes) && version.writes.length <= MAX_SENT_VERSIONS && version.writes.every(write =>
+  isObject(write) && exactKeys(write, ['id', 'at', 'sha']) && typeof write.id === 'string' && WRITE_ID_PATTERN.test(write.id) && validTimestamp(write.at) && typeof write.sha === 'string' && /^[0-9a-z-]{0,64}$/.test(write.sha)))) && (version.landed === undefined || version.landed === true);
 
 /** Checks a mutation's basis before it is trusted; a basis that does not fit its
  * mutation is not used, and the edit merges as one without a basis. */
