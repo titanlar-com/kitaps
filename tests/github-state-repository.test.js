@@ -809,14 +809,17 @@ test('keeping this device’s edits bases them on the file decided against; a se
 
 // A fake GitHub for writes: `gate` holds the next write until released; `lose` stores the
 // next write but answers as if it failed, as when a phone page closes or the network drops.
+// `commits` is state.json's history, newest first, as GitHub lists it.
 function writableGitHub(start=emptyStateDocument()){
- const server={file:start,sha:'sha-0',puts:0,gate:null,lose:false};
+ const server={file:start,sha:'sha-0',puts:0,gate:null,lose:false,commits:[]};
  server.fetch=async(url,init={})=>{
+  if(!init.method&&url.includes('/commits?'))return new Response(JSON.stringify(server.commits),{status:200});
   if(init.method==='PUT'){
    if(server.gate){const gate=server.gate;server.gate=null;await gate;}
    const body=JSON.parse(init.body);
    if(body.sha!==server.sha)return new Response('{}',{status:409});
    server.file=JSON.parse(Buffer.from(body.content,'base64').toString('utf8'));server.sha=`sha-${++server.puts}`;
+   server.commits.unshift({sha:server.sha,commit:{message:body.message}});
    if(server.lose){server.lose=false;return new Response('{}',{status:500});}
    return new Response(JSON.stringify({content:{sha:server.sha}}),{status:200});
   }
@@ -992,6 +995,137 @@ test('an edit is based on the file the page shows, not on a newer read the page 
  repository.queueBookState('a',{states:['okunuyor']},undefined,{states:shown.books.a.value.states});
  const result=applyPendingMutations(newer,repository.pendingMutations(),basisOf(local));
  assert.deepEqual([...result.books.a.value.states].sort(),['alindi','okunuyor'],'the mark from the read not yet shown stays, the removed one goes');
+});
+
+// Second review of 7 November 2026: only a write that went out can be unanswered.
+const offline=async task=>{
+ const before=Object.getOwnPropertyDescriptor(globalThis,'navigator');
+ Object.defineProperty(globalThis,'navigator',{value:{onLine:false},configurable:true});
+ try{return await task();}finally{Object.defineProperty(globalThis,'navigator',before);}
+};
+/** A write that leaves the device but is lost on the way: GitHub never stores it. */
+const droppingFetch=server=>async(url,init={})=>{if(init.method==='PUT'&&server.drop){server.drop=false;throw new TypeError('Failed to fetch');}return server.fetch(url,init);};
+
+test('a write that never left the device is not remembered as sent, so both devices’ changes stay',async()=>{
+ const server=writableGitHub();let now=Date.parse(timestamp(10));
+ const local=withToken();
+ const repository=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:server.fetch});
+ await repository.load();
+ repository.queueBookState('a',{states:['onemli']},undefined,{states:[]});
+ repository.queueQueueState(['a'],undefined,[]);
+ await offline(()=>assert.rejects(()=>repository.flushPending(),error=>error.code==='network'));
+ assert.equal(server.puts,0,'nothing is written while the browser is offline');
+ // A read that fails before the write: no write is made either.
+ const failing=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:async(url,init={})=>{if(!init.method)throw new TypeError('Failed to fetch');return server.fetch(url,init);}});
+ await assert.rejects(()=>failing.flushPending(),error=>error.code==='network');
+ assert.equal(server.puts,0);
+ // The computer adds a mark and a book; back online, both devices' changes stay.
+ now=Date.parse(timestamp(20));
+ const computer=new GitHubStateRepository({storage:withToken(),clock:()=>new Date(now),fetch:server.fetch});
+ await computer.load();
+ computer.queueBookState('a',{states:['alindi']},undefined,{states:[]});
+ computer.queueQueueState(['c'],undefined,[]);
+ await computer.flushPending();
+ now=Date.parse(timestamp(30));
+ await new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:server.fetch}).flushPending();
+ assert.deepEqual([...server.file.books.a.value.states].sort(),['alindi','onemli']);
+ assert.deepEqual([...server.file.queue.value].sort(),['a','c']);
+});
+
+test('a send stamped after the shared field cannot have landed, so the edit merges against its first base',async()=>{
+ const server=writableGitHub();
+ const local=withToken();
+ const phone=new GitHubStateRepository({storage:local,clock:()=>new Date(timestamp(30)),fetch:droppingFetch(server)});
+ await phone.load();
+ phone.queueBookState('a',{states:['onemli']},undefined,{states:[]});
+ server.drop=true;
+ await assert.rejects(()=>phone.flushPending(),error=>error.code==='network');
+ assert.equal(server.puts,0,'the write never reached GitHub');
+ // A computer whose clock runs behind adds another mark.
+ const computer=new GitHubStateRepository({storage:withToken(),clock:()=>new Date(timestamp(5)),fetch:server.fetch});
+ await computer.load();
+ computer.queueBookState('a',{states:['alindi']},undefined,{states:[]});
+ await computer.flushPending();
+ await phone.flushPending();
+ assert.deepEqual([...server.file.books.a.value.states].sort(),['alindi','onemli']);
+});
+
+test('GitHub’s history tells whether an unanswered write landed, so a write that never did still merges',async()=>{
+ const server=writableGitHub();let now=Date.parse(timestamp(30));
+ const local=withToken();
+ const phone=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:droppingFetch(server)});
+ await phone.load();
+ phone.queueBookState('a',{states:['onemli']},undefined,{states:[]});
+ phone.queueQueueState(['a'],undefined,[]);
+ server.drop=true;
+ await assert.rejects(()=>phone.flushPending(),error=>error.code==='network');
+ assert.equal(server.puts,0,'the write never reached GitHub');
+ // A computer marks the same book and adds a book later than the phone did.
+ now=Date.parse(timestamp(40));
+ const computer=new GitHubStateRepository({storage:withToken(),clock:()=>new Date(now),fetch:server.fetch});
+ await computer.load();
+ computer.queueBookState('a',{states:['alindi']},undefined,{states:[]});
+ computer.queueQueueState(['c'],undefined,[]);
+ await computer.flushPending();
+ // The phone opens again: its write is not in the history, so it merges as never sent.
+ now=Date.parse(timestamp(45));
+ const reopened=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:server.fetch});
+ const shown=await reopened.loadWithPending();
+ assert.deepEqual([...shown.books.a.value.states].sort(),['alindi','onemli']);
+ await reopened.flushPending();
+ assert.deepEqual([...server.file.books.a.value.states].sort(),['alindi','onemli']);
+ assert.deepEqual([...server.file.queue.value].sort(),['a','c']);
+ // Every write names itself in its commit message.
+ assert.ok(server.commits.every(item=>/\(write [a-z0-9-]{8,64}\)$/.test(item.commit.message)));
+});
+
+test('an edit made on the view after an unanswered send is based on that view, so a later removal stays',async()=>{
+ const server=writableGitHub();let now=Date.parse(timestamp(30));
+ const local=withToken();
+ const phone=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:droppingFetch(server)});
+ await phone.load();
+ phone.queueBookState('a',{states:['onemli']},undefined,{states:[]});
+ server.drop=true;
+ await assert.rejects(()=>phone.flushPending());
+ now=Date.parse(timestamp(40));
+ const computer=new GitHubStateRepository({storage:withToken(),clock:()=>new Date(now),fetch:server.fetch});
+ await computer.load();
+ computer.queueBookState('a',{states:['alindi']},undefined,{states:[]});
+ await computer.flushPending();
+ // The phone opens again; the reader adds a mark on what the page shows.
+ now=Date.parse(timestamp(45));
+ const reopened=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch:droppingFetch(server)});
+ const view=(await reopened.loadWithPending()).books.a.value.states;
+ reopened.queueBookState('a',{states:[...view,'okunuyor']},undefined,{states:view});
+ // The computer takes its mark back before the phone sends.
+ now=Date.parse(timestamp(50));
+ await computer.load();
+ computer.queueBookState('a',{states:[]},undefined,{states:['alindi']});
+ await computer.flushPending();
+ await reopened.flushPending();
+ assert.ok(!server.file.books.a.value.states.includes('alindi'),'the removed mark stays removed');
+ assert.ok(server.file.books.a.value.states.includes('okunuyor'),'the new mark travels');
+});
+
+test('an edit on a view the page kept from before the read, or one that hides books it cannot show, is not based on the newer file',async()=>{
+ const local=storage();const server={file:document({},timestamp(0))};
+ const visit=new GitHubStateRepository({storage:local,clock:()=>new Date(timestamp(20)),fetch:async()=>raw(server.file)});
+ await visit.load();
+ visit.queueBookState('a',{states:['alindi']},undefined,{states:[]});
+ visit.queueQueueState(['a'],undefined,[]);
+ server.file=document({a:record(5,{states:['onemli']},{states:timestamp(5)})},timestamp(5),{updatedAt:timestamp(5),value:['c']});
+ const first=await visit.loadWithPending();
+ // Next visit: the computer added a mark and a book this catalogue does not have. The reader
+ // edits while the first read runs, so the page still shows the first visit's view.
+ server.file=document({a:record(8,{states:['onemli','okunuyor']},{states:timestamp(8)})},timestamp(8),{updatedAt:timestamp(8),value:['c','yeni-kitap']});
+ const next=new GitHubStateRepository({storage:local,clock:()=>new Date(timestamp(25)),fetch:async()=>raw(server.file)});
+ await next.loadWithPending();
+ next.queueBookState('a',{states:['alindi']},undefined,{states:first.books.a.value.states});
+ next.queueQueueState(['c','a'],undefined,first.queue.value);
+ const result=applyPendingMutations(server.file,next.pendingMutations(),basisOf(local));
+ assert.ok(result.books.a.value.states.includes('okunuyor'),'the mark the reader never saw stays');
+ assert.ok(result.books.a.value.states.includes('alindi'));
+ assert.ok(result.queue.value.includes('yeni-kitap'),'a book this device cannot show stays in the queue');
 });
 
 test('edits a damaged record still holds are not sent twice while it cannot be replaced',async()=>{

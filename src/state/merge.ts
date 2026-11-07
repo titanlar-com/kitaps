@@ -14,6 +14,7 @@ import {
   type QueueRecord,
   type ReadingState,
   type StateDocument,
+  WRITE_ID_PATTERN,
 } from './types.ts';
 
 const validTimestamp = (value: unknown): value is string => typeof value === 'string' && Number.isFinite(Date.parse(value));
@@ -182,6 +183,8 @@ export function mergeQueue(base: readonly string[], local: readonly string[], re
   return result;
 }
 
+const validWrite = (version: Record<string, unknown>): boolean => (version.writes === undefined || (Array.isArray(version.writes) && version.writes.length <= MAX_SENT_VERSIONS && version.writes.every(write => typeof write === 'string' && WRITE_ID_PATTERN.test(write)))) && (version.landed === undefined || version.landed === true);
+
 /** Checks a mutation's basis before it is trusted; a basis that does not fit its
  * mutation is not used, and the edit merges as one without a basis. */
 export function assertMutationBasis(value: unknown, mutation: PendingStateMutation): asserts value is MutationBasis {
@@ -191,7 +194,7 @@ export function assertMutationBasis(value: unknown, mutation: PendingStateMutati
     if (!exactKeys(value, ['kind', 'base', 'sent'])) throw new TypeError('Invalid queue basis.');
     assertQueue(value.base, 'queue basis');
     for (const version of (value.sent ?? []) as unknown[]) {
-      if (!isObject(version) || !exactKeys(version, ['stamp', 'value']) || !validTimestamp(version.stamp)) throw new TypeError('Invalid sent queue.');
+      if (!isObject(version) || !exactKeys(version, ['stamp', 'value', 'writes', 'landed']) || !validTimestamp(version.stamp) || !validWrite(version)) throw new TypeError('Invalid sent queue.');
       assertQueue(version.value, 'sent queue');
     }
     return;
@@ -204,7 +207,7 @@ export function assertMutationBasis(value: unknown, mutation: PendingStateMutati
   stampsOf(value.stamps);
   assertBookStatePayload(value.base, mutation.kind === 'book' ? mutation.bookId : undefined);
   for (const version of (value.sent ?? []) as unknown[]) {
-    if (!isObject(version) || !exactKeys(version, ['stamps', 'value'])) throw new TypeError('Invalid sent version.');
+    if (!isObject(version) || !exactKeys(version, ['stamps', 'value', 'writes', 'landed']) || !validWrite(version)) throw new TypeError('Invalid sent version.');
     stampsOf(version.stamps);
     assertBookStatePayload(version.value, mutation.kind === 'book' ? mutation.bookId : undefined);
   }
@@ -233,9 +236,12 @@ export function applyPendingMutations(base: StateDocument, mutations: readonly P
       const shared = queue?.value ?? [];
       const remoteLater = Boolean(queue) && Date.parse(queue!.updatedAt) > Date.parse(mutation.updatedAt);
       if (basis?.kind === 'queue') {
-        const sent = basis.sent ?? [];
-        // A send whose answer never came, which the shared queue still carries, is the base.
-        const landed = queue ? [...sent].reverse().find(version => Date.parse(version.stamp) === Date.parse(queue!.updatedAt)) : undefined;
+        // A landed write never leaves the shared stamp behind its own, so a send stamped after
+        // the shared queue never landed and is left out.
+        const sent = (basis.sent ?? []).filter(version => version.landed || (queue && Date.parse(version.stamp) <= Date.parse(queue.updatedAt)));
+        // A send whose answer never came is the base when GitHub's history shows it landed,
+        // or when the shared queue still carries its stamp.
+        const landed = [...sent].reverse().find(version => version.landed || (queue && Date.parse(version.stamp) === Date.parse(queue.updatedAt)));
         // A send the shared queue does not show may have landed and been changed since, or
         // never landed. Merging it against its first base could bring back what another
         // device took out, so the later edit wins, as without a basis; a later shared queue
@@ -273,9 +279,10 @@ export function applyPendingMutations(base: StateDocument, mutations: readonly P
       const remoteLater = Boolean(remoteStamp) && Date.parse(remoteStamp!) > Date.parse(editedAt);
       const hasBase = Boolean(book) && field in book!.base;
       if (!hasBase && remoteLater) continue;
-      const sent = hasBase ? (book!.sent ?? []).filter(version => field in version.value) : [];
-      // A send whose answer never came, which the shared field still carries, is the base.
-      const landed = remoteStamp ? [...sent].reverse().find(version => version.stamps[field] && Date.parse(version.stamps[field]!) === Date.parse(remoteStamp)) : undefined;
+      // As for the queue: a send stamped after the shared field never landed.
+      const sent = hasBase ? (book!.sent ?? []).filter(version => field in version.value && (version.landed || (remoteStamp && version.stamps[field] && Date.parse(version.stamps[field]!) <= Date.parse(remoteStamp)))) : [];
+      // As for the queue: GitHub's history or the shared field's stamp shows which send landed.
+      const landed = [...sent].reverse().find(version => version.landed || (remoteStamp && version.stamps[field] && Date.parse(version.stamps[field]!) === Date.parse(remoteStamp)));
       // A send the shared field does not show may have landed and been changed since, or
       // never landed (as with the queue above): the later edit wins, and a later shared
       // value is merged with what was last sent.

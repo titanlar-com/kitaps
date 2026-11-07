@@ -25,7 +25,7 @@ test.afterEach(() => {
  * as the real one does for up to five minutes. */
 // refuseKey: GitHub answers every request made with the key with 401, as for an expired key.
 function fakeGitHub({ canWrite = true, cdnLags = false, refuseKey = false } = {}) {
-  const github = { file: structuredClone(EMPTY), sha: 'sha-0', puts: [], probes: 0, elsewhere: [] };
+  const github = { file: structuredClone(EMPTY), sha: 'sha-0', puts: [], commits: [], probes: 0, elsewhere: [] };
   fakes.push(github);
   github.attach = async context => {
     // Registered first, so the state repository's own routes below take precedence.
@@ -39,6 +39,8 @@ function fakeGitHub({ canWrite = true, cdnLags = false, refuseKey = false } = {}
       const request = route.request();
       if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: CORS });
       if (request.url().includes('/contents/routes.json')) return route.fulfill({ status: 404, headers: CORS, json: { message: 'Not Found' } });
+      // state.json's history, newest first: a reopened page asks it whether an unanswered write landed.
+      if (request.method() === 'GET' && request.url().includes('/commits?')) return route.fulfill({ headers: CORS, json: github.commits });
       if (refuseKey && request.headers().authorization) return route.fulfill({ status: 401, headers: CORS, json: { message: 'Bad credentials' } });
       if (request.url().endsWith('/git/blobs')) {
         github.probes += 1;
@@ -50,6 +52,7 @@ function fakeGitHub({ canWrite = true, cdnLags = false, refuseKey = false } = {}
         if (body.sha !== github.sha) return route.fulfill({ status: 409, headers: CORS, json: { message: 'sha does not match' } });
         github.file = JSON.parse(Buffer.from(body.content, 'base64').toString('utf8'));
         github.sha = `sha-${github.puts.push(github.file)}`;
+        github.commits.unshift({ sha: github.sha, commit: { message: body.message } });
         return route.fulfill({ headers: CORS, json: { content: { sha: github.sha } } });
       }
       // Playwright cannot answer 304, so conditional reads always get the full file here.

@@ -81,14 +81,19 @@ export type PendingStateMutation =
  *   before its first unsent edit, or what this device last sent of it. With a base, the
  *   edit is merged with what another device saved meanwhile (three-way); without one (an
  *   edit queued by older code), the later stamp wins.
- * - `sent`: what this device tried to send since the base, newest last. A write can reach
- *   GitHub without the page hearing back (a phone page closing); when the shared field
- *   still carries one of these stamps, that version is the base. */
+ * - `sent`: what this device's writes put in the shared file since the base, newest last,
+ *   noted just before each PUT. A write can reach GitHub without the page hearing back (a
+ *   phone page closing); when the shared field still carries one of these stamps, that
+ *   version is the base. `writes` are the ids of the writes that sent the version, as named
+ *   in their commit messages; once state.json's commit history shows one, `landed` is set,
+ *   and a version the history shows none of is dropped. */
 export type MutationBasis =
   | { kind: 'book'; stamps: Partial<Record<BookField, string>>; base: BookStatePayload; sent?: SentBookVersion[] }
   | { kind: 'queue'; base: string[]; sent?: SentQueueVersion[] };
-export interface SentBookVersion { stamps: Partial<Record<BookField, string>>; value: BookStatePayload }
-export interface SentQueueVersion { stamp: string; value: string[] }
+export interface SentBookVersion { stamps: Partial<Record<BookField, string>>; value: BookStatePayload; writes?: string[]; landed?: true }
+export interface SentQueueVersion { stamp: string; value: string[]; writes?: string[]; landed?: true }
+/** A write's id in its commit message: `Update Kitaplık state (write <id>)`. */
+export const WRITE_ID_PATTERN = /^[a-z0-9-]{8,64}$/;
 /** At most this many unconfirmed sends are remembered per edit. */
 export const MAX_SENT_VERSIONS = 10;
 

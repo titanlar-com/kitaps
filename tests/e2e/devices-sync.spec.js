@@ -27,7 +27,7 @@ test.afterEach(() => {
 });
 
 function fakeGitHub() {
-  const github = { file: structuredClone(EMPTY), sha: 'sha-0', puts: [], elsewhere: [] };
+  const github = { file: structuredClone(EMPTY), sha: 'sha-0', puts: [], commits: [], elsewhere: [] };
   fakes.push(github);
   github.attach = async context => {
     await context.route(/^https:\/\/(api\.github\.com|raw\.githubusercontent\.com)\//, route => {
@@ -40,12 +40,15 @@ function fakeGitHub() {
       const request = route.request();
       if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: CORS });
       if (request.url().includes('/contents/routes.json')) return route.fulfill({ status: 404, headers: CORS, json: { message: 'Not Found' } });
+      // state.json's history, newest first: a reopened page asks it whether an unanswered write landed.
+      if (request.method() === 'GET' && request.url().includes('/commits?')) return route.fulfill({ headers: CORS, json: github.commits });
       if (request.url().endsWith('/git/blobs')) return route.fulfill({ status: 201, headers: CORS, json: { sha: 'e69de29' } });
       if (request.method() === 'PUT') {
         const body = request.postDataJSON();
         if (body.sha !== github.sha) return route.fulfill({ status: 409, headers: CORS, json: { message: 'sha does not match' } });
         github.file = JSON.parse(Buffer.from(body.content, 'base64').toString('utf8'));
         github.sha = `sha-${github.puts.push(github.file)}`;
+        github.commits.unshift({ sha: github.sha, commit: { message: body.message } });
         return route.fulfill({ headers: CORS, json: { content: { sha: github.sha } } });
       }
       return route.fulfill({ headers: { ...CORS, ETag: `"${github.sha}"` }, json: { sha: github.sha, encoding: 'base64', content: base64(github.file) } });
@@ -225,6 +228,35 @@ test.describe('two devices that change things before they have seen each other',
     await computer.page.getByLabel('Neden okuyorum?').fill('Bilgisayardan yazılan not.');
     await leave(computer.page, github);
     expect(github.file.books.zerotoone.value.reading).toMatchObject({ page: 50, why: 'Bilgisayardan yazılan not.' });
+    await close();
+  });
+
+  // Second review of 7 November 2026: a send that failed offline was taken for one that may
+  // have landed, and the phone's mark was lost once the computer marked the same book.
+  test('a phone that marked a book offline keeps its marks and the computer’s once it is back', async ({ browser }) => {
+    const { github, phone, computer, close } = await pair(browser);
+    await openBook(phone.page, 'goodtogreat');
+    await openBook(computer.page, 'goodtogreat');
+    await phone.context.setOffline(true);
+    await mark(phone.page, 'Favori');
+    await phone.page.locator('.detail-actions').getByRole('button', { name: 'Sırama ekle' }).click();
+    // Leaving the page tries to send; offline, nothing reaches GitHub.
+    await phone.page.evaluate(() => {
+      Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' });
+      document.dispatchEvent(new Event('visibilitychange'));
+    });
+    await expect(phone.page.getByText(/Eşitleme tamamlanamadı/).first()).toBeAttached();
+    expect(github.puts).toHaveLength(0);
+    await mark(computer.page, 'Satın alındı');
+    await computer.page.locator('.detail-actions').getByRole('button', { name: 'Sırama ekle' }).click();
+    await leave(computer.page, github);
+    await phone.context.setOffline(false);
+    await openBook(phone.page, 'goodtogreat');
+    await pressed(phone.page)('Satın alındı').toHaveAttribute('aria-pressed', 'true');
+    await pressed(phone.page)('Favori').toHaveAttribute('aria-pressed', 'true');
+    await leave(phone.page, github);
+    expect([...github.file.books.goodtogreat.value.states].sort()).toEqual(['alindi', 'onemli']);
+    expect(github.file.queue.value).toEqual(['goodtogreat']);
     await close();
   });
 
