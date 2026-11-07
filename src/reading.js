@@ -42,3 +42,21 @@ export function restorePersonal(current,input,bookIds) {
  const clean=cleanPersonal(input,bookIds);
  return {queue:Array.isArray(input?.queue)?clean.queue:current.queue,reading:{...current.reading,...clean.reading}};
 }
+
+/** The reader's summary for the catalogue's reading band (docs/UI-REDESIGN.md, phase 3): how many
+ * books are read, being read, purchased, favourites and queued, and the read share of the
+ * catalogue. Records and queue entries for books the catalogue no longer has are left out. */
+export function readingSummary({ books, states, queue }) {
+  const known = new Set(books.map(book => book.id));
+  const count = mark => books.filter(book => (states[book.id] || []).includes(mark)).length;
+  const read = count('okundu');
+  return {
+    total: books.length,
+    read,
+    reading: count('okunuyor'),
+    owned: count('alindi'),
+    favorites: count('onemli'),
+    queued: queue.filter(id => known.has(id)).length,
+    readShare: books.length ? read / books.length : 0,
+  };
+}

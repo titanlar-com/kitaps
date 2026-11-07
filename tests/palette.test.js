@@ -36,16 +36,18 @@ test('the neutrals lean cool: blue at least as strong as red in every grey',()=>
  }
 });
 
-test('corners are small and come from the radius tokens',()=>{
- assert.deepEqual(['--radius-xs','--radius-sm','--radius','--radius-lg'].map(token=>light[token]),['4px','6px','8px','12px']);
+// Owner's rule of 8 November 2026: no corner is rounder than 5 px.
+test('corners are at most 5 px and come from the radius tokens',()=>{
+ assert.deepEqual(['--radius-xs','--radius-sm','--radius','--radius-lg'].map(token=>light[token]),['2px','3px','4px','5px']);
+ for(const token of ['--radius-xs','--radius-sm','--radius','--radius-lg','--ribbon-radius'])assert.ok(parseFloat(light[token])<=5,`${token} ${light[token]}`);
  const sheets=fs.readdirSync(new URL('../src/',import.meta.url),{recursive:true}).map(String).filter(file=>file.endsWith('.css'));
  const loose=[];
  for(const file of sheets){
   const text=fs.readFileSync(new URL(`../src/${file}`,import.meta.url),'utf8').replace(/\/\*[\s\S]*?\*\//g,'');
   for(const match of text.matchAll(/border(?:-[a-z]+)*-radius\s*:\s*([^;}]+)/g)){
    const value=match[1].trim().replace(/\s*!important$/,'');
-   // A token, no corner, a circle, a bar's round ends, or the book cover's spine-and-edge shape.
-   if(/^((var\(--(radius[\w-]*|ribbon-radius)\)|0)\s*)+$|^inherit$|^50%$|^99px$|^3px 6px 6px 3px$/.test(value))continue;
+   // A token, no corner, or the parent's corner: never a circle, a pill or a raw size.
+   if(/^((var\(--(radius[\w-]*|ribbon-radius)\)|0)\s*)+$|^inherit$/.test(value))continue;
    loose.push(`${file}: ${value}`);
   }
  }

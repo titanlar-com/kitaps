@@ -63,3 +63,18 @@ test('the type scale and the tight display tracking are tokens, so components sh
   }
   assert.ok(px(light['--text-sm'])>=14,'the smallest text token is at least 14 px');
 });
+
+// Owner's rule of 8 November 2026: no corner is rounder than 5 px, Mantine's own included.
+test('every corner the theme can give is at most 5 px', () => {
+  for(const [name,value] of Object.entries(theme.radius)){
+    const token=/^var\((--[\w-]+)\)$/.exec(value);
+    const size=token?light[token[1]]:value;
+    assert.ok(px(size)<=5,`radius.${name}: ${value} = ${size}`);
+  }
+  // Components whose own default is a circle or a pill take the largest token instead.
+  for(const name of ['Indicator','Avatar','Badge','Chip','Pill','Switch','Radio','Slider','Stepper','Timeline','ThemeIcon','Progress','Skeleton','SegmentedControl','Notification','Kbd','Loader']){
+    const radius=theme.components[name]?.defaultProps?.radius;
+    if(name==='Loader')continue;
+    assert.ok(radius&&radius in theme.radius,`${name} takes a theme radius, not its own round default (${radius})`);
+  }
+});

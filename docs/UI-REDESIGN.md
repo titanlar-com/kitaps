@@ -12,7 +12,8 @@ Yeni tasarım aşağıdakileri olduğu gibi korur. Bunları koruyan testler gev�
 
 - Proje sahibinin kesin kuralları (`AGENTS.md`): sayfa boyutları 24, 48, 96, 192 ve 384, katalog ızgarası 2, 3 ve 4 sütun, kesin adresler.
 - Kapaklar 2:3 çerçevede durur, kırpılmaz ve daraltılmaz.
-- Okunabilir hiçbir metin 14 CSS px'in altına inmez. Gövde metni 16 px'tir.
+- Okunabilir hiçbir metin 14 CSS px'in altına inmez. Gövde metni 16 px'tir. Proje sahibi bunu 8 Kasım 2026'da yeniden vurguladı.
+- Hiçbir köşe 5 px'ten yuvarlak değildir. Daire ve hap biçimi de yoktur, Mantine bileşenleri dahil (proje sahibinin 8 Kasım 2026 kararı, `AGENTS.md` kural 5).
 - Odak göstergesi öğenin çevresine çizilmez. Klavye modunda öğenin altında tek bir çizgi görünür (`src/focusMode.js`).
 - Açılır listeler Mantine Combobox ile kurulur, yerel `<select>` kullanılmaz.
 - Hareket tek eğri ve süreyle yapılır: `cubic-bezier(.65, 0, .35, 1)`. Azaltılmış hareket tercihi korunur.

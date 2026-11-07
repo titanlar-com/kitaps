@@ -39,7 +39,7 @@
 .bookstores-page .bookstore-stops{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap);margin:0;padding:0;list-style:none;counter-reset:stop}
 @media (min-width:56em){.bookstores-page .bookstore-stops{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .bookstores-page .bookstore-stops>li{margin:0;counter-increment:stop}
-.bookstore-stops>li::before{content:counter(stop);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:1rem;font-weight:700}
+.bookstore-stops>li::before{content:counter(stop);display:grid;place-items:center;width:36px;height:36px;border-radius:var(--radius-lg);background:var(--accent);color:var(--accent-ink);font-size:1rem;font-weight:700}
 
 .bookstores-page .bookstore-topics>ul{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap);padding:0;list-style:none}
 @media (min-width:48em){.bookstores-page .bookstore-topics>ul{grid-template-columns:repeat(2,minmax(0,1fr))}}

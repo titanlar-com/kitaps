@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { stampReadingDate } from '../src/reading.js';
+import { readingSummary, stampReadingDate } from '../src/reading.js';
 import { catalogListing } from '../src/app/listing.js';
 import { emptyFilters, prepareBooks } from '../src/library.js';
 
@@ -58,4 +58,35 @@ test('hiding purchased books removes them from the catalogue but not from the ow
  assert.deepEqual(listing('owned', true).filtered.map(book => book.id).sort(), ['builttolast', 'goal']);
  // Favourites are a personal shelf as well: a purchased favourite stays there.
  assert.deepEqual(listing('favorites', true).filtered.map(book => book.id).sort(), ['goal', 'meditations']);
+});
+
+// The redesign's header counters and reading summary (docs/UI-REDESIGN.md, phases 2 and 3).
+test('the listing counts favourites on every shelf, whether or not purchases are hidden', () => {
+ const states = { goal: ['alindi', 'onemli'], meditations: ['onemli'], builttolast: ['okundu'] };
+ for (const view of ['books', 'owned', 'favorites', 'queue']) for (const hideOwned of [true, false]) {
+  const listing = catalogListing({ books, states, view, filters: emptyFilters(), sort: 'title', page: 1, pageSize: 24, rankings: {}, hideOwned });
+  assert.equal(listing.favoriteCount, 2, `${view}, hideOwned ${hideOwned}`);
+  assert.equal(listing.ownedCount, 1);
+ }
+});
+
+test('the reading summary counts each mark once and gives the read share of the catalogue', () => {
+ const states = { goal: ['alindi', 'okundu'], meditations: ['onemli', 'okunuyor'], builttolast: ['okundu'], unknown: ['okundu'] };
+ const summary = readingSummary({ books, states, queue: ['goal', 'meditations', 'missing'] });
+ assert.deepEqual(summary, { total: books.length, read: 2, reading: 1, owned: 1, favorites: 1, queued: 2, readShare: 2 / books.length });
+ // Records for books the catalogue no longer has, and queue entries for them, are left out.
+ const empty = readingSummary({ books, states: {}, queue: [] });
+ assert.deepEqual(empty, { total: books.length, read: 0, reading: 0, owned: 0, favorites: 0, queued: 0, readShare: 0 });
+ assert.equal(readingSummary({ books: [], states, queue: [] }).readShare, 0, 'an empty catalogue does not divide by zero');
+});
+
+// Filtering by a reading mark asks for those books by name, so purchases stay in that list
+// (redesign phase 3, 8 November 2026): the reading band's "Okunan" count opens exactly its books.
+test('hiding purchases leaves the books the reader asks for by a reading mark', () => {
+ const states = { goal: ['alindi', 'okundu'], builttolast: ['okundu'] };
+ const read = catalogListing({ books, states, view: 'books', filters: { ...emptyFilters(), states: ['okundu'] }, sort: 'title', page: 1, pageSize: 24, rankings: {}, hideOwned: true });
+ assert.deepEqual(read.filtered.map(book => book.id).sort(), ['builttolast', 'goal']);
+ // Without a reading-mark filter the switch still takes purchases out.
+ const browsing = catalogListing({ books, states, view: 'books', filters: emptyFilters(), sort: 'title', page: 1, pageSize: 24, rankings: {}, hideOwned: true });
+ assert.ok(!browsing.filtered.some(book => book.id === 'goal'));
 });

@@ -33,9 +33,10 @@ test('the header keeps its logo link, four section tabs, the purchases switch, s
           - img
           - text: Kitapçılar
       - switch "Satın aldıklarımı gösterme" [checked]
+      - text: Satın aldıklarımı gösterme
       - navigation "Hızlı erişim":
         - button "Kızım için"
-        - button "Favoriler":
+        - button "Favoriler · 0 kitap":
           - img
         - button "Kitaplığım · 0 kitap"
       - button "Koyu temaya geç":
