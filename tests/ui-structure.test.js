@@ -2,7 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const app=fs.readFileSync(new URL('../src/App.jsx',import.meta.url),'utf8');
+// The application shell: App.jsx and the modules split out of it into src/app/ (phase 1 of the
+// architecture plan). The assertions below read the shell as one text, wherever a part now lives.
+const shellFiles=['App.jsx',...fs.readdirSync(new URL('../src/app/',import.meta.url)).map(file=>`app/${file}`)];
+import { VIEWS as VIEWS_TABLE } from '../src/views.js';
+const app=shellFiles.map(file=>fs.readFileSync(new URL(`../src/${file}`,import.meta.url),'utf8')).join('\n');
 const badge=fs.readFileSync(new URL('../src/components/ReadingPriorityBadge.jsx',import.meta.url),'utf8');
 const card=fs.readFileSync(new URL('../src/components/ReadingPriorityCard.jsx',import.meta.url),'utf8');
 
@@ -20,7 +24,9 @@ test('personal sections keep one semantic h1 without restoring intro copy',()=>{
 test('footer Notes navigation writes browser history through navigate',()=>{
  // The footer menu (FooterMenu.jsx) reaches Notes through goView, which writes history with navigate.
  assert.match(app,/const goView=next=>\{navigate\(\{\.\.\.route,view:next,book:null,page:1/);
- assert.match(app,/\{label:'Notlar ve kaynaklar',icon:IconFileText,current:view==='notes',onSelect:\(\)=>goView\('notes'\)\}/);
+ // Every footer section but the catalogue and the queue, Notes included, opens through goView (src/views.js lists them).
+ assert.match(app,/VIEWS\.filter\(v=>v\.footer==='sections'\)\.map\(v=>\(\{label:v\.label,icon:VIEW_ICONS\[v\.id\],current:view===v\.id,onSelect:v\.id==='books'\?onBrowse:v\.id==='queue'\?onQueue:\(\)=>goView\(v\.id\)\}\)\)/);
+ assert.equal(VIEWS_TABLE.find(view=>view.id==='notes').footer,'sections');
 });
 
 test('footer exports every catalog book as a self-describing JSON file',()=>{
@@ -65,6 +71,6 @@ test('customer copy and icon requests stay applied',()=>{
 test('removed card category component stays unused',()=>{
  assert.equal(fs.existsSync(new URL('../src/components/CardCategories.jsx',import.meta.url)),false);
  assert.doesNotMatch(app,/CardCategories/);
- const bookCard=app.slice(app.indexOf('function BookCard('),app.indexOf('function BookDetail('));
+ const bookCard=fs.readFileSync(new URL('../src/app/BookCard.jsx',import.meta.url),'utf8');
  assert.doesNotMatch(bookCard,/CategoryPill|card-categories|category-more/);
 });

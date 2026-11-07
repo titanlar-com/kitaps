@@ -11,7 +11,8 @@ const files=fs.readdirSync(srcRoot,{recursive:true}).map(String).sort();
 const read=file=>({path:`src/${file}`,text:fs.readFileSync(new URL(file,srcRoot),'utf8')});
 const css=files.filter(file=>file.endsWith('.css')).map(read);
 const jsx=files.filter(file=>/\.(jsx|js|ts|tsx)$/.test(file)).map(read);
-const app=fs.readFileSync(new URL('App.jsx',srcRoot),'utf8');
+// The theme (src/app/theme.js, split out of App.jsx) and the shell carry Mantine's focus and press settings.
+const app=['App.jsx','app/theme.js'].map(file=>fs.readFileSync(new URL(file,srcRoot),'utf8')).join('\n');
 const motionSource=fs.readFileSync(new URL('motion.js',srcRoot),'utf8');
 
 /** Flat list of {media, selector, body} for every rule, with comments removed. */

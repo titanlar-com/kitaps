@@ -1,3 +1,4 @@
+import { viewById, viewFromParam } from './views.js';
 import { displayTitle } from './translation.js';
 
 export const STATE_LABELS = { onemli: 'Favori', alinacak: 'Alınacak', alindi: 'Satın alındı', okunuyor: 'Okunuyor', okundu: 'Okundu', araverildi: 'Ara verdim', birakildi: 'Bıraktım' };
@@ -128,17 +129,18 @@ export function decodeRoute(location, catalog) {
   const known={categories:catalog.categories?.map(c=>c.id),collections:catalog.collections.map(c=>c.id),groups:catalog.groups?.map(g=>g.id),states:Object.keys(STATE_LABELS),qualities:Object.keys(QUALITY_LABELS),origins:Object.keys(ORIGIN_LABELS),addedDates:[...new Set(catalog.books.map(b=>b.addedAt).filter(Boolean))]};
   for(const [key,values] of Object.entries(known))if(values)f[key]=[...new Set(f[key])].filter(v=>values.includes(v));
   const selected=catalog.books.find(b=>b.id===p.get('book'))||catalog.books.find(b=>bookSlug(b)===p.get('book'));
-  const view=p.get('view')==='library'?'owned':p.get('view');
+  const view=viewFromParam(p.get('view'));
   const requestedPage=/^\d+$/.test(p.get('page')||'')?Math.max(1,Number(p.get('page'))):1;
   const requestedSize=Number(p.get('page-size')),legacySize=LEGACY_PAGE_SIZES[requestedSize];
   const pageSize=PAGE_SIZES.includes(requestedSize)?requestedSize:legacySize||DEFAULT_PAGE_SIZE;
   const page=legacySize?Math.floor((requestedPage-1)*requestedSize/pageSize)+1:requestedPage;
-  return {...defaults,view:['books','owned','favorites','queue','collections','notes','bookstores','fairs'].includes(view)?view:'books',sort:['reading','title','author','shared','newest','added','saved'].includes(p.get('sort'))?p.get('sort'):'reading',book:selected?.id||null,page,pageSize};
+  return {...defaults,view,sort:['reading','title','author','shared','newest','added','saved'].includes(p.get('sort'))?p.get('sort'):'reading',book:selected?.id||null,page,pageSize};
  }catch{return defaults}
 }
 export function encodeRoute(route,catalog) {
  const p=new URLSearchParams(),f=route.filters;
- if(route.view!=='books')p.set('view',route.view==='owned'?'library':route.view);
+ const param=viewById[route.view]?.param;
+ if(param)p.set('view',param);
  if(f.query)p.set('q',f.query);
  for(const [key,param] of Object.entries(routeFields))for(const value of f[key])p.append(param,englishValues[value]||value);
  if(f.categoryMode==='all')p.set('category-match','all');
