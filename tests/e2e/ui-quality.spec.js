@@ -10,7 +10,7 @@ const isolate = context => Promise.all([
   context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.fulfill({ json: EMPTY })),
   context.route('https://api.github.com/repos/titanlar-com/kitaps-state/**', route => route.fulfill({ json: { sha: 'empty', encoding: 'base64', content: Buffer.from(JSON.stringify(EMPTY)).toString('base64') } })),
 ]);
-const VIEWS = { catalog: './', book: './?book=good-to-great-by-jim-collins', notes: './?view=notes', queue: './?view=queue', collections: './?view=collections', bookstores: './?view=bookstores' };
+const VIEWS = { catalog: './', book: './?book=good-to-great-by-jim-collins', notes: './?view=notes', queue: './?view=queue', collections: './?view=collections', bookstores: './?view=bookstores', fairs: './?view=fairs' };
 // The bookstores page loads on demand; it is measured once its heading is on the screen.
 const pageReady = (page, name = 'Kitapçılar') => page.getByRole('heading', { level: 1, name }).waitFor();
 // Views reached by an action rather than an address, measured after VIEWS.
@@ -82,6 +82,7 @@ for (const colorScheme of ['light', 'dark']) {
       if (name === 'book') { await expect(page.locator('.mantine-Drawer-content .edition-summary')).toBeVisible(); await openSections(page); }
       if (name === 'notes') await expect(page.getByRole('heading', { name: 'Birleşimin kapsamı' })).toBeVisible();
       if (name === 'bookstores') await pageReady(page);
+      if (name === 'fairs') await pageReady(page, 'Kitap fuarları');
       const { weak, edges } = await page.evaluate(measure);
       expect(weak, `${name}: controls under 3:1`).toEqual([]);
       expect(edges, `${name}: accent edges on rounded corners`).toEqual([]);
@@ -113,6 +114,7 @@ for (const colorScheme of ['light', 'dark']) {
         if (name === 'book') { await expect(page.locator('.mantine-Drawer-content .edition-summary')).toBeVisible(); await openSections(page); }
         if (name === 'notes') await expect(page.getByRole('heading', { name: 'Birleşimin kapsamı' })).toBeVisible();
         if (name === 'bookstores') await pageReady(page);
+        if (name === 'fairs') await pageReady(page, 'Kitap fuarları');
         await page.addScriptTag({ content: axeSource });
         const violations = await page.evaluate(async () => (await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] } }))
           .violations.map(item => `${item.id}: ${item.nodes.slice(0, 3).map(node => node.target.join(' ')).join(' | ')}`));
@@ -130,6 +132,7 @@ test('no readable text is smaller than 14 CSS px', async ({ page }) => {
     await expect(page.locator('#main-content')).toBeVisible();
     if (url.includes('book=')) { await expect(page.locator('.mantine-Drawer-content .edition-summary')).toBeVisible(); await openSections(page); }
     if (url.includes('bookstores')) await pageReady(page);
+    if (url.includes('fairs')) await pageReady(page, 'Kitap fuarları');
     const small = await page.evaluate(() => [...document.querySelectorAll('body *')].filter(element => {
       if (element.closest('.visually-hidden')) return false;
       const own = [...element.childNodes].some(node => node.nodeType === 3 && node.textContent.trim());
@@ -345,6 +348,7 @@ for (const [colorScheme, width] of [['light', 320], ['dark', 1280]]) {
       ['notes', async () => { await page.goto('./?view=notes'); await expect(page.getByRole('heading', { name: 'Birleşimin kapsamı' })).toBeVisible(); }, 25],
       ['queue', async () => { await page.goto('./?view=queue'); await expect(page.locator('#main-content')).toBeVisible(); }, 15],
       ['bookstores', async () => { await page.goto('./?view=bookstores'); await pageReady(page); }, 35],
+      ['fairs', async () => { await page.goto('./?view=fairs'); await pageReady(page, 'Kitap fuarları'); }, 20],
       // The footer bar and its menu.
       ['footer menu', async () => { await page.goto('./'); await page.locator('.footer-dock').click(); await page.getByRole('dialog', { name: 'Menü' }).waitFor(); }, 16],
       ['favorites', () => OPENED.favorites(page), 15],

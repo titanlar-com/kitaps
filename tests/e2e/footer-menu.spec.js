@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 // The footer bar (owner's request, 7 November 2026): fixed to the foot of the screen, it opens
 // the whole menu as a sheet half the screen tall.
 const EMPTY = { schemaVersion: 2, updatedAt: '1970-01-01T00:00:00.000Z', books: {}, queue: null };
-const ITEMS = ['Kitaplar', 'Sıram', 'Kümeler', 'Kitapçılar', 'Notlar ve kaynaklar', 'Kızım için', 'Favoriler', /^Kitaplığım/, 'Çeviri rehberi', 'Cihaz eşitleme', 'Kitapları JSON indir'];
+const ITEMS = ['Kitaplar', 'Sıram', 'Kümeler', 'Kitapçılar', 'Kitap fuarları', 'Notlar ve kaynaklar', 'Kızım için', 'Favoriler', /^Kitaplığım/, 'Çeviri rehberi', 'Cihaz eşitleme', 'Kitapları JSON indir'];
 
 test.beforeEach(async ({ context }) => {
   await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.fulfill({ json: EMPTY }));

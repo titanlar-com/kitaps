@@ -36,8 +36,10 @@ test('stores are ordered by distance from the first one, and a saved route stays
   await planner(page).getByRole('button', { name: 'Minoa Pera: aşağı taşı' }).click();
   expect(await order(page)).toEqual(['Homer Kitabevi', 'Remzi Kitabevi Kanyon', 'Minoa Pera', 'Remzi Kitabevi Akmerkez']);
 
-  await planner(page).getByRole('textbox', { name: 'Rota adı' }).fill('Deneme rotası');
+  // The date first: on a phone its native picker can take the next tap, so the name is typed last.
   await planner(page).getByLabel('Tarih').fill('2026-11-14');
+  await planner(page).getByRole('textbox', { name: 'Rota adı' }).fill('Deneme rotası');
+  await expect(planner(page).getByRole('button', { name: 'Rotayı kaydet' })).toBeEnabled();
   await planner(page).getByRole('button', { name: 'Rotayı kaydet' }).click();
   await expect(planner(page).getByRole('status')).toContainText('bu cihazda saklandı');
   const saved = page.locator('.route-saved').filter({ hasText: 'Deneme rotası' });

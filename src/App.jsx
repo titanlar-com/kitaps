@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Accordion, ActionIcon, Alert, Anchor, Badge, Box, Button, Card, Container, Group, MantineProvider, Modal, Paper, Stack, Text, TextInput, Tabs, ThemeIcon, Title, Tooltip, Transition, createTheme, defaultVariantColorsResolver, localStorageColorSchemeManager } from '@mantine/core';
-import { IconLink, IconArrowLeft, IconArrowRight, IconArrowUpRight, IconBook2, IconBuildingStore, IconLanguage, IconRefresh, IconFileText, IconShoppingBagCheck, IconBooks, IconCheck, IconChevronRight, IconDownload, IconFilter, IconHeart, IconLayersIntersect, IconListNumbers, IconSearch, IconX } from '@tabler/icons-react';
+import { IconLink, IconArrowLeft, IconArrowRight, IconArrowUpRight, IconBook2, IconBuildingStore, IconCalendarEvent, IconLanguage, IconRefresh, IconFileText, IconShoppingBagCheck, IconBooks, IconCheck, IconChevronRight, IconDownload, IconFilter, IconHeart, IconLayersIntersect, IconListNumbers, IconSearch, IconX } from '@tabler/icons-react';
 import '@mantine/core/styles.css';
 import '@fontsource-variable/outfit/wght.css';
 import catalog from './catalog.json';
@@ -45,8 +45,9 @@ const AccessibilityAudit=import.meta.env.DEV?React.lazy(()=>import('./components
 const NotesPage=React.lazy(()=>import('./components/NotesPage'));
 // The bookstores page carries its own data (data/bookstores.json); it loads when opened.
 const BookstoresPage=React.lazy(()=>import('./components/BookstoresPage'));
+const BookFairsPage=React.lazy(()=>import('./components/BookFairsPage'));
 // The name of each section, shown on the footer bar beside "Menü".
-const SECTION_NAMES={books:'Kitaplar',queue:'Sıram',collections:'Kümeler',bookstores:'Kitapçılar',notes:'Notlar ve kaynaklar',favorites:'Favoriler',owned:'Kitaplığım'};
+const SECTION_NAMES={books:'Kitaplar',queue:'Sıram',collections:'Kümeler',bookstores:'Kitapçılar',fairs:'Kitap fuarları',notes:'Notlar ve kaynaklar',favorites:'Favoriler',owned:'Kitaplığım'};
 // One motion curve and duration for every JavaScript transition (AGENT.md motion contract),
 // from src/motion.js; styles.css holds the same values as --motion-ease and --motion-base.
 const motion={transitionProps:{duration:MOTION_MS,timingFunction:MOTION_EASE}};
@@ -345,6 +346,7 @@ function AtlasApp() {
     </Tabs.Panel>
     <Tabs.Panel value="queue">{view==='queue'&&<><Title order={1} className="visually-hidden">Okuma sıram</Title><ReadingQueue queue={personal.queue} books={byId} reading={personal.reading} states={states} onMove={(id,direction)=>setPersonal(prev=>({...prev,queue:moveInQueue(prev.queue,id,direction)}))} onRemove={id=>setPersonal(prev=>({...prev,queue:prev.queue.filter(value=>value!==id)}))} onOpen={onOpen} onBrowse={onBrowse} BookCover={ThumbCover}/></>}</Tabs.Panel>
     <Tabs.Panel value="collections">{view==='collections'&&<><Title order={1} className="visually-hidden">Kitap kümeleri</Title><Collections onCollection={goCollection} onGroup={goCollection} states={states}/></>}</Tabs.Panel>
+    {view==='fairs'&&<React.Suspense fallback={<Text c="dimmed" role="status">Kitap fuarları yükleniyor…</Text>}><BookFairsPage/></React.Suspense>}
     <Tabs.Panel value="bookstores">{view==='bookstores'&&<React.Suspense fallback={<Text c="dimmed" role="status">Kitapçılar yükleniyor…</Text>}><BookstoresPage/></React.Suspense>}</Tabs.Panel>
     {view==='notes'&&<section aria-labelledby="notes-heading"><Title id="notes-heading" order={1} className="visually-hidden">Kaynaklar ve notlar</Title><React.Suspense fallback={<Text c="dimmed" role="status">Notlar yükleniyor…</Text>}><NotesPage states={states} setStates={setStates} personal={personal} setPersonal={setPersonal} sync={githubSync}/></React.Suspense></section>}
    </main>
@@ -354,6 +356,7 @@ function AtlasApp() {
      {label:'Sıram',icon:IconListNumbers,current:view==='queue',onSelect:onQueue},
      {label:'Kümeler',icon:IconLayersIntersect,current:view==='collections',onSelect:()=>goView('collections')},
      {label:'Kitapçılar',icon:IconBuildingStore,current:view==='bookstores',onSelect:()=>goView('bookstores')},
+     {label:'Kitap fuarları',icon:IconCalendarEvent,current:view==='fairs',onSelect:()=>goView('fairs')},
      {label:'Notlar ve kaynaklar',icon:IconFileText,current:view==='notes',onSelect:()=>goView('notes')},
     ]},
     {id:'shortcuts',title:'Kısayollar',items:[

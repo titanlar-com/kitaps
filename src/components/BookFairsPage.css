@@ -1,0 +1,19 @@
+/* Book fair calendar (BookFairsPage.jsx): one panel per fair, grouped by the month it starts in. */
+.book-fairs-page{display:grid;gap:var(--section-gap);padding-block:8px var(--section-gap)}
+.book-fairs-page h1{margin:0;font-size:clamp(1.75rem,1.4rem + 1.4vw,2.25rem);line-height:1.15;letter-spacing:-.02em}
+.book-fairs-page h2{margin:0;font-size:1.5rem;line-height:1.25}
+.book-fairs-page h3{margin:0;font-size:1.1875rem;line-height:1.3}
+.book-fairs-intro,.book-fairs-section{display:grid;align-content:start;gap:var(--stack-gap)}
+.book-fairs-intro{max-width:70ch}
+.book-fairs-updated,.book-fair-place,.book-fair-sources{color:var(--muted)}
+.book-fairs-scope{justify-self:start;max-width:100%}
+.book-fairs-page ul{margin:0;padding-inline-start:1.25em}
+.book-fair-list{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap)}
+@media (min-width:48em){.book-fair-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.book-fair{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:8px;padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
+.book-fair-date{color:var(--accent-strong);font-weight:600}
+.book-fair-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.book-fair-actions{display:flex;flex-wrap:wrap;gap:8px}
+.book-fair-actions .mantine-Button-root{min-height:var(--touch-target);height:auto;max-width:100%;padding-block:.5rem}
+.book-fair-actions .mantine-Button-label{white-space:normal}
+.book-fairs-page :is(p,li) a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}

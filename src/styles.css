@@ -212,6 +212,8 @@ html[data-focus-mode="keyboard"] label:has(>input:focus-visible)::after,
 html[data-focus-mode="keyboard"] .mantine-SegmentedControl-input:focus-visible+.mantine-SegmentedControl-label::after,
 html[data-focus-mode="keyboard"] .mantine-Checkbox-inner:has(>input:focus-visible)::after,
 html[data-focus-mode="keyboard"] .book-card h3:has(>.title-button:focus-visible)::after{content:"";position:absolute;z-index:3;inset-inline:max(4px,10%);bottom:calc(-1 * (var(--focus-gap) + var(--focus-bar)));height:var(--focus-bar);background:var(--focus);pointer-events:none}
+/* A segmented choice's label clips its overflow; its bar is drawn inside it, above its lower edge. */
+html[data-focus-mode="keyboard"] .mantine-SegmentedControl-input:focus-visible+.mantine-SegmentedControl-label::after{inset-inline:20%;bottom:3px}
 /* Mantine clips a button's overflow, which would hide the bar; the card title keeps its two-line
    clamp, so its bar is drawn under the heading instead. */
 html[data-focus-mode="keyboard"] :is(.mantine-Button-root,.mantine-ActionIcon-root,.mantine-Alert-root):focus-visible{overflow:visible}
