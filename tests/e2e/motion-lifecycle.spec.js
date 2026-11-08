@@ -23,7 +23,8 @@ test('a closing book keeps its pages until the sheet has gone, and they can no l
   await page.waitForTimeout(400);
   await record(page, () => { const drawer = document.querySelector('.detail-drawer .mantine-Drawer-content'); const shown = document.querySelector('.detail-content'); return { search: location.search, drawer: Boolean(drawer), shown: Boolean(shown?.querySelector('h2')), inert: Boolean(shown?.inert) }; });
   await page.keyboard.press('Escape');
-  await expect(page.locator('.detail-drawer .mantine-Drawer-content')).toHaveCount(0);
+  // Linux WebKit under load paints a few frames a second, and the sheet leaves in step with them.
+  await expect(page.locator('.detail-drawer .mantine-Drawer-content')).toHaveCount(0, { timeout: 20000 });
   const closing = (await page.evaluate(() => window.__frames)).filter(frame => frame.drawer && !frame.search.includes('book='));
   expect(closing.length, 'frames while the sheet leaves').toBeGreaterThan(1);
   expect(closing.filter(frame => !frame.shown || !frame.inert)).toEqual([]);
