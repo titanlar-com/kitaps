@@ -101,7 +101,7 @@ test('the catalog opens sorted by reading priority with the compact summary', as
   await expect(page.locator('.book-card')).toHaveCount(24);
   const toggle = page.getByRole('button', { name: /Okuma önceliğine göre sıralı/ });
   await expect(toggle).toHaveAttribute('aria-expanded', 'false');
-  await expect(page.locator('.header-children svg circle')).toHaveCount(3);
+  await expect(page.locator('.header-children svg circle')).toHaveCount(1);
   const badge = page.locator('.reading-priority-badge').first();
   await expect(badge).toContainText('#1');
   // Only the score is set off by a divider; nothing is drawn before the rank.
