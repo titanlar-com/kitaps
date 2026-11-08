@@ -1,6 +1,6 @@
 import React from 'react';
-// @ts-expect-error Mantine's typings put a namespace beside DataList, and a JavaScript file reads the pair as a type only.
-import { Badge, Card, DataList, Spoiler, Timeline } from '@mantine/core';
+import { Badge, Card, Spoiler, Timeline } from '@mantine/core';
+import { DataList } from '../app/dataList';
 import { IconCheck, IconQuestionMark, IconX } from '@tabler/icons-react';
 import './PlaceParts.css';
 

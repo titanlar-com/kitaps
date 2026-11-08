@@ -37,12 +37,23 @@ test('a mouse over a cover previews why to read the book, and the preview cannot
   expect(Math.min(...sizes)).toBeGreaterThanOrEqual(14);
 });
 
+test('a search that finds nothing gets the empty shelf and a way back', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('.book-card').first()).toBeVisible();
+  await page.getByRole('textbox', { name: 'Katalogda ara' }).fill('zzqqxxkitapyok');
+  const empty = page.locator('.desk-empty');
+  await expect(empty).toContainText('Bu seçimde kitap yok.');
+  await empty.getByRole('button', { name: 'Filtreleri temizle' }).click();
+  await expect(page.locator('.book-card').first()).toBeVisible();
+});
+
 test('a narrow window has no preview, so it cannot widen the page', async ({ page, isMobile }) => {
   test.skip(isMobile, 'A touch screen has no hover.');
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto('./');
   await page.locator('.book-card .book-visual').first().hover();
-  await page.locator('.book-card .book-visual').first().evaluate(element => new Promise(resolve => element.addEventListener('animationend', resolve, { once: true }) || requestAnimationFrame(resolve)));
+  // Nothing to wait for when it is right: this is longer than the preview's own delay.
+  await page.waitForTimeout(500);
   await expect(page.locator('.book-preview')).toHaveCount(0);
 });
 
