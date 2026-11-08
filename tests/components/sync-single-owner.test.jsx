@@ -32,7 +32,7 @@ function github(remote) {
 
 function useOwned(library) {
   const { states, personal } = useViewModel(library);
-  const sync = useGitHubStateSync({ bookIds: BOOK_IDS, states, personal, applyRemote: library.applyRemote, source: library });
+  const sync = useGitHubStateSync({ bookIds: BOOK_IDS, source: library });
   return { sync, states, personal };
 }
 const opened = () => createPersonalLibrary({ storage: browserStorage(localStorage), books: BOOKS, now: () => new Date(2026, 10, 8, 12) });

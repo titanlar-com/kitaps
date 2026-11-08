@@ -26,3 +26,22 @@ export function browserStorage(storage) {
   remove(key) { try { storage.removeItem(key); } catch { /* Nothing to remove. */ } },
  };
 }
+
+/** The page being shown, hidden or closed, as sync's LifecyclePort (src/core/sync/controller.js). */
+export function browserLifecycle(view = window) {
+ return {
+  visibility: () => view.document.visibilityState,
+  onVisibilityChange(listener) { view.document.addEventListener('visibilitychange', listener); return () => view.document.removeEventListener('visibilitychange', listener); },
+  onPageHide(listener) { view.addEventListener('pagehide', listener); return () => view.removeEventListener('pagehide', listener); },
+ };
+}
+
+/** The page's timers, reached at each use. */
+export function browserTimers(view = window) {
+ return {
+  setInterval: (callback, delay) => view.setInterval(callback, delay),
+  clearInterval: handle => view.clearInterval(handle),
+  setTimeout: (callback, delay) => view.setTimeout(callback, delay),
+  clearTimeout: handle => view.clearTimeout(handle),
+ };
+}

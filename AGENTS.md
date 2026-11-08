@@ -71,6 +71,8 @@ Arayüze giden verinin mimarisi `docs/ADR-003-data-architecture.md` içindedir. 
 - Kitap kimliği ve adresi değişmez (`tests/book-identity.test.js`). Yeni kitaplar kilide `node tests/characterization/record-identity.mjs` ile eklenir.
 - Yerel depolama anahtarları yeniden adlandırılmaz. Yeni bir anahtar, onu getiren değişiklikte `tests/storage-keys.test.js` listesine eklenir.
 - `state.json` şema 2, `routes.json` şema 1 ve `src/state/merge.ts` kuralları donmuştur.
+- Okurun işaretlerini, okuma kayıtlarını ve okuma sırasını yalnız `src/core/personal/library.ts` değiştirir. Bileşenler komut çağırır, bu verileri kendi durumlarında tutmaz ve yerel depoya yazmaz.
+- Eşitleme işlemlerinin sırası `src/core/sync/controller.js` içindedir. Burayı değiştirmeden önce test yazılır ve bağımsız inceleme yapılır.
 
 ## Arayüz
 

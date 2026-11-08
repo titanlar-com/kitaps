@@ -63,7 +63,7 @@ function AtlasApp() {
  const [library]=useState(openPersonalLibrary);
  const {states,personal,saved:personalSaved}=useViewModel(library);
  const {commands:personalCommands}=library;
- const githubSync=useGitHubStateSync({bookIds,states,personal,applyRemote:library.applyRemote});
+ const githubSync=useGitHubStateSync({bookIds,source:library});
  const [opened,setOpened]=useState(false);
  const [draft,setDraft]=useState(emptyFilters);
  const [bookTrail,setBookTrail]=useState([]);

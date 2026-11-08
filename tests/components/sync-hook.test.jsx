@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { createStore } from '../../src/core/store.ts';
+import { useViewModel } from '../../src/adapters/react/useViewModel.js';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { SHARED_REFRESH_MS, useGitHubStateSync, readSyncBackup } from '../../src/state/useGitHubStateSync';
@@ -44,11 +46,24 @@ const hidePage = () => {
   document.dispatchEvent(new Event('visibilitychange'));
 };
 
+/** The reader's data as sync sees it (ADR 003, phase 8): the tests below edit it directly. */
+function dataSource(states, personal) {
+  const data = createStore({ states, personal });
+  const change = (key, next) => data.update(value => ({ ...value, [key]: typeof next === 'function' ? next(value[key]) : next }));
+  return {
+    getSnapshot: data.getSnapshot,
+    subscribe: data.subscribe,
+    applyRemote: update => data.set(update(data.getSnapshot())),
+    setStates: next => change('states', next),
+    setPersonal: next => change('personal', next),
+  };
+}
+
 function useHarness(initialStates, initialPersonal) {
-  const [states, setStates] = useState(initialStates);
-  const [personal, setPersonal] = useState(initialPersonal);
-  const sync = useGitHubStateSync({ bookIds: BOOK_IDS, states, setStates, personal, setPersonal });
-  return { sync, states, setStates, personal, setPersonal };
+  const [source] = useState(() => dataSource(initialStates, initialPersonal));
+  const { states, personal } = useViewModel(source);
+  const sync = useGitHubStateSync({ bookIds: BOOK_IDS, source });
+  return { sync, states, setStates: source.setStates, personal, setPersonal: source.setPersonal };
 }
 
 describe('useGitHubStateSync on a device that has never synced', () => {

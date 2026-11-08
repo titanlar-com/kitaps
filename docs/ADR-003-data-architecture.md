@@ -227,40 +227,36 @@ Her taşınan saf modülün eski kopyası, çekirdekteki karşılığı geldiği
    - Mimari sınır kapısı eklendi. Kapı TypeScript derleyicisiyle okur. Her kural ihlalini yakaladığını ve temiz kodu geçirdiğini bir öz testle kanıtlar.
    - Kullanılmayan çekirdek modülleri adıyla listelenir, liste yalnız küçülebilir.
 1. **Katalog sözleşmesi (tamamlandı).** `schema.ts` ve `openCatalog` yazıldı. Gerçek katalog tam sözleşmeden geçiyor.
-2. **Katalog sürümü (Python).**
-   - Python `schemaVersion: 1` ve `updatedOn` ekler. Sözleşme testi önce başarısız olur.
-   - Kitap ekleyen oturumlarla sıra konuşularak yapılır.
+2. **Katalog sürümü (tamamlandı).** Python `schemaVersion: 1` ve `updatedOn` alanlarını yazıyor. `updated` aynı günün yazıyla hâlidir, anlamı değişmedi.
 3. **Mağaza ilkeli ve React bağlayıcısı (tamamlandı).** `createStore`, `derived` ve `useViewModel` yazıldı.
 4. **Katalog çekirdeği (tamamlandı).**
    - Süzme, sıralama ve raf kuralları ile `translation.js` ve `workFormat.js` çekirdeğe taşındı. Eski yollar cephe oldu.
    - Gerçek kataloğun statik SEO çıktısı, `main` dalındaki çıktıyla bayt bayt aynıydı. Bu tek seferlik bir karşılaştırmaydı. Kayıtlı test, dondurulmuş kesitin `static-seo` altın kaydıdır.
    - Katalog dizini ve katalog listesi görünüm modeli yazıldı. Liste, altın kayıtlara birebir eşit.
-5. **SEO çekirdeği kullanır (başladı).**
+5. **SEO çekirdeği kullanır (tamamlandı).**
    - Statik sayfa üreticisi kataloğu tam sözleşmeyle açıyor.
-   - Kalanlar:
-     - `seoState` taban adresi parametre olarak alır, tarayıcının adresini okumaz.
-     - Çalışma anı ve statik sayfalar aynı sorguları paylaşır.
-   - `seo` ve `static-seo` altın kayıtları değişmez. Bir fark çıkarsa bu sahibin kararıdır (K12).
-   - Bu aşama bağımsız incelemeden geçer.
+   - `seoState` taban adresi parametre olarak alıyor, tarayıcının adresini okumuyor. Sayfa kendi tabanını `addressBase` ile veriyor.
+   - Çalışma anı ve statik sayfalar sayfa adlarını, grup başlığını, kitap adreslerini ve raf sorgusunu paylaşıyor.
+   - Gerçek kataloğun 1415 statik dosyası değişiklikten önce ve sonra bayt bayt aynıydı. `seo` ve `static-seo` altın kayıtları değişmedi. Bulunan bir fark K12'nin 5. maddesine yazıldı.
+   - Bağımsız inceleme yapıldı. Bulduğu test eksikleri kapatıldı.
 6. **Gezinme (tamamlandı).** `Navigator` ve `LocationPort` yazıldı. Bileşim kökü (`createKitaplik`), ayarlar deposu ve tarayıcı bağdaştırıcıları eklendi. Kitap penceresinin yığılma kuralı tasarıma bırakıldı (K6).
 7. **Arayüzü bağlama.** Yeniden tasarım indikten sonra başlar.
-   - **7a. Kişisel verinin tek sahibi.**
-     - Kişisel kütüphane mağazası bütün ekranlar için tek bir commit'te tek sahip olur.
-     - Eşitleme kancası tek bir `applyRemote` köprüsünü kullanır.
-     - `App.jsx` içindeki yerel yazmalar aynı commit'te kaldırılır.
-     - Önce şu test yazılır: uzak bir okuma hiç giden değişiklik üretmez.
-     - Kapılar değişmeden yeşil kalır: `sync-hook.test.jsx`, `github-state-repository.test.js`, `sync.spec.js`, `devices-sync.spec.js`, `reading-marks.spec.js` ve `hide-owned.spec.js`.
-     - Bu aşama bağımsız incelemeden geçer.
+   - **7a. Kişisel verinin tek sahibi (tamamlandı).**
+     - `src/core/personal/library.ts` işaretlerin, okuma kayıtlarının ve okuma sırasının tek sahibidir. `App.jsx` bunları artık tutmuyor ve yazmıyor, yalnız komut çağırıyor.
+     - İşaret kuralları (`toggleState`, okuma işaretinin satın alma sayılması dahil) değişmeden `marks.js` dosyasına taşındı.
+     - Önce yazılan test: uzak bir okuma hiç giden değişiklik üretmez.
+     - Kapılar değişmeden yeşil kaldı. Bağımsız inceleme davranış hatası bulmadı, bulduğu test eksikleri kapatıldı.
    - **7b. Ekran ekran bağlama.**
      - Her ekran bağlanmadan önce erişilebilirlik ağacı kaydı alınır (K11).
      - Bugünkü geri tuşu davranışı da bağlamadan önce sabitlenir: geri tuşu kitap izini temizler ve katalogdan açılan kitap geri gidilerek kapanır. Bu kural tasarımda `Navigator`'ın temel adımlarından kurulur. Zor olursa çekirdek, değişikliğin tarayıcıdan geldiğini bildiren bir işaret ekler.
      - Ekranın ihtiyaç duyduğu özellik görünüm modeli bu sırada yazılır (K6).
      - `catalogData.js` cepheye çevrilir ve kullanılmayan modüller listesi küçülür.
      - Gecikmeli yüklenen verinin ilk pakete girmediği bir derleme listesi ya da ağ testiyle kanıtlanır.
-8. **Eşitleme denetleyicisi.** En yüksek riskli aşama budur.
-   - İşlemlerin sırası değişmeden taşınır. Her tarayıcı çağrısı bir portla değiştirilir: yaşam döngüsü, zamanlayıcı, oturum deposu ve dışarıdan verilen depo.
-   - Bugünkü kanca testleri önce çerçeveden bağımsız denetleyiciye karşı çalıştırılır.
-   - Bağımsız inceleme yapılır ve bütün eşitleme profilleri yeşil olmalıdır.
+8. **Eşitleme denetleyicisi (tamamlandı).** En yüksek riskli aşama budur.
+   - İşlemlerin sırası `src/core/sync/controller.js` dosyasına değişmeden taşındı. Her tarayıcı çağrısı artık bir port üzerinden gidiyor: yaşam döngüsü, zamanlayıcı, yerel depo, saat ve dışarıdan verilen depo. ADR'nin ilk hâlinde adı geçen oturum deposu kullanılmıyordu, bu yüzden portu açılmadı.
+   - `useGitHubStateSync` artık yalnız React bağlayıcısıdır.
+   - Denetleyici düz Node'da test ediliyor (`tests/core-sync-controller.test.js`). `sync-hook.test.jsx` aynı denetleyiciyi React üzerinden çalıştırıyor. Bu dosyada yalnız deney düzeneği değişti, hiçbir beklenti değişmedi.
+   - Taşınırken korunan bir ayrıntı: bir okuma uygulanırken "okuma sürerken düzenlenen kitap" kararı, okuma uygulanmadan önce ekranda olana bakarak verilir. Tersi olsaydı okumanın değiştirdiği her kitap düzenlenmiş görünür ve tabanı kaydedilmezdi.
 
 ## Sınır kapıları
 
@@ -269,7 +265,7 @@ Her taşınan saf modülün eski kopyası, çekirdekteki karşılığı geldiği
 - K2'de sayılan arayüz teknolojileri ve tarayıcı nesneleri çekirdekte yasaktır. Kapı, çekirdeği TypeScript derleyicisiyle yalnız ES2023 kütüphanesine karşı derler ve her adı kendi kapsamında çözer. Çözülemeyen her ad bir ihlaldir: `window`, `document`, `matchMedia`, `process` gibi tarayıcı ve Node nesneleri. `globalThis` de adıyla yasaktır. Bu yüzden bir metindeki kelime, bir nesne alanı ya da yerel bir değişken yasak sayılmaz. Bir fonksiyondaki yerel bir ad, başka bir yerdeki gerçek kullanımı da gizlemez.
 - `src/core/` altındaki her dosya düz Node'da içe aktarılabilir olmalıdır.
 - Kapı, her kural ihlalini yakaladığını ve temiz kodu geçirdiğini bir öz testle kanıtlar.
-- Her çekirdek ve bağdaştırıcı modülü `src/main.jsx` ya da bir Node betiği tarafından kullanılır, ya da adıyla "arayüzü bekleyenler" listesindedir. Liste yalnız küçülebilir: testteki üst sınır her bağlamada düşürülür, yükseltmek bağımsız inceleme ister.
+- Her çekirdek ve bağdaştırıcı modülü `src/main.jsx` ya da bir Node betiği tarafından çalışma anında kullanılır, ya da adıyla "arayüzü bekleyenler" listesindedir. Yalnız tür içe aktaran bir bağ kullanım sayılmaz, yalnız tür içeren dosya bu kuraldan muaftır. Liste yalnız küçülebilir: testteki üst sınır her bağlamada düşürülür, yükseltmek bağımsız inceleme ister.
 - Ekran modellerinin klasörü (`src/screens/`) açıldığında aynı kapı onu da denetler.
 - Arayüz bağlandıktan sonra eklenecek kural: arayüz `catalog.json`'u, `data/` dosyalarını ve GitHub depolarını doğrudan içe aktaramaz.
 

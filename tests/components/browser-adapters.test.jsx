@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it } from 'vitest';
-import { browserLocation, browserStorage } from '../../src/adapters/browser/ports.js';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { browserLifecycle, browserLocation, browserStorage, browserTimers } from '../../src/adapters/browser/ports.js';
 
 // The browser side of the core's ports (ADR 003, K4): the address bar and history, and
 // storage that fails softly, as App.jsx uses them today.
@@ -51,5 +51,49 @@ describe('browserStorage', () => {
     expect(full.read('x')).toBe(null);
     expect(full.write('x', 'y')).toBe(false);
     expect(() => full.remove('x')).not.toThrow();
+  });
+});
+
+describe('browserLifecycle', () => {
+  afterEach(() => { delete document.visibilityState; });
+
+  it('reports the page being hidden or closed until it is stopped', () => {
+    const lifecycle = browserLifecycle(window);
+    Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' });
+    expect(lifecycle.visibility()).toBe('hidden');
+    let shown = 0;
+    let closed = 0;
+    const stopShown = lifecycle.onVisibilityChange(() => { shown += 1; });
+    const stopClosed = lifecycle.onPageHide(() => { closed += 1; });
+    document.dispatchEvent(new Event('visibilitychange'));
+    window.dispatchEvent(new Event('pagehide'));
+    expect([shown, closed]).toEqual([1, 1]);
+    stopShown();
+    stopClosed();
+    document.dispatchEvent(new Event('visibilitychange'));
+    window.dispatchEvent(new Event('pagehide'));
+    expect([shown, closed]).toEqual([1, 1]);
+  });
+});
+
+describe('browserTimers', () => {
+  it('reaches the page timers when they are used', () => {
+    const timers = browserTimers(window);
+    const spy = vi.spyOn(window, 'setInterval').mockReturnValue(7);
+    const clear = vi.spyOn(window, 'clearInterval').mockImplementation(() => undefined);
+    const callback = () => undefined;
+    expect(timers.setInterval(callback, 5000)).toBe(7);
+    expect(spy).toHaveBeenCalledWith(callback, 5000);
+    timers.clearInterval(7);
+    expect(clear).toHaveBeenCalledWith(7);
+    vi.restoreAllMocks();
+  });
+
+  it('runs and cancels a single delay', async () => {
+    const timers = browserTimers(window);
+    let runs = 0;
+    timers.clearTimeout(timers.setTimeout(() => { runs += 10; }, 0));
+    await new Promise(resolve => timers.setTimeout(() => { runs += 1; resolve(); }, 0));
+    expect(runs).toBe(1);
   });
 });

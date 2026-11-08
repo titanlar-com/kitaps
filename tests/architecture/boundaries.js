@@ -62,6 +62,7 @@ function undeclaredGlobals(files) {
       if (ts.isIdentifier(node)) {
         const parent = node.parent;
         const isName = (ts.isPropertyAccessExpression(parent) && parent.name === node)
+          || (ts.isBindingElement(parent) && parent.propertyName === node)
           || ((ts.isPropertyAssignment(parent) || ts.isPropertyDeclaration(parent) || ts.isPropertySignature(parent) || ts.isMethodDeclaration(parent) || ts.isMethodSignature(parent) || ts.isGetAccessor(parent) || ts.isSetAccessor(parent) || ts.isEnumMember(parent) || ts.isPropertyAccessExpression(parent.parent ?? parent)) && parent.name === node)
           || (ts.isQualifiedName(parent) && parent.right === node) || ts.isLabeledStatement(parent) || ts.isBreakOrContinueStatement(parent)
           || (ts.isImportSpecifier(parent) || ts.isExportSpecifier(parent)) || ts.isMetaProperty(parent);
