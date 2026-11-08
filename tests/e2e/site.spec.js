@@ -710,3 +710,13 @@ for (const colorScheme of ['light', 'dark']) {
     await context.close();
   });
 }
+
+test('the page names its own address as the base of its links in the head (ADR 003, phase 5)', async ({ page, baseURL, context }) => {
+  await isolate(context);
+  const base = new URL('./', baseURL).href;
+  const canonical = page.locator('link[rel="canonical"]');
+  await page.goto('./?sort=title&page=2');
+  await expect(canonical).toHaveAttribute('href', `${base}catalog/page/2/`);
+  await page.goto('./');
+  await expect(canonical).toHaveAttribute('href', `${base}catalog/`);
+});

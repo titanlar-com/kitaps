@@ -15,9 +15,11 @@ const catalog = readFixture();
 const route = extra => ({ view: 'books', sort: 'title', book: null, page: 2, pageSize: 24, filters: emptyFilters(), ...extra });
 const input = extra => ({ route: route(), catalog, count: catalog.books.length, currentPage: 2, totalPages: 6, displayed: catalog.books.slice(24, 48), ...extra });
 
-test('seoState never reads the browser address', () => {
-  const had = Object.getOwnPropertyDescriptor(globalThis, 'location');
-  Object.defineProperty(globalThis, 'location', { configurable: true, value: { origin: 'https://not-the-site.example', pathname: '/elsewhere/' } });
+test('seoState never reads the browser address, under any of the names a page has for it', () => {
+  const fake = { origin: 'https://not-the-site.example', pathname: '/elsewhere/' };
+  const page = { location: fake, window: { location: fake }, self: { location: fake }, document: { location: fake } };
+  const had = Object.fromEntries(Object.keys(page).map(name => [name, Object.getOwnPropertyDescriptor(globalThis, name)]));
+  for (const [name, value] of Object.entries(page)) Object.defineProperty(globalThis, name, { configurable: true, value });
   try {
     const state = seoState(input());
     assert.equal(state.canonical, `${SITE_URL}catalog/page/2/`);
@@ -25,7 +27,7 @@ test('seoState never reads the browser address', () => {
     assert.equal(staticListingUrl(route(), 3), `${SITE_URL}catalog/page/3/`);
     assert.ok(!JSON.stringify(state).includes('not-the-site'));
   } finally {
-    if (had) Object.defineProperty(globalThis, 'location', had); else delete globalThis.location;
+    for (const name of Object.keys(page)) { if (had[name]) Object.defineProperty(globalThis, name, had[name]); else delete globalThis[name]; }
   }
 });
 
@@ -75,5 +77,5 @@ test('the generator takes those rules from the shared module instead of keeping 
   assert.match(source, /from '\.\.\/src\/seo\.js'/);
   assert.doesNotMatch(source, /const groupHeading=/);
   assert.doesNotMatch(source, /const bookUrl=/);
-  assert.doesNotMatch(source, /\.categories\.includes\(item\.id\)/);
+  for (const copy of [/\.categories\.includes\(item\.id\)/, /\.collectionIds\.includes\(item\.id\)/, /\.groupIds\.includes\(item\.id\)/, /\| Kitaplık`/]) assert.doesNotMatch(source, copy);
 });
