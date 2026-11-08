@@ -21,7 +21,10 @@ const openFilters = async page => {
 // A panel is measured once it has come to rest, however few frames the machine paints.
 const atRest = (page, selector) => page.waitForFunction(root => {
   const element = document.querySelector(root);
-  return Boolean(element) && element.getAnimations({ subtree: true }).every(animation => animation.playState !== 'running' || animation.effect.getComputedTiming().iterations === Infinity);
+  if (!element) return false;
+  // A panel that is still fading in is not at rest even between two animation frames.
+  if ([...element.querySelectorAll('.mantine-Modal-content, .mantine-Drawer-content')].some(panel => getComputedStyle(panel).opacity !== '1')) return false;
+  return element.getAnimations({ subtree: true }).every(animation => animation.playState !== 'running' || animation.effect.getComputedTiming().iterations === Infinity);
 }, selector);
 const openFooterMenu = async page => {
   await page.locator('.footer-dock').click();
@@ -341,4 +344,26 @@ test.describe('at 320 px with 200% text', () => {
     expect(cut).toEqual([]);
     await context.close();
   });
+});
+
+test('going back from a filter section returns the focus to that section', async ({ page }) => {
+  await page.goto('./');
+  await openFilters(page);
+  const links = page.locator('.filter-section-link');
+  await expect(links.first()).toBeVisible();
+  const second = links.nth(1);
+  const name = await second.getAttribute('aria-label') ?? await second.innerText();
+  await second.click();
+  await page.getByRole('button', { name: 'Filtre başlıklarına dön' }).click();
+  await expect(links.nth(1)).toBeFocused();
+  expect((await links.nth(1).getAttribute('aria-label')) ?? await links.nth(1).innerText()).toBe(name);
+});
+
+test('at 320 px with 200% text the footer bar stays one row high', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto('./?view=notes');
+  await expect(page.locator('.footer-dock')).toBeVisible();
+  await page.addStyleTag({ content: 'html{font-size:200%}' });
+  const dock = await page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dock-height')));
+  await expect.poll(() => page.locator('.footer-dock').evaluate(element => element.getBoundingClientRect().height)).toBeLessThanOrEqual(dock);
 });

@@ -58,6 +58,7 @@ function Choices({ title, options, value, onChange, searchable = false, compact 
 
 export default function FilterSheet({ opened, onClose, onExited, value: f, onChange, onReset, onApply, count, catalog, authors, shelf = catalog.books }) {
  const [section, setSection] = useState(null);
+ const leftSection = useRef(null);
  const [viewport, setViewport] = useState(null);
  const titleRef = useRef(null);
  const bodyRef = useRef(null);
@@ -86,8 +87,12 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
  useEffect(() => { if (opened) setSection(null); }, [opened]);
  useEffect(() => {
   if (!opened) return;
-  titleRef.current?.focus({ preventScroll: true });
-  bodyRef.current?.scrollTo({ top: 0, behavior: 'instant' });
+  const left = leftSection.current;
+  leftSection.current = null;
+  // Back from a section the reader lands on the heading they opened, not at the top of the sheet.
+  const heading = !section && left ? bodyRef.current?.querySelector(`[data-section="${left}"]`) : null;
+  if (heading) heading.focus({ preventScroll: false });
+  else { titleRef.current?.focus({ preventScroll: true }); bodyRef.current?.scrollTo({ top: 0, behavior: 'instant' }); }
  }, [opened, section]);
  useEffect(() => {
   if (!opened || !window.visualViewport) return;
@@ -106,7 +111,7 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
   <Drawer.Overlay backgroundOpacity={.45} blur={3} />
   <Drawer.Content aria-describedby="filter-sheet-description">
    <Drawer.Header>
-    {section && <ActionIcon variant="subtle" aria-label="Filtre başlıklarına dön" onClick={() => setSection(null)}><IconArrowLeft size={22} /></ActionIcon>}
+    {section && <ActionIcon variant="subtle" aria-label="Filtre başlıklarına dön" onClick={() => { leftSection.current = section; setSection(null); }}><IconArrowLeft size={22} /></ActionIcon>}
     <Drawer.Title ref={titleRef} tabIndex={-1} data-autofocus>{current?.title || 'Filtreler'}</Drawer.Title>
     <Drawer.CloseButton aria-label="Filtreleri uygulamadan kapat" />
    </Drawer.Header>
@@ -117,7 +122,7 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
      const chosen = group.ids.reduce((sum, id) => sum + selected[id].length, 0);
      return <div className="filter-group" role="group" aria-labelledby={`${headingBase}-${group.id}`} key={group.id}>
       <div className="filter-group-heading"><span className="filter-group-title" id={`${headingBase}-${group.id}`}>{group.title}</span>{chosen > 0 && <span className="filter-group-count">{chosen} seçim</span>}</div>
-      <div className="filter-sections">{sections.filter(item => group.ids.includes(item.id)).map(({ id, title, hint, icon: Icon }) => <button type="button" className="filter-section-link" key={id} aria-label={selected[id].length ? `${title}: ${selected[id].join(", ")}. ${selected[id].length} seçim` : undefined} onClick={() => setSection(id)}>
+      <div className="filter-sections">{sections.filter(item => group.ids.includes(item.id)).map(({ id, title, hint, icon: Icon }) => <button type="button" className="filter-section-link" data-section={id} key={id} aria-label={selected[id].length ? `${title}: ${selected[id].join(", ")}. ${selected[id].length} seçim` : undefined} onClick={() => setSection(id)}>
        <span className="filter-section-icon" aria-hidden="true"><Icon size={22} stroke={1.6} /></span>
        <span className="filter-section-copy"><strong>{title}</strong><span data-selected={selected[id].length > 0 || undefined}>{selected[id].length ? selected[id].join(', ') : hint}</span></span>
        {selected[id].length > 0 && <Badge className="filter-section-count" variant="light">{selected[id].length}</Badge>}

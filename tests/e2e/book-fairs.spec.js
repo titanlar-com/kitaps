@@ -124,3 +124,14 @@ for (const width of [320, 360, 375, 390, 768, 1280]) {
     expect(report.framed).toBe(0);
   });
 }
+
+test('changing which fairs are shown is announced', async ({ page }) => {
+  await page.goto('./?view=fairs');
+  const live = page.locator('.book-fairs-count');
+  await expect(live).toHaveAttribute('role', 'status');
+  const before = await live.textContent();
+  expect(before).toMatch(/\d+ fuar gösteriliyor\./);
+  const scopes = page.locator('.book-fairs-scope .mantine-SegmentedControl-label');
+  await scopes.nth(1).click();
+  await expect.poll(() => live.textContent()).toMatch(/\d+ fuar gösteriliyor\.|Bu seçimde/);
+});

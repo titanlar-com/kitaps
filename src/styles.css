@@ -248,11 +248,12 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
    transitions get the curve and durations from the theme in App.jsx. */
 :where([class*="mantine-"]),:where([class*="mantine-"])::before,:where([class*="mantine-"])::after{transition-timing-function:var(--motion-ease)!important}
 /* Mantine's own fixed durations (button and icon loaders, accordion items, progress) take the token. */
-.mantine-Button-root::before,.mantine-Button-inner,.mantine-ActionIcon-icon,.mantine-Accordion-item,.mantine-Progress-section,.mantine-Checkbox-input,.mantine-Checkbox-icon,.mantine-Switch-track,.mantine-Switch-thumb,.mantine-Switch-trackLabel,.mantine-RadioIndicator-indicator,.mantine-RadioIndicator-indicator>svg{transition-duration:var(--motion-control)}
+.mantine-Button-root::before,.mantine-Button-inner,.mantine-ActionIcon-icon,.mantine-Accordion-item,.mantine-Checkbox-input,.mantine-Checkbox-icon,.mantine-Switch-track,.mantine-Switch-thumb,.mantine-Switch-trackLabel,.mantine-RadioIndicator-indicator,.mantine-RadioIndicator-indicator>svg{transition-duration:var(--motion-control)}
 /* Mantine's loading bars keep their own keyframes and take the site's rhythm (ADR 004, K4). The
    first screen in index.html runs the same keyframes and phases; tests/e2e/loading.spec.js compares them. */
 .mantine-Loader-root>span{animation-duration:var(--motion-busy);animation-timing-function:var(--motion-ease)}
 .mantine-Skeleton-root::after{animation-duration:var(--motion-busy);animation-timing-function:var(--motion-ease)}
+.mantine-Progress-section{transition-duration:var(--motion-move)}
 .mantine-Loader-root>span:nth-of-type(1){animation-delay:calc(var(--motion-busy-step) * -2)}
 .mantine-Loader-root>span:nth-of-type(2){animation-delay:calc(var(--motion-busy-step) * -1)}
 
@@ -533,7 +534,7 @@ main{padding-top:20px;padding-bottom:32px}
 .book-actions .mantine-ActionIcon-root[aria-pressed=true]{color:var(--accent)}
 .book-actions .cover-owned[aria-pressed=true]{color:var(--ok)}
 .book-state-badges{margin-top:6px}
-@media (hover:hover) and (pointer:fine){
+@media (hover:hover) and (pointer:fine) and (not (any-pointer:coarse)){
  .book-actions .mantine-ActionIcon-root:not([aria-pressed=true]){opacity:0}
  .book-card:is(:hover,:focus-within) .book-actions .mantine-ActionIcon-root{opacity:1}
 }

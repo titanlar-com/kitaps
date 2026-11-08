@@ -56,7 +56,7 @@ const stepsTitle=useId();
     <form onSubmit={submit} className="sync-connect">
      <Text id={stepsTitle} className="sync-connect-title">Bu cihazı bağla</Text>
      <Stepper role="list" aria-labelledby={stepsTitle} aria-busy={submitting||undefined} className="sync-steps" orientation="vertical" size="sm" iconSize={32} active={activeStep}>
-      {steps.map((step,index)=><Stepper.Step key={step.label} component="div" role="listitem" aria-current={index===activeStep?'step':undefined} label={step.label} description={step.description} loading={submitting&&index===activeStep}/>)}
+      {steps.map((step,index)=><Stepper.Step key={step.label} component="div" role="listitem" aria-current={index===activeStep?'step':undefined} label={<>{step.label}{index<activeStep&&<span className="visually-hidden"> (tamamlandı)</span>}</>} description={step.description} loading={submitting&&index===activeStep}/>)}
      </Stepper>
      <PasswordInput ref={tokenField} className="sync-token-field" label="İnce ayarlı (fine-grained) GitHub anahtarı" description="github_pat_ ile başlar. Klasik ve OAuth anahtarları kabul edilmez. Anahtar kaydedilmeden önce GitHub ile okuma ve yazma izni denetlenir." value={token} onChange={event=>setToken(event.currentTarget.value)} autoComplete="off" required/>
      <Button className="sync-submit" type="submit" loading={submitting} disabled={!token.trim()}>Bu cihazda bağla</Button>

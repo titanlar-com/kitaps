@@ -7,7 +7,7 @@
 /* The bar sits at the foot of the screen, so its focus line is drawn inside it, above its lower edge. */
 html[data-focus-mode="keyboard"] .site-footer .footer-dock.footer-dock:focus-visible::after{inset-inline:16px;bottom:6px}
 .footer-dock-label{flex:none;font-weight:600}
-.footer-dock-current{min-width:0;color:var(--muted);overflow-wrap:break-word}
+.footer-dock-current{min-width:0;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .footer-dock-icon{flex:none;margin-inline-start:auto}
 
 /* The menu is one layer above the bar's floor: groups are told apart by space, items by tone. */

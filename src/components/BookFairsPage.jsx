@@ -50,6 +50,7 @@ export default function BookFairsPage() {
  const today = todayInIstanbul();
  const { open, months, undated } = useMemo(() => fairTimeline(data.fairs, scope, today), [scope, today]);
  const hasTimeline = open.length > 0 || months.length > 0;
+ const shownFairs = open.length + undated.length + months.reduce((sum, month) => sum + month.fairs.length, 0);
  return <div className="book-fairs-page">
   <header className="book-fairs-intro">
    <Title order={1}>Kitap fuarları</Title>
@@ -58,6 +59,7 @@ export default function BookFairsPage() {
   </header>
   <SegmentedControl className="book-fairs-scope" value={scope} onChange={value => setScope(String(value))} data={SCOPES} aria-label="Hangi fuarlar gösterilsin?" />
 
+  <Text className="book-fairs-count visually-hidden" role="status" aria-live="polite">{shownFairs} fuar gösteriliyor.</Text>
   {hasTimeline ? <Timeline className="fair-timeline" active={open.length ? 0 : -1} bulletSize={18}>
    {open.length > 0 && <Timeline.Item key="open" {...SECTION} aria-labelledby="fairs-open">
     <Title order={2} id="fairs-open">Şu an açık</Title>
