@@ -6,7 +6,7 @@ import '@fontsource-variable/outfit/wght.css';
 import catalog from './catalog.json';
 import ReadingQueue from './components/ReadingQueue';
 import CatalogPagination from './components/CatalogPagination';
-import { applySeo, seoState } from './seo';
+import { addressBase, applySeo, seoState } from './seo';
 import { catalogListing } from './app/listing';
 import { VIEWS, HEADER_VIEWS, viewById } from './views';
 import ThemeTweaker from './components/ThemeTweaker';
@@ -116,7 +116,7 @@ function AtlasApp() {
  // The shelf, the filtered list and the page shown (src/app/listing.js, tested in Node).
  const {shelf:shelfBooks,ownedCount,favoriteCount,filtered,pages,currentPage,displayed,showsHiddenPurchases}=useMemo(()=>catalogListing({books,states,view,filters,sort,page,pageSize,rankings:readingRanking.byId,hideOwned}),[states,view,filters,sort,page,pageSize,hideOwned]);
  useEffect(()=>{if(page!==currentPage)setRoute(r=>({...r,page:currentPage}))},[page,currentPage]);
- useEffect(()=>applySeo(seoState({route:{...route,page:currentPage},catalog,count:filtered.length,currentPage,totalPages:pages,displayed})),[route,filtered.length,currentPage,pages,displayed]);
+ useEffect(()=>applySeo(seoState({route:{...route,page:currentPage},catalog,count:filtered.length,currentPage,totalPages:pages,displayed,base:addressBase(window.location)})),[route,filtered.length,currentPage,pages,displayed]);
  // The reading band's numbers (src/reading.js, tested in Node); each count opens its shelf.
  const summary=useMemo(()=>readingSummary({books,states,queue:personal.queue}),[states,personal.queue]);
  // A phone keeps its first screen for book titles; there the band is on Sıram only.

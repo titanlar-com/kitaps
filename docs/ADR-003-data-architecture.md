@@ -178,6 +178,7 @@ Aşağıdaki farklar bugünkü hâlleriyle sabitlendi ve sahibin kararı olmadan
 2. **Yapılandırılmış veri (JSON-LD).** Çalışma anında ve statik sayfalarda farklı alanlarla üretiliyor. Codex buldu. `seo` ve `static-seo` altın kayıtlarıyla sabitlendi.
 3. **Arama motoru verisi ve gizlenen kitaplar.** Çalışma anındaki yapılandırılmış veri, satın alınanlar gizlenmiş listeden hesaplanıyor. Claude analizcisi buldu. `seo` altın kaydında "satın alınanlar gizli" adresleriyle sabitlendi.
 4. **Kümeler sayfasındaki sayı.** "Kaynak kaydı" diye yazılan sayı aslında birleştirilmiş kitap sayısı. Bu görünür bir hata. Claude analizcisi buldu. Tasarım işinden sonra sahibe sorulur.
+5. **Grup adresindeki iki nokta.** Grup kimliklerinde iki nokta vardır (`cocuk-kitabi-listeleri:meb-100`). Çalışma anı bunu `%3A` olarak yazar, statik sayfaların kendi adresi iki noktayı olduğu gibi tutar. İki adres aynı sayfayı açar, ama arama motoruna iki farklı yazım gösterilir. 5. aşamada bulundu. `static-seo` altın kaydıyla sabitlendi.
 
 ### K13. ADR 002'den değişenler
 

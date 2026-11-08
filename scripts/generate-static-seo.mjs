@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { DEFAULT_PAGE_SIZE, bookSlug } from '../src/library.js';
+import { DEFAULT_PAGE_SIZE, bookSlug, emptyFilters, filterBooks } from '../src/library.js';
+import { bookPageTitle, groupHeading, listingPageTitle, staticBookUrl as bookUrl } from '../src/seo.js';
 import { displayTitle,recommendedTranslation,translationStatus,turkishEdition } from '../src/translation.js';
 import { readingGuide } from '../src/recommendations.js';
 import { splitAuthors } from '../src/authors.js';
@@ -21,18 +22,16 @@ const publicBase=`${SITE_URL}catalog/`;
 const appBase=SITE_URL;
 const pageSize=DEFAULT_PAGE_SIZE;
 const collator=new Intl.Collator('tr',{sensitivity:'base',numeric:true});
+// Equal titles break by author here and by catalogue order on the running page (ADR 003, K12).
 const byTitle=[...catalog.books].sort((a,b)=>collator.compare(displayTitle(a),displayTitle(b))||collator.compare(a.author,b.author));
 const byId=Object.fromEntries(catalog.books.map(book=>[book.id,book]));
 const collectionMap=Object.fromEntries(catalog.collections.map(item=>[item.id,item]));
-const bookUrl=book=>`${publicBase}books/${encodeURIComponent(bookSlug(book))}/`;
-// Several source lists reuse generic group names ("Kitap listesi"), so a group
-// page is always named together with its collection.
-const groupHeading=group=>`${collectionMap[group.collectionId]?.short||collectionMap[group.collectionId]?.title||''} · ${group.title}`;
 const summary=(value,limit=158)=>{const clean=String(value||'').replace(/\s+/g,' ').trim();return clean.length>limit?`${clean.slice(0,limit-1).replace(/\s+\S*$/,'')}…`:clean;};
 
 export const escapeHtml=value=>String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
 const json=value=>JSON.stringify(value).replaceAll('<','\\u003c');
 const pagePath=(prefix,page)=>`${prefix}${page>1?`page/${page}/`:''}`;
+// A group id holds a colon. These pages keep it as it is, the running page writes %3A (ADR 003, K12).
 const canonicalFor=(prefix,page)=>`${publicBase}${pagePath(prefix,page)}`;
 const interactiveFor=({category,collection,group,book}={})=>{
  const query=new URLSearchParams();
@@ -59,15 +58,16 @@ function write(relative,html) {
  fs.writeFileSync(path.join(directory,'index.html'),html);
 }
 
-function renderListing({prefix='',heading='Tüm kitaplar',description='Araştırılmış seçkiler, konu rotaları, çeviri, çevirmen ve baskı bilgileriyle kitap kataloğu.',books=byTitle,interactive=interactiveFor()}) {
+function renderListing({prefix='',heading='Tüm kitaplar',description='Araştırılmış seçkiler, konu rotaları, çeviri, çevirmen ve baskı bilgileriyle kitap kataloğu.',shelf={},interactive=interactiveFor()}) {
+ const books=filterBooks(byTitle,{...emptyFilters(),...shelf});
  const pages=Math.max(1,Math.ceil(books.length/pageSize));
  for(let page=1;page<=pages;page++){
   const canonical=canonicalFor(prefix,page);
   const shown=books.slice((page-1)*pageSize,page*pageSize);
-  const title=`${heading}${page>1?` — Sayfa ${page}`:''} | Kitaplık`;
+  const title=listingPageTitle(heading,page);
   const pageDescription=`${heading}: ${books.length} kitap; ${((page-1)*pageSize)+1}–${Math.min(page*pageSize,books.length)} arası eserler. Başlığa göre kararlı katalog sırası.`;
-  const structured={'@context':'https://schema.org','@type':'CollectionPage',name:heading,description:pageDescription,url:canonical,mainEntity:{'@type':'ItemList',numberOfItems:books.length,itemListElement:shown.map((book,index)=>({'@type':'ListItem',position:(page-1)*pageSize+index+1,url:`${publicBase}books/${encodeURIComponent(bookSlug(book))}/`,name:displayTitle(book)}))}};
-  const items=shown.map(book=>`<li><a href="${publicBase}books/${encodeURIComponent(bookSlug(book))}/">${escapeHtml(displayTitle(book))}</a><span class="meta"> — ${escapeHtml(book.author)}</span></li>`).join('');
+  const structured={'@context':'https://schema.org','@type':'CollectionPage',name:heading,description:pageDescription,url:canonical,mainEntity:{'@type':'ItemList',numberOfItems:books.length,itemListElement:shown.map((book,index)=>({'@type':'ListItem',position:(page-1)*pageSize+index+1,url:bookUrl(book),name:displayTitle(book)}))}};
+  const items=shown.map(book=>`<li><a href="${bookUrl(book)}">${escapeHtml(displayTitle(book))}</a><span class="meta"> — ${escapeHtml(book.author)}</span></li>`).join('');
   const prev=page>1?canonicalFor(prefix,page-1):'';
   const next=page<pages?canonicalFor(prefix,page+1):'';
   const body=`<header><a href="${publicBase}">Kitaplık</a><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(description)}</p><p class="meta">${books.length} eser · başlığa göre sıralı · sayfa ${page}/${pages}</p><p class="actions"><a href="${escapeHtml(interactive)}">Etkileşimli katalogda aç</a></p></header><main><ol start="${(page-1)*pageSize+1}">${items}</ol><nav class="pagination" aria-label="Sayfalar">${prev?`<a rel="prev" href="${prev}">Önceki sayfa</a>`:'<span></span>'}${next?`<a rel="next" href="${next}">Sonraki sayfa</a>`:''}</nav></main>`;
@@ -83,7 +83,7 @@ function renderBook(book) {
  const edition=['available','original'].includes(status.status)?turkishEdition(book):null;
  const translation=recommendedTranslation(book);
  const guide=readingGuide(book,catalog);
- const title=`${shown} — ${book.author} | Kitaplık`;
+ const title=bookPageTitle(book);
  const description=summary(`${shown}, ${book.author}. ${guide.purpose}`);
  const image=book.cover?`${appBase}${book.cover.src}`:'';
  const authors=splitAuthors(book.author).map(name=>({'@type':'Person',name}));
@@ -109,8 +109,8 @@ function renderBook(book) {
 
 fs.rmSync(catalogRoot,{recursive:true,force:true});
 renderListing({});
-for(const item of catalog.categories)renderListing({prefix:`category/${item.id}/`,heading:item.label,books:byTitle.filter(book=>book.categories.includes(item.id)),interactive:interactiveFor({category:item.id})});
-for(const item of catalog.collections)renderListing({prefix:`collection/${item.id}/`,heading:item.title,description:item.description,books:byTitle.filter(book=>book.collectionIds.includes(item.id)),interactive:interactiveFor({collection:item.id})});
-for(const item of catalog.groups||[])renderListing({prefix:`group/${item.id}/`,heading:groupHeading(item),books:byTitle.filter(book=>book.groupIds.includes(item.id)),interactive:interactiveFor({group:item.id})});
+for(const item of catalog.categories)renderListing({prefix:`category/${item.id}/`,heading:item.label,shelf:{categories:[item.id]},interactive:interactiveFor({category:item.id})});
+for(const item of catalog.collections)renderListing({prefix:`collection/${item.id}/`,heading:item.title,description:item.description,shelf:{collections:[item.id]},interactive:interactiveFor({collection:item.id})});
+for(const item of catalog.groups||[])renderListing({prefix:`group/${item.id}/`,heading:groupHeading(item,catalog),shelf:{groups:[item.id]},interactive:interactiveFor({group:item.id})});
 for(const book of catalog.books)renderBook(book);
 console.log(`static SEO: ${catalog.books.length} book pages and stable catalog listings`);

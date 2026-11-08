@@ -16,16 +16,25 @@ function publicListing(route) {
 
 const cleanRoute=(route,book=null)=>({filters:emptyFilters(),view:'books',sort:'reading',book,page:1,pageSize:DEFAULT_PAGE_SIZE});
 
-function siteBase() {
- const site=new URL(SITE_URL);
- const origin=globalThis.location?.origin||site.origin;
- const pathname=globalThis.location?.pathname||site.pathname;
+/** The base a running page builds its addresses on: where it is served from. The caller reads
+ * the address; everything below is pure and defaults to the published site (ADR 003, phase 5). */
+export function addressBase({origin,pathname}) {
  const root=pathname.endsWith('/')?pathname:pathname.slice(0,pathname.lastIndexOf('/')+1);
  return `${origin}${root}`;
 }
 
-export function staticListingUrl(route,page=1) {
- const root=`${siteBase()}catalog/`;
+// What the running page and the static pages (scripts/generate-static-seo.mjs) call a page.
+// Several source lists reuse generic group names ("Kitap listesi"), so a group is always named
+// together with its collection.
+export function groupHeading(group,catalog) {
+ const collection=catalog.collections.find(item=>item.id===group.collectionId);
+ return `${collection?.short||collection?.title||''} · ${group.title}`;
+}
+export const listingPageTitle=(heading,page)=>`${heading}${page>1?` — Sayfa ${page}`:''} | ${SITE_NAME}`;
+export const bookPageTitle=book=>`${displayTitle(book)} — ${book.author} | ${SITE_NAME}`;
+
+export function staticListingUrl(route,page=1,base=SITE_URL) {
+ const root=`${base}catalog/`;
  const f=route.filters;
  let path='';
  const taxonomyCount=f.categories.length+f.collections.length+f.groups.length;
@@ -35,35 +44,33 @@ export function staticListingUrl(route,page=1) {
  return `${root}${path}${page>1?`page/${page}/`:''}`;
 }
 
-export function staticBookUrl(book) {
- return `${siteBase()}catalog/books/${encodeURIComponent(bookSlug(book))}/`;
+export function staticBookUrl(book,base=SITE_URL) {
+ return `${base}catalog/books/${encodeURIComponent(bookSlug(book))}/`;
 }
 
-export function seoState({route,catalog,count,currentPage,totalPages,displayed}) {
+export function seoState({route,catalog,count,currentPage,totalPages,displayed,base=SITE_URL}) {
  const book=route.book?catalog.books.find(item=>item.id===route.book):null;
  const category=route.filters.categories.length===1?catalog.categories.find(item=>item.id===route.filters.categories[0]):null;
  const collection=route.filters.collections.length===1?catalog.collections.find(item=>item.id===route.filters.collections[0]):null;
  const group=route.filters.groups.length===1?catalog.groups.find(item=>item.id===route.filters.groups[0]):null;
  const indexable=!!book||publicListing(route);
- const pageSuffix=currentPage>1?` — Sayfa ${currentPage}`:'';
- const groupCollection=group?catalog.collections.find(item=>item.id===group.collectionId):null;
- let heading=category?.label||collection?.title||(group?`${groupCollection?.short||groupCollection?.title||''} · ${group.title}`:'')||'Tüm kitaplar';
+ let heading=category?.label||collection?.title||(group?groupHeading(group,catalog):'')||'Tüm kitaplar';
  // Every page but the catalogue has its own heading (src/views.js).
  if(route.view!=='books'&&viewById[route.view])heading=viewById[route.view].heading;
- const title=book?`${displayTitle(book)} — ${book.author} | ${SITE_NAME}`:`${heading}${pageSuffix} | ${SITE_NAME}`;
+ const title=book?bookPageTitle(book):listingPageTitle(heading,currentPage);
  const start=count?((currentPage-1)*(route.pageSize||DEFAULT_PAGE_SIZE))+1:0;
  const end=Math.min(currentPage*(route.pageSize||DEFAULT_PAGE_SIZE),count);
  const description=!book&&viewById[route.view]?.description?viewById[route.view].description:book?`${displayTitle(book)}, ${book.author}. Türkçe baskı, çeviri, yayınevi, kaynak kümeleri ve okuma rotası bilgileri.`:`${heading}: ${count} kitap${count?`; ${start}–${end} arası eserler`:''}. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.`;
  const canonicalQuery=encodeRoute(book?cleanRoute(route,book.id):cleanRoute(route),catalog);
- const href=query=>`${siteBase()}${query?'?'+query:''}`;
- const canonical=book?staticBookUrl(book):staticListingUrl(route,indexable?currentPage:1);
+ const href=query=>`${base}${query?'?'+query:''}`;
+ const canonical=book?staticBookUrl(book,base):staticListingUrl(route,indexable?currentPage:1,base);
  const structured=book?{
   '@context':'https://schema.org','@type':workFormat(book)?.schema||'Book',name:displayTitle(book),author:{'@type':'Person',name:book.author},inLanguage:book.cover?.language||undefined,isbn:book.verifiedEdition?.isbn||book.cover?.isbn||undefined,isPartOf:book.format==='article'&&book.publication?.venue?{'@type':'Periodical',name:book.publication.venue}:undefined,url:canonical
  }:{
   '@context':'https://schema.org','@type':'CollectionPage',name:heading,description,url:canonical,
-  ...(indexable?{mainEntity:{'@type':'ItemList',numberOfItems:count,itemListElement:displayed.map((item,index)=>({'@type':'ListItem',position:start+index,url:staticBookUrl(item),name:displayTitle(item)}))}}:{})
+  ...(indexable?{mainEntity:{'@type':'ItemList',numberOfItems:count,itemListElement:displayed.map((item,index)=>({'@type':'ListItem',position:start+index,url:staticBookUrl(item,base),name:displayTitle(item)}))}}:{})
  };
- return {title,description:description||baseDescription(catalog),robots:indexable?'index,follow':'noindex,follow',canonical,prev:indexable&&currentPage>1?staticListingUrl(route,currentPage-1):'',next:indexable&&currentPage<totalPages?staticListingUrl(route,currentPage+1):'',structured,interactive:href(canonicalQuery),ogType:book?(workFormat(book)?'article':'book'):'website'};
+ return {title,description:description||baseDescription(catalog),robots:indexable?'index,follow':'noindex,follow',canonical,prev:indexable&&currentPage>1?staticListingUrl(route,currentPage-1,base):'',next:indexable&&currentPage<totalPages?staticListingUrl(route,currentPage+1,base):'',structured,interactive:href(canonicalQuery),ogType:book?(workFormat(book)?'article':'book'):'website'};
 }
 
 function upsertMeta(name,content) {
