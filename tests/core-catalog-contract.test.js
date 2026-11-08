@@ -56,3 +56,12 @@ test('the full contract names each defect and keeps the data as it is', () => {
   const { addedAt, ...undated } = book('b');
   assert.deepEqual(validateCatalog(small([undated])), []);
 });
+
+test('the catalogue Python writes names its schema version and its day (ADR 003, phase 2)', () => {
+  const written = JSON.parse(fs.readFileSync(new URL('../src/catalog.json', import.meta.url), 'utf8'));
+  assert.equal(openCatalog(written, { validate: 'full' }).schemaVersion, 1);
+  assert.match(written.updatedOn, /^\d{4}-\d{2}-\d{2}$/);
+  const [year, month, day] = written.updatedOn.split('-');
+  const named = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${year}-${month}-${day}T00:00:00Z`));
+  assert.equal(written.updated, named, '`updated` keeps its meaning: the same day, in words, of the latest evidence');
+});

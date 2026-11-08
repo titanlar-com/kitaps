@@ -1,5 +1,7 @@
 {
+  "schemaVersion": 1,
   "updated": "22 Ekim 2026",
+  "updatedOn": "2026-10-22",
   "readingGuides": {
     "note": "Kitap Atlası için hazırlanmış editoryal okuma amaçları ve isteğe bağlı sıralar. Kaynakların zorunlu önkoşul iddiası değildir. Kitaba özel not bulunmayan eserler için mevcut konu etiketlerinden açıkça belirtilen bir çalışma amacı üretilir.",
     "purposes": {
