@@ -30,6 +30,14 @@ export function readingErrors(record) {
   dates:r.startedAt&&r.finishedAt&&r.finishedAt<r.startedAt?'Bitiş tarihi, başlama tarihinden önce olamaz.':null
  };
 }
+// What the book page shows of a reading at a glance: how far it is, and its days in date order.
+// A page past the end is an entry error, so it gives no percentage.
+export function readingJourney(record) {
+ const r=cleanReading(record);
+ const percent=readingErrors(r).pages?null:progressPercent(r);
+ const steps=[['started',r.startedAt],['finished',r.finishedAt]].filter(([,day])=>day).map(([kind,day])=>({kind,day})).sort((a,b)=>a.day.localeCompare(b.day));
+ return {percent,page:r.page,totalPages:r.totalPages,steps,hasAny:percent!==null||steps.length>0};
+}
 // Marking a book as being read or read writes its start or finish day, unless one is already
 // written (ADR 002, phase 3). Any other mark leaves the reading record as it is.
 export function stampReadingDate(personal,id,key,today) {

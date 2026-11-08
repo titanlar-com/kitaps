@@ -684,7 +684,7 @@ test('books can be filtered by the day they were added to the library', async ({
   await expect(page).not.toHaveURL(/added=/);
   const book = catalog.books.find(item => item.addedAt === latest);
   await page.goto(`./?book=${book.id}`);
-  await expect(page.locator('.detail-heading')).toContainText(`Kitaplığa eklendi: ${label}`);
+  await expect(page.locator('.detail-heading .mantine-DataList-item', { hasText: 'Kitaplığa eklendi' })).toContainText(label);
 });
 
 test('page state lives in the URL and survives a reload', async ({ page }) => {

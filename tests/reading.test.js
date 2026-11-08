@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { addToQueue, moveInQueue, cleanPersonal, cleanReading, progressPercent, readingErrors, restorePersonal, todayLocal } from '../src/reading.js';
+import { readingJourney, addToQueue, moveInQueue, cleanPersonal, cleanReading, progressPercent, readingErrors, restorePersonal, todayLocal } from '../src/reading.js';
 import { toggleState, encodeRoute, emptyFilters, decodeRoute } from '../src/library.js';
 const catalog=JSON.parse(fs.readFileSync(new URL('../src/catalog.json',import.meta.url)));
 
@@ -62,4 +62,26 @@ test('Turkish covers retain provenance and exist as local image files',()=>{
   const data=fs.readFileSync(new URL('../public/'+c.src,import.meta.url));assert.ok(data.length>1000);
   assert.ok(data.subarray(0,2).equals(Buffer.from([255,216]))||data.subarray(0,4).equals(Buffer.from([137,80,78,71]))||(data.toString('ascii',0,4)==='RIFF'&&data.toString('ascii',8,12)==='WEBP'),c.src);
  }
+});
+
+// What the book page shows of a reading at a glance (docs/UI-REDESIGN.md, phase 4).
+test('a reading journey works its percentage out from the pages',()=>{
+ assert.equal(readingJourney({page:75,totalPages:300}).percent,25);
+ assert.equal(readingJourney({page:1,totalPages:3}).percent,33);
+ assert.equal(readingJourney({page:300,totalPages:300}).percent,100);
+});
+test('a reading journey has no percentage when the pages cannot give one',()=>{
+ assert.equal(readingJourney({page:10,totalPages:''}).percent,null);
+ assert.equal(readingJourney({page:400,totalPages:300}).percent,null,'a page past the end is an entry error, not 100%');
+});
+test('a reading journey lists its days in date order and drops days that do not exist',()=>{
+ assert.deepEqual(readingJourney({startedAt:'2026-01-02',finishedAt:'2026-02-03'}).steps,[{kind:'started',day:'2026-01-02'},{kind:'finished',day:'2026-02-03'}]);
+ assert.deepEqual(readingJourney({startedAt:'2026-03-01',finishedAt:'2026-02-03'}).steps.map(step=>step.kind),['finished','started']);
+ assert.deepEqual(readingJourney({startedAt:'2026-02-30'}).steps,[]);
+});
+test('an empty record has no journey to show',()=>{
+ assert.equal(readingJourney(undefined).hasAny,false);
+ assert.equal(readingJourney({why:'Merak ettim.'}).hasAny,false);
+ assert.equal(readingJourney({startedAt:'2026-01-02'}).hasAny,true);
+ assert.equal(readingJourney({page:10,totalPages:100}).hasAny,true);
 });

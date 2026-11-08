@@ -1,0 +1,15 @@
+/* The book page. The sheet is a layer above the page and its panels a layer above the sheet. */
+.detail-drawer{--panel:var(--surface-2);--panel-hover:var(--surface-3)}
+.detail-facts{--data-list-label-width:auto;--data-list-gap:var(--gap-xs);margin-top:var(--stack-gap);font-size:var(--text-md)}
+.detail-facts .mantine-DataList-item{flex-wrap:wrap;column-gap:var(--gap-xs)}
+@media (min-width:48em){.detail-facts{--data-list-label-width:9.5rem}}
+.detail-facts .mantine-DataList-itemLabel{color:var(--muted)}
+.detail-facts .mantine-DataList-itemValue{color:var(--ink-2);font-variant-numeric:tabular-nums}
+.detail-drawer .mantine-Accordion-item{border-color:transparent;background:var(--surface-2)}
+.detail-drawer .mantine-Accordion-panel .related-card{padding:0!important;background:transparent!important;box-shadow:none}
+.detail-drawer .mantine-Accordion-panel .related-grid{gap:var(--band-gap)}
+.note-block .mantine-Spoiler-control{min-height:var(--touch-target);color:var(--accent);font-size:var(--text-md)}
+.reading-journey{display:grid;gap:var(--band-gap);padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--surface-2)}
+.reading-journey-progress{display:grid;gap:var(--gap-xs)}
+.reading-journey-progress .tabular-nums{font-weight:650}
+.reading-journey-day{color:var(--muted)}

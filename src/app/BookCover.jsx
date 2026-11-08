@@ -1,5 +1,6 @@
 // Moved verbatim from App.jsx (architecture plan, phase 1, 7 November 2026).
 import { useState } from 'react';
+import { Skeleton } from '@mantine/core';
 import { IconBook2, IconFileText } from '@tabler/icons-react';
 import { displayTitle } from '../translation';
 import { workFormat } from '../workFormat';
@@ -19,7 +20,9 @@ export function BookCover({book:b,onOpen=null,detail=false,read=false,size=detai
  const embedded=cover&&globalThis.__KITAP_COVERS__?.[cover.src];
  const content=cover&&!failed?<img src={embedded||`./${cover.src}`} srcSet={embedded?undefined:`./${smallCover(cover.src)} 400w, ./${cover.src} 720w`} sizes={embedded?undefined:COVER_SIZES[size]} alt={`${cover.title} — ${cover.publisher}, ${cover.language==='tr'?'Türkçe':'Uluslararası'} baskı kapağı`} width="240" height="360" loading={detail?'eager':'lazy'} decoding="async" data-loaded={loaded||undefined} onLoad={()=>setLoaded(true)} onError={()=>setFailed(true)}/>:<span className="cover-placeholder" data-edge="start" aria-hidden="true">{format&&<span className="cover-placeholder-kind">{format.label}</span>}<span className="cover-placeholder-title">{displayTitle(b)}</span><span className="cover-placeholder-author">{b.author}</span><span className="cover-placeholder-note">{format?<IconFileText size={18} stroke={1.5}/>:<IconBook2 size={18} stroke={1.5}/>}</span></span>;
  const stage=`cover-stage${read?' is-read':''}`;
- return detail?<div className={`${stage} cover-stage-detail`}>{content}</div>:<button className={`${stage} cover-open`} onClick={()=>onOpen(b.id)} aria-label={`${displayTitle(b)} ayrıntılarını aç`}>{content}</button>;
+ // A cover still on its way shows a moving placeholder, so the frame never looks empty.
+ const waiting=cover&&!failed&&!loaded&&<Skeleton className="cover-skeleton" aria-hidden="true"/>;
+ return detail?<div className={`${stage} cover-stage-detail`}>{waiting}{content}</div>:<button className={`${stage} cover-open`} onClick={()=>onOpen(b.id)} aria-label={`${displayTitle(b)} ayrıntılarını aç`}>{waiting}{content}</button>;
 }
 // Small covers beside related books and in the reading queue.
 export const ThumbCover=props=><BookCover {...props} size="thumb"/>;
