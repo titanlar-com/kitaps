@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, Text, UnstyledButton } from '@mantine/core';
+import { Divider, Drawer, NavLink, Text, UnstyledButton } from '@mantine/core';
 import { IconChevronUp } from '@tabler/icons-react';
 import './FooterMenu.css';
 
@@ -20,13 +20,11 @@ export default function FooterMenu({ groups, current, meta }) {
     {groups.map(group => <section key={group.title} className="footer-menu-group" aria-labelledby={`footer-${group.id}`}>
      <Text className="footer-menu-heading" id={`footer-${group.id}`}>{group.title}</Text>
      <ul>{group.items.map(item => <li key={item.label}>
-      <UnstyledButton className="footer-menu-item" onClick={choose(item.onSelect)} aria-current={item.current ? 'page' : undefined}>
-       {item.icon && <item.icon size={20} aria-hidden="true" />}
-       <span>{item.label}</span>
-      </UnstyledButton>
+      <NavLink component="button" type="button" className="footer-menu-item" label={item.label} leftSection={item.icon && <item.icon size={20} aria-hidden="true" />} active={Boolean(item.current)} aria-current={item.current ? 'page' : undefined} onClick={choose(item.onSelect)} />
      </li>)}</ul>
     </section>)}
    </nav>
+   <Divider className="footer-menu-divider" />
    <div className="footer-meta">{meta}</div>
   </Drawer>
  </footer>;

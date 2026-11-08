@@ -1,0 +1,27 @@
+/* The purchase notice (LibraryToast.jsx), a Mantine Notification. It floats above everything, so it
+   is the lightest layer and the one thing here with a shadow. */
+.library-toast.mantine-Notification-root{position:fixed;bottom:calc(var(--dock-height) + max(16px,env(safe-area-inset-bottom)));left:50%;z-index:310;align-items:flex-start;gap:12px;width:calc(100% - 24px);max-width:520px;padding:14px 8px 14px 14px;overflow:visible;border:0;border-radius:var(--radius-lg);background:var(--surface-3);color:var(--ink);box-shadow:var(--shadow-xl);transform:translateX(-50%)}
+/* In a light scheme the raised layer is the white page, and the darker tones are sunken ones. */
+:root[data-mantine-color-scheme=light] .library-toast.mantine-Notification-root{background:var(--surface)}
+.library-toast .library-toast-icon{display:flex;flex:none;align-items:center;justify-content:center;width:40px;height:40px;margin:0;border-radius:var(--radius);background:var(--surface-2);color:var(--accent)}
+.library-toast[data-owned] .library-toast-icon{color:var(--ok)}
+/* Mantine clips the body, which would cut off the focus bar under "Geri al". */
+.library-toast .library-toast-message{flex:1;min-width:0;margin:0;overflow:visible}
+.library-toast .mantine-Notification-title{margin:0;color:var(--ink)}
+.library-toast .mantine-Notification-title strong{display:block;font-size:var(--text-lg);font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.library-toast .mantine-Notification-description{color:var(--muted);font-size:var(--text-md);overflow:visible}
+.library-toast-message p{margin:4px 0 0;color:var(--ink-2);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.library-toast .library-toast-close{flex:none;margin:-4px 0 0;color:var(--muted)}
+.library-toast .library-toast-undo{display:block;height:auto;max-width:100%;min-height:var(--touch-target);margin-top:var(--gap-xs);padding-block:.25rem;padding-inline:var(--card-gap)}
+.library-toast-undo .mantine-Button-label{white-space:normal}
+/* When the message column would be too narrow for the title's words (large text on a phone),
+   the icon and the close button keep the top row and the message takes the full width below.
+   The query is in em, which follows the root text size; on a 320 px phone it matches from about
+   118% text, or from about 106% while the book sheet, whose gutter narrows the region, is open.
+   At the default size it matches no phone. */
+.library-toast-region{container:toast/inline-size}
+@container toast (width < 17em){
+ .library-toast.mantine-Notification-root{flex-wrap:wrap;row-gap:var(--reflow-row-gap);width:calc(100% - 2 * var(--edge-compact));padding:var(--inset-compact)}
+ .library-toast .library-toast-close{order:2;margin:0 0 0 auto}
+ .library-toast .library-toast-message{order:3;flex:1 0 100%}
+}

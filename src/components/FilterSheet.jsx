@@ -1,21 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import { transition } from '../motion';
-import { ActionIcon, Button, Drawer, NumberInput, TextInput } from '@mantine/core';
+import { ActionIcon, Badge, Button, Drawer, NumberInput, TextInput } from '@mantine/core';
 import { useReducedMotion } from '@mantine/hooks';
 import { IconArrowLeft, IconArrowRight, IconBooks, IconCalendar, IconCalendarPlus, IconCheck, IconChevronRight, IconListCheck, IconSearch, IconTags, IconUser, IconWriting } from '@tabler/icons-react';
 import { STATE_LABELS, QUALITY_LABELS, ORIGIN_LABELS, formatDay, normalize } from '../library';
 import './FilterSheet.css';
 
 const entries = object => Object.entries(object).map(([value, label]) => ({ value, label }));
+// A year range said in words: both limits, or the one that was given.
+const yearRange = (from, to) => from !== '' && to !== '' ? `${from} ile ${to} arası` : from !== '' ? `${from} ve sonrası` : `${to} ve öncesi`;
 const toggle = (values, value) => values.includes(value) ? values.filter(v => v !== value) : [...values, value];
 const sections = [
  { id: 'categories', title: 'Kategoriler', hint: 'Konusuna göre keşfet', icon: IconTags },
- { id: 'states', title: 'Okuma durumum', hint: 'Favoriler ve okuma kayıtları', icon: IconListCheck },
  { id: 'authors', title: 'Yazarlar', hint: 'Bir yazarın kitaplarını bul', icon: IconUser },
  { id: 'collections', title: 'Kümeler', hint: 'Seçkiler ve okuma rotaları', icon: IconBooks },
+ { id: 'states', title: 'Okuma durumum', hint: 'Favoriler ve okuma kayıtları', icon: IconListCheck },
  { id: 'editions', title: 'Baskı ve kaynak', hint: 'Künye bilgisi ve kaynaklar', icon: IconWriting },
  { id: 'years', title: 'Yıl ve ödül', hint: 'Yayın aralığı ve FT ödülleri', icon: IconCalendar },
  { id: 'added', title: 'Eklenme tarihi', hint: 'Kitaplığa hangi gün eklendi', icon: IconCalendarPlus },
+];
+// What the headings are about: the subject of a book, the reader's own records, and the book's details.
+const sectionGroups = [
+ { id: 'topic', title: 'Konu', ids: ['categories', 'authors', 'collections'] },
+ { id: 'reader', title: 'Okuma kayıtlarım', ids: ['states'] },
+ { id: 'record', title: 'Künye ve tarih', ids: ['editions', 'years', 'added'] },
 ];
 
 function Choice({ checked, onChange, children }) {
@@ -39,12 +47,12 @@ function Choices({ title, options, value, onChange, searchable = false, compact 
   if (retainedSelection) searchRef.current?.focus({ preventScroll: true });
  }}>{option.label}</Choice>;
  return <fieldset className="filter-fieldset">
-  <legend>{title}</legend>
+  <legend><span>{title}</span><span className="filter-legend-count">{value.length ? `${value.length} seçili` : `${options.length} seçenek`}</span></legend>
   {searchable && <TextInput ref={searchRef} className="filter-option-search" label={`${title} ara`} placeholder={`${title} ara`} autoComplete="off" autoCorrect="off" spellCheck={false} leftSection={<IconSearch size={19} aria-hidden="true" />} value={query} onChange={e => { setQuery(e.currentTarget.value); setLimit(12); }} />}
   {retained.length > 0 && <div className="filter-retained"><p className="filter-hint">Diğer seçimlerin</p>{retained.map(option => choice(option, true))}</div>}
   <div className={`filter-choices${compact ? ' filter-choices-compact' : ''}`}>{visible.map(option => choice(option))}</div>
   {matches.length === 0 && <p className="filter-hint" role="status">Eşleşme yok. Aramayı kısaltmayı dene.</p>}
-  {searchable && matches.length > 12 && <Button className="filter-show-more" variant="subtle" onClick={() => setLimit(limit >= matches.length ? 12 : limit + 12)}>{matches.length > limit ? `Daha fazla göster · ${matches.length - limit}` : 'Daha az göster'}</Button>}
+  {searchable && matches.length > 12 && <Button className="filter-show-more" variant="subtle" onClick={() => setLimit(limit >= matches.length ? 12 : limit + 12)}>{matches.length > limit ? `${matches.length - limit} seçenek daha göster` : 'Daha az göster'}</Button>}
  </fieldset>;
 }
 
@@ -54,6 +62,7 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
  const titleRef = useRef(null);
  const bodyRef = useRef(null);
  const reducedMotion = useReducedMotion();
+ const headingBase = useId();
  const set = (key, value) => onChange({ ...f, [key]: value });
  const categoryOptions = catalog.categories.map(c => ({ value: c.id, label: c.label }));
  const collectionOptions = catalog.collections.map(c => ({ value: c.id, label: c.short }));
@@ -66,7 +75,7 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
   categories: labelFor(categoryOptions, f.categories), states: f.states.map(s => STATE_LABELS[s]), authors: f.authors,
   collections: [...labelFor(collectionOptions, f.collections), ...f.groups.map(id => catalog.groups.find(g => g.id === id)?.title || id), ...(f.shared ? ['Birden fazla kümede'] : [])],
   editions: [...f.qualities.map(v => QUALITY_LABELS[v]), ...f.origins.map(v => ORIGIN_LABELS[v]), ...(f.hasEdition ? ['Künye bilgisi var'] : [])],
-  years: [...f.awards, ...f.awardYears.map(y => `FT ${y}`), ...(f.yearMin !== '' || f.yearMax !== '' ? [`${f.yearMin || '…'}–${f.yearMax || '…'}`] : [])],
+  years: [...f.awards, ...f.awardYears.map(y => `FT ${y}`), ...(f.yearMin !== '' || f.yearMax !== '' ? [yearRange(f.yearMin, f.yearMax)] : [])],
   added: f.addedDates.map(formatDay),
  };
  const selectionCount = Object.values(selected).reduce((sum, values) => sum + values.length, 0);
@@ -104,12 +113,18 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
    <Drawer.Body ref={bodyRef}>
     <p className="filter-hint filter-intro" id="filter-sheet-description">{section ? 'Birden fazla seçim yapabilirsin.' : 'Aradığın kitapları daralt.'}</p>
     {f.query && <p className="filter-query">Araman: <strong>{f.query}</strong></p>}
-    {!section && <nav className="filter-sections" aria-label="Filtre başlıkları">{sections.map(({ id, title, hint, icon: Icon }) => <button type="button" className="filter-section-link" key={id} aria-label={selected[id].length ? `${title}: ${selected[id].join(", ")}. ${selected[id].length} seçim` : undefined} onClick={() => setSection(id)}>
-     <span className="filter-section-icon" aria-hidden="true"><Icon size={22} stroke={1.6} /></span>
-     <span className="filter-section-copy"><strong>{title}</strong><span data-selected={selected[id].length > 0 || undefined}>{selected[id].length ? selected[id][0] : hint}</span></span>
-     {selected[id].length > 0 && <span className="filter-section-count" aria-label={`${selected[id].length} seçim`}>{selected[id].length}</span>}
-     <IconChevronRight className="filter-section-arrow" size={18} aria-hidden="true" />
-    </button>)}</nav>}
+    {!section && <nav className="filter-groups" aria-label="Filtre başlıkları">{sectionGroups.map(group => {
+     const chosen = group.ids.reduce((sum, id) => sum + selected[id].length, 0);
+     return <div className="filter-group" role="group" aria-labelledby={`${headingBase}-${group.id}`} key={group.id}>
+      <div className="filter-group-heading"><span className="filter-group-title" id={`${headingBase}-${group.id}`}>{group.title}</span>{chosen > 0 && <span className="filter-group-count">{chosen} seçim</span>}</div>
+      <div className="filter-sections">{sections.filter(item => group.ids.includes(item.id)).map(({ id, title, hint, icon: Icon }) => <button type="button" className="filter-section-link" key={id} aria-label={selected[id].length ? `${title}: ${selected[id].join(", ")}. ${selected[id].length} seçim` : undefined} onClick={() => setSection(id)}>
+       <span className="filter-section-icon" aria-hidden="true"><Icon size={22} stroke={1.6} /></span>
+       <span className="filter-section-copy"><strong>{title}</strong><span data-selected={selected[id].length > 0 || undefined}>{selected[id].length ? selected[id].join(', ') : hint}</span></span>
+       {selected[id].length > 0 && <Badge className="filter-section-count" variant="light">{selected[id].length}</Badge>}
+       <IconChevronRight className="filter-section-arrow" size={18} aria-hidden="true" />
+      </button>)}</div>
+     </div>;
+    })}</nav>}
     <div className="filter-section-content" key={section}>
      {section === 'categories' && <>
       <Choices title="Kategoriler" options={categoryOptions} value={f.categories} onChange={v => set('categories', v)} />
@@ -127,7 +142,7 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
       <Choices title="Kaynağın künye değerlendirmesi" options={entries(QUALITY_LABELS)} value={f.qualities} onChange={v => set('qualities', v)} />
       <Choice checked={f.hasEdition} onChange={() => set('hasEdition', !f.hasEdition)}>Çevirmen veya yayınevi bilgisi bulunanlar</Choice>
       <Choices title="Verinin kaynağı" options={entries(ORIGIN_LABELS)} value={f.origins} onChange={v => set('origins', v)} />
-      <p className="filter-hint">Künye değerlendirmeleri özgün kaynaktan aktarılır; çevirinin kalitesini tek başına ölçmez.</p>
+      <p className="filter-hint">Künye değerlendirmeleri özgün kaynaktan aktarılır. Bu değerlendirmeler çevirinin kalitesini tek başına ölçmez.</p>
      </>}
      {section === 'years' && <>
       <fieldset className="filter-fieldset"><legend>İlk yayın yılı</legend><div className="filter-year-range">
@@ -139,7 +154,7 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
      </>}
      {section === 'added' && <>
       <Choices title="Kitaplığa eklendiği gün" options={addedOptions} value={f.addedDates} onChange={v => set('addedDates', v)} />
-      <p className="filter-hint">Tarihler, kitabın kitaplık verisine girdiği ilk commit’ten çıkarıldı.</p>
+      <p className="filter-hint">Tarihler, kitabın kitaplık verisine ilk girdiği kayıttan çıkarıldı.</p>
      </>}
     </div>
    </Drawer.Body>

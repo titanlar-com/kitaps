@@ -1,92 +1,106 @@
+/* The filter sheet (phase 7, docs/UI-REDESIGN.md). A sheet is a layer above the floor and its foot
+   one layer above the sheet, so nothing here needs a frame. A border stays only on a checkbox mark,
+   which has to be seen as a control. */
 .filter-sheet .mantine-Drawer-inner { justify-content: center; }
 .filter-sheet .mantine-Drawer-content {
  display: flex; flex-direction: column; width: 100%; max-width: 640px;
- overflow: hidden; border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: var(--paper);
- box-shadow: 0 -8px 48px #0003;
+ overflow: hidden; border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: var(--surface);
+ box-shadow: var(--shadow-xl);
 }
 .filter-sheet .mantine-Drawer-header {
- flex: 0 0 auto; gap: 8px; padding: 12px 12px 8px 20px;
- border-bottom: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
- background: var(--paper); position: static; min-height: 68px;
+ flex: 0 0 auto; gap: var(--gap-xs); padding: 12px 12px 8px 20px;
+ background: var(--surface); position: static; min-height: 68px;
 }
 .filter-sheet .mantine-Drawer-title { flex: 1; font-size: 1.375rem; line-height: 1.25; font-weight: 600; }
-.filter-sheet .mantine-Drawer-header:has(.mantine-ActionIcon-root) { padding-left: 8px; }
+.filter-sheet .mantine-Drawer-header:has(.mantine-ActionIcon-root) { padding-left: var(--gap-xs); }
 .filter-sheet .mantine-Drawer-body {
- flex: 1 1 auto; min-height: 0; padding: 16px; overflow-y: auto;
+ flex: 1 1 auto; min-height: 0; padding: var(--gap-xs) var(--gap-xs) var(--card-gap); overflow-y: auto;
  overscroll-behavior-y: contain; scroll-padding-block: 12px;
 }
 .filter-sheet .mantine-Drawer-content :where(button, a, input) { scroll-margin-block: 12px; }
-.filter-hint { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.5; }
-.filter-intro { margin-bottom: 12px; }
-.filter-query { margin: 0 0 16px; color: var(--muted); overflow-wrap: anywhere; }
+.filter-hint { margin: 0; color: var(--muted); line-height: 1.5; }
+.filter-intro { margin: 0 var(--gap-xs) var(--stack-gap); }
+.filter-query { margin: 0 var(--gap-xs) var(--card-gap); color: var(--muted); overflow-wrap: anywhere; }
 .filter-query strong { color: var(--ink); font-weight: 500; }
-.filter-sections { display: grid; }
+
+/* The headings, in three groups. */
+.filter-groups { display: grid; gap: var(--card-gap); }
+.filter-group-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 var(--gap-xs); padding: 0 var(--gap-xs); margin-bottom: 2px; }
+.filter-group-title { color: var(--muted); font-size: var(--text-sm); font-weight: 600; line-height: 1.5; }
+.filter-group-count { color: var(--accent-text); font-size: var(--text-sm); font-weight: 600; font-variant-numeric: tabular-nums; }
+.filter-sections { display: grid; gap: 2px; }
 .filter-section-link {
- display: flex; align-items: center; width: 100%; gap: 10px; min-height: 68px;
- padding: 10px 0; background: transparent; color: var(--ink); border: 0;
- border-bottom: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
- text-align: left; cursor: pointer; border-radius: 0;
+ display: flex; align-items: center; width: 100%; gap: 12px; min-height: 64px;
+ padding: 10px var(--gap-xs); background: transparent; color: var(--ink); border: 0;
+ text-align: left; cursor: pointer; border-radius: var(--radius);
  transition: background-color var(--motion-control) var(--motion-ease);
 }
-.filter-section-link:last-child { border-bottom: 0; }
-.filter-section-link:hover { background: var(--soft); }
+/* A tap leaves nothing lit: the hover tone needs a real pointer. */
+@media (hover: hover) { .filter-section-link:hover { background: var(--surface-2); } }
 .filter-section-icon {
  display: flex; align-items: center; justify-content: center; flex: 0 0 38px;
- height: 38px; border-radius: var(--radius); background: var(--soft); color: var(--accent-text);
+ height: 38px; border-radius: var(--radius); background: var(--surface-2); color: var(--accent-text);
 }
-.filter-section-copy { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
-.filter-section-copy strong { font-weight: 500; line-height: 1.35; }
-.filter-section-copy>span { color: var(--muted); line-height: 1.35; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.filter-section-copy { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.filter-section-copy strong { font-weight: 500; line-height: 1.35; overflow-wrap: anywhere; }
+.filter-section-copy>span { color: var(--muted); font-size: .9375rem; line-height: 1.35; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; }
 .filter-section-copy>span[data-selected] { color: var(--accent-text); }
-.filter-section-count { min-width: 26px; height: 26px; padding: 2px 5px 0; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; background: var(--soft); font-variant-numeric: tabular-nums; }
+.filter-section-count { flex: none; font-variant-numeric: tabular-nums; }
 .filter-section-arrow { flex-shrink: 0; color: var(--muted); }
-.filter-section-content { display: grid; gap: 24px; }
+
+/* The choices of one heading. */
+.filter-section-content { display: grid; gap: 24px; padding-inline: var(--gap-xs); }
+.filter-section-content:empty { display: none; }
 .filter-fieldset { padding: 0; border: 0; margin: 0; min-width: 0; }
-.filter-fieldset legend { font-size: 1rem; font-weight: 600; padding: 0; margin-bottom: 12px; }
-.filter-choices { display: grid; gap: 8px; }
+.filter-fieldset legend { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 var(--gap-xs); width: 100%; padding: 0; margin-bottom: var(--gap-xs); font-weight: 600; }
+.filter-legend-count { color: var(--muted); font-size: var(--text-sm); font-weight: 500; font-variant-numeric: tabular-nums; }
+.filter-choices { display: grid; gap: 2px; }
 .filter-choice {
- position: relative; display: flex; align-items: center; gap: 12px; min-height: 48px;
- padding: 12px; border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
- border-radius: var(--radius); background: var(--surface); color: var(--ink); cursor: pointer;
- line-height: 1.4; transition: background-color var(--motion-control) var(--motion-ease), border-color var(--motion-control) var(--motion-ease);
+ position: relative; display: flex; align-items: center; gap: 12px; min-height: var(--touch-target);
+ padding: 10px var(--gap-xs); border-radius: var(--radius); color: var(--ink); cursor: pointer;
+ line-height: 1.4; overflow-wrap: anywhere; transition: background-color var(--motion-control) var(--motion-ease);
 }
 /* The real checkbox covers the option, so scrolling it into view brings the whole option, and its focus bar, along. */
 .filter-choice input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; margin: 0; cursor: pointer; }
-.filter-choice-mark { display: flex; align-items: center; justify-content: center; flex: 0 0 20px; height: 20px; border: 1px solid var(--control-line); border-radius: var(--radius-xs); }
-.filter-choice[data-checked] { background: var(--soft); border-color: var(--accent-text); }
-.filter-choice[data-checked] .filter-choice-mark { background: var(--accent-text); color: var(--paper); border-color: var(--accent-text); }
-.filter-choice:hover { background: var(--soft); }
+.filter-choice-mark {
+ display: flex; align-items: center; justify-content: center; flex: 0 0 20px; height: 20px;
+ border: 1px solid var(--control-line); border-radius: var(--radius-xs);
+ transition: background-color var(--motion-control) var(--motion-ease), border-color var(--motion-control) var(--motion-ease);
+}
+.filter-choice[data-checked] { background: var(--accent-soft); }
+@media (hover: hover) {
+ .filter-choice:hover { background: var(--surface-2); }
+ .filter-choice[data-checked]:hover { background: var(--accent-soft-hover); }
+}
+.filter-choice[data-checked] .filter-choice-mark { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 /* The real checkbox is hidden; its keyboard focus bar is drawn under the whole option. */
 html[data-focus-mode="keyboard"] .filter-choice:has(input:focus-visible)::after { content: ""; position: absolute; inset-inline: 10%; bottom: calc(-1 * (var(--focus-gap) + var(--focus-bar))); height: var(--focus-bar); background: var(--focus); pointer-events: none; }
-.filter-choice { position: relative; }
-.filter-option-search { margin-bottom: 12px; }
+.filter-option-search { margin-bottom: var(--stack-gap); }
 .filter-option-search .mantine-InputWrapper-label { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); }
-.filter-option-search .mantine-Input-input { min-height: 48px; }
-.filter-retained { margin-bottom: 16px; display: grid; gap: 8px; }
-.filter-show-more { margin-top: 8px; width: 100%; }
-.filter-year-range { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px; }
-.filter-year-range .mantine-Input-input { padding-inline: 12px; }
-.filter-choices-compact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.filter-choices-compact .filter-choice { gap: 6px; padding: 10px 6px; justify-content: center; }
-.filter-error { --edge-color: var(--accent-text); color: var(--ink); padding-left: 12px; line-height: 1.5; margin: 12px 0; font-weight: 500; }
-.filter-sheet-footer {
- flex: 0 0 auto; padding: 12px 16px max(16px, env(safe-area-inset-bottom));
- border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); background: var(--surface);
-}
-.filter-result { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin: 0 0 10px; color: var(--ink); line-height: 1.4; font-variant-numeric: tabular-nums; }
+.filter-option-search .mantine-Input-input { min-height: 48px; background: var(--surface-2); }
+.filter-retained { margin-bottom: var(--card-gap); display: grid; gap: 2px; }
+.filter-show-more { margin-top: var(--gap-xs); width: 100%; }
+.filter-year-range { display: flex; flex-wrap: wrap; gap: var(--stack-gap); margin-bottom: var(--stack-gap); }
+.filter-year-range>* { flex: 1 1 8em; min-width: 0; }
+.filter-year-range .mantine-Input-input { padding-inline: 12px; background: var(--surface-2); }
+.filter-choices-compact { display: flex; flex-wrap: wrap; }
+.filter-choices-compact .filter-choice { flex: 1 1 5.5em; gap: 6px; padding-inline: 6px; justify-content: center; }
+.filter-error { --edge-color: var(--bad); color: var(--ink); padding-left: 12px; line-height: 1.5; margin: 12px 0; font-weight: 500; }
+
+/* The foot stays with the sheet and shows what the choices add up to. */
+.filter-sheet-footer { flex: 0 0 auto; padding: 12px var(--card-gap) max(16px, env(safe-area-inset-bottom)); background: var(--surface-2); }
+.filter-result { display: flex; align-items: baseline; justify-content: space-between; gap: 0 var(--gap-xs); flex-wrap: wrap; margin: 0 0 10px; color: var(--ink); line-height: 1.4; font-variant-numeric: tabular-nums; }
 .filter-result strong { font-weight: 600; }
 .filter-result-selection { color: var(--muted); }
-.filter-footer-actions { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; }
-.filter-footer-actions .mantine-Button-root { min-height: 48px; padding-inline: 12px; border-radius: var(--radius); }
-.filter-footer-actions .mantine-Button-root:last-child:not(:disabled) { background: var(--accent-text); color: var(--paper); border-color: transparent; }
-.filter-footer-actions .mantine-Button-root:last-child:not(:disabled):hover { filter: brightness(.92); }
-.filter-footer-actions .mantine-Button-root:disabled { opacity: .55; color: var(--muted); background: var(--soft); }
+.filter-footer-actions { display: flex; flex-wrap: wrap; gap: var(--stack-gap); }
+.filter-footer-actions .mantine-Button-root { flex: 1 1 auto; height: auto; min-height: 48px; max-width: 100%; padding-inline: 12px; padding-block: 8px; }
+.filter-footer-actions .mantine-Button-root:first-child { flex-grow: 0; }
+.filter-footer-actions .mantine-Button-label { white-space: normal; }
+.filter-footer-actions .mantine-Button-root:disabled { color: var(--muted); background: transparent; }
 @media (min-width: 40em) {
  .filter-sheet .mantine-Drawer-content { max-height: min(90dvh, 800px); }
- .filter-sheet .mantine-Drawer-body { padding: 20px 24px; }
- .filter-sheet .mantine-Drawer-header { padding-inline: 24px 16px; }
+ .filter-sheet .mantine-Drawer-body { padding: var(--gap-xs) var(--card-gap) var(--card-gap); }
+ .filter-sheet .mantine-Drawer-header { padding-inline: 24px var(--card-gap); }
  .filter-sheet-footer { padding-inline: 24px; }
- .filter-section-link { min-height: 72px; }
- .filter-choices-compact { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
-@media (prefers-reduced-motion: reduce) { .filter-section-link, .filter-choice { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .filter-section-link, .filter-choice, .filter-choice-mark { transition: none; } }

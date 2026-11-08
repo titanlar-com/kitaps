@@ -1,8 +1,9 @@
 import React,{useEffect,useRef,useState} from 'react';
-import {Button,Group,Modal,Stack,Text} from '@mantine/core';
+import {Button,Modal,Stack,Text} from '@mantine/core';
 import {IconDownload} from '@tabler/icons-react';
 import {download} from '../download';
 import {readSyncBackup} from '../state/useGitHubStateSync';
+import './SyncPanels.css';
 
 /** Shown when this device's records differ from the shared file: on a device's first
  * read ('first-sync'), or when a device that worked unconnected is connected and another
@@ -44,14 +45,14 @@ export default function SyncMergeDialog({sync}){
  return <Modal opened={Boolean(prompt)} onClose={()=>undefined} returnFocus={false} zIndex={305} withCloseButton={false} closeOnClickOutside={false} closeOnEscape={false} centered className="sync-merge-dialog" title="Bu cihazdaki kayıtlar farklı">
   {asked&&<Stack gap="md" inert={!prompt||undefined}>
    <Text>{asked.reason==='connect'
-    ?`Bu cihaz bağlı değilken ${parts} değişti; bu arada başka bir cihaz aynı kayıtları farklı kaydetti. Hangisinin kalacağını seç. Seçim yalnız bu kayıtları etkiler; bu cihazın öteki değişiklikleri seçimden sonra gönderilir.`
-    :`Bu cihazda ${parts}, GitHub’daki ortak kayıttan farklı. Hangisinin kalacağını seç; seçim yalnız bu farklı kayıtları etkiler. Yalnız bu cihazda olan kayıtlar ayrıca ortak kayda eklenir.`}</Text>
+    ?`Bu cihaz bağlı değilken ${parts} değişti. Bu arada başka bir cihaz aynı kayıtları farklı kaydetti. Hangisinin kalacağını seç. Seçim yalnız bu kayıtları etkiler. Bu cihazın öteki değişiklikleri seçimden sonra gönderilir.`
+    :`Bu cihazda ${parts}, GitHub’daki ortak kayıttan farklı. Hangisinin kalacağını seç. Seçim yalnız bu farklı kayıtları etkiler. Yalnız bu cihazda olan kayıtlar ayrıca ortak kayda eklenir.`}</Text>
    {backup&&<Text c="dimmed">Seçimden önce bu cihazdaki kayıtların yedeği alındı.</Text>}
-   <Group>
+   <div className="sync-merge-actions">
     <Button loading={busy} onClick={()=>void choose('device')}>Bu cihazdakini kullan</Button>
     <Button loading={busy} variant="default" onClick={()=>void choose('shared')}>GitHub’dakini kullan</Button>
     {backup&&<Button variant="subtle" leftSection={<IconDownload size={18}/>} onClick={()=>download('kitaplik-esitleme-oncesi-yedek.json',backup)}>Yedeği indir</Button>}
-   </Group>
+   </div>
   </Stack>}
  </Modal>;
 }

@@ -20,12 +20,12 @@ export function syncStatusKind(sync){
 
 const TEXT={
  local:sync=>`${sync.pending} değişiklik yalnız bu cihazda kayıtlı. Diğer cihazlarda görünmesi için bu cihazı bağla.`,
- failed:sync=>sync.pending?`GitHub’a gönderilemedi; ${sync.pending} değişiklik bu cihazda bekliyor.`:'GitHub bu cihazın anahtarını reddetti; bu cihazı yeniden bağla.',
+ failed:sync=>sync.pending?`GitHub’a gönderilemedi. ${sync.pending} değişiklik bu cihazda bekliyor.`:'GitHub bu cihazın anahtarını reddetti. Bu cihazı yeniden bağla.',
  saving:()=>'Değişiklikler GitHub’a gönderiliyor.',
  queued:sync=>sync.reviewPending?'Bu cihazın kayıtları GitHub’dakiyle karşılaştırıldıktan sonra gönderilecek.'
   :sync.retryAt?`GitHub’ın istediği bekleme bitince, ${clock(sync.retryAt)} sonrasında gönderilecek.`
    :'GitHub’a gönderilecek: ilk değişiklikten 30 saniye sonra ya da sayfadan ayrılınca.',
- sent:sync=>`GitHub’a gönderildi · ${clock(sync.lastSentAt)}`,
+ sent:sync=>`GitHub’a gönderildi (saat ${clock(sync.lastSentAt)}).`,
 };
 const ICONS={local:IconCloudOff,failed:IconAlertTriangle,saving:IconCloudUpload,queued:IconCloudUpload,sent:IconCloudCheck};
 

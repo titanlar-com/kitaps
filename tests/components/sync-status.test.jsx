@@ -41,7 +41,7 @@ describe('SyncStatusLine', () => {
 
   it('words a refused key, a pending comparison and GitHub’s wait as what they are', () => {
     const text = value => { const { container, unmount } = renderWithTheme(<SyncStatusLine sync={sync(value)} onOpen={vi.fn()}/>); const content = container.querySelector('.sync-status-text').textContent; unmount(); return content; };
-    expect(text({ hasToken: true, tokenRejected: true, writeError: 'x' })).toMatch(/anahtarını reddetti; bu cihazı yeniden bağla/);
+    expect(text({ hasToken: true, tokenRejected: true, writeError: 'x' })).toMatch(/anahtarını reddetti\. Bu cihazı yeniden bağla/);
     expect(text({ hasToken: true, tokenRejected: true, writeError: 'x' })).not.toMatch(/0 değişiklik/);
     expect(text({ hasToken: true, pending: 1, reviewPending: true })).toMatch(/karşılaştırıldıktan sonra gönderilecek/);
     expect(text({ hasToken: true, pending: 1, retryAt: Date.parse('2026-10-22T09:30:00Z') })).toMatch(/GitHub’ın istediği bekleme bitince/);

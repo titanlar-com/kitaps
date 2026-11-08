@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ActionIcon, Button } from '@mantine/core';
-import { IconBooks, IconShoppingBagCheck, IconX } from '@tabler/icons-react';
+import { Button, Notification } from '@mantine/core';
+import { IconBooks, IconShoppingBagCheck } from '@tabler/icons-react';
 import { displayTitle } from '../translation';
+import './LibraryToast.css';
 
 // Room under a control for its keyboard focus bar (--focus-gap and --focus-bar in styles.css).
 const FOCUS_BAR_ROOM = 12;
+// The region around the toast is the live one, so the toast itself is not a second alert.
+const CLASSES = { icon: 'library-toast-icon', body: 'library-toast-message', closeButton: 'library-toast-close' };
+const CLOSE = { 'aria-label': 'Bildirimi kapat', size: 44, iconSize: 22 };
 
 export default function LibraryToast({ book, owned, onClose, onUndo, style, leaving }) {
  const root = useRef(null);
@@ -27,15 +31,13 @@ export default function LibraryToast({ book, owned, onClose, onUndo, style, leav
   return () => document.removeEventListener('focusin', revealFocus);
  }, [onClose]);
 
- return <div ref={root} className="library-toast" style={style} inert={leaving || undefined} data-owned={owned || undefined}
+ return <Notification ref={root} className="library-toast" classNames={CLASSES} role="group" style={style} inert={leaving || undefined} data-owned={owned || undefined}
+  icon={owned ? <IconShoppingBagCheck size={26} aria-hidden="true" /> : <IconBooks size={26} aria-hidden="true" />}
+  title={<strong>{owned ? 'Kitaplığa eklendi' : 'Kitaplıktan çıkarıldı'}</strong>}
+  closeButtonProps={CLOSE} onClose={onClose}
   onPointerEnter={e => { if (e.pointerType === 'mouse') setHovered(true); }} onPointerLeave={() => setHovered(false)}
   onFocusCapture={() => setFocused(true)} onBlurCapture={e => { if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false); }}>
-  <span className="library-toast-icon" aria-hidden="true">{owned ? <IconShoppingBagCheck size={28} /> : <IconBooks size={28} />}</span>
-  <div className="library-toast-message">
-   <strong>{owned ? 'Kitaplığa eklendi' : 'Kitaplıktan çıkarıldı'}</strong>
-   <p>{displayTitle(book)}</p>
-  </div>
-  <ActionIcon className="library-toast-close" variant="subtle" aria-label="Bildirimi kapat" onClick={onClose}><IconX size={22} /></ActionIcon>
+  <p>{displayTitle(book)}</p>
   <Button className="library-toast-undo" variant="default" onClick={onUndo}>Geri al</Button>
- </div>;
+ </Notification>;
 }

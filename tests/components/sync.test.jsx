@@ -101,9 +101,9 @@ describe('GitHubSyncPanel with a damaged queue', () => {
     expect(document.querySelector('.sync-recovery').textContent).not.toContain('kuyrukta kaldı');
     unmount();
     renderWithTheme(<GitHubSyncPanel sync={recovering({ copies: 1, kept: 2, stored: false })}/>);
-    expect(document.querySelector('.sync-recovery').textContent).toContain('kopya ayrıca saklanamadı; kayıt olduğu yerde duruyor');
+    expect(document.querySelector('.sync-recovery').textContent).toContain('kopya ayrıca saklanamadı. Kayıt olduğu yerde duruyor');
     fireEvent.click(screen.getByRole('button', { name: 'Kaydı sil' }));
-    expect(screen.getByRole('group', { name: 'Kayıt bu tarayıcıdan kalıcı olarak silinir; okunabilen değişiklikler kuyrukta kalır.' })).toBeTruthy();
+    expect(screen.getByRole('group', { name: 'Kayıt bu tarayıcıdan kalıcı olarak silinir. Okunabilen değişiklikler kuyrukta kalır.' })).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'Vazgeç' }));
     expect(screen.getByRole('button', { name: 'Kaydı indir' })).toBeTruthy();
   });
@@ -155,7 +155,7 @@ describe('SyncMergeDialog', () => {
 
   it('explains a connect-time difference in its own words', async () => {
     renderWithTheme(<SyncMergeDialog sync={sync({ mergePrompt: { conflicts: ['a'], queueConflict: false, reason: 'connect' } })}/>);
-    expect(await screen.findByText(/Bu cihaz bağlı değilken 1 kitabın kaydı değişti; bu arada başka bir cihaz/)).toBeTruthy();
+    expect(await screen.findByText(/Bu cihaz bağlı değilken 1 kitabın kaydı değişti\. Bu arada başka bir cihaz/)).toBeTruthy();
     expect(screen.queryByText(/ortak kayda eklendi/)).toBeNull();
   });
 
@@ -225,7 +225,7 @@ describe('SyncNotice', () => {
 
   it('says when the copy could not be stored', () => {
     renderWithTheme(<SyncNotice sync={sync({ hasToken: true, recovery: { copies: 1, kept: 1, stored: false } })} onOpen={vi.fn()}/>);
-    expect(screen.getByText(/Tarayıcının alanı dolu; kayıt olduğu yerde duruyor/)).toBeTruthy();
+    expect(screen.getByText(/Tarayıcının alanı dolu\. Kayıt olduğu yerde duruyor/)).toBeTruthy();
   });
 
   it('hides for the visit when dismissed, moves focus to the main content, and comes back when more changes wait', () => {
