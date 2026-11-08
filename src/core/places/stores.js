@@ -11,6 +11,16 @@ const STORE_BADGES = Object.freeze({
 /** The badge of a store's status, or null for a status the page does not know. */
 export const storeBadge = status => (Object.hasOwn(STORE_BADGES, status) ? STORE_BADGES[status] : null);
 
+/** The stores as the page shelves them: the closed ones apart, and the rest by side of the city.
+ * A side with no open store is left out. `sides` lists `[id, label]` in the page's order. */
+export function storeShelves(stores, sides) {
+ const open = stores.filter(store => store.status !== 'closed');
+ return {
+  closed: stores.filter(store => store.status === 'closed'),
+  sides: sides.map(([side, label]) => ({ side, label, stores: open.filter(store => store.side === side) })).filter(entry => entry.stores.length > 0),
+ };
+}
+
 /** "Tepebaşı, Beyoğlu", or only the district when the area says nothing more. */
 export const storePlace = store => (store.area && store.area !== store.district ? `${store.area}, ${store.district}` : store.district);
 

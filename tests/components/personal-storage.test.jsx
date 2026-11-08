@@ -5,10 +5,11 @@ import { describe, expect, it } from 'vitest';
 describe('the page\'s personal library on a browser that blocks storage', () => {
   it('opens, warns and keeps changes for the visit', async () => {
     const real = globalThis.localStorage;
-    const { openPersonalLibrary } = await import('../../src/app/catalogData.js');
+    const { deviceStorage } = await import('../../src/adapters/browser/ports.js');
+    const { createPersonalLibrary } = await import('../../src/core/personal/library.ts');
     Object.defineProperty(globalThis, 'localStorage', { configurable: true, get() { throw new DOMException('denied', 'SecurityError'); } });
     try {
-      const library = openPersonalLibrary();
+      const library = createPersonalLibrary({ storage: deviceStorage, books: [], now: () => new Date(0) });
       expect(library.getSnapshot().saved).toBe(false);
       expect(library.getSnapshot().states).toEqual({});
       library.commands.addToQueue('x');

@@ -246,12 +246,14 @@ Her taşınan saf modülün eski kopyası, çekirdekteki karşılığı geldiği
      - İşaret kuralları (`toggleState`, okuma işaretinin satın alma sayılması dahil) değişmeden `marks.js` dosyasına taşındı.
      - Önce yazılan test: uzak bir okuma hiç giden değişiklik üretmez.
      - Kapılar değişmeden yeşil kaldı. Bağımsız inceleme davranış hatası bulmadı, bulduğu test eksikleri kapatıldı.
-   - **7b. Ekran ekran bağlama.**
-     - Her ekran bağlanmadan önce erişilebilirlik ağacı kaydı alınır (K11).
-     - Bugünkü geri tuşu davranışı da bağlamadan önce sabitlenir: geri tuşu kitap izini temizler ve katalogdan açılan kitap geri gidilerek kapanır. Bu kural tasarımda `Navigator`'ın temel adımlarından kurulur. Zor olursa çekirdek, değişikliğin tarayıcıdan geldiğini bildiren bir işaret ekler.
-     - Ekranın ihtiyaç duyduğu özellik görünüm modeli bu sırada yazılır (K6).
-     - `catalogData.js` cepheye çevrilir ve kullanılmayan modüller listesi küçülür.
-     - Gecikmeli yüklenen verinin ilk pakete girmediği bir derleme listesi ya da ağ testiyle kanıtlanır.
+   - **7b. Ekran ekran bağlama (tamamlandı).**
+     - Sayfa artık `src/main.jsx` içinde kurulan `createKitaplik` üzerinden çalışıyor. Adres, ayar, katalog listesi ve kişisel veri görünüm modellerinden geliyor. `catalogData.js` çekirdeğin dizinine açılan bir cephe oldu.
+     - Bağlamadan önce sayfanın erişilebilirlik ağacı kaydedildi: 16 adres, masaüstü ve telefon, Chromium ve WebKit, ayrıca süzgeç penceresi ve kitap penceresi. Toplam 68 görünüm, aynı katalog ve sabit saatle. Bağlamadan sonra 68 görünümün hepsi aynıydı. Karşılaştırma bir kez yapıldı, kalıcı kapı değildir, çünkü her yeni kitap bu ağacı değiştirir. Karşılaştırma, bağlama sırasında yapılan bir hatayı (süzgeç penceresinde 0 kitap yazması) yakaladı.
+     - Geri tuşu ve adres davranışı bağlamadan önce sabitlendi ve kalıcıdır: `tests/e2e/navigation-history.spec.js` hem bağlamadan önceki hem sonraki sayfada Chromium, WebKit ve iPhone görünümünde geçti. Kitap izini geri tuşunda temizleme kuralı tasarıma ait olduğu için `App.jsx` içinde kaldı.
+     - Gecikmeli yüklenen sayfaların ilk yüklemede istenmediğini aynı dosya ağ istekleriyle doğruluyor.
+     - Kullanılmayan modüller listesi boşaldı.
+     - Bağımsız inceleme bir davranış hatası buldu: geri tuşu son sayfanın ötesine düşünce sayfa düzeltiliyor, adres eski kalıyordu. Önce test yazılıp düzeltildi. Bulduğu test eksikleri de kapatıldı.
+     - Kümeler ve kitapçılar ekranlarındaki son türetilmiş veri çekirdeğe taşındı (K14).
 8. **Eşitleme denetleyicisi (tamamlandı).** En yüksek riskli aşama budur.
    - İşlemlerin sırası `src/core/sync/controller.js` dosyasına değişmeden taşındı. Her tarayıcı çağrısı artık bir port üzerinden gidiyor: yaşam döngüsü, zamanlayıcı, yerel depo, saat ve dışarıdan verilen depo. ADR'nin ilk hâlinde adı geçen oturum deposu kullanılmıyordu, bu yüzden portu açılmadı.
    - `useGitHubStateSync` artık yalnız React bağlayıcısıdır.
@@ -267,7 +269,7 @@ Her taşınan saf modülün eski kopyası, çekirdekteki karşılığı geldiği
 - Kapı, her kural ihlalini yakaladığını ve temiz kodu geçirdiğini bir öz testle kanıtlar.
 - Her çekirdek ve bağdaştırıcı modülü `src/main.jsx` ya da bir Node betiği tarafından çalışma anında kullanılır, ya da adıyla "arayüzü bekleyenler" listesindedir. Yalnız tür içe aktaran bir bağ kullanım sayılmaz, yalnız tür içeren dosya bu kuraldan muaftır. Liste yalnız küçülebilir: testteki üst sınır her bağlamada düşürülür, yükseltmek bağımsız inceleme ister.
 - Ekran modellerinin klasörü (`src/screens/`) açıldığında aynı kapı onu da denetler.
-- Arayüz bağlandıktan sonra eklenecek kural: arayüz `catalog.json`'u, `data/` dosyalarını ve GitHub depolarını doğrudan içe aktaramaz.
+- Ekranlar `catalog.json`'u, `data/` dosyalarını ve GitHub depolarını doğrudan içe aktaramaz, veriyi cepheden ve çekirdekten alır. Kendi verisini kendi gecikmeli paketinde yükleyen sayfalar adıyla listelidir (kitapçılar, fuarlar, notlar ve rota planlayıcısı). Bu liste yalnız küçülebilir.
 
 ## Riskler
 

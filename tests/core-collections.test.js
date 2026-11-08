@@ -84,3 +84,8 @@ test('a share is written as a Turkish percentage, and a small one never reads as
   assert.equal(sharePercent(0.16), '%16');
   assert.equal(sharePercent(3 / 1002), '%0,3');
 });
+
+test('each card says how far its progress bar goes, to one decimal', () => {
+  const [card] = collectionCards({ collections: [{ id: 'k', title: 'K', description: '', groupIds: [] }], books: ['a', 'b', 'c'].map(id => ({ id, collectionIds: ['k'], groupIds: [] })), states: { a: ['okundu'] } });
+  assert.equal(card.percent, 33.3);
+});

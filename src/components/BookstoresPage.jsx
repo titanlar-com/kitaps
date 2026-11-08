@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, ScrollArea, Table, Text, Title } from '@mantine/core';
 import { IconExternalLink, IconMapPin, IconPhone } from '@tabler/icons-react';
 import data from '../../data/bookstores.json';
-import { planTimeline, routeTimeline, storeBadge, storePlace } from '../core/places/stores.js';
+import { planTimeline, routeTimeline, storeBadge, storePlace, storeShelves } from '../core/places/stores.js';
 import { FactList, LongNote, PlaceBadge, PlaceCard, StopTimeline } from './PlaceParts';
 import RoutePlanner from './RoutePlanner';
 import './BookstoresPage.css';
@@ -72,8 +72,7 @@ function Store({ store }) {
 const inWords = list => list.map((id, index) => <React.Fragment key={id}>{index > 0 && (index === list.length - 1 ? ' ve ' : ', ')}<StoreLink id={id} /></React.Fragment>);
 
 export default function BookstoresPage() {
- const open = data.stores.filter(store => store.status !== 'closed');
- const closed = data.stores.filter(store => store.status === 'closed');
+ const { sides, closed } = storeShelves(data.stores, SIDES);
  return <div className="bookstores-page">
   <header className="bookstores-intro">
    <Title order={1}>Kitapçılar</Title>
@@ -119,13 +118,10 @@ export default function BookstoresPage() {
    </ScrollArea>
   </section>
 
-  {SIDES.map(([side, label]) => {
-   const stores = open.filter(store => store.side === side);
-   return stores.length > 0 && <section key={side} className="bookstore-side" aria-labelledby={`side-${side}`}>
-    <Title order={2} id={`side-${side}`}>{label}</Title>
-    <div className="bookstore-list">{stores.map(store => <Store key={store.id} store={store} />)}</div>
-   </section>;
-  })}
+  {sides.map(({ side, label, stores }) => <section key={side} className="bookstore-side" aria-labelledby={`side-${side}`}>
+   <Title order={2} id={`side-${side}`}>{label}</Title>
+   <div className="bookstore-list">{stores.map(store => <Store key={store.id} store={store} />)}</div>
+  </section>)}
 
   <section className="bookstore-routes" aria-labelledby="bookstore-routes">
    <Title order={2} id="bookstore-routes">Önerilen rotalar</Title>

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { planTimeline, routeDraftSteps, routeTimeline, storeBadge, storePlace } from '../src/core/places/stores.js';
+import { planTimeline, routeDraftSteps, routeTimeline, storeBadge, storePlace, storeShelves } from '../src/core/places/stores.js';
 import { fairBadge, fairCountdown, fairTimeline, fairsFrom, formatRange, groupByMonth, todayInIstanbul } from '../src/core/places/fairs.js';
 import * as oldAddress from '../src/fairs.js';
 
@@ -157,4 +157,12 @@ test('the old address of the fair helpers still works, and gives the same functi
  assert.equal(oldAddress.fairsFrom, fairsFrom);
  assert.equal(oldAddress.groupByMonth, groupByMonth);
  assert.equal(oldAddress.todayInIstanbul, todayInIstanbul);
+});
+
+test('the stores are split into open and closed, and the open ones by side of the city', () => {
+  const stores = [{ id: 'a', status: 'open', side: 'avrupa' }, { id: 'b', status: 'closed', side: 'avrupa' }, { id: 'c', status: 'unverified', side: 'anadolu' }];
+  const sides = [['avrupa', 'Avrupa'], ['anadolu', 'Anadolu'], ['ada', 'Adalar']];
+  const shelves = storeShelves(stores, sides);
+  assert.deepEqual(shelves.closed.map(store => store.id), ['b']);
+  assert.deepEqual(shelves.sides.map(side => [side.side, side.label, side.stores.map(store => store.id)]), [['avrupa', 'Avrupa', ['a']], ['anadolu', 'Anadolu', ['c']]], 'a side with no open store is left out');
 });

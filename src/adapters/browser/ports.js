@@ -27,6 +27,9 @@ export function browserStorage(storage) {
  };
 }
 
+/** This device's localStorage. Reached at each use: a browser that blocks storage throws on the name itself. */
+export const deviceStorage = browserStorage({ getItem: key => localStorage.getItem(key), setItem: (key, value) => localStorage.setItem(key, value), removeItem: key => localStorage.removeItem(key) });
+
 /** The page being shown, hidden or closed, as sync's LifecyclePort (src/core/sync/controller.js). */
 export function browserLifecycle(view = window) {
  return {

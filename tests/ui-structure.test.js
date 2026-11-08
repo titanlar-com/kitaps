@@ -47,7 +47,7 @@ test('priority summaries expose full text and labelled progress values',()=>{
 });
 
 test('reading priority is built once from the catalog, with no personal or synced state',()=>{
- assert.match(app,/const readingRanking=new ReadingRankingViewModel\(new ReadingPriorityEngine\(catalog\)\)\.build\(\);/);
+ assert.match(app,/export const readingRanking=catalogIndex\.ranking;/);
  assert.doesNotMatch(app,/githubSync\.shared/);
  assert.doesNotMatch(app,/\.build\(\{/);
 });

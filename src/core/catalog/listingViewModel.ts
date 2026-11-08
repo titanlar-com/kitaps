@@ -1,5 +1,5 @@
 import { derived, type ReadableStore, type ViewModel } from '../store.ts';
-import type { Catalog } from './catalog.ts';
+import type { Catalog, IndexedBook } from './catalog.ts';
 import { catalogListing } from './listing.js';
 
 export type ShelfView = 'books' | 'favorites' | 'owned';
@@ -24,12 +24,18 @@ export interface CatalogListingSnapshot {
   readonly query: ListingQuery;
   /** The books of the page, in order. */
   readonly bookIds: readonly string[];
+  /** The same books, as the catalogue's own records. */
+  readonly books: readonly IndexedBook[];
+  /** The whole shelf before filters; a design's filter sheet offers its values. */
+  readonly shelf: readonly IndexedBook[];
   /** Books after filters (all pages). */
   readonly total: number;
   /** Books on the shelf before filters. */
   readonly shelfTotal: number;
   readonly ownedCount: number;
   readonly favoriteCount: number;
+  /** Purchases are hidden, yet some are listed because the reader filtered by a reading mark. */
+  readonly showsHiddenPurchases: boolean;
   /** The page shown: a page past the end shows the last one. */
   readonly page: number;
   readonly pages: number;
@@ -49,10 +55,13 @@ export function createCatalogListingViewModel({ catalog, query, marks }: { catal
     return {
       query: current,
       bookIds: result.displayed.map((book: { id: string }) => book.id),
+      books: result.displayed,
+      shelf: result.shelf,
       total,
       shelfTotal: result.shelf.length,
       ownedCount: result.ownedCount,
       favoriteCount: result.favoriteCount,
+      showsHiddenPurchases: result.showsHiddenPurchases,
       page: result.currentPage,
       pages: result.pages,
       range: total ? { start: (result.currentPage - 1) * current.pageSize + 1, end: Math.min(result.currentPage * current.pageSize, total) } : null,

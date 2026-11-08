@@ -1,4 +1,5 @@
 // Moved verbatim from App.jsx (architecture plan, phase 1, 7 November 2026).
+import { catalog } from './catalogData';
 import { ActionIcon, Badge, Card, Group, HoverCard, Text, Title, Tooltip } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { DataList } from './dataList';
@@ -11,7 +12,6 @@ import ReadingPriorityBadge from '../components/ReadingPriorityBadge';
 import StateRibbons, { StateSummary } from '../components/StateRibbons';
 import { STATE_LABELS } from '../library';
 import { BookCover } from './BookCover';
-import catalog from '../catalog.json';
 import { readingGuide } from '../recommendations';
 import { pageCount } from '../pages';
 import './BookCard.css';

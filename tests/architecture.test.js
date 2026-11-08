@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { coreViolations, filesUnder, importGraph, hasRuntimeCode } from './architecture/boundaries.js';
+import { coreViolations, filesUnder, importGraph, hasRuntimeCode, uiDataImports } from './architecture/boundaries.js';
 
 // The data core stays free of any UI technology (ADR 003, "Sınır kapıları"), so a new design
 // or a new framework can use it as it is, and Node scripts (SEO) can too.
@@ -36,13 +36,7 @@ test('library.js and seo.js, which the build scripts run in Node, reach no JSX, 
 // A core module nothing uses yet is listed here by name (ADR 003, "Sınır kapıları"). The list
 // only shrinks: binding the UI (phase 7) removes names, and a new module that nothing reaches
 // fails this test instead of rotting unnoticed.
-const WAITING_FOR_THE_UI = [
-  'core/app.ts',
-  'core/catalog/catalog.ts',
-  'core/catalog/listingViewModel.ts',
-  'core/navigation/navigator.ts',
-  'core/settings/settings.ts',
-];
+const WAITING_FOR_THE_UI = [];
 
 test('every core and adapter module is used by the app or a build script, or listed as waiting for the UI', () => {
   const src = new URL('../src/', import.meta.url).pathname;
@@ -52,5 +46,23 @@ test('every core and adapter module is used by the app or a build script, or lis
   const unreached = modules.filter(file => !reached.has(file)).map(file => path.relative(src, file)).sort();
   assert.deepEqual(unreached, WAITING_FOR_THE_UI);
   // Lower this whenever a module is bound; raising it needs an independent review.
-  assert.ok(WAITING_FOR_THE_UI.length <= 5, 'the list only shrinks');
+  assert.ok(WAITING_FOR_THE_UI.length === 0, 'the list only shrinks');
+});
+
+// After binding, screens get data through the facade (src/app/catalogData.js) and the core
+// (ADR 003, "Sınır kapıları"). The pages below still load their own data in their own lazy chunk,
+// which is what keeps it out of the first download. This list only shrinks.
+const OWN_DATA_PAGES = ['components/BookFairsPage.jsx', 'components/BookstoresPage.jsx', 'components/NotesPage.jsx', 'components/RoutePlanner.jsx'];
+
+test('screens do not import the catalogue, the data files or the GitHub repositories directly', () => {
+  const src = new URL('../src/', import.meta.url).pathname;
+  const screens = ['App.jsx', 'main.jsx', ...fs.readdirSync(path.join(src, 'app')).map(file => `app/${file}`), ...fs.readdirSync(path.join(src, 'components')).map(file => `components/${file}`)].filter(file => /\.(js|jsx)$/.test(file) && file !== 'app/catalogData.js');
+  const reaching = screens.filter(file => uiDataImports(path.join(src, file)).length).sort();
+  assert.deepEqual(reaching, OWN_DATA_PAGES);
+});
+
+test('the screen gate reports each kind of direct import and leaves the facade alone', () => {
+  const fixtures = new URL('./fixtures/architecture/ui/', import.meta.url).pathname;
+  assert.equal(uiDataImports(path.join(fixtures, 'reads-data.jsx')).length, 4);
+  assert.deepEqual(uiDataImports(path.join(fixtures, 'keeps-the-rule.jsx')), []);
 });

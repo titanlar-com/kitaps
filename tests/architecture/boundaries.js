@@ -40,6 +40,11 @@ export function specifiers(source, { runtimeOnly = false } = {}) {
   return found;
 }
 
+/** What a screen imports past the facade: the catalogue, a data file or a GitHub repository. */
+export function uiDataImports(file) {
+  return specifiers(parse(file), { runtimeOnly: true }).filter(item => /catalog\.json$|(^|\/)data\/|GitHubStateRepository|routeRegistry/.test(item));
+}
+
 /** Whether a file holds anything that runs: a file of types alone is never reached at run time. */
 export function hasRuntimeCode(file) {
   return parse(file).statements.some(node => !ts.isInterfaceDeclaration(node) && !ts.isTypeAliasDeclaration(node) && !(ts.isImportDeclaration(node) && node.importClause?.isTypeOnly));

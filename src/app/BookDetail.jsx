@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Accordion, Alert, Anchor, Badge, Box, Button, Group, Paper, Spoiler, Stack, Text, Title } from '@mantine/core';
 import { IconArrowLeft, IconArrowRight, IconArrowUpRight, IconCheck } from '@tabler/icons-react';
-import catalog from '../catalog.json';
 import ReadingPanel, { QueueButton } from '../components/ReadingPanel';
 import ReadingJourney from '../components/ReadingJourney';
 import { DataList } from './dataList';
@@ -19,7 +18,7 @@ import StateRibbons, { StateSummary } from '../components/StateRibbons';
 import SyncStatusLine from '../components/SyncStatusLine';
 import SourceBadge from '../components/SourceBadge';
 import { STATE_LABELS, formatDay } from '../library';
-import { collectionMap, groupMap, categoryMap } from './catalogData';
+import { catalog, collectionMap, groupMap, categoryMap } from './catalogData';
 import { BookCover, ThumbCover } from './BookCover';
 
 export function BookDetail({book:current,ranking:currentRanking,onClose,onOpen,onBack,hasBack,states,onToggle,onCollection,onCategory,personal,onReading,onAdd,onQueue,storageError,feedback,sync,onSync,covered}) {

@@ -25,9 +25,10 @@ export function collectionCards({ collections, books, states = {}, groups = {}, 
   }
   return shown.map(collection => {
     const { total, read, previews } = tallies.get(collection.id);
+    const share = total ? read / total : 0;
     return {
-      collection, total, read, previews,
-      share: total ? read / total : 0,
+      collection, total, read, previews, share,
+      percent: Number((share * 100).toFixed(1)),
       done: total > 0 && read === total,
       groups: collection.groupIds.map(id => ({ id, title: groups[id]?.title, count: groupCounts.get(id) || 0 })),
     };

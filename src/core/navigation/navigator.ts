@@ -48,6 +48,8 @@ export interface NavigationCommands {
   closeBook(): void;
   /** The previous history entry; the route follows when the browser reports the change. */
   back(): void;
+  /** Goes to a route the design has composed, as a new history entry. */
+  go(route: Route): void;
   goView(view: string): void;
   goHome(): void;
   openCollection(id: string, groupId?: string): void;
@@ -77,9 +79,11 @@ export function createNavigator({ location, codec }: { location: LocationPort; c
   const route = (): Route => state.getSnapshot().route;
   const commit = (next: Route, { push = false }: { push?: boolean } = {}): void => {
     if (push) location.push(urlFor(next));
-    if (!push && JSON.stringify(route()) === JSON.stringify(next)) return;
+    // The same route can arrive under an old address, which is still written in today's form.
+    if (!push && JSON.stringify(route()) === JSON.stringify(next)) { location.replace(urlFor(next)); return; }
     state.set({ route: next });
-    location.replace(urlFor(next));
+    // Telling the listeners can correct the route (a page past the end), so the newest one is written.
+    location.replace(urlFor(route()));
   };
   const navigate = (next: Route): void => commit(next, { push: true });
 
@@ -90,6 +94,7 @@ export function createNavigator({ location, codec }: { location: LocationPort; c
     showBook(id) { commit({ ...route(), book: id }); },
     closeBook() { commit({ ...route(), book: null }); },
     back() { location.back(); },
+    go: navigate,
     goView(view) {
       navigate({ ...route(), view, book: null, page: 1, ...(viewById[view]?.shelf ? { filters: emptyFilters() } : {}) });
     },

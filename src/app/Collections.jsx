@@ -1,11 +1,10 @@
 import {useRef, useMemo, useState } from 'react';
 import { Accordion, Anchor, Avatar, Badge, Box, Button, Card, Group, Progress, SimpleGrid, Stack, Text, TextInput, ThemeIcon } from '@mantine/core';
 import { IconArrowRight, IconArrowUpRight, IconBook2, IconChevronRight, IconLayersIntersect, IconSearch } from '@tabler/icons-react';
-import catalog from '../catalog.json';
 import { collectionCards, sharePercent } from '../core/catalog/collections';
 import EmptyState from '../components/EmptyState';
 import { smallCover } from './BookCover';
-import { books, groupMap } from './catalogData';
+import { catalog, books, groupMap } from './catalogData';
 import './Collections.css';
 
 // The single-file export carries one embedded copy of each cover (see BookCover).
@@ -14,13 +13,13 @@ const coverSrc=cover=>globalThis.__KITAP_COVERS__?.[cover.src]||`./${smallCover(
 const readSentence=({read,total,done})=>done?`${total} kitabın tamamı okundu.`:read?`${total} kitaptan ${read} tanesi okundu.`:'Bu kümeden henüz okunan kitap yok.';
 
 function CollectionCard({card,onCollection,onGroup}){
- const {collection:c,total,previews,share,done,groups}=card;
+ const {collection:c,total,previews,share,percent,done,groups}=card;
  return <Card className="collection-card" padding={0}><Accordion.Item value={c.id}>
   {previews.length>0&&<Avatar.Group className="collection-covers" aria-hidden="true">{previews.map(book=><Avatar key={book.id} src={coverSrc(book.cover)} alt="" imageProps={{loading:'lazy',decoding:'async'}}><IconBook2 size={20}/></Avatar>)}</Avatar.Group>}
   <Accordion.Control><Group gap="md"><ThemeIcon variant="light" size={48} radius="md" aria-hidden="true"><Text fw={600}>{c.mark}</Text></ThemeIcon><div className="collection-summary"><Text fw={600}>{c.title}</Text><Text c="dimmed" className="collection-meta tabular-nums">{total} kitap, {groups.length} alt küme</Text></div></Group></Accordion.Control>
   <div className="collection-read">
    <div className="collection-read-line"><Text c="dimmed" className="collection-read-text tabular-nums">{readSentence(card)}</Text><span className="collection-read-share tabular-nums">{sharePercent(share)}</span></div>
-   <Progress value={Number((share*100).toFixed(1))} size="sm" color={done?'var(--tone-read)':undefined} aria-label={`${c.title}: okunan oranı`}/>
+   <Progress value={percent} size="sm" color={done?'var(--tone-read)':undefined} aria-label={`${c.title}: okunan oranı`}/>
    <Button className="collection-books-button" variant="light" onClick={()=>onCollection(c.id)} rightSection={<IconArrowRight size={18}/>} aria-label={`Bu kümedeki kitaplar: ${c.title}`}>Bu kümedeki kitaplar</Button>
   </div>
   <Accordion.Panel><Stack gap="md">

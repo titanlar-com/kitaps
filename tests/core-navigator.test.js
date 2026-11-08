@@ -107,6 +107,23 @@ test('a page past the end is corrected in place, and the home link resets everyt
   assert.equal(navigator.getSnapshot().route.book, null);
 });
 
+test('a design can go to any route it has composed, as a new history entry', () => {
+  const { go, route, history, url } = open('?sort=title');
+  go.go({ ...route(), view: 'queue', book: null, page: 1 });
+  assert.equal(route().view, 'queue');
+  assert.equal(route().sort, 'title', 'the rest of the route is the design\'s to keep');
+  assert.equal(history.entries.length, 2);
+  assert.ok(url().includes('view=queue'));
+});
+
+test('the browser\'s own change writes today\'s address even when the route stayed the same', () => {
+  const browser = fakeHistory('?view=collections');
+  createNavigator({ location: browser.port, codec });
+  browser.history.entries[0] = '#overview';
+  for (const listener of browser.history.listeners) listener();
+  assert.equal(browser.url(), '?view=collections');
+});
+
 test('the snapshot is the same object until the route changes', () => {
   const { navigator, go } = open('');
   const before = navigator.getSnapshot();
