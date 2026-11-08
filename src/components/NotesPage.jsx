@@ -9,7 +9,7 @@ import NoteCards from './NoteCards';
 import GitHubSyncPanel from './GitHubSyncPanel';
 import SourceBadge from './SourceBadge';
 import {download} from '../download';
-import {cleanPersonal,restorePersonal} from '../reading';
+import {cleanPersonal} from '../reading';
 import {SOURCE_URL} from '../site';
 import {ORIGIN_LABELS,STATE_LABELS,plainTextMarkers} from '../library';
 
@@ -31,7 +31,7 @@ async function downloadEverything(){
  download('kitaplik-tum-veri.json',{catalog,sources:{atlas,okumaKumeleri,kitaps,kitapsCovers,entrepreneurship,foundations,preparation,kitapsNotes:readingNotes}});
 }
 
-export default function NotesPage({states,setStates,personal,setPersonal,sync}) {
+export default function NotesPage({states,personal,onRestore,sync}) {
  const [message,setMessage]=useState('');
  const sections=useMemo(()=>plainTextMarkers(readingNotes).split(/(?=^## )/m),[]);
  const importStates=async file=>{
@@ -42,8 +42,7 @@ export default function NotesPage({states,setStates,personal,setPersonal,sync}) 
    const supplied=input.states||(('queue' in input||'reading' in input)?{}:input);
    if(!supplied||typeof supplied!=='object'||Array.isArray(supplied))throw Error();
    const valid=Object.fromEntries(Object.entries(supplied).filter(([id,v])=>knownIds.has(id)&&Array.isArray(v)).map(([id,v])=>[id,v.filter(s=>s in STATE_LABELS)]));
-   setStates(prev=>({...prev,...valid}));
-   setPersonal(prev=>restorePersonal(prev,input,bookIds));
+   onRestore(valid,input);
    const clean=cleanPersonal(input,bookIds);
    setMessage(`${Object.keys(valid).length} kitabın işaretleri ve ${Object.keys(clean.reading).length} okuma kaydı içe aktarıldı.${Array.isArray(input.queue)?` Okuma sırası ${clean.queue.length} kitapla geri yüklendi.`:''}`);
   }catch{setMessage('Dosya okunamadı. Bu siteden dışa aktarılmış bir JSON dosyası seç.');}

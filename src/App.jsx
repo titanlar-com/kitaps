@@ -23,11 +23,12 @@ import ReadingSummary from './components/ReadingSummary';
 import { useMediaQuery } from '@mantine/hooks';
 import { WIDE_QUERY, PHONE_LANDSCAPE_QUERY } from './app/media';
 import { useGitHubStateSync } from './state/useGitHubStateSync';
-import { PERSONAL_KEY, cleanPersonal, cleanReading, addToQueue, moveInQueue, todayLocal, stampReadingDate, readingSummary } from './reading';
-import { emptyFilters, toggleState, filterCount, decodeRoute, encodeRoute, DEFAULT_PAGE_SIZE } from './library';
+import { useViewModel } from './adapters/react/useViewModel.js';
+import { readingSummary } from './reading';
+import { emptyFilters, filterCount, decodeRoute, encodeRoute, DEFAULT_PAGE_SIZE } from './library';
 import { MOTION_EASE, MOTION_MS, MOTION_PX } from './motion';
 import { cssVariablesResolver, theme } from './app/theme';
-import { books, bookIds, readingRanking, byId, collectionMap, STATE_KEY, authorOptions, safeRead, loadStates, exportAllBooks } from './app/catalogData';
+import { books, bookIds, readingRanking, byId, collectionMap, authorOptions, openPersonalLibrary, exportAllBooks } from './app/catalogData';
 import { GirlIcon, BookshelfIcon, BrandMark } from './app/icons';
 import { AgeLibrary } from './app/AgeLibrary';
 import { onlyFilters, childrenShelf, resultsTitle } from './app/results';
@@ -58,11 +59,11 @@ const TOAST_MOTION={in:{opacity:1,translate:'0 0'},out:{opacity:0,translate:`0 $
 function AtlasApp() {
  const [route,setRoute]=useState(()=>decodeRoute(window.location.hash||window.location.search,catalog));
  const {filters,view,sort,book,page,pageSize}=route;
- const [states,setStates]=useState(loadStates);
- const [storageError,setStorageError]=useState(false);
- const [personal,setPersonal]=useState(()=>cleanPersonal(safeRead(PERSONAL_KEY),books.map(b=>b.id)));
- const githubSync=useGitHubStateSync({bookIds,states,setStates,personal,setPersonal});
- const [personalStorageError,setPersonalStorageError]=useState(false);
+ // The reader's marks, records and queue have one owner (src/core/personal/library.ts).
+ const [library]=useState(openPersonalLibrary);
+ const {states,personal,saved:personalSaved}=useViewModel(library);
+ const {commands:personalCommands}=library;
+ const githubSync=useGitHubStateSync({bookIds,states,personal,applyRemote:library.applyRemote});
  const [opened,setOpened]=useState(false);
  const [draft,setDraft]=useState(emptyFilters);
  const [bookTrail,setBookTrail]=useState([]);
@@ -108,8 +109,6 @@ function AtlasApp() {
  const openedFromCatalog=useRef(false);
  const navigate=next=>{const encoded=encodeRoute(next,catalog);window.history.pushState(null,'',window.location.pathname+(encoded?'?'+encoded:''));setRoute(next)};
  const closeBook=()=>{if(openedFromCatalog.current){openedFromCatalog.current=false;window.history.back()}else setRoute(r=>({...r,book:null}))};
- useEffect(()=>{try{localStorage.setItem(STATE_KEY,JSON.stringify(states));setStorageError(false)}catch{setStorageError(true)}},[states]);
- useEffect(()=>{try{localStorage.setItem(PERSONAL_KEY,JSON.stringify(personal));setPersonalStorageError(false)}catch{setPersonalStorageError(true)}},[personal]);
  useEffect(()=>{const encoded=encodeRoute(route,catalog);const url=window.location.pathname+(encoded?'?'+encoded:'');window.history.replaceState(null,'',url)},[route]);
  useEffect(()=>{const change=()=>{openedFromCatalog.current=false;setBookTrail([]);setRoute(decodeRoute(window.location.hash||window.location.search,catalog))};window.addEventListener('hashchange',change);window.addEventListener('popstate',change);return()=>{window.removeEventListener('hashchange',change);window.removeEventListener('popstate',change)}},[]);
  const changeFilters=next=>setRoute(r=>({...r,filters:next,page:1}));
@@ -141,17 +140,13 @@ function AtlasApp() {
  const draftCount=draftListing?.filtered.length??0;
  const activeCount=filterCount({...filters,query:''});
  const onToggle=(id,key,trigger=document.activeElement)=>{
-  const before=states[id]||[];
-  const marking=!before.includes(key);
-  const owned=toggleState(before,key).includes('alindi');
-  setStates(prev=>({...prev,[id]:toggleState(prev[id],key)}));
+  const {before,after}=personalCommands.toggleMark(id,key);
+  const owned=after.includes('alindi');
   // A reading mark also puts the book on Kitaplığım (toggleState), and the reader is told so.
   if(key==='alindi'||(owned&&!before.includes('alindi'))){transferOrigin.current=trigger;setTransfer({id,owned});setToastShown(true);}
-  // Being read or read writes the day once (stampReadingDate in src/reading.js).
-  if(marking)setPersonal(prev=>stampReadingDate(prev,id,key,todayLocal()));
  };
- const onReading=(id,patch)=>setPersonal(prev=>({...prev,reading:{...prev.reading,[id]:cleanReading({...prev.reading[id],...patch})}}));
- const onAdd=id=>setPersonal(prev=>({...prev,queue:addToQueue(prev.queue,id)}));
+ const onReading=personalCommands.editReading;
+ const onAdd=personalCommands.addToQueue;
  const onQueue=()=>{navigate({...route,view:'queue',book:null,page:1});window.scrollTo({top:0,behavior:'instant'})};
  const onOpen=id=>{setBookTrail(book?[...bookTrail,book]:[]);if(!book){openedFromCatalog.current=true;navigate({...route,book:id})}else setRoute(r=>({...r,book:id}))};
  const previousBook=()=>{const id=bookTrail.at(-1);if(id){setBookTrail(bookTrail.slice(0,-1));setRoute(r=>({...r,book:id}))}};
@@ -176,7 +171,7 @@ function AtlasApp() {
  const syncClosed=()=>setSyncCovering(false);
  const copyLink=async()=>{try{await navigator.clipboard.writeText(window.location.href);setCopied(true);setTimeout(()=>setCopied(false),2000)}catch{setCopied(false)}};
  // The toast leaves the way it came: the last notice stays rendered while it fades out.
- const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true"><Transition mounted={toastShown&&Boolean(transfer)} duration={MOTION_MS.overlay} exitDuration={MOTION_MS.overlay} timingFunction={MOTION_EASE} transition={TOAST_MOTION} onExited={()=>setTransfer(null)}>{style=>transfer&&<LibraryToast key={`${transfer.id}-${transfer.owned}`} style={style} leaving={!toastShown} book={byId[transfer.id]} owned={transfer.owned} onClose={dismissTransfer} onUndo={()=>{setStates(prev=>({...prev,[transfer.id]:toggleState(prev[transfer.id],'alindi')}));dismissTransfer()}}/>}</Transition></div>;
+ const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true"><Transition mounted={toastShown&&Boolean(transfer)} duration={MOTION_MS.overlay} exitDuration={MOTION_MS.overlay} timingFunction={MOTION_EASE} transition={TOAST_MOTION} onExited={()=>setTransfer(null)}>{style=>transfer&&<LibraryToast key={`${transfer.id}-${transfer.owned}`} style={style} leaving={!toastShown} book={byId[transfer.id]} owned={transfer.owned} onClose={dismissTransfer} onUndo={()=>{personalCommands.toggleMark(transfer.id,'alindi');dismissTransfer()}}/>}</Transition></div>;
  const activeTab=viewById[view]?.shelf?'books':HEADER_VIEWS.includes(view)?view:null;
  return <><a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();document.getElementById('main-content').focus()}}>İçeriğe geç</a>
   <Tabs className="main-section-tabs" value={activeTab} onChange={v=>v&&navigate({...route,view:v,book:null,page:1})}>
@@ -185,7 +180,7 @@ function AtlasApp() {
 
    <main id="main-content" tabIndex={-1}>
 
-    {(storageError||personalStorageError)&&<Alert color="orange" mb="lg">Bu tarayıcı kişisel kayıtlarını kalıcı olarak saklayamıyor. Notlar bölümünden yedeğini indirebilirsin.</Alert>}
+    {!personalSaved&&<Alert color="orange" mb="lg">Bu tarayıcı kişisel kayıtlarını kalıcı olarak saklayamıyor. Notlar bölümünden yedeğini indirebilirsin.</Alert>}
     {view!=='notes'&&<SyncNotice sync={githubSync} onOpen={openSync}/>}
     <Tabs.Panel value="books">
     {['books','owned','favorites'].includes(view)&&<>
@@ -203,11 +198,11 @@ function AtlasApp() {
      {filtered.length?<><div className="books-grid">{displayed.map(b=><BookCard key={b.id} book={b} ranking={readingRanking.byId[b.id]} states={states} onToggle={onToggle} onOpen={onOpen} queue={personal.queue} onAdd={onAdd} onQueue={onQueue}/>)}</div><CatalogPagination page={currentPage} total={pages} count={filtered.length} pageSize={pageSize} onChange={changePage} onPageSize={size=>navigate({...route,page:1,pageSize:size,book:null})} hrefForPage={p=>window.location.pathname+'?'+encodeRoute({...route,page:p,book:null},catalog)}/></>:<Paper withBorder className="empty-state" p="xl" radius="lg"><IconSearch size={36}/><Title order={2}>{view==='owned'&&!ownedCount?'Kitaplığın ilk kitabını bekliyor.':view==='favorites'&&!shelfBooks.length?'Henüz favori kitap yok.':'Bu seçimde kitap yok.'}</Title><Text c="dimmed" mt="sm">{view==='owned'&&!ownedCount?'Katalogda “Satın aldım” dediğin kitap burada da görünür.':view==='favorites'&&!shelfBooks.length?'Kartlardaki kalple favorilerini buraya ekleyebilirsin.':'Bir filtreyi kaldırabilir veya aramanı değiştirebilirsin.'}</Text><Button mt="lg" variant="light" onClick={()=>(view==='owned'&&!ownedCount)||(view==='favorites'&&!shelfBooks.length)?onBrowse():changeFilters(emptyFilters())}>{(view==='owned'&&!ownedCount)||(view==='favorites'&&!shelfBooks.length)?'Kataloğa git':'Filtreleri temizle'}</Button></Paper>}
     </>}
     </Tabs.Panel>
-    <Tabs.Panel value="queue">{view==='queue'&&<><Title order={1} className="visually-hidden">Okuma sıram</Title><ReadingQueue queue={personal.queue} books={byId} reading={personal.reading} states={states} onMove={(id,direction)=>setPersonal(prev=>({...prev,queue:moveInQueue(prev.queue,id,direction)}))} onRemove={id=>setPersonal(prev=>({...prev,queue:prev.queue.filter(value=>value!==id)}))} onOpen={onOpen} onBrowse={onBrowse} BookCover={ThumbCover}/><ReadingSummary summary={summary} onSelect={onSummary}/></>}</Tabs.Panel>
+    <Tabs.Panel value="queue">{view==='queue'&&<><Title order={1} className="visually-hidden">Okuma sıram</Title><ReadingQueue queue={personal.queue} books={byId} reading={personal.reading} states={states} onMove={personalCommands.moveInQueue} onRemove={personalCommands.removeFromQueue} onOpen={onOpen} onBrowse={onBrowse} BookCover={ThumbCover}/><ReadingSummary summary={summary} onSelect={onSummary}/></>}</Tabs.Panel>
     <Tabs.Panel value="collections">{view==='collections'&&<><Title order={1} className="visually-hidden">Kitap kümeleri</Title><Collections onCollection={goCollection} onGroup={goCollection} states={states}/></>}</Tabs.Panel>
     {view==='fairs'&&<React.Suspense fallback={<PageLoading>Kitap fuarları yükleniyor…</PageLoading>}><BookFairsPage/></React.Suspense>}
     <Tabs.Panel value="bookstores">{view==='bookstores'&&<React.Suspense fallback={<PageLoading>Kitapçılar yükleniyor…</PageLoading>}><BookstoresPage/></React.Suspense>}</Tabs.Panel>
-    {view==='notes'&&<section aria-labelledby="notes-heading"><Title id="notes-heading" order={1} className="visually-hidden">Kaynaklar ve notlar</Title><React.Suspense fallback={<PageLoading>Notlar yükleniyor…</PageLoading>}><NotesPage states={states} setStates={setStates} personal={personal} setPersonal={setPersonal} sync={githubSync}/></React.Suspense></section>}
+    {view==='notes'&&<section aria-labelledby="notes-heading"><Title id="notes-heading" order={1} className="visually-hidden">Kaynaklar ve notlar</Title><React.Suspense fallback={<PageLoading>Notlar yükleniyor…</PageLoading>}><NotesPage states={states} personal={personal} onRestore={personalCommands.restoreBackup} sync={githubSync}/></React.Suspense></section>}
    </main>
    <FooterMenu current={viewById[view]?.label} groups={[
     {id:'sections',title:'Bölümler',items:[
@@ -231,7 +226,7 @@ function AtlasApp() {
   <Modal opened={guideOpened} onClose={()=>setGuideOpened(false)} title="Çeviri seçme rehberi" size="lg" centered className="global-guide-modal" closeButtonProps={{'aria-label':'Kapat'}}><TranslationCriteria/></Modal>
   <FilterSheet opened={opened} onClose={()=>setOpened(false)} onExited={()=>setSheetShown(false)} value={draft} onChange={setDraft} onReset={()=>setDraft({...emptyFilters(),query:filters.query})} onApply={()=>{changeFilters(draft);setOpened(false)}} count={draftCount} catalog={catalog} authors={authorOptions} shelf={draftListing?.shelf??shelfBooks}/>
   {!book&&transferNotice}
-  <BookDetail feedback={transferNotice} ranking={readingRanking.byId[book]} onOpen={onOpen} onBack={previousBook} hasBack={bookTrail.length>0} book={byId[book]} onClose={closeBook} states={states} onToggle={onToggle} onCollection={goCollection} onCategory={goCategory} personal={personal} onReading={onReading} onAdd={onAdd} onQueue={onQueue} storageError={storageError||personalStorageError} sync={githubSync} onSync={openSync} covered={syncCovering||Boolean(githubSync.mergePrompt)}/>
+  <BookDetail feedback={transferNotice} ranking={readingRanking.byId[book]} onOpen={onOpen} onBack={previousBook} hasBack={bookTrail.length>0} book={byId[book]} onClose={closeBook} states={states} onToggle={onToggle} onCollection={goCollection} onCategory={goCategory} personal={personal} onReading={onReading} onAdd={onAdd} onQueue={onQueue} storageError={!personalSaved} sync={githubSync} onSync={openSync} covered={syncCovering||Boolean(githubSync.mergePrompt)}/>
  </>;
 }
 export default function App(){return <MantineProvider theme={theme} cssVariablesResolver={cssVariablesResolver} defaultColorScheme="dark" colorSchemeManager={localStorageColorSchemeManager({key:'kitapatlasi:color-scheme'})}><AtlasApp/>{AccessibilityAudit&&<React.Suspense fallback={null}><AccessibilityAudit/></React.Suspense>}</MantineProvider>}

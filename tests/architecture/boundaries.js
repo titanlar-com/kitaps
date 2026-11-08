@@ -26,16 +26,23 @@ const parse = file => ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), t
 /** A relative import as Vite resolves it: the path itself, or with an extension or an index file. */
 const resolveImport = target => [target, ...['.js', '.jsx', '.ts', '.tsx', '.mjs'].map(extension => target + extension), path.join(target, 'index.js')].find(candidate => fs.existsSync(candidate) && fs.statSync(candidate).isFile()) ?? target;
 
-/** Every module specifier a file imports or re-exports, static or dynamic. */
-export function specifiers(source) {
+/** Every module specifier a file imports or re-exports, static or dynamic. `runtimeOnly` leaves
+ * out `import type` and `export type`, which are gone when the code runs. */
+export function specifiers(source, { runtimeOnly = false } = {}) {
   const found = [];
+  const typeOnly = node => ts.isImportDeclaration(node) ? node.importClause?.isTypeOnly === true : node.isTypeOnly;
   const visit = node => {
-    if ((ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) found.push(node.moduleSpecifier.text);
+    if ((ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier) && !(runtimeOnly && typeOnly(node))) found.push(node.moduleSpecifier.text);
     if (ts.isCallExpression(node) && node.expression.kind === ts.SyntaxKind.ImportKeyword && node.arguments[0] && ts.isStringLiteralLike(node.arguments[0])) found.push(node.arguments[0].text);
     ts.forEachChild(node, visit);
   };
   visit(source);
   return found;
+}
+
+/** Whether a file holds anything that runs: a file of types alone is never reached at run time. */
+export function hasRuntimeCode(file) {
+  return parse(file).statements.some(node => !ts.isInterfaceDeclaration(node) && !ts.isTypeAliasDeclaration(node) && !(ts.isImportDeclaration(node) && node.importClause?.isTypeOnly));
 }
 
 /**
@@ -110,7 +117,7 @@ export function importGraph(entry) {
     if (seen.has(file)) return;
     seen.add(file);
     if (!fs.existsSync(file) || !/\.(js|ts|mjs|jsx|tsx)$/.test(file)) return;
-    for (const specifier of specifiers(parse(file))) {
+    for (const specifier of specifiers(parse(file), { runtimeOnly: true })) {
       if (specifier.startsWith('.')) visit(resolveImport(path.resolve(path.dirname(file), specifier.replace(/\?.*$/, ''))));
       else seen.add(specifier);
     }

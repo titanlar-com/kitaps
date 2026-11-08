@@ -1,10 +1,12 @@
 import { viewById, viewFromParam } from './views.js';
 import { booksForShelf, emptyFilters, filterBooks, normalize, prepareBooks, sortBooks } from './core/catalog/query.js';
+import { STATE_LABELS, migrateStates, toggleState } from './core/personal/marks.js';
 
 // The filter, sort and shelf rules live in the data core (ADR 003, phase 3).
 export { booksForShelf, emptyFilters, filterBooks, normalize, prepareBooks, sortBooks };
+// The rules of a reader's marks live with the personal library (ADR 003, phase 7a).
+export { STATE_LABELS, migrateStates, toggleState };
 
-export const STATE_LABELS = { onemli: 'Favori', alinacak: 'Alınacak', alindi: 'Satın alındı', okunuyor: 'Okunuyor', okundu: 'Okundu', araverildi: 'Ara verdim', birakildi: 'Bıraktım' };
 export const QUALITY_LABELS = { ok: 'Kaynakta doğrulanmış', warn: 'Baskı / çeviri uyarısı', unverified: 'Künye eksik', avoid: 'Kaçınılacak baskı notu' };
 export const ORIGIN_LABELS = { atlas: 'Kitap Atlası', local: 'Okuma Kümeleri', kitaps: 'Kitaps', entrepreneurship: 'Girişimcilik araştırması', foundations: 'Temel okumalar araştırması', preparation: 'Ön hazırlık araştırması', children: 'Çocuk kütüphanesi araştırması', shelf: 'Raf taraması değerlendirmesi', originals: 'Özgün kaynaklar araştırması', founders: 'Yönetim kurucuları araştırması', managerprep: 'Yönetici adayı programı', managerareas: 'Yöneticinin okuma alanları', shelfphotos: 'Raf fotoğrafları', peker: 'Sedat Peker videoları', stoic: 'Yönetici için Stoacılık' };
 // A day such as "2026-10-04" read as "4 Ekim 2026", independent of the reader's time zone.
@@ -14,32 +16,6 @@ export function formatDay(day) {
  const date = new Date(`${day}T00:00:00Z`);
  // A day that does not exist (2026-02-30) is not shown rather than shown wrong.
  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === day ? dayFormat.format(date) : '';
-}
-export function toggleState(current, key) {
- const result = new Set(current || []);
- if (result.has(key)) result.delete(key);
- else {
-  result.add(key);
-  const opposite = { alinacak: 'alindi', alindi: 'alinacak', okunuyor: 'okundu', okundu: 'okunuyor' }[key];
-  if (opposite) result.delete(opposite);
-  const readingStates=['okunuyor','okundu','araverildi','birakildi'];
-  if(readingStates.includes(key)){
-   for(const state of readingStates)if(state!==key)result.delete(state);
-   // The owner, 8 November 2026: a book that is being read has been bought. The lists stay
-   // separate, so taking either mark off later leaves the other one alone.
-   result.add('alindi');result.delete('alinacak');
-  }
- }
- return [...result];
-}
-export function migrateStates(books, own, legacy) {
- const result = Object.fromEntries(Object.entries(own || {}).filter(([,v])=>Array.isArray(v)).map(([k,v])=>[k,v.filter(s=>s in STATE_LABELS)]));
- for (const b of books) {
-  if (Object.hasOwn(result,b.id)) continue;
-  const values = b.legacyKeys.flatMap(k => Array.isArray(legacy?.[k]) ? legacy[k] : []).filter(s => s in STATE_LABELS);
-  if (values.length) result[b.id] = [...new Set(values)];
- }
- return result;
 }
 export function filterCount(f) {
  return Object.entries(f).reduce((n,[k,v])=>n + (k.endsWith('Mode') ? 0 : Array.isArray(v) ? v.length : v ? 1 : 0),0);

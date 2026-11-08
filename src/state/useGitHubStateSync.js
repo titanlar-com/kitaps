@@ -41,7 +41,7 @@ export function readSyncBackup(){
  try{return JSON.parse(localStorage.getItem(GITHUB_STATE_BACKUP_KEY)||'null')}catch{return null}
 }
 
-export function useGitHubStateSync({bookIds,states,setStates,personal,setPersonal}){
+export function useGitHubStateSync({bookIds,states,setStates,personal,setPersonal,applyRemote}){
  const repositoryRef=useRef(null);
  if(!repositoryRef.current)repositoryRef.current=new GitHubStateRepository();
  const repository=repositoryRef.current;
@@ -83,7 +83,7 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
   const keepQueue=baselineQueue!==undefined&&baselineQueue!==queueSignature(shown.personal);
   if(!skip.queue&&!keepQueue)knownQueue.current=signature(projected.queue);
   else if(!skip.queue&&knownQueue.current===null)knownQueue.current=baselineQueue;
-  setStates(previous=>{
+  const nextStates=previous=>{
    const next={...previous};
    for(const [id,value] of records){
     if(skip.books.has(id))continue;
@@ -92,8 +92,8 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
     if(value.states.length)next[id]=value.states;else delete next[id];
    }
    return next;
-  });
-  setPersonal(previous=>{
+  };
+  const nextPersonal=previous=>{
    const nextReading={...previous.reading};
    for(const [id,value] of records){
     if(skip.books.has(id))continue;
@@ -103,8 +103,11 @@ export function useGitHubStateSync({bookIds,states,setStates,personal,setPersona
    }
    const keepLocalQueue=skip.queue||(baselineQueue!==undefined&&baselineQueue!==queueSignature(previous));
    return {...previous,reading:nextReading,queue:keepLocalQueue?previous.queue:projected.queue};
-  });
- },[bookIds,setPersonal,setStates]);
+  };
+  // One step for the whole read (ADR 003, K7): what arrives from GitHub is never taken for an edit.
+  if(applyRemote)applyRemote(current=>({states:nextStates(current.states),personal:nextPersonal(current.personal)}));
+  else{setStates(nextStates);setPersonal(nextPersonal);}
+ },[applyRemote,bookIds,setPersonal,setStates]);
 
  const refreshing=useRef(null);
  const reviewLatest=useRef(async(_remote)=>undefined);
