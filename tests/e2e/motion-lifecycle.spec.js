@@ -29,7 +29,10 @@ test('a closing book keeps its pages until the sheet has gone, and they can no l
   expect(closing.filter(frame => !frame.shown || !frame.inert)).toEqual([]);
 });
 
-test('closing the sync dialog gives focus back without waiting for its exit', async ({ page }) => {
+test('closing the sync dialog gives focus back without waiting for its exit', async ({ page, browserName }) => {
+  // The order of a frame and a 200 ms timer means nothing on CI's Linux WebKit, which paints a few
+  // frames a second. tests/e2e/sync.spec.js checks where focus lands in every engine.
+  test.skip(browserName === 'webkit' && Boolean(process.env.CI), 'needs a steady frame rate');
   await page.goto('./');
   await expect(page.locator('.book-card').first()).toBeVisible();
   await page.locator('.footer-dock').click();
@@ -37,16 +40,14 @@ test('closing the sync dialog gives focus back without waiting for its exit', as
   const dialog = page.getByRole('dialog', { name: 'Cihazlar arası eşitleme' });
   await expect(dialog).toBeVisible();
   await page.waitForTimeout(400);
-  await record(page, () => { const modal = document.querySelector('.sync-modal .mantine-Modal-content'); return { modal: Boolean(modal), inside: Boolean(modal?.contains(document.activeElement)), onMain: document.activeElement?.id === 'main-content' }; });
+  expect(await page.evaluate(() => Boolean(document.querySelector('.sync-modal .mantine-Modal-content')?.contains(document.activeElement))), 'focus starts in the dialog').toBe(true);
+  await page.evaluate(() => {
+    window.__focusLanded = null;
+    document.addEventListener('focusin', event => { if (event.target.id === 'main-content') window.__focusLanded = { dialogStillThere: Boolean(document.querySelector('.sync-modal .mantine-Modal-content')) }; }, true);
+  });
   await page.keyboard.press('Escape');
-  await expect(page.locator('.sync-modal .mantine-Modal-content')).toHaveCount(0);
-  const frames = await page.evaluate(() => window.__frames);
-  expect(frames[0].inside, 'focus starts in the dialog').toBe(true);
-  const firstOutside = frames.findIndex(frame => !frame.inside);
-  const lastModal = frames.map(frame => frame.modal).lastIndexOf(true);
-  expect(firstOutside).toBeGreaterThan(-1);
-  expect(firstOutside, 'focus leaves while the dialog is still leaving').toBeLessThan(lastModal);
-  expect(frames[firstOutside + 1]?.onMain ?? frames[firstOutside].onMain, 'and lands on the main content, whose opener has gone').toBe(true);
+  await page.waitForFunction(() => window.__focusLanded !== null);
+  expect(await page.evaluate(() => window.__focusLanded)).toEqual({ dialogStillThere: true });
 });
 
 test('a filter sheet keeps the section on screen while it leaves', async ({ page }) => {
@@ -91,10 +92,11 @@ test('a cover stays clear until it has loaded, then fades in, in a frame that do
   expect(properties).toContain('opacity');
 });
 
-test('a hover that is taken back continues from where the cover is', async ({ page, isMobile }) => {
-  test.skip(isMobile, 'a phone has no hover');
+test('a hover that is taken back continues from where the cover is', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('./');
+  // The lift is only for a real pointer; a phone, and CI's Linux WebKit, report none.
+  test.skip(!(await page.evaluate(() => matchMedia('(hover: hover)').matches)), 'no hover here');
   const card = page.locator('.book-card').first();
   const img = card.locator('.cover-stage img');
   await expect(img).toHaveCSS('opacity', '1');

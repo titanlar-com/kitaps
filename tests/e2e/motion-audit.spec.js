@@ -10,35 +10,41 @@ const EMPTY = { schemaVersion: 2, updatedAt: '1970-01-01T00:00:00.000Z', books: 
 test.beforeEach(async ({ context }) => {
   await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.request().url().includes('routes.json') ? route.fulfill({ status: 404, json: {} }) : route.fulfill({ json: EMPTY }));
   await context.route('https://api.github.com/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
-  // A transition's curve is on its timing, an animation's on its keyframes (checked in Chromium and WebKit).
+  // Every transition and animation announces itself when it starts, so a slow machine that paints
+  // few frames misses none. What it runs is read from its computed style at that moment.
   await context.addInitScript(() => {
     const seen = new Map();
-    const describe = node => node ? `${node.tagName?.toLowerCase()}.${String(node.className?.baseVal ?? node.className).trim().split(/\s+/).slice(0, 2).join('.')}` : '?';
-    const sample = () => {
-      for (const animation of document.getAnimations()) {
-        const effect = animation.effect;
-        if (!effect) continue;
-        const name = animation.transitionProperty ?? animation.animationName ?? 'script';
-        const easing = animation.transitionProperty ? effect.getTiming().easing : [...new Set(effect.getKeyframes().slice(0, -1).map(frame => frame.easing))].join(' | ');
-        const { duration, delay, iterations } = effect.getComputedTiming();
-        const holder = effect.target?.closest?.('.detail-drawer, .filter-sheet, .sync-modal, .library-toast');
-        const surface = holder ? ['detail-drawer', 'filter-sheet', 'sync-modal', 'library-toast'].find(item => holder.classList.contains(item)) : null;
-        seen.set(`${surface ?? ''} ${describe(effect.target)}${effect.pseudoElement ?? ''} ${name} ${duration} ${delay} ${easing}`, { transition: Boolean(animation.transitionProperty), duration, delay, loop: iterations === Infinity, easing, surface });
-      }
-      requestAnimationFrame(sample);
+    const SURFACES = ['detail-drawer', 'filter-sheet', 'sync-modal', 'library-toast'];
+    const list = value => value.split(/,\s*(?![^()]*\))/);
+    const ms = value => parseFloat(value) * (value.endsWith('ms') ? 1 : 1000);
+    const describe = node => `${node.tagName?.toLowerCase()}.${String(node.className?.baseVal ?? node.className).trim().split(/\s+/).slice(0, 2).join('.')}`;
+    const note = (event, name, loop, entry) => {
+      const holder = event.target.closest?.(SURFACES.map(item => `.${item}`).join(', '));
+      const surface = holder ? SURFACES.find(item => holder.classList.contains(item)) : null;
+      seen.set(`${surface ?? ''} ${describe(event.target)}${event.pseudoElement} ${name} ${entry.duration} ${entry.delay} ${entry.easing}`, { ...entry, loop, surface });
     };
-    requestAnimationFrame(sample);
+    document.addEventListener('transitionrun', event => {
+      const style = getComputedStyle(event.target, event.pseudoElement || undefined);
+      const names = list(style.transitionProperty);
+      const [durations, delays, easings] = [style.transitionDuration, style.transitionDelay, style.transitionTimingFunction].map(list);
+      // A shorthand such as border-color starts its longhands; a name that cannot be matched is judged by every entry.
+      const index = names.findIndex(item => item === 'all' || item === event.propertyName || event.propertyName.startsWith(`${item}-`));
+      for (const at of index >= 0 ? [index] : names.keys()) note(event, event.propertyName, false, { duration: ms(durations[at % durations.length]), delay: ms(delays[at % delays.length]), easing: easings[at % easings.length] });
+    }, true);
+    document.addEventListener('animationstart', event => {
+      const style = getComputedStyle(event.target, event.pseudoElement || undefined);
+      const at = Math.max(0, list(style.animationName).indexOf(event.animationName));
+      const value = text => { const items = list(text); return items[at % items.length]; };
+      note(event, event.animationName, value(style.animationIterationCount) === 'infinite', { duration: ms(value(style.animationDuration)), delay: ms(value(style.animationDelay)), easing: value(style.animationTimingFunction) });
+    }, true);
     window.__motionSeen = seen;
   });
 });
 
-// A transition reversed halfway takes only part of its time, as CSS specifies, so its duration is
-// a fraction below the longest role; whole numbers are what a stylesheet or a library wrote. Only
-// the loading bars have a delay: each runs one step ahead of the next.
+// Only the loading bars have a delay: each runs one step ahead of the next.
 const offenders = page => page.evaluate(([curve, allowed, step]) => [...window.__motionSeen].filter(([, record]) => {
-  const duration = Number.isInteger(record.duration) ? allowed.includes(record.duration) : record.transition && record.duration < 300;
   const delay = record.loop ? record.delay <= 0 && Number.isInteger(record.delay / step) : record.delay === 0;
-  return record.easing !== curve || !duration || !delay;
+  return record.easing !== curve || !allowed.includes(record.duration) || !delay;
 }).map(([key]) => key), [CURVE, [...ALLOWED_MS], 120]);
 const surfaces = page => page.evaluate(() => [...new Set([...window.__motionSeen.values()].map(record => record.surface).filter(Boolean))].sort());
 const seenCount = page => page.evaluate(() => window.__motionSeen.size);
