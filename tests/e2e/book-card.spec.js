@@ -57,6 +57,23 @@ test('from tablet width a card keeps its inset, and every action is a full touch
   expect(Math.min(...heights)).toBeGreaterThanOrEqual(44);
 });
 
+test('only a cover on the screen shows a moving placeholder, and it stops once the cover is there', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  await page.route(/\/covers\//, async route => { await gate; await route.continue(); });
+  await page.goto('./');
+  await expect(page.locator('.book-card')).toHaveCount(24);
+  const waiting = page.locator('.cover-skeleton');
+  await expect(waiting.first()).toBeVisible();
+  // Four columns, and no more than two rows fit a screen of this height.
+  expect(await waiting.count()).toBeLessThanOrEqual(8);
+  await release();
+  await expect(waiting).toHaveCount(0);
+  const loops = await page.evaluate(() => document.getAnimations().filter(animation => animation.effect.getComputedTiming().iterations === Infinity).length);
+  expect(loops).toBe(0);
+});
+
 test('a narrow window has no preview, so it cannot widen the page', async ({ page, isMobile }) => {
   test.skip(isMobile, 'A touch screen has no hover.');
   await page.setViewportSize({ width: 320, height: 800 });

@@ -19,9 +19,6 @@ async function markPurchasedAndRead(page) {
   await page.getByRole('button', { name: 'Satın alındı', exact: true }).click();
   await page.getByRole('button', { name: 'Okuma kaydım ve kişisel notlarım' }).click();
   await page.getByRole('button', { name: 'Okundu', exact: true }).click();
-  // The notice stays for eight seconds and may lie over the marks next to it.
-  await page.getByRole('button', { name: 'Bildirimi kapat' }).click();
-  await expect(page.locator('.library-toast')).toHaveCount(0);
 }
 
 const overlaps = (a, b) => a.x < b.x + b.width && b.x < a.x + a.width && a.y < b.y + b.height && b.y < a.y + a.height;
