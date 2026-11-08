@@ -36,11 +36,6 @@
  --radius-sm:3px;
  --radius:4px;
  --radius-lg:5px;
- /* Motion (AGENT.md motion contract): one symmetric curve for entering and leaving, and
-    positive durations. Only the reduced-motion branch below may switch motion off. */
- --motion-ease:cubic-bezier(.65,0,.35,1);
- --motion-fast:150ms;
- --motion-base:200ms;
  /* A panel is a layer above the floor, so a section stands apart by tone and space rather than
     by a frame. */
  --panel:var(--surface);
@@ -157,7 +152,7 @@
 
 /* ---------- Base ---------- */
 *{box-sizing:border-box}
-html{font-size:100%;scroll-behavior:smooth;scroll-padding-top:96px;scroll-padding-bottom:calc(var(--dock-height) + var(--focus-gap) + var(--focus-bar) + 12px);-webkit-text-size-adjust:100%}
+html{font-size:100%;scroll-padding-top:96px;scroll-padding-bottom:calc(var(--dock-height) + var(--focus-gap) + var(--focus-bar) + 12px);-webkit-text-size-adjust:100%}
 body{margin:0;padding-bottom:calc(var(--dock-height) + env(safe-area-inset-bottom));background:var(--paper);background-image:var(--grain);color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 #root{min-height:100vh}
 button,input,a,select{touch-action:manipulation}
@@ -236,7 +231,7 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
    --edge-width, never a coloured side border of their own. The doubled attribute outranks a
    component's own radius, so the touched corners are square whatever the component sets. */
 [data-edge]{position:relative}
-[data-edge]::before{content:"";position:absolute;z-index:1;background:var(--edge-color,var(--accent));pointer-events:none;transition:background-color var(--motion-fast) var(--motion-ease)}
+[data-edge]::before{content:"";position:absolute;z-index:1;background:var(--edge-color,var(--accent));pointer-events:none;transition:background-color var(--motion-control) var(--motion-ease)}
 [data-edge][data-edge="start"]{border-start-start-radius:0;border-end-start-radius:0}
 [data-edge="start"]::before{inset-block:0;inset-inline-start:0;width:var(--edge-width)}
 [data-edge][data-edge="end"]{border-start-end-radius:0;border-end-end-radius:0}
@@ -250,7 +245,12 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
    transitions get the curve and durations from the theme in App.jsx. */
 :where([class*="mantine-"]),:where([class*="mantine-"])::before,:where([class*="mantine-"])::after{transition-timing-function:var(--motion-ease)!important}
 /* Mantine's own fixed durations (button and icon loaders, accordion items, progress) take the token. */
-.mantine-Button-root::before,.mantine-Button-inner,.mantine-ActionIcon-icon,.mantine-Accordion-item,.mantine-Progress-section{transition-duration:var(--motion-fast)}
+.mantine-Button-root::before,.mantine-Button-inner,.mantine-ActionIcon-icon,.mantine-Accordion-item,.mantine-Progress-section,.mantine-Checkbox-input,.mantine-Checkbox-icon,.mantine-Switch-track,.mantine-Switch-thumb,.mantine-Switch-trackLabel{transition-duration:var(--motion-control)}
+/* Mantine's loading bars keep their own keyframes and take the site's rhythm (ADR 004, K4). The
+   first screen in index.html runs the same keyframes and phases; tests/e2e/loading.spec.js compares them. */
+.mantine-Loader-root>span{animation-duration:var(--motion-busy);animation-timing-function:var(--motion-ease)}
+.mantine-Loader-root>span:nth-of-type(1){animation-delay:calc(var(--motion-busy-step) * -2)}
+.mantine-Loader-root>span:nth-of-type(2){animation-delay:calc(var(--motion-busy-step) * -1)}
 
 /* ---------- Mantine normalisation ---------- */
 .mantine-Text-root,.mantine-Input-input,.mantine-InputWrapper-label,.mantine-InputWrapper-description,.mantine-InputWrapper-error,.mantine-Button-root,.mantine-Select-option,.mantine-MultiSelect-option,.mantine-Combobox-option,.mantine-Pill-root,.mantine-Chip-label,.mantine-Checkbox-label,.mantine-Switch-label,.mantine-Accordion-label,.mantine-Divider-label,.mantine-Tabs-tab,.mantine-Tooltip-tooltip,.mantine-Pagination-control,.mantine-Pagination-label,.mantine-Combobox-groupLabel{font-size:1rem;line-height:1.5}
@@ -258,7 +258,7 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
 /* A label is an inline block: capped at its field's width, a long word breaks instead of running past the field. */
 .mantine-InputWrapper-label{max-width:100%;margin-bottom:.4rem;font-weight:600;color:var(--ink)}
 .mantine-InputWrapper-description{color:var(--muted)}
-.mantine-Input-input{min-height:48px;border-radius:var(--radius);border:1px solid var(--control-line);background:var(--surface);color:var(--ink);transition:border-color var(--motion-fast) var(--motion-ease)}
+.mantine-Input-input{min-height:48px;border-radius:var(--radius);border:1px solid var(--control-line);background:var(--surface);color:var(--ink);transition:border-color var(--motion-control) var(--motion-ease)}
 .mantine-Input-input::placeholder{color:var(--muted);opacity:1}
 .mantine-MultiSelect-input{height:auto;padding-block:7px}
 .mantine-PillsInput-field{min-width:4rem;min-height:32px}
@@ -299,7 +299,7 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
 
 /* ---------- Page frame ---------- */
 .app-shell{width:100%;max-width:1200px!important}
-.site-header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line);box-shadow:none;transition:box-shadow var(--motion-base) var(--motion-ease),border-color var(--motion-base) var(--motion-ease)}
+.site-header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line);box-shadow:none;transition:box-shadow var(--motion-move) var(--motion-ease),border-color var(--motion-move) var(--motion-ease)}
 /* Once the page scrolls, the header lifts off it (docs/UI-REDESIGN.md, phase 2). */
 .site-header[data-scrolled]{border-bottom-color:transparent;box-shadow:var(--shadow-md)}
 @supports not (backdrop-filter:blur(1px)){.site-header{background:var(--paper)}}
@@ -345,7 +345,7 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
    enlarged text leaves no room, a tab moves to another line instead of out of view. */
 .main-tabs.mantine-Tabs-list{order:3;display:flex;flex:1 0 100%;flex-wrap:wrap;gap:4px;margin:0;padding:0;border:0;background:none;overflow:visible}
 .main-tabs.mantine-Tabs-list::before{display:none}
-.main-tabs .mantine-Tabs-tab{--edge-width:2px;--edge-color:transparent;flex:1 1 0;justify-content:center;gap:8px;min-height:44px;margin-bottom:-1px;padding:0 6px;border:0;border-radius:0;background:none;color:var(--muted);font-weight:600;transition:color var(--motion-fast) var(--motion-ease)}
+.main-tabs .mantine-Tabs-tab{--edge-width:2px;--edge-color:transparent;flex:1 1 0;justify-content:center;gap:8px;min-height:44px;margin-bottom:-1px;padding:0 6px;border:0;border-radius:0;background:none;color:var(--muted);font-weight:600;transition:color var(--motion-control) var(--motion-ease)}
 .main-tabs .mantine-Tabs-tab:hover{--edge-color:var(--line-strong);background:none;color:var(--ink)}
 /* The chosen section's line is the sliding marker below; the tab itself only darkens. */
 .main-tabs .mantine-Tabs-tab[data-active]{--edge-color:transparent;color:var(--ink)}
@@ -417,7 +417,7 @@ main{padding-top:20px;padding-bottom:32px}
 .priority-summary-toggle{display:inline-flex;align-items:center;gap:8px;width:auto;min-height:44px;padding:0 10px 0 6px;border-radius:var(--radius);color:var(--ink-2)}
 .priority-summary-toggle:hover{background:var(--surface-2);color:var(--ink)}
 .priority-summary-toggle svg:first-child{color:var(--accent)}
-.priority-summary-chevron{margin-left:2px;transition:transform var(--motion-base) var(--motion-ease)}
+.priority-summary-chevron{margin-left:2px;transition:transform var(--motion-disclosure) var(--motion-ease)}
 .priority-summary-toggle[aria-expanded=true] .priority-summary-chevron{transform:rotate(180deg)}
 .priority-summary-detail{max-width:70ch;padding:4px 10px 8px 34px;color:var(--muted)}
 
@@ -455,17 +455,20 @@ main{padding-top:20px;padding-bottom:32px}
 @media (orientation:landscape) and (max-height:31em) and (max-width:64.99em){.books-grid{--books-columns:2}}
 
 .book-card{display:flex;flex-direction:column;min-width:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible;cursor:pointer}
-.book-card:hover .cover-stage img{transform:translateY(-3px);box-shadow:0 1px 1px rgb(20 24 29 / 10%),0 18px 30px -12px rgb(20 24 29 / 50%)}
+@media (hover:hover){.book-card:hover .cover-stage img{transform:translateY(calc(var(--motion-lift) * -1));box-shadow:0 1px 1px rgb(20 24 29 / 10%),0 18px 30px -12px rgb(20 24 29 / 50%)}}
 .book-visual{position:relative}
 /* Every cover sits in a 2:3 frame that keeps its size when the cover arrives, so nothing below it moves.
    Size containment keeps WebKit from stretching the frame to a taller cover's own proportions, and lets
    the cover be capped at the frame's height (100cqh) in every engine; engines without container
    units keep the frame through max-height:100%, as Chromium and Firefox always have. */
-.cover-stage{display:flex;align-items:flex-end;justify-content:center;width:100%;aspect-ratio:2/3;container-type:size;margin:0;padding:0;border:0;background:none;color:var(--muted)}
+.cover-stage{display:flex;align-items:flex-end;justify-content:center;width:100%;aspect-ratio:2/3;container-type:size;margin:0;padding:0;border:0;background:none;color:var(--muted);transition:background-color var(--motion-move) var(--motion-ease)}
+.cover-stage:has(>img:not([data-loaded])){background:var(--surface-2);border-radius:var(--radius-xs) var(--radius-lg) var(--radius-lg) var(--radius-xs)}
 .cover-open{cursor:pointer;border-radius:var(--radius-sm)}
 /* Small source images scale up to the stage; contain keeps their proportions, and a cover taller
    than 2:3 is shown whole inside the frame, with the frame's surface beside it. */
-.cover-stage img{display:block;width:100%;height:auto;max-height:100%;max-height:100cqh;object-fit:contain;object-position:center bottom;border-radius:var(--radius-xs) var(--radius-lg) var(--radius-lg) var(--radius-xs);background:var(--surface-2);box-shadow:var(--cover-shadow);transition:transform var(--motion-base) var(--motion-ease),box-shadow var(--motion-base) var(--motion-ease)}
+.cover-stage img{display:block;width:100%;height:auto;max-height:100%;max-height:100cqh;object-fit:contain;object-position:center bottom;border-radius:var(--radius-xs) var(--radius-lg) var(--radius-lg) var(--radius-xs);background:var(--surface-2);box-shadow:var(--cover-shadow);opacity:0;transition:transform var(--motion-move) var(--motion-ease),box-shadow var(--motion-move) var(--motion-ease),opacity var(--motion-move) var(--motion-ease)}
+/* A cover fades in once it has loaded; until then its frame shows a quiet surface, and nothing around it moves. */
+.cover-stage img[data-loaded]{opacity:1}
 /* A typographic stand-in until a verified edition cover exists. */
 .cover-placeholder{position:relative;display:flex;flex-direction:column;justify-content:space-between;width:100%;height:100%;padding:max(40px,18%) 12% 12%;border-radius:var(--radius-xs) var(--radius-lg) var(--radius-lg) var(--radius-xs);background:linear-gradient(160deg,var(--surface-3),var(--surface-2));box-shadow:var(--cover-shadow);color:var(--ink-2);text-align:left;overflow:hidden}
 .cover-placeholder{--edge-width:7px;--edge-color:color-mix(in srgb,var(--ink) 10%,transparent)}
@@ -493,9 +496,9 @@ main{padding-top:20px;padding-bottom:32px}
    the badge instead of meeting it. The row extends past the cover's right edge
    by the overhang, so each ribbon wraps around that edge; its fold below reads
    as the part that turns behind the cover. */
-.cover-marks{position:absolute;top:var(--cover-mark-inset);left:var(--cover-mark-inset);right:calc(var(--ribbon-overhang) * -1);z-index:2;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:var(--cover-mark-gap);pointer-events:none;transition:transform var(--motion-base) var(--motion-ease)}
+.cover-marks{position:absolute;top:var(--cover-mark-inset);left:var(--cover-mark-inset);right:calc(var(--ribbon-overhang) * -1);z-index:2;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:var(--cover-mark-gap);pointer-events:none;transition:transform var(--motion-move) var(--motion-ease)}
 .cover-marks .reading-priority-badge{pointer-events:auto}
-.book-card:hover .cover-marks{transform:translateY(-3px)}
+@media (hover:hover){.book-card:hover .cover-marks{transform:translateY(calc(var(--motion-lift) * -1))}}
 /* A ribbon may wrap onto two lines rather than run past the cover with very large text. */
 .state-ribbons{display:flex;flex-direction:column;align-items:flex-end;gap:calc(var(--ribbon-overhang) + 2px);min-width:0;max-width:100%;margin-left:auto}
 .state-ribbon{position:relative;padding:var(--ribbon-padding);border-radius:var(--ribbon-radius) 0 0 var(--ribbon-radius);background:var(--ribbon-bg);color:var(--ribbon-ink);box-shadow:var(--cover-mark-shadow);font-size:var(--cover-mark-font);font-weight:700;line-height:1.35;max-width:100%;overflow-wrap:anywhere}
@@ -520,7 +523,7 @@ main{padding-top:20px;padding-bottom:32px}
 .book-edition-row{display:flex;align-items:center;gap:6px;min-width:0}
 .book-publisher{flex:1 1 0;min-width:0;margin:0;color:var(--muted);font-size:.875rem;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .book-actions{display:flex;align-items:center;gap:2px;margin:6px 0 0 -8px}
-.book-actions .mantine-ActionIcon-root{width:44px;height:40px;min-height:40px;border:0;border-radius:var(--radius);background:transparent;color:var(--muted);transition:color var(--motion-fast) var(--motion-ease),background-color var(--motion-fast) var(--motion-ease),opacity var(--motion-fast) var(--motion-ease)}
+.book-actions .mantine-ActionIcon-root{width:44px;height:40px;min-height:40px;border:0;border-radius:var(--radius);background:transparent;color:var(--muted);transition:color var(--motion-control) var(--motion-ease),background-color var(--motion-control) var(--motion-ease),opacity var(--motion-control) var(--motion-ease)}
 .book-actions .mantine-ActionIcon-root:hover{background:var(--surface-2);color:var(--ink)}
 .book-actions .mantine-ActionIcon-root[aria-pressed=true]{color:var(--accent)}
 .book-actions .cover-owned[aria-pressed=true]{color:var(--ok)}
@@ -583,7 +586,7 @@ main{padding-top:20px;padding-bottom:32px}
 .pagination-meta strong{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
 .pagination-page-status{display:none}
 .pagination-progress{height:3px;overflow:hidden;border-radius:0;background:var(--surface-3)}
-.pagination-progress span{display:block;height:100%;min-width:3px;border-radius:inherit;background:var(--accent);transition:width var(--motion-base) var(--motion-ease)}
+.pagination-progress span{display:block;height:100%;min-width:3px;border-radius:inherit;background:var(--accent);transition:width var(--motion-move) var(--motion-ease)}
 /* The per-page field is as wide as its longest option. Every option label sits hidden in
    the field's grid cell, with the field's padding and weight, so the width follows the
    font, the text size and the text spacing. The arrow's room is 40 px at the default
@@ -692,7 +695,7 @@ main{padding-top:20px;padding-bottom:32px}
 .discovery-panel .mantine-Accordion-content{padding:0 .75rem .75rem}
 .discovery-panel .mantine-Accordion-label{font-weight:600}
 .related-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
-.related-card{display:flex;flex-direction:column;min-width:0;cursor:pointer;transition:background-color var(--motion-fast) var(--motion-ease),box-shadow var(--motion-fast) var(--motion-ease)}
+.related-card{display:flex;flex-direction:column;min-width:0;cursor:pointer;transition:background-color var(--motion-control) var(--motion-ease),box-shadow var(--motion-control) var(--motion-ease)}
 .related-card:hover{box-shadow:var(--shadow-sm)}
 .related-card>.mantine-Button-root{height:auto;margin-top:auto;padding-block:.5rem}
 .related-book{display:grid;grid-template-columns:56px minmax(0,1fr);gap:14px;align-items:start}
@@ -869,7 +872,6 @@ main{padding-top:20px;padding-bottom:32px}
 
 /* ---------- Motion and print ---------- */
 @media (prefers-reduced-motion:reduce){
- html{scroll-behavior:auto}
  *,*::before,*::after{animation:none!important;transition:none!important}
 }
 @media print{
@@ -912,7 +914,7 @@ main{padding-top:20px;padding-bottom:32px}
 .reading-summary-share-value{font-size:var(--text-xl);font-weight:650;line-height:1.1}
 .reading-summary-stats{display:flex;flex:999 1 30rem;flex-wrap:wrap;gap:var(--gap-xs);margin:0;padding:0;list-style:none}
 .reading-summary-stats>li{flex:1 1 7.5rem;min-width:0}
-.reading-summary-stat{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"icon value" "icon label";align-items:center;column-gap:var(--stack-gap);width:100%;min-height:var(--touch-target);padding:var(--gap-xs) var(--stack-gap);border-radius:var(--radius);background:transparent;color:var(--ink);transition:background-color var(--motion-fast) var(--motion-ease)}
+.reading-summary-stat{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"icon value" "icon label";align-items:center;column-gap:var(--stack-gap);width:100%;min-height:var(--touch-target);padding:var(--gap-xs) var(--stack-gap);border-radius:var(--radius);background:transparent;color:var(--ink);transition:background-color var(--motion-control) var(--motion-ease)}
 /* A count is known by its icon and words, with no filled box that would need a 3:1 boundary (WCAG 1.4.11). */
 .reading-summary-stat:hover{background:var(--panel-hover)}
 .reading-summary-icon{grid-area:icon}
@@ -937,7 +939,7 @@ main{padding-top:20px;padding-bottom:32px}
 .theme-panel{display:grid;gap:var(--stack-gap);background:var(--surface-2);border-color:var(--line-strong)}
 .theme-panel-title{font-weight:650}
 .theme-panel-woods{display:grid;gap:var(--gap-xs);margin-top:var(--gap-xs)}
-.wood-card.mantine-RadioCard-card{display:flex;align-items:center;gap:var(--stack-gap);min-height:var(--touch-target);padding:var(--gap-xs) var(--stack-gap);border-color:var(--line-strong);background:var(--surface);transition:background-color var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease)}
+.wood-card.mantine-RadioCard-card{display:flex;align-items:center;gap:var(--stack-gap);min-height:var(--touch-target);padding:var(--gap-xs) var(--stack-gap);border-color:var(--line-strong);background:var(--surface);transition:background-color var(--motion-control) var(--motion-ease),border-color var(--motion-control) var(--motion-ease)}
 .wood-card.mantine-RadioCard-card:hover{background:var(--surface-3)}
 .wood-card.mantine-RadioCard-card[data-checked]{border-color:var(--accent-border);background:var(--accent-soft)}
 .wood-card-text{display:grid;flex:1 1 auto;min-width:0}

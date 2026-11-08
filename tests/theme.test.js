@@ -33,19 +33,22 @@ test('elevation comes from the shadow tokens, defined in both schemes', () => {
   }
 });
 
-test('every component the redesign animates uses the one motion curve and duration', () => {
+test('every component the redesign animates takes the curve and the duration of its role', () => {
   // Tabs do not move by themselves; their sliding marker is a FloatingIndicator.
-  const animated=['Accordion','Collapse','Combobox','Drawer','FloatingIndicator','HoverCard','Menu','Modal','MultiSelect','Popover','SegmentedControl','Select','Spoiler','Tooltip'];
+  const roles={Accordion:'disclosure',Collapse:'disclosure',Spoiler:'disclosure',FloatingIndicator:'move',SegmentedControl:'move',Drawer:'sheet',Combobox:'overlay',HoverCard:'overlay',Menu:'overlay',Modal:'overlay',MultiSelect:'overlay',Popover:'overlay',Select:'overlay',Tooltip:'overlay'};
   const wrong=[];
-  for(const name of animated){
+  for(const [name,role] of Object.entries(roles)){
     const props=theme.components[name]?.defaultProps;
     if(!props){wrong.push(`${name}: no defaults`);continue;}
     const transition=props.transitionProps??props.comboboxProps?.transitionProps;
     if(transition){
-      if(transition.duration!==MOTION_MS)wrong.push(`${name}: duration ${transition.duration}`);
+      if(transition.duration!==MOTION_MS[role])wrong.push(`${name}: duration ${transition.duration}`);
       if(transition.timingFunction!==MOTION_EASE)wrong.push(`${name}: curve ${transition.timingFunction}`);
+      // A floating panel only fades; a sheet keeps its direction from the edge of the screen.
+      if(role==='overlay'&&transition.transition!=='fade')wrong.push(`${name}: moves as ${transition.transition}`);
+      if(role==='sheet'&&'transition' in transition)wrong.push(`${name}: a sheet keeps its own direction`);
     }else if('transitionDuration' in props){
-      if(props.transitionDuration!==MOTION_MS)wrong.push(`${name}: duration ${props.transitionDuration}`);
+      if(props.transitionDuration!==MOTION_MS[role])wrong.push(`${name}: duration ${props.transitionDuration}`);
       if('transitionTimingFunction' in props&&props.transitionTimingFunction!==MOTION_EASE)wrong.push(`${name}: curve ${props.transitionTimingFunction}`);
     }else wrong.push(`${name}: no motion defaults`);
   }

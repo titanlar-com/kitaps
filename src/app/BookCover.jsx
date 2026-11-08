@@ -13,10 +13,11 @@ const COVER_SIZES={
 export const smallCover=src=>src.replace(/^covers\//,'covers/sm/');
 export function BookCover({book:b,onOpen=null,detail=false,read=false,size=detail?'detail':'card'}) {
  const [failed,setFailed]=useState(false);
+ const [loaded,setLoaded]=useState(false);
  const cover=b.cover,format=workFormat(b);
  // The single-file export embeds one copy of each cover instead.
  const embedded=cover&&globalThis.__KITAP_COVERS__?.[cover.src];
- const content=cover&&!failed?<img src={embedded||`./${cover.src}`} srcSet={embedded?undefined:`./${smallCover(cover.src)} 400w, ./${cover.src} 720w`} sizes={embedded?undefined:COVER_SIZES[size]} alt={`${cover.title} — ${cover.publisher}, ${cover.language==='tr'?'Türkçe':'Uluslararası'} baskı kapağı`} width="240" height="360" loading={detail?'eager':'lazy'} decoding="async" onError={()=>setFailed(true)}/>:<span className="cover-placeholder" data-edge="start" aria-hidden="true">{format&&<span className="cover-placeholder-kind">{format.label}</span>}<span className="cover-placeholder-title">{displayTitle(b)}</span><span className="cover-placeholder-author">{b.author}</span><span className="cover-placeholder-note">{format?<IconFileText size={18} stroke={1.5}/>:<IconBook2 size={18} stroke={1.5}/>}</span></span>;
+ const content=cover&&!failed?<img src={embedded||`./${cover.src}`} srcSet={embedded?undefined:`./${smallCover(cover.src)} 400w, ./${cover.src} 720w`} sizes={embedded?undefined:COVER_SIZES[size]} alt={`${cover.title} — ${cover.publisher}, ${cover.language==='tr'?'Türkçe':'Uluslararası'} baskı kapağı`} width="240" height="360" loading={detail?'eager':'lazy'} decoding="async" data-loaded={loaded||undefined} onLoad={()=>setLoaded(true)} onError={()=>setFailed(true)}/>:<span className="cover-placeholder" data-edge="start" aria-hidden="true">{format&&<span className="cover-placeholder-kind">{format.label}</span>}<span className="cover-placeholder-title">{displayTitle(b)}</span><span className="cover-placeholder-author">{b.author}</span><span className="cover-placeholder-note">{format?<IconFileText size={18} stroke={1.5}/>:<IconBook2 size={18} stroke={1.5}/>}</span></span>;
  const stage=`cover-stage${read?' is-read':''}`;
  return detail?<div className={`${stage} cover-stage-detail`}>{content}</div>:<button className={`${stage} cover-open`} onClick={()=>onOpen(b.id)} aria-label={`${displayTitle(b)} ayrıntılarını aç`}>{content}</button>;
 }

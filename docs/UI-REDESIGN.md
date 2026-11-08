@@ -16,7 +16,7 @@ Yeni tasarım aşağıdakileri olduğu gibi korur. Bunları koruyan testler gev�
 - Hiçbir köşe 5 px'ten yuvarlak değildir. Daire ve hap biçimi de yoktur, Mantine bileşenleri dahil (proje sahibinin 8 Kasım 2026 kararı, `AGENTS.md` kural 5).
 - Odak göstergesi öğenin çevresine çizilmez. Klavye modunda öğenin altında tek bir çizgi görünür (`src/focusMode.js`).
 - Açılır listeler Mantine Combobox ile kurulur, yerel `<select>` kullanılmaz.
-- Hareket tek eğri ve süreyle yapılır: `cubic-bezier(.65, 0, .35, 1)`. Azaltılmış hareket tercihi korunur.
+- Hareket tek eğriyle yapılır: `cubic-bezier(.65, 0, .35, 1)`. Süreler role göre değişir ve `docs/ADR-004-motion.md` içinde tanımlıdır. Azaltılmış hareket tercihi korunur.
 - Kabul 320 px'ten başlar. WCAG 2.2 AA ve axe taraması sıfır ihlaldir.
 - Adres sözleşmesi, sayfa kaydı (`src/views.js`), üst menünün en çok dört bölümü ve alt menü korunur.
 - Radiuslu kutulara kavisli vurgu kenarı çizilmez. Kenarlık yalnız işlevsel yerlerde kullanılır.

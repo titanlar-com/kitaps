@@ -1,6 +1,6 @@
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MantineProvider } from '@mantine/core';
 import GitHubSyncPanel from '../../src/components/GitHubSyncPanel';
 import SyncMergeDialog from '../../src/components/SyncMergeDialog';
@@ -115,6 +115,24 @@ describe('GitHubSyncPanel with a damaged queue', () => {
 });
 
 describe('SyncMergeDialog', () => {
+  it('enters and leaves through its own transition, and a late click changes nothing', async () => {
+    const prompt = { conflicts: ['a'], queueConflict: false, reason: 'connect' };
+    const value = sync({ mergePrompt: prompt });
+    const none = sync({ mergePrompt: null });
+    const view = renderWithTheme(<SyncMergeDialog sync={none}/>);
+    expect(screen.queryByRole('dialog')).toBeNull();
+    view.rerender(<MantineProvider><SyncMergeDialog sync={value}/></MantineProvider>);
+    const dialog = await screen.findByRole('dialog');
+    await waitFor(() => expect(dialog.closest('.mantine-Modal-root')?.querySelector('.mantine-Modal-content')?.style.opacity ?? '1').toBe('1'));
+    view.rerender(<MantineProvider><SyncMergeDialog sync={none}/></MantineProvider>);
+    // The choice is made, and the words stay while the dialog leaves.
+    const late = screen.getByRole('button', { name: 'GitHub’dakini kullan' });
+    fireEvent.click(late);
+    expect(value.resolveMerge).not.toHaveBeenCalled();
+    expect(none.resolveMerge).not.toHaveBeenCalled();
+    await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
+  });
+
   it('stays hidden without a decision to make', () => {
     renderWithTheme(<SyncMergeDialog sync={sync()}/>);
     expect(screen.queryByRole('dialog')).toBeNull();

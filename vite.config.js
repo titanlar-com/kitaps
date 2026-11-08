@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { viteSingleFile } from 'vite-plugin-singlefile';
 import { readFileSync } from 'node:fs';
+import { motionCss } from './src/motion.js';
 
 const notices = ['FONT-LICENSES.txt']
   .map(file => readFileSync(new URL(file, import.meta.url), 'utf8')).join('\n\n');
@@ -27,6 +28,8 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       ...(standalone ? [viteSingleFile()] : []),
+      // The motion values reach the first response before any script or stylesheet (ADR 004).
+      { name: 'motion-tokens', transformIndexHtml: html => html.replace('</head>', `<style>${motionCss()}</style></head>`) },
       {
         name: 'include-third-party-notices',
         transformIndexHtml: {

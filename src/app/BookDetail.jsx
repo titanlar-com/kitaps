@@ -1,5 +1,5 @@
 // Moved verbatim from App.jsx (architecture plan, phase 1, 7 November 2026).
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Accordion, Alert, Anchor, Badge, Box, Button, Group, Paper, Stack, Text, Title } from '@mantine/core';
 import { IconArrowLeft, IconArrowRight, IconArrowUpRight, IconCheck } from '@tabler/icons-react';
 import catalog from '../catalog.json';
@@ -19,14 +19,18 @@ import { STATE_LABELS, formatDay } from '../library';
 import { collectionMap, groupMap, categoryMap } from './catalogData';
 import { BookCover, ThumbCover } from './BookCover';
 
-export function BookDetail({book:b,ranking,onClose,onOpen,onBack,hasBack,states,onToggle,onCollection,onCategory,personal,onReading,onAdd,onQueue,storageError,feedback,sync,onSync,covered}) {
+export function BookDetail({book:current,ranking:currentRanking,onClose,onOpen,onBack,hasBack,states,onToggle,onCollection,onCategory,personal,onReading,onAdd,onQueue,storageError,feedback,sync,onSync,covered}) {
+ // Closing changes the address at once; the pages stay, closed to the reader, until the sheet has gone (ADR 004, K6).
+ const [last,setLast]=useState(null);
+ if(current&&(last?.book!==current||last?.ranking!==currentRanking))setLast({book:current,ranking:currentRanking});
+ const b=current??last?.book,ranking=current?currentRanking:last?.ranking;
  const topRef=useRef(null);
  const shownTitle=b?displayTitle(b):'';
  // Only a known original title is shown under a Turkish title.
  const originalTitle=b&&translationStatus(b).status==='available'&&b.originalTitle&&b.originalTitle!==shownTitle?b.originalTitle:'';
  useEffect(()=>{if(b)topRef.current?.scrollIntoView({block:'start',behavior:'instant'})},[b?.id]);
- return <BookSheet opened={!!b} onClose={onClose} covered={covered}>
-  {b&&<Stack gap="xl" pb="xl" key={b.id} className="detail-content">
+ return <BookSheet opened={!!current} onClose={onClose} covered={covered}>
+  {b&&<Stack gap="xl" pb="xl" key={b.id} className="detail-content" inert={!current||undefined}>
    <div ref={topRef} className="detail-top">{hasBack&&<Button variant="subtle" leftSection={<IconArrowLeft size={18}/>} onClick={onBack}>Önceki kitaba dön</Button>}</div>
    <div className="detail-hero"><div className="detail-cover-block"><BookCover key={b.id} book={b} detail read={(states[b.id]||[]).includes('okundu')}/><div className="cover-marks"><StateRibbons marks={states[b.id]||[]}/></div></div>
     <div className="detail-heading"><Title order={2}>{shownTitle}</Title><StateSummary marks={states[b.id]||[]}/><Text className="detail-author">{b.author||'Yazar bilgisi belirtilmemiş'}</Text>{originalTitle&&<Text className="detail-original">{originalTitle}</Text>}{b.years.length>0&&<Text className="detail-year">İlk yayın: {b.years.join(', ')}</Text>}{b.childAge&&<Text className="detail-year">Önerilen yaş: {b.childAge}</Text>}{formatDay(b.addedAt)&&<Text className="detail-year">Kitaplığa eklendi: {formatDay(b.addedAt)}</Text>}<div className="detail-translation-status"><TranslationStatus book={b}/></div>
@@ -50,6 +54,6 @@ export function BookDetail({book:b,ranking,onClose,onOpen,onBack,hasBack,states,
    </Accordion>
    <ReadingPriorityCard ranking={ranking}/>
   </Stack>}
-  {feedback}
+  {current&&feedback}
  </BookSheet>
 }

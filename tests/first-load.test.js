@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { MOTION_EASE } from '../src/motion.js';
+import { motionCss } from '../src/motion.js';
+import viteConfig from '../vite.config.js';
 
 // The script and the catalogue are megabytes; until they arrive the page has nothing of its own.
 // The owner, 8 November 2026: a loading state is what keeps a reader on the site, so the first
@@ -18,9 +19,19 @@ test('without JavaScript the loading state does not stay on screen', () => {
   assert.match(html, /<noscript><style>#first-load\{display:none\}<\/style><\/noscript>/);
 });
 
-test('its motion is the site curve and stops for readers who ask for less motion', () => {
-  assert.ok(html.includes(MOTION_EASE), 'uses the shared curve');
+test('its motion reads the shared tokens, and stops for readers who ask for less motion', () => {
+  assert.match(html, /animation:first-load var\(--motion-busy\) var\(--motion-ease\) infinite/);
   assert.match(html, /@media \(prefers-reduced-motion:reduce\)\{#first-load i\{animation:none\}\}/);
+});
+
+test('the build writes the motion tokens into the first response, in every build mode', async () => {
+  for (const mode of ['production', 'standalone']) {
+    const plugin = viteConfig({ mode }).plugins.flat().find(item => item?.name === 'motion-tokens');
+    assert.ok(plugin, `motion-tokens plugin in ${mode}`);
+    const hook = plugin.transformIndexHtml;
+    const output = await (hook.handler ?? hook)('<head></head>');
+    assert.ok(output.includes(`<style>${motionCss()}</style>`), mode);
+  }
 });
 
 test('its colours come from the chosen scheme, with walnut as the fallback', () => {

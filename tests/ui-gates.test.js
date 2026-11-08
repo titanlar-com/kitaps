@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import {motionCss} from '../src/motion.js';
 
 // Source gates for the owner's standing interface rules (AGENT.md): no curved accent edge, no
 // focus ring around a control, and one motion contract. They read every stylesheet and every
@@ -13,7 +14,8 @@ const css=files.filter(file=>file.endsWith('.css')).map(read);
 const jsx=files.filter(file=>/\.(jsx|js|ts|tsx)$/.test(file)).map(read);
 // The theme (src/app/theme.js, split out of App.jsx) and the shell carry Mantine's focus and press settings.
 const app=['App.jsx','app/theme.js'].map(file=>fs.readFileSync(new URL(file,srcRoot),'utf8')).join('\n');
-const motionSource=fs.readFileSync(new URL('motion.js',srcRoot),'utf8');
+const shell=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
+const shellStyles=[...shell.matchAll(/<style>([\s\S]*?)<\/style>/g)].map(match=>match[1]);
 
 /** Flat list of {media, selector, body} for every rule, with comments removed. */
 function rules(text){
@@ -28,7 +30,9 @@ function rules(text){
  walk(source,'');
  return found;
 }
-const all=css.flatMap(file=>rules(file.text).map(rule=>({...rule,path:file.path})));
+const authored=[...css.flatMap(file=>rules(file.text).map(rule=>({...rule,path:file.path}))),...shellStyles.flatMap(text=>rules(text).map(rule=>({...rule,path:'index.html'})))];
+// The motion values reach the page from src/motion.js through the build (ADR 004).
+const all=[...authored,...rules(motionCss()).map(rule=>({...rule,path:'src/motion.js'}))];
 const decls=(body,name)=>[...body.matchAll(new RegExp(`(?:^|;|\\s|\\{)(${name})\\s*:\\s*([^;]+)`,'g'))].map(match=>({name:match[1],value:match[2].trim()}));
 const reduced=rule=>/prefers-reduced-motion\s*:\s*reduce/.test(rule.media);
 const forced=rule=>/forced-colors\s*:\s*active/.test(rule.media);
@@ -138,6 +142,7 @@ test('focus never draws a ring around a control, except the forced-colours keybo
  assert.ok(indicator.length>0,'a keyboard focus indicator exists');
 });
 
+const MOTION_ROLE=/var\(--motion-(control|move|disclosure|overlay|sheet|busy)\)/;
 function motionOffenders(list){
  const offenders=[];
  const keyword=value=>/\b(ease|ease-in|ease-out|ease-in-out|linear|step-start|step-end)\b|\b(steps|cubic-bezier)\(|\ball\b/.test(value.replace(/var\([^)]*\)/g,''));
@@ -147,17 +152,17 @@ function motionOffenders(list){
   const where=`${rule.path} ${rule.selector}`;
   for(const decl of decls(rule.body,'transition|animation')){
    const value=decl.value.replace(/\s*!important$/,'');
-   if(value==='none'){if(decl.name==='transition')offenders.push(`${where}: transition:none outside reduced motion`);continue}
+   if(value==='none'){offenders.push(`${where}: ${decl.name}:none outside reduced motion`);continue}
    for(const layer of layers(value)){
     if(keyword(layer)||literalTime(layer))offenders.push(`${where}: ${decl.name}:${layer}`);
     else if(!/var\(--motion-ease\)/.test(layer))offenders.push(`${where}: ${decl.name} without the motion curve`);
-    else if(!/var\(--motion-(fast|base|slow)\)/.test(layer))offenders.push(`${where}: ${decl.name} without a motion duration`);
+    else if(!MOTION_ROLE.test(layer))offenders.push(`${where}: ${decl.name} without a motion role`);
    }
   }
   for(const decl of decls(rule.body,'(?:transition|animation)-(?:timing-function|duration|delay)')){
    const value=decl.value.replace(/\s*!important$/,'');
    if(keyword(value)||literalTime(value))offenders.push(`${where}: ${decl.name}:${value}`);
-   else if(!/var\(--motion-/.test(value))offenders.push(`${where}: ${decl.name} without a motion token`);
+   else if(decl.name.endsWith('-duration')?!MOTION_ROLE.test(value):!/var\(--motion-/.test(value))offenders.push(`${where}: ${decl.name} without a motion token`);
   }
   // A transition written only on the hover or active state would run in one direction.
   if(/:(hover|active)\b/.test(rule.selector)&&decls(rule.body,'transition').length)offenders.push(`${where}: transition only on a state`);
@@ -170,19 +175,43 @@ test('every normal transition uses the motion tokens, entering and leaving alike
  assert.match(app,/activeClassName:''/);
 });
 
-test('the JavaScript motion values are the stylesheet tokens',()=>{
- const root=all.find(rule=>rule.selector===':root'&&/--motion-ease/.test(rule.body))?.body||'';
- const token=name=>decls(root,name)[0]?.value;
- const constant=name=>motionSource.match(new RegExp(`export const ${name}=([^;]+);`))?.[1];
- assert.match(token('--motion-ease'),/^cubic-bezier\(\.65,\s*0,\s*\.35,\s*1\)$/);
- assert.equal(constant('MOTION_EASE').replace(/['\s]/g,''),token('--motion-ease').replace(/\s/g,''));
- assert.equal(`${constant('MOTION_MS')}ms`,token('--motion-base'));
- assert.equal(`${constant('MOTION_FAST_MS')}ms`,token('--motion-fast'));
+// A keyframe may not bring its own curve: the rule that starts the animation decides it.
+const keyframeOffenders=texts=>texts.flatMap(text=>[...text.replace(/\/\*[\s\S]*?\*\//g,'').matchAll(/@keyframes\s+([\w-]+)\s*\{((?:[^{}]*\{[^{}]*\})*)[^{}]*\}/g)].filter(match=>/animation-timing-function/.test(match[2])).map(match=>`@keyframes ${match[1]} sets its own curve`));
+test('keyframes keep the curve of the rule that starts them',()=>{
+ assert.deepEqual(keyframeOffenders([...css.map(file=>file.text),...shellStyles]),[]);
+});
+
+test('motion values have one source: no stylesheet defines its own',()=>{
+ const own=authored.flatMap(rule=>decls(rule.body,'--motion-[\\w-]+').map(decl=>`${rule.path} ${rule.selector}: ${decl.name}`));
+ assert.deepEqual(own,[]);
+});
+
+test('every motion variable a stylesheet reads exists in the source',()=>{
+ const unknown=new Set();
+ for(const rule of authored)for(const match of rule.body.matchAll(/var\((--motion-[\w-]+)/g))if(!tokens[match[1]])unknown.add(`${rule.path} ${rule.selector}: ${match[1]}`);
+ assert.deepEqual([...unknown],[]);
+});
+
+test('the browser does not choose a scroll animation of its own',()=>{
+ const smooth=authored.flatMap(rule=>decls(rule.body,'scroll-behavior').filter(decl=>decl.value==='smooth').map(()=>`${rule.path} ${rule.selector}`));
+ assert.deepEqual(smooth,[]);
+});
+
+test('a cover lifts only where there is a real pointer, so a tap leaves nothing raised',()=>{
+ const lifted=authored.filter(rule=>/\.book-card:hover/.test(rule.selector)&&!reduced(rule));
+ assert.ok(lifted.length>0,'the lift exists');
+ assert.deepEqual(lifted.filter(rule=>!/hover\s*:\s*hover/.test(rule.media)).map(rule=>rule.selector),[]);
+});
+
+test('Mantine\'s loading bars run on the site\'s rhythm, in CSS only',()=>{
+ const bars=all.find(rule=>rule.selector==='.mantine-Loader-root>span'&&/animation-duration/.test(rule.body))?.body??'';
+ assert.match(bars,/animation-duration:var\(--motion-busy\)/);
+ assert.match(bars,/animation-timing-function:var\(--motion-ease\)/);
 });
 
 function componentMotionOffenders(list){
  const offenders=[];
- const allowed=/^(MOTION_EASE|MOTION_MS|MOTION_FAST_MS|TOOLTIP_DELAY_MS|transition\(\w*\))$/;
+ const allowed=/^(MOTION_EASE|MOTION_MS\.\w+|HINT_DELAY_MS|transition\('\w+'.*)$/;
  for(const file of list){
   if(file.path==='src/motion.js')continue;
   // While a finger drags the book sheet it follows the finger without a transition; this is direct
@@ -194,7 +223,8 @@ function componentMotionOffenders(list){
    if(name==='transitionProps'&&value.startsWith('{'))continue;
    if(!allowed.test(value))offenders.push(`${file.path}: ${name} ${value}`);
   }
-  for(const match of text.matchAll(/\btransition\s*:\s*['`]([^'`]+)['`]/g))offenders.push(`${file.path}: inline transition ${match[1]}`);
+  // 'fade' is the name of a Mantine preset, not a CSS value.
+  for(const match of text.matchAll(/\btransition\s*:\s*['`]([^'`]+)['`]/g))if(match[1]!=='fade')offenders.push(`${file.path}: inline transition ${match[1]}`);
   // Web Animations take the same curve and durations.
   for(const match of text.matchAll(/\.animate\([^)]*\)/g))if(!/easing\s*:\s*MOTION_EASE/.test(match[0])||!/duration\s*:\s*MOTION_\w+/.test(match[0]))offenders.push(`${file.path}: animate() without the motion values`);
  }
@@ -236,13 +266,16 @@ test('the gates reject every banned pattern',()=>{
  ])assert.ok(focusOffenders(sample(text)).length,text);
  for(const text of [
   '.a{transition:color .2s ease}',
-  '.a{transition:color var(--motion-fast)}',
-  '.a{transition:color var(--motion-fast) var(--motion-ease),background 200ms}',
+  '.a{transition:color var(--motion-control)}',
+  '.a{transition:color var(--motion-control) var(--motion-ease),background 200ms}',
+  '.a{transition:color var(--motion-fast) var(--motion-ease)}',
+  '.a{transition-duration:var(--motion-unknown)}',
+  '.a{animation:none}',
   '.a{transition-delay:100ms}',
   '.a{transition:none}',
-  '.a:hover{transition:color var(--motion-fast) var(--motion-ease)}',
+  '.a:hover{transition:color var(--motion-control) var(--motion-ease)}',
   '.a{animation:spin 1s linear infinite}',
-  '@layer parts{.a{transition:all var(--motion-fast) var(--motion-ease)}}',
+  '@layer parts{.a{transition:all var(--motion-control) var(--motion-ease)}}',
  ])assert.ok(motionOffenders(sample(text)).length,text);
  for(const text of [
   '<Drawer transitionProps={{duration:300}}/>',
@@ -252,8 +285,9 @@ test('the gates reject every banned pattern',()=>{
   '<Transition exitDuration={toastExit}/>',
   'node.animate([{opacity:0},{opacity:1}],{duration:200,easing:"ease"})',
  ])assert.ok(componentMotionOffenders([{path:'sample.jsx',text}]).length,text);
+ assert.ok(keyframeOffenders(['@keyframes k{from{animation-timing-function:linear;opacity:0}to{opacity:1}}']).length,'a keyframe with its own curve');
  // What the project does on purpose stays allowed.
  assert.deepEqual(edgeOffenders(sample('[data-edge="start"]::before{inset-block:0;width:var(--edge-width)}.a{border-bottom:1px solid var(--line)}.a{box-shadow:0 18px 50px -12px #0005}')),[]);
  assert.deepEqual(focusOffenders(sample('@media (forced-colors:active){html[data-focus-mode="keyboard"] .a:focus-visible{outline:2px solid CanvasText}}html[data-focus-mode="keyboard"] .a:focus-visible::after{content:""}')),[]);
- assert.deepEqual(motionOffenders(sample('.a{transition:color var(--motion-fast) var(--motion-ease)}@media (prefers-reduced-motion:reduce){.a{transition:none}}')),[]);
+ assert.deepEqual(motionOffenders(sample('.a{transition:color var(--motion-control) var(--motion-ease)}@media (prefers-reduced-motion:reduce){.a{transition:none}}')),[]);
 });

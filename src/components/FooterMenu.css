@@ -1,7 +1,7 @@
 /* The footer bar (FooterMenu.jsx). It stays fixed to the bottom of the screen, above the page and
    below every sheet and dialog. The page keeps room for it (--dock-height in styles.css). */
 .site-footer{position:fixed;inset-inline:0;bottom:0;z-index:150;padding-bottom:env(safe-area-inset-bottom);border-top:1px solid var(--line);background:var(--surface)}
-.footer-dock{display:flex;align-items:center;gap:12px;width:100%;max-width:1200px;min-height:var(--dock-height);margin:0 auto;padding:0 16px;color:var(--ink);transition:background-color var(--motion-fast) var(--motion-ease)}
+.footer-dock{display:flex;align-items:center;gap:12px;width:100%;max-width:1200px;min-height:var(--dock-height);margin:0 auto;padding:0 16px;color:var(--ink);transition:background-color var(--motion-control) var(--motion-ease)}
 @media (min-width:48em){.footer-dock{padding-inline:24px}}
 .footer-dock:hover{background:var(--surface-2)}
 /* The bar sits at the foot of the screen, so its focus line is drawn inside it, above its lower edge. */
@@ -17,7 +17,7 @@ html[data-focus-mode="keyboard"] .site-footer .footer-dock.footer-dock:focus-vis
 @media (min-width:64em){.footer-menu-groups{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .footer-menu-heading{color:var(--muted);font-size:.9375rem;font-weight:600}
 .footer-menu-group ul{display:grid;gap:2px;margin:6px 0 0;padding:0;list-style:none}
-.footer-menu-item{display:flex;align-items:center;gap:12px;width:100%;min-height:var(--touch-target);padding:8px 10px;border-radius:var(--radius);color:var(--ink);text-align:start;transition:background-color var(--motion-fast) var(--motion-ease)}
+.footer-menu-item{display:flex;align-items:center;gap:12px;width:100%;min-height:var(--touch-target);padding:8px 10px;border-radius:var(--radius);color:var(--ink);text-align:start;transition:background-color var(--motion-control) var(--motion-ease)}
 .footer-menu-item:hover{background:var(--surface-2)}
 .footer-menu-item svg{flex:none;color:var(--ink-2)}
 .footer-menu-item[aria-current="page"]{background:var(--accent-soft);color:var(--accent-strong);font-weight:600}

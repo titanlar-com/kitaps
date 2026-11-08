@@ -47,6 +47,16 @@ Son kontrol: 28 Eylül 2026. Kontrollerin çoğu otomatik testlere bağlıdır; 
 - Sonradan yüklenen sayfalar (Kitap fuarları, Kitapçılar, Notlar) beklerken Mantine'in göstergesini ve ne beklendiğini söyleyen yazıyı gösterir.
 - Hareket azaltma tercihi açıksa çubuklar durur ve yazı kalır. Testler: `tests/first-load.test.js`, `tests/components/page-loading.test.jsx`, `tests/e2e/loading.spec.js`.
 
+## Hareket (8 Kasım 2026)
+
+- Hareketin kuralları `docs/ADR-004-motion.md` içindedir. Bölüm, sayfa, arama ve süzme sonuçları anında gelir ve yazı solarak gelmez.
+- Çekmeceler 300 ms sürer ve geldikleri kenara döner. Açılır pencereler ve iletişim kutuları 200 ms içinde yalnız solar.
+- Kitap kapanınca adres hemen değişir. Çekmecenin içi kapanış bitene kadar görünür kalır ama kullanılamaz. Eşitleme penceresi kapanınca odak beklemeden geri döner.
+- Kapak yüklenene kadar çerçevesi sade bir yüzey gösterir, kapak yüklenince solarak gelir ve çerçevenin ölçüsü değişmez.
+- Kapak yalnız gerçek işaretçisi olan cihazlarda kalkar. Üzerine gelme yarıda bırakılırsa kapak bulunduğu yerden geri döner.
+- Tarayıcının yumuşak kaydırması kullanılmaz, çünkü eğrisi ve süresi tarayıcıya aittir.
+- Testler: `tests/motion.test.js`, `tests/ui-gates.test.js`, `tests/e2e/motion-audit.spec.js`, `tests/e2e/motion-lifecycle.spec.js`, `tests/e2e/loading.spec.js`.
+
 ## Mobil düzen ve etkileşim
 
 - Üst menüde dört bölüm var: Kitaplar, Sıram, Kümeler ve Kitapçılar. Telefonda dördü tek satırda yan yana durur. 320 ile 575 px arasındaki altı genişlikte etiketlerin bütün ve tek satırda kaldığı ölçülür. Satır, her etiketin yanına simge sığdıramayacak kadar darsa simgeler gizlenir. 896 px ve üstünde bölümler logonun yanında, kısayolların solunda durur. %200 yazıyla bir bölüm alt satıra geçebilir, ama ekranda kalır (`tests/e2e/bookstores.spec.js`).

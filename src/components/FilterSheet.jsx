@@ -92,7 +92,7 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
   return () => { visual.removeEventListener('resize', resize); visual.removeEventListener('scroll', resize); };
  }, [opened]);
 
- return <Drawer.Root opened={opened} onClose={onClose} onExitTransitionEnd={onExited} position="bottom" size="90dvh" className="filter-sheet" padding={0} transitionProps={transition(reducedMotion)} styles={viewport ? { inner: { height: viewport.height, top: viewport.top, bottom: 'auto' }, content: { height: viewport.panelHeight } } : undefined}>
+ return <Drawer.Root opened={opened} onClose={onClose} onExitTransitionEnd={onExited} position="bottom" size="90dvh" className="filter-sheet" padding={0} transitionProps={transition('sheet',reducedMotion)} styles={viewport ? { inner: { height: viewport.height, top: viewport.top, bottom: 'auto' }, content: { height: viewport.panelHeight } } : undefined}>
   <Drawer.Overlay backgroundOpacity={.45} blur={3} />
   <Drawer.Content aria-describedby="filter-sheet-description">
    <Drawer.Header>

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect,useRef,useState} from 'react';
 import {Button,Group,Modal,Stack,Text} from '@mantine/core';
 import {IconDownload} from '@tabler/icons-react';
 import {download} from '../download';
@@ -10,26 +10,33 @@ import {readSyncBackup} from '../state/useGitHubStateSync';
 export default function SyncMergeDialog({sync}){
  const [busy,setBusy]=useState(false);
  const prompt=sync.mergePrompt;
- if(!prompt)return null;
+ // The choice takes effect at once; the words stay while the dialog leaves (ADR 004, K6).
+ const [shown,setShown]=useState(prompt);
+ if(prompt&&prompt!==shown)setShown(prompt);
+ const asked=prompt??shown;
+ const latest=useRef(prompt);
+ useEffect(()=>{latest.current=prompt});
  // The dialog disappears with the choice, and the button that had focus with it: focus moves
  // to the connect dialog's status when that is open, otherwise to the main content.
  const choose=async choice=>{
+  // A click during the exit finds nothing left to answer.
+  if(!latest.current)return;
   setBusy(true);
   try{await sync.resolveMerge(choice)}finally{setBusy(false)}
   requestAnimationFrame(()=>{
    // A further question (a connect right after a first-sync choice) keeps the focus.
-   if(document.querySelector('.sync-merge-dialog'))return;
+   if(latest.current)return;
    // With the book sheet open, focus stays in it rather than behind it.
    const target=document.querySelector('.sync-modal [role="status"]')??document.querySelector('.detail-drawer .sync-status-text')??document.getElementById('main-content');
    if(target instanceof HTMLElement)target.focus({preventScroll:true});
   });
  };
- const backup=readSyncBackup();
- const parts=[prompt.conflicts.length?`${prompt.conflicts.length} kitabın kaydı`:'',prompt.queueConflict?'okuma sıran':''].filter(Boolean).join(' ve ');
+ const backup=asked?readSyncBackup():null;
+ const parts=asked?[asked.conflicts.length?`${asked.conflicts.length} kitabın kaydı`:'',asked.queueConflict?'okuma sıran':''].filter(Boolean).join(' ve '):'';
  // Connecting from the book sheet can raise it, so it sits above the sheet (layer 200) and the sync dialog (300).
- return <Modal opened onClose={()=>undefined} zIndex={305} withCloseButton={false} closeOnClickOutside={false} closeOnEscape={false} centered className="sync-merge-dialog" title="Bu cihazdaki kayıtlar farklı">
-  <Stack gap="md">
-   <Text>{prompt.reason==='connect'
+ return <Modal opened={Boolean(prompt)} onClose={()=>undefined} returnFocus={false} zIndex={305} withCloseButton={false} closeOnClickOutside={false} closeOnEscape={false} centered className="sync-merge-dialog" title="Bu cihazdaki kayıtlar farklı">
+  {asked&&<Stack gap="md">
+   <Text>{asked.reason==='connect'
     ?`Bu cihaz bağlı değilken ${parts} değişti; bu arada başka bir cihaz aynı kayıtları farklı kaydetti. Hangisinin kalacağını seç. Seçim yalnız bu kayıtları etkiler; bu cihazın öteki değişiklikleri seçimden sonra gönderilir.`
     :`Bu cihazda ${parts}, GitHub’daki ortak kayıttan farklı. Hangisinin kalacağını seç; seçim yalnız bu farklı kayıtları etkiler. Yalnız bu cihazda olan kayıtlar ayrıca ortak kayda eklenir.`}</Text>
    {backup&&<Text c="dimmed">Seçimden önce bu cihazdaki kayıtların yedeği alındı.</Text>}
@@ -38,6 +45,6 @@ export default function SyncMergeDialog({sync}){
     <Button loading={busy} variant="default" onClick={()=>void choose('shared')}>GitHub’dakini kullan</Button>
     {backup&&<Button variant="subtle" leftSection={<IconDownload size={18}/>} onClick={()=>download('kitaplik-esitleme-oncesi-yedek.json',backup)}>Yedeği indir</Button>}
    </Group>
-  </Stack>
+  </Stack>}
  </Modal>;
 }

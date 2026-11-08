@@ -25,7 +25,7 @@ import { WIDE_QUERY, PHONE_LANDSCAPE_QUERY } from './app/media';
 import { useGitHubStateSync } from './state/useGitHubStateSync';
 import { PERSONAL_KEY, cleanPersonal, cleanReading, addToQueue, moveInQueue, todayLocal, stampReadingDate, readingSummary } from './reading';
 import { emptyFilters, toggleState, filterCount, decodeRoute, encodeRoute, DEFAULT_PAGE_SIZE } from './library';
-import { MOTION_EASE, MOTION_MS } from './motion';
+import { MOTION_EASE, MOTION_MS, MOTION_PX } from './motion';
 import { cssVariablesResolver, theme } from './app/theme';
 import { books, bookIds, readingRanking, byId, collectionMap, STATE_KEY, authorOptions, safeRead, loadStates, exportAllBooks } from './app/catalogData';
 import { GirlIcon, BookshelfIcon, BrandMark } from './app/icons';
@@ -53,7 +53,7 @@ const countText=new Intl.NumberFormat('tr-TR').format;
 const VIEW_ICONS={books:IconBook2,queue:IconListNumbers,collections:IconLayersIntersect,bookstores:IconBuildingStore,fairs:IconCalendarEvent,notes:IconFileText,favorites:IconHeart,owned:BookshelfIcon};
 // A leaving toast no longer takes the pointer.
 /** @type {import('@mantine/core').MantineTransition} */
-const TOAST_MOTION={in:{opacity:1,translate:'0 0'},out:{opacity:0,translate:'0 8px',pointerEvents:'none'},transitionProperty:'opacity, translate'};
+const TOAST_MOTION={in:{opacity:1,translate:'0 0'},out:{opacity:0,translate:`0 ${MOTION_PX.rise}px`,pointerEvents:'none'},transitionProperty:'opacity, translate'};
 
 function AtlasApp() {
  const [route,setRoute]=useState(()=>decodeRoute(window.location.hash||window.location.search,catalog));
@@ -170,10 +170,13 @@ function AtlasApp() {
  // Connecting removes the notice whose button opened the dialog; focus then goes to the main content.
  // Focus returns to the button that opened the dialog. When connecting removed it, focus stays
  // in the open book sheet (on its sync status), never behind it; otherwise on the main content.
- const syncClosed=()=>{setSyncCovering(false);const opener=syncOpener.current;(opener?.isConnected?opener:document.querySelector('.detail-drawer .sync-status-text')??document.getElementById('main-content'))?.focus({preventScroll:true})};
+ // Focus goes back as soon as the dialog closes, not when its exit ends (ADR 004, K6).
+ const restoreSyncFocus=()=>{const opener=syncOpener.current;(opener?.isConnected?opener:document.querySelector('.detail-drawer .sync-status-text')??document.getElementById('main-content'))?.focus({preventScroll:true})};
+ const closeSync=()=>{setSyncOpened(false);requestAnimationFrame(restoreSyncFocus)};
+ const syncClosed=()=>setSyncCovering(false);
  const copyLink=async()=>{try{await navigator.clipboard.writeText(window.location.href);setCopied(true);setTimeout(()=>setCopied(false),2000)}catch{setCopied(false)}};
  // The toast leaves the way it came: the last notice stays rendered while it fades out.
- const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true"><Transition mounted={toastShown&&Boolean(transfer)} duration={MOTION_MS} exitDuration={MOTION_MS} timingFunction={MOTION_EASE} transition={TOAST_MOTION} onExited={()=>setTransfer(null)}>{style=>transfer&&<LibraryToast key={`${transfer.id}-${transfer.owned}`} style={style} leaving={!toastShown} book={byId[transfer.id]} owned={transfer.owned} onClose={dismissTransfer} onUndo={()=>{setStates(prev=>({...prev,[transfer.id]:toggleState(prev[transfer.id],'alindi')}));dismissTransfer()}}/>}</Transition></div>;
+ const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true"><Transition mounted={toastShown&&Boolean(transfer)} duration={MOTION_MS.overlay} exitDuration={MOTION_MS.overlay} timingFunction={MOTION_EASE} transition={TOAST_MOTION} onExited={()=>setTransfer(null)}>{style=>transfer&&<LibraryToast key={`${transfer.id}-${transfer.owned}`} style={style} leaving={!toastShown} book={byId[transfer.id]} owned={transfer.owned} onClose={dismissTransfer} onUndo={()=>{setStates(prev=>({...prev,[transfer.id]:toggleState(prev[transfer.id],'alindi')}));dismissTransfer()}}/>}</Transition></div>;
  const activeTab=viewById[view]?.shelf?'books':HEADER_VIEWS.includes(view)?view:null;
  return <><a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();document.getElementById('main-content').focus()}}>İçeriğe geç</a>
   <Tabs className="main-section-tabs" value={activeTab} onChange={v=>v&&navigate({...route,view:v,book:null,page:1})}>
@@ -224,7 +227,7 @@ function AtlasApp() {
   </Tabs>
   <SyncMergeDialog sync={githubSync}/>
   {/* Opened from the book sheet too, so it sits above the sheet (Mantine's layer 200) and below the toast (310). */}
-  <Modal opened={syncOpened} onClose={()=>setSyncOpened(false)} zIndex={300} returnFocus={false} onExitTransitionEnd={syncClosed} title="Cihazlar arası eşitleme" size="lg" centered className="sync-modal" closeButtonProps={{'aria-label':'Kapat'}}><GitHubSyncPanel sync={githubSync} framed={false}/></Modal>
+  <Modal opened={syncOpened} onClose={closeSync} zIndex={300} returnFocus={false} onExitTransitionEnd={syncClosed} title="Cihazlar arası eşitleme" size="lg" centered className="sync-modal" closeButtonProps={{'aria-label':'Kapat'}}><GitHubSyncPanel sync={githubSync} framed={false}/></Modal>
   <Modal opened={guideOpened} onClose={()=>setGuideOpened(false)} title="Çeviri seçme rehberi" size="lg" centered className="global-guide-modal" closeButtonProps={{'aria-label':'Kapat'}}><TranslationCriteria/></Modal>
   <FilterSheet opened={opened} onClose={()=>setOpened(false)} onExited={()=>setSheetShown(false)} value={draft} onChange={setDraft} onReset={()=>setDraft({...emptyFilters(),query:filters.query})} onApply={()=>{changeFilters(draft);setOpened(false)}} count={draftCount} catalog={catalog} authors={authorOptions} shelf={draftListing?.shelf??shelfBooks}/>
   {!book&&transferNotice}
