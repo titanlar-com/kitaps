@@ -47,6 +47,16 @@ test('a search that finds nothing gets the empty shelf and a way back', async ({
   await expect(page.locator('.book-card').first()).toBeVisible();
 });
 
+test('from tablet width a card keeps its inset, and every action is a full touch target', async ({ page }) => {
+  await page.setViewportSize({ width: 768, height: 900 });
+  await page.goto('./');
+  const card = page.locator('.book-card').first();
+  await expect(card).toBeVisible();
+  expect(await card.evaluate(element => getComputedStyle(element).paddingTop)).toBe('10px');
+  const heights = await card.locator('.book-actions .mantine-ActionIcon-root').evaluateAll(buttons => buttons.map(button => button.getBoundingClientRect().height));
+  expect(Math.min(...heights)).toBeGreaterThanOrEqual(44);
+});
+
 test('a narrow window has no preview, so it cannot widen the page', async ({ page, isMobile }) => {
   test.skip(isMobile, 'A touch screen has no hover.');
   await page.setViewportSize({ width: 320, height: 800 });

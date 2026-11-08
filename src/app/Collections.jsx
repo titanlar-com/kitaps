@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import {useRef, useMemo, useState } from 'react';
 import { Accordion, Anchor, Avatar, Badge, Box, Button, Card, Group, Progress, SimpleGrid, Stack, Text, TextInput, ThemeIcon } from '@mantine/core';
 import { IconArrowRight, IconArrowUpRight, IconBook2, IconChevronRight, IconLayersIntersect, IconSearch } from '@tabler/icons-react';
 import catalog from '../catalog.json';
@@ -39,11 +39,12 @@ function CollectionCard({card,onCollection,onGroup}){
 
 export function Collections({onCollection,onGroup,states}) {
  const [query,setQuery]=useState('');
+ const search=useRef(null);
  const cards=useMemo(()=>collectionCards({collections:catalog.collections,books,states,groups:groupMap,query}),[states,query]);
  return <Stack gap="lg">
-  <TextInput label="Kümeler arasında ara" placeholder="TIME, çocuk, strateji…" value={query} onChange={e=>setQuery(e.currentTarget.value)} leftSection={<IconSearch size={20}/>}/>
+  <TextInput ref={search} label="Kümeler arasında ara" placeholder="TIME, çocuk, strateji…" value={query} onChange={e=>setQuery(e.currentTarget.value)} leftSection={<IconSearch size={20}/>}/>
   <Text c="dimmed" className="collection-count tabular-nums" role="status">{cards.length} küme bulundu.</Text>
   {cards.length>0?<Accordion className="collections-accordion" order={2}><SimpleGrid type="container" cols={{base:1,'38rem':2,'60rem':3}} spacing="md" className="collections-grid">{cards.map(card=><CollectionCard key={card.collection.id} card={card} onCollection={onCollection} onGroup={onGroup}/>)}</SimpleGrid></Accordion>
-  :<EmptyState icon={IconLayersIntersect} title="Bu aramayla eşleşen küme yok." action={<Button variant="light" onClick={()=>setQuery('')}>Aramayı temizle</Button>}>Başka bir kelime deneyebilir ya da aramayı temizleyip bütün kümelere dönebilirsin.</EmptyState>}
+  :<EmptyState icon={IconLayersIntersect} title="Bu aramayla eşleşen küme yok." action={<Button variant="light" onClick={()=>{setQuery('');search.current?.focus()}}>Aramayı temizle</Button>}>Başka bir kelime deneyebilir ya da aramayı temizleyip bütün kümelere dönebilirsin.</EmptyState>}
  </Stack>;
 }

@@ -77,7 +77,7 @@ Ayrıldıkları konular ve karar:
 | AutoAnimate | Giriş ve çıkış eğrileri sabit ve sözleşmeye aykırı. |
 | View Transitions | Yukarıdaki nedenle. Sözleşmedeki yarıda kesilme kuralı değişirse yeniden değerlendirilir. |
 | `interpolate-size` | İncelenen verilere göre yalnız Chromium destekliyor. Yükseklik animasyonunu Mantine `Collapse` zaten yapıyor. |
-| Skeleton uyarlayıcısı | Bileşen şu anda kullanılmıyor. Kullanılınca çalışma anı denetimi uyarlama ister. |
+| Skeleton uyarlayıcısı | Kapak yüklenirken kullanılır. Uyarlayıcı `src/styles.css` içindedir ve çalışma anı denetimi bunu kapsar. |
 
 ## Sürdürme kuralları
 

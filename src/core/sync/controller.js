@@ -32,8 +32,8 @@ export const RETURN_REFRESH_MS=30_000;
 
 const clock=ms=>new Date(ms).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
 const readMessage=error=>error?.code==='storage'?'Tarayıcının yerel eşitleme alanı okunamadı ya da dolu; GitHub’dan okunan durum gösterilemedi.':error?.code==='rate-limited'?`GitHub istek sınırına ulaşıldı; ${clock(error.retryAt)} sonrasında yeniden denenecek.`:error?.code==='not-found'?'Durum deposu henüz hazırlanmadı.':error?.code==='invalid-data'?'GitHub durum dosyası güvenli biçimde okunamadı.':'GitHub durumu okunamadı.';
-const REVIEW_FAILED='Bu cihazın kayıtları GitHub’dakiyle karşılaştırılamadı; sayfaya dönünce yeniden denenecek. O zamana kadar hiçbir şey gönderilmez.';
-const writeMessage=error=>error?.code==='unauthorized'?'GitHub anahtarı reddetti: süresi dolmuş ya da kitaps-state için yazma izni kaldırılmış olabilir. Anahtarı kaldırıp yeni bir anahtarla bu cihazı yeniden bağla.':error?.code==='storage'?'Tarayıcının yerel eşitleme alanına yazılamadı.':error?.code==='rate-limited'?`GitHub istek sınırına ulaşıldı; değişiklikler kuyrukta, ${clock(error.retryAt)} sonrasında gönderilecek.`:error?.code==='not-found'?'Durum deposu ya da dosyası bulunamadı; değişiklikler cihazda bekliyor.':error?.code==='invalid-data'?'GitHub durum dosyası güvenli biçimde okunamadı; değişiklikler cihazda bekliyor.':'Eşitleme tamamlanamadı; değişiklikler cihazda kuyrukta ve otomatik olarak yeniden denenecek.';
+const REVIEW_FAILED='Bu cihazın kayıtları GitHub’dakiyle karşılaştırılamadı. Sayfaya dönünce yeniden denenecek. O zamana kadar hiçbir şey gönderilmez.';
+const writeMessage=error=>error?.code==='unauthorized'?'GitHub anahtarı reddetti: süresi dolmuş ya da kitaps-state için yazma izni kaldırılmış olabilir. Anahtarı kaldırıp yeni bir anahtarla bu cihazı yeniden bağla.':error?.code==='storage'?'Tarayıcının yerel eşitleme alanına yazılamadı.':error?.code==='rate-limited'?`GitHub istek sınırına ulaşıldı. Değişiklikler kuyrukta, ${clock(error.retryAt)} sonrasında gönderilecek.`:error?.code==='not-found'?'Durum deposu ya da dosyası bulunamadı. Değişiklikler cihazda bekliyor.':error?.code==='invalid-data'?'GitHub durum dosyası güvenli biçimde okunamadı. Değişiklikler cihazda bekliyor.':'Eşitleme tamamlanamadı. Değişiklikler cihazda kuyrukta ve otomatik olarak yeniden denenecek.';
 
 /**
  * The order of operations of cross-device sync (ADR 003, phase 8), moved from the React hook
@@ -194,8 +194,8 @@ export function createSyncController({bookIds,source,repository,lifecycle,timers
      return;
     }
     if(repository.hasToken()&&pending)batcher?.schedule();
-    const readOnly=read.source==='cdn'?'GitHub durumu okundu. Bağlı olmayan cihaz GitHub’ın önbellek kopyasını okur; bu kopya en çok beş dakika gecikebilir.':'GitHub durumu salt okunur olarak güncel.';
-    setSync(value=>({...value,...readState,...(wasRejected?{writeError:null}:{}),status:pending?'queued':'ready',message:pending?(value.hasToken?'Değişiklikler cihazda; ilk değişiklikten 30 saniye sonra toplu gönderilecek.':'Değişiklikler cihazda kuyrukta; GitHub’a göndermek için bu cihazı bağla.'):(value.hasToken?'GitHub durumu güncel.':readOnly),pending}));
+    const readOnly=read.source==='cdn'?'GitHub durumu okundu. Bağlı olmayan cihaz GitHub’ın önbellek kopyasını okur. Bu kopya en çok beş dakika gecikebilir.':'GitHub durumu salt okunur olarak güncel.';
+    setSync(value=>({...value,...readState,...(wasRejected?{writeError:null}:{}),status:pending?'queued':'ready',message:pending?(value.hasToken?'Değişiklikler cihazda. İlk değişiklikten 30 saniye sonra toplu gönderilecek.':'Değişiklikler cihazda kuyrukta; GitHub’a göndermek için bu cihazı bağla.'):(value.hasToken?'GitHub durumu güncel.':readOnly),pending}));
    }catch(error){
     if(error.code==='rate-limited')backoffUntil=error.retryAt;
     if(!hydrated)for(const [id,value] of baseline)known.set(id,value);
@@ -250,7 +250,7 @@ export function createSyncController({bookIds,source,repository,lifecycle,timers
    applyDocument(await repository.loadWithPending(remote),baseline,baselineQueue,blocked);
    setMergePrompt({conflicts:plan.conflicts,queueConflict:plan.queueConflict,reason:'connect'});
    rejected=false;
-   setSync(value=>({...value,status:'queued',writeError:null,tokenRejected:false,pending:pendingCount(),message:'Bu cihazdaki bazı kayıtları başka bir cihaz farklı kaydetmiş; seçimini yapınca gönderilecek.'}));
+   setSync(value=>({...value,status:'queued',writeError:null,tokenRejected:false,pending:pendingCount(),message:'Bu cihazdaki bazı kayıtları başka bir cihaz farklı kaydetmiş. Seçimini yapınca gönderilecek.'}));
    return;
   }
   repository.clearConnectReview();
@@ -263,7 +263,7 @@ export function createSyncController({bookIds,source,repository,lifecycle,timers
   }
   applyDocument(await repository.loadWithPending(remote),baseline,baselineQueue,blocked);
   rejected=false;
-  setSync(value=>({...value,status:'ready',writeError:null,tokenRejected:false,pending:0,message:'Bu cihaz bağlandı; değişiklikleri artık GitHub’a gönderilecek.'}));
+  setSync(value=>({...value,status:'ready',writeError:null,tokenRejected:false,pending:0,message:'Bu cihaz bağlandı. Değişiklikleri artık GitHub’a gönderilecek.'}));
   })();
   reviewing=run;
   const settle=()=>{if(reviewing===run)reviewing=null};
@@ -297,11 +297,11 @@ export function createSyncController({bookIds,source,repository,lifecycle,timers
   const pending=repository.getPendingCount();
   if(repository.hasToken()&&pending){
    // The reader has just decided, so the result is sent now rather than after the window.
-   setSync(value=>({...value,status:'saving',pending,message:'Seçimin kaydedildi; değişiklikler şimdi gönderiliyor.'}));
+   setSync(value=>({...value,status:'saving',pending,message:'Seçimin kaydedildi. Değişiklikler şimdi gönderiliyor.'}));
    void flush().catch(()=>undefined);
    return;
   }
-  setSync(value=>({...value,status:pending?'queued':'ready',pending,message:pending?'Seçimin kaydedildi; değişiklikler bu cihaz bağlanınca gönderilecek.':'Seçimin kaydedildi.'}));
+  setSync(value=>({...value,status:pending?'queued':'ready',pending,message:pending?'Seçimin kaydedildi. Değişiklikler bu cihaz bağlanınca gönderilecek.':'Seçimin kaydedildi.'}));
  };
 
  const flush=({fromBatcher=false,keepalive=false}={})=>{
@@ -368,9 +368,9 @@ export function createSyncController({bookIds,source,repository,lifecycle,timers
    // comparison has run, whatever asks to send (the batcher, leaving the page, a reload).
    repository.beginConnectReview();
    try{repository.setToken(token)}catch(error){try{repository.clearConnectReview()}catch{/* Nothing more to undo. */}throw error;}
-  }catch(error){setSync(value=>({...value,status:'error',hasToken:tokenPresent(),message:error.code==='read-only'?`Bu anahtar ${GITHUB_STATE_REPOSITORY} deposuna yazamıyor. Anahtarın sahibi (Resource owner) ${GITHUB_STATE_OWNER} olmalı, Repository access bölümünde ${GITHUB_STATE_REPOSITORY} seçili ve Contents izni Read and write olmalı; kuruluş onayı bekleyen anahtar da yazamaz. Anahtar kaydedilmedi.`:error.code==='token-type'?`Yalnız ince ayarlı (fine-grained) ve yalnız ${GITHUB_STATE_OWNER}/${GITHUB_STATE_REPOSITORY} deposuna yetkili bir anahtar kabul edilir; anahtar kaydedilmedi.`:error.code==='storage'?'Anahtar bu tarayıcıya kaydedilemedi.':error.code==='rate-limited'?readMessage(error):'GitHub anahtarı doğrulanamadı; anahtar kaydedilmedi.'}));throw error;}
+  }catch(error){setSync(value=>({...value,status:'error',hasToken:tokenPresent(),message:error.code==='read-only'?`Bu anahtar ${GITHUB_STATE_REPOSITORY} deposuna yazamıyor. Anahtarın sahibi (Resource owner) ${GITHUB_STATE_OWNER} olmalı, Repository access bölümünde ${GITHUB_STATE_REPOSITORY} seçili ve Contents izni Read and write olmalı. Kuruluş onayı bekleyen anahtar da yazamaz. Anahtar kaydedilmedi.`:error.code==='token-type'?`Yalnız ince ayarlı (fine-grained) ve yalnız ${GITHUB_STATE_OWNER}/${GITHUB_STATE_REPOSITORY} deposuna yetkili bir anahtar kabul edilir. Anahtar kaydedilmedi.`:error.code==='storage'?'Anahtar bu tarayıcıya kaydedilemedi.':error.code==='rate-limited'?readMessage(error):'GitHub anahtarı doğrulanamadı. Anahtar kaydedilmedi.'}));throw error;}
   rejected=false;
-  setSync(value=>({...value,status:'loading',hasToken:true,writeError:null,tokenRejected:false,message:'Anahtar doğrulandı; bu cihazın kayıtları GitHub’dakiyle karşılaştırılıyor.'}));
+  setSync(value=>({...value,status:'loading',hasToken:true,writeError:null,tokenRejected:false,message:'Anahtar doğrulandı. Bu cihazın kayıtları GitHub’dakiyle karşılaştırılıyor.'}));
   if(!repository.hasCompletedInitialMigration()&&!firstSyncRemote)await refresh(true,true);
   else if(loading)await refreshing;
   await reviewConnection();
@@ -407,7 +407,7 @@ export function createSyncController({bookIds,source,repository,lifecycle,timers
     if(!pending)return value.pending===0?value:{...value,pending};
     // While the stored key is refused, the reconnect message stays; only the count moves.
     if(value.tokenRejected)return value.pending===pending?value:{...value,pending};
-    const message=value.hasToken?(reviewPending()?'Değişiklikler cihazda; bu cihazın kayıtları GitHub’dakiyle karşılaştırıldıktan sonra gönderilecek.':'Değişiklikler cihazda; ilk değişiklikten 30 saniye sonra toplu gönderilecek.'):'Değişiklikler cihazda kuyrukta; GitHub’a göndermek için bu cihazı bağla.';
+    const message=value.hasToken?(reviewPending()?'Değişiklikler cihazda. Bu cihazın kayıtları GitHub’dakiyle karşılaştırıldıktan sonra gönderilecek.':'Değişiklikler cihazda. İlk değişiklikten 30 saniye sonra toplu gönderilecek.'):'Değişiklikler cihazda kuyrukta; GitHub’a göndermek için bu cihazı bağla.';
     return value.status==='queued'&&value.pending===pending&&value.message===message?value:{...value,status:'queued',message,pending};
    });
    if(sync.hasToken&&!sync.tokenRejected&&pending)batcher.schedule();else batcher.cancel();

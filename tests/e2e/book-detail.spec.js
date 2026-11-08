@@ -45,6 +45,7 @@ test('a book being read shows its progress and history above the fold of the pag
   await expect(journey).toContainText('75 / 300 sayfa');
   await expect(journey).toContainText('%25');
   await expect(journey).toContainText('2 Ocak 2026');
+  expect(await journey.locator('.mantine-Timeline-itemBullet[data-active]').first().evaluate(element => getComputedStyle(element).color)).toBe(await page.evaluate(() => { const probe = document.createElement('div'); probe.style.color = 'var(--accent-ink)'; document.body.append(probe); const value = getComputedStyle(probe).color; probe.remove(); return value; }));
   const bars = await journey.locator('.mantine-Timeline-itemBullet, .mantine-Progress-root').evaluateAll(elements => elements.map(element => parseFloat(getComputedStyle(element).borderTopLeftRadius)));
   expect(Math.max(...bars)).toBeLessThanOrEqual(5);
 });
@@ -53,6 +54,23 @@ test('a book not started shows no empty progress block', async ({ page }) => {
   await page.goto(BOOK);
   await expect(page.locator('.detail-actions')).toBeVisible();
   await expect(page.locator('.reading-journey')).toHaveCount(0);
+});
+
+test('a book\'s list memberships are entries in the panel, not frames inside it', async ({ page }) => {
+  await page.goto(BOOK);
+  await page.getByRole('button', { name: /Kaynaklar ve küme üyelikleri/ }).click();
+  const entry = page.locator('.membership').first();
+  await expect(entry).toBeVisible();
+  const look = await entry.evaluate(element => { const style = getComputedStyle(element); return { background: style.backgroundColor, border: style.borderTopWidth }; });
+  expect(look).toEqual({ background: 'rgba(0, 0, 0, 0)', border: '0px' });
+});
+
+test('a parent note is drawn in the scheme, not in Mantine orange', async ({ page }) => {
+  const child = './?book=' + 'harry-potter-and-the-sorcerers-stone-by-j-k-rowling';
+  await page.goto(child);
+  const note = page.locator('.child-caution');
+  test.skip(await note.count() === 0, 'this book carries no parent note');
+  await expect(note).toHaveAttribute('data-tone', 'warning');
 });
 
 test('the purchase notice leaves the buttons next to the one just pressed free, on a phone too', async ({ browser }) => {

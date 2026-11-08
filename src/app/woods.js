@@ -8,6 +8,11 @@ export const WOODS = [
 export const DEFAULT_WOOD = 'ceviz';
 export const WOOD_KEY = 'kitapatlasi:wood';
 
+// Where storage is blocked even reaching it throws, and the read and write below handle a null.
+export function deviceStorage() {
+  try { return window.localStorage; } catch { return null; }
+}
+
 const known = id => WOODS.some(wood => wood.id === id);
 
 export function readWood(storage) {

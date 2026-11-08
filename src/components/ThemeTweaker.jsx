@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ActionIcon, Popover, Radio, SegmentedControl, Text, Tooltip, useComputedColorScheme, useMantineColorScheme } from '@mantine/core';
 import { IconCheck, IconPalette } from '@tabler/icons-react';
-import { WOODS, readWood, saveWood } from '../app/woods';
+import { WOODS, deviceStorage, readWood, saveWood } from '../app/woods';
 
 const MODES = [{ value: 'dark', label: 'Koyu' }, { value: 'light', label: 'Açık' }];
 
@@ -10,17 +10,17 @@ const MODES = [{ value: 'dark', label: 'Koyu' }, { value: 'light', label: 'Açı
 export default function ThemeTweaker() {
   const mode = useComputedColorScheme('dark');
   const { setColorScheme } = useMantineColorScheme();
-  const [wood, setWood] = useState(() => readWood(window.localStorage));
+  const [wood, setWood] = useState(() => readWood(deviceStorage()));
   const choose = id => {
     setWood(id);
-    saveWood(id, window.localStorage);
+    saveWood(id, deviceStorage());
     document.documentElement.setAttribute('data-wood', id);
   };
   return <Popover position="bottom-end" width="min(20rem, calc(100vw - 2rem))" shadow="lg" trapFocus returnFocus withinPortal>
-    <Popover.Target><Tooltip label="Renk düzeni" withArrow><ActionIcon className="theme-toggle" variant="default" aria-label="Renk düzeni"><IconPalette size={22} /></ActionIcon></Tooltip></Popover.Target>
+    <Tooltip label="Renk düzeni" withArrow><Popover.Target><ActionIcon className="theme-toggle" variant="default" aria-label="Renk düzeni"><IconPalette size={22} /></ActionIcon></Popover.Target></Tooltip>
     <Popover.Dropdown className="theme-panel" aria-label="Renk düzeni">
       <Text className="theme-panel-title">Renk düzeni</Text>
-      <SegmentedControl fullWidth value={mode} onChange={setColorScheme} data={MODES} />
+      <SegmentedControl fullWidth aria-label="Görünüm" value={mode} onChange={setColorScheme} data={MODES} />
       <Radio.Group value={wood} onChange={choose} label="Ağaç" name="wood-scheme">
         <div className="theme-panel-woods">
           {WOODS.map(({ id, label, note }) => <Radio.Card key={id} className="wood-card" value={id}>

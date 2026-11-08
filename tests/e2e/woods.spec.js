@@ -93,6 +93,42 @@ test('the colour panel works from the keyboard and gives focus back', async ({ p
   test.info().annotations.push({ type: 'browser', description: browserName });
 });
 
+test('the colour button says whether its panel is open, and the mode control has a name', async ({ page }) => {
+  await page.goto('./');
+  await ready(page);
+  await expect(panelButton(page)).toHaveAttribute('aria-expanded', 'false');
+  await panelButton(page).click();
+  await expect(panelButton(page)).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.getByRole('radiogroup', { name: 'Görünüm' })).toBeVisible();
+});
+
+test('on a short screen the colour panel scrolls, so the last wood can be reached', async ({ page }) => {
+  await page.setViewportSize({ width: 568, height: 320 });
+  await page.goto('./');
+  await ready(page);
+  await panelButton(page).click();
+  const last = page.getByRole('radio', { name: /Akasya/ });
+  await expect(last).toBeVisible();
+  const box = await page.getByRole('dialog').boundingBox();
+  expect(box.y + box.height).toBeLessThanOrEqual(320);
+  await last.scrollIntoViewIfNeeded();
+  const radio = await last.boundingBox();
+  expect(radio.y + radio.height).toBeLessThanOrEqual(320);
+});
+
+test('Mantine parts take the scheme, and a tick stays readable on the accent', async ({ page }) => {
+  await page.addInitScript(() => { localStorage.setItem('kitapatlasi:wood', 'mese'); localStorage.setItem('kitapatlasi:color-scheme', 'dark'); });
+  await page.goto('./');
+  await ready(page);
+  await panelButton(page).click();
+  await expect(page.getByRole('radio', { name: /Meşe/ })).toBeVisible();
+  const paint = name => page.evaluate(token => { const probe = document.createElement('div'); probe.style.color = `var(${token})`; document.body.append(probe); const value = getComputedStyle(probe).color; probe.remove(); return value; }, name);
+  expect(await page.locator('.theme-panel .mantine-SegmentedControl-root').evaluate(element => getComputedStyle(element).backgroundColor)).toBe(await paint('--paper'));
+  expect(await page.locator('.wood-card[data-checked] .mantine-RadioIndicator-icon, .wood-card[data-checked] svg').first().evaluate(element => getComputedStyle(element).color)).toBe(await paint('--accent-ink'));
+  const height = await page.locator('.theme-panel .mantine-SegmentedControl-label').first().evaluate(element => element.getBoundingClientRect().height);
+  expect(height).toBeGreaterThanOrEqual(44);
+});
+
 for (const width of [320, 390, 1280]) {
   test(`at ${width} px the colour panel fits and the header keeps its size`, async ({ page }) => {
     await page.setViewportSize({ width, height: 800 });

@@ -34,6 +34,9 @@ test('stores are ordered by distance from the first one, and a saved route stays
   await expect(planner(page)).toContainText(/yaklaşık \d+(,\d)? km/);
   // A stop can still be moved by hand.
   await planner(page).getByRole('button', { name: 'Minoa Pera: aşağı taşı' }).click();
+  // The moved stop keeps the focus, and the move is announced.
+  await expect(page.locator('.route-planner :focus')).toHaveAttribute('aria-label', /^Minoa Pera: /);
+  await expect(planner(page).getByRole('status')).toContainText('Minoa Pera');
   expect(await order(page)).toEqual(['Homer Kitabevi', 'Remzi Kitabevi Kanyon', 'Minoa Pera', 'Remzi Kitabevi Akmerkez']);
 
   // The date first: on a phone its native picker can take the next tap, so the name is typed last.
@@ -41,6 +44,7 @@ test('stores are ordered by distance from the first one, and a saved route stays
   await planner(page).getByRole('textbox', { name: 'Rota adı' }).fill('Deneme rotası');
   await expect(planner(page).getByRole('button', { name: 'Rotayı kaydet' })).toBeEnabled();
   await planner(page).getByRole('button', { name: 'Rotayı kaydet' }).click();
+  await expect(planner(page).getByRole('textbox', { name: 'Rota adı' })).toBeFocused();
   await expect(planner(page).getByRole('status')).toContainText('bu cihazda saklandı');
   const saved = page.locator('.route-saved').filter({ hasText: 'Deneme rotası' });
   await expect(saved).toContainText('14 Kasım 2026');
@@ -52,6 +56,13 @@ test('stores are ordered by distance from the first one, and a saved route stays
   await saved.getByRole('checkbox', { name: 'Gezildi' }).check();
   await expect(saved.getByRole('checkbox', { name: 'Gezildi' })).toBeChecked();
   await saved.getByRole('button', { name: 'Deneme rotası: sil' }).click();
+  // Deleting asks first, because the route is gone from every device.
+  await expect(saved.getByRole('button', { name: 'Vazgeç' })).toBeFocused();
+  await saved.getByRole('button', { name: 'Vazgeç' }).click();
+  await expect(saved.getByRole('button', { name: 'Deneme rotası: sil' })).toBeFocused();
+  await saved.getByRole('button', { name: 'Deneme rotası: sil' }).click();
+  await saved.getByRole('button', { name: 'Evet, sil' }).click();
+  await expect(page.getByRole('heading', { name: 'Kaydettiğin rotalar' })).toBeFocused();
   await expect(page.locator('.route-saved').filter({ hasText: 'Deneme rotası' })).toHaveCount(0);
 });
 

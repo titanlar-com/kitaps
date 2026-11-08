@@ -10,7 +10,8 @@ const BADGE_ICONS = { open: IconCheck, closed: IconX, unverified: IconQuestionMa
 // Five lines of body text at the default size. The fold grows with the reader's text size.
 const NOTE_FOLD = 124;
 // Mantine draws a timeline with divs. A route's stops are an ordered list, so the elements say so.
-const ORDERED_LIST = { component: 'ol' };
+// A list without markers loses its list role in VoiceOver unless the role is stated.
+const ORDERED_LIST = { component: 'ol', role: 'list' };
 const LIST_ITEM = { component: 'li' };
 
 /** A status in words, with its tone. The stylesheet turns the tone into colour tokens. */

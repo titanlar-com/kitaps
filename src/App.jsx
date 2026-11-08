@@ -3,6 +3,9 @@ import { ActionIcon, Alert, Button, Container, FloatingIndicator, Group, Mantine
 import { IconLink, IconArrowRight, IconBook2, IconBuildingStore, IconCalendarEvent, IconLanguage, IconRefresh, IconShoppingBagX, IconFileText, IconBooks, IconCheck, IconDownload, IconFilter, IconHeart, IconLayersIntersect, IconListNumbers, IconSearch, IconX } from '@tabler/icons-react';
 import '@mantine/core/styles.css';
 import '@fontsource-variable/outfit/wght.css';
+// The page's own styles come before any component's, so a component's stylesheet can refine them.
+import './styles.css';
+import './woods.css';
 import catalog from './catalog.json';
 import ReadingQueue from './components/ReadingQueue';
 import ShelfEmpty from './components/ShelfEmpty';
@@ -40,8 +43,6 @@ import { BookCard } from './app/BookCard';
 import { BookDetail } from './app/BookDetail';
 import { Collections } from './app/Collections';
 import PageLoading from './components/PageLoading';
-import './styles.css';
-import './woods.css';
 
 const AccessibilityAudit=import.meta.env.DEV?React.lazy(()=>import('./components/AccessibilityAudit')):null;
 // Notes carry the Markdown renderer and the full source notes; load them on demand.

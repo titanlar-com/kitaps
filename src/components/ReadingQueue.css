@@ -24,7 +24,6 @@
 .queue-row[data-next] .queue-cover { flex-basis: var(--queue-cover-next); }
 /* A thumbnail is too small for readable text; the title is written beside it. */
 .queue-cover .cover-placeholder :is(.cover-placeholder-title, .cover-placeholder-author, .cover-placeholder-kind, .cover-placeholder-note),
-.queue-cover .cover-placeholder-author, .queue-cover .cover-placeholder-kind, .queue-cover .cover-placeholder-note { display: none; }
 .queue-body { flex: 999 1 var(--reflow-title-min); min-width: 0; }
 .queue-eyebrow { color: var(--accent); font-weight: 600; }
 .queue-title { margin: 0; font-size: var(--text-lg); line-height: 1.3; letter-spacing: var(--heading-tracking); }

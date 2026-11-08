@@ -526,10 +526,9 @@ main{padding-top:20px;padding-bottom:32px}
    status alone fills the card (very large text), the publisher moves to its own line. */
 .book-meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-width:0;margin-top:6px}
 .book-meta-row>.translation-status{flex-shrink:0}
-.book-edition-row{display:flex;align-items:center;gap:6px;min-width:0}
 .book-publisher{flex:1 1 0;min-width:0;margin:0;color:var(--muted);font-size:.875rem;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .book-actions{display:flex;align-items:center;margin:auto calc(var(--card-text-inset) * -1) 0;padding-top:6px}
-.book-actions .mantine-ActionIcon-root{width:44px;height:40px;min-height:40px;border:0;border-radius:var(--radius);background:transparent;color:var(--muted);transition:color var(--motion-control) var(--motion-ease),background-color var(--motion-control) var(--motion-ease),opacity var(--motion-control) var(--motion-ease)}
+.book-actions .mantine-ActionIcon-root{width:44px;height:var(--touch-target);min-height:var(--touch-target);border:0;border-radius:var(--radius);background:transparent;color:var(--muted);transition:color var(--motion-control) var(--motion-ease),background-color var(--motion-control) var(--motion-ease),opacity var(--motion-control) var(--motion-ease)}
 .book-actions .mantine-ActionIcon-root:hover{background:var(--surface-2);color:var(--ink)}
 .book-actions .mantine-ActionIcon-root[aria-pressed=true]{color:var(--accent)}
 .book-actions .cover-owned[aria-pressed=true]{color:var(--ok)}
@@ -646,7 +645,6 @@ main{padding-top:20px;padding-bottom:32px}
 .detail-heading h2{margin:0;font-size:clamp(1.5rem,1.15rem + 1.6vw,2.25rem);line-height:1.15;letter-spacing:-.02em}
 .detail-author{margin-top:8px;color:var(--ink-2);font-size:1.0625rem;font-weight:500}
 .detail-original{margin-top:4px;color:var(--muted);font-family:var(--serif);font-style:normal}
-.detail-year{margin-top:6px;color:var(--muted)}
 .detail-heading>.mantine-Group-root{margin-top:10px;gap:6px}
 .detail-heading .mantine-Button-root{height:auto;min-height:44px;padding:.5rem .75rem}
 .detail-heading .mantine-Button-label{white-space:normal;text-align:left}
@@ -880,7 +878,7 @@ main{padding-top:20px;padding-bottom:32px}
 .mantine-ScrollArea-thumb{border-radius:0}
 
 /* The colour panel. */
-.theme-panel{display:grid;gap:var(--stack-gap);background:var(--surface-2);border-color:var(--line-strong)}
+.theme-panel{display:grid;gap:var(--stack-gap);max-height:calc(100dvh - 5rem);overflow-y:auto;background:var(--surface-2);border-color:var(--line-strong)}
 .theme-panel-title{font-weight:650}
 .theme-panel-woods{display:grid;gap:var(--gap-xs);margin-top:var(--gap-xs)}
 .wood-card.mantine-RadioCard-card{display:flex;align-items:center;gap:var(--stack-gap);min-height:var(--touch-target);padding:var(--gap-xs) var(--stack-gap);border-color:var(--line-strong);background:var(--surface);transition:background-color var(--motion-control) var(--motion-ease),border-color var(--motion-control) var(--motion-ease)}
@@ -895,3 +893,6 @@ main{padding-top:20px;padding-bottom:32px}
 .wood-swatch i:nth-child(2){background:var(--surface-3)}
 .wood-swatch i:nth-child(3){background:var(--accent)}
 .wood-swatch i:nth-child(4){background:var(--tone-owned)}
+
+/* A segmented control is a row of touch targets. */
+.mantine-SegmentedControl-label{display:flex;align-items:center;justify-content:center;min-height:var(--touch-target)}

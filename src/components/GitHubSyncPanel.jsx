@@ -26,7 +26,10 @@ const lastActivity=sync=>[
 export default function GitHubSyncPanel({sync,framed=true}){
  const [token,setToken]=useState('');const [submitting,setSubmitting]=useState(false);
  const [formOpened,setFormOpened]=useState(false);
- const status=useRef(null);const submitted=useRef(false);const stepsTitle=useId();
+ const status=useRef(null);const submitted=useRef(false);const cleared=useRef(false);const tokenField=useRef(null);
+ // The button that removed the key has gone, so focus goes to the field that can take a new one.
+ useEffect(()=>{if(cleared.current&&!sync.hasToken){cleared.current=false;tokenField.current?.focus()}},[sync.hasToken]);
+const stepsTitle=useId();
  // A successful connect replaces the form, and the focused button with it; the status takes focus.
  useEffect(()=>{if(sync.hasToken&&submitted.current){submitted.current=false;status.current?.focus()}},[sync.hasToken]);
  const submit=async event=>{event.preventDefault();setSubmitting(true);submitted.current=true;try{await sync.saveToken(token);setToken('')}catch{submitted.current=false}finally{setSubmitting(false)}};
@@ -47,7 +50,7 @@ export default function GitHubSyncPanel({sync,framed=true}){
   {sync.recovery&&<SyncRecoveryAlert sync={sync} onRemoved={()=>status.current?.focus()}/>}
   <Text c="dimmed" className="sync-intro">Favoriler, kitaplık, okuma durumları, sıra, tarihler, ilerleme ve notlar herkese açık kitaps-state deposunda ve onun GitHub geçmişinde görünür. Bir cihazdaki değişiklik ancak o cihaz bağlıysa diğer cihazlara ulaşır. Bağlı cihaz değişiklikleri sayfadan ayrılırken ya da ilk değişiklikten 30 saniye sonra tek güncellemeyle gönderir. Açık sayfa ortak kaydı 30 saniyede bir yeniden okur.</Text>
   {sync.hasToken
-   ?<div className="sync-actions"><Button variant="light" leftSection={<IconRefresh size={18}/>} onClick={()=>void sync.flush().catch(()=>undefined)}>Şimdi gönder</Button><Button variant="default" onClick={()=>void sync.load()}>GitHub’dan yenile</Button><Button variant="subtle" className="sync-danger" onClick={sync.clearToken}>Anahtarı kaldır</Button></div>
+   ?<div className="sync-actions"><Button variant="light" leftSection={<IconRefresh size={18}/>} onClick={()=>void sync.flush().catch(()=>undefined)}>Şimdi gönder</Button><Button variant="default" onClick={()=>void sync.load()}>GitHub’dan yenile</Button><Button variant="subtle" className="sync-danger" onClick={()=>{cleared.current=true;sync.clearToken()}}>Anahtarı kaldır</Button></div>
    :<>
     <div className="sync-actions"><Button type="button" variant="default" leftSection={<IconRefresh size={18}/>} onClick={()=>void sync.load()}>GitHub’dan yenile</Button></div>
     <form onSubmit={submit} className="sync-connect">
@@ -55,7 +58,7 @@ export default function GitHubSyncPanel({sync,framed=true}){
      <Stepper role="list" aria-labelledby={stepsTitle} aria-busy={submitting||undefined} className="sync-steps" orientation="vertical" size="sm" iconSize={32} active={activeStep}>
       {steps.map((step,index)=><Stepper.Step key={step.label} component="div" role="listitem" aria-current={index===activeStep?'step':undefined} label={step.label} description={step.description} loading={submitting&&index===activeStep}/>)}
      </Stepper>
-     <PasswordInput className="sync-token-field" label="İnce ayarlı (fine-grained) GitHub anahtarı" description="github_pat_ ile başlar. Klasik ve OAuth anahtarları kabul edilmez. Anahtar kaydedilmeden önce GitHub ile okuma ve yazma izni denetlenir." value={token} onChange={event=>setToken(event.currentTarget.value)} autoComplete="off" required/>
+     <PasswordInput ref={tokenField} className="sync-token-field" label="İnce ayarlı (fine-grained) GitHub anahtarı" description="github_pat_ ile başlar. Klasik ve OAuth anahtarları kabul edilmez. Anahtar kaydedilmeden önce GitHub ile okuma ve yazma izni denetlenir." value={token} onChange={event=>setToken(event.currentTarget.value)} autoComplete="off" required/>
      <Button className="sync-submit" type="submit" loading={submitting} disabled={!token.trim()}>Bu cihazda bağla</Button>
      <Text c="dimmed" className="sync-storage-note">Anahtar bu tarayıcıda saklanır. {SITE_HOST} altındaki diğer sayfalar aynı tarayıcı alanını paylaştığı için yalnız bu depoya yetkili, süreli bir anahtar kullan.</Text>
     </form>

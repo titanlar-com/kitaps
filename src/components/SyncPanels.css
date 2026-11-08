@@ -18,7 +18,7 @@
 
 /* An action that deletes: in the danger tone, drawn from the wood scheme. */
 .sync-danger.mantine-Button-root{color:var(--bad)}
-.sync-danger.mantine-Button-root:hover{background:color-mix(in srgb,var(--bad) 14%,transparent)}
+@media (hover:hover){.sync-danger.mantine-Button-root:hover{background:color-mix(in srgb,var(--bad) 14%,transparent)}}
 .sync-danger-solid.mantine-Button-root{background:var(--bad);color:var(--paper)}
 .sync-danger-solid.mantine-Button-root:hover{background:color-mix(in srgb,var(--bad) 86%,var(--ink))}
 

@@ -35,4 +35,4 @@ export function collectionCards({ collections, books, states = {}, groups = {}, 
 }
 
 /** A share as a Turkish percentage. One under one percent keeps a decimal, so a read book never shows as %0. */
-export const sharePercent = share => new Intl.NumberFormat('tr-TR', { style: 'percent', maximumFractionDigits: share > 0 && share < 0.01 ? 1 : 0 }).format(share);
+export const sharePercent = share => new Intl.NumberFormat('tr-TR', { style: 'percent', maximumFractionDigits: share > 0 && share < 0.01 ? 1 : 0 }).format(share < 1 ? Math.min(share, 0.99) : share);

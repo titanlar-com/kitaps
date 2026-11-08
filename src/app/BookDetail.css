@@ -13,3 +13,8 @@
 .reading-journey-progress{display:grid;gap:var(--gap-xs)}
 .reading-journey-progress .tabular-nums{font-weight:650}
 .reading-journey-day{color:var(--muted)}
+/* A folded note: the control follows the text, so it never lies over the source line. */
+.detail-note.mantine-Spoiler-root{display:flex;flex-direction:column}
+.detail-note.mantine-Spoiler-root[data-has-spoiler]{margin-bottom:0}
+.detail-note .mantine-Spoiler-control{position:relative;inset:auto;order:1;display:inline-flex;align-items:center;align-self:flex-start;height:auto;max-width:100%}
+.reading-journey .mantine-Timeline-itemBullet[data-active]{color:var(--accent-ink)}

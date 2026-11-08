@@ -15,7 +15,7 @@
 
 .collections-accordion .mantine-Accordion-item { border: 0; background: transparent; }
 .collections-accordion .mantine-Accordion-control { padding: 14px 16px; transition: background-color var(--motion-control) var(--motion-ease); }
-.collections-accordion .mantine-Accordion-control:hover { background: var(--surface-2); }
+@media (hover:hover) { .collections-accordion .mantine-Accordion-control:hover { background: var(--surface-2); } }
 .collections-accordion .mantine-Accordion-label { padding: 0; }
 /* The mark sits beside the title while that leaves the title at least 8em; with larger text
    it moves above the title, so a word that fits the line is not broken. */

@@ -37,10 +37,13 @@
 .route-draft-tools .mantine-Button-root{min-height:var(--touch-target);height:auto;max-width:100%;padding-block:.5rem}
 .route-draft-tools .mantine-Button-label{white-space:normal;text-align:start}
 .route-draft-fields{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--stack-gap)}
-.route-status:empty{display:none}
+.route-status:empty{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .route-status[data-kind="error"]{color:var(--bad)}
 
 .route-saved-list{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap)}
 @media (min-width:48em){.route-saved-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .route-saved.mantine-Card-root{gap:var(--gap-xs)}
 .route-saved-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--gap-xs) var(--stack-gap)}
+.route-delete.mantine-ActionIcon-root,.route-delete.mantine-Button-root{color:var(--bad)}
+.route-delete-ask{display:flex;flex-wrap:wrap;align-items:center;gap:var(--gap-xs);flex-basis:100%}
+#saved-routes{scroll-margin-top:96px}
