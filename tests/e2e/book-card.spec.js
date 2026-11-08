@@ -37,6 +37,15 @@ test('a mouse over a cover previews why to read the book, and the preview cannot
   expect(Math.min(...sizes)).toBeGreaterThanOrEqual(14);
 });
 
+test('a narrow window has no preview, so it cannot widen the page', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'A touch screen has no hover.');
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('./');
+  await page.locator('.book-card .book-visual').first().hover();
+  await page.locator('.book-card .book-visual').first().evaluate(element => new Promise(resolve => element.addEventListener('animationend', resolve, { once: true }) || requestAnimationFrame(resolve)));
+  await expect(page.locator('.book-preview')).toHaveCount(0);
+});
+
 test('a card opens from the keyboard without any preview', async ({ page, browserName }) => {
   await page.goto('./');
   const title = page.locator('.book-card .title-button').first();

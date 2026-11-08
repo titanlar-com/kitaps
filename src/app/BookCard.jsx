@@ -35,14 +35,15 @@ function BookPreview({book}) {
   </DataList>}
  </>;
 }
-const HOVER_QUERY='(hover: hover) and (pointer: fine)';
+// A preview needs a mouse and room beside the card.
+const HOVER_QUERY='(hover: hover) and (pointer: fine) and (min-width: 48em)';
 export function BookCard({book:b,ranking,states,onOpen,onToggle,queue,onAdd,onQueue}) {
  const marks=states[b.id]||[],saved=marks.includes('onemli'),owned=marks.includes('alindi');
  const reading=marks.filter(s=>!['onemli','alindi','okundu'].includes(s)),publisher=cardPublisher(b),title=displayTitle(b);
  const canHover=useMediaQuery(HOVER_QUERY,false,{getInitialValueInEffect:false});
  const visual=<div className="book-visual"><BookCover book={b} onOpen={onOpen} read={marks.includes('okundu')}/><div className="cover-marks"><ReadingPriorityBadge ranking={ranking}/><StateRibbons marks={marks}/></div></div>;
  return <Card component="article" padding={0} className="book-card" data-book-id={b.id} onClick={e=>{if(!(e.target instanceof Element&&e.target.closest('button,a,input,select,textarea,[role="button"]')))onOpen(b.id)}}>
-  {canHover?<HoverCard position="right-start" width="18rem" withRoles={false}><HoverCard.Target>{visual}</HoverCard.Target><HoverCard.Dropdown className="book-preview"><BookPreview book={b}/></HoverCard.Dropdown></HoverCard>:visual}
+  {canHover?<HoverCard position="right-start" width="min(18rem, calc(100vw - 2rem))" withRoles={false}><HoverCard.Target>{visual}</HoverCard.Target><HoverCard.Dropdown className="book-preview"><BookPreview book={b}/></HoverCard.Dropdown></HoverCard>:visual}
   <div className="book-card-body">
    <Title order={3}><button className="title-button" onClick={()=>onOpen(b.id)}>{title}</button></Title>
    <StateSummary marks={marks}/>
