@@ -55,6 +55,21 @@ test('a book not started shows no empty progress block', async ({ page }) => {
   await expect(page.locator('.reading-journey')).toHaveCount(0);
 });
 
+test('the purchase notice leaves the buttons next to the one just pressed free, on a phone too', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, baseURL: test.info().project.use.baseURL });
+  await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.fulfill({ json: EMPTY }));
+  await context.route('https://api.github.com/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
+  const page = await context.newPage();
+  await page.goto(BOOK);
+  await page.getByRole('button', { name: 'Satın alındı', exact: true }).click();
+  await expect(page.locator('.library-toast')).toBeVisible();
+  await expect(page.locator('.library-toast')).toHaveCSS('opacity', '1');
+  const next = page.locator('.detail-actions').getByRole('button', { name: 'Sırama ekle' });
+  const covered = await next.evaluate(button => { const box = button.getBoundingClientRect(); const top = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2); return !button.contains(top); });
+  expect(covered).toBe(false);
+  await context.close();
+});
+
 for (const width of [320, 390, 1280]) {
   test(`at ${width} px the book page stays inside the sheet with readable text`, async ({ context, page }) => {
     await seeded(context, { 'goodtogreat': { startedAt: '2026-01-02', finishedAt: '', page: 75, totalPages: 300, why: '', apply: '' } });

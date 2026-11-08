@@ -25,3 +25,5 @@
  .library-toast .library-toast-close{order:2;margin:0 0 0 auto}
  .library-toast .library-toast-message{order:3;flex:1 0 100%}
 }
+/* On the book page the notice sits under the sheet's header, clear of the marks next to the one just pressed. */
+.detail-drawer .library-toast.mantine-Notification-root{top:calc(var(--sheet-header,60px) + var(--gap-xs));bottom:auto}

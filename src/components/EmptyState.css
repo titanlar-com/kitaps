@@ -12,7 +12,8 @@
  background: var(--surface-2);
 }
 .desk-empty-shelf > span:nth-child(2) { background: var(--surface-3); box-shadow: var(--cover-shadow); }
-.desk-empty-icon.mantine-ThemeIcon-root { color: var(--accent); }
+/* Drawn for the eye only: it keeps its size when the reader enlarges the text, as the frames do. */
+.desk-empty-icon.mantine-ThemeIcon-root { width: 36px; min-width: 36px; height: 36px; min-height: 36px; color: var(--accent); }
 .desk-empty-title { max-width: 32ch; font-size: var(--text-xl); letter-spacing: var(--heading-tracking); }
 .desk-empty-text { max-width: 46ch; text-wrap: balance; }
 .desk-empty-action { display: grid; max-width: 100%; margin-top: var(--gap-xs); }

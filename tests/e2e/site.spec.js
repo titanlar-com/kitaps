@@ -218,10 +218,10 @@ test('the catalog reflows at 320 px with 200% text', async ({ browser }) => {
   expect(await perPage.evaluate(element => element.scrollWidth <= element.clientWidth), await perPage.inputValue()).toBe(true);
   // A search without results keeps its button on the screen too.
   await page.goto('./?q=zzzz');
-  await expect(page.locator('.empty-state')).toBeVisible();
+  await expect(page.locator('.desk-empty')).toBeVisible();
   await page.addStyleTag({ content: LARGE_TEXT });
   expect(await pageFits(page), 'horizontal overflow without results').toBe(true);
-  expect(await spilling(page.locator('.empty-state'))).toEqual([]);
+  expect(await spilling(page.locator('.desk-empty'))).toEqual([]);
   await context.close();
 });
 
