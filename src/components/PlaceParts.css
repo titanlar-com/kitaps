@@ -1,0 +1,51 @@
+/* The parts shared by the bookstores, routes and fairs screens (PlaceParts.jsx). Colour comes
+   from the wood tokens only, and each layer is one step lighter than the one it sits on. */
+
+/* A panel: one layer above the floor, set apart by tone and space, without a frame. */
+.place-card.mantine-Card-root{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:var(--stack-gap);min-width:0;overflow:visible;background:var(--panel);color:var(--ink)}
+
+/* Numbers and dates line up in columns on every one of these screens. */
+.place-card,.place-table-scroll{font-variant-numeric:tabular-nums}
+
+/* A status: a tint of its tone, with the tone as its text. Every tone meets AA on its own tint. */
+.place-badge.mantine-Badge-root{--place-tone:var(--ink-2);flex:0 1 auto;max-width:100%;background:color-mix(in srgb,var(--place-tone) 16%,var(--panel));color:var(--place-tone);font-variant-numeric:tabular-nums}
+.place-badge[data-tone="ok"]{--place-tone:var(--ok)}
+.place-badge[data-tone="accent"]{--place-tone:var(--accent-strong)}
+.place-badge[data-tone="neutral"]{--place-tone:var(--ink-2)}
+.place-badge[data-tone="muted"]{--place-tone:var(--muted)}
+
+/* A timeline of stops. The bullets are small squares, the line is quiet, and Mantine's gap gives
+   way to the page's rhythm. The number is drawn here so the list item's text stays the name. */
+.stop-timeline{--timeline-gap:var(--stack-gap);margin:0;list-style:none;counter-reset:stop}
+.stop-timeline .mantine-Timeline-item{--item-border-color:var(--line-strong);margin:0;counter-increment:stop}
+.stop-timeline .mantine-Timeline-item:not(:first-of-type){margin-top:var(--timeline-gap)}
+.stop-timeline .mantine-Timeline-item::before{bottom:calc(var(--timeline-gap) * -1)}
+.stop-timeline .mantine-Timeline-itemBullet{border-color:var(--line-strong);background:var(--surface-3);color:var(--ink);font-variant-numeric:tabular-nums}
+.stop-timeline .mantine-Timeline-itemBullet::before{content:counter(stop);font-size:var(--text-sm);font-weight:650;line-height:1}
+.stop-timeline .mantine-Timeline-itemBullet[data-active]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+
+/* Facts: label and value side by side while the panel has room, stacked when it has not. */
+.place-card{container:place-card/inline-size}
+.place-facts.mantine-DataList-root{gap:var(--gap-xs)}
+.place-facts .mantine-DataList-item{gap:2px var(--stack-gap)}
+.place-facts .mantine-DataList-itemLabel{--data-list-label-width:6em;flex:none;color:var(--muted);font-weight:600}
+.place-facts .mantine-DataList-itemValue{min-width:0;overflow-wrap:break-word}
+@container place-card (width < 22em){
+ .place-facts .mantine-DataList-item{flex-direction:column}
+ .place-facts .mantine-DataList-itemLabel{min-width:0}
+}
+
+/* A folded note. Mantine hangs its control below the fold at a fixed height, which enlarged text
+   would overrun; here the control takes its own place in the column. */
+.place-note.mantine-Spoiler-root{display:flex;flex-direction:column}
+.place-note.mantine-Spoiler-root[data-has-spoiler]{margin-bottom:0}
+.place-note .mantine-Spoiler-content>div{display:grid;gap:var(--gap-xs)}
+.place-note .mantine-Spoiler-control{position:relative;inset:auto;order:1;display:inline-flex;align-items:center;align-self:flex-start;height:auto;min-height:var(--touch-target);max-width:100%;color:var(--accent);font-size:var(--text-md);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+
+/* A table that scrolls inside its own box. The page never moves sideways. */
+.place-table-scroll{border-radius:var(--radius-lg);background:var(--panel)}
+.place-table-scroll .mantine-ScrollArea-thumb{background:var(--control-line)}
+html[data-focus-mode="keyboard"] .place-table-scroll .mantine-ScrollArea-viewport:focus-visible::after{content:none}
+/* The box is wider than the screen, so its keyboard bar runs along its top and stays there while it scrolls. */
+html[data-focus-mode="keyboard"] .place-table-scroll .mantine-ScrollArea-viewport:focus-visible::before{content:"";position:sticky;top:0;inset-inline-start:0;z-index:3;display:block;height:var(--focus-bar);margin-bottom:calc(-1 * var(--focus-bar));background:var(--focus);pointer-events:none}
+@media (forced-colors:active){html[data-focus-mode="keyboard"] .place-table-scroll .mantine-ScrollArea-viewport:focus-visible::before{display:none}}

@@ -1,51 +1,55 @@
 import React, { useMemo, useState } from 'react';
-import { Badge, Button, SegmentedControl, Text, Title } from '@mantine/core';
+import { Button, Indicator, SegmentedControl, Text, Timeline, Title } from '@mantine/core';
 import { IconCalendarPlus } from '@tabler/icons-react';
 import data from '../../data/book-fairs.json';
-import { fairCalendar, fairsFrom, formatRange, groupByMonth, todayInIstanbul } from '../fairs';
+import { fairTimeline, todayInIstanbul } from '../core/places/fairs.js';
+import { fairCalendar } from '../fairs';
 import { download } from '../download';
+import { FactList, LongNote, PlaceBadge, PlaceCard } from './PlaceParts';
 import './BookFairsPage.css';
 import { longDay } from '../dates.js';
 
 // The book fair calendar (data/book-fairs.json). Finished fairs leave the list by themselves;
 // a date only counts as announced when the organiser or the fair's own site gives it.
-const STATUS = {
- confirmed: { label: 'Resmî kaynakta var', color: 'teal' },
- listed: { label: 'Fuar listesinde var', color: 'gray' },
- expected: { label: 'Tarih bekleniyor', color: 'brand' },
-};
 const SCOPES = [{ value: 'all', label: 'Tümü' }, { value: 'tr', label: 'Türkiye' }, { value: 'world', label: 'Yurt dışı' }];
-const inScope = scope => fair => scope === 'all' || (scope === 'tr') === (fair.country === 'Türkiye');
 const opens = { target: '_blank', rel: 'noopener noreferrer' };
+const SECTION = { component: 'section' };
+const CURRENT_MONTH = { label: 'Bu ay', tone: 'accent' };
 
-function Fair({ fair, open = false }) {
- const status = STATUS[fair.status];
- const place = [fair.venue, fair.city, fair.country !== 'Türkiye' && fair.country].filter(Boolean).join(', ');
+/** How near a fair is, beside a small square that catches the eye. */
+function Countdown({ countdown }) {
+ return <Indicator className="fair-countdown" data-kind={countdown.kind} inline position="middle-start" radius="xs" size={10} zIndex={0}>
+  <span className="fair-countdown-text">{countdown.text}</span>
+ </Indicator>;
+}
+
+function Fair({ fair }) {
  const calendar = () => download(`${fair.id}.ics`, fairCalendar(fair), 'text/calendar');
- return <article id={`fair-${fair.id}`} className="book-fair" data-open={open || undefined}>
-  <Text className="book-fair-date">{formatRange(fair.start, fair.end)}</Text>
-  <div className="book-fair-head">
-   <Title order={3}>{fair.name}</Title>
-   {open && <Badge color="teal">Şu an açık</Badge>}
-   {status && <Badge color={status.color}>{status.label}</Badge>}
+ return <PlaceCard component="article" id={`fair-${fair.id}`} className="book-fair">
+  <div className="book-fair-when">
+   <Text className="book-fair-date">{fair.when}</Text>
+   {fair.countdown && <Countdown countdown={fair.countdown} />}
   </div>
-  {place && <Text className="book-fair-place">{place}</Text>}
-  {fair.organizer && <Text className="book-fair-place">Düzenleyen: {fair.organizer}</Text>}
-  {fair.note && <Text>{fair.note}</Text>}
-  <div className="book-fair-actions">
-   {fair.start && <Button variant="default" leftSection={<IconCalendarPlus size={18} />} onClick={calendar}>Takvime ekle</Button>}
-  </div>
+  <Title order={3}>{fair.name}</Title>
+  <div className="book-fair-badges"><PlaceBadge badge={fair.badge} /></div>
+  <FactList facts={[{ label: 'Yer', value: fair.place }, { label: 'Düzenleyen', value: fair.organizer }]} />
+  {fair.note && <LongNote title={fair.name}><Text>{fair.note}</Text></LongNote>}
+  {fair.start && <div className="book-fair-actions">
+   <Button variant="default" leftSection={<IconCalendarPlus size={18} aria-hidden="true" />} onClick={calendar}>Takvime ekle</Button>
+  </div>}
   {fair.sources?.length > 0 && <Text className="book-fair-sources">Kaynak: {fair.sources.map((source, index) => <React.Fragment key={source.url}>
    {index > 0 && ', '}<a href={source.url} {...opens}>{source.label}<span className="visually-hidden"> (yeni sekmede açılır)</span></a>
   </React.Fragment>)}</Text>}
- </article>;
+ </PlaceCard>;
 }
+
+const FairList = ({ fairs }) => <div className="book-fair-list">{fairs.map(fair => <Fair key={fair.id} fair={fair} />)}</div>;
 
 export default function BookFairsPage() {
  const [scope, setScope] = useState('all');
  const today = todayInIstanbul();
- const { open, coming, undated } = useMemo(() => fairsFrom(data.fairs.filter(inScope(scope)), today), [scope, today]);
- const months = groupByMonth(coming);
+ const { open, months, undated } = useMemo(() => fairTimeline(data.fairs, scope, today), [scope, today]);
+ const hasTimeline = open.length > 0 || months.length > 0;
  return <div className="book-fairs-page">
   <header className="book-fairs-intro">
    <Title order={1}>Kitap fuarları</Title>
@@ -54,22 +58,25 @@ export default function BookFairsPage() {
   </header>
   <SegmentedControl className="book-fairs-scope" value={scope} onChange={value => setScope(String(value))} data={SCOPES} aria-label="Hangi fuarlar gösterilsin?" />
 
-  {open.length > 0 && <section aria-labelledby="fairs-open" className="book-fairs-section">
-   <Title order={2} id="fairs-open">Şu an açık</Title>
-   <div className="book-fair-list">{open.map(fair => <Fair key={fair.id} fair={fair} open />)}</div>
-  </section>}
-
-  {months.map(month => <section key={month.key} aria-labelledby={`fairs-${month.key}`} className="book-fairs-section">
-   <Title order={2} id={`fairs-${month.key}`}>{month.label}</Title>
-   <div className="book-fair-list">{month.fairs.map(fair => <Fair key={fair.id} fair={fair} />)}</div>
-  </section>)}
-
-  {!open.length && !months.length && <Text>Bu seçimde yaklaşan fuar yok.</Text>}
+  {hasTimeline ? <Timeline className="fair-timeline" active={open.length ? 0 : -1} bulletSize={18}>
+   {open.length > 0 && <Timeline.Item key="open" {...SECTION} aria-labelledby="fairs-open">
+    <Title order={2} id="fairs-open">Şu an açık</Title>
+    <FairList fairs={open} />
+   </Timeline.Item>}
+   {months.map(month => <Timeline.Item key={month.key} {...SECTION} aria-labelledby={`fairs-${month.key}`}>
+    <div className="fair-month-head">
+     <Title order={2} id={`fairs-${month.key}`}>{month.label}</Title>
+     <Text className="fair-month-count">{month.countLabel}</Text>
+     {month.current && <PlaceBadge badge={CURRENT_MONTH} />}
+    </div>
+    <FairList fairs={month.fairs} />
+   </Timeline.Item>)}
+  </Timeline> : <Text>Bu seçimde yaklaşan fuar yok.</Text>}
 
   {undated.length > 0 && <section aria-labelledby="fairs-undated" className="book-fairs-section">
    <Title order={2} id="fairs-undated">Tarihi henüz açıklanmayanlar</Title>
    <Text>Bu fuarlar her yıl düzenleniyor, ama bu yılın tarihleri henüz duyurulmadı.</Text>
-   <div className="book-fair-list">{undated.map(fair => <Fair key={fair.id} fair={fair} />)}</div>
+   <FairList fairs={undated} />
   </section>}
 
   {data.notes?.length > 0 && <section aria-labelledby="fairs-notes" className="book-fairs-section">

@@ -1,19 +1,39 @@
-/* Book fair calendar (BookFairsPage.jsx): one panel per fair, grouped by the month it starts in. */
-.book-fairs-page{display:grid;gap:var(--section-gap);padding-block:8px var(--section-gap)}
-.book-fairs-page h1{margin:0;font-size:clamp(1.75rem,1.4rem + 1.4vw,2.25rem);line-height:1.15;letter-spacing:-.02em}
-.book-fairs-page h2{margin:0;font-size:1.5rem;line-height:1.25}
+/* Book fair calendar (BookFairsPage.jsx): a timeline with one stop for each month, and one panel
+   for each fair, a step lighter than the floor. */
+.book-fairs-page{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--section-gap);padding-block:8px var(--section-gap);font-variant-numeric:tabular-nums}
+.book-fairs-page h1{margin:0;font-size:clamp(1.75rem,1.4rem + 1.4vw,2.25rem);line-height:1.15;letter-spacing:var(--display-tracking)}
+.book-fairs-page h2{margin:0;font-size:1.5rem;line-height:1.25;letter-spacing:var(--heading-tracking)}
 .book-fairs-page h3{margin:0;font-size:1.1875rem;line-height:1.3}
-.book-fairs-intro,.book-fairs-section{display:grid;align-content:start;gap:var(--stack-gap)}
-.book-fairs-intro{max-width:70ch}
-.book-fairs-updated,.book-fair-place,.book-fair-sources{color:var(--muted)}
-.book-fairs-scope{justify-self:start;max-width:100%}
+.book-fairs-intro,.book-fairs-section{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:var(--stack-gap)}
+.book-fairs-intro,.book-fairs-section>.mantine-Text-root{max-width:70ch}
+.book-fairs-updated,.book-fair-sources,.fair-month-count{color:var(--muted)}
+/* With enlarged text a choice that does not fit moves to the next row instead of being cut off. */
+.book-fairs-scope.mantine-SegmentedControl-root{justify-self:start;flex-wrap:wrap;max-width:100%}
 .book-fairs-page ul{margin:0;padding-inline-start:1.25em}
+.book-fairs-page :is(p,li,dd) a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+
+/* One stop for each month. The line is quiet; the square of a month that is open now is filled. */
+.fair-timeline{--timeline-gap:var(--section-gap)}
+.fair-timeline .mantine-Timeline-item{--item-border-color:var(--line-strong);margin:0}
+.fair-timeline .mantine-Timeline-item:not(:first-of-type){margin-top:var(--timeline-gap)}
+.fair-timeline .mantine-Timeline-item::before{bottom:calc(var(--timeline-gap) * -1)}
+.fair-timeline .mantine-Timeline-itemBullet{border-color:var(--line-strong);background:var(--surface-3)}
+.fair-timeline .mantine-Timeline-itemBullet[data-active]{border-color:var(--accent);background:var(--accent)}
+.fair-timeline .mantine-Timeline-itemContent{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--stack-gap)}
+.fair-month-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--gap-xs) var(--stack-gap)}
+
 .book-fair-list{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap)}
-@media (min-width:48em){.book-fair-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.book-fair{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:8px;padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
+@media (min-width:56em){.book-fair-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.book-fair-when{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px var(--stack-gap)}
 .book-fair-date{color:var(--accent-strong);font-weight:600}
-.book-fair-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.book-fair-actions{display:flex;flex-wrap:wrap;gap:8px}
+.book-fair-badges{display:flex;flex-wrap:wrap;gap:var(--gap-xs)}
+
+/* The small square sits half outside its box, so the box leaves room for it. */
+.fair-countdown.mantine-Indicator-root{margin-inline-start:5px}
+.fair-countdown-text{display:block;padding-inline-start:12px;color:var(--ink-2);font-weight:600}
+.fair-countdown .mantine-Indicator-indicator,.fair-countdown .mantine-Indicator-indicator::before{background:var(--accent)}
+.fair-countdown[data-kind="open"] .mantine-Indicator-indicator,.fair-countdown[data-kind="open"] .mantine-Indicator-indicator::before{background:var(--ok)}
+
+.book-fair-actions{display:flex;flex-wrap:wrap;gap:var(--gap-xs)}
 .book-fair-actions .mantine-Button-root{min-height:var(--touch-target);height:auto;max-width:100%;padding-block:.5rem}
 .book-fair-actions .mantine-Button-label{white-space:normal}
-.book-fairs-page :is(p,li) a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}

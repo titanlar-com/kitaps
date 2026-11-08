@@ -1,21 +1,46 @@
 /* Route planner (RoutePlanner.jsx), on the Kitapçılar page. */
-.route-planner{display:grid;align-content:start;gap:var(--stack-gap)}
+.route-planner{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:var(--stack-gap)}
 .route-planner>.mantine-Text-root{max-width:70ch}
-.route-draft{display:grid;gap:var(--stack-gap);padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
-.route-draft-stops{display:grid;gap:4px;margin:0;padding-inline-start:1.5em}
-.route-draft-stops li{margin:0}
-.route-draft-name{display:inline-block;min-width:0;margin-inline-end:8px;overflow-wrap:break-word}
-.route-draft-moves{display:inline-flex;gap:2px}
+.route-draft.mantine-Card-root{container:route-draft/inline-size;gap:var(--card-gap)}
+.route-draft-parts{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap) var(--section-gap)}
+@media (min-width:56em){.route-draft-parts{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}}
+.route-draft-part{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:var(--stack-gap)}
+
+/* The three steps only say where the draft stands. Each state differs by its fill and its mark,
+   not by colour alone, and the squares grow with the text. */
+.route-steps{max-width:28rem}
+.route-steps .mantine-Stepper-separator{margin-inline:var(--gap-xs);background:var(--line-strong)}
+.route-steps .mantine-Stepper-separator[data-active]{background:var(--accent)}
+.route-steps .mantine-Stepper-stepIcon{border-color:var(--line-strong);background:var(--surface-3);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.route-steps .mantine-Stepper-stepIcon[data-progress]{border-color:var(--accent-border);background:var(--accent-soft);color:var(--accent-strong)}
+.route-steps .mantine-Stepper-stepIcon[data-completed]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.route-steps .mantine-Stepper-stepCompletedIcon{color:var(--accent-ink)}
+.route-steps .mantine-Stepper-stepLabel{color:var(--ink);font-size:var(--text-md);line-height:1.3}
+/* When enlarged text leaves no room for the row, the steps stand one under the other. */
+@container route-draft (width < 13em){
+ .route-steps .mantine-Stepper-steps{flex-direction:column;align-items:flex-start;gap:var(--gap-xs)}
+ .route-steps .mantine-Stepper-separator{display:none}
+ .route-steps .mantine-Stepper-step{flex-direction:row;align-items:center;max-width:100%}
+ .route-steps .mantine-Stepper-stepBody{align-items:flex-start;margin:0 0 0 var(--gap-xs);text-align:start}
+}
+
+/* The stops of a draft: the name beside its two move buttons. */
+.route-draft-stop{display:flex;align-items:center;justify-content:space-between;gap:var(--gap-xs);min-height:var(--touch-target)}
+.route-draft-name{flex:1 1 auto;min-width:0;overflow-wrap:break-word}
+.route-draft-moves{display:inline-flex;flex:none;gap:2px}
+/* The first stop cannot move up and the last cannot move down: the arrow fades and draws no box. */
+.route-draft-moves .mantine-ActionIcon-root:disabled{background:transparent;color:var(--muted);opacity:.55}
+.route-draft-stops{--timeline-gap:2px}
+.route-draft-stops .mantine-Timeline-itemBullet{top:calc((var(--touch-target) - var(--tl-bullet-size)) / 2)}
 .route-draft-length,.route-saved-date{color:var(--muted)}
-.route-draft-tools{display:flex;flex-wrap:wrap;gap:8px}
+.route-draft-tools{display:flex;flex-wrap:wrap;gap:var(--gap-xs)}
 .route-draft-tools .mantine-Button-root{min-height:var(--touch-target);height:auto;max-width:100%;padding-block:.5rem}
 .route-draft-tools .mantine-Button-label{white-space:normal;text-align:start}
 .route-draft-fields{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--stack-gap)}
-@media (min-width:40em){.route-draft-fields{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}}
 .route-status:empty{display:none}
 .route-status[data-kind="error"]{color:var(--bad)}
+
 .route-saved-list{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap)}
 @media (min-width:48em){.route-saved-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.route-saved{display:grid;align-content:start;gap:8px;padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
-.route-saved ol{margin:0;padding-inline-start:1.25em}
-.route-saved-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.route-saved.mantine-Card-root{gap:var(--gap-xs)}
+.route-saved-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--gap-xs) var(--stack-gap)}

@@ -1,46 +1,48 @@
-/* Bookstores page (BookstoresPage.jsx). Entries are panels set apart by surface tone and space,
-   without frames. */
-.bookstores-page{display:grid;gap:var(--section-gap);padding-block:8px var(--section-gap)}
-.bookstores-page h1{margin:0;font-size:clamp(1.75rem,1.4rem + 1.4vw,2.25rem);line-height:1.15;letter-spacing:-.02em}
-.bookstores-page h2{margin:0;font-size:1.5rem;line-height:1.25}
+/* Bookstores page (BookstoresPage.jsx). A reading desk: the floor is the darkest layer and each
+   entry is a panel one step lighter, set apart by tone and space, without frames. */
+.bookstores-page{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--section-gap);padding-block:8px var(--section-gap);font-variant-numeric:tabular-nums}
+.bookstores-page h1{margin:0;font-size:clamp(1.75rem,1.4rem + 1.4vw,2.25rem);line-height:1.15;letter-spacing:var(--display-tracking)}
+.bookstores-page h2{margin:0;font-size:1.5rem;line-height:1.25;letter-spacing:var(--heading-tracking)}
 .bookstores-page h3{margin:0;font-size:1.1875rem;line-height:1.3}
 .bookstores-page h4{margin:0;font-size:1.0625rem;line-height:1.3}
-.bookstore-visit{display:grid;align-content:start;gap:var(--stack-gap)}
-.bookstore-visit+.bookstore-visit{margin-top:var(--card-gap)}
-.bookstores-page section,.bookstores-intro{display:grid;align-content:start;gap:var(--stack-gap)}
+.bookstores-page section,.bookstores-intro{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:var(--stack-gap)}
 .bookstores-intro,.bookstores-page section>.mantine-Text-root{max-width:70ch}
 .bookstores-updated,.bookstore-place,.bookstore-sources,.bookstore-why{color:var(--muted)}
-.bookstores-page :is(p,li,dd,h3,h4) a:not(.mantine-Button-root){color:var(--accent);text-decoration:underline;text-underline-offset:2px}
-.bookstores-page :is(ul,ol){margin:0;padding-inline-start:1.25em}
-.bookstores-page li+li{margin-top:4px}
+.bookstores-page :is(p,li,dd,td,h3,h4) a:not(.mantine-Button-root){color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.bookstores-page :is(ul,ol):not(.mantine-Timeline-root){margin:0;padding-inline-start:1.25em}
+.bookstores-page :is(ul,ol):not(.mantine-Timeline-root) li+li{margin-top:4px}
 
-.bookstore-list{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap)}
+/* Panels sit one above the other on a phone and two side by side once each has room. */
+.bookstore-visits,.bookstore-list{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap)}
 @media (min-width:48em){.bookstore-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.bookstore,.bookstore-route,.bookstore-stops>li{container:bookstore/inline-size;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:10px;min-width:0;padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
-.bookstore-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.bookstore-about{line-height:1.55}
-.bookstore-facts{display:grid;gap:8px;margin:0}
-.bookstore-facts>div{display:grid;grid-template-columns:6em minmax(0,1fr);gap:2px 12px}
-.bookstore-facts dt{color:var(--muted);font-weight:600}
-.bookstore-facts dd{margin:0;overflow-wrap:break-word}
-/* A narrow entry, or one with enlarged text, puts each label above its value. */
-@container bookstore (width < 22em){.bookstore-facts>div{grid-template-columns:minmax(0,1fr)}}
-.bookstore-label,.bookstore-topic{font-weight:600}
+@media (min-width:56em){.bookstore-visits{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bookstore-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--gap-xs)}
+.bookstore-head .mantine-Title-root{flex:1 1 var(--reflow-title-min);min-width:0}
 .bookstore-caution{color:var(--ink-2)}
-.bookstore-actions{display:flex;flex-wrap:wrap;gap:8px}
-.bookstore-actions .mantine-Button-root,.bookstore-stops .mantine-Button-root{min-height:var(--touch-target)}
-.bookstore-stops .mantine-Button-root{justify-self:start}
+.bookstore-label{font-weight:600}
+.bookstore-actions{display:flex;flex-wrap:wrap;gap:var(--gap-xs)}
+.bookstore-actions .mantine-Button-root,.bookstore-stop .mantine-Button-root{min-height:var(--touch-target)}
 /* With enlarged text a button's name moves to a second line instead of widening its panel. */
 .bookstores-page .mantine-Button-root{height:auto;max-width:100%;padding-block:.5rem}
 .bookstores-page .mantine-Button-label{white-space:normal;text-align:start}
+/* A shop that has closed sinks towards the floor: the entry stays, but it steps back. */
+.bookstore.mantine-Card-root[data-status="closed"]{background:color-mix(in srgb,var(--panel) 55%,transparent)}
 .bookstore[data-status="closed"] h3{color:var(--ink-2)}
 
-/* The route of the day: its stops in order, each with its number. */
-.bookstores-page .bookstore-stops{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap);margin:0;padding:0;list-style:none;counter-reset:stop}
-@media (min-width:56em){.bookstores-page .bookstore-stops{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.bookstores-page .bookstore-stops>li{margin:0;counter-increment:stop}
-.bookstore-stops>li::before{content:counter(stop);display:grid;place-items:center;width:36px;height:36px;border-radius:var(--radius-lg);background:var(--accent);color:var(--accent-ink);font-size:1rem;font-weight:700}
+/* A stop: its name and address, with the map beside them when there is room. */
+.bookstore-stops{--timeline-gap:var(--card-gap)}
+.bookstore-stop{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:var(--gap-xs) var(--stack-gap)}
+.bookstore-stop-text{flex:1 1 12rem;min-width:0}
+.bookstore-stop .mantine-Button-root{flex:none}
+/* The name sits level with the number on its square. */
+.bookstore-stop-text h4{min-height:1.75rem;padding-block-start:.125rem}
 
-.bookstores-page .bookstore-topics>ul{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--card-gap);padding:0;list-style:none}
-@media (min-width:48em){.bookstores-page .bookstore-topics>ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.bookstores-page .bookstore-topics>ul>li{display:grid;gap:4px;margin:0}
+/* The topics table keeps a readable width for each column and scrolls inside its box when the
+   screen is narrower. Rules between the rows are the one line that does a job here. */
+.bookstore-topic-table{min-width:46rem}
+.bookstore-topic-table :is(th,td){vertical-align:top;overflow-wrap:break-word}
+.bookstore-topic-table thead th{color:var(--muted);font-weight:600;white-space:nowrap}
+.bookstore-topic-table tbody th{font-weight:600;text-align:start}
+.bookstore-topic-table tr>:nth-child(1){width:30%;min-width:11rem}
+.bookstore-topic-table tr>:nth-child(2){width:30%;min-width:12rem}
+.bookstore-topic-table tr>:nth-child(3){min-width:16rem}
