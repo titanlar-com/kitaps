@@ -48,8 +48,9 @@
  --text-lg:1.125rem;
  --text-xl:1.25rem;
  --display-tracking:-.02em;
- /* The small gap between grouped items. */
+ /* The small gap between grouped items, and a shortcut's icon when its count sits under it on a phone. */
  --gap-xs:8px;
+ --shortcut-icon-compact:22px;
  --heading-tracking:-.01em;
  --cover-shadow:0 1px 1px rgb(20 24 29 / 10%),0 10px 22px -10px rgb(20 24 29 / 45%);
  /* Owner's rule of 8 November 2026: no corner is rounder than 5 px. A small mark 2px, a tag 3px,
@@ -365,10 +366,18 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
 .brand-link .mantine-ThemeIcon-root{width:36px;min-width:36px;height:36px;border-radius:var(--radius);background:var(--accent);color:var(--accent-ink)}
 .brand{font-family:var(--serif);font-size:1.3125rem;font-weight:650;letter-spacing:-.02em;line-height:1.1}
 .header-shortcuts{display:flex;align-items:center;gap:2px}
-.header-shortcuts .mantine-ActionIcon-root{width:auto;min-width:var(--touch-target);height:var(--touch-target);gap:var(--radius);border:0;border-radius:var(--radius);background:transparent;color:var(--ink-2)}
+.header-shortcuts .mantine-ActionIcon-root{width:auto;min-width:var(--touch-target);height:auto;min-height:var(--touch-target);border:1px solid transparent;border-radius:var(--radius);background:transparent;color:var(--ink-2)}
 /* A count is written beside its icon (review of 8 November 2026), so it grows with the text and
-   never covers the icon; the button grows with it. */
+   never covers the icon; the button grows with it. Every shortcut keeps a transparent 1 px
+   border, so the open one's border does not make it grow. On a phone the count goes under a
+   smaller icon, so the header keeps one row of shortcuts whatever the counts are. */
+.header-shortcuts .mantine-ActionIcon-icon{gap:var(--radius)}
 .header-shortcuts .mantine-ActionIcon-root:has(.shortcut-count){padding-inline:var(--gap-xs)}
+@media (max-width:35.99em){
+ .header-shortcuts .mantine-ActionIcon-root:has(.shortcut-count){padding-inline:0}
+ .header-shortcuts .mantine-ActionIcon-root:has(.shortcut-count) .mantine-ActionIcon-icon{flex-direction:column;gap:0}
+ .header-shortcuts .mantine-ActionIcon-root:has(.shortcut-count) svg{width:var(--shortcut-icon-compact);height:var(--shortcut-icon-compact)}
+}
 .shortcut-count{font-size:var(--text-sm);font-weight:650;font-variant-numeric:tabular-nums;line-height:1}
 .header-shortcuts .mantine-ActionIcon-root:hover{background:var(--surface-2);color:var(--ink)}
 .header-shortcuts .mantine-ActionIcon-root[aria-current=page]{border:1px solid var(--accent-border);background:var(--accent-soft);color:var(--accent-strong)}

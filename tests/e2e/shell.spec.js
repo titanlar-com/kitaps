@@ -145,3 +145,56 @@ test('in forced colours the section marker takes the system highlight', async ({
   expect(colours.marker).toBe(colours.highlight);
   await context.close();
 });
+
+// Review of 8 November 2026: counts must not add a header row on the narrowest phone, must not
+// make the open shortcut grow, keep a gap from their icons, and read as Turkish numbers.
+const seedStates = async (browser, states, viewport = { width: 320, height: 568 }) => {
+  const context = await browser.newContext({ viewport });
+  await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.request().url().includes('routes.json') ? route.fulfill({ status: 404, json: {} }) : route.fulfill({ json: EMPTY }));
+  await context.route('https://api.github.com/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
+  await context.addInitScript(seed => { if (!sessionStorage.getItem('seeded')) { sessionStorage.setItem('seeded', '1'); localStorage.setItem('kitapatlasi:states:v2', seed); } }, JSON.stringify(states));
+  return context;
+};
+const catalogIds = () => JSON.parse(fs.readFileSync(new URL('../../src/catalog.json', import.meta.url))).books.map(book => book.id);
+
+test('at 320 px the header is as tall with counts as without them', async ({ browser }) => {
+  const ids = catalogIds();
+  const heights = {};
+  for (const count of [0, 1, 12, 150]) {
+    const context = await seedStates(browser, Object.fromEntries(ids.slice(0, count).map(id => [id, ['onemli', 'alindi']])));
+    const page = await context.newPage();
+    await page.goto('./');
+    await expect(page.locator('.book-card').first()).toBeVisible();
+    heights[count] = Math.round((await page.locator('.site-header').boundingBox()).height);
+    await context.close();
+  }
+  expect(heights[1], 'one').toBe(heights[0]);
+  expect(heights[12], 'twelve').toBe(heights[0]);
+  expect(heights[150], 'a hundred and fifty').toBe(heights[0]);
+});
+
+test('the open shortcut keeps its size, and a count keeps a gap from its icon', async ({ browser }) => {
+  const context = await seedStates(browser, { goal: ['onemli', 'alindi'], meditations: ['onemli'] }, { width: 1280, height: 800 });
+  const page = await context.newPage();
+  await page.goto('./');
+  const favorites = page.locator('.header-favorites');
+  const before = await favorites.boundingBox();
+  const gap = await favorites.evaluate(button => button.querySelector('.shortcut-count').getBoundingClientRect().left - button.querySelector('svg').getBoundingClientRect().right);
+  expect(gap, 'the count stands apart from the icon').toBeGreaterThanOrEqual(2);
+  await favorites.click();
+  await expect(favorites).toHaveAttribute('aria-current', 'page');
+  const after = await favorites.boundingBox();
+  expect(Math.round(after.width)).toBe(Math.round(before.width));
+  await context.close();
+});
+
+test('a count reads as a Turkish number', async ({ browser }) => {
+  const ids = catalogIds();
+  const context = await seedStates(browser, Object.fromEntries(ids.map(id => [id, ['alindi']])), { width: 1280, height: 800 });
+  const page = await context.newPage();
+  await page.goto('./');
+  const shown = new Intl.NumberFormat('tr-TR').format(ids.length);
+  await expect(page.locator('.header-library .shortcut-count')).toHaveText(shown);
+  await expect(page.locator('.header-library')).toHaveAccessibleName(`Kitaplığım: ${shown} kitap`);
+  await context.close();
+});

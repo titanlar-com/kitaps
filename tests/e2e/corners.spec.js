@@ -43,7 +43,8 @@ const roundCorners = page => page.evaluate(() => {
 const PAGES = [
   ['the catalogue', './', null],
   ['a book', './?book=good-to-great-by-jim-collins', null],
-  ['a book with reading progress', './?book=meditations-by-marcus-aurelius', null],
+  // A collapsed section hides its bar (a 0 px box); the reading section is opened before the scan.
+  ['a book with reading progress', './?book=meditations-by-marcus-aurelius', page => page.getByRole('button', { name: 'Okuma kaydım ve kişisel notlarım' }).click()],
   ['the priority summary', './', page => page.getByRole('button', { name: /Okuma önceliğine göre sıralı/ }).click()],
   ['the queue', './?view=queue', null],
   ['the collections', './?view=collections', null],
@@ -53,7 +54,7 @@ const PAGES = [
   ['the filters', './', page => page.getByRole('button', { name: /^Filtreler/ }).click()],
   ['the footer menu', './', page => page.locator('.footer-dock').click()],
 ];
-for (const width of [390, 1280]) {
+for (const width of [320, 390, 1280]) {
   for (const [what, url, open] of PAGES) {
     test(`at ${width} px no corner on ${what} is rounder than 5 px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
