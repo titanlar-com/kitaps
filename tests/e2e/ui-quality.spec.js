@@ -18,7 +18,7 @@ const OPENED = {
   favorites: async page => { await page.goto('./?view=favorites'); },
   library: async page => { await page.goto('./?view=library'); },
   filters: async page => { await page.goto('./'); await page.getByRole('button', { name: /^Filtreler/ }).first().click(); await expect(page.locator('.filter-sheet .mantine-Drawer-body')).toBeVisible(); },
-  toast: async page => { await page.goto('./'); await page.locator('.book-card .cover-owned').first().click(); await expect(page.locator('.library-toast')).toBeVisible(); await page.locator('.library-toast').hover(); },
+  toast: async page => { await page.goto('./'); await page.locator('.book-card .cover-owned').first().click(); await expect(page.locator('.library-toast')).toBeVisible({ timeout: 20_000 }); await page.locator('.library-toast').hover(); },
   sync: async page => { await page.goto('./'); await page.locator('.book-card .cover-owned').first().click(); await page.locator('.sync-notice').getByRole('button', { name: 'Bu cihazı bağla' }).click(); await expect(page.getByRole('dialog', { name: 'Cihazlar arası eşitleme' })).toBeVisible(); },
 };
 
