@@ -95,6 +95,8 @@
  --card-inset:20px;
  --card-gap:16px;
  --stack-gap:12px;
+ /* The space around a band that stands between the catalogue's sections. */
+ --band-gap:20px;
  /* The footer bar's height; the page keeps this much room at its foot and when it scrolls to a control. */
  --dock-height:56px;
  --cover-mark-gap:6px;
@@ -950,7 +952,7 @@ main{padding-top:20px;padding-bottom:32px}
 
 /* ---------- Reading summary (docs/UI-REDESIGN.md, phase 3) ----------
    A quiet panel, set apart by tone and space; only rising elements cast a shadow. */
-.reading-summary{display:flex;flex-wrap:wrap;align-items:center;gap:var(--card-gap) var(--section-gap);margin-bottom:var(--stack-gap);padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
+.reading-summary{display:flex;flex-wrap:wrap;align-items:center;gap:var(--card-gap) var(--section-gap);margin-block:var(--band-gap);padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
 .reading-summary-head{display:flex;flex:1 1 18rem;flex-wrap:wrap;align-items:flex-end;gap:var(--stack-gap) var(--card-gap);min-width:0}
 .reading-summary-text{flex:1 1 12rem;min-width:0}
 .reading-summary-title{font-size:var(--text-xl);font-weight:650;letter-spacing:var(--heading-tracking)}

@@ -17,6 +17,21 @@ test.beforeEach(async ({ context }) => {
 
 const band = page => page.getByRole('region', { name: 'Okuma özetim' });
 
+// The owner, 8 November 2026: the band stood flush against the search field.
+for (const width of [768, 1024, 1280]) {
+  test(`at ${width} px the reading band keeps its distance from the search field and from what follows`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('./');
+    await expect(band(page)).toBeVisible();
+    const boxes = await page.evaluate(() => {
+      const box = selector => document.querySelector(selector).getBoundingClientRect();
+      return { search: box('.search-panel').bottom, top: box('.reading-summary').top, bottom: box('.reading-summary').bottom, next: box('.reading-route').top };
+    });
+    expect(boxes.top - boxes.search).toBeGreaterThanOrEqual(16);
+    expect(boxes.next - boxes.bottom).toBeGreaterThanOrEqual(16);
+  });
+}
+
 for (const [width, onCatalogue] of [[320, false], [390, false], [768, true], [1280, true]]) {
   test(`at ${width} px the catalogue ${onCatalogue ? 'opens with' : 'leaves out'} the reading band, and Sıram shows it`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
