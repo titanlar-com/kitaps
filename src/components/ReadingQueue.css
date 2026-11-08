@@ -1,0 +1,42 @@
+/* Sıram: a reading desk. The floor is the darkest layer; each row is a layer above it, and the
+   next book stands on a lighter one. Rows are told apart by tone and space, never by a frame. */
+.queue-desk {
+ --queue-cover: 76px;
+ --queue-cover-next: 112px;
+ display: grid; gap: var(--card-gap);
+}
+.queue-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--stack-gap) var(--card-gap); }
+.queue-count { flex: 1 1 var(--reflow-title-min); min-width: 0; color: var(--ink-2); }
+.queue-head .mantine-Button-root { height: auto; min-height: var(--touch-target); max-width: 100%; padding-block: .5rem; }
+.queue-head .mantine-Button-label { white-space: normal; }
+
+.reading-queue { display: grid; gap: var(--gap-xs); margin: 0; padding: 0; list-style: none; }
+/* The row wraps by itself: the text keeps at least --reflow-title-min beside its cover, and the
+   controls stand beside the text only where there is room for them. */
+.queue-row {
+ display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--stack-gap) var(--card-gap);
+ padding: var(--card-inset); border-radius: var(--radius-lg); background: var(--surface);
+}
+.queue-row[data-next] { background: var(--surface-2); }
+.queue-position { flex: 0 0 auto; min-width: 1em; color: var(--muted); font-size: 1.75rem; font-weight: 650; line-height: 1.1; text-align: center; }
+.queue-row[data-next] .queue-position { color: var(--accent); }
+.queue-cover { flex: 0 0 var(--queue-cover); }
+.queue-row[data-next] .queue-cover { flex-basis: var(--queue-cover-next); }
+/* A thumbnail is too small for readable text; the title is written beside it. */
+.queue-cover .cover-placeholder :is(.cover-placeholder-title, .cover-placeholder-author, .cover-placeholder-kind, .cover-placeholder-note),
+.queue-cover .cover-placeholder-author, .queue-cover .cover-placeholder-kind, .queue-cover .cover-placeholder-note { display: none; }
+.queue-body { flex: 999 1 var(--reflow-title-min); min-width: 0; }
+.queue-eyebrow { color: var(--accent); font-weight: 600; }
+.queue-title { margin: 0; font-size: var(--text-lg); line-height: 1.3; letter-spacing: var(--heading-tracking); }
+.queue-row[data-next] .queue-title { font-size: var(--text-xl); }
+.queue-marks { margin-top: var(--gap-xs); }
+.queue-progress { display: grid; gap: var(--gap-xs); max-width: 28rem; margin-top: var(--stack-gap); }
+.queue-progress-line { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 var(--stack-gap); }
+.queue-progress-share { color: var(--ink); font-weight: 650; }
+.queue-controls { display: flex; flex: 1 0 auto; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--stack-gap); max-width: 100%; }
+.queue-controls .mantine-Button-root { height: auto; min-height: var(--touch-target); max-width: 100%; padding-block: .5rem; }
+.queue-controls .mantine-Button-label { white-space: normal; }
+.queue-controls .mantine-ActionIcon-root[data-disabled] { border-color: var(--line-strong); background: transparent; color: var(--muted); }
+@media (min-width: 36em) {
+ .queue-desk { --queue-cover: 88px; --queue-cover-next: 136px; }
+}

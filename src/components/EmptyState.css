@@ -1,0 +1,20 @@
+/* An empty page on the reading desk: one raised layer on the floor, no frame. */
+.desk-empty {
+ --desk-empty-frame: 64px;
+ display: grid; justify-items: center; gap: var(--stack-gap);
+ padding: var(--section-gap) var(--card-inset);
+ border-radius: var(--radius-lg); background: var(--panel); text-align: center;
+}
+.desk-empty-shelf { display: flex; gap: var(--gap-xs); margin-bottom: var(--gap-xs); }
+.desk-empty-shelf > span {
+ display: grid; place-items: center; width: var(--desk-empty-frame); aspect-ratio: 2 / 3;
+ border-radius: var(--radius-xs) var(--radius-lg) var(--radius-lg) var(--radius-xs);
+ background: var(--surface-2);
+}
+.desk-empty-shelf > span:nth-child(2) { background: var(--surface-3); box-shadow: var(--cover-shadow); }
+.desk-empty-icon.mantine-ThemeIcon-root { color: var(--accent); }
+.desk-empty-title { max-width: 32ch; font-size: var(--text-xl); letter-spacing: var(--heading-tracking); }
+.desk-empty-text { max-width: 46ch; text-wrap: balance; }
+.desk-empty-action { display: grid; max-width: 100%; margin-top: var(--gap-xs); }
+.desk-empty-action .mantine-Button-root { height: auto; min-height: var(--touch-target); max-width: 100%; padding-block: .5rem; }
+.desk-empty-action .mantine-Button-label { white-space: normal; }

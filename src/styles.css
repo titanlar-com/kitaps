@@ -225,7 +225,7 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
    Sections are told apart by surface tone and space, not by frames (the owner's rule): these
    panels drop their border and sit on the quiet panel tone. Borders stay where they carry
    meaning: a field, a table, a selected state. */
-:is(.edition-summary,.detail-actions,.reading-priority-card,.related-card,.purpose-panel,.priority-summary,.github-sync-panel,.note-record,.queue-card,.queue-empty,.notes-panel){border-color:transparent!important;background:var(--panel)!important;box-shadow:none}
+:is(.edition-summary,.detail-actions,.reading-priority-card,.related-card,.purpose-panel,.priority-summary,.github-sync-panel,.note-record,.notes-panel){border-color:transparent!important;background:var(--panel)!important;box-shadow:none}
 .related-card:hover{background:var(--panel-hover)!important}
 
 /* ---------- The one edge system (AGENT.md) ----------
@@ -756,39 +756,7 @@ main{padding-top:20px;padding-bottom:32px}
  .detail-content .mantine-Input-wrapper{--input-padding:var(--inset-compact)}
 }
 
-/* ---------- Collections ---------- */
-.collections-accordion{display:grid;gap:10px}
-.collections-accordion .mantine-Accordion-item{box-shadow:var(--shadow-sm)}
-.collections-accordion .mantine-Accordion-control{padding:14px 16px}
-.collections-accordion .mantine-Accordion-label{padding:0}
-/* The mark sits beside the title while that leaves the title at least 8em; with larger text
-   it moves above the title, so a word that fits the line is not broken. */
-.collection-summary{flex:1 1 8em}
-.collections-accordion .mantine-Accordion-content{padding:4px 16px 18px}
-.collections-accordion .mantine-ThemeIcon-root{border-radius:var(--radius);background:var(--accent-soft);color:var(--accent-strong);font-family:var(--serif)}
-/* Button labels wrap; a word longer than its line breaks instead of widening the list past the
-   screen. The gap to the arrow keeps its default size as the text grows. */
-.collections-accordion .mantine-Button-label{white-space:normal;overflow-wrap:anywhere}
-.collections-accordion .mantine-Button-section[data-position=right]{margin-inline-start:var(--button-icon-gap)}
-/* The main button grows with its label. As a one-column grid it stretches Mantine's inner row to
-   the touch target, so a single line stays centred as before. Like the gap, its side insets keep
-   their default size (narrower by a third beside the arrow, as in Mantine). */
-.collection-books-button{display:grid;height:auto;min-height:var(--touch-target);padding-block:.5rem;padding-inline:var(--button-inset) calc(var(--button-inset) / 1.5)}
-.subset-button{height:auto;min-height:48px;padding:12px;text-align:left}
-
-/* ---------- Reading queue and record ---------- */
-.reading-queue{display:grid;gap:14px;margin:0;padding:0;list-style:none}
-.queue-empty{align-items:center;text-align:center}
-.queue-empty>svg{color:var(--accent)}
-.queue-book{display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;align-items:start}
-/* A queue thumbnail is too small for readable text; its title is written beside it. */
-.queue-cover .cover-placeholder :is(.cover-placeholder-title,.cover-placeholder-author,.cover-placeholder-kind){display:none}
-.queue-cover .cover-placeholder-author,.queue-cover .cover-placeholder-kind,.queue-cover .cover-placeholder-note{display:none}
-.queue-title{min-width:0}
-.queue-title h3{margin:0;font-size:1.25rem;line-height:1.3}
-.queue-progress{margin-top:14px}
-.queue-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
-@media (min-width:32.5em){.queue-book{grid-template-columns:96px minmax(0,1fr)}}
+/* ---------- Reading record ---------- */
 .reading-fields{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem}
 .reading-panel .mantine-Textarea-input{min-height:112px;padding:.75rem;line-height:1.6}
 .reading-panel .mantine-InputWrapper-description{margin-bottom:.5rem}

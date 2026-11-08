@@ -1,0 +1,45 @@
+/* Kümeler: each collection is one layer above the floor, with its covers as the stage. Parts inside
+   a card are told apart by space, not by frames, so there is no card inside a card. */
+.collections-grid { align-items: start; }
+/* The border is clear on purpose: forced-colours mode draws it, so a card keeps its edge there. */
+.collection-card { border: 1px solid transparent; background: var(--surface); }
+/* The covers stand side by side, each whole in its 2:3 frame. */
+.collection-covers { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap-xs); padding: var(--card-inset) var(--card-inset) var(--stack-gap); }
+.collection-covers .mantine-Avatar-root {
+ width: 100%; height: auto; min-width: 0; margin: 0; border: 0; aspect-ratio: 2 / 3;
+ border-radius: var(--radius-xs) var(--radius-lg) var(--radius-lg) var(--radius-xs);
+ background: var(--surface-2); box-shadow: var(--cover-shadow);
+}
+.collection-covers .mantine-Avatar-image { object-fit: contain; }
+.collection-covers .mantine-Avatar-placeholder { border: 0; border-radius: 0; background: var(--surface-2); color: var(--muted); }
+
+.collections-accordion .mantine-Accordion-item { border: 0; background: transparent; }
+.collections-accordion .mantine-Accordion-control { padding: 14px 16px; transition: background-color var(--motion-control) var(--motion-ease); }
+.collections-accordion .mantine-Accordion-control:hover { background: var(--surface-2); }
+.collections-accordion .mantine-Accordion-label { padding: 0; }
+/* The mark sits beside the title while that leaves the title at least 8em; with larger text
+   it moves above the title, so a word that fits the line is not broken. */
+.collection-summary { flex: 1 1 8em; }
+.collections-accordion .mantine-ThemeIcon-root { border-radius: var(--radius); background: var(--accent-soft); color: var(--accent-strong); }
+.collections-accordion .mantine-Accordion-content { padding: var(--gap-xs) 16px var(--card-inset); }
+
+.collection-read { display: grid; gap: var(--gap-xs); padding: 0 16px var(--card-inset); }
+.collection-read-line { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 var(--stack-gap); }
+.collection-read-text { flex: 1 1 var(--reflow-title-min); min-width: 0; }
+.collection-read-share { color: var(--ink); font-weight: 650; }
+
+/* Button labels wrap; a word longer than its line breaks instead of widening the list past the
+   screen. The gap to the arrow keeps its default size as the text grows. */
+.collections-accordion .mantine-Button-label { white-space: normal; overflow-wrap: anywhere; }
+.collections-accordion .mantine-Button-section[data-position=right] { margin-inline-start: var(--button-icon-gap); }
+/* The main button grows with its label. As a one-column grid it stretches Mantine's inner row to
+   the touch target, so a single line stays centred. Like the gap, its side insets keep their
+   default size (narrower by a third beside the arrow, as in Mantine). */
+.collection-books-button {
+ display: grid; height: auto; min-height: var(--touch-target); margin-top: var(--gap-xs);
+ padding-block: .5rem; padding-inline: var(--button-inset) calc(var(--button-inset) / 1.5);
+}
+.subset-button { height: auto; min-height: 48px; padding: 12px; text-align: left; }
+/* The part's name on the left, its count on the right, just before the arrow. */
+.subset-button .mantine-Button-label { flex: 1; flex-wrap: wrap; gap: 0 var(--stack-gap); justify-content: space-between; }
+.subset-count { flex: 0 0 auto; color: var(--muted); }
