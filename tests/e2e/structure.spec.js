@@ -12,7 +12,7 @@ test.beforeEach(async ({ context, browserName }) => {
   await context.route('https://api.github.com/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
 });
 
-test('the header keeps its logo link, four section tabs, the purchases switch, shortcuts and theme switch', async ({ page }) => {
+test('the header keeps its logo link, four section tabs, the purchases switch, shortcuts and colour panel', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('./');
   await expect(page.getByRole('banner')).toMatchAriaSnapshot(`
@@ -39,7 +39,7 @@ test('the header keeps its logo link, four section tabs, the purchases switch, s
         - 'button "Favoriler: 0 kitap"':
           - img
         - 'button "Kitaplığım: 0 kitap"'
-      - button "Koyu temaya geç":
+      - button "Renk düzeni":
         - img
   `);
 });

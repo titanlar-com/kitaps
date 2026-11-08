@@ -214,7 +214,7 @@ test('filled buttons keep readable text in the dark theme: the notice and an act
   await expect(active).toHaveCSS('color', 'rgb(21, 15, 8)');
   await page.keyboard.press('Escape');
   const connect = page.locator('.sync-notice').getByRole('button', { name: 'Bu cihazı bağla' });
-  await expect(connect).toHaveCSS('color', 'rgb(20, 24, 29)');
+  await expect(connect).toHaveCSS('color', 'rgb(21, 15, 8)');
   await page.addScriptTag({ content: axeSource });
   const violations = await page.evaluate(async () => (await window.axe.run('.sync-notice', { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] } })).violations.map(item => item.id));
   expect(violations).toEqual([]);
