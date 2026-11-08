@@ -17,6 +17,8 @@ Bu kurallar yalnızca proje sahibinin açık talimatıyla değişir. Hiçbir aja
    - Yazma anahtarının sahibi (Resource owner) `titanlar-com` olmalıdır; kişisel hesaba bağlı anahtarlar kuruluş deposuna yazamaz.
 
 5. **Metin ve köşeler (proje sahibinin 8 Kasım 2026 kararı):** Okunabilir hiçbir metin 14 CSS px'in altına inmez. Hiçbir köşe 5 px'ten yuvarlak değildir: daire ve hap biçimi de yoktur, Mantine bileşenleri dahil. Köşe belirteçleri `--radius-xs` (2 px), `--radius-sm` (3 px), `--radius` (4 px) ve `--radius-lg` (5 px) olarak `src/styles.css` başındadır. Mantine'in köşe ölçeği ve yuvarlak varsayılanlı bileşenleri bu belirteçleri kullanır (`src/app/theme.js`).
+6. **Okuma ve satın alma (proje sahibinin 8 Kasım 2026 kararı):** Okunanlar ile satın alınanlar ayrı listedir, ama satın alınmamış bir kitap okunamaz. Bu yüzden bir kitaba okuma işareti (Okunuyor, Okundu, Ara verdim, Bıraktım) konunca kitap Kitaplığım'a da eklenir ve Alınacak işareti kalkar. İşaretlerden biri sonradan kaldırılırsa öteki değişmez. Katalogda okuma işaretine göre süzünce satın alınan kitaplar da listede kalır.
+7. **Bekleme durumları (proje sahibinin 8 Kasım 2026 kararı):** Yükleniyor durumu, okuyucunun siteden çıkmadan beklemesini sağlar. Okuyucunun beklediği her yerde hareketli gösterge ve ne beklendiğini söyleyen bir yazı bulunur. İlk açılışta bu iş `index.html` içinde yapılır, çünkü o anda henüz betik çalışmamıştır. Mantine'in `Loader` bileşeni kendi hareketiyle kullanılır ve bunun için ayrı kod yazılmaz.
 
 Bu kuralları koruyan testler:
 
@@ -24,6 +26,8 @@ Bu kuralları koruyan testler:
 - `tests/catalog-grid.test.js`: stil dosyasının sütun sayısını yalnız `--books-columns` ile verdiği
 - `tests/e2e/catalog-grid.spec.js`: 320–2560 px arasında 15 genişlikte gerçek sütun sayısı, dolu son satır ve yatay telefonda 2 sütun (Chromium, WebKit ve iPhone görünümü)
 - `tests/e2e/site.spec.js`: ilk sayfadaki 24 kitap ve beş sayfa boyutu seçeneği
+- `tests/reading.test.js` ve `tests/e2e/reading-marks.spec.js`: okuma işaretinin kitabı satın alınanlara da eklediği, işaretlerin sonradan birbirinden bağımsız kaldırıldığı
+- `tests/first-load.test.js`, `tests/components/page-loading.test.jsx` ve `tests/e2e/loading.spec.js`: ilk açılışta ve sonradan yüklenen sayfalarda bekleme durumunun göründüğü
 - `tests/palette.test.js`, `tests/theme.test.js` ve `tests/e2e/corners.spec.js`: köşe belirteçlerinin en çok 5 px olduğu, stil dosyalarında yalnız belirteç kullanıldığı ve sayfalarda, açılan panellerde hesaplanmış hiçbir köşenin 5 px'i geçmediği; temanın hiçbir yazı boyutunun 14 px'in altına inmediği
 - `tests/seo.test.js`: canonical, sitemap, `robots.txt`, katalogdaki kaynak bağlantıları ve baskı kaynak notu bağlantısının `titanlar-com` altında olduğu
 - `tests/github-state-repository.test.js`, `tests/components/sync.test.jsx` ve `tests/e2e/sync.spec.js`: eşitleme isteklerinin yalnız `titanlar-com/kitaps-state` deposuna gittiği ve anahtar formunun sahip alanını `titanlar-com` olarak doldurduğu

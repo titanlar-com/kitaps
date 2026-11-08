@@ -60,6 +60,8 @@ for (const width of [320, 390, 1280]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto(url);
       await expect(page.locator('main')).toBeVisible();
+      // A page that loads on demand is scanned once it has arrived.
+      await expect(page.locator('.page-loading')).toHaveCount(0);
       if (open) { await open(page); await page.waitForTimeout(400); }
       expect(await roundCorners(page)).toEqual([]);
     });

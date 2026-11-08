@@ -39,6 +39,13 @@ Son kontrol: 28 Eylül 2026. Kontrollerin çoğu otomatik testlere bağlıdır; 
 - Okuma özeti bandı okunan oranını bir çubukla ve beş sayıyla gösterir: Okunan, Okuyorum, Sıramda, Kitaplığım, Favoriler. Her sayı kendi rafını açar ve odak ana içeriğe geçer.
 - Bant katalogda tablet ve masaüstünde (48em ve üstü) görünür. Telefonda, dik de yatay da tutulsa, ilk ekran kitap adlarına ayrıldığı için bant katalogda yoktur. Sıram sayfasında bant her genişlikte sıranın altındadır.
 - "Satın aldıklarımı gösterme" açıkken satın alınan kitaplar göz atarken katalogdan çıkar. Okur kataloğu bir okuma işaretine göre süzdüğünde (örneğin Okundu) o kitapları adıyla istemiş olur. Bu yüzden satın alınanlar listede kalır ve sonuç sayısının altında "Satın aldığın kitaplar da listede, çünkü okuma işaretine göre süzdün." yazar. Filtre panelindeki canlı sayı da aynı kuralla sayar. Testler: `tests/app-logic.test.js`, `tests/e2e/reading-summary.spec.js`.
+- Satın alınmamış bir kitap okunamaz. Okuma işareti (Okunuyor, Okundu, Ara verdim, Bıraktım) konunca kitap Kitaplığım'a da eklenir ve "Kitaplığa eklendi" bildirimi çıkar. İşaretlerden biri sonradan kaldırılırsa öteki değişmez. Testler: `tests/reading.test.js`, `tests/e2e/reading-marks.spec.js`.
+
+## Bekleme durumları (8 Kasım 2026)
+
+- Site ilk açılırken betik ve katalog inene kadar ekranda üç hareketli çubuk ve "Kitaplık hazırlanıyor…" yazısı görünür. Bu bölüm `index.html` içindedir, çünkü o anda henüz betik çalışmamıştır.
+- Sonradan yüklenen sayfalar (Kitap fuarları, Kitapçılar, Notlar) beklerken Mantine'in göstergesini ve ne beklendiğini söyleyen yazıyı gösterir.
+- Hareket azaltma tercihi açıksa çubuklar durur ve yazı kalır. Testler: `tests/first-load.test.js`, `tests/components/page-loading.test.jsx`, `tests/e2e/loading.spec.js`.
 
 ## Mobil düzen ve etkileşim
 

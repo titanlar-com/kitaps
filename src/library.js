@@ -23,7 +23,12 @@ export function toggleState(current, key) {
   const opposite = { alinacak: 'alindi', alindi: 'alinacak', okunuyor: 'okundu', okundu: 'okunuyor' }[key];
   if (opposite) result.delete(opposite);
   const readingStates=['okunuyor','okundu','araverildi','birakildi'];
-  if(readingStates.includes(key))for(const state of readingStates)if(state!==key)result.delete(state);
+  if(readingStates.includes(key)){
+   for(const state of readingStates)if(state!==key)result.delete(state);
+   // The owner, 8 November 2026: a book that is being read has been bought. The lists stay
+   // separate, so taking either mark off later leaves the other one alone.
+   result.add('alindi');result.delete('alinacak');
+  }
  }
  return [...result];
 }

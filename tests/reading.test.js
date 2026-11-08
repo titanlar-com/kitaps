@@ -27,8 +27,20 @@ test('progress handles blank and invalid ranges and dates',()=>{
 });
 test('new reading states are exclusive but keep purchase and important marks',()=>{
  assert.deepEqual(toggleState(['onemli','alindi','okunuyor'],'araverildi'),['onemli','alindi','araverildi']);
- assert.deepEqual(toggleState(['araverildi'],'birakildi'),['birakildi']);assert.deepEqual(toggleState(['birakildi'],'okundu'),['okundu']);
+ assert.deepEqual(toggleState(['alindi','araverildi'],'birakildi'),['alindi','birakildi']);assert.deepEqual(toggleState(['alindi','birakildi'],'okundu'),['alindi','okundu']);
  assert.deepEqual(toggleState(['okundu'],'okundu'),[]);
+});
+// The owner, 8 November 2026: "satın almadığımı okuyamam". The two are separate lists, and a
+// reading mark puts the book on the purchased one as well.
+test('a reading mark also marks the book as purchased, and replaces a to-buy mark',()=>{
+ for(const mark of ['okunuyor','okundu','araverildi','birakildi']){
+  assert.deepEqual(toggleState([],mark).sort(),['alindi',mark].sort(),mark);
+  assert.deepEqual(toggleState(['alinacak','onemli'],mark).sort(),['alindi',mark,'onemli'].sort(),`${mark} after to-buy`);
+ }
+});
+test('the two lists stay separate when a mark is taken off',()=>{
+ assert.deepEqual(toggleState(['alindi','okundu'],'okundu'),['alindi'],'taking off the reading mark keeps the purchase');
+ assert.deepEqual(toggleState(['alindi','okundu'],'alindi'),['okundu'],'taking off the purchase keeps the reading mark');
 });
 test('new backup round trip preserves queue and notes; old backups do not clear them',()=>{
  const personal=cleanPersonal({queue:['b','a'],reading:{a:{why:'Neden?',apply:'Bir eylem',page:20,totalPages:90}}},['a','b','c']);

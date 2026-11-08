@@ -122,12 +122,12 @@ test('everything one device records reaches the other device and a reader withou
 
   const file = github.file.books;
   expect(file.goodtogreat.value.states.sort()).toEqual(['alindi', 'onemli']);
-  expect(file.zerotoone.value.states).toEqual(['okunuyor']);
+  expect(file.zerotoone.value.states.sort()).toEqual(['alindi', 'okunuyor']);
   expect(file.zerotoone.value.reading).toMatchObject({ page: 40, totalPages: 300, why: 'Tekel ve rekabet üzerine düşünmek için.', apply: 'Bir ürün fikrini tekel sorusuyla sınamak.' });
   expect(file.zerotoone.value.reading.startedAt).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-  expect(file.innovators.value.states).toEqual(['okundu']);
-  expect(file.goal.value.states).toEqual(['araverildi']);
-  expect(file.howtoreadabook.value.states).toEqual(['birakildi']);
+  expect(file.innovators.value.states.sort()).toEqual(['alindi', 'okundu']);
+  expect(file.goal.value.states.sort()).toEqual(['alindi', 'araverildi']);
+  expect(file.howtoreadabook.value.states.sort()).toEqual(['alindi', 'birakildi']);
   expect(github.file.queue.value).toEqual(['goodtogreat', 'zerotoone', 'howtoreadabook']);
 
   // The computer and a friend without a key see all of it.

@@ -716,7 +716,7 @@ test('marks merge three-way: removals go, additions come, and of two exclusive m
  assert.deepEqual(mergeStates([],['okundu'],['okunuyor'],false),['okundu'],'this device set its mark later');
  assert.deepEqual(mergeStates([],['okundu'],['okunuyor'],true),['okunuyor'],'the other device set its mark later');
  // The groups are the ones the mark buttons apply.
- for(const group of EXCLUSIVE_STATE_GROUPS)for(const mark of group)for(const other of group)if(other!==mark)assert.deepEqual(toggleState([other],mark),[mark]);
+ for(const group of EXCLUSIVE_STATE_GROUPS)for(const mark of group)for(const other of group)if(other!==mark)assert.deepEqual(toggleState([other],mark).sort(),(group.includes('okundu')?['alindi',mark]:[mark]).sort());
  assert.deepEqual(toggleState(['onemli','alindi'],'okundu').sort(),['alindi','okundu','onemli']);
 });
 

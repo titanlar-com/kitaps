@@ -34,6 +34,16 @@ const focusBar = locator => locator.evaluate(element => {
   return { top: bottom - parseFloat(style.height), bottom, left: box.left, right: box.right, outline: getComputedStyle(element).outlineStyle };
 });
 
+test('marking a book as read also puts it on Kitaplığım and says so', async ({ page }) => {
+  await page.goto(SECOND_BOOK);
+  const purchased = page.getByRole('button', { name: 'Satın alındı', exact: true });
+  await expect(purchased).toHaveAttribute('aria-pressed', 'false');
+  await page.getByRole('button', { name: 'Okuma kaydım ve kişisel notlarım' }).click();
+  await page.getByRole('button', { name: 'Okundu', exact: true }).click();
+  await expect(purchased).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.library-toast')).toContainText('Kitaplığa eklendi');
+});
+
 test('read and purchased books show ribbons and a half-grey cover on the book page, the card and the queue', async ({ page }) => {
   await page.goto(BOOK);
   const hero = page.locator('.detail-hero');

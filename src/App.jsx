@@ -36,6 +36,7 @@ import { BookCover, ThumbCover } from './app/BookCover';
 import { BookCard } from './app/BookCard';
 import { BookDetail } from './app/BookDetail';
 import { Collections } from './app/Collections';
+import PageLoading from './components/PageLoading';
 import './styles.css';
 
 const AccessibilityAudit=import.meta.env.DEV?React.lazy(()=>import('./components/AccessibilityAudit')):null;
@@ -139,9 +140,12 @@ function AtlasApp() {
  const draftCount=draftListing?.filtered.length??0;
  const activeCount=filterCount({...filters,query:''});
  const onToggle=(id,key,trigger=document.activeElement)=>{
-  const marking=!(states[id]||[]).includes(key);
+  const before=states[id]||[];
+  const marking=!before.includes(key);
+  const owned=toggleState(before,key).includes('alindi');
   setStates(prev=>({...prev,[id]:toggleState(prev[id],key)}));
-  if(key==='alindi'){transferOrigin.current=trigger;setTransfer({id,owned:marking});setToastShown(true);}
+  // A reading mark also puts the book on Kitaplığım (toggleState), and the reader is told so.
+  if(key==='alindi'||(owned&&!before.includes('alindi'))){transferOrigin.current=trigger;setTransfer({id,owned});setToastShown(true);}
   // Being read or read writes the day once (stampReadingDate in src/reading.js).
   if(marking)setPersonal(prev=>stampReadingDate(prev,id,key,todayLocal()));
  };
@@ -197,9 +201,9 @@ function AtlasApp() {
     </Tabs.Panel>
     <Tabs.Panel value="queue">{view==='queue'&&<><Title order={1} className="visually-hidden">Okuma sıram</Title><ReadingQueue queue={personal.queue} books={byId} reading={personal.reading} states={states} onMove={(id,direction)=>setPersonal(prev=>({...prev,queue:moveInQueue(prev.queue,id,direction)}))} onRemove={id=>setPersonal(prev=>({...prev,queue:prev.queue.filter(value=>value!==id)}))} onOpen={onOpen} onBrowse={onBrowse} BookCover={ThumbCover}/><ReadingSummary summary={summary} onSelect={onSummary}/></>}</Tabs.Panel>
     <Tabs.Panel value="collections">{view==='collections'&&<><Title order={1} className="visually-hidden">Kitap kümeleri</Title><Collections onCollection={goCollection} onGroup={goCollection} states={states}/></>}</Tabs.Panel>
-    {view==='fairs'&&<React.Suspense fallback={<Text c="dimmed" role="status">Kitap fuarları yükleniyor…</Text>}><BookFairsPage/></React.Suspense>}
-    <Tabs.Panel value="bookstores">{view==='bookstores'&&<React.Suspense fallback={<Text c="dimmed" role="status">Kitapçılar yükleniyor…</Text>}><BookstoresPage/></React.Suspense>}</Tabs.Panel>
-    {view==='notes'&&<section aria-labelledby="notes-heading"><Title id="notes-heading" order={1} className="visually-hidden">Kaynaklar ve notlar</Title><React.Suspense fallback={<Text c="dimmed" role="status">Notlar yükleniyor…</Text>}><NotesPage states={states} setStates={setStates} personal={personal} setPersonal={setPersonal} sync={githubSync}/></React.Suspense></section>}
+    {view==='fairs'&&<React.Suspense fallback={<PageLoading>Kitap fuarları yükleniyor…</PageLoading>}><BookFairsPage/></React.Suspense>}
+    <Tabs.Panel value="bookstores">{view==='bookstores'&&<React.Suspense fallback={<PageLoading>Kitapçılar yükleniyor…</PageLoading>}><BookstoresPage/></React.Suspense>}</Tabs.Panel>
+    {view==='notes'&&<section aria-labelledby="notes-heading"><Title id="notes-heading" order={1} className="visually-hidden">Kaynaklar ve notlar</Title><React.Suspense fallback={<PageLoading>Notlar yükleniyor…</PageLoading>}><NotesPage states={states} setStates={setStates} personal={personal} setPersonal={setPersonal} sync={githubSync}/></React.Suspense></section>}
    </main>
    <FooterMenu current={viewById[view]?.label} groups={[
     {id:'sections',title:'Bölümler',items:[

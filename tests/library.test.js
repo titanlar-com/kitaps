@@ -73,7 +73,7 @@ test('reading states migrate across all edition keys; explicit cleared states st
  assert.ok(migrated[b.id].includes('onemli'));assert.ok(migrated[b.id].includes('okundu'));
  assert.deepEqual(migrateStates(books,{[b.id]:[]},{[b.legacyKeys[0]]:['onemli']})[b.id],[]);
  assert.deepEqual(toggleState(['onemli','alinacak'],'alindi'),['onemli','alindi']);
- assert.deepEqual(toggleState(['okunuyor'],'okundu'),['okundu']);
+ assert.deepEqual(toggleState(['alindi','okunuyor'],'okundu'),['alindi','okundu']);
  assert.equal(filter({states:['onemli']},{[b.id]:['onemli']}).length,1);
 });
 test('filters survive shareable URL and malformed routes recover',()=>{
