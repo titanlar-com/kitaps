@@ -172,7 +172,7 @@ function AtlasApp() {
  // in the open book sheet (on its sync status), never behind it; otherwise on the main content.
  // Focus goes back as soon as the dialog closes, not when its exit ends (ADR 004, K6).
  const restoreSyncFocus=()=>{const opener=syncOpener.current;(opener?.isConnected?opener:document.querySelector('.detail-drawer .sync-status-text')??document.getElementById('main-content'))?.focus({preventScroll:true})};
- const closeSync=()=>{setSyncOpened(false);requestAnimationFrame(restoreSyncFocus)};
+ const closeSync=()=>{setSyncOpened(false);restoreSyncFocus()};
  const syncClosed=()=>setSyncCovering(false);
  const copyLink=async()=>{try{await navigator.clipboard.writeText(window.location.href);setCopied(true);setTimeout(()=>setCopied(false),2000)}catch{setCopied(false)}};
  // The toast leaves the way it came: the last notice stays rendered while it fades out.

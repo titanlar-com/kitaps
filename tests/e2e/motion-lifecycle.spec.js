@@ -29,10 +29,7 @@ test('a closing book keeps its pages until the sheet has gone, and they can no l
   expect(closing.filter(frame => !frame.shown || !frame.inert)).toEqual([]);
 });
 
-test('closing the sync dialog gives focus back without waiting for its exit', async ({ page, browserName }) => {
-  // The order of a frame and a 200 ms timer means nothing on CI's Linux WebKit, which paints a few
-  // frames a second. tests/e2e/sync.spec.js checks where focus lands in every engine.
-  test.skip(browserName === 'webkit' && Boolean(process.env.CI), 'needs a steady frame rate');
+test('closing the sync dialog gives focus back without waiting for its exit', async ({ page }) => {
   await page.goto('./');
   await expect(page.locator('.book-card').first()).toBeVisible();
   await page.locator('.footer-dock').click();
@@ -95,8 +92,11 @@ test('a cover stays clear until it has loaded, then fades in, in a frame that do
 test('a hover that is taken back continues from where the cover is', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('./');
-  // The lift is only for a real pointer; a phone, and CI's Linux WebKit, report none.
+  // The lift is only for a real pointer, which a phone does not report.
   test.skip(!(await page.evaluate(() => matchMedia('(hover: hover)').matches)), 'no hover here');
+  // A slow lift: CI's Linux WebKit paints so few frames that a 100 ms reversal could start and end
+  // between two of them (run 42497711401). What is checked does not depend on the length.
+  await page.addStyleTag({ content: ':root{--motion-move:2000ms}' });
   const card = page.locator('.book-card').first();
   const img = card.locator('.cover-stage img');
   await expect(img).toHaveCSS('opacity', '1');
@@ -108,7 +108,7 @@ test('a hover that is taken back continues from where the cover is', async ({ pa
     const start = () => {
       const lift = transform();
       if (!lift) { requestAnimationFrame(start); return; }
-      lift.pause(); lift.currentTime = 100;
+      lift.pause(); lift.currentTime = 1000;
       window.__halfway = getComputedStyle(element).transform;
       const watch = () => { const next = transform(lift); if (next) window.__from = next.effect.getKeyframes()[0].transform; else requestAnimationFrame(watch); };
       watch();
