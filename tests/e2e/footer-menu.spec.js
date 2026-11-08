@@ -66,7 +66,7 @@ test('the end of the page and the purchase toast stay clear of the footer bar', 
   const bar = await page.locator('.site-footer').boundingBox();
   const last = await page.locator('.catalog-pagination').boundingBox();
   expect(last.y + last.height, 'the pagination ends above the bar').toBeLessThanOrEqual(bar.y);
-  // Back to the top at once (the page scrolls smoothly), then mark a purchase to raise the toast.
+  // Back to the top at once, then mark a purchase to raise the toast.
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
   await page.locator('.book-card .cover-owned').first().click();
   await expect(page.locator('.library-toast')).toBeVisible();

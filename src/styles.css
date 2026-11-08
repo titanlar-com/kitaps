@@ -245,7 +245,7 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
    transitions get the curve and durations from the theme in App.jsx. */
 :where([class*="mantine-"]),:where([class*="mantine-"])::before,:where([class*="mantine-"])::after{transition-timing-function:var(--motion-ease)!important}
 /* Mantine's own fixed durations (button and icon loaders, accordion items, progress) take the token. */
-.mantine-Button-root::before,.mantine-Button-inner,.mantine-ActionIcon-icon,.mantine-Accordion-item,.mantine-Progress-section,.mantine-Checkbox-input,.mantine-Checkbox-icon,.mantine-Switch-track,.mantine-Switch-thumb,.mantine-Switch-trackLabel{transition-duration:var(--motion-control)}
+.mantine-Button-root::before,.mantine-Button-inner,.mantine-ActionIcon-icon,.mantine-Accordion-item,.mantine-Progress-section,.mantine-Checkbox-input,.mantine-Checkbox-icon,.mantine-Switch-track,.mantine-Switch-thumb,.mantine-Switch-trackLabel,.mantine-RadioIndicator-indicator,.mantine-RadioIndicator-indicator>svg{transition-duration:var(--motion-control)}
 /* Mantine's loading bars keep their own keyframes and take the site's rhythm (ADR 004, K4). The
    first screen in index.html runs the same keyframes and phases; tests/e2e/loading.spec.js compares them. */
 .mantine-Loader-root>span{animation-duration:var(--motion-busy);animation-timing-function:var(--motion-ease)}
@@ -461,8 +461,9 @@ main{padding-top:20px;padding-bottom:32px}
    Size containment keeps WebKit from stretching the frame to a taller cover's own proportions, and lets
    the cover be capped at the frame's height (100cqh) in every engine; engines without container
    units keep the frame through max-height:100%, as Chromium and Firefox always have. */
-.cover-stage{display:flex;align-items:flex-end;justify-content:center;width:100%;aspect-ratio:2/3;container-type:size;margin:0;padding:0;border:0;background:none;color:var(--muted);transition:background-color var(--motion-move) var(--motion-ease)}
-.cover-stage:has(>img:not([data-loaded])){background:var(--surface-2);border-radius:var(--radius-xs) var(--radius-lg) var(--radius-lg) var(--radius-xs)}
+.cover-stage{position:relative;display:flex;align-items:flex-end;justify-content:center;width:100%;aspect-ratio:2/3;container-type:size;margin:0;padding:0;border:0;background:none;color:var(--muted)}
+.cover-stage::before{content:"";position:absolute;inset:0;border-radius:var(--radius-xs) var(--radius-lg) var(--radius-lg) var(--radius-xs);background:var(--surface-2);opacity:0;pointer-events:none;transition:opacity var(--motion-move) var(--motion-ease)}
+.cover-stage:has(>img:not([data-loaded]))::before{opacity:1}
 .cover-open{cursor:pointer;border-radius:var(--radius-sm)}
 /* Small source images scale up to the stage; contain keeps their proportions, and a cover taller
    than 2:3 is shown whole inside the frame, with the frame's surface beside it. */
@@ -875,6 +876,7 @@ main{padding-top:20px;padding-bottom:32px}
  *,*::before,*::after{animation:none!important;transition:none!important}
 }
 @media print{
+ .cover-stage img{opacity:1}
  .site-header,.main-tabs,.search-panel,.site-footer,.catalog-pagination,.reading-route,.priority-summary,.book-actions{display:none}
  body{background:#fff}
  .books-grid{--books-columns:3}

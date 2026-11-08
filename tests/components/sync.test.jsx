@@ -130,7 +130,22 @@ describe('SyncMergeDialog', () => {
     fireEvent.click(late);
     expect(value.resolveMerge).not.toHaveBeenCalled();
     expect(none.resolveMerge).not.toHaveBeenCalled();
+    // Nothing in it can be used any more, the backup link included.
+    expect(late.closest('[inert]')).not.toBeNull();
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
+  });
+
+  it('moves focus as soon as the choice closes the dialog, without waiting for GitHub', async () => {
+    const prompt = { conflicts: ['a'], queueConflict: false, reason: 'connect' };
+    let finish;
+    const resolveMerge = vi.fn(() => new Promise(resolve => { finish = resolve; }));
+    const main = document.createElement('main'); main.id = 'main-content'; main.tabIndex = -1; document.body.append(main);
+    const view = renderWithTheme(<SyncMergeDialog sync={sync({ mergePrompt: prompt, resolveMerge })}/>);
+    fireEvent.click(screen.getByRole('button', { name: 'GitHub’dakini kullan' }));
+    view.rerender(<MantineProvider><SyncMergeDialog sync={sync({ mergePrompt: null, resolveMerge })}/></MantineProvider>);
+    await waitFor(() => expect(document.activeElement).toBe(main));
+    finish();
+    main.remove();
   });
 
   it('stays hidden without a decision to make', () => {

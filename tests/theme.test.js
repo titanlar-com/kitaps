@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { theme } from '../src/app/theme.js';
-import { MOTION_EASE, MOTION_MS } from '../src/motion.js';
+import { HINT_DELAY_MS, MOTION_EASE, MOTION_MS } from '../src/motion.js';
 
 // The Mantine theme of the redesign (docs/UI-REDESIGN.md, phase 1, 8 November 2026). Every
 // component reads its sizes, shadows and motion from here, so these rules hold everywhere.
@@ -31,6 +31,11 @@ test('elevation comes from the shadow tokens, defined in both schemes', () => {
     assert.ok(light[`--shadow-${name}`],`--shadow-${name} in the light scheme`);
     assert.ok(dark[`--shadow-${name}`],`--shadow-${name} in the dark scheme`);
   }
+});
+
+test('a hint waits for the pointer before it appears', () => {
+  assert.equal(theme.components.Tooltip.defaultProps.openDelay,HINT_DELAY_MS);
+  assert.equal(theme.components.HoverCard.defaultProps.openDelay,HINT_DELAY_MS);
 });
 
 test('every component the redesign animates takes the curve and the duration of its role', () => {

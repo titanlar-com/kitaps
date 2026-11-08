@@ -20,8 +20,10 @@ test.beforeEach(async ({ context }) => {
         if (!effect) continue;
         const name = animation.transitionProperty ?? animation.animationName ?? 'script';
         const easing = animation.transitionProperty ? effect.getTiming().easing : [...new Set(effect.getKeyframes().slice(0, -1).map(frame => frame.easing))].join(' | ');
-        const duration = effect.getComputedTiming().duration;
-        seen.set(`${describe(effect.target)}${effect.pseudoElement ?? ''} ${name} ${duration} ${easing}`, { name, duration, easing });
+        const { duration, delay, iterations } = effect.getComputedTiming();
+        const holder = effect.target?.closest?.('.detail-drawer, .filter-sheet, .sync-modal, .library-toast');
+        const surface = holder ? ['detail-drawer', 'filter-sheet', 'sync-modal', 'library-toast'].find(item => holder.classList.contains(item)) : null;
+        seen.set(`${surface ?? ''} ${describe(effect.target)}${effect.pseudoElement ?? ''} ${name} ${duration} ${delay} ${easing}`, { transition: Boolean(animation.transitionProperty), duration, delay, loop: iterations === Infinity, easing, surface });
       }
       requestAnimationFrame(sample);
     };
@@ -31,53 +33,68 @@ test.beforeEach(async ({ context }) => {
 });
 
 // A transition reversed halfway takes only part of its time, as CSS specifies, so its duration is
-// a fraction; whole numbers are what a stylesheet or a library wrote.
-const offenders = page => page.evaluate(([curve, allowed]) => [...window.__motionSeen].filter(([, record]) => record.easing !== curve || (Number.isInteger(record.duration) && !allowed.includes(record.duration))).map(([key]) => key), [CURVE, [...ALLOWED_MS]]);
+// a fraction below the longest role; whole numbers are what a stylesheet or a library wrote. Only
+// the loading bars have a delay: each runs one step ahead of the next.
+const offenders = page => page.evaluate(([curve, allowed, step]) => [...window.__motionSeen].filter(([, record]) => {
+  const duration = Number.isInteger(record.duration) ? allowed.includes(record.duration) : record.transition && record.duration < 300;
+  const delay = record.loop ? record.delay <= 0 && Number.isInteger(record.delay / step) : record.delay === 0;
+  return record.easing !== curve || !duration || !delay;
+}).map(([key]) => key), [CURVE, [...ALLOWED_MS], 120]);
+const surfaces = page => page.evaluate(() => [...new Set([...window.__motionSeen.values()].map(record => record.surface).filter(Boolean))].sort());
 const seenCount = page => page.evaluate(() => window.__motionSeen.size);
 const pause = page => page.waitForTimeout(450);
 
-test('every animation met on a walk through the site uses the curve and a duration of the table', async ({ page }) => {
-  test.slow();
-  await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto('./');
-  const card = page.locator('.book-card').first();
-  await expect(card).toBeVisible();
+for (const width of [1280, 320]) {
+  test(`every animation met on a walk through the site at ${width} px uses the curve and a duration of the table`, async ({ page }) => {
+    test.slow();
+    const wide = width === 1280;
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto('./');
+    const card = page.locator('.book-card').first();
+    await expect(card).toBeVisible();
 
-  // Hover on a card, its controls and a hint.
-  await card.hover(); await pause(page);
-  await card.locator('.cover-owned').hover(); await pause(page);
-  await page.mouse.move(0, 0); await pause(page);
+    if (wide) {
+      // Hover on a card, its controls and a hint.
+      await card.hover(); await pause(page);
+      await card.locator('.cover-owned').hover(); await pause(page);
+      await page.mouse.move(0, 0); await pause(page);
 
-  // The section marker.
-  await page.locator('.main-tabs').getByRole('tab').nth(2).click(); await pause(page);
-  await page.locator('.main-tabs').getByRole('tab').first().click(); await pause(page);
-  await expect(page.locator('.book-card').first()).toBeVisible();
+      // The section marker.
+      await page.locator('.main-tabs').getByRole('tab').nth(2).click(); await pause(page);
+      await page.locator('.main-tabs').getByRole('tab').first().click(); await pause(page);
+      await expect(page.locator('.book-card').first()).toBeVisible();
+    }
 
-  // The switch, a sheet, its choices.
-  await page.locator('.mantine-Switch-root').first().click(); await pause(page);
-  await page.locator('.mantine-Switch-root').first().click(); await pause(page);
-  await page.getByRole('button', { name: /^Filtreler/ }).click(); await pause(page);
-  await page.keyboard.press('Escape'); await pause(page);
+    // The switch, a sheet, its choices.
+    await page.locator('.mantine-Switch-root').first().click(); await pause(page);
+    await page.locator('.mantine-Switch-root').first().click(); await pause(page);
+    await page.getByRole('button', { name: /^Filtreler/ }).click(); await pause(page);
+    await page.keyboard.press('Escape'); await pause(page);
 
-  // A book: the sheet, a section, the notice.
-  await page.locator('.cover-open').first().click(); await pause(page);
-  await page.getByRole('button', { name: 'Okuma kaydım ve kişisel notlarım' }).click(); await pause(page);
-  await page.getByRole('button', { name: 'Satın alındı', exact: true }).click(); await pause(page);
-  await page.keyboard.press('Escape'); await pause(page);
+    // A book: the sheet, a section, the notice.
+    await page.locator('.cover-open').first().click(); await pause(page);
+    await page.getByRole('button', { name: 'Okuma kaydım ve kişisel notlarım' }).click(); await pause(page);
+    await page.getByRole('button', { name: 'Satın alındı', exact: true }).click(); await pause(page);
+    await page.keyboard.press('Escape'); await pause(page);
 
-  // A dropdown, the footer menu, a dialog.
-  await page.getByRole('combobox', { name: 'Kitapları sırala' }).click(); await pause(page);
-  await page.keyboard.press('Escape'); await pause(page);
-  await page.locator('.footer-dock').click(); await pause(page);
-  await page.getByRole('button', { name: 'Cihaz eşitleme' }).click(); await pause(page);
-  await page.keyboard.press('Escape'); await pause(page);
+    // A dropdown, the footer menu, a dialog.
+    await page.getByRole('combobox', { name: 'Kitapları sırala' }).click(); await pause(page);
+    await page.keyboard.press('Escape'); await pause(page);
+    await page.locator('.footer-dock').click(); await pause(page);
+    await page.getByRole('button', { name: 'Cihaz eşitleme' }).click(); await pause(page);
+    await page.keyboard.press('Escape'); await pause(page);
 
-  const seen = await seenCount(page);
-  const found = await offenders(page);
+    // The colour panel.
+    await page.getByRole('button', { name: 'Renk düzeni' }).click(); await pause(page);
+    if (wide) { await page.locator('.wood-card').nth(1).hover(); await pause(page); }
+    await page.locator('.wood-card').nth(1).click(); await pause(page);
+    await page.keyboard.press('Escape'); await pause(page);
 
-  expect(seen, 'the walk met animations').toBeGreaterThan(5);
-  expect(found).toEqual([]);
-});
+    // Every large surface really moved: one that stops animating would otherwise go unnoticed.
+    expect(await surfaces(page)).toEqual(['detail-drawer', 'filter-sheet', 'library-toast', 'sync-modal']);
+    expect(await offenders(page)).toEqual([]);
+  });
+}
 
 test('a saved route\'s check box takes the control timing', async ({ page, context }) => {
   const route = { id: 'deneme', title: 'Deneme rotası', date: null, stops: [], note: '', done: false };

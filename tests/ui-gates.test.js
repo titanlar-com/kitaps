@@ -164,6 +164,7 @@ function motionOffenders(list){
    if(keyword(value)||literalTime(value))offenders.push(`${where}: ${decl.name}:${value}`);
    else if(decl.name.endsWith('-duration')?!MOTION_ROLE.test(value):!/var\(--motion-/.test(value))offenders.push(`${where}: ${decl.name} without a motion token`);
   }
+  for(const decl of decls(rule.body,'transition-property'))if(/\ball\b/.test(decl.value))offenders.push(`${where}: transition-property:all`);
   // A transition written only on the hover or active state would run in one direction.
   if(/:(hover|active)\b/.test(rule.selector)&&decls(rule.body,'transition').length)offenders.push(`${where}: transition only on a state`);
  }
@@ -217,7 +218,7 @@ function componentMotionOffenders(list){
   // While a finger drags the book sheet it follows the finger without a transition; this is direct
   // manipulation, not an animation, and the sheet animates again once it is let go.
   const text=file.text.replace("styles={{content:offset?{transform:`translateY(${offset}px)`,transitionDuration:'0ms'}:undefined}}",'');
-  for(const match of text.matchAll(/\b(transitionProps|duration|exitDuration|enterDelay|exitDelay|openDelay|closeDelay|transitionDuration|transitionTimingFunction|timingFunction)\s*(?:=\s*\{|=(?=\s*["'])|:)\s*(?=([^,}\s]+))/g)){
+  for(const match of text.matchAll(/\b(transitionProps|duration|exitDuration|enterDelay|exitDelay|openDelay|closeDelay|transitionDuration|transitionTimingFunction|timingFunction|transitionDelay|animationDelay|animationDuration)\s*(?:=\s*\{|=(?=\s*["'])|:)\s*(?=([^,}\s]+))/g)){
    const [,name,value]=match;
    // An object of transition props is checked key by key.
    if(name==='transitionProps'&&value.startsWith('{'))continue;
@@ -225,6 +226,8 @@ function componentMotionOffenders(list){
   }
   // 'fade' is the name of a Mantine preset, not a CSS value.
   for(const match of text.matchAll(/\btransition\s*:\s*['`]([^'`]+)['`]/g))if(match[1]!=='fade')offenders.push(`${file.path}: inline transition ${match[1]}`);
+  for(const match of text.matchAll(/\banimation\s*:\s*['`]([^'`]+)['`]/g))offenders.push(`${file.path}: inline animation ${match[1]}`);
+  if(/\bbehavior\s*:\s*['"`]smooth/.test(text))offenders.push(`${file.path}: a scroll animation chosen by the browser`);
   // Web Animations take the same curve and durations.
   for(const match of text.matchAll(/\.animate\([^)]*\)/g))if(!/easing\s*:\s*MOTION_EASE/.test(match[0])||!/duration\s*:\s*MOTION_\w+/.test(match[0]))offenders.push(`${file.path}: animate() without the motion values`);
  }
@@ -271,6 +274,7 @@ test('the gates reject every banned pattern',()=>{
   '.a{transition:color var(--motion-fast) var(--motion-ease)}',
   '.a{transition-duration:var(--motion-unknown)}',
   '.a{animation:none}',
+  '.a{transition-property:all;transition-duration:var(--motion-control);transition-timing-function:var(--motion-ease)}',
   '.a{transition-delay:100ms}',
   '.a{transition:none}',
   '.a:hover{transition:color var(--motion-control) var(--motion-ease)}',
@@ -283,6 +287,9 @@ test('the gates reject every banned pattern',()=>{
   '<Collapse transitionTimingFunction="ease"/>',
   '<div style={{transition:\'opacity 1s\'}}/>',
   '<Transition exitDuration={toastExit}/>',
+  '<div style={{transitionDelay:\'400ms\'}}/>',
+  '<div style={{animation:\'spin 1s linear\'}}/>',
+  'node.scrollTo({top:0,behavior:\'smooth\'})',
   'node.animate([{opacity:0},{opacity:1}],{duration:200,easing:"ease"})',
  ])assert.ok(componentMotionOffenders([{path:'sample.jsx',text}]).length,text);
  assert.ok(keyframeOffenders(['@keyframes k{from{animation-timing-function:linear;opacity:0}to{opacity:1}}']).length,'a keyframe with its own curve');

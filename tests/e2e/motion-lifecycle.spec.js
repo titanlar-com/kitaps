@@ -37,14 +37,36 @@ test('closing the sync dialog gives focus back without waiting for its exit', as
   const dialog = page.getByRole('dialog', { name: 'Cihazlar arası eşitleme' });
   await expect(dialog).toBeVisible();
   await page.waitForTimeout(400);
-  await record(page, () => { const modal = document.querySelector('.sync-modal .mantine-Modal-content'); return { modal: Boolean(modal), inside: Boolean(modal?.contains(document.activeElement)), root: document.querySelector('.sync-modal') !== null }; });
+  await record(page, () => { const modal = document.querySelector('.sync-modal .mantine-Modal-content'); return { modal: Boolean(modal), inside: Boolean(modal?.contains(document.activeElement)), onMain: document.activeElement?.id === 'main-content' }; });
   await page.keyboard.press('Escape');
   await expect(page.locator('.sync-modal .mantine-Modal-content')).toHaveCount(0);
   const frames = await page.evaluate(() => window.__frames);
+  expect(frames[0].inside, 'focus starts in the dialog').toBe(true);
   const firstOutside = frames.findIndex(frame => !frame.inside);
   const lastModal = frames.map(frame => frame.modal).lastIndexOf(true);
   expect(firstOutside).toBeGreaterThan(-1);
   expect(firstOutside, 'focus leaves while the dialog is still leaving').toBeLessThan(lastModal);
+  expect(frames[firstOutside + 1]?.onMain ?? frames[firstOutside].onMain, 'and lands on the main content, whose opener has gone').toBe(true);
+});
+
+test('a filter sheet keeps the section on screen while it leaves', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('.book-card').first()).toBeVisible();
+  await page.getByRole('button', { name: /^Filtreler/ }).click();
+  await page.locator('.filter-section-link').first().click();
+  const title = page.locator('.filter-sheet .mantine-Drawer-title');
+  await expect(title).not.toHaveText('Filtreler');
+  const section = await title.innerText();
+  await page.waitForTimeout(400);
+  await record(page, () => document.querySelector('.filter-sheet .mantine-Drawer-title')?.textContent ?? null);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.filter-sheet .mantine-Drawer-content')).toHaveCount(0);
+  const titles = await page.evaluate(() => window.__frames.filter(Boolean));
+  expect(titles.length).toBeGreaterThan(1);
+  expect([...new Set(titles)]).toEqual([section]);
+  // Opened again, it starts from the list of sections.
+  await page.getByRole('button', { name: /^Filtreler/ }).click();
+  await expect(title).toHaveText('Filtreler');
 });
 
 test('a cover stays clear until it has loaded, then fades in, in a frame that does not change size', async ({ page }) => {
@@ -57,11 +79,14 @@ test('a cover stays clear until it has loaded, then fades in, in a frame that do
   const img = stage.locator('img');
   await expect(img).toHaveCSS('opacity', '0');
   // The frame shows a quiet surface meanwhile, so the shelf is not full of holes.
-  expect(await stage.evaluate(element => getComputedStyle(element).backgroundColor)).not.toBe('rgba(0, 0, 0, 0)');
+  const surface = await stage.evaluate(element => { const style = getComputedStyle(element, '::before'); return { opacity: style.opacity, background: style.backgroundColor }; });
+  expect(surface.opacity).toBe('1');
+  expect(surface.background).not.toBe('rgba(0, 0, 0, 0)');
   const before = await stage.boundingBox();
   await release();
   await expect(img).toHaveCSS('opacity', '1');
   expect(await stage.boundingBox()).toEqual(before);
+  await expect.poll(() => stage.evaluate(element => getComputedStyle(element, '::before').opacity)).toBe('0');
   const properties = await img.evaluate(element => getComputedStyle(element).transitionProperty);
   expect(properties).toContain('opacity');
 });
@@ -73,12 +98,28 @@ test('a hover that is taken back continues from where the cover is', async ({ pa
   const card = page.locator('.book-card').first();
   const img = card.locator('.cover-stage img');
   await expect(img).toHaveCSS('opacity', '1');
+  // The watcher is in place before the pointer arrives, so a busy machine cannot miss the lift.
+  // It stops the lift halfway, then notes where the transition that replaces it starts.
+  await img.evaluate(element => {
+    window.__halfway = null; window.__from = null;
+    const transform = other => element.getAnimations().find(item => item.transitionProperty === 'transform' && item !== other);
+    const start = () => {
+      const lift = transform();
+      if (!lift) { requestAnimationFrame(start); return; }
+      lift.pause(); lift.currentTime = 100;
+      window.__halfway = getComputedStyle(element).transform;
+      const watch = () => { const next = transform(lift); if (next) window.__from = next.effect.getKeyframes()[0].transform; else requestAnimationFrame(watch); };
+      watch();
+    };
+    start();
+  });
   await card.hover();
-  // Stops the lift halfway, so the reading does not depend on how busy the machine is.
-  const halfway = await img.evaluate(element => { const lift = element.getAnimations().find(item => item.transitionProperty === 'transform'); lift.pause(); lift.currentTime = 100; return getComputedStyle(element).transform; });
+  await page.waitForFunction(() => window.__halfway !== null);
+  const halfway = await page.evaluate(() => window.__halfway);
   expect(halfway).not.toBe('none');
   await page.mouse.move(0, 0);
-  const from = await img.evaluate(element => element.getAnimations().find(item => item.transitionProperty === 'transform')?.effect.getKeyframes()[0].transform);
+  await page.waitForFunction(() => window.__from !== null);
+  const from = await page.evaluate(() => window.__from);
   const height = value => page.evaluate(text => new DOMMatrix(text).m42, value);
   expect(await height(from)).toBeCloseTo(await height(halfway), 3);
   expect(await height(halfway)).toBeLessThan(0);

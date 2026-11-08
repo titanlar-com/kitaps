@@ -73,7 +73,8 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
  const invalidYears = f.yearMin !== '' && f.yearMax !== '' && Number(f.yearMin) > Number(f.yearMax);
  const current = sections.find(s => s.id === section);
 
- useEffect(() => { if (!opened) setSection(null); }, [opened]);
+ // The section stays on screen while the sheet leaves; opened again, it starts from the list (ADR 004, K6).
+ useEffect(() => { if (opened) setSection(null); }, [opened]);
  useEffect(() => {
   if (!opened) return;
   titleRef.current?.focus({ preventScroll: true });
@@ -92,7 +93,7 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
   return () => { visual.removeEventListener('resize', resize); visual.removeEventListener('scroll', resize); };
  }, [opened]);
 
- return <Drawer.Root opened={opened} onClose={onClose} onExitTransitionEnd={onExited} position="bottom" size="90dvh" className="filter-sheet" padding={0} transitionProps={transition('sheet',reducedMotion)} styles={viewport ? { inner: { height: viewport.height, top: viewport.top, bottom: 'auto' }, content: { height: viewport.panelHeight } } : undefined}>
+ return <Drawer.Root opened={opened} onClose={onClose} onExitTransitionEnd={() => { setSection(null); onExited?.(); }} position="bottom" size="90dvh" className="filter-sheet" padding={0} transitionProps={transition('sheet',reducedMotion)} styles={viewport ? { inner: { height: viewport.height, top: viewport.top, bottom: 'auto' }, content: { height: viewport.panelHeight } } : undefined}>
   <Drawer.Overlay backgroundOpacity={.45} blur={3} />
   <Drawer.Content aria-describedby="filter-sheet-description">
    <Drawer.Header>
