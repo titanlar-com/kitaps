@@ -34,7 +34,7 @@ export default function ReadingSummary({ summary, onSelect }) {
     </div>
     <ul className="reading-summary-stats">
       {ITEMS.map(({ key, label, field, Icon }) => <li key={key}>
-        <UnstyledButton className="reading-summary-stat" aria-label={`${label}: ${number.format(summary[field])} kitap`} onClick={() => onSelect(key)}>
+        <UnstyledButton className="reading-summary-stat" data-tone={key} aria-label={`${label}: ${number.format(summary[field])} kitap`} onClick={() => onSelect(key)}>
           <ThemeIcon className="reading-summary-icon" variant="light" size={36} aria-hidden="true"><Icon size={20} /></ThemeIcon>
           <span className="reading-summary-value tabular-nums" aria-hidden="true">{number.format(summary[field])}</span>
           <span className="reading-summary-label" aria-hidden="true">{label}</span>

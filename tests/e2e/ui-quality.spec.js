@@ -81,6 +81,7 @@ const openSections = async page => {
 for (const colorScheme of ['light', 'dark']) {
   test(`controls keep a 3:1 boundary and no accent edge follows a curve, ${colorScheme} theme`, async ({ browser }) => {
     const context = await browser.newContext({ colorScheme });
+    await context.addInitScript(mode => { localStorage.setItem('kitapatlasi:wood', 'ceviz'); localStorage.setItem('kitapatlasi:color-scheme', mode); }, colorScheme);
     await isolate(context);
     const page = await context.newPage();
     for (const [name, url] of Object.entries(VIEWS)) {
@@ -195,9 +196,10 @@ test('keyboard focus is a bar under the control that only Tab turns on, never a 
   const toggle = page.locator('.theme-toggle');
   await toggle.click();
   expect((await focusLook(page)).mode).toBeNull();
+  await page.keyboard.press('Escape');
   await toggle.focus();
   await page.keyboard.press('Enter');
-  expect(await page.evaluate(() => document.documentElement.dataset.mantineColorScheme)).toBe('light');
+  await expect(page.getByRole('dialog')).toBeVisible();
 });
 
 test('in forced colours the keyboard focus is a 2px CanvasText outline, and pointer focus has none', async ({ page, browserName }) => {
@@ -207,6 +209,7 @@ test('in forced colours the keyboard focus is a 2px CanvasText outline, and poin
   await page.goto('./');
   await expect(page.locator('.book-card').first()).toBeVisible();
   await page.locator('.theme-toggle').click();
+  await page.keyboard.press('Escape');
   expect((await focusLook(page)).outline).toBe('none');
   await page.keyboard.press('Tab');
   const look = await focusLook(page);
@@ -344,6 +347,7 @@ for (const [colorScheme, width] of [['light', 320], ['dark', 1280]]) {
   test(`every keyboard stop shows its focus bar whole and at 3:1, ${colorScheme} theme at ${width} px`, async ({ browser, browserName }) => {
     test.setTimeout(420_000);
     const context = await browser.newContext({ colorScheme, viewport: { width, height: 800 } });
+    await context.addInitScript(mode => { localStorage.setItem('kitapatlasi:wood', 'ceviz'); localStorage.setItem('kitapatlasi:color-scheme', mode); }, colorScheme);
     await isolate(context);
     const page = await context.newPage();
     // Safari's Tab reaches form fields only; Option+Tab reaches every control.

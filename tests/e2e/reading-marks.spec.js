@@ -204,6 +204,7 @@ test('in forced colours each ribbon keeps an outline', async ({ browser, browser
 for (const colorScheme of ['light', 'dark']) {
   test(`ribbons keep WCAG A/AA in the ${colorScheme} theme`, async ({ browser }) => {
     const context = await browser.newContext({ colorScheme });
+    await context.addInitScript(mode => { localStorage.setItem('kitapatlasi:wood', 'ceviz'); localStorage.setItem('kitapatlasi:color-scheme', mode); }, colorScheme);
     await isolate(context);
     const page = await context.newPage();
     await page.goto(BOOK);

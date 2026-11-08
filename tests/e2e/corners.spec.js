@@ -53,6 +53,7 @@ const PAGES = [
   ['the fairs', './?view=fairs', null],
   ['the filters', './', page => page.getByRole('button', { name: /^Filtreler/ }).click()],
   ['the footer menu', './', page => page.locator('.footer-dock').click()],
+  ['the colour panel', './', page => page.getByRole('button', { name: 'Renk düzeni' }).click()],
 ];
 for (const width of [320, 390, 1280]) {
   for (const [what, url, open] of PAGES) {

@@ -211,7 +211,7 @@ test('filled buttons keep readable text in the dark theme: the notice and an act
   const page = await context.newPage();
   await markPurchased(page);
   const active = page.getByRole('button', { name: 'Satın alındı', exact: true });
-  await expect(active).toHaveCSS('color', 'rgb(20, 24, 29)');
+  await expect(active).toHaveCSS('color', 'rgb(21, 15, 8)');
   await page.keyboard.press('Escape');
   const connect = page.locator('.sync-notice').getByRole('button', { name: 'Bu cihazı bağla' });
   await expect(connect).toHaveCSS('color', 'rgb(20, 24, 29)');
@@ -261,6 +261,7 @@ test('connecting a second device asks before it replaces a book the first one sa
 test('the notice and the connect dialog keep their content inside at 320 px with 200% text', async ({ browser }) => {
   for (const colorScheme of ['light', 'dark']) {
     const context = await browser.newContext({ colorScheme, viewport: { width: 320, height: 720 } });
+    await context.addInitScript(mode => { localStorage.setItem('kitapatlasi:wood', 'ceviz'); localStorage.setItem('kitapatlasi:color-scheme', mode); }, colorScheme);
     await fakeGitHub().attach(context);
     const page = await context.newPage();
     await markPurchased(page);

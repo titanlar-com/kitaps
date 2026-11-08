@@ -23,9 +23,7 @@ test('its motion is the site curve and stops for readers who ask for less motion
   assert.match(html, /@media \(prefers-reduced-motion:reduce\)\{#first-load i\{animation:none\}\}/);
 });
 
-test('its colours are the site tokens in both schemes, so the page does not flash', () => {
-  const [light, dark] = css.match(/--paper:#[0-9a-f]{6}/g).map(value => value.split(':')[1]);
-  const [inkLight, inkDark] = css.match(/--ink:#[0-9a-f]{6}/g).map(value => value.split(':')[1]);
-  for (const colour of [light, dark, inkLight, inkDark]) assert.ok(html.includes(colour), colour);
-  assert.match(html, /@media \(prefers-color-scheme:dark\)/);
+test('its colours come from the chosen scheme, with walnut as the fallback', () => {
+  assert.match(html, /background:var\(--paper,#[0-9a-f]{6}\)/);
+  assert.match(html, /color:var\(--ink,#[0-9a-f]{6}\)/);
 });

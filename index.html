@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#1b2127" />
+<meta name="theme-color" content="#0e0a07" />
 <meta name="description" content="__BOOK_COUNT__ kitap; araştırılmış seçkiler, konu rotaları, çeviri, çevirmen ve baskı bilgileriyle tek katalogda." />
 <meta name="robots" content="noindex,follow" />
 <meta property="og:type" content="website" />
@@ -13,16 +13,23 @@
 <meta name="twitter:card" content="summary" />
 <link rel="canonical" href="https://titanlar-com.github.io/kitaps/catalog/" />
 <title>Kitaplık — Araştırılmış okuma kataloğu</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23a3392b'/%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M32 20c-5-3.7-12-5.5-21.5-5.5v32.5c9.5 0 16.5 1.8 21.5 5.5 5-3.7 12-5.5 21.5-5.5V14.5C44 14.5 37 16.3 32 20z'/%3E%3Cpath d='M32 20v32.5'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23231a13'/%3E%3Cg fill='none' stroke='%23e4b75f' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M32 20c-5-3.7-12-5.5-21.5-5.5v32.5c9.5 0 16.5 1.8 21.5 5.5 5-3.7 12-5.5 21.5-5.5V14.5C44 14.5 37 16.3 32 20z'/%3E%3Cpath d='M32 20v32.5'/%3E%3C/g%3E%3C/svg%3E" />
+<script>
+(function(){var k='kitapatlasi:wood',s='kitapatlasi:color-scheme',w='ceviz',m='dark';
+try{var v=localStorage.getItem(k);
+if(v===null){localStorage.removeItem(s);localStorage.setItem(k,w)}
+else if(v==='ceviz'||v==='mese'||v==='akasya')w=v;
+if(localStorage.getItem(s)==='light')m='light'}catch(e){}
+document.documentElement.setAttribute('data-wood',w);document.documentElement.setAttribute('data-mantine-color-scheme',m)})();
+</script>
 <style>
-#first-load{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:100vh;min-height:100dvh;padding:16px;box-sizing:border-box;background:#f3f5f7;color:#14181d;font:1rem/1.5 'Outfit Variable',Outfit,system-ui,sans-serif}
+#first-load{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:100vh;min-height:100dvh;padding:16px;box-sizing:border-box;background:var(--paper,#0e0a07);color:var(--ink,#f5efe6);font:1rem/1.5 'Outfit Variable',Outfit,system-ui,sans-serif}
 #first-load p{margin:0}
 #first-load span{display:flex;align-items:center;gap:4px;height:28px}
 #first-load i{display:block;width:6px;height:28px;border-radius:2px;background:currentColor;transform:scaleY(.4);animation:first-load .7s cubic-bezier(.65, 0, .35, 1) infinite alternate}
 #first-load i:nth-child(2){animation-delay:.15s}
 #first-load i:nth-child(3){animation-delay:.3s}
 @keyframes first-load{to{transform:scaleY(1)}}
-@media (prefers-color-scheme:dark){#first-load{background:#111418;color:#edf0f3}}
 @media (prefers-reduced-motion:reduce){#first-load i{animation:none}}
 </style>
 <noscript><style>#first-load{display:none}</style></noscript>

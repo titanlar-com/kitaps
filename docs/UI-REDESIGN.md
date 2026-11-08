@@ -26,7 +26,7 @@ Yeni tasarım aşağıdakileri olduğu gibi korur. Bunları koruyan testler gev�
 Kitaplık, araştırılmış bir okuma kataloğu ve kişisel bir kütüphanedir. Tasarım bunu bir okuma masası gibi kurar: kapaklar sahnenin asıl öğesidir, yazı düzeni dergi gibi sakin ve hiyerarşiktir, yüzeyler kâğıt ve mürekkep tonlarındadır.
 
 - **Yüzeyler.** Üç katman vardır: zemin (kâğıt), yükseltilmiş yüzey (beyaz sayfa) ve gömük yüzey (masa). Ayrım önce boşlukla ve yüzey tonuyla kurulur. Gölge yalnız yükselen öğelerde (kapak, açılan panel) kullanılır.
-- **Renk.** Tek vurgu rengi kiremittir. İşlev renkleri anlam taşır: satın alındı turkuaz, okundu mürekkep, uyarı amber. Renk tek başına anlam taşımaz, her durumun bir sözcüğü ve simgesi vardır.
+- **Renk.** Varsayılan koyu cevizdir. Okuyucu renk panelinden Ceviz (pirinç sarısı vurgu), Meşe (yaprak yeşili vurgu) ve Akasya (turkuaz vurgu) arasında seçim yapar. Koyu temada zemin en koyu katmandır, üstteki katmanlar açılır. Okuma işaretlerinin her birinin kendi rengi vardır. Renk tek başına anlam taşımaz, her durumun bir de simgesi ya da yazısı vardır. Renkler `src/woods.css` içindedir.
 - **Yazı.** Tek yazı tipi Outfit'tir. Hiyerarşi ağırlık, boyut ve harf aralığıyla kurulur. Sayılar tablo hizalı (tabular) yazılır.
 - **Yoğunluk.** Varsayılan rahat yoğunluktur. Dokunma alanı 44 px'in altına inmez.
 - **Kimlik öğeleri.** Sade açık kitap işareti, kapak gölgesi ve kitap sırtı çizgisi, okuma ilerlemesi için köşeleri 5 px'i geçmeyen çubuk göstergeler. Halka gösterge kullanılmaz, çünkü proje sahibinin köşe kuralı daireyi dışarıda bırakır.

@@ -1,0 +1,194 @@
+/* The wood colour schemes (the owner's decision of 8 November 2026). Dark comes first. In dark
+   the floor is the darkest layer and carries the grain; each layer above it is a lighter black
+   or dark grey, so depth comes from tone. Each scheme has one clearly named accent and four other
+   hues for the reader's marks. tests/palette.test.js checks every pair in all six schemes.
+   The selectors have no :root, so a swatch in the colour panel can preview another scheme. */
+
+:root:not([data-wood]),[data-wood='ceviz'][data-mantine-color-scheme='dark']{
+ --paper:#0e0a07;
+ --surface:#191512;
+ --surface-2:#231e1a;
+ --surface-3:#2e2823;
+ --ink:#f5efe6;
+ --ink-2:#dcd2c5;
+ --muted:#b6aa9b;
+ --line:#2f2823;
+ --line-strong:#463c33;
+ --control-line:#8d8072;
+ --control-border:#8d8072;
+ --accent-border:#a98d52;
+ --accent:#e4b75f;
+ --accent-hover:#efc97f;
+ --accent-ink:#150f08;
+ --accent-soft:#33281a;
+ --accent-soft-hover:#423420;
+ --accent-strong:#f3d594;
+ --ok:#8fcfa9;
+ --bad:#ffa99b;
+ --hero:#2a241f;
+ --hero-ink:#f5efe6;
+ --hero-muted:#cfc4b5;
+ --tone-read:#8fcfa9;
+ --tone-reading:#e4b75f;
+ --tone-queue:#8fb9e0;
+ --tone-owned:#d7b899;
+ --tone-favorite:#ec9aa9;
+ --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.055 .0035' numOctaves='5' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .8 0 0 0 0 .6 0 0 0 .16 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+[data-wood='ceviz'][data-mantine-color-scheme='light']{
+ --paper:#f3ede4;
+ --surface:#fffcf7;
+ --surface-2:#eae2d6;
+ --surface-3:#ddd3c5;
+ --ink:#1b1510;
+ --ink-2:#40362c;
+ --muted:#62574b;
+ --line:#ddd4c7;
+ --line-strong:#c4b9a9;
+ --control-line:#7d7162;
+ --control-border:#7d7162;
+ --accent-border:#8a6a4c;
+ --accent:#4a2e1a;
+ --accent-hover:#5d3c24;
+ --accent-ink:#fffaf2;
+ --accent-soft:#eadcc8;
+ --accent-soft-hover:#e0cfb6;
+ --accent-strong:#38220f;
+ --ok:#1f6b4a;
+ --bad:#b42318;
+ --hero:#241c15;
+ --hero-ink:#f5efe6;
+ --hero-muted:#d3c9bb;
+ --tone-read:#1f6b4a;
+ --tone-reading:#7a5300;
+ --tone-queue:#27598a;
+ --tone-owned:#4a2e1a;
+ --tone-favorite:#a32a4a;
+ --grain:none;
+}
+
+[data-wood='mese'][data-mantine-color-scheme='dark']{
+ --paper:#0d0e09;
+ --surface:#171812;
+ --surface-2:#21221b;
+ --surface-3:#2c2d24;
+ --ink:#f2f1e5;
+ --ink-2:#d6d5c4;
+ --muted:#b0ae9a;
+ --line:#2b2c23;
+ --line-strong:#414235;
+ --control-line:#8b8a75;
+ --control-border:#8b8a75;
+ --accent-border:#7f9c58;
+ --accent:#a9d274;
+ --accent-hover:#bce08d;
+ --accent-ink:#11160a;
+ --accent-soft:#2a3319;
+ --accent-soft-hover:#364223;
+ --accent-strong:#cde9a6;
+ --ok:#7fd1bd;
+ --bad:#ffa99b;
+ --hero:#272820;
+ --hero-ink:#f2f1e5;
+ --hero-muted:#cbcab8;
+ --tone-read:#7fd1bd;
+ --tone-reading:#a9d274;
+ --tone-queue:#93bde8;
+ --tone-owned:#e6c56c;
+ --tone-favorite:#efa0ad;
+ --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.1 .003' numOctaves='4' seed='23' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .7 0 0 0 .16 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+[data-wood='mese'][data-mantine-color-scheme='light']{
+ --paper:#f2f1e6;
+ --surface:#fffef8;
+ --surface-2:#e7e6d6;
+ --surface-3:#dad9c6;
+ --ink:#16170f;
+ --ink-2:#383a2c;
+ --muted:#5c5e4c;
+ --line:#dcdccb;
+ --line-strong:#c2c2ae;
+ --control-line:#76776a;
+ --control-border:#76776a;
+ --accent-border:#5f7d50;
+ --accent:#2f5a22;
+ --accent-hover:#3a6e2b;
+ --accent-ink:#fbfff5;
+ --accent-soft:#dfeccf;
+ --accent-soft-hover:#d2e3bd;
+ --accent-strong:#234519;
+ --ok:#0e6b63;
+ --bad:#b42318;
+ --hero:#20221a;
+ --hero-ink:#f2f1e5;
+ --hero-muted:#cfceba;
+ --tone-read:#0e6b63;
+ --tone-reading:#3f6a1f;
+ --tone-queue:#27598a;
+ --tone-owned:#6d5400;
+ --tone-favorite:#a32a4a;
+ --grain:none;
+}
+
+[data-wood='akasya'][data-mantine-color-scheme='dark']{
+ --paper:#140b08;
+ --surface:#1e1512;
+ --surface-2:#281e1a;
+ --surface-3:#342823;
+ --ink:#f7eee8;
+ --ink-2:#e0d0c7;
+ --muted:#bdaa9f;
+ --line:#332823;
+ --line-strong:#4a3b34;
+ --control-line:#94807a;
+ --control-border:#94807a;
+ --accent-border:#4f9a8c;
+ --accent:#6fd3c0;
+ --accent-hover:#8ae2d1;
+ --accent-ink:#06140f;
+ --accent-soft:#163029;
+ --accent-soft-hover:#1f3f37;
+ --accent-strong:#a6ebdc;
+ --ok:#9fd68a;
+ --bad:#ffa99b;
+ --hero:#2e231f;
+ --hero-ink:#f7eee8;
+ --hero-muted:#d6c6bb;
+ --tone-read:#9fd68a;
+ --tone-reading:#6fd3c0;
+ --tone-queue:#9db8ec;
+ --tone-owned:#f2d45c;
+ --tone-favorite:#f0a0b0;
+ --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.04 .008' numOctaves='5' seed='41' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .7 0 0 0 0 .55 0 0 0 .16 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+[data-wood='akasya'][data-mantine-color-scheme='light']{
+ --paper:#f5ece5;
+ --surface:#fffbf7;
+ --surface-2:#ecdfd6;
+ --surface-3:#e0d1c6;
+ --ink:#1c120e;
+ --ink-2:#43332b;
+ --muted:#66554b;
+ --line:#e0d3c9;
+ --line-strong:#c9b8ab;
+ --control-line:#807065;
+ --control-border:#807065;
+ --accent-border:#4d847b;
+ --accent:#0d5f56;
+ --accent-hover:#0f7468;
+ --accent-ink:#f5fffc;
+ --accent-soft:#d3ece6;
+ --accent-soft-hover:#c2e3db;
+ --accent-strong:#0a4a43;
+ --ok:#2c6b2a;
+ --bad:#b42318;
+ --hero:#271a15;
+ --hero-ink:#f7eee8;
+ --hero-muted:#d9c8bd;
+ --tone-read:#2c6b2a;
+ --tone-reading:#0d5f56;
+ --tone-queue:#27598a;
+ --tone-owned:#6d5400;
+ --tone-favorite:#a32a4a;
+ --grain:none;
+}

@@ -23,6 +23,7 @@ const KEYS = [
   'kitapatlasi:routes:v1',
   'kitapatlasi:states:v2',
   'kitapatlasi:sync-notice:dismissed:v1',
+  'kitapatlasi:wood',
   'kitaplik:hide-owned:v1',
   'kitaps:states:v1',
 ];

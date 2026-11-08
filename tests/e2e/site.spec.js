@@ -697,6 +697,7 @@ test('page state lives in the URL and survives a reload', async ({ page }) => {
 for (const colorScheme of ['light', 'dark']) {
   test(`no WCAG A/AA violations on the catalog and a book page (${colorScheme})`, async ({ browser }) => {
     const context = await browser.newContext({ colorScheme });
+    await context.addInitScript(mode => { localStorage.setItem('kitapatlasi:wood', 'ceviz'); localStorage.setItem('kitapatlasi:color-scheme', mode); }, colorScheme);
     const page = await context.newPage();
     for (const path of ['./', './?book=good-to-great-by-jim-collins']) {
       await page.goto(path);
