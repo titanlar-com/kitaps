@@ -132,9 +132,10 @@ function AtlasApp() {
   focusMain();
  };
  // The sheet counts the draft exactly as the page will list it, the purchases rule included.
- // While the sheet closes it keeps the last count, so its live line never reads 0 on the way out.
- const lastDraft=useRef(null);
- const draftListing=useMemo(()=>opened?(lastDraft.current=catalogListing({books,states,view,filters:draft,sort,page:1,pageSize,rankings:readingRanking.byId,hideOwned})):lastDraft.current,[opened,states,view,draft,sort,pageSize,hideOwned]);
+ // The sheet's listing is computed while the sheet is on screen, opening, open or closing, so its
+ // live line never reads 0 on the way out; nothing is written during render.
+ const [sheetShown,setSheetShown]=useState(false);
+ const draftListing=useMemo(()=>sheetShown?catalogListing({books,states,view,filters:draft,sort,page:1,pageSize,rankings:readingRanking.byId,hideOwned}):null,[sheetShown,states,view,draft,sort,pageSize,hideOwned]);
  const draftCount=draftListing?.filtered.length??0;
  const activeCount=filterCount({...filters,query:''});
  const onToggle=(id,key,trigger=document.activeElement)=>{
@@ -183,7 +184,7 @@ function AtlasApp() {
      {['owned','favorites'].includes(view)&&<Title order={1} className="visually-hidden">{view==='owned'?'Kitaplığım':'Favorilerim'}</Title>}
      <div className="search-panel" role="search">
       <TextInput className="catalog-search" label={view==='owned'?'Kitaplığımda ara':view==='favorites'?'Favorilerimde ara':'Katalogda ara'} placeholder="Kitap, yazar, çevirmen…" leftSection={<IconSearch size={21}/>} rightSectionWidth={44} rightSection={filters.query?<ActionIcon variant="subtle" aria-label="Aramayı temizle" onClick={()=>changeFilters({...filters,query:''})}><IconX size={20}/></ActionIcon>:null} value={filters.query} onChange={e=>changeFilters({...filters,query:e.currentTarget.value})}/>
-      <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setToastShown(false);setDraft(filters);setOpened(true)}}>Filtreler{activeCount?` · ${activeCount}`:''}</Button><WrappingSelect aria-label="Kitapları sırala" value={sort} onChange={v=>setRoute(r=>({...r,sort:v||'reading',page:1}))} data={[{value:'reading',label:'Okuma önceliği'},{value:'shared',label:'En çok kesişen'},{value:'title',label:'Kitap adı · A–Z'},{value:'author',label:'Yazar · A–Z'},{value:'newest',label:'Yayın yılı · yeni'},{value:'added',label:'Eklenme · yeni'},{value:'saved',label:'Favoriler önce'}]}/></div>
+      <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setToastShown(false);setDraft(filters);setSheetShown(true);setOpened(true)}}>Filtreler{activeCount?` · ${activeCount}`:''}</Button><WrappingSelect aria-label="Kitapları sırala" value={sort} onChange={v=>setRoute(r=>({...r,sort:v||'reading',page:1}))} data={[{value:'reading',label:'Okuma önceliği'},{value:'shared',label:'En çok kesişen'},{value:'title',label:'Kitap adı · A–Z'},{value:'author',label:'Yazar · A–Z'},{value:'newest',label:'Yayın yılı · yeni'},{value:'added',label:'Eklenme · yeni'},{value:'saved',label:'Favoriler önce'}]}/></div>
       <ActiveFilters filters={filters} onChange={changeFilters}/>
      </div>
      {wide&&!phoneLandscape&&view==='books'&&!filterCount(filters)&&<ReadingSummary summary={summary} onSelect={onSummary}/>}
@@ -220,7 +221,7 @@ function AtlasApp() {
   {/* Opened from the book sheet too, so it sits above the sheet (Mantine's layer 200) and below the toast (310). */}
   <Modal opened={syncOpened} onClose={()=>setSyncOpened(false)} zIndex={300} returnFocus={false} onExitTransitionEnd={syncClosed} title="Cihazlar arası eşitleme" size="lg" centered className="sync-modal" closeButtonProps={{'aria-label':'Kapat'}}><GitHubSyncPanel sync={githubSync} framed={false}/></Modal>
   <Modal opened={guideOpened} onClose={()=>setGuideOpened(false)} title="Çeviri seçme rehberi" size="lg" centered className="global-guide-modal" closeButtonProps={{'aria-label':'Kapat'}}><TranslationCriteria/></Modal>
-  <FilterSheet opened={opened} onClose={()=>setOpened(false)} value={draft} onChange={setDraft} onReset={()=>setDraft({...emptyFilters(),query:filters.query})} onApply={()=>{changeFilters(draft);setOpened(false)}} count={draftCount} catalog={catalog} authors={authorOptions} shelf={draftListing?.shelf??shelfBooks}/>
+  <FilterSheet opened={opened} onClose={()=>setOpened(false)} onExited={()=>setSheetShown(false)} value={draft} onChange={setDraft} onReset={()=>setDraft({...emptyFilters(),query:filters.query})} onApply={()=>{changeFilters(draft);setOpened(false)}} count={draftCount} catalog={catalog} authors={authorOptions} shelf={draftListing?.shelf??shelfBooks}/>
   {!book&&transferNotice}
   <BookDetail feedback={transferNotice} ranking={readingRanking.byId[book]} onOpen={onOpen} onBack={previousBook} hasBack={bookTrail.length>0} book={byId[book]} onClose={closeBook} states={states} onToggle={onToggle} onCollection={goCollection} onCategory={goCategory} personal={personal} onReading={onReading} onAdd={onAdd} onQueue={onQueue} storageError={storageError||personalStorageError} sync={githubSync} onSync={openSync} covered={syncCovering||Boolean(githubSync.mergePrompt)}/>
  </>;

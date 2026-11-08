@@ -69,6 +69,9 @@ const measure = () => {
 
 const openSections = async page => {
   for (const control of await page.locator('.mantine-Drawer-content .mantine-Accordion-control[aria-expanded="false"]').all()) await control.click({ timeout: 2000 }).catch(() => {});
+  // The book's own sections must really be open, or the scan would measure closed panels
+  // (review, 8 November 2026); nested guides may stay as they are.
+  for (const control of await page.locator('.mantine-Drawer-content .detail-sections > .mantine-Accordion-item > .mantine-Accordion-control').all()) await expect(control).toHaveAttribute('aria-expanded', 'true');
 };
 
 for (const colorScheme of ['light', 'dark']) {

@@ -369,14 +369,16 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
 .header-shortcuts .mantine-ActionIcon-root{width:auto;min-width:var(--touch-target);height:auto;min-height:var(--touch-target);border:1px solid transparent;border-radius:var(--radius);background:transparent;color:var(--ink-2)}
 /* A count is written beside its icon (review of 8 November 2026), so it grows with the text and
    never covers the icon; the button grows with it. Every shortcut keeps a transparent 1 px
-   border, so the open one's border does not make it grow. On a phone the count goes under a
-   smaller icon, so the header keeps one row of shortcuts whatever the counts are. */
+   border, so the open one's border does not make it grow. Below 64em (phones and tablets, and the
+   tight first row the tabs join from 56em) the count goes under a smaller icon, so the header
+   keeps its rows whatever the counts are. */
 .header-shortcuts .mantine-ActionIcon-icon{gap:var(--radius)}
 .header-shortcuts .mantine-ActionIcon-root:has(.shortcut-count){padding-inline:var(--gap-xs)}
-@media (max-width:35.99em){
+@media (max-width:63.99em){
  .header-shortcuts .mantine-ActionIcon-root:has(.shortcut-count){padding-inline:0}
  .header-shortcuts .mantine-ActionIcon-root:has(.shortcut-count) .mantine-ActionIcon-icon{flex-direction:column;gap:0}
- .header-shortcuts .mantine-ActionIcon-root:has(.shortcut-count) svg{width:var(--shortcut-icon-compact);height:var(--shortcut-icon-compact)}
+ /* Every shortcut icon takes the same compact size, with or without a count. */
+ .header-shortcuts .mantine-ActionIcon-root svg{width:var(--shortcut-icon-compact);height:var(--shortcut-icon-compact)}
 }
 .shortcut-count{font-size:var(--text-sm);font-weight:650;font-variant-numeric:tabular-nums;line-height:1}
 .header-shortcuts .mantine-ActionIcon-root:hover{background:var(--surface-2);color:var(--ink)}

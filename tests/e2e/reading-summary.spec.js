@@ -101,7 +101,15 @@ test('with purchases hidden, a reading-mark filter counts and lists the purchase
   await page.getByRole('dialog').getByRole('checkbox', { name: /^Okundu/ }).check({ force: true });
   // The sheet's live count already includes the purchased read book.
   await expect(page.locator('.filter-result-total')).toHaveText('1 kitap eşleşiyor');
+  // While the sheet closes, its live line never reads 0 (review, 8 November 2026).
+  await page.evaluate(() => {
+    window.__sheetTexts = [];
+    const line = document.querySelector('.filter-result-total');
+    new MutationObserver(() => window.__sheetTexts.push(line.textContent)).observe(line, { subtree: true, characterData: true, childList: true });
+  });
   await page.getByRole('dialog').getByRole('button', { name: 'Kitapları göster' }).click();
+  await expect(page.locator('.filter-result-total')).toHaveCount(0);
+  expect(await page.evaluate(() => window.__sheetTexts)).not.toContain('0 kitap eşleşiyor');
   await expect(page.locator('.book-card')).toHaveCount(1);
   await expect(page.locator('.purchases-note')).toHaveText('Satın aldığın kitaplar da listede, çünkü okuma işaretine göre süzdün.');
   // The note is announced with the result count.

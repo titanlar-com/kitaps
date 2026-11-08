@@ -39,11 +39,12 @@ for (const width of [320, 390, 1280]) {
     await page.setViewportSize({ width, height: 800 });
     await page.goto('./');
     const marker = page.locator('.main-tabs-indicator');
+    // Both boxes are read on every try: the tabs may still move while the font loads, and the
+    // marker follows them (an early tab box made this check fail under load, 8 November 2026).
     const under = async name => {
-      const tab = await page.getByRole('tab', { name }).boundingBox();
       await expect.poll(async () => {
-        const box = await marker.boundingBox();
-        return box && Math.abs(box.x - tab.x) <= 1 && Math.abs(box.width - tab.width) <= 1 && Math.abs((box.y + box.height) - (tab.y + tab.height)) <= 1;
+        const [tab, box] = [await page.getByRole('tab', { name }).boundingBox(), await marker.boundingBox()];
+        return Boolean(tab && box) && Math.abs(box.x - tab.x) <= 1 && Math.abs(box.width - tab.width) <= 1 && Math.abs((box.y + box.height) - (tab.y + tab.height)) <= 1;
       }, { message: `the marker sits under ${name}` }).toBe(true);
     };
     await under('Kitaplar');
@@ -196,5 +197,36 @@ test('a count reads as a Turkish number', async ({ browser }) => {
   const shown = new Intl.NumberFormat('tr-TR').format(ids.length);
   await expect(page.locator('.header-library .shortcut-count')).toHaveText(shown);
   await expect(page.locator('.header-library')).toHaveAccessibleName(`Kitaplığım: ${shown} kitap`);
+  await context.close();
+});
+
+// Review of 8 November 2026: from 56em the tabs join the first header row; counts must not push
+// anything onto a new row there either.
+for (const width of [895, 896, 912, 1023, 1024]) {
+  test(`at ${width} px the header keeps its height with counts of 150 and every book`, async ({ browser }) => {
+    const ids = catalogIds();
+    const heights = [];
+    for (const count of [0, 150, ids.length]) {
+      const context = await seedStates(browser, Object.fromEntries(ids.slice(0, count).map(id => [id, ['onemli', 'alindi']])), { width, height: 800 });
+      const page = await context.newPage();
+      await page.goto('./');
+      // With every book purchased and hidden the catalogue is empty, so the page and its fonts are awaited instead.
+      await expect(page.locator('#main-content')).toBeVisible();
+      await page.evaluate(() => document.fonts.ready);
+      if (count) await expect(page.locator('.header-library .shortcut-count')).toHaveText(new Intl.NumberFormat('tr-TR').format(count));
+      heights.push(Math.round((await page.locator('.site-header').boundingBox()).height));
+      await context.close();
+    }
+    expect(heights[1]).toBe(heights[0]);
+    expect(heights[2]).toBe(heights[0]);
+  });
+}
+
+test('on a phone every shortcut icon has one size, with or without a count', async ({ browser }) => {
+  const context = await seedStates(browser, { goal: ['onemli', 'alindi'] });
+  const page = await context.newPage();
+  await page.goto('./');
+  const sizes = await page.locator('.header-shortcuts button svg').evaluateAll(icons => icons.map(icon => Math.round(icon.getBoundingClientRect().width)));
+  expect(new Set(sizes).size, `icon widths ${sizes}`).toBe(1);
   await context.close();
 });
