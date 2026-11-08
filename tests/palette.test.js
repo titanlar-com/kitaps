@@ -57,12 +57,18 @@ for(const wood of WOODS){
   assert.ok(hsl(tokens['--paper']).l<=.06,'the floor is near black');
   assert.ok(hsl(tokens['--surface-3']).l<=.22,'the top layer is still a dark grey');
  });
- test(`${wood} dark: the wood grain is faint enough to keep text readable on the floor`,()=>{
+ test(`${wood} dark: the wood grain is a CSS pattern, faint enough to keep text readable on the floor`,()=>{
   const tokens=scheme(wood,'dark');
-  const grain=decodeURIComponent(tokens['--grain']);
-  const matrix=grain.match(/feColorMatrix[^>]*values='([^']+)'/)?.[1].trim().split(/\s+/).map(Number);
-  assert.equal(matrix?.length,20,'a colour matrix');
-  const strongest=matrix[18]+matrix[19];
+  const grain=tokens['--grain'];
+  // The owner, 8 November 2026: a seamless CSS pattern, not an image.
+  assert.ok(!/url\(/.test(grain),'no image');
+  assert.match(grain,/^repeating-linear-gradient\(90deg/,'bands that repeat without a seam');
+  // Only the lightening bands can lower contrast. Black ones darken the floor under light text.
+  const strongest=[...grain.matchAll(/repeating-linear-gradient\((.*?)\)(?:,|$)/g)].reduce((sum,[,layer])=>{
+   const alphas=[...layer.matchAll(/rgb\((\d+) (\d+) (\d+) \/ (\d+)%\)/g)].filter(([,r,g,b])=>Number(r)+Number(g)+Number(b)>0).map(match=>Number(match[4]));
+   return sum+(alphas.length?Math.max(...alphas):0);
+  },0)/100;
+  assert.ok(strongest>0,'the grain has light bands');
   assert.ok(strongest<=.13,`alpha reaches ${strongest}`);
   const lit=over('#ffffff',tokens['--paper'],strongest);
   for(const text of ['--ink','--ink-2','--muted','--accent'])assert.ok(ratio(tokens[text],lit)>=4.5,text);

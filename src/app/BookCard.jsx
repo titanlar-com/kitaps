@@ -42,7 +42,7 @@ export function BookCard({book:b,ranking,states,onOpen,onToggle,queue,onAdd,onQu
  const canHover=useMediaQuery(HOVER_QUERY,false,{getInitialValueInEffect:false});
  const visual=<div className="book-visual"><BookCover book={b} onOpen={onOpen} read={marks.includes('okundu')}/><div className="cover-marks"><ReadingPriorityBadge ranking={ranking}/><StateRibbons marks={marks}/></div></div>;
  return <Card component="article" padding={0} className="book-card" data-book-id={b.id} onClick={e=>{if(!(e.target instanceof Element&&e.target.closest('button,a,input,select,textarea,[role="button"]')))onOpen(b.id)}}>
-  {canHover?<HoverCard position="right-start" width="18rem"><HoverCard.Target>{visual}</HoverCard.Target><HoverCard.Dropdown className="book-preview"><BookPreview book={b}/></HoverCard.Dropdown></HoverCard>:visual}
+  {canHover?<HoverCard position="right-start" width="18rem" withRoles={false}><HoverCard.Target>{visual}</HoverCard.Target><HoverCard.Dropdown className="book-preview"><BookPreview book={b}/></HoverCard.Dropdown></HoverCard>:visual}
   <div className="book-card-body">
    <Title order={3}><button className="title-button" onClick={()=>onOpen(b.id)}>{title}</button></Title>
    <StateSummary marks={marks}/>

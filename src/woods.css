@@ -1,5 +1,5 @@
 /* The wood colour schemes (the owner's decision of 8 November 2026). Dark comes first. In dark
-   the floor is the darkest layer and carries the grain; each layer above it is a lighter black
+   the floor is the darkest layer and carries the grain, a seamless CSS pattern and no image; each layer above it is a lighter black
    or dark grey, so depth comes from tone. Each scheme has one clearly named accent and four other
    hues for the reader's marks. tests/palette.test.js checks every pair in all six schemes.
    The selectors have no :root, so a swatch in the colour panel can preview another scheme. */
@@ -33,7 +33,7 @@
  --tone-queue:#8fb9e0;
  --tone-owned:#d7b899;
  --tone-favorite:#ec9aa9;
- --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.055 .0035' numOctaves='5' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .8 0 0 0 0 .6 0 0 0 .16 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+ --grain:repeating-linear-gradient(90deg,rgb(255 204 153 / 4%) 0,transparent 3px,transparent 11px,rgb(255 204 153 / 3%) 13px,transparent 17px,transparent 29px),repeating-linear-gradient(90deg,rgb(0 0 0 / 34%) 0,transparent 5px,transparent 37px,rgb(0 0 0 / 22%) 43px,transparent 49px,transparent 71px),repeating-linear-gradient(90deg,rgb(255 204 153 / 3%) 0,transparent 24px,transparent 97px,rgb(255 204 153 / 2%) 130px,transparent 163px);
 }
 [data-wood='ceviz'][data-mantine-color-scheme='light']{
  --paper:#f3ede4;
@@ -96,7 +96,7 @@
  --tone-queue:#93bde8;
  --tone-owned:#e6c56c;
  --tone-favorite:#efa0ad;
- --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.1 .003' numOctaves='4' seed='23' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .7 0 0 0 .16 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+ --grain:repeating-linear-gradient(90deg,rgb(255 242 178 / 4%) 0,transparent 3px,transparent 7px,rgb(255 242 178 / 3%) 9px,transparent 12px,transparent 19px),repeating-linear-gradient(90deg,rgb(0 0 0 / 34%) 0,transparent 5px,transparent 29px,rgb(0 0 0 / 22%) 33px,transparent 37px,transparent 53px),repeating-linear-gradient(90deg,rgb(255 242 178 / 3%) 0,transparent 24px,transparent 131px,rgb(255 242 178 / 2%) 171px,transparent 211px);
 }
 [data-wood='mese'][data-mantine-color-scheme='light']{
  --paper:#f2f1e6;
@@ -159,7 +159,7 @@
  --tone-queue:#9db8ec;
  --tone-owned:#f2d45c;
  --tone-favorite:#f0a0b0;
- --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.04 .008' numOctaves='5' seed='41' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .7 0 0 0 0 .55 0 0 0 .16 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+ --grain:repeating-linear-gradient(90deg,rgb(255 178 140 / 4%) 0,transparent 3px,transparent 23px,rgb(255 178 140 / 3%) 27px,transparent 33px,transparent 41px),repeating-linear-gradient(90deg,rgb(0 0 0 / 34%) 0,transparent 5px,transparent 53px,rgb(0 0 0 / 22%) 61px,transparent 69px,transparent 83px),repeating-linear-gradient(90deg,rgb(255 178 140 / 3%) 0,transparent 24px,transparent 83px,rgb(255 178 140 / 2%) 111px,transparent 139px);
 }
 [data-wood='akasya'][data-mantine-color-scheme='light']{
  --paper:#f5ece5;

@@ -1,5 +1,5 @@
 /* The book card: its loading placeholder and the preview a mouse sees over a cover. */
-@media (min-width:56em){:root{--card-pad:10px}}
+@media (min-width:36em){:root{--card-pad:10px;--card-text-inset:2px}}
 .cover-skeleton.mantine-Skeleton-root{position:absolute;inset:0;width:auto;height:auto;pointer-events:none}
 .cover-stage img:not([data-loaded]){position:relative}
 .book-preview.mantine-HoverCard-dropdown{display:grid;gap:var(--stack-gap);padding:var(--stack-gap);border-color:var(--line-strong);background:var(--surface-2);pointer-events:none}

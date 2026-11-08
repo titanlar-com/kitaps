@@ -17,6 +17,25 @@ test.beforeEach(async ({ context }) => {
 
 const band = page => page.getByRole('region', { name: 'Okuma özetim' });
 
+// The owner, 8 November 2026: a count has a border before the pointer comes, at 50% opacity.
+test('a count shows a half-transparent border at rest and a solid one under the pointer, without moving', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'A touch screen has no hover.');
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('./');
+  const count = band(page).getByRole('button', { name: /^Sıramda/ });
+  await expect(count).toBeVisible();
+  const border = () => count.evaluate(element => { const style = getComputedStyle(element); return { width: style.borderTopWidth, style: style.borderTopStyle, colour: style.borderTopColor }; });
+  const alpha = colour => { const match = colour.match(/\/\s*([\d.]+)\)$/) || colour.match(/rgba\([^)]*,\s*([\d.]+)\)$/); return match ? Number(match[1]) : 1; };
+  const rest = await border();
+  expect(rest.width).toBe('1px');
+  expect(rest.style).toBe('solid');
+  expect(alpha(rest.colour)).toBeCloseTo(0.5, 2);
+  const before = await count.boundingBox();
+  await count.hover();
+  await expect.poll(async () => alpha((await border()).colour)).toBe(1);
+  expect(await count.boundingBox()).toEqual(before);
+});
+
 // The owner, 8 November 2026: the band stood flush against the search field.
 for (const width of [768, 1024, 1280]) {
   test(`at ${width} px the reading band keeps its distance from the search field and from what follows`, async ({ page }) => {

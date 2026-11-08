@@ -31,7 +31,8 @@ test('the floor is the darkest layer, it carries the grain, and filled buttons t
   await page.goto('./');
   await ready(page);
   const body = await page.evaluate(() => getComputedStyle(document.body).backgroundImage);
-  expect(body).toContain('data:image/svg+xml');
+  expect(body).toContain('repeating-linear-gradient');
+  expect(body).not.toContain('url(');
   const accent = await token(page, '--accent');
   const filled = await page.evaluate(() => { const probe = document.createElement('div'); probe.style.background = 'var(--mantine-primary-color-filled)'; document.body.append(probe); const value = getComputedStyle(probe).backgroundColor; probe.remove(); return value; });
   const expected = await page.evaluate(hex => { const probe = document.createElement('div'); probe.style.background = hex; document.body.append(probe); const value = getComputedStyle(probe).backgroundColor; probe.remove(); return value; }, accent);
