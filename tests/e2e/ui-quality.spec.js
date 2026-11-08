@@ -68,10 +68,14 @@ const measure = () => {
 };
 
 const openSections = async page => {
+  // The book's own sections are opened one by one and must really open, or the scan would measure
+  // closed panels (review, 8 November 2026: a swallowed click left the second section closed).
+  for (const control of await page.locator('.mantine-Drawer-content .detail-sections > .mantine-Accordion-item > .mantine-Accordion-control').all()) {
+    if (await control.getAttribute('aria-expanded') !== 'true') await control.click();
+    await expect(control).toHaveAttribute('aria-expanded', 'true');
+  }
+  // Nested guides inside them open where they can.
   for (const control of await page.locator('.mantine-Drawer-content .mantine-Accordion-control[aria-expanded="false"]').all()) await control.click({ timeout: 2000 }).catch(() => {});
-  // The book's own sections must really be open, or the scan would measure closed panels
-  // (review, 8 November 2026); nested guides may stay as they are.
-  for (const control of await page.locator('.mantine-Drawer-content .detail-sections > .mantine-Accordion-item > .mantine-Accordion-control').all()) await expect(control).toHaveAttribute('aria-expanded', 'true');
 };
 
 for (const colorScheme of ['light', 'dark']) {
