@@ -1,4 +1,6 @@
 export const PERSONAL_KEY = 'kitapatlasi:personal:v1';
+/** How many books the reading queue holds at most. */
+export const QUEUE_LIMIT = 5;
 export const emptyReading = () => ({ startedAt:'', finishedAt:'', page:'', totalPages:'', why:'', apply:'' });
 const validDate = value => typeof value==='string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)) && new Date(value).toISOString().slice(0,10)===value ? value : '';
 const pageNumber = value => (typeof value==='number'||typeof value==='string')&&String(value).trim()!==''&&Number.isFinite(Number(value))&&Number(value)>=0 ? Math.min(999999,Math.floor(Number(value))) : '';
@@ -9,11 +11,11 @@ export function cleanReading(value) {
 export function cleanPersonal(input, bookIds) {
  const ids=new Set(bookIds);const value=input&&typeof input==='object'?input:{};
  return {
-  queue:Array.isArray(value.queue)?[...new Set(value.queue.filter(id=>ids.has(id)))].slice(0,5):[],
+  queue:Array.isArray(value.queue)?[...new Set(value.queue.filter(id=>ids.has(id)))].slice(0,QUEUE_LIMIT):[],
   reading:Object.fromEntries(Object.entries(value.reading&&typeof value.reading==='object'&&!Array.isArray(value.reading)?value.reading:{}).filter(([id])=>ids.has(id)).map(([id,r])=>[id,cleanReading(r)]))
  };
 }
-export function addToQueue(queue,id) {return queue.includes(id)||queue.length>=5?queue:[...queue,id];}
+export function addToQueue(queue,id) {return queue.includes(id)||queue.length>=QUEUE_LIMIT?queue:[...queue,id];}
 export function moveInQueue(queue,id,direction) {
  const index=queue.indexOf(id),target=index+direction;
  if(index<0||target<0||target>=queue.length||![-1,1].includes(direction))return queue;
