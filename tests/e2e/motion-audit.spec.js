@@ -49,6 +49,9 @@ const offenders = page => page.evaluate(([curve, allowed, step]) => [...window._
 const surfaces = page => page.evaluate(() => [...new Set([...window.__motionSeen.values()].map(record => record.surface).filter(Boolean))].sort());
 const seenCount = page => page.evaluate(() => window.__motionSeen.size);
 const pause = page => page.waitForTimeout(450);
+// Waits until a surface has really moved. On a loaded CI machine a fixed pause can end before the
+// first frame, and a panel opened and closed inside one frame never runs its transition.
+const moved = (page, surface) => page.waitForFunction(name => [...window.__motionSeen.values()].some(record => record.surface === name), surface);
 
 for (const width of [1280, 320]) {
   test(`every animation met on a walk through the site at ${width} px uses the curve and a duration of the table`, async ({ page }) => {
@@ -74,20 +77,20 @@ for (const width of [1280, 320]) {
     // The switch, a sheet, its choices.
     await page.locator('.mantine-Switch-root').first().click(); await pause(page);
     await page.locator('.mantine-Switch-root').first().click(); await pause(page);
-    await page.getByRole('button', { name: /^Filtreler/ }).click(); await pause(page);
+    await page.getByRole('button', { name: /^Filtreler/ }).click(); await moved(page, 'filter-sheet'); await pause(page);
     await page.keyboard.press('Escape'); await pause(page);
 
     // A book: the sheet, a section, the notice.
-    await page.locator('.cover-open').first().click(); await pause(page);
+    await page.locator('.cover-open').first().click(); await moved(page, 'detail-drawer'); await pause(page);
     await page.getByRole('button', { name: 'Okuma kaydım ve kişisel notlarım' }).click(); await pause(page);
-    await page.getByRole('button', { name: 'Satın alındı', exact: true }).click(); await pause(page);
+    await page.getByRole('button', { name: 'Satın alındı', exact: true }).click(); await moved(page, 'library-toast'); await pause(page);
     await page.keyboard.press('Escape'); await pause(page);
 
     // A dropdown, the footer menu, a dialog.
     await page.getByRole('combobox', { name: 'Kitapları sırala' }).click(); await pause(page);
     await page.keyboard.press('Escape'); await pause(page);
     await page.locator('.footer-dock').click(); await pause(page);
-    await page.getByRole('button', { name: 'Cihaz eşitleme' }).click(); await pause(page);
+    await page.getByRole('button', { name: 'Cihaz eşitleme' }).click(); await moved(page, 'sync-modal'); await pause(page);
     await page.keyboard.press('Escape'); await pause(page);
 
     // The colour panel.

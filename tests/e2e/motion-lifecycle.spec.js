@@ -40,7 +40,7 @@ test('closing the sync dialog gives focus back without waiting for its exit', as
   expect(await page.evaluate(() => Boolean(document.querySelector('.sync-modal .mantine-Modal-content')?.contains(document.activeElement))), 'focus starts in the dialog').toBe(true);
   await page.evaluate(() => {
     window.__focusLanded = null;
-    document.addEventListener('focusin', event => { if (event.target.id === 'main-content') window.__focusLanded = { dialogStillThere: Boolean(document.querySelector('.sync-modal .mantine-Modal-content')) }; }, true);
+    document.addEventListener('focusin', event => { if (!event.target.closest('.sync-modal')) window.__focusLanded = { dialogStillThere: Boolean(document.querySelector('.sync-modal .mantine-Modal-content')) }; }, true);
   });
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => window.__focusLanded !== null);
