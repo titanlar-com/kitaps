@@ -1,6 +1,8 @@
 # Arayüzün Mantine ile yeniden tasarımı
 
-Tarih: 8 Kasım 2026. Durum: plan kabul edildi, uygulama aşamalı ve test önce ilerliyor.
+Tarih: 8 Kasım 2026. Durum: sekiz aşama tamamlandı, bağımsız inceleme yapıldı ve bulguları kapatıldı.
+
+Plandan bilerek ayrılan yerler: kitap ayrıntısında Breadcrumbs kullanılmadı, çünkü konu etiketleri ve önceki kitaba dönüş düğmesi aynı işi görüyor. Sıram, Timeline yerine numaralı liste oldu, çünkü sıra değiştirme düğmeleri liste anlamını korumayı gerektiriyor. Avatar.Group kapakları üst üste bindirmiyor, çünkü kapaklar kırpılmıyor.
 
 ## İstek
 

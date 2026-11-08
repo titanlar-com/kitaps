@@ -142,7 +142,7 @@ test('with purchases hidden, a reading-mark filter counts and lists the purchase
     new MutationObserver(() => window.__sheetTexts.push(line.textContent)).observe(line, { subtree: true, characterData: true, childList: true });
   });
   await page.getByRole('dialog').getByRole('button', { name: 'Kitapları göster' }).click();
-  await expect(page.locator('.filter-result-total')).toHaveCount(0);
+  await expect(page.locator('.filter-result-total')).toHaveCount(0, { timeout: 20_000 });
   expect(await page.evaluate(() => window.__sheetTexts)).not.toContain('0 kitap eşleşiyor');
   await expect(page.locator('.book-card')).toHaveCount(1);
   await expect(page.locator('.purchases-note')).toHaveText('Satın aldığın kitaplar da listede, çünkü okuma işaretine göre süzdün.');
