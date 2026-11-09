@@ -18,7 +18,8 @@ docker run --rm --cpus=2 -e CI=1 \
     tar --exclude=./node_modules --exclude=./dist --exclude=./dist-visual --exclude=./test-results --exclude=./.git --exclude=./tests/visual/baselines -cf - . | tar -xf - -C /work
     cd /work && npm ci --no-audit --no-fund >/dev/null 2>&1
     mkdir -p tests/visual && ln -s /baselines tests/visual/baselines
-    npm run $SCRIPT; status=\$?
+    status=0
+    npm run $SCRIPT || status=\$?
     cp -R test-results/visual/. /report/ 2>/dev/null || true
     exit \$status
   "

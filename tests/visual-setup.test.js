@@ -17,6 +17,7 @@ test('nothing is published before the screenshots have been compared', () => {
   const workflow = read('.github/workflows/pages.yml');
   assert.match(workflow, /needs: \[build, visual\]/);
   assert.match(workflow, /run: npm run test:visual/);
+  assert.match(workflow, /visual:[\s\S]*runs-on: ubuntu-24\.04-arm/, 'the same processor family the screenshots were recorded on');
 });
 
 test('the screenshots use a frozen cut of the data, so a new book does not move them', () => {

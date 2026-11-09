@@ -36,7 +36,8 @@ jobs:
           path: dist
   # The screens are compared on the image the screenshots were taken on (ADR 003, K11).
   visual:
-    runs-on: ubuntu-latest
+    # The screenshots are recorded on an arm64 Linux image, so they are compared on arm64 too.
+    runs-on: ubuntu-24.04-arm
     container: mcr.microsoft.com/playwright:v1.63.0-noble
     steps:
       - uses: actions/checkout@v4
