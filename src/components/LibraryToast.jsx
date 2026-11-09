@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Notification } from '@mantine/core';
 import { IconBooks, IconShoppingBagCheck } from '@tabler/icons-react';
-import { displayTitle } from '../translation';
+import { libraryToastScreen } from '../screens/shell.js';
 import './LibraryToast.css';
 
 // Room under a control for its keyboard focus bar (--focus-gap and --focus-bar in styles.css).
 const FOCUS_BAR_ROOM = 12;
 // The region around the toast is the live one, so the toast itself is not a second alert.
 const CLASSES = { icon: 'library-toast-icon', body: 'library-toast-message', closeButton: 'library-toast-close' };
-const CLOSE = { 'aria-label': 'Bildirimi kapat', size: 44, iconSize: 22 };
+const CLOSE = { size: 44, iconSize: 22 };
 
 export default function LibraryToast({ book, owned, onClose, onUndo, style, leaving }) {
+ const model = libraryToastScreen({ book, owned });
  const root = useRef(null);
  const [hovered, setHovered] = useState(false);
  const [focused, setFocused] = useState(false);
@@ -33,11 +34,11 @@ export default function LibraryToast({ book, owned, onClose, onUndo, style, leav
 
  return <Notification ref={root} className="library-toast" classNames={CLASSES} role="group" style={style} inert={leaving || undefined} data-owned={owned || undefined}
   icon={owned ? <IconShoppingBagCheck size={26} aria-hidden="true" /> : <IconBooks size={26} aria-hidden="true" />}
-  title={<strong>{owned ? 'Kitaplığa eklendi' : 'Kitaplıktan çıkarıldı'}</strong>}
-  closeButtonProps={CLOSE} onClose={onClose}
+  title={<strong>{model.title}</strong>}
+  closeButtonProps={{ ...CLOSE, 'aria-label': model.close }} onClose={onClose}
   onPointerEnter={e => { if (e.pointerType === 'mouse') setHovered(true); }} onPointerLeave={() => setHovered(false)}
   onFocusCapture={() => setFocused(true)} onBlurCapture={e => { if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false); }}>
-  <p>{displayTitle(book)}</p>
-  <Button className="library-toast-undo" variant="default" onClick={onUndo}>Geri al</Button>
+  <p>{model.book}</p>
+  <Button className="library-toast-undo" variant="default" onClick={onUndo}>{model.undo}</Button>
  </Notification>;
 }

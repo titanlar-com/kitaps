@@ -1,10 +1,9 @@
+import { woodWords } from '../screens/shell.js';
+
 // The wood colour schemes a reader can choose (the owner's decision of 8 November 2026). The
-// colours live in src/woods.css; index.html sets the saved scheme before the first paint.
-export const WOODS = [
-  { id: 'ceviz', label: 'Ceviz', note: 'Koyu kahve zemin, pirinç sarısı vurgu' },
-  { id: 'mese', label: 'Meşe', note: 'İsli zeytin zemin, yaprak yeşili vurgu' },
-  { id: 'akasya', label: 'Akasya', note: 'Kızıl siyah zemin, turkuaz vurgu' },
-];
+// colours live in src/woods.css; index.html sets the saved scheme before the first paint. Their
+// names are in the page frame's screen model.
+export const WOODS = ['ceviz', 'mese', 'akasya'].map(id => ({ id, ...woodWords(id) }));
 export const DEFAULT_WOOD = 'ceviz';
 export const WOOD_KEY = 'kitapatlasi:wood';
 

@@ -52,7 +52,7 @@ export function catalogScreen({ view, filters, sort, total, page, pageSize, show
     showsPrioritySummary: view === 'books' && sort === 'reading',
     results: {
       title: resultsTitle({ filters, view, collections, groups }),
-      order: isShelf(view) ? 2 : 1,
+      order: /** @type {1 | 2} */ (isShelf(view) ? 2 : 1),
       count: countSentence({ total, page, pageSize }),
       purchasesNote: showsHiddenPurchases ? 'Satın aldığın kitaplar da listede, çünkü okuma işaretine göre süzdün.' : null,
       clear: anyFilter ? 'Temizle' : null,

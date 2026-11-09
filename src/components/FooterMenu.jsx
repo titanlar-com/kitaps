@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import { Divider, Drawer, NavLink, Text, UnstyledButton } from '@mantine/core';
 import { IconChevronUp } from '@tabler/icons-react';
+import { footerMenuScreen } from '../screens/shell.js';
 import './FooterMenu.css';
 
 // The footer stays at the bottom of the screen as one bar. Pressing it opens the whole menu as a
 // sheet half the screen tall: every section, shortcut and tool, and the catalogue's dates
 // (owner's request, 7 November 2026). Each item closes the sheet before it acts.
 export default function FooterMenu({ groups, current, meta, covered = false }) {
+ const model = footerMenuScreen();
  const [opened, setOpened] = useState(false);
  const choose = action => () => { setOpened(false); action(); };
  return <footer className="site-footer">
   <UnstyledButton className="footer-dock" aria-haspopup="dialog" aria-expanded={opened} onClick={() => setOpened(true)}>
-   <span className="footer-dock-label">Menü</span>
+   <span className="footer-dock-label">{model.title}</span>
    {current && <span className="footer-dock-current">{current}</span>}
    <IconChevronUp size={20} aria-hidden="true" className="footer-dock-icon" />
   </UnstyledButton>
-  <Drawer opened={opened} onClose={() => setOpened(false)} closeOnEscape={!covered} position="bottom" size="50%" title="Menü" className="footer-menu">
-   <nav aria-label="Bütün bölümler ve araçlar" className="footer-menu-groups">
+  <Drawer opened={opened} onClose={() => setOpened(false)} closeOnEscape={!covered} position="bottom" size="50%" title={model.title} className="footer-menu">
+    <nav aria-label={model.links} className="footer-menu-groups">
     {groups.map(group => <section key={group.title} className="footer-menu-group" aria-labelledby={`footer-${group.id}`}>
      <Text className="footer-menu-heading" id={`footer-${group.id}`}>{group.title}</Text>
      <ul>{group.items.map(item => <li key={item.label}>
