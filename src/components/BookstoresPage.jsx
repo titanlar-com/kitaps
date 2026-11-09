@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, ScrollArea, Table, Text, Title } from '@mantine/core';
 import { IconExternalLink, IconMapPin, IconPhone } from '@tabler/icons-react';
 import data from '../../data/bookstores.json';
-import { planTimeline, routeTimeline, storeBadge, storePlace, storeShelves } from '../core/places/stores.js';
+import { bookstoresScreen } from '../screens/bookstores.js';
 import { FactList, LongNote, PlaceBadge, PlaceCard, StopTimeline } from './PlaceParts';
 import RoutePlanner from './RoutePlanner';
 import './BookstoresPage.css';
@@ -10,13 +10,10 @@ import { longDay } from '../dates.js';
 
 // Istanbul bookstores from the owner's research notes, with the routes walked (data/bookstores.json).
 const byId = Object.fromEntries(data.stores.map(store => [store.id, store]));
-const plan = planTimeline(data.plan, byId);
-const SIDES = [['europe', 'Avrupa yakası'], ['asia', 'Anadolu yakası'], ['both', 'İki yakada']];
+const model = bookstoresScreen({ data, longDay });
 
-const mapUrl = store => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${store.name}, ${store.address}`)}`;
-const telUrl = phone => `tel:+90${phone.replace(/\D/g, '').replace(/^0/, '')}`;
 const opens = { target: '_blank', rel: 'noopener noreferrer' };
-const NewTab = () => <span className="visually-hidden"> (yeni sekmede açılır)</span>;
+const NewTab = () => <span className="visually-hidden">{model.newTab}</span>;
 
 // A link to a store's entry further down the page. The app reads the address hash as a route, so
 // the link scrolls and moves focus itself instead of changing the hash.
@@ -31,62 +28,53 @@ function StoreLink({ id }) {
  return <a href={`#store-${id}`} onClick={show}>{byId[id].name}</a>;
 }
 
-function MapButton({ store }) {
- return <Button component="a" href={mapUrl(store)} {...opens} variant="default" leftSection={<IconMapPin size={18} aria-hidden="true" />}>Haritada aç<NewTab /></Button>;
+function MapButton({ map }) {
+ return <Button component="a" href={map.href} {...opens} variant="default" leftSection={<IconMapPin size={18} aria-hidden="true" />}>{map.text}<NewTab /></Button>;
 }
 
-function Store({ store }) {
- const facts = [
-  { label: 'Adres', value: store.address },
-  { label: 'Telefon', value: store.phone && <a href={telUrl(store.phone)}>{store.phone}</a> },
-  { label: 'Saat', value: store.hours },
-  { label: 'Ulaşım', value: store.transit },
-  { label: 'Büyüklük', value: store.size },
- ];
- return <PlaceCard component="article" id={`store-${store.id}`} className="bookstore" data-status={store.status}>
+function Store({ card }) {
+ const facts = card.facts.map(fact => ({ label: fact.label, value: fact.href ? <a href={fact.href}>{fact.value}</a> : fact.value }));
+ return <PlaceCard component="article" id={`store-${card.id}`} className="bookstore" data-status={card.status}>
   <div className="bookstore-head">
-   <Title order={3} tabIndex={-1}>{store.name}</Title>
-   <PlaceBadge badge={storeBadge(store.status)} />
+   <Title order={3} tabIndex={-1}>{card.name}</Title>
+   <PlaceBadge badge={card.badge} />
   </div>
-  <Text className="bookstore-place">{storePlace(store)}</Text>
-  <LongNote title={store.name}>
-   <Text>{store.about}</Text>
-   {store.caution && <Text className="bookstore-caution"><strong>Dikkat:</strong> {store.caution}</Text>}
+  <Text className="bookstore-place">{card.place}</Text>
+  <LongNote title={card.name}>
+   <Text>{card.about}</Text>
+   {card.caution && <Text className="bookstore-caution"><strong>{card.caution.label}</strong> {card.caution.text}</Text>}
   </LongNote>
   <FactList facts={facts} />
-  {store.lookFor && <div className="bookstore-look">
-   <Text className="bookstore-label">Rafta aranabilecek kitaplar</Text>
-   <ul>{store.lookFor.map(title => <li key={title}>{title}</li>)}</ul>
+  {card.lookFor && <div className="bookstore-look">
+   <Text className="bookstore-label">{card.lookFor.label}</Text>
+   <ul>{card.lookFor.titles.map(title => <li key={title}>{title}</li>)}</ul>
   </div>}
-  {store.status !== 'closed' && <div className="bookstore-actions">
-   <MapButton store={store} />
-   {store.phone && <Button component="a" href={telUrl(store.phone)} variant="subtle" leftSection={<IconPhone size={18} aria-hidden="true" />}>Ara</Button>}
-   {store.web && <Button component="a" href={store.web} {...opens} variant="subtle" leftSection={<IconExternalLink size={18} aria-hidden="true" />}>Web sitesi<NewTab /></Button>}
+  {card.actions && <div className="bookstore-actions">
+   <MapButton map={card.actions.map} />
+   {card.actions.call && <Button component="a" href={card.actions.call.href} variant="subtle" leftSection={<IconPhone size={18} aria-hidden="true" />}>{card.actions.call.text}</Button>}
+   {card.actions.web && <Button component="a" href={card.actions.web.href} {...opens} variant="subtle" leftSection={<IconExternalLink size={18} aria-hidden="true" />}>{card.actions.web.text}<NewTab /></Button>}
   </div>}
-  {store.sources?.length > 0 && <Text className="bookstore-sources">Kaynak: {store.sources.map((source, index) => <React.Fragment key={source.url}>
-   {index > 0 && ', '}<a href={source.url} {...opens}>{source.label}<NewTab /></a>
+  {card.sources && <Text className="bookstore-sources">{card.sources.label}{card.sources.links.map(source => <React.Fragment key={source.url}>
+   {source.before}<a href={source.url} {...opens}>{source.label}<NewTab /></a>
   </React.Fragment>)}</Text>}
  </PlaceCard>;
 }
 
-const inWords = list => list.map((id, index) => <React.Fragment key={id}>{index > 0 && (index === list.length - 1 ? ' ve ' : ', ')}<StoreLink id={id} /></React.Fragment>);
-
 export default function BookstoresPage() {
- const { sides, closed } = storeShelves(data.stores, SIDES);
  return <div className="bookstores-page">
   <header className="bookstores-intro">
-   <Title order={1}>Kitapçılar</Title>
-   <Text>{data.intro}</Text>
-   <Text className="bookstores-updated">Son güncelleme {longDay(data.updated)}. Bilgiler {longDay(data.checkedAt)} tarihli notlardan alındı.</Text>
+   <Title order={1}>{model.intro.title}</Title>
+   <Text>{model.intro.body}</Text>
+   <Text className="bookstores-updated">{model.intro.updated}</Text>
   </header>
 
   <section className="bookstore-plan" aria-labelledby="bookstore-plan">
-   <Title order={2} id="bookstore-plan">Gezi planı</Title>
-   <Text>Geziler sırayla. Tarihi belli olmayanlar sıradaki günlere kalıyor, sonuncusu benim önerim.</Text>
-   <div className="bookstore-visits">{plan.map(visit => <PlaceCard key={visit.id} component="article" className="bookstore-visit" data-suggested={visit.suggested || undefined} aria-labelledby={`visit-${visit.id}`}>
+   <Title order={2} id="bookstore-plan">{model.plan.title}</Title>
+   <Text>{model.plan.body}</Text>
+   <div className="bookstore-visits">{model.plan.visits.map(visit => <PlaceCard key={visit.id} component="article" className="bookstore-visit" data-suggested={visit.suggested || undefined} aria-labelledby={`visit-${visit.id}`}>
     <div className="bookstore-head">
      <Title order={3} id={`visit-${visit.id}`}>{visit.title}</Title>
-     <PlaceBadge badge={{ label: visit.mark.date ? longDay(visit.mark.date) : visit.mark.label, tone: visit.mark.tone }} />
+     <PlaceBadge badge={visit.badge} />
     </div>
     <Text>{visit.note}</Text>
     <StopTimeline className="bookstore-stops" stops={visit.stops}>{stop => <div className="bookstore-stop">
@@ -95,7 +83,7 @@ export default function BookstoresPage() {
       <Text className="bookstore-place">{stop.place}</Text>
       <Text>{stop.address}</Text>
      </div>
-     <MapButton store={stop.store} />
+     <MapButton map={stop.map} />
     </div>}</StopTimeline>
    </PlaceCard>)}</div>
   </section>
@@ -103,49 +91,49 @@ export default function BookstoresPage() {
   <RoutePlanner stores={data.stores} plannedStops={data.plan.filter(visit => !visit.suggested).flatMap(visit => visit.stops)} />
 
   <section className="bookstore-topics" aria-labelledby="bookstore-topics">
-   <Title order={2} id="bookstore-topics">Konuya göre nereye gidilir?</Title>
-   <ScrollArea type="auto" scrollbars="x" offsetScrollbars="x" className="place-table-scroll" viewportProps={{ tabIndex: 0, role: 'region', 'aria-label': 'Konu tablosu' }}>
+   <Title order={2} id="bookstore-topics">{model.topics.title}</Title>
+   <ScrollArea type="auto" scrollbars="x" offsetScrollbars="x" className="place-table-scroll" viewportProps={{ tabIndex: 0, role: 'region', 'aria-label': model.topics.tableLabel }}>
     <Table className="bookstore-topic-table" aria-labelledby="bookstore-topics" verticalSpacing="sm" horizontalSpacing="md" borderColor="var(--line)">
      <Table.Thead>
-      <Table.Tr><Table.Th scope="col">Konu</Table.Th><Table.Th scope="col">Nereye gidilir</Table.Th><Table.Th scope="col">Neden</Table.Th></Table.Tr>
+      <Table.Tr>{model.topics.columns.map(column => <Table.Th key={column} scope="col">{column}</Table.Th>)}</Table.Tr>
      </Table.Thead>
-     <Table.Tbody>{data.topics.map(topic => <Table.Tr key={topic.topic}>
+     <Table.Tbody>{model.topics.rows.map(topic => <Table.Tr key={topic.topic}>
       <Table.Th scope="row">{topic.topic}</Table.Th>
-      <Table.Td>{inWords(topic.stores)}</Table.Td>
+      <Table.Td>{topic.stores.map(store => <React.Fragment key={store.id}>{store.before}<StoreLink id={store.id} /></React.Fragment>)}</Table.Td>
       <Table.Td className="bookstore-why">{topic.why}</Table.Td>
      </Table.Tr>)}</Table.Tbody>
     </Table>
    </ScrollArea>
   </section>
 
-  {sides.map(({ side, label, stores }) => <section key={side} className="bookstore-side" aria-labelledby={`side-${side}`}>
+  {model.sides.map(({ side, label, cards }) => <section key={side} className="bookstore-side" aria-labelledby={`side-${side}`}>
    <Title order={2} id={`side-${side}`}>{label}</Title>
-   <div className="bookstore-list">{stores.map(store => <Store key={store.id} store={store} />)}</div>
+   <div className="bookstore-list">{cards.map(card => <Store key={card.id} card={card} />)}</div>
   </section>)}
 
   <section className="bookstore-routes" aria-labelledby="bookstore-routes">
-   <Title order={2} id="bookstore-routes">Önerilen rotalar</Title>
-   <div className="bookstore-list">{data.routes.map(route => <PlaceCard key={route.id} component="article" className="bookstore-route">
+   <Title order={2} id="bookstore-routes">{model.routes.title}</Title>
+   <div className="bookstore-list">{model.routes.cards.map(route => <PlaceCard key={route.id} component="article" className="bookstore-route">
     <Title order={3}>{route.title}</Title>
     {route.either
      ? <>
-      <Text>Şu kitapçılardan birine git.</Text>
-      <ul>{route.stops.map(id => <li key={id}><StoreLink id={id} /></li>)}</ul>
+      <Text>{route.either.text}</Text>
+      <ul>{route.either.stops.map(id => <li key={id}><StoreLink id={id} /></li>)}</ul>
      </>
-     : <StopTimeline stops={routeTimeline(route.stops, byId)}>{stop => <StoreLink id={stop.id} />}</StopTimeline>}
+     : <StopTimeline stops={route.timeline}>{stop => <StoreLink id={stop.id} />}</StopTimeline>}
     <Text className="bookstore-why">{route.why}</Text>
    </PlaceCard>)}</div>
   </section>
 
   <section className="bookstores-closed" aria-labelledby="bookstores-closed">
-   <Title order={2} id="bookstores-closed">Kapanan kitapçılar</Title>
-   <Text>Bu mağazalar notlarda geçiyor, ama artık açık değil.</Text>
-   <div className="bookstore-list">{closed.map(store => <Store key={store.id} store={store} />)}</div>
+   <Title order={2} id="bookstores-closed">{model.closed.title}</Title>
+   <Text>{model.closed.body}</Text>
+   <div className="bookstore-list">{model.closed.cards.map(card => <Store key={card.id} card={card} />)}</div>
   </section>
 
   <section className="bookstore-notes" aria-labelledby="bookstore-notes">
-   <Title order={2} id="bookstore-notes">Gitmeden önce</Title>
-   <ul>{data.notes.map(note => <li key={note}>{note}</li>)}</ul>
+   <Title order={2} id="bookstore-notes">{model.notes.title}</Title>
+   <ul>{model.notes.items.map(note => <li key={note}>{note}</li>)}</ul>
   </section>
  </div>;
 }

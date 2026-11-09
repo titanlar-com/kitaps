@@ -2,6 +2,7 @@ import React from 'react';
 import { Badge, Card, Timeline } from '@mantine/core';
 import { FoldedNote } from './FoldedNote';
 import { DataList } from '../app/dataList';
+import { longNoteWords } from '../screens/bookstores.js';
 import { IconCheck, IconQuestionMark, IconX } from '@tabler/icons-react';
 import './PlaceParts.css';
 
@@ -46,5 +47,6 @@ export function FactList({ facts }) {
 
 /** Long text folded to a few lines, with a control that names what it opens. */
 export function LongNote({ title, children }) {
- return <FoldedNote className="place-note" fold={NOTE_FOLD} showLabel="Devamını oku" hideLabel="Daralt" showAriaLabel={`${title}: devamını oku`} hideAriaLabel={`${title}: daralt`}>{children}</FoldedNote>;
+ const words = longNoteWords(title);
+ return <FoldedNote className="place-note" fold={NOTE_FOLD} showLabel={words.show} hideLabel={words.hide} showAriaLabel={words.showLabel} hideAriaLabel={words.hideLabel}>{children}</FoldedNote>;
 }
