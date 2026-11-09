@@ -2,8 +2,8 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { MantineProvider } from '@mantine/core';
-import GitHubSyncPanel from '../../src/components/GitHubSyncPanel';
-import SyncStatusLine, { syncStatusKind } from '../../src/components/SyncStatusLine';
+import GitHubSyncPanel from '../../src/ui/react/components/GitHubSyncPanel';
+import SyncStatusLine, { syncStatusKind } from '../../src/ui/react/components/SyncStatusLine';
 import { renderWithTheme } from './render';
 
 const sync = overrides => ({ status: 'ready', message: 'GitHub durumu güncel.', pending: 0, hasToken: false, writeError: null, lastSentAt: null, lastReadAt: null, readSource: null, tokenRejected: false, saveToken: vi.fn(async () => {}), flush: vi.fn(async () => {}), load: vi.fn(), clearToken: vi.fn(), ...overrides });

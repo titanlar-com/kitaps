@@ -6,8 +6,8 @@ import fs from 'node:fs';
 // corner and text size from the tokens. tests/ui-gates.test.js already covers motion, focus and
 // accent edges for the whole of src/; these are the rules it does not read.
 const read = file => fs.readFileSync(new URL(`../src/${file}`, import.meta.url), 'utf8');
-const stylesheets = ['components/FilterSheet.css', 'components/FooterMenu.css', 'components/SyncPanels.css', 'components/LibraryToast.css'];
-const components = ['FilterSheet', 'GitHubSyncPanel', 'SyncNotice', 'SyncRecovery', 'SyncMergeDialog', 'SyncStatusLine', 'FooterMenu', 'LibraryToast'].map(name => `components/${name}.jsx`);
+const stylesheets = ['ui/react/components/FilterSheet.css', 'ui/react/components/FooterMenu.css', 'ui/react/components/SyncPanels.css', 'ui/react/components/LibraryToast.css'];
+const components = ['FilterSheet', 'GitHubSyncPanel', 'SyncNotice', 'SyncRecovery', 'SyncMergeDialog', 'SyncStatusLine', 'FooterMenu', 'LibraryToast'].map(name => `ui/react/components/${name}.jsx`);
 const withoutComments = text => text.replace(/\/\*[\s\S]*?\*\//g, '');
 const declarations = (text, name) => [...withoutComments(text).matchAll(new RegExp(`(?:^|[;{\\s])${name}\\s*:\\s*([^;}]+)`, 'g'))].map(match => match[1].trim());
 
@@ -50,7 +50,7 @@ test('the main stylesheet no longer carries the panels\' old rules', () => {
 });
 
 test('the filter sheet draws no frame around each row', () => {
-  const css = read('components/FilterSheet.css');
+  const css = read('ui/react/components/FilterSheet.css');
   const rule = selector => withoutComments(css).match(new RegExp(`(?:^|})\\s*${selector}\\s*\\{([^}]*)\\}`))?.[1] ?? '';
   assert.doesNotMatch(rule('\\.filter-choice'), /border\s*:\s*1px/);
   assert.doesNotMatch(rule('\\.filter-section-link'), /border-bottom/);

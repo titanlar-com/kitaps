@@ -7,7 +7,7 @@ import * as query from '../src/core/catalog/query.js';
 import * as coreTranslation from '../src/core/catalog/translation.js';
 import * as coreWorkFormat from '../src/core/catalog/workFormat.js';
 import { catalogListing } from '../src/core/catalog/listing.js';
-import * as appListing from '../src/app/listing.js';
+import * as appListing from '../src/ui/react/app/listing.js';
 import * as reading from '../src/reading.js';
 import * as coreReading from '../src/core/personal/reading.js';
 import { characterizeListing, readFixture, readGolden } from './characterization/oracle.js';

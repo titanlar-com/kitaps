@@ -1,13 +1,13 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, screen, waitFor, within } from '@testing-library/react';
-import FilterSheet from '../../src/components/FilterSheet';
-import FooterMenu from '../../src/components/FooterMenu';
-import GitHubSyncPanel from '../../src/components/GitHubSyncPanel';
-import LibraryToast from '../../src/components/LibraryToast';
-import SyncMergeDialog from '../../src/components/SyncMergeDialog';
-import SyncNotice from '../../src/components/SyncNotice';
-import SyncStatusLine from '../../src/components/SyncStatusLine';
+import FilterSheet from '../../src/ui/react/components/FilterSheet';
+import FooterMenu from '../../src/ui/react/components/FooterMenu';
+import GitHubSyncPanel from '../../src/ui/react/components/GitHubSyncPanel';
+import LibraryToast from '../../src/ui/react/components/LibraryToast';
+import SyncMergeDialog from '../../src/ui/react/components/SyncMergeDialog';
+import SyncNotice from '../../src/ui/react/components/SyncNotice';
+import SyncStatusLine from '../../src/ui/react/components/SyncStatusLine';
 import { emptyFilters } from '../../src/library';
 import { renderWithTheme } from './render';
 

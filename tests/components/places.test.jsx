@@ -1,9 +1,9 @@
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { fireEvent, screen, within } from '@testing-library/react';
-import { FactList, PlaceBadge, StopTimeline } from '../../src/components/PlaceParts';
-import BookFairsPage from '../../src/components/BookFairsPage';
-import RoutePlanner from '../../src/components/RoutePlanner';
+import { FactList, PlaceBadge, StopTimeline } from '../../src/ui/react/components/PlaceParts';
+import BookFairsPage from '../../src/ui/react/components/BookFairsPage';
+import RoutePlanner from '../../src/ui/react/components/RoutePlanner';
 import { routeTimeline } from '../../src/core/places/stores.js';
 import { renderWithTheme } from './render';
 

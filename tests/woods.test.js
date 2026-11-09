@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
-import { DEFAULT_WOOD, WOODS, WOOD_KEY, readWood, saveWood } from '../src/app/woods.js';
+import { DEFAULT_WOOD, WOODS, WOOD_KEY, readWood, saveWood } from '../src/ui/react/app/woods.js';
 
 // The owner, 8 November 2026: a reader picks a wood colour scheme, and dark walnut is the default.
 const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');

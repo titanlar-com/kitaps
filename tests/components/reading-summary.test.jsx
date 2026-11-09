@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithTheme } from './render';
-import ReadingSummary from '../../src/components/ReadingSummary';
+import ReadingSummary from '../../src/ui/react/components/ReadingSummary';
 
 // The catalogue's reading band (docs/UI-REDESIGN.md, phase 3): what the reader has read,
 // is reading, owns, likes and has queued, each a way into that shelf.

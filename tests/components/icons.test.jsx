@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
-import { GirlIcon } from '../../src/app/icons';
+import { GirlIcon } from '../../src/ui/react/app/icons';
 
 // The owner, 8 November 2026: a little girl, plainer than the old figure with its hair buns, in the
 // Phosphor style. Phosphor has no girl, so she is drawn on its 256 grid with its 16-unit line.

@@ -2,9 +2,9 @@ import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MantineProvider } from '@mantine/core';
-import GitHubSyncPanel from '../../src/components/GitHubSyncPanel';
-import SyncMergeDialog from '../../src/components/SyncMergeDialog';
-import SyncNotice from '../../src/components/SyncNotice';
+import GitHubSyncPanel from '../../src/ui/react/components/GitHubSyncPanel';
+import SyncMergeDialog from '../../src/ui/react/components/SyncMergeDialog';
+import SyncNotice from '../../src/ui/react/components/SyncNotice';
 import { renderWithTheme } from './render';
 
 const sync = overrides => ({ status: 'ready', message: 'GitHub durumu güncel.', pending: 0, hasToken: false, saveToken: vi.fn(async () => {}), flush: vi.fn(async () => {}), load: vi.fn(), clearToken: vi.fn(), mergePrompt: null, resolveMerge: vi.fn(async () => {}), ...overrides });

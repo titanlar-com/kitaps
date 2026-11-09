@@ -1,2 +1,2 @@
-import App from '../../../../src/App.jsx';
+import App from '../../../../src/ui/react/App.jsx';
 export default App;

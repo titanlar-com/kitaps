@@ -2,17 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-// The application shell: App.jsx, the modules split out of it into src/app/ (phase 1 of the
+// The application shell: App.jsx, the modules split out of it into src/ui/react/app/ (phase 1 of the
 // architecture plan) and the screen models that hold its words (ADR 003, K6). The assertions
 // below read the shell as one text, wherever a part now lives.
-const shellFiles=['App.jsx',...['app','screens'].flatMap(folder=>fs.readdirSync(new URL(`../src/${folder}/`,import.meta.url)).map(file=>`${folder}/${file}`))];
+const shellFiles=['ui/react/App.jsx',...['ui/react/app','screens'].flatMap(folder=>fs.readdirSync(new URL(`../src/${folder}/`,import.meta.url)).map(file=>`${folder}/${file}`))];
 import { VIEWS as VIEWS_TABLE } from '../src/views.js';
 import { emptyFilters } from '../src/library.js';
 import { catalogScreen } from '../src/screens/catalog.js';
 import { shellScreen } from '../src/screens/shell.js';
 const app=shellFiles.map(file=>fs.readFileSync(new URL(`../src/${file}`,import.meta.url),'utf8')).join('\n');
-const badge=fs.readFileSync(new URL('../src/components/ReadingPriorityBadge.jsx',import.meta.url),'utf8');
-const card=fs.readFileSync(new URL('../src/components/ReadingPriorityCard.jsx',import.meta.url),'utf8');
+const badge=fs.readFileSync(new URL('../src/ui/react/components/ReadingPriorityBadge.jsx',import.meta.url),'utf8');
+const card=fs.readFileSync(new URL('../src/ui/react/components/ReadingPriorityCard.jsx',import.meta.url),'utf8');
 // The priority components take their words from the catalogue's screen model (ADR 003, K6).
 const catalogModel=fs.readFileSync(new URL('../src/screens/catalog.js',import.meta.url),'utf8');
 
@@ -76,7 +76,7 @@ test('reading priority is built once from the catalog, with no personal or synce
 test('priority copy states that purchases and reading activity never change the score',()=>{
  assert.doesNotMatch(card+catalogModel,/okuma durumları değiştiğinde/);
  assert.match(catalogModel,/Satın alma, favori, okuma durumu, okuma kaydı ve kişisel sıra puanı değiştirmez/);
- const summary=fs.readFileSync(new URL('../src/components/ReadingPrioritySummary.jsx',import.meta.url),'utf8');
+ const summary=fs.readFileSync(new URL('../src/ui/react/components/ReadingPrioritySummary.jsx',import.meta.url),'utf8');
  assert.doesNotMatch(summary+catalogModel,/Şu an ilk/);
  assert.match(catalogModel,/showsPrioritySummary: view === 'books' && sort === 'reading'/,'personal shelves carry no priority paragraph');
  assert.match(app,/catalogue\.showsPrioritySummary&&<ReadingPrioritySummary/);
@@ -86,14 +86,14 @@ test('customer copy and icon requests stay applied',()=>{
  assert.doesNotMatch(app,/yıldız/i,'favorites use a heart');
  assert.doesNotMatch(app,/IconWoman/,'the daughter shortcut uses the girl icon');
  assert.match(app,/<GirlIcon size=\{29\}\/>/);
- const queue=['components/ReadingQueue.jsx','screens/queue.js'].map(file=>fs.readFileSync(new URL(`../src/${file}`,import.meta.url),'utf8')).join('\n');
+ const queue=['ui/react/components/ReadingQueue.jsx','screens/queue.js'].map(file=>fs.readFileSync(new URL(`../src/${file}`,import.meta.url),'utf8')).join('\n');
  assert.doesNotMatch(queue,/Sıradan çıkarmak okuma kaydını/,'the queue page has no explanatory footnote');
 });
 
 test('removed card category component stays unused',()=>{
- assert.equal(fs.existsSync(new URL('../src/components/CardCategories.jsx',import.meta.url)),false);
+ assert.equal(fs.existsSync(new URL('../src/ui/react/components/CardCategories.jsx',import.meta.url)),false);
  assert.doesNotMatch(app,/CardCategories/);
- const bookCard=fs.readFileSync(new URL('../src/app/BookCard.jsx',import.meta.url),'utf8');
+ const bookCard=fs.readFileSync(new URL('../src/ui/react/app/BookCard.jsx',import.meta.url),'utf8');
  assert.doesNotMatch(bookCard,/CategoryPill|card-categories|category-more/);
 });
 

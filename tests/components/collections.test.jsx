@@ -3,9 +3,9 @@ import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, screen, within } from '@testing-library/react';
 import catalog from '../../src/catalog.json';
 import { renderWithTheme } from './render';
-import { Collections } from '../../src/app/Collections';
-import EmptyState from '../../src/components/EmptyState';
-import ShelfEmpty from '../../src/components/ShelfEmpty';
+import { Collections } from '../../src/ui/react/app/Collections';
+import EmptyState from '../../src/ui/react/components/EmptyState';
+import ShelfEmpty from '../../src/ui/react/components/ShelfEmpty';
 
 // Kümeler (docs/UI-REDESIGN.md, phase 5): each collection with its covers and how much of it
 // is read, and the empty states that always offer a next step.

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const pagination=fs.readFileSync(new URL('../src/components/CatalogPagination.jsx',import.meta.url),'utf8');
+const pagination=fs.readFileSync(new URL('../src/ui/react/components/CatalogPagination.jsx',import.meta.url),'utf8');
 
 test('page-size dropdown uses the styled cross-platform Select',()=>{
  assert.match(pagination,/import \{[^}]*Select[^}]*\} from '@mantine\/core'/);

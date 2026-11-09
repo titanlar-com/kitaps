@@ -85,7 +85,7 @@ test('the walnut scheme stands in when no scheme has been set',()=>{
 });
 
 test('the brick colours are gone from every place that wrote them',()=>{
- for(const parts of [['src','styles.css'],['src','woods.css'],['src','app','theme.js'],['index.html'],['public','404.html']])for(const old of ['a3392b','f0907d','7c2a1f','8a2f23'])assert.ok(!root(...parts).toLowerCase().includes(old),`${parts.join('/')} still has #${old}`);
+ for(const parts of [['src','styles.css'],['src','woods.css'],['src','ui','react','app','theme.js'],['index.html'],['public','404.html']])for(const old of ['a3392b','f0907d','7c2a1f','8a2f23'])assert.ok(!root(...parts).toLowerCase().includes(old),`${parts.join('/')} still has #${old}`);
 });
 
 // Owner's rule of 8 November 2026: no corner is rounder than 5 px.

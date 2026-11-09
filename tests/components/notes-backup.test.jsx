@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import NotesPage from '../../src/components/NotesPage';
+import NotesPage from '../../src/ui/react/components/NotesPage';
 import catalog from '../../src/catalog.json';
 import { renderWithTheme } from './render';
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { screen } from '@testing-library/react';
 import { renderWithTheme } from './render';
-import PageLoading from '../../src/components/PageLoading';
+import PageLoading from '../../src/ui/react/components/PageLoading';
 
 describe('PageLoading', () => {
   it('announces what is loading and shows the moving indicator', () => {

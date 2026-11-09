@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { catalogListing } from '../src/app/listing.js';
+import { catalogListing } from '../src/ui/react/app/listing.js';
 import { displayTitle } from '../src/translation.js';
 import { characterizeListing, characterizeRanking, characterizeSeo, characterizeStaticSeo, readFixture, readGolden } from './characterization/oracle.js';
 

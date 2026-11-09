@@ -2,7 +2,7 @@
 // change of behaviour is intended and reviewed, never to make a failing test pass.
 //
 //   node tests/characterization/record.mjs
-import { catalogListing } from '../../src/app/listing.js';
+import { catalogListing } from '../../src/ui/react/app/listing.js';
 import { characterizeListing, characterizeRanking, characterizeSeo, characterizeStaticSeo, readFixture, writeGolden } from './oracle.js';
 
 const catalog = readFixture();

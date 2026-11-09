@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent } from '@testing-library/react';
 import { renderWithTheme } from './render';
-import { BookCover } from '../../src/app/BookCover';
-import { books } from '../../src/app/catalogData';
+import { BookCover } from '../../src/ui/react/app/BookCover';
+import { books } from '../../src/ui/react/app/catalogData';
 
 // The owner, 8 November 2026: a waiting state keeps the reader on the page.
 const covered = books.find(book => book.cover);

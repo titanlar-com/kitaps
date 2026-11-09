@@ -2,11 +2,11 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, screen, within } from '@testing-library/react';
 import catalog from '../../src/catalog.json';
-import EditionSummary from '../../src/components/EditionSummary';
-import TranslationStatus from '../../src/components/TranslationStatus';
-import ReadingPriorityCard from '../../src/components/ReadingPriorityCard';
-import ReadingPrioritySummary from '../../src/components/ReadingPrioritySummary';
-import BookDiscovery from '../../src/components/BookDiscovery';
+import EditionSummary from '../../src/ui/react/components/EditionSummary';
+import TranslationStatus from '../../src/ui/react/components/TranslationStatus';
+import ReadingPriorityCard from '../../src/ui/react/components/ReadingPriorityCard';
+import ReadingPrioritySummary from '../../src/ui/react/components/ReadingPrioritySummary';
+import BookDiscovery from '../../src/ui/react/components/BookDiscovery';
 import { ReadingPriorityEngine, ReadingRankingViewModel } from '../../src/ranking/ReadingPriorityEngine.ts';
 import { renderWithTheme } from './render';
 

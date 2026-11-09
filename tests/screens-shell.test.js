@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { emptyFilters } from '../src/core/catalog/query.js';
 import { VIEWS } from '../src/views.js';
 import { footerMenuScreen, libraryToastScreen, shellScreen, themePanelScreen, woodWords } from '../src/screens/shell.js';
-import { WOODS } from '../src/app/woods.js';
+import { WOODS } from '../src/ui/react/app/woods.js';
 
 // A screen model is a plain function: facts in, the screen's words and composition out (ADR 003, K6).
 const screen = (extra = {}) => shellScreen({ view: 'books', filters: emptyFilters(), favoriteCount: 2, ownedCount: 1019, updated: '9 Kasım 2026', personalSaved: true, ...extra });

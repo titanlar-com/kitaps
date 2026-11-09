@@ -9,7 +9,7 @@ export type IndexedBook = BookRecord & { searchText: string };
 
 /**
  * The catalogue after its one-time index (ADR 003, K2 and K3): the books, maps, author list and
- * reading ranking every screen reads through src/app/catalogData.js. The ranking depends on the catalogue only, never on personal state.
+ * reading ranking every screen reads through src/ui/react/app/catalogData.js. The ranking depends on the catalogue only, never on personal state.
  */
 export interface Catalog {
   readonly document: CatalogDocument;

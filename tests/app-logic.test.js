@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { readingSummary, stampReadingDate } from '../src/reading.js';
-import { catalogListing } from '../src/app/listing.js';
+import { catalogListing } from '../src/ui/react/app/listing.js';
 import { emptyFilters, prepareBooks } from '../src/library.js';
 
 // Business rules that lived in App.jsx's handlers (ADR 002, phase 3), pinned before they move.

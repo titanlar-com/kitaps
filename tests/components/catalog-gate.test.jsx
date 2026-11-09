@@ -10,11 +10,11 @@ describe('the catalogue the page opens', () => {
   it('is refused when a book points to a collection that does not exist', async () => {
     const [first, ...rest] = catalog.books;
     vi.doMock('../../src/catalog.json', () => ({ default: { ...catalog, books: [{ ...first, collectionIds: ['yok-boyle-bir-kume'] }, ...rest] } }));
-    await expect(import('../../src/app/catalogData')).rejects.toSatisfy(error => error.name === CatalogContractError.name && /yok-boyle-bir-kume/.test(error.message));
+    await expect(import('../../src/ui/react/app/catalogData')).rejects.toSatisfy(error => error.name === CatalogContractError.name && /yok-boyle-bir-kume/.test(error.message));
   });
 
   it('opens the real catalogue', async () => {
-    const data = await import('../../src/app/catalogData');
+    const data = await import('../../src/ui/react/app/catalogData');
     expect(data.books.length).toBe(catalog.books.length);
   });
 });

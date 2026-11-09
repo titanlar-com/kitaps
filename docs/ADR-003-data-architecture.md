@@ -43,7 +43,7 @@ Tek uygulama, tek yayın ve tek depo vardır. Ayrı bir arka uç, veri tabanı, 
 - **Taşınan modüller.** Çekirdeğin ihtiyaç duyduğu başka bir saf modül çekirdeğe taşınır ve eski yolunda bir cephe bırakır. `translation.js`, `workFormat.js`, `reading.js` ve `app/listing.js` böyle taşındı. `recommendations.js`, `authors.js`, `fairs.js`, `dates.js` ve `routes/planner.js` çekirdek onlara ihtiyaç duyduğunda aynı yolla taşınır. Böylece `scripts/generate-static-seo.mjs` gibi içe aktaranlar değişmez.
 - **Bağdaştırıcılar (`src/adapters/`).** Tarayıcının ve Node'un dış dünyasını çekirdeğin portlarına bağlar: adres ve geçmiş, depolama, belge başlığı, dosya indirme, saat, yaşam döngüsü olayları ve gecikmeli yüklenen veri dosyaları.
 - **UI bağlayıcısı.** `src/adapters/react/useViewModel.js` bir port bağdaştırıcısı değil, React'in çekirdeğe bağlanma noktasıdır. Arayüz teknolojisi değişirse yalnız bu dosya ve bileşenler değişir.
-- **Arayüz.** Bugün `src/App.jsx`, `src/app/` ve `src/components/` içinde durur. Arayüz çekirdeği kullanır, çekirdek arayüzü bilmez.
+- **Arayüz.** React arayüzü `src/ui/react/` içinde durur. Ekran modelleri `src/screens/` içindedir ve React'e bağlı değildir. Stil dosyaları `src/styles.css` ve `src/woods.css` yerinde kaldı. Arayüz çekirdeği kullanır, çekirdek arayüzü bilmez.
 - **Bileşim kökü.** Tarayıcıda yalnız `src/main.jsx` bütün parçaları `createKitaplik(...)` ile birleştirir. Node betikleri (SEO) bütün uygulamayı değil, yalnız `openCatalog` ile sorguları kullanır.
 - **Değişmeyen yollar.** `src/library.js`, `src/seo.js`, `src/state/`, `src/ranking/` ve `src/catalog.json` yerinde kalır. Sahibin kuralı olan `PAGE_SIZES` ve `GRID_COLUMNS` `library.js` içinde kalır.
 - **Eşitleme modülü.** `src/state/` eşitlemenin kendisidir. `merge.ts` kuralları bu çalışmada değişmez. Hiçbir görünüm modeli `state.json` belgesini doğrudan görmez.
@@ -208,7 +208,7 @@ Bu öneriler ilk kararda alınmamıştı. Sahip 9 Kasım 2026'da hepsinin yapıl
 - **Claude analizcisi:**
   - Ekran başına yaklaşık 11 görünüm modelinin yazılması (K6). **Yapıldı.**
   - Ayrı bir çekirdek metin modülü (K8). **Yapıldı.**
-  - Bileşenlerin şimdi `src/ui/react` altına taşınması: yeniden tasarım işine bırakıldı.
+  - Bileşenlerin `src/ui/react` altına taşınması. **Yapıldı.** `tests/architecture.test.js` eski klasörlerin geri gelmesini engeller.
 
 ## Test önce geçiş planı
 

@@ -95,7 +95,7 @@ test('a command the core does not know is refused and changes nothing', () => {
 
 test('screens reach the core\'s commands only through execute', () => {
   const src = new URL('../src/', import.meta.url).pathname;
-  const screens = ['App.jsx', ...fs.readdirSync(path.join(src, 'app')).map(file => `app/${file}`), ...fs.readdirSync(path.join(src, 'components')).map(file => `components/${file}`)];
+  const screens = ['ui/react/App.jsx', ...fs.readdirSync(path.join(src, 'ui/react/app')).map(file => `ui/react/app/${file}`), ...fs.readdirSync(path.join(src, 'ui/react/components')).map(file => `ui/react/components/${file}`)];
   const reaching = screens.filter(file => /(\.commands\b|\bcommands\s*:)/.test(fs.readFileSync(path.join(src, file), 'utf8')));
   assert.deepEqual(reaching, []);
 });

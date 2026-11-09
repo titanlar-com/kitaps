@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { screen } from '@testing-library/react';
 import { renderWithTheme } from './render';
-import ReadingJourney from '../../src/components/ReadingJourney';
+import ReadingJourney from '../../src/ui/react/components/ReadingJourney';
 
 describe('ReadingJourney', () => {
   it('shows how far the reader is, in pages and as a bar', () => {

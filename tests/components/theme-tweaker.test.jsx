@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { MantineProvider } from '@mantine/core';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import ThemeTweaker from '../../src/components/ThemeTweaker';
+import ThemeTweaker from '../../src/ui/react/components/ThemeTweaker';
 
 // env="test" turns Mantine's transitions off, so the panel is fully there once it is found.
 const renderWithTheme = element => render(<MantineProvider env="test">{element}</MantineProvider>);

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import catalog from '../../src/catalog.json';
-import { authorOptions, books, bookIds, byId, readingRanking } from '../../src/app/catalogData.js';
+import { authorOptions, books, bookIds, byId, readingRanking } from '../../src/ui/react/app/catalogData.js';
 import { openCatalog } from '../../src/core/catalog/contract.ts';
 import { indexCatalog } from '../../src/core/catalog/catalog.ts';
 

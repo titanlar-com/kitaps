@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { theme } from '../src/app/theme.js';
+import { theme } from '../src/ui/react/app/theme.js';
 import { HINT_DELAY_MS, MOTION_EASE, MOTION_MS } from '../src/motion.js';
 
 // The Mantine theme of the redesign (docs/UI-REDESIGN.md, phase 1, 8 November 2026). Every

@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
-import { catalog, catalogIndex } from './app/catalogData';
+import App from './ui/react/App';
+import { catalog, catalogIndex } from './ui/react/app/catalogData';
 import { browserLocation, deviceStorage } from './adapters/browser/ports.js';
 import { createKitaplik } from './core/app.ts';
 import { decodeRoute, encodeRoute } from './library';

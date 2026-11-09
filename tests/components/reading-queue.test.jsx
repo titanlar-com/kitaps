@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, screen, within } from '@testing-library/react';
 import { renderWithTheme } from './render';
-import ReadingQueue from '../../src/components/ReadingQueue';
+import ReadingQueue from '../../src/ui/react/components/ReadingQueue';
 import { moveInQueue } from '../../src/reading';
 
 // Sıram (docs/UI-REDESIGN.md, phase 5): the reader's order, its move buttons, and where the

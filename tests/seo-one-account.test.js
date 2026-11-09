@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { catalogListing } from '../src/app/listing.js';
+import { catalogListing } from '../src/ui/react/app/listing.js';
 import { emptyFilters, prepareBooks, sortBooks } from '../src/library.js';
 import { seoState, staticBookUrl, staticListingUrl } from '../src/seo.js';
 import { bookSlug } from '../src/library.js';

@@ -39,10 +39,15 @@ test('screen models use no UI technology, no browser global and nothing but the 
   assert.deepEqual(coreViolations(path.join(src, 'screens'), { alsoAllowed: [path.join(src, 'core')] }), []);
 });
 
+test('the React interface lives in one folder, so another interface can stand beside it', () => {
+  for (const old of ['App.jsx', 'app', 'components']) assert.equal(fs.existsSync(path.join(src, old)), false, `src/${old} has moved`);
+  assert.ok(fs.existsSync(path.join(src, 'ui/react/App.jsx')));
+});
+
 // The audit panel exists only on the development server, for the people working on the site.
-const DEVELOPMENT_ONLY = ['components/AccessibilityAudit.jsx'];
+const DEVELOPMENT_ONLY = ['ui/react/components/AccessibilityAudit.jsx'];
 test('every word a reader sees comes from a screen model or the core', () => {
-  const screens = ['App.jsx', 'main.jsx', ...fs.readdirSync(path.join(src, 'app')).map(file => `app/${file}`), ...fs.readdirSync(path.join(src, 'components')).map(file => `components/${file}`)].filter(file => /\.jsx?$/.test(file) && !DEVELOPMENT_ONLY.includes(file));
+  const screens = ['ui/react/App.jsx', 'main.jsx', ...fs.readdirSync(path.join(src, 'ui/react/app')).map(file => `ui/react/app/${file}`), ...fs.readdirSync(path.join(src, 'ui/react/components')).map(file => `ui/react/components/${file}`)].filter(file => /\.jsx?$/.test(file) && !DEVELOPMENT_ONLY.includes(file));
   assert.deepEqual(screens.flatMap(file => shownWords(path.join(src, file)).map(word => `${file}: ${word}`)), []);
   assert.ok(boundToScreens(src).length >= 11, 'the screens are bound, so the walk is real');
 });
@@ -97,14 +102,14 @@ test('every core and adapter module is used by the app or a build script, or lis
   assert.ok(WAITING_FOR_THE_UI.length === 0, 'the list only shrinks');
 });
 
-// After binding, screens get data through the facade (src/app/catalogData.js) and the core
+// After binding, screens get data through the facade (src/ui/react/app/catalogData.js) and the core
 // (ADR 003, "Sınır kapıları"). The pages below still load their own data in their own lazy chunk,
 // which is what keeps it out of the first download. This list only shrinks.
-const OWN_DATA_PAGES = ['components/BookFairsPage.jsx', 'components/BookstoresPage.jsx', 'components/NotesPage.jsx', 'components/RoutePlanner.jsx'];
+const OWN_DATA_PAGES = ['ui/react/components/BookFairsPage.jsx', 'ui/react/components/BookstoresPage.jsx', 'ui/react/components/NotesPage.jsx', 'ui/react/components/RoutePlanner.jsx'];
 
 test('screens do not import the catalogue, the data files or the GitHub repositories directly', () => {
   const src = new URL('../src/', import.meta.url).pathname;
-  const screens = ['App.jsx', 'main.jsx', ...fs.readdirSync(path.join(src, 'app')).map(file => `app/${file}`), ...fs.readdirSync(path.join(src, 'components')).map(file => `components/${file}`)].filter(file => /\.(js|jsx)$/.test(file) && file !== 'app/catalogData.js');
+  const screens = ['ui/react/App.jsx', 'main.jsx', ...fs.readdirSync(path.join(src, 'ui/react/app')).map(file => `ui/react/app/${file}`), ...fs.readdirSync(path.join(src, 'ui/react/components')).map(file => `ui/react/components/${file}`)].filter(file => /\.(js|jsx)$/.test(file) && file !== 'ui/react/app/catalogData.js');
   const reaching = screens.filter(file => uiDataImports(path.join(src, file)).length).sort();
   assert.deepEqual(reaching, OWN_DATA_PAGES);
 });
