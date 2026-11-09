@@ -388,8 +388,8 @@ export class GitHubRouteRegistry {
   }
 
   private async readRaw(): Promise<RemoteRoutes> {
-    // A plain GET without custom headers needs no CORS preflight; the query skips stale CDN copies.
-    const response = await this.github.request(`${this.github.rawUrl()}?t=${this.clock().getTime()}`, {});
+    // A plain GET without custom headers needs no CORS preflight. Read as state.json is.
+    const response = await this.github.request(this.github.rawUrl(), {});
     if (response.status === 404) return { document: emptyRouteDocument() };
     if (!response.ok) throw this.github.errorFor(response);
     try {

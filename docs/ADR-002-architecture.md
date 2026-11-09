@@ -77,5 +77,5 @@ Her aşama bütün testler geçerek kendi başına yayına çıkar. Taşımadan 
 ## Açık kararlar
 
 - **"Bugün"ün tanımı:** kişisel okuma tarihleri cihazın gününü, fuar takvimi İstanbul'un gününü kullanır. Gerekçe: okuma kişinin yaşadığı gündür, fuarlar Türkiye saatine göre açılıp kapanır.
-- **Önbellek parametresi:** `routes.json` okunurken eklenen `?t=` parametresinin raw.githubusercontent önbelleğini aşmadığı ADR 001'de yazıyor. 5. aşamada iki istemci aynı okuma kuralına bağlanacak.
+- **Önbellek parametresi (kapandı, 9 Kasım 2026):** `routes.json` okunurken eklenen `?t=` parametresi raw.githubusercontent önbelleğini aşmıyordu (ADR 001). Parametre kaldırıldı, iki istemci artık aynı biçimde okuyor.
 - **Görsel karşılaştırma:** ekran görüntüsü tabanları işletim sistemine göre farklı çıktığı için Mac'te üretilmeyecek. Tabanlar CI ile aynı Linux ortamında, ayrı ve incelenmiş bir değişiklikle eklenecek. O zamana kadar görünüm, ölçülen özellik testleri ve erişilebilirlik ağacı testleriyle korunuyor.

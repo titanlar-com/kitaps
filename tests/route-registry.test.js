@@ -134,7 +134,7 @@ test('without a token load reads the CDN copy with a cache-busting query; a miss
  const local=storage();
  const registry=new GitHubRouteRegistry({storage:local,clock:clock(5),fetch:async(url,init)=>{requests.push({url,init});return missing();}});
  assert.deepEqual(await registry.load(),emptyRouteDocument());
- assert.equal(requests[0].url,`${RAW}?t=${Date.parse(at(5))}`);
+ assert.equal(requests[0].url,RAW,'read the same way state.json is: the query did not get past GitHub\'s cache (ADR 002, phase 5)');
  assert.equal(Object.keys(requests[0].init.headers||{}).length,0,'no custom headers means no CORS preflight');
  assert.equal(requests[0].init.cache,'no-store');
  // The remote file is merged with this device's unsent changes and cached.
@@ -160,7 +160,7 @@ test('with a token load reads the Contents API and decodes Turkish text',async()
  const urls=[];
  const refused=new GitHubRouteRegistry({storage:withToken(),fetch:async url=>{urls.push(url);return url.startsWith(API)?new Response('',{status:401}):new Response(JSON.stringify(remote),{status:200});}});
  assert.deepEqual(await refused.load(),remote);
- assert.ok(urls[1].startsWith(`${RAW}?t=`));
+ assert.equal(urls[1],RAW);
 });
 
 test('update with a token writes routes.json with the sha, the owner identity and UTF-8 base64',async()=>{
