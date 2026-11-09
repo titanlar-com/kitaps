@@ -20,11 +20,19 @@ const vendorChunk = id => {
   return undefined;
 };
 
+// The screenshots (tests/visual) are taken of a frozen cut of the data, so a new book moves nothing.
+const FROZEN_DATA = [
+  [/.*\/catalog\.json$/, 'tests/fixtures/characterization/catalog.json'],
+  [/.*\/data\/bookstores\.json$/, 'tests/fixtures/visual/bookstores.json'],
+  [/.*\/data\/book-fairs\.json$/, 'tests/fixtures/visual/book-fairs.json'],
+].map(([find, file]) => ({ find, replacement: new URL(file, import.meta.url).pathname }));
+
 export default defineConfig(({ mode }) => {
   // `npm run export` builds one self-contained HTML file; the site is split.
   const standalone = mode === 'standalone';
   return {
     base: './',
+    resolve: { alias: process.env.KITAPLIK_FROZEN_DATA === '1' ? FROZEN_DATA : [] },
     plugins: [
       react(),
       ...(standalone ? [viteSingleFile()] : []),

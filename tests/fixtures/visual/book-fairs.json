@@ -1,0 +1,947 @@
+{
+  "checkedAt": "2026-11-07",
+  "intro": "Türkiye'de ve dünyada yaklaşan kitap fuarları bu sayfada. Biten fuarlar listeden kendiliğinden çıkar, tarihi henüz açıklanmayanlar ayrı bir bölümde durur.",
+  "notes": [
+    "Tarihlerin çoğu organizatörlerin TOBB onaylı fuar takvimine yaptığı kayıttan ya da fuarın kendi sitesinden geliyor. Kayıtlar değişebilir, gitmeden önce fuarın sitesine bak.",
+    "Fuar listesinde var diye işaretlenen tarihleri yalnız üçüncü taraf fuar listeleri veriyor.",
+    "İstanbul Kitap Fuarı adıyla bilinen büyük fuar, TÜYAP'ın Büyükçekmece'deki fuarı.",
+    "Ankara, İzmir, Samsun, Konya, Antalya ve Trabzon'daki fuarları TÜYAP değil, belediyeler ya da başka firmalar düzenliyor.",
+    "Şanlıurfa, Erzurum, Aydın, Bartın, Çorum ve Ümraniye fuarlarının 2027 tarihleri henüz açıklanmadı.",
+    "Akademik kitaplara ayrılmış bir kitap fuarı bulunamadı.",
+    "İlçe belediyelerinin küçük fuarlarının hepsi taranamadı, bu yüzden liste eksiksiz değil."
+  ],
+  "fairs": [
+    {
+      "id": "corum-kitap-kultur-gunleri-2026",
+      "name": "Çorum 13. Kitap ve Kültür Günleri",
+      "city": "Çorum",
+      "country": "Türkiye",
+      "venue": "TSO Fuar Merkezi",
+      "organizer": "Çorum Belediyesi",
+      "start": "2026-10-30",
+      "end": "2026-11-08",
+      "status": "confirmed",
+      "edition": 13,
+      "note": "Çorum Belediyesinin 13. Kitap ve Kültür Günleri, TSO Fuar Merkezi'nde yayınevlerini ve yazarları on gün boyunca okurlarla buluşturuyor.",
+      "sources": [
+        {
+          "label": "Çorum Hakimiyet: Kitap Fuarı 30 Ekim'de açılıyor",
+          "url": "https://www.corumhakimiyet.net/kitap-fuari-30-ekimde-aciliyor"
+        }
+      ]
+    },
+    {
+      "id": "aydin-kitap-fuari-2026",
+      "name": "3. Aydın Kitap Fuarı",
+      "city": "Aydın",
+      "country": "Türkiye",
+      "venue": "Fuar Aydın, Aydın Tekstil Parkı, Efeler",
+      "organizer": "TACT Fuar Organizasyon A.Ş., Aydın Büyükşehir Belediyesi ev sahipliğinde",
+      "start": "2026-10-30",
+      "end": "2026-11-08",
+      "status": "confirmed",
+      "edition": 3,
+      "note": "Aydın Büyükşehir Belediyesinin ev sahipliğinde üçüncü kez yapılan fuar, Fuar Aydın'da on gün boyunca söyleşi ve imza programı sunuyor.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2026",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2026"
+        },
+        {
+          "label": "Doğayı Dinle: Aydın Kitap Fuarı 2026 başlıyor",
+          "url": "https://www.dogayidinle.com/turizm-ve-kultur/aydin-kitap-fuari-2026-basliyor-mete-yarar-ahmet-tasagil-beyhan-budak-ve-10-gunluk-program/9741"
+        }
+      ]
+    },
+    {
+      "id": "erzurum-kitap-fuari-2026",
+      "name": "8. Doğu Anadolu Erzurum Kitap Fuarı",
+      "city": "Erzurum",
+      "country": "Türkiye",
+      "venue": "Recep Tayyip Erdoğan Fuar Merkezi",
+      "organizer": "Erzurum Büyükşehir Belediyesi (Erzurum Spor Kültür Sanat Etkinlikleri ve İşletmeciliği A.Ş.)",
+      "start": "2026-10-30",
+      "end": "2026-11-08",
+      "status": "confirmed",
+      "edition": 8,
+      "note": "Erzurum Büyükşehir Belediyesinin düzenlediği fuar, 120 yayınevini ve 100'ü aşkın yazarı Erzurum'da okurlarla buluşturuyor.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2026",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2026"
+        },
+        {
+          "label": "CNN Türk: 8. Doğu Anadolu Erzurum Kitap Fuarı açıldı",
+          "url": "https://www.cnnturk.com/yerel-haberler/erzurum/8-dogu-anadolu-erzurum-kitap-fuari-acildi-3486779"
+        }
+      ]
+    },
+    {
+      "id": "bartin-kitap-fuari-2026",
+      "name": "Bartın 28. Kitap Fuarı",
+      "city": "Bartın",
+      "country": "Türkiye",
+      "venue": null,
+      "organizer": "Bartın Belediyesi",
+      "start": "2026-10-31",
+      "end": "2026-11-08",
+      "status": "confirmed",
+      "edition": 28,
+      "note": "Bartın Belediyesinin 28. kez düzenlediği fuar, dokuz gün boyunca yayınevlerini, imza günlerini ve söyleşileri Bartın'da bir araya getiriyor.",
+      "sources": [
+        {
+          "label": "Bartın Info: Bartın'da 28. Kitap Fuarı kapılarını açıyor",
+          "url": "https://www.bartin.info/foto-galeri/bartinda-28-kitap-fuari-kapilarini-aciyor"
+        },
+        {
+          "label": "Cumhuriyet: Bartın'da 28. kitap fuarı kapılarını açtı",
+          "url": "https://www.cumhuriyet.com.tr/kultur-sanat/bartin-da-28-kitap-fuari-kapilarini-acti-2552507"
+        }
+      ]
+    },
+    {
+      "id": "sharjah-international-book-fair-2026",
+      "name": "Sharjah International Book Fair",
+      "city": "Şarika",
+      "country": "Birleşik Arap Emirlikleri",
+      "venue": "Expo Centre Sharjah",
+      "organizer": "Sharjah Book Authority",
+      "start": "2026-11-04",
+      "end": "2026-11-15",
+      "status": "confirmed",
+      "edition": 45,
+      "note": "Arap dünyasının en büyük kitap fuarlarından biri olan Şarika fuarının 45. buluşmasında onur konuğu Umman.",
+      "sources": [
+        {
+          "label": "SIBF resmi sitesi",
+          "url": "https://www.sibf.com/en"
+        }
+      ]
+    },
+    {
+      "id": "sanliurfa-kitap-fuari-2026",
+      "name": "9. Şanlıurfa Kitap Fuarı",
+      "city": "Şanlıurfa",
+      "country": "Türkiye",
+      "venue": "Şanlıurfa Fuar Merkezi",
+      "organizer": "Eylül Fuar Organizasyon Ltd. Şti. (TOBB kaydı)",
+      "start": "2026-11-20",
+      "end": "2026-11-29",
+      "status": "confirmed",
+      "edition": 9,
+      "note": "Şanlıurfa'da dokuzuncu kez yapılacak fuar, kasım sonunda on gün boyunca bölgenin okurlarını yayınevleri ve yazarlarla buluşturacak.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2026",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2026"
+        },
+        {
+          "label": "Tamadres: Kitap fuarları takvimi",
+          "url": "https://tamadres.com/blog/yazi/kitap-fuarlari"
+        }
+      ]
+    },
+    {
+      "id": "umraniye-kitap-fuari-2026",
+      "name": "7. Ümraniye Kitap Fuarı",
+      "city": "İstanbul",
+      "country": "Türkiye",
+      "venue": "Santral Meydan, Ümraniye",
+      "organizer": "Ümraniye Belediyesi",
+      "start": "2026-11-21",
+      "end": "2026-11-29",
+      "status": "confirmed",
+      "edition": 7,
+      "note": "Ümraniye Belediyesinin yedinci kitap fuarı Santral Meydan'da dokuz gün sürecek ve Anadolu yakasındaki okurlar için yakın bir seçenek.",
+      "sources": [
+        {
+          "label": "Ümraniye Kitap Fuarı resmi sitesi",
+          "url": "https://umraniyekitapfuari.com/"
+        },
+        {
+          "label": "Ümraniye Belediyesi Aralık 2025 bülteni (önceki fuar)",
+          "url": "https://umraniye.bel.tr/wp-content/uploads/2025/12/Aralik-Ayi-Kitapcik-4.pdf"
+        }
+      ]
+    },
+    {
+      "id": "fil-guadalajara-2026",
+      "name": "Feria Internacional del Libro de Guadalajara (FIL)",
+      "city": "Guadalajara",
+      "country": "Meksika",
+      "venue": "Expo Guadalajara",
+      "organizer": "Universidad de Guadalajara",
+      "start": "2026-11-28",
+      "end": "2026-12-06",
+      "status": "confirmed",
+      "edition": 40,
+      "note": "İspanyolca kitapların en büyük buluşması olan FIL, 40. yılında İtalya'yı onur konuğu olarak ağırlıyor.",
+      "sources": [
+        {
+          "label": "Universidad de Guadalajara: FIL 2026 programı",
+          "url": "https://www.udg.mx/noticia/leer-es-resistir-presentan-programa-fil-2026-con-italia-como-pais-invitado-de-honor"
+        },
+        {
+          "label": "Zeta Tijuana: FIL 40. yıl programı",
+          "url": "https://zetatijuana.com/2026/10/anuncia-fil-guadalajara-programa-de-su-40-aniversario/"
+        }
+      ]
+    },
+    {
+      "id": "ankara-kitap-fuari-2026-aralik",
+      "name": "24. Ankara Kitap Fuarı",
+      "city": "Ankara",
+      "country": "Türkiye",
+      "venue": "Ankara Uluslararası Fuar ve Kongre Merkezi",
+      "organizer": "Eylül Fuar Organizasyon Ltd. Şti.",
+      "start": "2026-12-04",
+      "end": "2026-12-13",
+      "status": "confirmed",
+      "edition": 24,
+      "note": "Eylül Fuarcılığın 24. Ankara Kitap Fuarı, TOBB kaydına göre bu kez ATO Congresium yerine Ankara Uluslararası Fuar ve Kongre Merkezi'nde on gün sürecek.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2026",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2026"
+        },
+        {
+          "label": "Tamadres: Kitap fuarları takvimi",
+          "url": "https://tamadres.com/blog/yazi/kitap-fuarlari"
+        }
+      ]
+    },
+    {
+      "id": "istanbul-kitap-fuari-2026",
+      "name": "43. Uluslararası İstanbul Kitap Fuarı",
+      "city": "İstanbul",
+      "country": "Türkiye",
+      "venue": "TÜYAP Fuar ve Kongre Merkezi, Büyükçekmece",
+      "organizer": "Tüyap Tüm Fuarcılık Yapım A.Ş. ve Türkiye Yayıncılar Birliği",
+      "start": "2026-12-12",
+      "end": "2026-12-20",
+      "status": "confirmed",
+      "edition": 43,
+      "note": "TÜYAP'ın 43. kez düzenlediği fuar, 1000'e yakın yayınevi ve kuruluşla dokuz gün boyunca söyleşi, imza ve çocuk etkinlikleri sunuyor ve bu yılın onur yazarı Latife Tekin.",
+      "sources": [
+        {
+          "label": "İstanbul Kitap Fuarı: Fuar künyesi",
+          "url": "https://istanbulkitapfuari.com/fuar-kunyesi"
+        },
+        {
+          "label": "TÜYAP: Uluslararası İstanbul Kitap Fuarı",
+          "url": "https://www.tuyap.com.tr/fuarlar/uluslararasi-istanbul-kitap-fuari"
+        },
+        {
+          "label": "Evrensel: Latife Tekin onur yazarı seçildi",
+          "url": "https://www.evrensel.net/haber/5990267/latife-tekin-onur-yazari-secildi-istanbul-kitap-fuari-yaklasiyor"
+        }
+      ]
+    },
+    {
+      "id": "cukurova-kitap-fuari-2027",
+      "name": "Çukurova 19. Kitap Fuarı",
+      "city": "Adana",
+      "country": "Türkiye",
+      "venue": "Adana Uluslararası Fuar ve Kongre Merkezi",
+      "organizer": "Tüyap Tüm Fuarcılık Yapım A.Ş. ve Çukurova Fuarcılık A.Ş., Türkiye Yayıncılar Birliği iş birliğiyle",
+      "start": "2027-01-09",
+      "end": "2027-01-17",
+      "status": "confirmed",
+      "edition": 19,
+      "note": "TÜYAP'ın yılın ilk kitap fuarı olan Çukurova Kitap Fuarı, Adana'da dokuz gün boyunca panel, söyleşi, atölye ve imza günleri sunuyor.",
+      "sources": [
+        {
+          "label": "TÜYAP: Çukurova Kitap Fuarı",
+          "url": "https://www.tuyap.com.tr/fuarlar/cukurova-kitap-fuari"
+        },
+        {
+          "label": "TOBB onaylı fuar takvimi 2027",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2027"
+        }
+      ]
+    },
+    {
+      "id": "new-delhi-world-book-fair-2027",
+      "name": "New Delhi World Book Fair",
+      "city": "Yeni Delhi",
+      "country": "Hindistan",
+      "venue": "Bharat Mandapam",
+      "organizer": "National Book Trust, India",
+      "start": "2027-01-16",
+      "end": "2027-01-24",
+      "status": "confirmed",
+      "edition": 54,
+      "note": "Hindistan Ulusal Kitap Vakfı'nın düzenlediği fuar, 54. kez Bharat Mandapam'da dokuz gün sürecek ve 18-19 Ocak'ta yayıncılara telif buluşmaları sunacak.",
+      "sources": [
+        {
+          "label": "NBT India: NDWBF 2027",
+          "url": "https://www.nbtindia.gov.in/ndwbf2027/"
+        }
+      ]
+    },
+    {
+      "id": "cairo-international-book-fair-2027",
+      "name": "Cairo International Book Fair",
+      "city": "Kahire",
+      "country": "Mısır",
+      "venue": "Egypt International Exhibition Center, Yeni Kahire",
+      "organizer": "General Egyptian Book Organization (Mısır Genel Kitap Kurumu)",
+      "start": "2027-01-20",
+      "end": "2027-02-02",
+      "status": "confirmed",
+      "edition": 58,
+      "note": "Arap dünyasında en çok ziyaretçi çeken kitap fuarlarından biri olan Kahire fuarı 58. kez yapılacak ve onur konuğu Katar.",
+      "sources": [
+        {
+          "label": "Katar Haber Ajansı (QNA): 58. Kahire Kitap Fuarı",
+          "url": "https://qna.org.qa/en/News-Area/News/2026-10/18/qatar-to-be-guest-of-honor-at-58th-cairo-international-book-fair"
+        }
+      ]
+    },
+    {
+      "id": "turkiye-kitap-kultur-fuari-istanbul-2027",
+      "name": "44. Türkiye Kitap ve Kültür Fuarı (İstanbul)",
+      "city": "İstanbul",
+      "country": "Türkiye",
+      "venue": "Fatih Camii Avlusu",
+      "organizer": "Vakıf Fuarcılık Ltd. Şti. (Türkiye Diyanet Vakfı)",
+      "start": "2027-02-12",
+      "end": "2027-03-01",
+      "status": "confirmed",
+      "edition": 44,
+      "note": "Türkiye Diyanet Vakfının Ramazan ayında düzenlediği geleneksel fuar, Fatih Camii avlusunda dini, tarihi ve edebi yayınları bir araya getiriyor.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2027",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2027"
+        }
+      ]
+    },
+    {
+      "id": "turkiye-kitap-kultur-fuari-ankara-2027",
+      "name": "44. Türkiye Kitap ve Kültür Fuarı (Ankara)",
+      "city": "Ankara",
+      "country": "Türkiye",
+      "venue": "Hacı Bayram Camii Avlusu",
+      "organizer": "Vakıf Fuarcılık Ltd. Şti. (Türkiye Diyanet Vakfı)",
+      "start": "2027-02-12",
+      "end": "2027-03-01",
+      "status": "confirmed",
+      "edition": 44,
+      "note": "Türkiye Diyanet Vakfının Ramazan fuarının Ankara ayağı, Hacı Bayram Camii avlusunda İstanbul ile aynı tarihlerde yapılacak.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2027",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2027"
+        }
+      ]
+    },
+    {
+      "id": "taipei-international-book-exhibition-2027",
+      "name": "Taipei International Book Exhibition (TiBE)",
+      "city": "Taipei",
+      "country": "Tayvan",
+      "venue": "Taipei World Trade Center, Hall 1",
+      "organizer": "Taipei Book Fair Foundation",
+      "start": "2027-02-16",
+      "end": "2027-02-21",
+      "status": "confirmed",
+      "edition": null,
+      "note": "Tayvan'ın en büyük kitap fuarı TiBE, şubat ortasında altı gün boyunca Taipei Dünya Ticaret Merkezi'nde okurlara ve yayıncılara açık olacak.",
+      "sources": [
+        {
+          "label": "TiBE: Save the Dates 2027",
+          "url": "https://www.tibe.org.tw/en/news_detail/20/198"
+        }
+      ]
+    },
+    {
+      "id": "london-book-fair-2027",
+      "name": "The London Book Fair",
+      "city": "Londra",
+      "country": "Birleşik Krallık",
+      "venue": "ExCeL London",
+      "organizer": "RX (Reed Exhibitions)",
+      "start": "2027-03-16",
+      "end": "2027-03-18",
+      "status": "confirmed",
+      "edition": null,
+      "note": "Telif ve yayın hakları ticaretinin önemli buluşmalarından biri olan Londra Kitap Fuarı, 2027'de ExCeL London'da üç gün sürecek ve daha çok yayıncılara yöneliyor.",
+      "sources": [
+        {
+          "label": "The London Book Fair resmi sitesi",
+          "url": "https://www.londonbookfair.co.uk/"
+        }
+      ]
+    },
+    {
+      "id": "leipziger-buchmesse-2027",
+      "name": "Leipziger Buchmesse",
+      "city": "Leipzig",
+      "country": "Almanya",
+      "venue": "Leipziger Messe fuar alanı",
+      "organizer": "Leipziger Messe GmbH",
+      "start": "2027-03-18",
+      "end": "2027-03-21",
+      "status": "confirmed",
+      "edition": null,
+      "note": "Almanya'nın bahar kitap fuarı, okur odaklı programı ve kente yayılan Leipzig liest okumalarıyla dört gün sürecek.",
+      "sources": [
+        {
+          "label": "Leipziger Buchmesse resmi sitesi",
+          "url": "https://www.leipziger-buchmesse.de/en/"
+        }
+      ]
+    },
+    {
+      "id": "bologna-childrens-book-fair-2027",
+      "name": "Bologna Children's Book Fair",
+      "city": "Bologna",
+      "country": "İtalya",
+      "venue": "BolognaFiere",
+      "organizer": "BolognaFiere",
+      "start": "2027-04-05",
+      "end": "2027-04-08",
+      "status": "confirmed",
+      "edition": 64,
+      "note": "Çocuk kitapları alanının önde gelen profesyonel fuarı 64. kez yapılacak ve özellikle illüstratörler ile çocuk kitabı yayıncıları için önemli.",
+      "sources": [
+        {
+          "label": "Bologna Children's Book Fair resmi sitesi",
+          "url": "https://www.bolognachildrensbookfair.com/en/home/878.html"
+        }
+      ]
+    },
+    {
+      "id": "bursa-kitap-fuari-2027",
+      "name": "Bursa 24. Kitap Fuarı",
+      "city": "Bursa",
+      "country": "Türkiye",
+      "venue": "Merinos Atatürk Kongre ve Kültür Merkezi Fuar Alanı",
+      "organizer": "Tüyap Fuarlar Yapım A.Ş. ve Türkiye Yayıncılar Birliği",
+      "start": "2027-04-10",
+      "end": "2027-04-18",
+      "status": "confirmed",
+      "edition": 24,
+      "note": "TÜYAP'ın Türkiye Yayıncılar Birliği ile düzenlediği Bursa fuarı, dokuz gün boyunca yüzlerce yazarı imza günleri ve söyleşilerle okurlarla buluşturuyor.",
+      "sources": [
+        {
+          "label": "TÜYAP: Bursa Kitap Fuarı",
+          "url": "https://www.tuyap.com.tr/fuarlar/bursa-kitap-fuari"
+        },
+        {
+          "label": "TOBB onaylı fuar takvimi 2027",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2027"
+        }
+      ]
+    },
+    {
+      "id": "izkitap-izmir-kitap-fuari-2027-bahar",
+      "name": "İZKİTAP 9. İzmir Kitap Fuarı",
+      "city": "İzmir",
+      "country": "Türkiye",
+      "venue": "Kültürpark Uluslararası Fuar Alanı",
+      "organizer": "İZFAŞ ve TACT Fair, İzmir Büyükşehir Belediyesi ev sahipliğinde",
+      "start": "2027-04-16",
+      "end": "2027-04-25",
+      "status": "confirmed",
+      "edition": 9,
+      "note": "İzmir Büyükşehir Belediyesinin ev sahipliğinde İZFAŞ ile TACT'ın düzenlediği bahar fuarı, Kültürpark'ta on gün sürecek.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2027",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2027"
+        },
+        {
+          "label": "İZFAŞ resmi sitesi",
+          "url": "https://www.izfas.com.tr/"
+        }
+      ]
+    },
+    {
+      "id": "festival-du-livre-de-paris-2027",
+      "name": "Festival du Livre de Paris",
+      "city": "Paris",
+      "country": "Fransa",
+      "venue": "Grand Palais",
+      "organizer": "Syndicat national de l'édition (SNE)",
+      "start": "2027-04-16",
+      "end": "2027-04-18",
+      "status": "confirmed",
+      "edition": null,
+      "note": "Fransız yayıncılığının büyük okur buluşması olan festival, 2027'de üç gün boyunca Grand Palais'de yapılacak.",
+      "sources": [
+        {
+          "label": "Festival du Livre de Paris resmi sitesi",
+          "url": "https://www.festivaldulivredeparis.fr/"
+        }
+      ]
+    },
+    {
+      "id": "abu-dhabi-international-book-fair-2027",
+      "name": "Abu Dhabi International Book Fair",
+      "city": "Abu Dabi",
+      "country": "Birleşik Arap Emirlikleri",
+      "venue": null,
+      "organizer": "Abu Dhabi Arabic Language Centre (Abu Dabi Kültür ve Turizm Dairesi)",
+      "start": "2027-04-17",
+      "end": "2027-04-26",
+      "status": "confirmed",
+      "edition": 36,
+      "note": "Abu Dabi Arap Dili Merkezi'nin düzenlediği bu büyük Arap kitap fuarı için resmi site 17-26 Nisan 2027 tarihini veriyor, ancak Gulf News'in 2024'te duyurduğu eski takvimde 24 Nisan-3 Mayıs 2027 yazıyordu.",
+      "sources": [
+        {
+          "label": "Abu Dhabi Book Fairs resmi sitesi",
+          "url": "https://adbookfair.com/en"
+        },
+        {
+          "label": "Gulf News: ADIBF tarihleri 2030'a kadar (2024)",
+          "url": "https://gulfnews.com/uae/education/abu-dhabi-international-book-fair-dates-announced-until-2030-1.104469819"
+        }
+      ]
+    },
+    {
+      "id": "eskisehir-kitap-fuari-2027",
+      "name": "Eskişehir 6. Kitap Fuarı",
+      "city": "Eskişehir",
+      "country": "Türkiye",
+      "venue": "Eskişehir Ticaret Odası - Tüyap Fuar Merkezi",
+      "organizer": "Tüyap Tüm Fuarcılık Yapım A.Ş. ve Türkiye Yayıncılar Birliği",
+      "start": "2027-05-08",
+      "end": "2027-05-16",
+      "status": "confirmed",
+      "edition": 6,
+      "note": "TÜYAP'ın Eskişehir'de altıncı kez düzenlediği fuar, 400'e yakın yayınevi ve kuruluşla dokuz gün boyunca söyleşi ve imza günleri sunuyor.",
+      "sources": [
+        {
+          "label": "TÜYAP: Eskişehir Kitap Fuarı",
+          "url": "https://www.tuyap.com.tr/fuarlar/eskisehir-kitap-fuari"
+        },
+        {
+          "label": "TOBB onaylı fuar takvimi 2027",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2027"
+        }
+      ]
+    },
+    {
+      "id": "salone-libro-torino-2027",
+      "name": "Salone Internazionale del Libro di Torino",
+      "city": "Torino",
+      "country": "İtalya",
+      "venue": "Lingotto Fiere",
+      "organizer": "Associazione Torino, la Città del Libro, Fondazione Circolo dei lettori ve Fondazione per la Cultura Torino",
+      "start": "2027-05-13",
+      "end": "2027-05-17",
+      "status": "confirmed",
+      "edition": null,
+      "note": "İtalyan yayıncılığının en önemli fuarı olan Salone del Libro, mayısta beş gün boyunca Lingotto'da okurları ve yayıncıları buluşturacak.",
+      "sources": [
+        {
+          "label": "Salone del Libro: Visita",
+          "url": "https://www.salonelibro.it/visita.html"
+        },
+        {
+          "label": "Salone del Libro: English",
+          "url": "https://www.salonelibro.it/eng.html"
+        }
+      ]
+    },
+    {
+      "id": "beijing-international-book-fair-2027",
+      "name": "Beijing International Book Fair (BIBF)",
+      "city": "Pekin",
+      "country": "Çin",
+      "venue": "China National Convention Center (CNCC)",
+      "organizer": "China National Publications Import & Export (Group) Corporation",
+      "start": "2027-06-16",
+      "end": "2027-06-20",
+      "status": "listed",
+      "edition": null,
+      "note": "Çin'in en büyük uluslararası kitap fuarı olan BIBF daha çok telif ticaretine odaklanıyor ve 2027 tarihini şimdilik yalnızca üçüncü taraf listeler veriyor.",
+      "sources": [
+        {
+          "label": "TradeFairDates: BIBF",
+          "url": "https://www.tradefairdates.com/Beijing-International-Book-Fair-(BIBF)-M824/Beijing.html"
+        },
+        {
+          "label": "Combined Book Exhibit: 2027 BIBF",
+          "url": "https://www.combinedbook.com/book-shows/2027-beijing-international-book-fair/"
+        }
+      ]
+    },
+    {
+      "id": "diyarbakir-kitap-fuari-2027",
+      "name": "Diyarbakır 11. Kitap Fuarı",
+      "city": "Diyarbakır",
+      "country": "Türkiye",
+      "venue": "Mezopotamya Uluslararası Fuar ve Kongre Merkezi",
+      "organizer": "Tüyap Tüm Fuarcılık Yapım A.Ş. ve Türkiye Yayıncılar Birliği",
+      "start": "2027-09-25",
+      "end": "2027-10-03",
+      "status": "confirmed",
+      "edition": 11,
+      "note": "TÜYAP'ın Diyarbakır'daki 11. fuarı, 400'e yakın yayınevi ve kuruluşu dokuz gün boyunca okurlarla buluşturacak.",
+      "sources": [
+        {
+          "label": "TÜYAP: Diyarbakır Kitap Fuarı",
+          "url": "https://www.tuyap.com.tr/fuarlar/diyarbakir-kitap-fuari"
+        },
+        {
+          "label": "TOBB onaylı fuar takvimi 2027",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2027"
+        }
+      ]
+    },
+    {
+      "id": "antalya-kitap-fuari-2027",
+      "name": "17. Antalya Kitap Fuarı",
+      "city": "Antalya",
+      "country": "Türkiye",
+      "venue": "Cam Piramit Sabancı Kongre ve Fuar Merkezi",
+      "organizer": "Nap Fuarcılık Ltd. Şti. (TOBB kaydı), Antalya Büyükşehir Belediyesinin fuarı",
+      "start": "2027-10-01",
+      "end": "2027-10-10",
+      "status": "confirmed",
+      "edition": 17,
+      "note": "Antalya'da 17. kez yapılacak fuar, TOBB kaydına göre 2026'daki gibi ekim başında Cam Piramit'te on gün sürecek.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2027",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2027"
+        }
+      ]
+    },
+    {
+      "id": "frankfurter-buchmesse-2027",
+      "name": "Frankfurter Buchmesse",
+      "city": "Frankfurt am Main",
+      "country": "Almanya",
+      "venue": "Messe Frankfurt",
+      "organizer": "Frankfurter Buchmesse GmbH",
+      "start": "2027-10-06",
+      "end": "2027-10-10",
+      "status": "confirmed",
+      "edition": null,
+      "note": "Dünyanın en büyük kitap ve telif fuarı beş gün sürecek ve son günleri genellikle okurlara da açık oluyor.",
+      "sources": [
+        {
+          "label": "Frankfurter Buchmesse resmi sitesi",
+          "url": "https://www.buchmesse.de/en"
+        }
+      ]
+    },
+    {
+      "id": "denizli-kitap-fuari-2027",
+      "name": "Denizli Kitap Fuarı",
+      "city": "Denizli",
+      "country": "Türkiye",
+      "venue": "EGS Fuar Alanı",
+      "organizer": "Tüyap Fuarlar Yapım A.Ş. ve Türkiye Yayıncılar Birliği, Denizli Büyükşehir Belediyesi desteğiyle",
+      "start": "2027-10-16",
+      "end": "2027-10-24",
+      "status": "confirmed",
+      "edition": null,
+      "note": "TÜYAP'ın 2026'da Denizli'ye taşıdığı kitap fuarı, Denizli Büyükşehir Belediyesinin desteğiyle EGS Fuar Alanı'nda dokuz gün sürecek.",
+      "sources": [
+        {
+          "label": "TÜYAP: Denizli Kitap Fuarı",
+          "url": "https://www.tuyap.com.tr/fuarlar/denizli-kitap-fuari"
+        },
+        {
+          "label": "TOBB onaylı fuar takvimi 2027",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2027"
+        }
+      ]
+    },
+    {
+      "id": "sharjah-international-book-fair-2027",
+      "name": "Sharjah International Book Fair",
+      "city": "Şarika",
+      "country": "Birleşik Arap Emirlikleri",
+      "venue": "Şarika'nın yeni fuar ve kongre merkezi",
+      "organizer": "Sharjah Book Authority",
+      "start": "2027-11-03",
+      "end": "2027-11-14",
+      "status": "listed",
+      "edition": 46,
+      "note": "Şarika fuarının 46. buluşması kasım 2027'de yeni fuar ve kongre merkezinde yapılacak ve 3-14 Kasım tarihini şimdilik yalnızca üçüncü taraf bir liste veriyor.",
+      "sources": [
+        {
+          "label": "Khaleej Times: SIBF 2027'de yeni merkeze taşınıyor",
+          "url": "https://www.khaleejtimes.com/uae/sharjah-dh500-million-mega-exhibition-centre"
+        },
+        {
+          "label": "Combined Book Exhibit: 2027 SIBF",
+          "url": "https://www.combinedbook.com/book-shows/2027-sharjah-international-book-fair/"
+        }
+      ]
+    },
+    {
+      "id": "fil-guadalajara-2027",
+      "name": "Feria Internacional del Libro de Guadalajara (FIL)",
+      "city": "Guadalajara",
+      "country": "Meksika",
+      "venue": "Expo Guadalajara",
+      "organizer": "Universidad de Guadalajara",
+      "start": "2027-11-27",
+      "end": "2027-12-05",
+      "status": "confirmed",
+      "edition": 41,
+      "note": "FIL'in 41. buluşmasında Buenos Aires onur konuğu olacak ve İspanyolca kitapların en büyük pazarı dokuz gün sürecek.",
+      "sources": [
+        {
+          "label": "Universidad de Guadalajara: Buenos Aires FIL 2027 onur konuğu",
+          "url": "https://www.udg.mx/noticia/buenos-aires-sera-invitada-de-honor-de-la-fil-guadalajara-2027"
+        }
+      ]
+    },
+    {
+      "id": "istanbul-kitap-fuari-2027",
+      "name": "44. Uluslararası İstanbul Kitap Fuarı",
+      "city": "İstanbul",
+      "country": "Türkiye",
+      "venue": "TÜYAP Fuar ve Kongre Merkezi, Büyükçekmece",
+      "organizer": "Tüyap Tüm Fuarcılık Yapım A.Ş.",
+      "start": "2027-12-11",
+      "end": "2027-12-19",
+      "status": "confirmed",
+      "edition": 44,
+      "note": "TÜYAP'ın 44. İstanbul fuarı TOBB takviminde 11-19 Aralık 2027 olarak kayıtlı, ancak bu tarih TÜYAP'ın kendi sitesinde henüz yer almıyor.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2027",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2027"
+        },
+        {
+          "label": "Tamadres: Kitap fuarları takvimi",
+          "url": "https://tamadres.com/blog/yazi/kitap-fuarlari"
+        }
+      ]
+    },
+    {
+      "id": "trabzon-kitap-gunleri-2026",
+      "name": "Trabzon Kitap Günleri",
+      "city": "Trabzon",
+      "country": "Türkiye",
+      "venue": "Yenimahalle Fuar Alanı",
+      "organizer": "Trabzon Büyükşehir Belediyesi, Trabzon İl Milli Eğitim Müdürlüğü ve Akoluk Kitap",
+      "start": null,
+      "end": null,
+      "status": "expected",
+      "edition": null,
+      "note": "Trabzon Büyükşehir Belediyesinin Kitap Günleri 2024'te ve 2025'te kasımın son haftasında yapıldı ve 2026 için henüz bir tarih duyurulmadı.",
+      "sources": [
+        {
+          "label": "Trabzon Büyükşehir: 2. Kitap Günleri duyurusu (2025)",
+          "url": "https://www.trabzon.bel.tr/Web/Icerik/-kitap-tutkunlari-trabzon-da-yazarlarla-bulusacak"
+        },
+        {
+          "label": "Trabzon Büyükşehir: Kitap Günleri başlıyor (2024)",
+          "url": "https://www.trabzon.bel.tr/Icerik?id=trabzon-kitap-gunleri-basliyor"
+        }
+      ]
+    },
+    {
+      "id": "ankara-kitap-fuari-2027",
+      "name": "Ankara Kitap Fuarı",
+      "city": "Ankara",
+      "country": "Türkiye",
+      "venue": null,
+      "organizer": "Eylül Fuar Organizasyon Ltd. Şti.",
+      "start": null,
+      "end": null,
+      "status": "expected",
+      "edition": null,
+      "note": "Eylül Fuarcılığın Ankara Kitap Fuarı 2026'da nisan ve aralıkta olmak üzere iki kez yapıldı ve 2027 tarihleri henüz açıklanmadı.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2026",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2026"
+        },
+        {
+          "label": "Bengütürk: 2026'nın ilk Ankara Kitap Fuarı nisanda",
+          "url": "https://www.benguturk.com/kultur-sanat/ankara-kitap-fuari-son-5-yilda-2-milyonun-uzerinde-ziyaretci-agirladi-237257h"
+        }
+      ]
+    },
+    {
+      "id": "us-book-show-2027",
+      "name": "U.S. Book Show",
+      "city": "New York",
+      "country": "ABD",
+      "venue": null,
+      "organizer": "Publishers Weekly",
+      "start": null,
+      "end": null,
+      "status": "expected",
+      "edition": null,
+      "note": "Publishers Weekly'nin yayıncılık sektörüne yönelik buluşması 2026'da 2-3 Haziran'da New York'ta yapıldı ve 2027 tarihleri henüz açıklanmadı.",
+      "sources": [
+        {
+          "label": "U.S. Book Show resmi sitesi",
+          "url": "https://www.usbookshow.com/"
+        },
+        {
+          "label": "ITA Chicago: US Book Show 2026",
+          "url": "https://www.italbooks.com/ita-chicago-at-the-us-book-show-2026-in-new-york/"
+        }
+      ]
+    },
+    {
+      "id": "istanbul-arapca-kitap-fuari-2027",
+      "name": "Uluslararası İstanbul Arapça Kitap Fuarı",
+      "city": "İstanbul",
+      "country": "Türkiye",
+      "venue": "Dr. Mimar Kadir Topbaş Gösteri ve Sanat Merkezi, Yenikapı",
+      "organizer": "Anadolu Sergi A.Ş. (TOBB kaydı)",
+      "start": null,
+      "end": null,
+      "status": "expected",
+      "edition": null,
+      "note": "Arapça yayınlara odaklanan bu İstanbul fuarı 2026'da 15-23 Ağustos'ta Yenikapı'da yapıldı ve 2027 tarihi henüz açıklanmadı.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2026",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2026"
+        }
+      ]
+    },
+    {
+      "id": "beyoglu-sahaf-festivali-2027",
+      "name": "Beyoğlu Sahaf Festivali",
+      "city": "İstanbul",
+      "country": "Türkiye",
+      "venue": "Eski Fransız Yetimhanesi Bahçesi, Beyoğlu",
+      "organizer": "Beyoğlu Belediyesi",
+      "start": null,
+      "end": null,
+      "status": "expected",
+      "edition": null,
+      "note": "İkinci el ve nadir kitap arayanlar için Beyoğlu Belediyesinin sahaf festivali genellikle eylülde yapılır ve 2026'daki 15. festival 19-27 Eylül'deydi.",
+      "sources": [
+        {
+          "label": "Evrensel: 15. Beyoğlu Sahaf Festivali 19 Eylül'de başlıyor",
+          "url": "https://www.evrensel.net/haber/6000871/15-beyoglu-sahaf-festivali-19-eylulde-basliyor"
+        }
+      ]
+    },
+    {
+      "id": "uskudar-sahaf-festivali-2027",
+      "name": "Üsküdar Sahaf Festivali",
+      "city": "İstanbul",
+      "country": "Türkiye",
+      "venue": "Mimar Sinan Meydanı, Üsküdar",
+      "organizer": "Üsküdar Belediyesi",
+      "start": null,
+      "end": null,
+      "status": "expected",
+      "edition": null,
+      "note": "Üsküdar Belediyesinin sahaf festivali 2025'te 19-28 Eylül'de Mimar Sinan Meydanı'nda yapıldı ve sonraki tarih henüz açıklanmadı.",
+      "sources": [
+        {
+          "label": "İşçi Haber: Üsküdar Sahaf Festivali başlıyor (2025)",
+          "url": "https://www.iscihaber.net/kultur-sanat/uskudar-sahaf-festivali-basliyor-mezatlar-soylesiler-ve-nadir-eserler/181398"
+        }
+      ]
+    },
+    {
+      "id": "izkitap-izmir-kitap-fuari-2027-sonbahar",
+      "name": "İZKİTAP İzmir Kitap Fuarı (sonbahar)",
+      "city": "İzmir",
+      "country": "Türkiye",
+      "venue": "Kültürpark Uluslararası Fuar Alanı",
+      "organizer": "İZFAŞ ve TACT Fair, İzmir Büyükşehir Belediyesi ev sahipliğinde",
+      "start": null,
+      "end": null,
+      "status": "expected",
+      "edition": null,
+      "note": "İzmir'in sonbahar kitap fuarı 2026'da 19-27 Eylül'de Kültürpark'ta yapıldı ve 2027 sonbahar tarihi henüz açıklanmadı.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2026",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2026"
+        }
+      ]
+    },
+    {
+      "id": "istanbul-cocuk-kitaplari-fuari-2027",
+      "name": "Uluslararası İstanbul Çocuk Kitapları Fuarı",
+      "city": "İstanbul",
+      "country": "Türkiye",
+      "venue": "Rami Kütüphanesi, Eyüpsultan",
+      "organizer": "Uluslararası Çocuk Yayıncıları Derneği",
+      "start": null,
+      "end": null,
+      "status": "expected",
+      "edition": null,
+      "note": "Çocuk ve gençlik yayınlarına ayrılmış bu fuar 2024'te ve 2025'te eylül sonu ile ekim ortası arasında Rami'de yapıldı ve sonraki buluşma için bir duyuru bulunamadı.",
+      "sources": [
+        {
+          "label": "Yeni Birlik: 2. Uluslararası Çocuk Kitapları Fuarı başlıyor (2025)",
+          "url": "https://www.gazetebirlik.com/kultur-sanat/istanbulda-cocuklar-icin-kitap-bayrami-2-uluslararasi-cocuk-kitaplari-fuari-basliyor/904938"
+        }
+      ]
+    },
+    {
+      "id": "samsun-kitap-fuari-2027",
+      "name": "Samsun Kitap Fuarı (Karadeniz Kitap Fuarı)",
+      "city": "Samsun",
+      "country": "Türkiye",
+      "venue": "TÜYAP Samsun Fuar ve Kongre Merkezi",
+      "organizer": "Samsun Anakent Turizm Ticaret A.Ş. (Samsun Büyükşehir Belediyesi şirketi)",
+      "start": null,
+      "end": null,
+      "status": "expected",
+      "edition": null,
+      "note": "Samsun'daki kitap fuarı 2025'te eylül sonunda, 2026'da ekim sonunda TÜYAP Samsun Fuar ve Kongre Merkezi'nde yapıldı ve 2027 tarihi henüz açıklanmadı.",
+      "sources": [
+        {
+          "label": "TOBB onaylı fuar takvimi 2026",
+          "url": "https://fuarlar.tobb.org.tr/FuarTakvimi/2026"
+        },
+        {
+          "label": "Haber Gazetesi: Karadeniz 10. Kitap Fuarı (2025)",
+          "url": "https://www.habergazetesi.com.tr/karadeniz-10-kitap-fuari-samsunda-kapilarini-acti"
+        }
+      ]
+    },
+    {
+      "id": "kocaeli-kitap-fuari-2027",
+      "name": "Uluslararası Kocaeli Kitap Fuarı",
+      "city": "Kocaeli",
+      "country": "Türkiye",
+      "venue": "Kocaeli Kongre Merkezi",
+      "organizer": "Kocaeli Büyükşehir Belediyesi",
+      "start": null,
+      "end": null,
+      "status": "expected",
+      "edition": null,
+      "note": "Kocaeli Büyükşehir Belediyesinin büyük kitap fuarı genellikle ekim başında yapılır ve 2026'da 3-11 Ekim'de Kocaeli Kongre Merkezi'nde düzenlendi.",
+      "sources": [
+        {
+          "label": "Kocaeli Büyükşehir: 16. Kocaeli Kitap Fuarı gün sayıyor",
+          "url": "https://www.kocaeli.bel.tr/haber/16-kocaeli-kitap-fuari-gun-sayiyor-52067.html"
+        }
+      ]
+    },
+    {
+      "id": "konya-kitap-gunleri-2027",
+      "name": "Konya Kitap Günleri",
+      "city": "Konya",
+      "country": "Türkiye",
+      "venue": "Selçuklu Kongre Merkezi",
+      "organizer": "Konya Büyükşehir Belediyesi",
+      "start": null,
+      "end": null,
+      "status": "expected",
+      "edition": null,
+      "note": "Konya Büyükşehir Belediyesinin Kitap Günleri genellikle ekimde Selçuklu Kongre Merkezi'nde yapılır ve 2026'daki 13. buluşma 25 Ekim'de bitti.",
+      "sources": [
+        {
+          "label": "DHA: 13. Konya Kitap Günleri",
+          "url": "https://www.dha.com.tr/kultur-sanat/13uncu-konya-kitap-gunleri-her-yastan-okuyucuyu-bulusturuyor-2965882"
+        }
+      ]
+    }
+  ]
+}

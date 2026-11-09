@@ -15,6 +15,8 @@
     "test:node": "node --test tests/*.test.js",
     "test:components": "vitest run",
     "test:e2e": "playwright test",
+    "test:visual": "KITAPLIK_FROZEN_DATA=1 vite build --outDir dist-visual && playwright test -c playwright.visual.config.js",
+    "test:visual:update": "KITAPLIK_FROZEN_DATA=1 vite build --outDir dist-visual && playwright test -c playwright.visual.config.js --update-snapshots=all",
     "check:state": "node scripts/check-state-repo.mjs"
   },
   "dependencies": {
