@@ -222,6 +222,8 @@ test('filled buttons keep readable text in the dark theme: the notice and an act
 });
 
 test('connecting a second device asks before it replaces a book the first one saved', async ({ browser }) => {
+  // Two devices and a connection on one machine: Linux WebKit under load needs more than the default time.
+  test.slow();
   // The phone is connected and buys the book; the computer, not yet connected, marked it as being read.
   const github = fakeGitHub();
   const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
@@ -244,8 +246,15 @@ test('connecting a second device asks before it replaces a book the first one sa
   await dialog.getByLabel('İnce ayarlı (fine-grained) GitHub anahtarı').fill(TOKEN);
   await dialog.getByRole('button', { name: 'Bu cihazda bağla' }).click();
   const merge = computerPage.getByRole('dialog', { name: 'Bu cihazdaki kayıtlar farklı' });
-  await expect(merge).toContainText('1 kitabın kaydı');
+  await expect(merge).toContainText('1 kitabın kaydı', { timeout: 20000 });
   expect(github.puts, 'nothing is replaced before the reader decides').toHaveLength(1);
+  // Escape does not close what lies under the question, and focus stays with the question.
+  await computerPage.waitForTimeout(400);
+  await computerPage.keyboard.press('Escape');
+  await computerPage.waitForTimeout(400);
+  await expect(merge).toBeVisible();
+  await expect(dialog).toBeVisible();
+  await expect.poll(() => merge.evaluate(element => element.contains(document.activeElement)), { message: 'focus stays in the question' }).toBe(true);
   await merge.getByRole('button', { name: 'GitHub’dakini kullan' }).click();
   await expect(merge).toHaveCount(0);
   // The computer now shows the phone's purchase; the shared file was never overwritten.

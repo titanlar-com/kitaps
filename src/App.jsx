@@ -220,7 +220,7 @@ function AtlasApp({kitaplik}) {
   </Tabs>
   <SyncMergeDialog sync={githubSync}/>
   {/* Opened from the book sheet too, so it sits above the sheet (Mantine's layer 200) and below the toast (310). */}
-  <Modal opened={syncOpened} onClose={closeSync} zIndex={300} returnFocus={false} onExitTransitionEnd={syncClosed} title="Cihazlar arası eşitleme" size="lg" centered className="sync-modal" closeButtonProps={{'aria-label':'Kapat'}}><div inert={!syncOpened||undefined}><GitHubSyncPanel sync={githubSync} framed={false}/></div></Modal>
+  <Modal opened={syncOpened} onClose={closeSync} closeOnEscape={!githubSync.mergePrompt} zIndex={300} returnFocus={false} onExitTransitionEnd={syncClosed} title="Cihazlar arası eşitleme" size="lg" centered className="sync-modal" closeButtonProps={{'aria-label':'Kapat'}}><div inert={!syncOpened||undefined}><GitHubSyncPanel sync={githubSync} framed={false}/></div></Modal>
   <Modal opened={guideOpened} onClose={()=>setGuideOpened(false)} title="Çeviri seçme rehberi" size="lg" centered className="global-guide-modal" closeButtonProps={{'aria-label':'Kapat'}}><TranslationCriteria/></Modal>
   <FilterSheet opened={opened} onClose={()=>setOpened(false)} onExited={()=>setSheetShown(false)} value={draft} onChange={setDraft} onReset={()=>setDraft({...emptyFilters(),query:filters.query})} onApply={()=>{changeFilters(draft);setOpened(false)}} count={draftCount} catalog={catalog} authors={authorOptions} shelf={draftListing?.shelf??shelfBooks}/>
   {!book&&transferNotice}
