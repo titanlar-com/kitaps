@@ -911,7 +911,8 @@ main{padding-top:20px;padding-bottom:32px}
 
 /* A phone keeps the reading band to a title line, its share and the row of counts. */
 @media (max-width:47.99em){
- .reading-summary{gap:var(--gap-xs);padding:var(--stack-gap)}
+ .reading-summary{gap:var(--gap-xs);margin-block:var(--stack-gap);padding:var(--gap-xs)}
+ .reading-summary-icon.mantine-ThemeIcon-root{width:26px;min-width:26px;height:26px;min-height:26px}
  .reading-summary-head{flex-basis:100%;align-items:center}
  .reading-summary-text{flex:0 1 auto}
  .reading-summary-text .mantine-Text-root+.mantine-Text-root{display:none}
