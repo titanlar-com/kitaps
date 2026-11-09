@@ -5,13 +5,15 @@ import NotesPage from '../../src/components/NotesPage';
 import catalog from '../../src/catalog.json';
 import { renderWithTheme } from './render';
 
-// What the reader is told when a backup is taken in or refused (ADR 003).
+// What the reader is told when a backup is taken in or refused (ADR 003). The notes page renders
+// the whole source archive, which is slow on a busy machine.
+vi.setConfig({ testTimeout: 30_000 });
 const sync = { status: 'ready', message: '', pending: 0, hasToken: false, writeError: null, lastSentAt: null, lastSeenAt: null };
 const upload = async (content, onRestore) => {
   const { container } = renderWithTheme(<NotesPage states={{}} personal={{ queue: [], reading: {} }} onRestore={onRestore} sync={sync}/>);
   const file = new File([typeof content === 'string' ? content : JSON.stringify(content)], 'yedek.json', { type: 'application/json' });
   fireEvent.change(container.querySelector('input[type="file"]'), { target: { files: [file] } });
-  return waitFor(() => screen.getByText(/içe aktarıldı|okunamadı|daha yeni|kişisel yedek değil/));
+  return waitFor(() => screen.getByText(/içe aktarıldı|okunamadı|daha yeni|kişisel yedek değil/), { timeout: 15_000 });
 };
 
 describe('taking a backup in', () => {

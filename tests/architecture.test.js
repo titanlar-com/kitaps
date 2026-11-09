@@ -39,10 +39,12 @@ test('screen models use no UI technology, no browser global and nothing but the 
   assert.deepEqual(coreViolations(path.join(src, 'screens'), { alsoAllowed: [path.join(src, 'core')] }), []);
 });
 
-test('a component bound to a screen model keeps no Turkish word of its own', () => {
-  const words = boundToScreens(src).flatMap(file => shownWords(file).map(word => `${path.relative(src, file)}: ${word}`));
-  assert.deepEqual(words, []);
-  assert.ok(boundToScreens(src).length > 0, 'at least one component is bound, so the walk is real');
+// The audit panel exists only on the development server, for the people working on the site.
+const DEVELOPMENT_ONLY = ['components/AccessibilityAudit.jsx'];
+test('every word a reader sees comes from a screen model or the core', () => {
+  const screens = ['App.jsx', 'main.jsx', ...fs.readdirSync(path.join(src, 'app')).map(file => `app/${file}`), ...fs.readdirSync(path.join(src, 'components')).map(file => `components/${file}`)].filter(file => /\.jsx?$/.test(file) && !DEVELOPMENT_ONLY.includes(file));
+  assert.deepEqual(screens.flatMap(file => shownWords(path.join(src, file)).map(word => `${file}: ${word}`)), []);
+  assert.ok(boundToScreens(src).length >= 11, 'the screens are bound, so the walk is real');
 });
 
 test('every module of the data core loads in plain Node', async () => {

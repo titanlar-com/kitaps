@@ -104,7 +104,7 @@ export interface ViewModel<S, C> extends ReadableStore<S> {
 - **Özellik görünüm modelleri (çekirdek, tasarımdan bağımsız).** Olguları, durum türlerini (`kind`) ve komutları taşır. Örnekler: katalog listesi (sonuç kimlikleri, toplam, sayfa, aralık, boş durumun türü), gezinme, ayarlar ve kişisel kütüphane. Kalıcı sözleşme bu katmandır.
 - **Ekran modelleri (tasarıma ait).** Bir ekranın bileşimini, Türkçe metinlerini ve düzen kararlarını taşır. Özellik görünüm modellerinin üstüne kurulan saf fonksiyonlardır. Tasarımın sahip olduğu, çerçeveden bağımsız ayrı bir klasörde dururlar ve çekirdekle aynı sınır kapısından geçerler. Yeni tasarım kendi ekran modellerini yazar, çekirdeğe dokunmaz.
 - **Kitap penceresinin yığılması tasarımındır.** "Katalogdan açılan kitap kapanınca geri gidilir" ve "kitaptan kitaba geçince bir iz tutulur" bugünkü pencerenin kurallarıdır. Çekirdek yalnız temel adımları verir: yeni kayıtla aç (`openBook`), aynı kayıtta göster (`showBook`), yerinde kapat (`closeBook`) ve geri git (`back`). Bugünkü kural bu adımlardan kurulur.
-- **Diğer özellik görünüm modelleri zamanında yazılır.** Kümeler, kitapçılar, fuarlar ve notlar için görünüm modelleri, yeniden tasarlanan ekran onları kullanacağı zaman yazılır. Kullanılmayacak bir modeli önceden yazmak, aşırı tasarımdır.
+- **Ekran modelleri yazıldı (9 Kasım 2026).** Sahip istedi. `src/screens/` altında on bir model vardır: sayfa çerçevesi, katalog, Sıram, süzgeç, kitap, Kümeler, kitapçılar, rota planlayıcısı, fuarlar, notlar ve eşitleme. Her biri düz bir fonksiyondur ve kendi testi vardır. Çekirdekle aynı kapıdan geçerler. `tests/architecture.test.js`, arayüz dosyalarında okura gösterilen Türkçe metin kalırsa başarısız olur. Yalnız geliştirme sunucusunda açılan erişilebilirlik paneli bu kuralın dışındadır. Sıralama motorunun gerekçeleri, öneri cümleleri, arama motoru metinleri ve eşitleme deposu raporu ekran metni olmadığı için kendi modüllerinde kalır.
 - **Gerekçe.** Tasarım değişecek. Bugünkü ekranların bileşimini çekirdeğe gömmek, yeni tasarımda çekirdeği de değiştirmeyi gerektirirdi. Olgular ise tasarımdan bağımsızdır.
 
 ### K7. Komutlar türlü yöntemlerdir
@@ -202,11 +202,11 @@ Bu öneriler ilk kararda alınmamıştı. Sahip 9 Kasım 2026'da hepsinin yapıl
 - **Codex:**
   - Tek bir `execute(command)` birleşimi (K7). **Yapıldı.**
   - Tarayıcıda tam katalog doğrulaması (K10). **Yapıldı.** `openCatalog` artık her yerde tam sözleşmeyi çalıştırır, yalnız sürüme bakan kip kaldırıldı.
-  - Eski tasarım için ekran görüntüsü tabanları (K11).
+  - Ekran görüntüsü tabanları (K11). **Yapıldı, bugünkü tasarım için.** Eski tasarım artık sitede yoktur, onun görüntüsü hiçbir şeyi korumaz. Dokuz ekran masaüstü ve telefon boyunda, ayrıca açık tema, Chromium ve WebKit'te karşılaştırılır. Görüntüler dondurulmuş veriyle ve CI'daki Linux görüntüsüyle alınır, yeni kitap eklemek onları değiştirmez. Görünür bir değişiklik bilinçliyse `scripts/visual-linux.sh update` ile yeniden kaydedilir ve uygulayıcıdan başkası inceler.
   - Yedek yüklemenin sürüme göre ayrılması. **Yapıldı.** `src/core/personal/backup.js` her biçimi kendi okuyucusuyla okur. Daha yeni sürümden gelen dosyayı, eşitleme yedeğini ve yedek olmayan dosyayı bütünüyle reddeder ve okura nedenini söyler.
   - CI'da kataloğun yeniden üretilip karşılaştırılması. **Yapıldı.** `tests/catalog-fresh.test.js` veri dosyalarından kataloğu geçici bir yere üretir ve `src/catalog.json` ile bayt bayt karşılaştırır. Bu test `npm test` içinde çalışır, Python yalnız standart kitaplığı kullanır. Çıktı Python 3.9 ve 3.12'de aynıdır.
 - **Claude analizcisi:**
-  - Ekran başına yaklaşık 11 görünüm modelinin şimdi yazılması (K6).
+  - Ekran başına yaklaşık 11 görünüm modelinin yazılması (K6). **Yapıldı.**
   - Ayrı bir çekirdek metin modülü (K8). **Yapıldı.**
   - Bileşenlerin şimdi `src/ui/react` altına taşınması: yeniden tasarım işine bırakıldı.
 

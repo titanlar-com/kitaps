@@ -86,7 +86,7 @@ export function fairTimeline(fairs, scope, today) {
  const months = groupByMonth(coming).map(month => ({
   ...month,
   count: month.fairs.length,
-  countLabel: `${month.fairs.length} fuar`,
+  countLabel: FAIR_TEXT.count(month.fairs.length),
   current: month.key === today.slice(0, 7),
   fairs: month.fairs.map(shown),
  }));

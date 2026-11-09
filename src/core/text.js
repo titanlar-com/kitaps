@@ -61,6 +61,7 @@ export const STORE_TEXT = {
 
 export const FAIR_TEXT = {
  noDate: 'Tarih açıklanmadı',
+ count: fairs => `${fairs} fuar`,
  confirmed: 'Resmî kaynakta var',
  listed: 'Fuar listesinde var',
  expected: 'Tarih bekleniyor',
