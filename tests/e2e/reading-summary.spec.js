@@ -36,46 +36,41 @@ test('a count shows a half-transparent border at rest and a solid one under the 
   expect(await count.boundingBox()).toEqual(before);
 });
 
-// The owner, 8 November 2026: the labels go under the icons, so the five counts stay in one row
-// and the component does not jump as the page narrows.
+// The owner, 8 November 2026: the labels go under the icons, which saves room at every width.
 const rowLayout = page => page.evaluate(() => {
   const stats = [...document.querySelectorAll('.reading-summary-stat')];
   const list = document.querySelector('.reading-summary-stats');
   return {
-    tops: new Set(stats.map(stat => Math.round(stat.getBoundingClientRect().top))).size,
-    height: Math.round(stats[0].getBoundingClientRect().height),
     labelsBelow: stats.every(stat => { const icon = stat.querySelector('.reading-summary-icon').getBoundingClientRect(); const label = stat.querySelector('.reading-summary-label').getBoundingClientRect(); return label.top >= icon.bottom && Math.abs(label.left - icon.left) <= 1; }),
     valueBeside: stats.every(stat => { const icon = stat.querySelector('.reading-summary-icon').getBoundingClientRect(); const value = stat.querySelector('.reading-summary-value').getBoundingClientRect(); return value.left >= icon.right && value.top < icon.bottom; }),
     pageFits: document.documentElement.scrollWidth <= window.innerWidth,
     listScrolls: list.scrollWidth > list.clientWidth + 1,
   };
 });
-test('the five counts stay in one row at the same height from a phone to a wide screen', async ({ page }) => {
-  const heights = [];
-  for (const width of [320, 360, 390, 576, 768, 1024, 1280, 1920]) {
+// The owner, 8 November 2026: on a small screen the counts take two rows, three above two, and
+// nothing is cut off at the edge.
+const rows = page => page.evaluate(() => {
+  const tops = new Map();
+  for (const stat of document.querySelectorAll('.reading-summary-stat')) { const top = Math.round(stat.getBoundingClientRect().top); tops.set(top, (tops.get(top) ?? 0) + 1); }
+  return [...tops.values()];
+});
+for (const [width, expected] of [[320, [3, 2]], [360, [3, 2]], [390, [3, 2]], [430, [3, 2]], [576, [5]], [768, [5]], [1024, [5]], [1280, [5]], [1920, [5]]]) {
+  test(`at ${width} px the counts stand ${expected.join(' over ')}, whole and with their labels under the icons`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('./');
     await expect(band(page)).toBeVisible();
+    expect(await rows(page)).toEqual(expected);
     const row = await rowLayout(page);
-    expect(row.tops, `${width} px: one row`).toBe(1);
-    expect(row.labelsBelow, `${width} px: labels under the icons`).toBe(true);
-    expect(row.valueBeside, `${width} px: numbers beside the icons`).toBe(true);
-    expect(row.pageFits, `${width} px: the page does not widen`).toBe(true);
-    heights.push(row.height);
-  }
-  expect(new Set(heights).size, heights.join(', ')).toBe(1);
-});
-
-test('on the narrowest phone the row scrolls inside itself and the last count can be reached', async ({ page }) => {
-  await page.setViewportSize({ width: 320, height: 800 });
-  await page.goto('./');
-  await expect(band(page)).toBeVisible();
-  expect((await rowLayout(page)).listScrolls).toBe(true);
-  const last = band(page).getByRole('button', { name: /^Favoriler/ });
-  await last.scrollIntoViewIfNeeded();
-  const box = await last.boundingBox();
-  expect(box.x + box.width).toBeLessThanOrEqual(320);
-});
+    expect(row.labelsBelow).toBe(true);
+    expect(row.valueBeside).toBe(true);
+    expect(row.pageFits).toBe(true);
+    expect(row.listScrolls, 'nothing is cut off and scrolled').toBe(false);
+    // The rows reach both edges of the band, so no gap is left at the end of the second one.
+    const edges = await page.evaluate(() => { const list = document.querySelector('.reading-summary-stats').getBoundingClientRect(); const stats = [...document.querySelectorAll('.reading-summary-stat')].map(stat => stat.getBoundingClientRect()); return { first: Math.abs(stats[0].left - list.left), last: Math.abs(stats[4].right - list.right) }; });
+    expect(edges.first).toBeLessThanOrEqual(1);
+    expect(edges.last).toBeLessThanOrEqual(1);
+  });
+}
 
 // Seen on 9 November 2026 at about 800 px: "Okuyorum" and "Kitaplığım" broke inside the word.
 for (const width of [320, 390, 768, 800, 900, 1024, 1280]) {

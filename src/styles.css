@@ -849,20 +849,27 @@ main{padding-top:20px;padding-bottom:32px}
 
 /* ---------- Reading summary (docs/UI-REDESIGN.md, phase 3) ----------
    A quiet panel, set apart by tone and space; only rising elements cast a shadow. */
-.reading-summary{display:flex;flex-wrap:wrap;align-items:center;gap:var(--card-gap) var(--section-gap);margin-block:var(--band-gap);padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
+.reading-summary{container:reading-band/inline-size;display:flex;flex-wrap:wrap;align-items:center;gap:var(--card-gap) var(--section-gap);margin-block:var(--band-gap);padding:var(--card-inset);border-radius:var(--radius-lg);background:var(--panel)}
 .reading-summary-head{display:flex;flex:1 1 18rem;flex-wrap:wrap;align-items:flex-end;gap:var(--stack-gap) var(--card-gap);min-width:0}
 .reading-summary-text{flex:1 1 12rem;min-width:0}
 .reading-summary-title{font-size:var(--text-xl);font-weight:650;letter-spacing:var(--heading-tracking)}
 .reading-summary-share{display:grid;flex:1 1 8rem;gap:var(--gap-xs);min-width:0}
 .reading-summary-share-value{font-size:var(--text-xl);font-weight:650;line-height:1.1}
-/* The five counts stay in one row at every width. A phone too narrow for all of them scrolls this row, not the page. */
-.reading-summary-stats{display:flex;flex:999 1 30rem;flex-wrap:nowrap;gap:var(--gap-xs);min-width:0;margin:0;padding:0;overflow-x:auto;scrollbar-width:none;list-style:none}
-.reading-summary-stats::-webkit-scrollbar{display:none}
-.reading-summary-stats>li{flex:1 0 5.75rem;min-width:0}
+/* The five counts stand in one row while they fit. A band too narrow for that takes two full rows,
+   three above two. These queries measure the band, so they follow the reader's text size too. */
+.reading-summary-stats{display:grid;flex:999 1 30rem;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--gap-xs);min-width:0;margin:0;padding:0;list-style:none}
+.reading-summary-stats>li{min-width:0}
+@container reading-band (max-width:33rem){
+ .reading-summary-stats{grid-template-columns:repeat(6,minmax(0,1fr))}
+ .reading-summary-stats>li{grid-column:span 2}
+ .reading-summary-stats>li:nth-child(n+4){grid-column:span 3}
+ .reading-summary-stat{padding:6px}
+}
+@container reading-band (max-width:13rem){
+ .reading-summary-stats>li,.reading-summary-stats>li:nth-child(n+4){grid-column:1 / -1}
+}
 .reading-summary-stat{display:grid;position:relative;grid-template-columns:auto 1fr;grid-template-areas:"icon value" "label label";align-items:center;gap:var(--radius) var(--gap-xs);width:100%;min-height:var(--touch-target);padding:var(--gap-xs);border:1px solid color-mix(in srgb,var(--control-border) 50%,transparent);border-radius:var(--radius);background:transparent;color:var(--ink);transition:background-color var(--motion-control) var(--motion-ease),border-color var(--motion-control) var(--motion-ease)}
 /* A count is known by its icon and words, with no filled box that would need a 3:1 boundary (WCAG 1.4.11). */
-/* The row scrolls, so its focus bar is drawn inside the count and cannot be cut off. */
-html[data-focus-mode="keyboard"] .reading-summary-stat.reading-summary-stat:focus-visible::after{inset-inline:8px;bottom:3px}
 .reading-summary-stat:hover{border-color:var(--control-border);background:var(--panel-hover)}
 .reading-summary-icon{grid-area:icon}
 /* Each mark has its own hue from the scheme, so the band is not one colour. */
