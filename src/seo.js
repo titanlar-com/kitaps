@@ -1,6 +1,7 @@
 import { viewById } from './views.js';
 import { DEFAULT_PAGE_SIZE, bookSlug, emptyFilters, encodeRoute } from './library.js';
-import { displayTitle } from './translation.js';
+import { displayTitle, recommendedTranslation, translationStatus, turkishEdition } from './translation.js';
+import { splitAuthors } from './authors.js';
 import { workFormat } from './workFormat.js';
 import { SITE_URL } from './site.js';
 
@@ -48,6 +49,24 @@ export function staticBookUrl(book,base=SITE_URL) {
  return `${base}catalog/books/${encodeURIComponent(bookSlug(book))}/`;
 }
 
+/** How a shelf describes itself. Only a shelf in title order is public, and static pages always are. */
+export const listingDescription=({heading,count,start,end,titleOrder})=>`${heading}: ${count} kitap${count?`; ${start}–${end} arası eserler`:''}. ${titleOrder?'Başlığa göre kararlı katalog sırası.':'Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.'}`;
+
+/** What search engines are told about a shelf, on the running page and on the static pages. */
+export function listingStructuredData({heading,description,url,count,start,books,base=SITE_URL,listed=true}) {
+ return {'@context':'https://schema.org','@type':'CollectionPage',name:heading,description,url,
+  ...(listed?{mainEntity:{'@type':'ItemList',numberOfItems:count,itemListElement:books.map((book,index)=>({'@type':'ListItem',position:start+index,url:staticBookUrl(book,base),name:displayTitle(book)}))}}:{})};
+}
+
+/** What search engines are told about a book, on the running page and on the static pages. */
+export function bookStructuredData(book,base=SITE_URL) {
+ const shown=displayTitle(book);
+ const edition=['available','original'].includes(translationStatus(book).status)?turkishEdition(book):null;
+ const translation=recommendedTranslation(book);
+ const authors=splitAuthors(book.author).map(name=>({'@type':'Person',name}));
+ return {'@context':'https://schema.org','@type':workFormat(book)?.schema||'Book',name:shown,author:authors.length>1?authors:authors[0],inLanguage:edition?'tr':book.cover?.language||undefined,isbn:edition?.isbn||book.cover?.isbn||undefined,publisher:edition?.publisher?{'@type':'Organization',name:edition.publisher}:undefined,translator:translation?.translators.map(name=>({'@type':'Person',name})),alternateName:book.originalTitle&&book.originalTitle!==shown?book.originalTitle:undefined,isPartOf:book.format==='article'&&book.publication?.venue?{'@type':'Periodical',name:book.publication.venue}:undefined,image:book.cover?`${base}${book.cover.src}`:undefined,url:staticBookUrl(book,base)};
+}
+
 export function seoState({route,catalog,count,currentPage,totalPages,displayed,base=SITE_URL}) {
  const book=route.book?catalog.books.find(item=>item.id===route.book):null;
  const category=route.filters.categories.length===1?catalog.categories.find(item=>item.id===route.filters.categories[0]):null;
@@ -60,17 +79,12 @@ export function seoState({route,catalog,count,currentPage,totalPages,displayed,b
  const title=book?bookPageTitle(book):listingPageTitle(heading,currentPage);
  const start=count?((currentPage-1)*(route.pageSize||DEFAULT_PAGE_SIZE))+1:0;
  const end=Math.min(currentPage*(route.pageSize||DEFAULT_PAGE_SIZE),count);
- const description=!book&&viewById[route.view]?.description?viewById[route.view].description:book?`${displayTitle(book)}, ${book.author}. Türkçe baskı, çeviri, yayınevi, kaynak kümeleri ve okuma rotası bilgileri.`:`${heading}: ${count} kitap${count?`; ${start}–${end} arası eserler`:''}. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.`;
+ const description=!book&&viewById[route.view]?.description?viewById[route.view].description:book?`${displayTitle(book)}, ${book.author}. Türkçe baskı, çeviri, yayınevi, kaynak kümeleri ve okuma rotası bilgileri.`:listingDescription({heading,count,start,end,titleOrder:indexable});
  const canonicalQuery=encodeRoute(book?cleanRoute(route,book.id):cleanRoute(route),catalog);
  const href=query=>`${base}${query?'?'+query:''}`;
  const canonical=book?staticBookUrl(book,base):staticListingUrl(route,indexable?currentPage:1,base);
- const structured=book?{
-  '@context':'https://schema.org','@type':workFormat(book)?.schema||'Book',name:displayTitle(book),author:{'@type':'Person',name:book.author},inLanguage:book.cover?.language||undefined,isbn:book.verifiedEdition?.isbn||book.cover?.isbn||undefined,isPartOf:book.format==='article'&&book.publication?.venue?{'@type':'Periodical',name:book.publication.venue}:undefined,url:canonical
- }:{
-  '@context':'https://schema.org','@type':'CollectionPage',name:heading,description,url:canonical,
-  ...(indexable?{mainEntity:{'@type':'ItemList',numberOfItems:count,itemListElement:displayed.map((item,index)=>({'@type':'ListItem',position:start+index,url:staticBookUrl(item,base),name:displayTitle(item)}))}}:{})
- };
- return {title,description:description||baseDescription(catalog),robots:indexable?'index,follow':'noindex,follow',canonical,prev:indexable&&currentPage>1?staticListingUrl(route,currentPage-1,base):'',next:indexable&&currentPage<totalPages?staticListingUrl(route,currentPage+1,base):'',structured,interactive:href(canonicalQuery),ogType:book?(workFormat(book)?'article':'book'):'website'};
+ const structured=book?bookStructuredData(book,base):listingStructuredData({heading,description,url:canonical,count,start,books:displayed,base,listed:indexable});
+ return {title,description:description||baseDescription(catalog),robots:indexable?'index,follow':'noindex,follow',canonical,prev:!book&&indexable&&currentPage>1?staticListingUrl(route,currentPage-1,base):'',next:!book&&indexable&&currentPage<totalPages?staticListingUrl(route,currentPage+1,base):'',structured,interactive:href(canonicalQuery),ogType:book?(workFormat(book)?'article':'book'):'website'};
 }
 
 function upsertMeta(name,content) {

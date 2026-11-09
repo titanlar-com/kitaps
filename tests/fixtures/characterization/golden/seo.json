@@ -75,7 +75,7 @@
   "encoded": "sort=title&page=2",
   "seo": {
    "title": "Tüm kitaplar — Sayfa 2 | Kitaplık",
-   "description": "Tüm kitaplar: 144 kitap; 25–48 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "description": "Tüm kitaplar: 144 kitap; 25–48 arası eserler. Başlığa göre kararlı katalog sırası.",
    "robots": "index,follow",
    "canonical": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
    "prev": "https://titanlar-com.github.io/kitaps/catalog/",
@@ -84,7 +84,7 @@
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Tüm kitaplar",
-    "description": "Tüm kitaplar: 144 kitap; 25–48 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "description": "Tüm kitaplar: 144 kitap; 25–48 arası eserler. Başlığa göre kararlı katalog sırası.",
     "url": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
     "mainEntity": {
      "@type": "ItemList",
@@ -741,17 +741,28 @@
    "robots": "index,follow",
    "canonical": "https://titanlar-com.github.io/kitaps/catalog/books/the-100-best-business-books-of-all-time-by-jack-covert-todd-sattersten-ve-sally-haldorson/",
    "prev": "",
-   "next": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
+   "next": "",
    "structured": {
     "@context": "https://schema.org",
     "@type": "Book",
     "name": "The 100 Best Business Books of All Time",
-    "author": {
-     "@type": "Person",
-     "name": "Jack Covert, Todd Sattersten ve Sally Haldorson"
-    },
+    "author": [
+     {
+      "@type": "Person",
+      "name": "Jack Covert"
+     },
+     {
+      "@type": "Person",
+      "name": "Todd Sattersten"
+     },
+     {
+      "@type": "Person",
+      "name": "Sally Haldorson"
+     }
+    ],
     "inLanguage": "en",
     "isbn": "9781591842408",
+    "image": "https://titanlar-com.github.io/kitaps/covers/7acd4ac119b0eb23.jpg",
     "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-100-best-business-books-of-all-time-by-jack-covert-todd-sattersten-ve-sally-haldorson/"
    },
    "interactive": "https://titanlar-com.github.io/kitaps/?book=the-100-best-business-books-of-all-time-by-jack-covert-todd-sattersten-ve-sally-haldorson",
@@ -792,16 +803,34 @@
    "robots": "index,follow",
    "canonical": "https://titanlar-com.github.io/kitaps/catalog/books/the-100-year-life-by-lynda-gratton-and-andrew-scott/",
    "prev": "",
-   "next": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
+   "next": "",
    "structured": {
     "@context": "https://schema.org",
     "@type": "Book",
     "name": "100 Yıllık Yaşam",
-    "author": {
-     "@type": "Person",
-     "name": "Lynda Gratton and Andrew Scott"
+    "author": [
+     {
+      "@type": "Person",
+      "name": "Lynda Gratton"
+     },
+     {
+      "@type": "Person",
+      "name": "Andrew Scott"
+     }
+    ],
+    "inLanguage": "tr",
+    "publisher": {
+     "@type": "Organization",
+     "name": "Scala Yayıncılık"
     },
-    "inLanguage": "en",
+    "translator": [
+     {
+      "@type": "Person",
+      "name": "Canan Feyyat"
+     }
+    ],
+    "alternateName": "The 100-Year Life",
+    "image": "https://titanlar-com.github.io/kitaps/covers/d815b5d469ed5aa5.jpg",
     "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-100-year-life-by-lynda-gratton-and-andrew-scott/"
    },
    "interactive": "https://titanlar-com.github.io/kitaps/?book=the-100-year-life-by-lynda-gratton-and-andrew-scott",
@@ -1352,7 +1381,7 @@
   "encoded": "",
   "seo": {
    "title": "Tüm kitaplar | Kitaplık",
-   "description": "Tüm kitaplar: 126 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "description": "Tüm kitaplar: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
    "robots": "noindex,follow",
    "canonical": "https://titanlar-com.github.io/kitaps/catalog/",
    "prev": "",
@@ -1361,7 +1390,7 @@
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Tüm kitaplar",
-    "description": "Tüm kitaplar: 126 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "description": "Tüm kitaplar: 144 kitap; 1–24 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
     "url": "https://titanlar-com.github.io/kitaps/catalog/"
    },
    "interactive": "https://titanlar-com.github.io/kitaps/",
@@ -1398,7 +1427,7 @@
   "encoded": "sort=title&page=2",
   "seo": {
    "title": "Tüm kitaplar — Sayfa 2 | Kitaplık",
-   "description": "Tüm kitaplar: 126 kitap; 25–48 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+   "description": "Tüm kitaplar: 144 kitap; 25–48 arası eserler. Başlığa göre kararlı katalog sırası.",
    "robots": "index,follow",
    "canonical": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
    "prev": "https://titanlar-com.github.io/kitaps/catalog/",
@@ -1407,155 +1436,155 @@
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Tüm kitaplar",
-    "description": "Tüm kitaplar: 126 kitap; 25–48 arası eserler. Kaynakları ve baskı bilgileriyle insan odaklı okuma kataloğu.",
+    "description": "Tüm kitaplar: 144 kitap; 25–48 arası eserler. Başlığa göre kararlı katalog sırası.",
     "url": "https://titanlar-com.github.io/kitaps/catalog/page/2/",
     "mainEntity": {
      "@type": "ItemList",
-     "numberOfItems": 126,
+     "numberOfItems": 144,
      "itemListElement": [
       {
        "@type": "ListItem",
        "position": 25,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/circle-of-greed-by-patrick-dillon-carl-cannon/",
+       "name": "Circle of Greed"
+      },
+      {
+       "@type": "ListItem",
+       "position": 26,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/corporate-strategy-by-david-j-collis-ve-cynthia-a-montgomery/",
+       "name": "Corporate Strategy: Resources and the Scope of the Firm"
+      },
+      {
+       "@type": "ListItem",
+       "position": 27,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/karlsson-pa-taket-by-astrid-lindgren/",
+       "name": "Çatıdaki Karlsson"
+      },
+      {
+       "@type": "ListItem",
+       "position": 28,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-genius-myth-by-helen-lewis/",
+       "name": "Deha Denen Mit - İsyancıların, Canavarların ve Kural Tanımazların Tehlikeli Cazibesi"
+      },
+      {
+       "@type": "ListItem",
+       "position": 29,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/disciplined-entrepreneurship-by-bill-aulet/",
+       "name": "Disciplined Entrepreneurship"
+      },
+      {
+       "@type": "ListItem",
+       "position": 30,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-dialectical-imagination-by-martin-jay/",
+       "name": "Diyalektik İmgelem & Frankfurt Okulu'nun Tarihi ve Çalışmaları (1923-1950)"
+      },
+      {
+       "@type": "ListItem",
+       "position": 31,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/dostluk-ekmegi-by-sara-sahinkanat/",
+       "name": "Dostluk Ekmeği"
+      },
+      {
+       "@type": "ListItem",
+       "position": 32,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/v-lyudyah-by-maksim-gorki/",
+       "name": "Ekmeğimi Kazanırken"
+      },
+      {
+       "@type": "ListItem",
+       "position": 33,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/elon-musk-by-walter-isaacson/",
+       "name": "Elon Musk"
+      },
+      {
+       "@type": "ListItem",
+       "position": 34,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/ancient-greece-by-thomas-r-martin/",
+       "name": "Eski Yunan: Tarihöncesinden Helenistik Çağ'a"
+      },
+      {
+       "@type": "ListItem",
+       "position": 35,
+       "url": "https://titanlar-com.github.io/kitaps/catalog/books/execution-by-larry-bossidy-and-ram-charan/",
+       "name": "Execution & İş Yaptırabilme Disiplini"
+      },
+      {
+       "@type": "ListItem",
+       "position": 36,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/fatih-sultan-mehmed-ve-zamani-by-franz-babinger/",
        "name": "Fatih Sultan Mehmed ve Zamanı"
       },
       {
        "@type": "ListItem",
-       "position": 26,
+       "position": 37,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-wisdom-of-finance-by-mihir-desai/",
        "name": "Finans Bilgeliği & Risk ve Getiri Dünyasında İnsanlığı Keşfetmek"
       },
       {
        "@type": "ListItem",
-       "position": 27,
+       "position": 38,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/finansci-olmayanlar-icin-finans-by-hakan-ozerol/",
        "name": "Finansçı Olmayanlar İçin Finans"
       },
       {
        "@type": "ListItem",
-       "position": 28,
+       "position": 39,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/flash-crash-by-liam-vaughan/",
        "name": "Flash Crash"
       },
       {
        "@type": "ListItem",
-       "position": 29,
+       "position": 40,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/frontierlands-by-hazel-sheffield/",
        "name": "Frontierlands"
       },
       {
        "@type": "ListItem",
-       "position": 30,
+       "position": 41,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-innovators-by-walter-isaacson/",
        "name": "Geleceği Keşfedenler & Dijital Çağın Biyografisi"
       },
       {
        "@type": "ListItem",
-       "position": 31,
+       "position": 42,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/administration-industrielle-et-generale-by-henri-fayol/",
        "name": "Genel ve Endüstriyel Yönetim"
       },
       {
        "@type": "ListItem",
-       "position": 32,
+       "position": 43,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/gigged-by-sarah-kessler/",
        "name": "Gigged"
       },
       {
        "@type": "ListItem",
-       "position": 33,
+       "position": 44,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-e-myth-revisited-by-michael-e-gerber/",
        "name": "Girişimcilik Tutkusu"
       },
       {
        "@type": "ListItem",
-       "position": 34,
+       "position": 45,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/godnatt-alfons-aberg-by-gunilla-bergstrom/",
        "name": "Godnatt Alfons Åberg"
       },
       {
        "@type": "ListItem",
-       "position": 35,
+       "position": 46,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-age-of-surveillance-capitalism-by-shoshana-zuboff/",
        "name": "Gözetleme Kapitalizmi Çağı: Ürünün \"Sen\" Olduğu Çağda İnsanın Geleceği İçin Savaş"
       },
       {
        "@type": "ListItem",
-       "position": 36,
+       "position": 47,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/grimm-masallari-by-grimm-kardesler/",
        "name": "Grimm Masalları"
       },
       {
        "@type": "ListItem",
-       "position": 37,
+       "position": 48,
        "url": "https://titanlar-com.github.io/kitaps/catalog/books/hedgehogging-by-barton-biggs/",
        "name": "Hedgehogging"
-      },
-      {
-       "@type": "ListItem",
-       "position": 38,
-       "url": "https://titanlar-com.github.io/kitaps/catalog/books/high-output-management-by-andrew-s-grove/",
-       "name": "High Output Management"
-      },
-      {
-       "@type": "ListItem",
-       "position": 39,
-       "url": "https://titanlar-com.github.io/kitaps/catalog/books/house-of-cards-by-william-cohan/",
-       "name": "House of Cards"
-      },
-      {
-       "@type": "ListItem",
-       "position": 40,
-       "url": "https://titanlar-com.github.io/kitaps/catalog/books/how-to-make-millions-with-your-ideas-by-dan-kennedy/",
-       "name": "How to Make Millions with Your Ideas"
-      },
-      {
-       "@type": "ListItem",
-       "position": 41,
-       "url": "https://titanlar-com.github.io/kitaps/catalog/books/imagining-india-by-nandan-nilekani/",
-       "name": "Imagining India"
-      },
-      {
-       "@type": "ListItem",
-       "position": 42,
-       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-48-laws-of-power-by-robert-greene/",
-       "name": "İktidar (Güç Sahibi Olmanın 48 Yasası)"
-      },
-      {
-       "@type": "ListItem",
-       "position": 43,
-       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-death-of-ivan-ilyich-by-lev-nikolayevic-tolstoy/",
-       "name": "İvan İlyiç’in Ölümü"
-      },
-      {
-       "@type": "ListItem",
-       "position": 44,
-       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-case-for-good-jobs-by-zeynep-ton/",
-       "name": "İyi İşler Uygulaması"
-      },
-      {
-       "@type": "ListItem",
-       "position": 45,
-       "url": "https://titanlar-com.github.io/kitaps/catalog/books/jean-jacques-rousseau-by-leo-damrosch/",
-       "name": "Jean-Jacques Rousseau"
-      },
-      {
-       "@type": "ListItem",
-       "position": 46,
-       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-summer-of-katya-by-trevanian/",
-       "name": "Katya'nın Yazı"
-      },
-      {
-       "@type": "ListItem",
-       "position": 47,
-       "url": "https://titanlar-com.github.io/kitaps/catalog/books/the-art-of-the-start-2-0-by-guy-kawasaki/",
-       "name": "Kendi İşini Kurmak İsteyen Girişimcinin El Kitabı"
-      },
-      {
-       "@type": "ListItem",
-       "position": 48,
-       "url": "https://titanlar-com.github.io/kitaps/catalog/books/konstantinos-paleologos-by-donald-m-nicol/",
-       "name": "Konstantinos Paleologos"
       }
      ]
     }

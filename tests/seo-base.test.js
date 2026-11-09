@@ -39,6 +39,8 @@ test('every address in the state is built on the base it is given', () => {
   assert.ok(staticBookUrl(catalog.books[0], base).startsWith(`${base}catalog/books/`));
   const book = seoState(input({ base, route: route({ book: catalog.books[0].id, page: 1 }), currentPage: 1 }));
   assert.ok(book.canonical.startsWith(base) && book.interactive.startsWith(base));
+  const covered = seoState(input({ base, route: route({ book: catalog.books.find(item => item.cover).id, page: 1 }), currentPage: 1 }));
+  assert.ok(covered.structured.url.startsWith(base) && covered.structured.image.startsWith(base), 'what search engines are told about the book');
 });
 
 test('the base comes from the address the way the page has always read it', () => {
@@ -77,5 +79,5 @@ test('the generator takes those rules from the shared module instead of keeping 
   assert.match(source, /from '\.\.\/src\/seo\.js'/);
   assert.doesNotMatch(source, /const groupHeading=/);
   assert.doesNotMatch(source, /const bookUrl=/);
-  for (const copy of [/\.categories\.includes\(item\.id\)/, /\.collectionIds\.includes\(item\.id\)/, /\.groupIds\.includes\(item\.id\)/, /\| Kitaplık`/]) assert.doesNotMatch(source, copy);
+  for (const copy of [/\.categories\.includes\(item\.id\)/, /\.collectionIds\.includes\(item\.id\)/, /\.groupIds\.includes\(item\.id\)/, /\| Kitaplık`/, /new Intl\.Collator/]) assert.doesNotMatch(source, copy);
 });

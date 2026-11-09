@@ -33,7 +33,8 @@ export function sortBooks(books, sort, states = {}, rankings = {}) {
  const collator = new Intl.Collator('tr', { sensitivity: 'base', numeric: true });
  const title = b => displayTitle(b);
  return [...books].sort((a,b) => {
-  const tie = () => collator.compare(title(a),title(b));
+  // Books that share a title read by author, on the running page and on the static pages alike.
+  const tie = () => collator.compare(title(a),title(b)) || collator.compare(a.author,b.author);
   // General books come before children's books, which are ranked among
   // themselves. Books with an equal priority share a rank and read
   // alphabetically by the title the reader sees, never by internal identifiers.

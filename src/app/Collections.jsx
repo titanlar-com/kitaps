@@ -29,7 +29,7 @@ function CollectionCard({card,onCollection,onGroup}){
    {c.context?.criterion&&<Text><strong>Seçim ölçütü:</strong> {c.context.criterion}</Text>}
    {c.context?.verdict&&<Box className="note-block"><Text>{c.context.verdict}</Text></Box>}
    <Text c="dimmed">{c.note}</Text>
-   <Text c="dimmed" className="tabular-nums">Kaynak listesinde {c.count} kayıt var.</Text>
+   {c.originalCount!==undefined&&<Text c="dimmed" className="tabular-nums">Kaynak listesinde {c.originalCount} kayıt var.</Text>}
    <Stack gap={8}>{groups.map(group=><Button key={group.id} variant="default" onClick={()=>onGroup(c.id,group.id)} className="subset-button" justify="space-between" rightSection={<IconChevronRight size={19}/>} aria-label={`${group.title}: ${group.count} kitap`}><span>{group.title}</span> <span className="subset-count tabular-nums">{group.count}</span></Button>)}</Stack>
    {c.source&&<Anchor href={c.source} target="_blank" rel="noreferrer">Özgün liste <IconArrowUpRight size={16}/></Anchor>}
   </Stack></Accordion.Panel>

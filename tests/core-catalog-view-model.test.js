@@ -33,6 +33,14 @@ const listingFor = query => {
   return { vm: createCatalogListingViewModel({ catalog, query: route, marks }), marks, route };
 };
 
+test('the snapshot keeps the public list apart from what this reader hides (K12 item 3)', () => {
+  const base = { view: 'books', sort: 'title', filters: emptyFilters(), page: 1, pageSize: 24 };
+  const hidden = listingFor({ ...base, hideOwned: true }).vm.getSnapshot();
+  const open = listingFor({ ...base, hideOwned: false }).vm.getSnapshot();
+  assert.ok(hidden.total < open.total, 'the switch takes books out of what the reader sees');
+  assert.deepEqual(hidden.publicListing, { total: open.total, pages: open.pages, books: open.books });
+});
+
 test('for every pinned query, the view model gives the golden page, totals and range', () => {
   const golden = readGolden('catalog-listing');
   for (const { name, ...query } of listingQueries(catalog.books)) {

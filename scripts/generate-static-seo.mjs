@@ -1,11 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { DEFAULT_PAGE_SIZE, bookSlug, emptyFilters, filterBooks } from '../src/library.js';
-import { bookPageTitle, groupHeading, listingPageTitle, staticBookUrl as bookUrl } from '../src/seo.js';
+import { DEFAULT_PAGE_SIZE, bookSlug, emptyFilters, filterBooks, sortBooks } from '../src/library.js';
+import { bookPageTitle, bookStructuredData, groupHeading, listingDescription, listingPageTitle, listingStructuredData, staticBookUrl as bookUrl, staticListingUrl } from '../src/seo.js';
 import { displayTitle,recommendedTranslation,translationStatus,turkishEdition } from '../src/translation.js';
 import { readingGuide } from '../src/recommendations.js';
-import { splitAuthors } from '../src/authors.js';
 import { publicationLine,publicationLinkLabel,publicationUrl,workFormat } from '../src/workFormat.js';
 import { SITE_URL } from '../src/site.js';
 import { openCatalog } from '../src/core/catalog/contract.ts';
@@ -21,9 +20,7 @@ const catalogRoot=path.join(outputRoot,'catalog');
 const publicBase=`${SITE_URL}catalog/`;
 const appBase=SITE_URL;
 const pageSize=DEFAULT_PAGE_SIZE;
-const collator=new Intl.Collator('tr',{sensitivity:'base',numeric:true});
-// Equal titles break by author here and by catalogue order on the running page (ADR 003, K12).
-const byTitle=[...catalog.books].sort((a,b)=>collator.compare(displayTitle(a),displayTitle(b))||collator.compare(a.author,b.author));
+const byTitle=sortBooks(catalog.books,'title');
 const byId=Object.fromEntries(catalog.books.map(book=>[book.id,book]));
 const collectionMap=Object.fromEntries(catalog.collections.map(item=>[item.id,item]));
 const summary=(value,limit=158)=>{const clean=String(value||'').replace(/\s+/g,' ').trim();return clean.length>limit?`${clean.slice(0,limit-1).replace(/\s+\S*$/,'')}…`:clean;};
@@ -31,8 +28,6 @@ const summary=(value,limit=158)=>{const clean=String(value||'').replace(/\s+/g,'
 export const escapeHtml=value=>String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
 const json=value=>JSON.stringify(value).replaceAll('<','\\u003c');
 const pagePath=(prefix,page)=>`${prefix}${page>1?`page/${page}/`:''}`;
-// A group id holds a colon. These pages keep it as it is, the running page writes %3A (ADR 003, K12).
-const canonicalFor=(prefix,page)=>`${publicBase}${pagePath(prefix,page)}`;
 const interactiveFor=({category,collection,group,book}={})=>{
  const query=new URLSearchParams();
  if(category)query.set('category',category);
@@ -61,15 +56,18 @@ function write(relative,html) {
 function renderListing({prefix='',heading='Tüm kitaplar',description='Araştırılmış seçkiler, konu rotaları, çeviri, çevirmen ve baskı bilgileriyle kitap kataloğu.',shelf={},interactive=interactiveFor()}) {
  const books=filterBooks(byTitle,{...emptyFilters(),...shelf});
  const pages=Math.max(1,Math.ceil(books.length/pageSize));
+ // The folder keeps the id as it is; the address the page gives is the sitemap's spelling.
+ const route={filters:{...emptyFilters(),...shelf}};
  for(let page=1;page<=pages;page++){
-  const canonical=canonicalFor(prefix,page);
+  const canonical=staticListingUrl(route,page);
   const shown=books.slice((page-1)*pageSize,page*pageSize);
   const title=listingPageTitle(heading,page);
-  const pageDescription=`${heading}: ${books.length} kitap; ${((page-1)*pageSize)+1}–${Math.min(page*pageSize,books.length)} arası eserler. Başlığa göre kararlı katalog sırası.`;
-  const structured={'@context':'https://schema.org','@type':'CollectionPage',name:heading,description:pageDescription,url:canonical,mainEntity:{'@type':'ItemList',numberOfItems:books.length,itemListElement:shown.map((book,index)=>({'@type':'ListItem',position:(page-1)*pageSize+index+1,url:bookUrl(book),name:displayTitle(book)}))}};
+  const start=(page-1)*pageSize+1;
+  const pageDescription=listingDescription({heading,count:books.length,start,end:Math.min(page*pageSize,books.length),titleOrder:true});
+  const structured=listingStructuredData({heading,description:pageDescription,url:canonical,count:books.length,start,books:shown});
   const items=shown.map(book=>`<li><a href="${bookUrl(book)}">${escapeHtml(displayTitle(book))}</a><span class="meta"> — ${escapeHtml(book.author)}</span></li>`).join('');
-  const prev=page>1?canonicalFor(prefix,page-1):'';
-  const next=page<pages?canonicalFor(prefix,page+1):'';
+  const prev=page>1?staticListingUrl(route,page-1):'';
+  const next=page<pages?staticListingUrl(route,page+1):'';
   const body=`<header><a href="${publicBase}">Kitaplık</a><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(description)}</p><p class="meta">${books.length} eser · başlığa göre sıralı · sayfa ${page}/${pages}</p><p class="actions"><a href="${escapeHtml(interactive)}">Etkileşimli katalogda aç</a></p></header><main><ol start="${(page-1)*pageSize+1}">${items}</ol><nav class="pagination" aria-label="Sayfalar">${prev?`<a rel="prev" href="${prev}">Önceki sayfa</a>`:'<span></span>'}${next?`<a rel="next" href="${next}">Sonraki sayfa</a>`:''}</nav></main>`;
   write(pagePath(prefix,page),documentShell({title,description:pageDescription,canonical,structured,body,prev,next}));
  }
@@ -86,9 +84,8 @@ function renderBook(book) {
  const title=bookPageTitle(book);
  const description=summary(`${shown}, ${book.author}. ${guide.purpose}`);
  const image=book.cover?`${appBase}${book.cover.src}`:'';
- const authors=splitAuthors(book.author).map(name=>({'@type':'Person',name}));
  const format=workFormat(book);
- const structured={'@context':'https://schema.org','@type':format?.schema||'Book',name:shown,author:authors.length>1?authors:authors[0],inLanguage:edition?'tr':book.cover?.language||undefined,isbn:edition?.isbn||book.cover?.isbn||undefined,publisher:edition?.publisher?{'@type':'Organization',name:edition.publisher}:undefined,translator:translation?.translators.map(name=>({'@type':'Person',name})),alternateName:book.originalTitle&&book.originalTitle!==shown?book.originalTitle:undefined,isPartOf:book.format==='article'&&book.publication?.venue?{'@type':'Periodical',name:book.publication.venue}:undefined,image:image||undefined,url:canonical};
+ const structured=bookStructuredData(book);
  const categories=book.categories.map(id=>catalog.categories.find(item=>item.id===id)).filter(Boolean);
  const facts=[
   book.originalTitle&&book.originalTitle!==shown?`Özgün ad: ${book.originalTitle}`:'',

@@ -114,8 +114,8 @@ function AtlasApp({kitaplik}) {
  useEffect(()=>{const change=()=>{openedFromCatalog.current=false;setBookTrail([])};window.addEventListener('hashchange',change);window.addEventListener('popstate',change);return()=>{window.removeEventListener('hashchange',change);window.removeEventListener('popstate',change)}},[]);
  const changeFilters=nav.changeFilters;
  // The shelf, the filtered list and the page shown (src/core/catalog/listingViewModel.ts).
- const {shelf:shelfBooks,ownedCount,favoriteCount,total,pages,page:currentPage,books:displayed,showsHiddenPurchases}=useViewModel(kitaplik.listing);
- useEffect(()=>applySeo(seoState({route:{...route,page:currentPage},catalog,count:total,currentPage,totalPages:pages,displayed,base:addressBase(window.location)})),[route,total,currentPage,pages,displayed]);
+ const {shelf:shelfBooks,ownedCount,favoriteCount,total,pages,page:currentPage,books:displayed,showsHiddenPurchases,publicListing}=useViewModel(kitaplik.listing);
+ useEffect(()=>applySeo(seoState({route:{...route,page:currentPage},catalog,count:publicListing.total,currentPage,totalPages:publicListing.pages,displayed:publicListing.books,base:addressBase(window.location)})),[route,currentPage,publicListing]);
  // The reading band's numbers (src/reading.js, tested in Node); each count opens its shelf.
  const summary=useMemo(()=>readingSummary({books,states,queue:personal.queue}),[states,personal.queue]);
  // A phone keeps its first screen for book titles; there the band is on Sıram only.

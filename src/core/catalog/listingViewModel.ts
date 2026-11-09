@@ -43,6 +43,8 @@ export interface CatalogListingSnapshot {
   readonly range: { start: number; end: number } | null;
   /** Why the list is empty, when it is: an empty owned shelf, no favourites yet, or no match. */
   readonly empty: null | 'owned-empty' | 'favorites-empty' | 'no-match';
+  /** The same page before hiding purchases: what search engines are told (ADR 003, K12 item 3). */
+  readonly publicListing: { readonly total: number; readonly pages: number; readonly books: readonly IndexedBook[] };
 }
 
 export function createCatalogListingViewModel({ catalog, query, marks }: { catalog: Catalog; query: ReadableStore<ListingQuery>; marks: ReadableStore<Marks> }): ViewModel<CatalogListingSnapshot, Record<string, never>> {
@@ -66,6 +68,7 @@ export function createCatalogListingViewModel({ catalog, query, marks }: { catal
       pages: result.pages,
       range: total ? { start: (result.currentPage - 1) * current.pageSize + 1, end: Math.min(result.currentPage * current.pageSize, total) } : null,
       empty,
+      publicListing: result.publicListing,
     } satisfies CatalogListingSnapshot;
   });
   return { getSnapshot: snapshot.getSnapshot, subscribe: snapshot.subscribe, commands: {}, dispose: () => undefined };

@@ -76,6 +76,16 @@ test('build generator emits crawlable catalog and unique book HTML',()=>{
   assert.equal(fs.existsSync(path.join(output,'catalog/page',String(lastPage+1))),false);
   assert.match(detail,new RegExp(`<h1>${displayTitle(book)}<\\/h1>`));
   assert.match(detail,new RegExp(`<link rel="canonical" href="https://titanlar-com.github.io/kitaps/catalog/books/${bookSlug(book)}/">`));
+  // One spelling for each page (ADR 003, K12 item 5): what the sitemap lists is what the page calls itself.
+  const base='https://titanlar-com.github.io/kitaps/catalog/';
+  const listed=[...fs.readFileSync(new URL('public/sitemap.xml',root),'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
+  assert.ok(listed.some(url=>url.includes('%3A')),'a group address with a colon is listed');
+  const known=new Set(listed);
+  for(const url of listed){
+   const html=fs.readFileSync(path.join(output,'catalog',decodeURIComponent(url.slice(base.length)),'index.html'),'utf8');
+   assert.equal(/<link rel="canonical" href="([^"]+)">/.exec(html)[1],url);
+   for(const [,neighbour] of html.matchAll(/<link rel="(?:prev|next)" href="([^"]+)">/g))assert.ok(known.has(neighbour),neighbour);
+  }
  }finally{fs.rmSync(temporary,{recursive:true,force:true})}
 });
 

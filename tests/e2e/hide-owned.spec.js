@@ -16,6 +16,33 @@ const toggle = page => page.getByRole('switch', { name: 'Satın aldıklarımı g
 const press = page => page.locator('.header-switch .mantine-Switch-track').click();
 const shown = page => page.locator('.results-heading [role="status"]').textContent().then(text => Number(text.match(/^(\d+)/)[1]));
 
+// What the page tells search engines is the public list, whatever the reader hides (ADR 003, K12 item 3).
+test('hiding purchases leaves what the page tells search engines as it is', async ({ page, context }) => {
+  const head = () => page.evaluate(() => {
+    const list = JSON.parse(document.getElementById('page-structured-data').textContent).mainEntity;
+    return { count: list?.numberOfItems, urls: list?.itemListElement.map(item => item.url), next: document.querySelector('link[rel="next"]')?.href ?? null };
+  });
+  const cards = page.locator('.book-card[data-book-id]');
+  await page.goto('./?sort=title');
+  await expect(cards.first()).toBeVisible();
+  await expect.poll(head).toMatchObject({ count: await shown(page) });
+  const publicFirstPage = await head();
+  // Purchases from the first page, as many as it takes to leave the reader one page fewer.
+  const bought = (await cards.evaluateAll(list => list.map(card => card.dataset.bookId))).slice(0, ((publicFirstPage.count - 1) % 24) + 1);
+  const lastPageLeft = (publicFirstPage.count - bought.length) / 24;
+  await context.addInitScript(ids => localStorage.setItem('kitapatlasi:states:v2', JSON.stringify(Object.fromEntries(ids.map(id => [id, ['alindi']])))), bought);
+
+  await page.goto('./?sort=title');
+  await expect(toggle(page)).toBeChecked();
+  await expect(cards.first()).not.toHaveAttribute('data-book-id', bought[0]);
+  await expect.poll(() => shown(page)).toBe(publicFirstPage.count - bought.length);
+  await expect.poll(head).toEqual(publicFirstPage);
+
+  await page.goto(`./?sort=title&page=${lastPageLeft}`);
+  await expect.poll(head).toMatchObject({ count: publicFirstPage.count });
+  expect((await head()).next).toMatch(new RegExp(`/catalog/page/${lastPageLeft + 1}/$`));
+});
+
 for (const width of [320, 390, 1280]) {
   test(`at ${width} px the logo area has no text and the switch sits left of the shortcuts, on`, async ({ page }) => {
     await page.setViewportSize({ width, height: 800 });

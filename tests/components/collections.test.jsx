@@ -34,6 +34,17 @@ describe('Collections', () => {
     expect(bar.getAttribute('aria-valuenow')).toBe('20');
   });
 
+  // The sentence is about the original list (ADR 003, K12 item 4): 99 records became 100 books here.
+  it('gives the source list its own count, and says nothing when that count is not known', () => {
+    render();
+    const pmba = catalog.collections.find(item => item.id === 'pmba');
+    expect(pmba.originalCount).not.toBe(pmba.count);
+    expect(cardOf(pmba.title).textContent).toContain(`Kaynak listesinde ${pmba.originalCount} kayıt var.`);
+    expect(cardOf(pmba.title).textContent).not.toContain(`Kaynak listesinde ${pmba.count} kayıt var.`);
+    const unknown = catalog.collections.find(item => item.originalCount === undefined);
+    expect(cardOf(unknown.title).textContent).not.toContain('Kaynak listesinde');
+  });
+
   it('says so plainly when nothing, or everything, is read', () => {
     render({ states: Object.fromEntries(timeBooks.map(book => [book.id, ['okundu']])) });
     const done = cardOf(time.title);

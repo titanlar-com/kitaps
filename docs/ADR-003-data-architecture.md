@@ -170,15 +170,15 @@ Arayüz şu anda başka bir oturumda yeniden tasarlanıyor. Bu yüzden eski tasa
 - **Ekran düzeyi (aşama 7b).** Her yeniden tasarlanmış ekran bağlanmadan önce, sabit veri ve sabit saatle erişilebilirlik ağacı kaydı alınır (`toMatchAriaSnapshot`, `tests/e2e/structure.spec.js` içinde zaten kullanılıyor). Bağlamadan sonra kayıt aynı kalır. Bir kayıt güncellemesini uygulayıcıdan başka biri inceler.
 - **Gerekçe.** Codex ekran görüntüsü tabanları, Claude analizcisi 12 adres için erişilebilirlik ağacı kayıtları önermişti. Bu karar ikisini de eski tasarım için değil, yeni tasarımın ekranları için uygular.
 
-### K12. Sahibe bırakılan kararlar
+### K12. Sahibe bırakılan kararlar (9 Kasım 2026'da kapandı)
 
-Aşağıdaki farklar bugünkü hâlleriyle sabitlendi ve sahibin kararı olmadan değişmez.
+Bu beş fark 8 Kasım 2026'da olduğu gibi sabitlenmişti. Sahip 9 Kasım 2026'da "eksik kalmasın, takip et, bitir" dedi. Ajan her biri için aşağıdaki kararı verdi ve önce testini yazdı. Sahip başka bir karar verirse bu liste ile testler birlikte değişir.
 
-1. **Eşit adlı kitapların sırası.** Kitap adına göre sıralamada eşit adlar çalışma anında katalog sırasıyla, statik sayfalarda yazar adıyla sıralanıyor. Codex buldu. `static-seo` altın kaydıyla sabitlendi.
-2. **Yapılandırılmış veri (JSON-LD).** Çalışma anında ve statik sayfalarda farklı alanlarla üretiliyor. Codex buldu. `seo` ve `static-seo` altın kayıtlarıyla sabitlendi.
-3. **Arama motoru verisi ve gizlenen kitaplar.** Çalışma anındaki yapılandırılmış veri, satın alınanlar gizlenmiş listeden hesaplanıyor. Claude analizcisi buldu. `seo` altın kaydında "satın alınanlar gizli" adresleriyle sabitlendi.
-4. **Kümeler sayfasındaki sayı.** "Kaynak kaydı" diye yazılan sayı aslında birleştirilmiş kitap sayısı. Bu görünür bir hata. Claude analizcisi buldu. Tasarım işinden sonra sahibe sorulur.
-5. **Grup adresindeki iki nokta.** Grup kimliklerinde iki nokta vardır (`cocuk-kitabi-listeleri:meb-100`). Çalışma anı ve site haritası (`scripts/generate-sitemap.mjs`) bunu `%3A` olarak yazar, statik sayfaların kendi adresi iki noktayı olduğu gibi tutar. Yani site haritasındaki her grup adresi, kendi adresini başka yazımla bildiren bir sayfaya gider. Arama motoruna iki farklı yazım gösterilir. 5. aşamada bulundu. `static-seo` altın kaydıyla sabitlendi.
+1. **Eşit adlı kitapların sırası.** Adı aynı olan kitaplar artık her yerde yazar adına göre sıralanır. Kural `sortBooks` içindedir ve statik sayfalar da aynı işlevi kullanır.
+2. **Yapılandırılmış veri (JSON-LD).** Çalışan sayfa ile statik sayfalar aynı işlevleri kullanır: `bookStructuredData` ve `listingStructuredData`. Statik sayfaların daha zengin alanları korundu, çalışan sayfa onlara yükseltildi. Herkese açık raf açıklaması da iki tarafta aynıdır (`listingDescription`). Kitap sayfası artık arama motoruna önceki veya sonraki sayfa bildirmez, çünkü statik kitap sayfaları da bildirmez.
+3. **Arama motoru verisi ve gizlenen kitaplar.** Arama motoruna verilen bilgi artık herkese açık listeden hesaplanır (`publicListing`). Okurun "Satın aldıklarımı gösterme" düğmesi bu bilgiyi değiştirmez. Tek istisna, adres gizli listenin bittiği yerden ilerideki bir sayfayı gösterdiğinde olur. Okur o zaman gizli listenin son sayfasına gönderilir ve baştaki bilgi de o sayfanın numarasını taşır. Arama motorlarının işareti olmadığı için onlar bundan etkilenmez.
+4. **Kümeler sayfasındaki sayı.** "Kaynak listesinde N kayıt var" cümlesi artık kaynak listenin kendi sayısını gösterir (`originalCount`). Bu sayı bilinmeyen kümelerde cümle görünmez.
+5. **Grup adresindeki iki nokta.** Statik sayfalar kendi adreslerini site haritasının yazımıyla bildirir (`%3A`). Klasör adları değişmedi, bu yüzden iki noktalı eski bağlantılar açılmaya devam eder.
 
 ### K13. ADR 002'den değişenler
 

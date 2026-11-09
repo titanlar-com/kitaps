@@ -125,21 +125,20 @@ export function characterizeSeo(listing, catalog) {
   const books = prepareBooks(catalog.books);
   const states = personalStates(books);
   const rankings = new ReadingRankingViewModel(new ReadingPriorityEngine(catalog), () => new Date(0)).build().byId;
-  // The same addresses again with purchases hidden (on by default): today the page's structured
-  // data comes from that personal list (ADR 003, K12 item 3), so it is pinned as it is.
+  // The same addresses again with purchases hidden (on by default). What a page tells search
+  // engines comes from the public list, so these match the addresses above (ADR 003, K12 item 3).
   const addresses = [...seoAddresses(catalog).map(address => [address, false]), ...['', '?sort=title&page=2', '?status=purchased', '?view=library'].map(address => [address, true])];
   return Object.fromEntries(addresses.map(([address, hideOwned]) => {
     const route = decodeRoute(address, catalog);
-    const { filtered, pages, currentPage, displayed } = listing({ books, states, rankings, view: route.view, filters: route.filters, sort: route.sort, page: route.page, pageSize: route.pageSize, hideOwned });
-    const seo = seoState({ route: { ...route, page: currentPage }, catalog, count: filtered.length, currentPage, totalPages: pages, displayed });
+    const { currentPage, publicListing } = listing({ books, states, rankings, view: route.view, filters: route.filters, sort: route.sort, page: route.page, pageSize: route.pageSize, hideOwned });
+    const seo = seoState({ route: { ...route, page: currentPage }, catalog, count: publicListing.total, currentPage, totalPages: publicListing.pages, displayed: publicListing.books });
     // As the page writes it: structured data reaches the browser as JSON, without undefined fields.
     return [`${address || '(home)'}${hideOwned ? ' (purchases hidden)' : ''}`, JSON.parse(JSON.stringify({ route, encoded: encodeRoute(route, catalog), seo }))];
   }));
 }
 
 /** The static pages the build writes for the frozen catalogue, as a digest per file. It pins the
- * static title order and structured data (ADR 003, K12 items 1 and 2) independently of the
- * catalogue the owner keeps growing. */
+ * static pages independently of the catalogue the owner keeps growing. */
 export function characterizeStaticSeo() {
   const output = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'kitaplik-static-')), 'dist');
   fs.mkdirSync(output);
