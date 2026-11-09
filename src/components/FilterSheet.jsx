@@ -3,7 +3,6 @@ import { transition } from '../motion';
 import { ActionIcon, Badge, Button, Drawer, NumberInput, TextInput } from '@mantine/core';
 import { useReducedMotion } from '@mantine/hooks';
 import { IconArrowLeft, IconArrowRight, IconBooks, IconCalendar, IconCalendarPlus, IconCheck, IconChevronRight, IconListCheck, IconSearch, IconTags, IconUser, IconWriting } from '@tabler/icons-react';
-import { QUALITY_LABELS, ORIGIN_LABELS, formatDay } from '../library';
 import { CHOICE_STEP, choicesScreen, filtersScreen } from '../screens/filters.js';
 import './FilterSheet.css';
 
@@ -46,7 +45,7 @@ export default function FilterSheet({ opened, covered = false, onClose, onExited
  const reducedMotion = useReducedMotion();
  const headingBase = useId();
  const set = (key, value) => onChange({ ...f, [key]: value });
- const model = filtersScreen({ filters: f, section, count, catalog, authors, shelf, qualityLabels: QUALITY_LABELS, originLabels: ORIGIN_LABELS, formatDay });
+ const model = filtersScreen({ filters: f, section, count, catalog, authors, shelf });
  const { categories, states, authors: authorList, collections, editions, years, added } = model.content;
 
  // The section stays on screen while the sheet leaves; opened again, it starts from the list (ADR 004, K6).

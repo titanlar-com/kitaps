@@ -12,7 +12,7 @@ import {download} from '../download';
 import {createBackup,readBackup} from '../core/personal/backup.js';
 import {backupRefusedText,backupRestoredText,notesScreen} from '../screens/notes.js';
 import {SOURCE_URL} from '../site';
-import {ORIGIN_LABELS,plainTextMarkers} from '../library';
+import {plainTextMarkers} from '../library';
 
 const bookIds=catalog.books.map(book=>book.id);
 
@@ -32,7 +32,7 @@ async function downloadEverything(file){
 
 export default function NotesPage({states,personal,onRestore,sync}) {
  const [message,setMessage]=useState('');
- const model=useMemo(()=>notesScreen({counts:catalog.sourceCounts,total:catalog.books.length,originLabels:ORIGIN_LABELS,notes:plainTextMarkers(readingNotes)}),[]);
+ const model=useMemo(()=>notesScreen({counts:catalog.sourceCounts,total:catalog.books.length,notes:plainTextMarkers(readingNotes)}),[]);
  const importStates=async file=>{
   if(!file)return;
   try {

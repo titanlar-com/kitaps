@@ -1,9 +1,8 @@
 import { normalize } from '../core/catalog/query.js';
-import { STATE_LABELS } from '../core/text.js';
+import { ORIGIN_LABELS, QUALITY_LABELS, STATE_LABELS, formatDay } from '../core/text.js';
 
-// The filter sheet: its words and what it shows (ADR 003, K6). The labels of a source and an
-// edition's standing, and the way a day is written, still live outside the core, so they come in
-// as facts. A new design can keep this model or write its own without touching the core.
+// The filter sheet: its words and what it shows (ADR 003, K6). A new design can keep this model
+// or write its own without touching the core.
 
 /** How many options a searchable list adds at a time. */
 export const CHOICE_STEP = 12;
@@ -53,7 +52,7 @@ export function choicesScreen({ title, options, value, query, limit, searchable 
   };
 }
 
-export function filtersScreen({ filters: f, section, count, catalog, authors, shelf, qualityLabels, originLabels, formatDay }) {
+export function filtersScreen({ filters: f, section, count, catalog, authors, shelf }) {
   const categoryOptions = catalog.categories.map(c => ({ value: c.id, label: c.label }));
   const collectionOptions = catalog.collections.map(c => ({ value: c.id, label: c.short }));
   const groupOptions = catalog.groups.filter(g => !f.collections.length || f.collections.includes(g.collectionId)).map(g => ({ value: g.id, label: `${catalog.collections.find(c => c.id === g.collectionId)?.short} · ${g.title}` }));
@@ -65,7 +64,7 @@ export function filtersScreen({ filters: f, section, count, catalog, authors, sh
     states: f.states.map(s => STATE_LABELS[s]),
     authors: f.authors,
     collections: [...labelFor(collectionOptions, f.collections), ...f.groups.map(id => catalog.groups.find(g => g.id === id)?.title || id), ...(f.shared ? ['Birden fazla kümede'] : [])],
-    editions: [...f.qualities.map(v => qualityLabels[v]), ...f.origins.map(v => originLabels[v]), ...(f.hasEdition ? ['Künye bilgisi var'] : [])],
+    editions: [...f.qualities.map(v => QUALITY_LABELS[v]), ...f.origins.map(v => ORIGIN_LABELS[v]), ...(f.hasEdition ? ['Künye bilgisi var'] : [])],
     years: [...f.awards, ...f.awardYears.map(y => `FT ${y}`), ...(f.yearMin !== '' || f.yearMax !== '' ? [yearRange(f.yearMin, f.yearMax)] : [])],
     added: f.addedDates.map(formatDay),
   };
@@ -98,9 +97,9 @@ export function filtersScreen({ filters: f, section, count, catalog, authors, sh
         shared: { text: 'Birden fazla kitap kümesinde bulunanlar', checked: f.shared },
       },
       editions: {
-        qualities: { title: 'Kaynağın künye değerlendirmesi', options: entries(qualityLabels) },
+        qualities: { title: 'Kaynağın künye değerlendirmesi', options: entries(QUALITY_LABELS) },
         hasEdition: { text: 'Çevirmen veya yayınevi bilgisi bulunanlar', checked: f.hasEdition },
-        origins: { title: 'Verinin kaynağı', options: entries(originLabels) },
+        origins: { title: 'Verinin kaynağı', options: entries(ORIGIN_LABELS) },
         hint: 'Künye değerlendirmeleri özgün kaynaktan aktarılır. Bu değerlendirmeler çevirinin kalitesini tek başına ölçmez.',
       },
       years: {

@@ -137,12 +137,18 @@ export function importGraph(entry) {
 // shown from here, so comparing a fair's country with it is not a text.
 const SHOWN_WORD = /[çğıöşüÇĞİÖŞÜ]/;
 const DATA_VALUES = new Set(['Türkiye']);
+// In the core a word without a Turkish letter is told from code by the name it is stored under.
+const CORE_SHOWN_NAMES = new Set(['label', 'text', 'title', 'heading', 'description', 'message', 'note']);
 export function coreTexts(coreRoot, textModule = 'text.js') {
   const found = [];
   for (const file of filesUnder(coreRoot)) {
     if (path.relative(coreRoot, file) === textModule) continue;
     const source = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
     const visit = node => {
+      if (ts.isPropertyAssignment(node) && CORE_SHOWN_NAMES.has(nameOf(node)) && ts.isStringLiteralLike(node.initializer) && HAS_LETTER.test(node.initializer.text)) {
+        found.push(`${path.relative(coreRoot, file)}: ${node.initializer.text.slice(0, 60)}`);
+        return;
+      }
       const word = ts.isStringLiteralLike(node) ? node.text : ts.isTemplateExpression(node) ? node.getText() : null;
       if (word !== null && SHOWN_WORD.test(word) && !DATA_VALUES.has(word)) found.push(`${path.relative(coreRoot, file)}: ${word.slice(0, 60)}`);
       else ts.forEachChild(node, visit);
@@ -152,12 +158,25 @@ export function coreTexts(coreRoot, textModule = 'text.js') {
   return found;
 }
 
-/** The Turkish words a UI file still holds itself: JSX text, strings and templates (ADR 003, K6). */
+// Props that always carry words a reader or a screen reader gets, whatever letters they use.
+const SHOWN_PROPS = new Set(['aria-label', 'aria-description', 'label', 'title', 'placeholder', 'description', 'alt', 'tooltip', 'error', 'showLabel', 'hideLabel']);
+const HAS_LETTER = /\p{L}/u;
+const literalIn = node => node && (ts.isStringLiteralLike(node) ? node : ts.isJsxExpression(node) && node.expression && ts.isStringLiteralLike(node.expression) ? node.expression : null);
+const nameOf = node => (node?.name && (ts.isIdentifier(node.name) || ts.isStringLiteralLike(node.name) || ts.isJsxNamespacedName?.(node.name)) ? node.name.getText().replace(/^['"]|['"]$/g, '') : '');
+
+/** The words a UI file still holds itself: JSX text, the props that are read out, and any
+ * string or template with a Turkish letter (ADR 003, K6). */
 export function shownWords(file) {
   const found = [];
+  const report = text => found.push(text.trim().slice(0, 60));
   const visit = node => {
-    const word = ts.isJsxText(node) || ts.isStringLiteralLike(node) ? node.text : ts.isTemplateExpression(node) ? node.getText() : null;
-    if (word !== null && SHOWN_WORD.test(word) && !DATA_VALUES.has(word.trim())) found.push(word.trim().slice(0, 60));
+    if (ts.isJsxText(node)) { if (HAS_LETTER.test(node.text)) report(node.text); return; }
+    if (ts.isJsxAttribute(node) || ts.isPropertyAssignment(node)) {
+      const literal = SHOWN_PROPS.has(nameOf(node)) ? literalIn(ts.isJsxAttribute(node) ? node.initializer : node.initializer) : null;
+      if (literal) { if (HAS_LETTER.test(literal.text)) report(literal.text); return; }
+    }
+    const word = ts.isStringLiteralLike(node) ? node.text : ts.isTemplateExpression(node) ? node.getText() : null;
+    if (word !== null && SHOWN_WORD.test(word) && !DATA_VALUES.has(word.trim())) report(word);
     else ts.forEachChild(node, visit);
   };
   visit(parse(file));

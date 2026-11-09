@@ -15,7 +15,7 @@ export default defineConfig({
   retries: 0,
   reporter: 'line',
   // WebKit needs longer than the default to settle on a large wood-textured page.
-  expect: { timeout: 40_000, toHaveScreenshot: { animations: 'disabled', caret: 'hide', scale: 'css', maxDiffPixelRatio: 0.002 } },
+  expect: { timeout: 40_000, toHaveScreenshot: { animations: 'disabled', caret: 'hide', scale: 'css', maxDiffPixels: 10 } },
   use: { baseURL: `http://127.0.0.1:${port}/`, locale: 'tr-TR', timezoneId: 'Europe/Istanbul', reducedMotion: 'reduce', colorScheme: 'dark' },
   webServer: { command: `npx vite preview --outDir dist-visual --host 127.0.0.1 --port ${port} --strictPort`, url: `http://127.0.0.1:${port}/`, reuseExistingServer: false, timeout: 60_000 },
   projects: [

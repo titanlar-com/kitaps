@@ -17,7 +17,6 @@ import ReadingPriorityCard from '../components/ReadingPriorityCard';
 import StateRibbons, { StateSummary } from '../components/StateRibbons';
 import SyncStatusLine from '../components/SyncStatusLine';
 import SourceBadge from '../components/SourceBadge';
-import { formatDay } from '../library';
 import { bookDetailScreen } from '../screens/book.js';
 import { catalog, collectionMap, groupMap, categoryMap } from './catalogData';
 import { BookCover, ThumbCover } from './BookCover';
@@ -29,7 +28,7 @@ export function BookDetail({book:current,ranking:currentRanking,onClose,onOpen,o
  const b=current??last?.book,ranking=current?currentRanking:last?.ranking;
  const topRef=useRef(null);
  const marks=b?states[b.id]||[]:[];
- const model=b?bookDetailScreen({book:b,marks,catalog,collections:collectionMap,groups:groupMap,formatDay}):null;
+ const model=b?bookDetailScreen({book:b,marks,catalog,collections:collectionMap,groups:groupMap}):null;
  useEffect(()=>{if(b)topRef.current?.scrollIntoView({block:'start',behavior:'instant'})},[b?.id]);
  return <BookSheet opened={!!current} onClose={onClose} covered={covered}>
   {b&&<Stack gap="xl" pb="xl" key={b.id} className="detail-content" inert={!current||undefined}>

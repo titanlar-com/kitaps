@@ -1,11 +1,10 @@
 import React from 'react';
 import { Accordion, Alert, Anchor, Badge, Paper, Stack, Text, Title } from '@mantine/core';
 import { IconArrowUpRight } from '@tabler/icons-react';
-import { formatDay } from '../library';
 import { editionGuideScreen } from '../screens/book.js';
 
 export default function EditionGuide({book}) {
- const model=editionGuideScreen({book,formatDay});
+ const model=editionGuideScreen({book});
  if(!model)return null;
  const {edition:e,missing,archive}=model;
  return <section className="edition-guide" aria-label={model.label}>

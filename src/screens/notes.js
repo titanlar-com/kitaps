@@ -1,3 +1,4 @@
+import { ORIGIN_LABELS } from '../core/text.js';
 import { normalize } from '../core/catalog/query.js';
 
 // The notes and sources screen: its words and what its panels show (ADR 003, K6). The source file
@@ -17,19 +18,19 @@ export const backupRefusedText = kind => BACKUP_REFUSED[kind] ?? BACKUP_REFUSED.
 /** What a backup brought back. */
 export const backupRestoredText = backup => `${Object.keys(backup.marks).length} kitabın işaretleri ve ${Object.keys(backup.personal.reading).length} okuma kaydı içe aktarıldı.${backup.hasQueue ? ` Okuma sırası ${backup.personal.queue.length} kitapla geri yüklendi.` : ''}`;
 
-const coverageRow = ({ counts, originLabels }) => ([origin, count, unit]) => ({ id: origin, label: originLabels[origin], value: `${counts[count]} ${unit}` });
+const coverageRow = ({ counts }) => ([origin, count, unit]) => ({ id: origin, label: ORIGIN_LABELS[origin], value: `${counts[count]} ${unit}` });
 
 const sectionOf = (text, index) => (index === 0
  ? { title: 'Dosyaya giriş', body: text }
  : { title: text.split('\n')[0].replace(/^## /, '').replace(/\*/g, ''), body: text.slice(text.indexOf('\n') + 1) });
 
-export function notesScreen({ counts, total, originLabels, notes }) {
- const row = coverageRow({ counts, originLabels });
+export function notesScreen({ counts, total, notes }) {
+ const row = coverageRow({ counts });
  return {
   coverage: {
    title: 'Birleşimin kapsamı',
    rows: [...ALWAYS_LISTED.map(row), ...LISTED_WHEN_ANY.filter(([, count]) => counts[count] > 0).map(row), { id: 'merged', label: 'Birleşik katalog', value: `${total} benzersiz eser` }],
-   badges: Object.keys(originLabels),
+   badges: Object.keys(ORIGIN_LABELS),
   },
   backup: { title: 'Kişisel kitaplığını yedekle', download: { text: 'Kişisel yedeğimi indir', file: 'kitaplik-kisisel-yedek.json' }, restore: 'Yedekten aktar' },
   fullData: { title: 'Tam veri ve kaynaklar', catalog: { text: 'Tüm kataloğu indir', file: 'kitaplik-tum-veri.json' }, notes: { text: 'Kaynak notlarını indir', file: 'kitaps-kaynak-notlari.md' }, sourceLink: 'Kaynak kod ve veri arşivi' },

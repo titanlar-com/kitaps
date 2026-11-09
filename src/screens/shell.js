@@ -9,6 +9,9 @@ import { childrenShelf } from './catalog.js';
 const countText = new Intl.NumberFormat('tr-TR').format;
 const CHILDREN_NAME = 'Kızım için';
 
+/** The close button's name wherever the page does not give its own. */
+export const CLOSE_LABEL = 'Kapat';
+
 export function shellScreen({ view, filters, favoriteCount, ownedCount, updated, personalSaved }) {
   const onChildrenShelf = view === 'books' && childrenShelf(filters);
   const counts = { favorites: favoriteCount, owned: ownedCount };
@@ -28,7 +31,7 @@ export function shellScreen({ view, filters, favoriteCount, ownedCount, updated,
     storageWarning: personalSaved ? null : 'Bu tarayıcı kişisel kayıtlarını kalıcı olarak saklayamıyor. Notlar bölümünden yedeğini indirebilirsin.',
     headings: { queue: viewById.queue.heading, collections: viewById.collections.heading, notes: viewById.notes.heading },
     loading: { fairs: 'Kitap fuarları yükleniyor…', bookstores: 'Kitapçılar yükleniyor…', notes: 'Notlar yükleniyor…' },
-    modals: { sync: 'Cihazlar arası eşitleme', guide: 'Çeviri seçme rehberi', close: 'Kapat' },
+    modals: { sync: 'Cihazlar arası eşitleme', guide: 'Çeviri seçme rehberi', close: CLOSE_LABEL },
     footer: {
       current: viewById[view]?.label,
       groups: [

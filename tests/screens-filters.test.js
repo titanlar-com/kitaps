@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { CHOICE_STEP, choicesScreen, filtersScreen } from '../src/screens/filters.js';
-import { QUALITY_LABELS, ORIGIN_LABELS, emptyFilters, formatDay } from '../src/library.js';
+import { QUALITY_LABELS, ORIGIN_LABELS, emptyFilters } from '../src/library.js';
 
 // A screen model is a plain function: facts in, the screen's words and composition out (ADR 003, K6).
 const catalog = {
@@ -11,7 +11,7 @@ const catalog = {
   books: [],
 };
 const shelf = [{ addedAt: '2026-10-04' }, { addedAt: '2026-11-01' }, { addedAt: '2026-11-01' }, {}];
-const screen = (filters = {}, extra = {}) => filtersScreen({ filters: { ...emptyFilters(), ...filters }, section: null, count: 12, catalog, authors: ['Ece Temelkuran', 'Orhan Pamuk'], shelf, qualityLabels: QUALITY_LABELS, originLabels: ORIGIN_LABELS, formatDay, ...extra });
+const screen = (filters = {}, extra = {}) => filtersScreen({ filters: { ...emptyFilters(), ...filters }, section: null, count: 12, catalog, authors: ['Ece Temelkuran', 'Orhan Pamuk'], shelf, ...extra });
 const row = (model, id) => model.groups.flatMap(group => group.sections).find(section => section.id === id);
 
 test('the head of the sheet names the list, and a section once one is open', () => {

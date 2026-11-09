@@ -39,7 +39,7 @@ test('footer Notes navigation writes browser history through navigate',()=>{
  // Every footer section but the catalogue and the queue, Notes included, opens through goView (src/views.js lists them).
  assert.match(app,/VIEWS\.filter\(v => v\.footer === 'sections'\)\.map\(v => \(\{ id: v\.id, label: v\.label, current: view === v\.id \}\)\)/);
  assert.match(app,/const FOOTER_ICONS=\{\.\.\.VIEW_ICONS,/);
- assert.match(app,/const footerActions=\{books:onBrowse,queue:onQueue,/);
+ assert.match(app,/const footerActions=\{books:onBrowse,queue:onQueue,children:\(\)=>goCategory\('children'\),guide:\(\)=>setGuideOpened\(true\),sync:\(\)=>openSync\(\),export:exportAllBooks\};/);
  assert.match(app,/icon:FOOTER_ICONS\[item\.id\],onSelect:footerActions\[item\.id\]\?\?\(\(\)=>goView\(item\.id\)\)/);
  assert.equal(VIEWS_TABLE.find(view=>view.id==='notes').footer,'sections');
 });
@@ -56,7 +56,7 @@ test('footer shows creation and catalog update dates separately in one format',(
  assert.match(app,/`Güncelleme: \$\{updated\}`/);
  assert.match(app,/updated:catalog\.updated/);
  assert.match(app,/name: 'Kitaplık'/,'the footer uses the product name');
- assert.match(app,/<Text fw=\{600\}>\{shell\.footer\.meta\.name\}<\/Text>/);
+ assert.match(app,/<Text fw=\{600\}>\{shell\.footer\.meta\.name\}<\/Text><Text>\{shell\.footer\.meta\.created\}<\/Text><Text>\{shell\.footer\.meta\.updated\}<\/Text>/);
 });
 
 test('priority summaries expose full text and labelled progress values',()=>{

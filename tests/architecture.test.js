@@ -47,6 +47,21 @@ test('every word a reader sees comes from a screen model or the core', () => {
   assert.ok(boundToScreens(src).length >= 11, 'the screens are bound, so the walk is real');
 });
 
+test('the word gate catches words with no Turkish letter too, and leaves code alone', () => {
+  const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'kitaplik-words-'));
+  const words = source => { const file = path.join(folder, 'part.jsx'); fs.writeFileSync(file, source); return shownWords(file); };
+  try {
+    assert.deepEqual(words('export const A = () => <Button>Temizle</Button>;\n'), ['Temizle']);
+    assert.deepEqual(words('export const A = () => <a aria-label="Sayfa"/>;\n'), ['Sayfa']);
+    assert.deepEqual(words("export const a = { closeButtonProps: { 'aria-label': 'Kapat' } };\n"), ['Kapat']);
+    assert.deepEqual(words('export const A = () => <input placeholder={\'Ara\'}/>;\n'), ['Ara']);
+    assert.deepEqual(words('export const A = ({ t }) => <div className="book-card" data-x="y" aria-label={t} alt="">{t} · 3</div>;\n'), []);
+    assert.deepEqual(words("export const a = { label: t => t, value: 'title' };\n"), []);
+  } finally {
+    fs.rmSync(folder, { recursive: true, force: true });
+  }
+});
+
 test('every module of the data core loads in plain Node', async () => {
   for (const file of filesUnder(core)) await import(pathToFileURL(file).href);
 });

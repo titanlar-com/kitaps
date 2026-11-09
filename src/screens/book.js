@@ -1,11 +1,11 @@
 import { displayTitle, isOriginalTurkish, recommendedTranslation, translationStatus, turkishEdition, turkishMeaning } from '../core/catalog/translation.js';
 import { publicationLine, publicationLinkLabel, workFormat } from '../core/catalog/workFormat.js';
 import { QUEUE_LIMIT, emptyReading, progressPercent, readingErrors, readingJourney } from '../core/personal/reading.js';
-import { STATE_LABELS, WORK_TEXT } from '../core/text.js';
+import { STATE_LABELS, WORK_TEXT, formatDay } from '../core/text.js';
 
 // The book page: its words and what each part shows (ADR 003, K6). Plain functions of the core's
 // facts, so a new design can keep them or write its own without touching the core. What still
-// lives outside the core (the way a day is written, a reading guide, a page count) comes in as a fact.
+// lives outside the core (a reading guide, a page count) comes in as a fact.
 
 /** How many more suggestions one press of the button shows. */
 export const RELATED_STEP = 4;
@@ -33,7 +33,7 @@ function membershipModel(id, book, collections, groups) {
   };
 }
 
-export function bookDetailScreen({ book, marks, catalog, collections, groups, formatDay }) {
+export function bookDetailScreen({ book, marks, catalog, collections, groups }) {
   const title = displayTitle(book);
   return {
     back: 'Önceki kitaba dön',
@@ -170,7 +170,7 @@ export function editionSummaryScreen({ book, pages }) {
 
 const UNCHECKED_TRANSLATOR = 'Çevirmen henüz doğrulanmadı';
 
-function checkedEdition(e, book, formatDay) {
+function checkedEdition(e, book) {
   const publisherVerified = ['publisher', 'publisher-preview'].includes(e.sourceType);
   const bibliographic = e.sourceType === 'bibliographic';
   const twoSites = Boolean(e.secondSourceUrl);
@@ -203,7 +203,7 @@ const archiveItem = old => ({
   alt: old.alt ? `Arşivdeki diğer seçenek: ${old.alt.name}${old.alt.publisher ? ` · ${old.alt.publisher}` : ''}` : null,
 });
 
-export function editionGuideScreen({ book, formatDay }) {
+export function editionGuideScreen({ book }) {
   // Translations are chosen among book editions; an article or essay has none here.
   if (isOriginalTurkish(book) || workFormat(book)) return null;
   const e = book.verifiedEdition;
@@ -211,7 +211,7 @@ export function editionGuideScreen({ book, formatDay }) {
     label: 'Çeviri ve baskı seçimi',
     title: 'Hangi çeviriyi okumalıyım?',
     sourcesTitle: 'Baskının kaynakları ve kontrol notları',
-    edition: e ? checkedEdition(e, book, formatDay) : null,
+    edition: e ? checkedEdition(e, book) : null,
     missing: e ? null : {
       badge: UNCHECKED_TRANSLATOR,
       body: 'Bu eser için Türkçe baskı, ISBN ve çevirmen eşleştirmesi tamamlanmadı. Çeviri bir baskı seçeceksen yayınevinin künyesini ve örnek sayfalarını kontrol et.',
@@ -252,7 +252,7 @@ export function readingPanelScreen({ record, marks, storageError }) {
 const JOURNEY_STEPS = { started: 'Başladım', finished: 'Bitirdim' };
 
 // How far a reading is and when it happened, at the top of the book page.
-export function readingJourneyScreen({ record, formatDay }) {
+export function readingJourneyScreen({ record }) {
   const journey = readingJourney(record);
   if (!journey.hasAny) return null;
   return {

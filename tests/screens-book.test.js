@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { RELATED_STEP, bookDetailScreen, bookDiscoveryScreen, bookSheetScreen, editionGuideScreen, editionSummaryScreen, queueButtonScreen, readingJourneyScreen, readingPanelScreen, readingPurposeScreen, relatedCardScreen, stateMarksScreen, translationCriteriaScreen, translationStatusScreen } from '../src/screens/book.js';
-import { formatDay } from '../src/library.js';
 
 // A screen model is a plain function: facts in, the screen's words and composition out (ADR 003, K6).
 const book = (extra = {}) => ({ id: 'b1', title: 'Dune', author: 'Frank Herbert', years: [1965, 1984], categories: [], collectionIds: [], memberships: [], notes: [], tags: [], editions: [], origins: [], ...extra });
@@ -19,7 +18,6 @@ const detail = (bookExtra = {}, marks = []) => bookDetailScreen({
   catalog: { sourceTags: { a: 'Klasik', b: 'Bilim' } },
   collections: { time: { title: 'TIME 100' } },
   groups: { g1: { title: 'Romanlar' }, g2: { title: 'Ödüller' } },
-  formatDay,
 });
 
 test('the book page names its fixed parts', () => {
@@ -265,7 +263,7 @@ test('the shopping links search for the edition, and Amazon appears only when no
   assert.equal(known.amazon, null);
 });
 
-const guideOf = (bookExtra = {}) => editionGuideScreen({ book: book(bookExtra), formatDay });
+const guideOf = (bookExtra = {}) => editionGuideScreen({ book: book(bookExtra) });
 
 test('the edition guide is left out for a Turkish original and for an article', () => {
   assert.equal(guideOf({ verifiedEdition: verified({ originalLanguage: 'tr' }) }), null);
@@ -368,18 +366,18 @@ test('the reading record shows progress only when the pages are valid', () => {
 });
 
 test('the reading journey is left out with nothing to show', () => {
-  assert.equal(readingJourneyScreen({ record: undefined, formatDay }), null);
+  assert.equal(readingJourneyScreen({ record: undefined }), null);
 });
 
 test('the reading journey gives how far the reading is and its days in order', () => {
-  const model = readingJourneyScreen({ record: { page: 50, totalPages: 200, startedAt: '2026-10-04', finishedAt: '2026-11-01' }, formatDay });
+  const model = readingJourneyScreen({ record: { page: 50, totalPages: 200, startedAt: '2026-10-04', finishedAt: '2026-11-01' } });
   assert.equal(model.label, 'Okuma durumum');
   assert.deepEqual(model.progress, { pages: '50 / 200 sayfa', percent: '%25', value: 25, label: 'Okunan sayfa oranı' });
   assert.deepEqual(model.steps, [{ kind: 'started', label: 'Başladım', day: '4 Ekim 2026' }, { kind: 'finished', label: 'Bitirdim', day: '1 Kasım 2026' }]);
-  const days = readingJourneyScreen({ record: { finishedAt: '2026-11-01' }, formatDay });
+  const days = readingJourneyScreen({ record: { finishedAt: '2026-11-01' } });
   assert.equal(days.progress, null);
   assert.equal(days.steps.length, 1);
-  assert.deepEqual(readingJourneyScreen({ record: { page: 50, totalPages: 200 }, formatDay }).steps, []);
+  assert.deepEqual(readingJourneyScreen({ record: { page: 50, totalPages: 200 } }).steps, []);
 });
 
 test('the translation mark is left out for a work written in Turkish', () => {
