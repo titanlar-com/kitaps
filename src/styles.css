@@ -906,6 +906,22 @@ main{padding-top:20px;padding-bottom:32px}
 .wood-swatch i:nth-child(3){background:var(--accent)}
 .wood-swatch i:nth-child(4){background:var(--tone-owned)}
 
+/* The owner, 9 November 2026: on a computer the search row and the reading band are one row, and
+   the search field gives up the room it did not need. Below 75em there is no room for both. */
+@media (min-width:75em){
+ .catalog-bar{--bar-height:56px;display:flex;align-items:flex-start;gap:var(--card-gap)}
+ .catalog-bar>.search-panel{flex:1 1 0;min-width:0}
+ .catalog-bar .search-tools{grid-template-columns:auto 11rem}
+ .catalog-bar .catalog-search .mantine-Input-input,.catalog-bar .search-tools .mantine-Button-root,.catalog-bar .search-tools .mantine-Input-input{min-height:var(--bar-height)}
+ .catalog-bar .reading-summary{flex:0 0 34rem;flex-wrap:nowrap;gap:var(--gap-xs);margin-block:0;padding-block:0;padding-inline:var(--gap-xs) 0}
+ .catalog-bar .reading-summary-head{flex:0 0 3.5rem}
+ .catalog-bar .reading-summary-text{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .catalog-bar .reading-summary-share{flex:1 1 auto}
+ .catalog-bar .reading-summary-stats{flex:1 1 0}
+ .catalog-bar .reading-summary-stat{align-content:center;min-height:var(--bar-height);padding:4px 6px;row-gap:2px}
+ .catalog-bar .reading-summary-icon.mantine-ThemeIcon-root{width:24px;min-width:24px;height:24px;min-height:24px}
+}
+
 /* A segmented control is a row of touch targets. */
 .mantine-SegmentedControl-label{display:flex;align-items:center;justify-content:center;min-height:var(--touch-target)}
 

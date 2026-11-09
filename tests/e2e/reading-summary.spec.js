@@ -88,7 +88,7 @@ for (const width of [320, 390, 768, 800, 900, 1024, 1280]) {
 }
 
 // The owner, 8 November 2026: the band stood flush against the search field.
-for (const width of [768, 1024, 1280]) {
+for (const width of [768, 1024]) {
   test(`at ${width} px the reading band keeps its distance from the search field and from what follows`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('./');
@@ -99,6 +99,54 @@ for (const width of [768, 1024, 1280]) {
     });
     expect(boxes.top - boxes.search).toBeGreaterThanOrEqual(16);
     expect(boxes.next - boxes.bottom).toBeGreaterThanOrEqual(16);
+  });
+}
+
+// The owner, 9 November 2026: on a computer the search row and the band are one row, and the
+// search field gives up the room it did not need.
+const barBoxes = page => page.evaluate(() => {
+  const box = selector => { const r = document.querySelector(selector).getBoundingClientRect(); return { top: r.top, bottom: r.bottom, left: r.left, right: r.right, width: r.width, height: r.height }; };
+  const field = document.querySelector('.catalog-search .mantine-Input-input');
+  const style = getComputedStyle(field);
+  const pen = document.createElement('canvas').getContext('2d');
+  pen.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+  return {
+    search: box('.catalog-search .mantine-Input-input'), filter: box('.search-tools .mantine-Button-root'), sort: box('.search-tools .mantine-Input-input'),
+    share: box('.reading-summary-share'), count: box('.reading-summary-stat'), counts: box('.reading-summary-stats'), next: box('.reading-route'),
+    placeholderRoom: field.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - pen.measureText(field.placeholder).width,
+    pageFits: document.documentElement.scrollWidth <= window.innerWidth,
+  };
+});
+for (const width of [1200, 1280, 1440, 1920]) {
+  test(`at ${width} px the search, its tools and the counts are one row`, async ({ page, isMobile }) => {
+    test.skip(isMobile, 'A phone stacks them.');
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('./');
+    await expect(band(page)).toBeVisible();
+    const row = await barBoxes(page);
+    const middle = box => (box.top + box.bottom) / 2;
+    for (const part of [row.filter, row.sort, row.share, row.count]) expect(Math.abs(middle(part) - middle(row.search))).toBeLessThanOrEqual(2);
+    for (const part of [row.filter, row.sort, row.count]) expect(Math.abs(part.height - row.search.height)).toBeLessThanOrEqual(1);
+    expect(row.search.right).toBeLessThanOrEqual(row.filter.left);
+    expect(row.filter.right).toBeLessThanOrEqual(row.sort.left);
+    expect(row.sort.right).toBeLessThanOrEqual(row.share.left);
+    expect(row.share.right).toBeLessThanOrEqual(row.counts.left);
+    expect(row.search.width).toBeLessThanOrEqual(320);
+    expect(row.placeholderRoom, 'the whole hint shows in the narrower field').toBeGreaterThanOrEqual(0);
+    expect(row.next.top - row.count.bottom).toBeGreaterThanOrEqual(16);
+    expect(row.pageFits).toBe(true);
+    expect(await rows(page)).toEqual([5]);
+  });
+}
+
+for (const width of [1024, 1199]) {
+  test(`at ${width} px the band stays under the search row, as there is no room for both`, async ({ page, isMobile }) => {
+    test.skip(isMobile, 'A phone is checked above.');
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('./');
+    await expect(band(page)).toBeVisible();
+    const row = await barBoxes(page);
+    expect(row.count.top).toBeGreaterThan(row.search.bottom);
   });
 }
 
