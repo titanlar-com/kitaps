@@ -43,7 +43,7 @@ export function catalogScreen({ view, filters, sort, total, page, pageSize, show
   const wholeCatalogue = view === 'books' && !anyFilter;
   return {
     shelfHeading: isShelf(view) ? viewById[view].heading : null,
-    search: { label: SEARCH_LABELS[view] ?? 'Katalogda ara', placeholder: 'Kitap, yazar, çevirmen…', clear: filters.query ? 'Aramayı temizle' : null },
+    search: { label: SEARCH_LABELS[view] ?? 'Katalogda ara', placeholder: 'Kitap, yazar, çevirmen…', clear: filters.query ? 'Aramayı temizle' : null, shortcut: '/' },
     filtersButton: `Filtreler${activeCount ? ` · ${activeCount}` : ''}`,
     sort: { label: 'Kitapları sırala', options: SORT_OPTIONS },
     showsReadingSummary: wholeCatalogue,

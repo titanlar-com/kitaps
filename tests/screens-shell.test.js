@@ -81,7 +81,7 @@ test('the shortcuts group leads with the children\'s shelf, and counts the two p
 });
 
 test('the tools are always there and are never the current page', () => {
-  assert.deepEqual(screen().footer.groups[2].items, [{ id: 'guide', label: 'Çeviri rehberi' }, { id: 'sync', label: 'Cihaz eşitleme' }, { id: 'export', label: 'Kitapları JSON indir' }]);
+  assert.deepEqual(screen().footer.groups[2].items, [{ id: 'palette', label: 'Hızlı ara' }, { id: 'guide', label: 'Çeviri rehberi' }, { id: 'sync', label: 'Cihaz eşitleme' }, { id: 'export', label: 'Kitapları JSON indir' }]);
 });
 
 test('the footer states when the catalogue was made and last updated, in that order', () => {
@@ -111,4 +111,10 @@ test('each wood has its name and its note, and the table of woods takes them fro
   assert.deepEqual(woodWords('mese'), { label: 'Meşe', note: 'İsli zeytin zemin, yaprak yeşili vurgu' });
   assert.deepEqual(woodWords('akasya'), { label: 'Akasya', note: 'Kızıl siyah zemin, turkuaz vurgu' });
   assert.deepEqual(WOODS.map(({ id, ...words }) => [id, words]), ['ceviz', 'mese', 'akasya'].map(id => [id, woodWords(id)]));
+});
+
+test('the frame names the way back to the top and the quick search', () => {
+  const model = screen();
+  assert.equal(model.backToTop, 'Başa dön');
+  assert.deepEqual(model.footer.groups.find(group => group.id === 'tools').items[0], { id: 'palette', label: 'Hızlı ara' });
 });

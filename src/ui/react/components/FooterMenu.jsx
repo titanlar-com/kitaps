@@ -11,7 +11,7 @@ export default function FooterMenu({ groups, current, meta, covered = false }) {
  const model = footerMenuScreen();
  const [opened, setOpened] = useState(false);
  const choose = action => () => { setOpened(false); action(); };
- return <footer className="site-footer">
+ return <>
   <UnstyledButton className="footer-dock" aria-haspopup="dialog" aria-expanded={opened} onClick={() => setOpened(true)}>
    <span className="footer-dock-label">{model.title}</span>
    {current && <span className="footer-dock-current">{current}</span>}
@@ -29,5 +29,5 @@ export default function FooterMenu({ groups, current, meta, covered = false }) {
    <Divider className="footer-menu-divider" />
    <div className="footer-meta">{meta}</div>
   </Drawer>
- </footer>;
+ </>;
 }

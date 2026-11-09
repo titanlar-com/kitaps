@@ -39,7 +39,7 @@ test('footer Notes navigation writes browser history through navigate',()=>{
  // Every footer section but the catalogue and the queue, Notes included, opens through goView (src/views.js lists them).
  assert.match(app,/VIEWS\.filter\(v => v\.footer === 'sections'\)\.map\(v => \(\{ id: v\.id, label: v\.label, current: view === v\.id \}\)\)/);
  assert.match(app,/const FOOTER_ICONS=\{\.\.\.VIEW_ICONS,/);
- assert.match(app,/const footerActions=\{books:onBrowse,queue:onQueue,children:\(\)=>goCategory\('children'\),guide:\(\)=>setGuideOpened\(true\),sync:\(\)=>openSync\(\),export:exportAllBooks\};/);
+ assert.match(app,/const footerActions=\{books:onBrowse,queue:onQueue,children:\(\)=>goCategory\('children'\),palette:openPalette,guide:\(\)=>setGuideOpened\(true\),sync:\(\)=>openSync\(\),export:exportAllBooks\};/);
  assert.match(app,/icon:FOOTER_ICONS\[item\.id\],onSelect:footerActions\[item\.id\]\?\?\(\(\)=>goView\(item\.id\)\)/);
  assert.equal(VIEWS_TABLE.find(view=>view.id==='notes').footer,'sections');
 });

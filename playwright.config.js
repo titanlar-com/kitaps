@@ -6,7 +6,7 @@ import { defineConfig, devices } from '@playwright/test';
 // 4173) must not stand in for the build under test. E2E_PORT lets sessions in
 // separate worktrees run their suites side by side.
 const port = Number(process.env.E2E_PORT) || 4317;
-const layoutChecks = { testMatch: /(navigation-history|reading-marks|catalog-grid|sync|site|ui-quality|bookstores|footer-menu|book-fairs|route-planner|hide-owned|shell|reading-summary|corners|loading|woods|book-card|book-detail|motion-audit|motion-lifecycle)\.spec\.js/, grep: /navigation-history|reading-marks|catalog-grid|sync\.spec|ui-quality|bookstores|footer-menu|book-fairs|route-planner|hide-owned|shell\.spec|reading-summary|corners|loading\.spec|woods|book-card|book-detail\.spec|motion-audit|motion-lifecycle|200% text|room for them/ };
+const layoutChecks = { testMatch: /(design-map|design-map-focus|navigation-history|reading-marks|catalog-grid|sync|site|ui-quality|bookstores|footer-menu|book-fairs|route-planner|hide-owned|shell|reading-summary|corners|loading|woods|book-card|book-detail|motion-audit|motion-lifecycle)\.spec\.js/, grep: /design-map|navigation-history|reading-marks|catalog-grid|sync\.spec|ui-quality|bookstores|footer-menu|book-fairs|route-planner|hide-owned|shell\.spec|reading-summary|corners|loading\.spec|woods|book-card|book-detail\.spec|motion-audit|motion-lifecycle|200% text|room for them/ };
 
 export default defineConfig({
   testDir: 'tests/e2e',

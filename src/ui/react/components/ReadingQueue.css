@@ -10,16 +10,26 @@
 .queue-head .mantine-Button-root { height: auto; min-height: var(--touch-target); max-width: 100%; padding-block: .5rem; }
 .queue-head .mantine-Button-label { white-space: normal; }
 
-.reading-queue { display: grid; gap: var(--gap-xs); margin: 0; padding: 0; list-style: none; }
+/* The padding on the reader's side is Mantine's: it keeps the numbers inside the page. */
+.reading-queue { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gap-xs); margin: 0; padding-block: 0; padding-inline-end: 0; list-style: none; }
 /* The row wraps by itself: the text keeps at least --reflow-title-min beside its cover, and the
    controls stand beside the text only where there is room for them. */
 .queue-row {
- display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--stack-gap) var(--card-gap);
- padding: var(--card-inset); border-radius: var(--radius-lg); background: var(--surface);
+ --item-border-color: var(--line-strong);
+ margin: 0; padding: var(--card-inset); padding-inline-start: calc(var(--tl-bullet-size) / 2 + var(--gap-xs));
+ border-radius: var(--radius-lg); background: var(--surface);
 }
+.queue-row.queue-row { margin-top: 0; }
+/* The numbered line runs down the reader's order and across the gaps between the rows. */
+.queue-row::before { top: 0; bottom: calc(var(--gap-xs) * -1); }
+.queue-row:last-child::before { display: none; }
+.queue-row .mantine-Timeline-itemBullet { top: var(--card-inset); border-color: var(--line-strong); background: var(--surface-3); }
+.queue-row .mantine-Timeline-itemBullet[data-active] { border-color: var(--accent); background: var(--accent); }
+.queue-row .mantine-Timeline-itemBody { min-width: 0; padding-inline-start: 0; }
+.queue-row-body { display: flex; min-width: 0; flex-wrap: wrap; align-items: flex-start; gap: var(--stack-gap) var(--card-gap); }
 .queue-row[data-next] { background: var(--surface-2); }
-.queue-position { flex: 0 0 auto; min-width: 1em; color: var(--muted); font-size: 1.75rem; font-weight: 650; line-height: 1.1; text-align: center; }
-.queue-row[data-next] .queue-position { color: var(--accent); }
+.queue-position { color: var(--ink-2); font-size: var(--text-md); font-weight: 650; line-height: 1; }
+.queue-row[data-next] .queue-position { color: var(--accent-ink); }
 .queue-cover { flex: 0 0 var(--queue-cover); }
 .queue-row[data-next] .queue-cover { flex-basis: var(--queue-cover-next); }
 /* A thumbnail is too small for readable text; the title is written beside it. */
@@ -32,7 +42,9 @@
 .queue-progress { display: grid; gap: var(--gap-xs); max-width: 28rem; margin-top: var(--stack-gap); }
 .queue-progress-line { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 var(--stack-gap); }
 .queue-progress-share { color: var(--ink); font-weight: 650; }
-.queue-controls { display: flex; flex: 1 0 auto; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--stack-gap); max-width: 100%; }
+.queue-controls { display: flex; flex: 1 1 auto; min-width: 0; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--stack-gap); max-width: 100%; }
+/* At 200% text on a narrow phone the three move buttons take two lines rather than leave the page. */
+.queue-controls .mantine-ActionIconGroup-group { flex-wrap: wrap; max-width: 100%; }
 .queue-controls .mantine-Button-root { height: auto; min-height: var(--touch-target); max-width: 100%; padding-block: .5rem; }
 .queue-controls .mantine-Button-label { white-space: normal; }
 .queue-controls .mantine-ActionIcon-root[data-disabled] { border-color: var(--line-strong); background: transparent; color: var(--muted); }

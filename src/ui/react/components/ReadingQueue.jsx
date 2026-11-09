@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
-import { ActionIcon, Badge, Button, Group, Progress, Text, Title } from '@mantine/core';
+import { ActionIcon, Badge, Button, Group, Progress, Text, Timeline, Title } from '@mantine/core';
 import { IconArrowDown, IconArrowUp, IconArrowUpRight, IconListNumbers, IconX } from '@tabler/icons-react';
 import { queueView } from '../../../core/personal/queue';
 import { queueScreen } from '../../../screens/queue.js';
@@ -43,9 +43,10 @@ export default function ReadingQueue({queue,books,reading,states,onMove,onRemove
     <Text className="queue-count tabular-nums">{model.count}</Text>
     <Button variant="default" onClick={onBrowse}>{model.browse}</Button>
    </div>
-   <ol className="reading-queue" role="list">{model.rows.map((row,index)=>{
-    return <li key={row.id} className="queue-row" role="listitem" data-book-id={row.id} data-next={row.next||undefined}>
-     <Text component="div" className="queue-position tabular-nums"><span aria-hidden="true">{row.position}</span><span className="visually-hidden">{row.positionLabel}</span></Text>
+   <Timeline className="reading-queue" role="list" {...{component:'ol'}} active={0} bulletSize={32} lineWidth={2} radius="md">{model.rows.map((row,index)=>{
+    return <Timeline.Item key={row.id} className="queue-row" role="listitem" {...{component:'li'}} data-book-id={row.id} data-next={row.next||undefined} bullet={<span className="queue-position tabular-nums" aria-hidden="true">{row.position}</span>}>
+     <div className="queue-row-body">
+     <span className="visually-hidden">{row.positionLabel}</span>
      <div className="queue-cover"><BookCover book={row.book} onOpen={onOpen} read={row.read}/></div>
      <div className="queue-body">
       {row.eyebrow&&<Text className="queue-eyebrow">{row.eyebrow}</Text>}
@@ -65,8 +66,9 @@ export default function ReadingQueue({queue,books,reading,states,onMove,onRemove
       </ActionIcon.Group>
       <Button variant="light" rightSection={<IconArrowUpRight size={18}/>} onClick={()=>onOpen(row.id)} aria-label={row.record.label}>{row.record.text}</Button>
      </div>
-    </li>;
-   })}</ol>
+     </div>
+    </Timeline.Item>;
+   })}</Timeline>
   </>}
   <div className="queue-status visually-hidden" role="status" aria-live="polite">{message}</div>
  </div>;

@@ -24,8 +24,8 @@ Ayrıldıkları konular ve karar:
 | Konu | Claude | Codex | Karar |
 | --- | --- | --- | --- |
 | Tek kaynak | Elle yazılan kopyalar, eşitlik testi | Vite değerleri `motion.js` dosyasından ilk yanıta yazar | Codex. Kopya hiç kalmaz. |
-| Bölüm değişiminde `ViewTransition` | Kullan | Kullanma | Kullanılmaz. React, süren bir geçiş bitene kadar bekler ve sonraki istekleri toplar. Sözleşme ise yönü değişen hareketin bulunduğu yerden devam etmesini ve durumun anında güncellenmesini ister. Sözleşme metin için zorla solma da istemez. |
-| Kitap açılırken ortak kapak | Kullan | Ertele | Ertelendi. Kitap ayrıntısı ayrı bir katmanda açılan çekmecedir. İkinci kapak, oran farkı ve yarıda kesilme sorunları getirir. |
+| Bölüm değişiminde `ViewTransition` | Kullan | Kullanma | Kullanılmaz. Proje sahibinin kalıcı hareket sözleşmesi (`AGENT.md`) metne zorla solma uygulanmasını yasaklar ve durumun anında güncellenmesini ister. Bu yalnız proje sahibinin açık politika değişikliğiyle değişir. |
+| Kitap açılırken ortak kapak | Kullan | Ertele | Önce ertelendi, proje sahibinin 9 Kasım 2026 isteğiyle yapıldı. Kapağın bir kopyası kartından çekmeceye `sheet` süresinde uçar, kapanınca geri döner, yarıda kapatılırsa bulunduğu yerden döner (`src/ui/react/app/coverFlight.js`). |
 | Çekmece süresi | 300 ms | 200 ms | 300 ms. Çekmece ekranın büyük bölümünü geçer, küçük bir açılır pencereyle aynı sürede gelince sert görünür. |
 | Kapak yüklenince solarak gelme | Ekle | Değinmedi | Eklenir. Kapak metin değildir ve çerçevesi önceden ayrıldığı için yerleşim değişmez. |
 | Yaşam döngüsü hataları | Görmedi | Buldu | Düzeltilir. |
@@ -55,7 +55,7 @@ Ayrıldıkları konular ve karar:
 
 **K5. Hareket, bir şeyin nereden gelip nereye gittiğini anlatmak içindir.**
 
-- Hareket eder: seçili bölümün işaretçisi, çekmeceler, açılır bölümler, ilerleme çubuğu, üzerine gelince kalkan kapak, yüklenen kapak.
+- Hareket eder: seçili bölümün işaretçisi, çekmeceler, açılır bölümler, ilerleme çubuğu, üzerine gelince kalkan kapak, yüklenen kapak, kartından kitaba uçan kapak.
 - Hareket etmez: okunan metin, sayfa yerleşimi, kaydırma sırasındaki içerik. Sıçrama, parallaks ve kendi kendine dönen döngü yoktur. Tek döngü gerçek bir beklemedir.
 - Bölüm, sayfa, arama ve süzme sonuçları anında gelir. Yazı solarak gelmez ve kartlar sırayla dizilmez.
 - Açılır pencere ve iletişim kutusu yalnız solar. Çekmece geldiği kenara geri döner.

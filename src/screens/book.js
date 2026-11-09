@@ -1,3 +1,4 @@
+import { viewById } from '../views.js';
 import { displayTitle, isOriginalTurkish, recommendedTranslation, translationStatus, turkishEdition, turkishMeaning } from '../core/catalog/translation.js';
 import { publicationLine, publicationLinkLabel, workFormat } from '../core/catalog/workFormat.js';
 import { QUEUE_LIMIT, emptyReading, progressPercent, readingErrors, readingJourney } from '../core/personal/reading.js';
@@ -33,9 +34,13 @@ function membershipModel(id, book, collections, groups) {
   };
 }
 
-export function bookDetailScreen({ book, marks, catalog, collections, groups }) {
+export function bookDetailScreen({ book, marks, catalog, collections, groups, view = 'books' }) {
   const title = displayTitle(book);
+  const [firstSubject] = book.categories;
   return {
+    // Where the sheet was opened from: closing it returns there.
+    breadcrumbs: { label: 'Konum', home: viewById[view]?.label ?? viewById.books.label, category: firstSubject ? { id: firstSubject, label: catalog.categories.find(item => item.id === firstSubject)?.label ?? firstSubject } : null, current: title },
+    menu: { label: 'Diğer işlemler', copy: 'Bağlantıyı kopyala', copied: 'Bağlantı kopyalandı', queue: viewById.queue.label, favorites: viewById.favorites.label, owned: viewById.owned.label },
     back: 'Önceki kitaba dön',
     title,
     // Only a known original title is shown under a Turkish title.

@@ -680,7 +680,7 @@ test('books can be filtered by the day they were added to the library', async ({
   expect(violations).toEqual([]);
   await page.keyboard.press('Escape');
   // The active day shows above the results and can be removed there.
-  const chip = page.getByRole('button', { name: new RegExp(`Eklenme · ${label}`) });
+  const chip = page.locator('.active-filters').getByText(new RegExp(`Eklenme · ${label}`));
   await expect(chip).toBeVisible();
   await chip.click();
   await expect(page.locator('.results-heading [role="status"]')).toHaveText(new RegExp(`^${catalog.books.length} eser\\b`));

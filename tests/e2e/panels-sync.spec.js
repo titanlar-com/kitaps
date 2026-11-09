@@ -107,7 +107,7 @@ test.describe('filter choices stay in the address', () => {
     await expect(page.getByRole('group', { name: 'Okuma kayıtlarım' }).locator('.filter-group-count')).toHaveText('1 seçim');
     await heading.click();
     await expect(page.locator('.filter-fieldset legend')).toContainText('1 seçili');
-    await expect(page.getByRole('checkbox', { name: label })).toBeChecked();
+    await expect(page.locator('.filter-sheet').getByRole('checkbox', { name: label })).toBeChecked();
 
     await page.locator('.filter-sheet-footer').getByRole('button', { name: 'Temizle', exact: true }).click();
     await expect(page.locator('.filter-result-selection')).toHaveCount(0);

@@ -1,6 +1,6 @@
 // Moved verbatim from App.jsx (architecture plan, phase 1, 7 November 2026).
 import { useState } from 'react';
-import { Skeleton } from '@mantine/core';
+import { AspectRatio, Skeleton } from '@mantine/core';
 import { useInViewport } from '@mantine/hooks';
 import { IconBook2, IconFileText } from '@tabler/icons-react';
 import { bookCoverScreen } from '../../../screens/catalog.js';
@@ -24,7 +24,8 @@ export function BookCover({book:b,onOpen=null,detail=false,read=false,size=detai
  // A cover on the screen and still on its way shows a moving placeholder. A cover further down has
  // not been requested yet, and a loop nobody can see would only cost the phone its battery.
  const waiting=cover&&!failed&&!loaded&&inViewport&&<Skeleton className="cover-skeleton" aria-hidden="true"/>;
- return detail?<div ref={frame} className={`${stage} cover-stage-detail`}>{waiting}{content}</div>:<button ref={frame} className={`${stage} cover-open`} onClick={()=>onOpen(b.id)} aria-label={model.openLabel}>{waiting}{content}</button>;
+ // Every cover stands in a 2:3 frame, reserved before the picture arrives (AGENTS.md).
+ return <AspectRatio ratio={2/3} className="cover-ratio">{detail?<div ref={frame} className={`${stage} cover-stage-detail`}>{waiting}{content}</div>:<button ref={frame} className={`${stage} cover-open`} onClick={()=>onOpen(b.id)} aria-label={model.openLabel}>{waiting}{content}</button>}</AspectRatio>;
 }
 // Small covers beside related books and in the reading queue.
 export const ThumbCover=props=><BookCover {...props} size="thumb"/>;

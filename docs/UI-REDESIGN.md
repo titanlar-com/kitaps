@@ -2,7 +2,7 @@
 
 Tarih: 8 Kasım 2026. Durum: sekiz aşama tamamlandı, bağımsız inceleme yapıldı ve bulguları kapatıldı.
 
-Plandan bilerek ayrılan yerler: kitap ayrıntısında Breadcrumbs kullanılmadı, çünkü konu etiketleri ve önceki kitaba dönüş düğmesi aynı işi görüyor. Sıram, Timeline yerine numaralı liste oldu, çünkü sıra değiştirme düğmeleri liste anlamını korumayı gerektiriyor. Avatar.Group kapakları üst üste bindirmiyor, çünkü kapaklar kırpılmıyor.
+Haritadaki bütün bileşenler kullanılıyor (proje sahibinin 9 Kasım 2026 isteği, `tests/design-map.test.js`). Tek ayrılık Avatar.Group'tadır: kapaklar üst üste bindirilmez, çünkü proje sahibinin kuralına göre her kapak bütün görünür.
 
 ## İstek
 
@@ -35,7 +35,7 @@ Kitaplık, araştırılmış bir okuma kataloğu ve kişisel bir kütüphanedir.
 
 ## Bileşen haritası
 
-Bütün bileşenler `@mantine/core` 9.6.3 içindedir. Yeni paket yalnız somut bir kullanıcı yararı varsa eklenir. Örneğin kitap ve sayfa araması için bir komut paleti (`@mantine/spotlight`) ileride değerlendirilir.
+Bütün bileşenler `@mantine/core` 9.6.3 içindedir. Komut paleti `@mantine/spotlight` ile kuruldu: Ctrl K ya da Cmd K kitap ve bölüm arar, alt menüde "Hızlı ara" olarak da durur ve ilk istendiğinde yüklenir. Başka yeni paket yalnız somut bir kullanıcı yararı varsa eklenir.
 
 | Ekran | Bileşenler |
 |---|---|

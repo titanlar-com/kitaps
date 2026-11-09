@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActionIcon, Alert, Button, Container, FloatingIndicator, Group, MantineProvider, Modal, Paper, Text, TextInput, Tabs, ThemeIcon, Title, Switch, Tooltip, Transition, localStorageColorSchemeManager } from '@mantine/core';
+import { ActionIcon, Alert, AppShell, Button, Container, FloatingIndicator, Group, Kbd, MantineProvider, Modal, Paper, Text, TextInput, Tabs, ThemeIcon, Title, Switch, Tooltip, Transition, localStorageColorSchemeManager } from '@mantine/core';
 import { IconLink, IconArrowRight, IconBook2, IconBuildingStore, IconCalendarEvent, IconLanguage, IconRefresh, IconShoppingBagX, IconFileText, IconBooks, IconCheck, IconDownload, IconFilter, IconHeart, IconLayersIntersect, IconListNumbers, IconSearch, IconX } from '@tabler/icons-react';
 import '@mantine/core/styles.css';
 import '@fontsource-variable/outfit/wght.css';
@@ -12,7 +12,7 @@ import EmptyState from './components/EmptyState';
 import CatalogPagination from './components/CatalogPagination';
 import { addressBase, applySeo, seoState } from '../../seo';
 import { catalogListing } from './app/listing';
-import { HEADER_VIEWS, viewById } from '../../views';
+import { HEADER_VIEWS, VIEWS, viewById } from '../../views';
 import ThemeTweaker from './components/ThemeTweaker';
 import FooterMenu from './components/FooterMenu';
 import FilterSheet from './components/FilterSheet';
@@ -24,7 +24,8 @@ import SyncMergeDialog from './components/SyncMergeDialog';
 import SyncNotice from './components/SyncNotice';
 import GitHubSyncPanel from './components/GitHubSyncPanel';
 import ReadingSummary from './components/ReadingSummary';
-import { useMediaQuery } from '@mantine/hooks';
+import { useMediaQuery, useWindowEvent } from '@mantine/hooks';
+import BackToTop from './components/BackToTop';
 import { useGitHubStateSync } from '../../state/useGitHubStateSync';
 import { useViewModel } from '../../adapters/react/useViewModel.js';
 import { readingSummary } from '../../reading';
@@ -49,12 +50,17 @@ const NotesPage=React.lazy(()=>import('./components/NotesPage'));
 // The bookstores page carries its own data (data/bookstores.json); it loads when opened.
 const BookstoresPage=React.lazy(()=>import('./components/BookstoresPage'));
 const BookFairsPage=React.lazy(()=>import('./components/BookFairsPage'));
+// The quick search arrives the first time the reader asks for it.
+const CommandPalette=React.lazy(()=>import('./components/CommandPalette'));
 // The pages themselves are listed once, in src/views.js; this is only each page's icon.
 const VIEW_ICONS={books:IconBook2,queue:IconListNumbers,collections:IconLayersIntersect,bookstores:IconBuildingStore,fairs:IconCalendarEvent,notes:IconFileText,favorites:IconHeart,owned:BookshelfIcon};
-const FOOTER_ICONS={...VIEW_ICONS,children:GirlIcon,guide:IconLanguage,sync:IconRefresh,export:IconDownload};
+const FOOTER_ICONS={...VIEW_ICONS,children:GirlIcon,palette:IconSearch,guide:IconLanguage,sync:IconRefresh,export:IconDownload};
 // A leaving toast no longer takes the pointer.
 /** @type {import('@mantine/core').MantineTransition} */
 const TOAST_MOTION={in:{opacity:1,translate:'0 0'},out:{opacity:0,translate:`0 ${MOTION_PX.rise}px`,pointerEvents:'none'},transitionProperty:'opacity, translate'};
+
+// A file that can no longer be fetched after a new release must not take the page down with it.
+class QuietBoundary extends React.Component {state={failed:false};static getDerivedStateFromError(){return {failed:true}}render(){return this.state.failed?null:this.props.children}}
 
 function AtlasApp({kitaplik}) {
  // Everything this page asks of the core goes through one door (ADR 003, K7).
@@ -168,6 +174,24 @@ function AtlasApp({kitaplik}) {
  const syncClosed=()=>setSyncCovering(false);
  // While the question about differing records is open it is the only thing Escape may reach, and it has no Escape of its own.
  const asking=Boolean(githubSync.mergePrompt);
+ const [paletteRequest,setPaletteRequest]=useState(0);
+ // The footer menu is gone by the time the quick search closes, so focus then returns to its bar.
+ const paletteOpener=useRef(null);
+ const openPalette=()=>{const active=document.activeElement;paletteOpener.current=active?.closest?.('.footer-menu')?document.querySelector('.footer-dock'):active;setPaletteRequest(request=>request+1)};
+ const leavePalette=()=>{const opener=paletteOpener.current;(opener?.isConnected&&opener!==document.body?opener:document.getElementById('main-content'))?.focus({preventScroll:true})};
+ // A sheet returns focus to what held it as it opened, so that must not be the quick search's own field.
+ const paletteBook=id=>{document.getElementById('main-content')?.focus({preventScroll:true});onOpen(id)};
+ const palettePage=id=>{goView(id);focusMain()};
+ const searchField=useRef(null);
+ // Ctrl K or Cmd K opens the quick search and / reaches the search field, except over a sheet or a dialog.
+ // On a Turkish keyboard / needs Shift, so the key is read by its character.
+ useWindowEvent('keydown',event=>{
+  if(document.querySelector('[aria-modal="true"]')||(event.target instanceof Element&&event.target.closest('[role="dialog"]')))return;
+  if((event.ctrlKey||event.metaKey)&&!event.altKey&&event.key.toLowerCase()==='k'){event.preventDefault();openPalette();return}
+  const target=event.target;
+  const typing=target instanceof HTMLElement&&(target.isContentEditable||['INPUT','TEXTAREA','SELECT'].includes(target.tagName));
+  if(event.key==='/'&&!typing&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&searchField.current){event.preventDefault();searchField.current.focus()}
+ });
  const copyLink=async()=>{try{await navigator.clipboard.writeText(window.location.href);setCopied(true);setTimeout(()=>setCopied(false),2000)}catch{setCopied(false)}};
  // The toast leaves the way it came: the last notice stays rendered while it fades out.
  const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true"><Transition mounted={toastShown&&Boolean(transfer)} duration={MOTION_MS.overlay} exitDuration={MOTION_MS.overlay} timingFunction={MOTION_EASE} transition={TOAST_MOTION} onExited={()=>setTransfer(null)}>{style=>transfer&&<LibraryToast key={`${transfer.id}-${transfer.owned}`} style={style} leaving={!toastShown} book={byId[transfer.id]} owned={transfer.owned} onClose={dismissTransfer} onUndo={()=>{execute({type:'toggleMark',id:transfer.id,key:'alindi'});dismissTransfer()}}/>}</Transition></div>;
@@ -176,14 +200,15 @@ function AtlasApp({kitaplik}) {
  const shell=shellScreen({view,filters,favoriteCount,ownedCount,updated:catalog.updated,personalSaved});
  const catalogue=catalogScreen({view,filters,sort,total,page:currentPage,pageSize,showsHiddenPurchases,copied,ownedCount,favoriteCount,coreCount:collectionMap.core?.count,collections:collectionMap,groups:groupMap});
  // What each footer item does. Every other page, Notes included, opens through goView.
- const footerActions={books:onBrowse,queue:onQueue,children:()=>goCategory('children'),guide:()=>setGuideOpened(true),sync:()=>openSync(),export:exportAllBooks};
+ const footerActions={books:onBrowse,queue:onQueue,children:()=>goCategory('children'),palette:openPalette,guide:()=>setGuideOpened(true),sync:()=>openSync(),export:exportAllBooks};
  const footerGroups=shell.footer.groups.map(group=>({...group,items:group.items.map(item=>({...item,icon:FOOTER_ICONS[item.id],onSelect:footerActions[item.id]??(()=>goView(item.id))}))}));
  return <><a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();document.getElementById('main-content').focus()}}>{shell.skipLink}</a>
   <Tabs className="main-section-tabs" value={activeTab} onChange={v=>v&&navigate({...route,view:v,book:null,page:1})}>
-    <header className="site-header" ref={headerRef}><div className="site-header-inner"><Group renderRoot={props=><a href="./" {...props}/>} className="brand-link" aria-label={shell.brand} gap={6} wrap="nowrap" onClick={e=>{if(e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey){e.preventDefault();execute({type:'goHome'});setBookTrail([]);window.scrollTo({top:0,behavior:'instant'})}}}><ThemeIcon size={42} radius="md" color="brand"><BrandMark size={24}/></ThemeIcon></Group><Tabs.List ref={setTabList} className="main-tabs" aria-label={shell.tabs.label}>{shell.tabs.items.map(({id,label})=>{const Icon=VIEW_ICONS[id];return <Tabs.Tab key={id} ref={tabRefs[id]} value={id} data-edge="bottom" leftSection={<Icon size={19}/>}>{label}</Tabs.Tab>})}<FloatingIndicator className="main-tabs-indicator" data-edge="bottom" target={activeTab?tabNodes[activeTab]:null} parent={tabList} aria-hidden="true"/></Tabs.List><Tooltip label={shell.hideOwned} withArrow><Switch className="header-switch" label={shell.hideOwned} checked={hideOwned} onChange={e=>setHideOwned(e.currentTarget.checked)} thumbIcon={<IconShoppingBagX size={12} stroke={2.5} aria-hidden="true"/>}/></Tooltip><nav className="header-shortcuts" aria-label={shell.shortcuts.label}><Tooltip label={shell.shortcuts.children.label}><ActionIcon className="header-children" size={48} variant={shell.shortcuts.children.current?'filled':'subtle'} aria-label={shell.shortcuts.children.label} aria-current={shell.shortcuts.children.current?'page':undefined} onClick={()=>goCategory('children')}><GirlIcon size={29}/></ActionIcon></Tooltip><Tooltip label={shell.shortcuts.favorites.label}><ActionIcon className="header-favorites" size={48} variant={shell.shortcuts.favorites.current?'filled':'subtle'} aria-label={shell.shortcuts.favorites.label} aria-current={shell.shortcuts.favorites.current?'page':undefined} onClick={()=>{navigate({...route,view:'favorites',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><IconHeart size={29} fill={shell.shortcuts.favorites.current?'currentColor':'none'}/>{shell.shortcuts.favorites.count&&<span className="shortcut-count" aria-hidden="true">{shell.shortcuts.favorites.count}</span>}</ActionIcon></Tooltip><Tooltip label={shell.shortcuts.owned.label}><ActionIcon className="header-library" size={48} variant={shell.shortcuts.owned.current?'filled':'subtle'} aria-label={shell.shortcuts.owned.label} aria-current={shell.shortcuts.owned.current?'page':undefined} onClick={()=>{navigate({...route,view:'owned',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><BookshelfIcon size={29}/>{shell.shortcuts.owned.count&&<span className="shortcut-count" aria-hidden="true">{shell.shortcuts.owned.count}</span>}</ActionIcon></Tooltip></nav><ThemeTweaker/></div></header>
+   <AppShell mode="static" className="page-frame" withBorder={false} transitionDuration={MOTION_MS.move} transitionTimingFunction={MOTION_EASE}>
+    <AppShell.Header className="site-header" ref={headerRef}><div className="site-header-inner"><Group renderRoot={props=><a href="./" {...props}/>} className="brand-link" aria-label={shell.brand} gap={6} wrap="nowrap" onClick={e=>{if(e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey){e.preventDefault();execute({type:'goHome'});setBookTrail([]);window.scrollTo({top:0,behavior:'instant'})}}}><ThemeIcon size={42} radius="md" color="brand"><BrandMark size={24}/></ThemeIcon></Group><Tabs.List ref={setTabList} className="main-tabs" aria-label={shell.tabs.label}>{shell.tabs.items.map(({id,label})=>{const Icon=VIEW_ICONS[id];return <Tabs.Tab key={id} ref={tabRefs[id]} value={id} data-edge="bottom" leftSection={<Icon size={19}/>}>{label}</Tabs.Tab>})}<FloatingIndicator className="main-tabs-indicator" data-edge="bottom" target={activeTab?tabNodes[activeTab]:null} parent={tabList} aria-hidden="true"/></Tabs.List><Tooltip label={shell.hideOwned} withArrow><Switch className="header-switch" label={shell.hideOwned} checked={hideOwned} onChange={e=>setHideOwned(e.currentTarget.checked)} thumbIcon={<IconShoppingBagX size={12} stroke={2.5} aria-hidden="true"/>}/></Tooltip><nav className="header-shortcuts" aria-label={shell.shortcuts.label}><Tooltip label={shell.shortcuts.children.label}><ActionIcon className="header-children" size={48} variant={shell.shortcuts.children.current?'filled':'subtle'} aria-label={shell.shortcuts.children.label} aria-current={shell.shortcuts.children.current?'page':undefined} onClick={()=>goCategory('children')}><GirlIcon size={29}/></ActionIcon></Tooltip><Tooltip label={shell.shortcuts.favorites.label}><ActionIcon className="header-favorites" size={48} variant={shell.shortcuts.favorites.current?'filled':'subtle'} aria-label={shell.shortcuts.favorites.label} aria-current={shell.shortcuts.favorites.current?'page':undefined} onClick={()=>{navigate({...route,view:'favorites',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><IconHeart size={29} fill={shell.shortcuts.favorites.current?'currentColor':'none'}/>{shell.shortcuts.favorites.count&&<span className="shortcut-count" aria-hidden="true">{shell.shortcuts.favorites.count}</span>}</ActionIcon></Tooltip><Tooltip label={shell.shortcuts.owned.label}><ActionIcon className="header-library" size={48} variant={shell.shortcuts.owned.current?'filled':'subtle'} aria-label={shell.shortcuts.owned.label} aria-current={shell.shortcuts.owned.current?'page':undefined} onClick={()=>{navigate({...route,view:'owned',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><BookshelfIcon size={29}/>{shell.shortcuts.owned.count&&<span className="shortcut-count" aria-hidden="true">{shell.shortcuts.owned.count}</span>}</ActionIcon></Tooltip></nav><ThemeTweaker/></div></AppShell.Header>
   <Container size={1200} className="app-shell" px={{base:8,sm:24}}>
 
-   <main id="main-content" tabIndex={-1}>
+   <AppShell.Main id="main-content" className="page-main" tabIndex={-1}>
 
     {shell.storageWarning&&<Alert color="orange" mb="lg">{shell.storageWarning}</Alert>}
     {view!=='notes'&&<SyncNotice sync={githubSync} onOpen={openSync}/>}
@@ -192,7 +217,7 @@ function AtlasApp({kitaplik}) {
      {catalogue.shelfHeading&&<Title order={1} className="visually-hidden">{catalogue.shelfHeading}</Title>}
      <div className="catalog-bar">
      <div className="search-panel" role="search">
-      <TextInput className="catalog-search" label={catalogue.search.label} placeholder={catalogue.search.placeholder} leftSection={<IconSearch size={21}/>} rightSectionWidth={44} rightSection={catalogue.search.clear?<ActionIcon variant="subtle" aria-label={catalogue.search.clear} onClick={()=>changeFilters({...filters,query:''})}><IconX size={20}/></ActionIcon>:null} value={filters.query} onChange={e=>changeFilters({...filters,query:e.currentTarget.value})}/>
+      <TextInput className="catalog-search" label={catalogue.search.label} placeholder={catalogue.search.placeholder} ref={searchField} leftSection={<IconSearch size={21}/>} rightSectionWidth={catalogue.search.clear?44:36} rightSectionPointerEvents={catalogue.search.clear?'all':'none'} rightSection={catalogue.search.clear?<ActionIcon variant="subtle" aria-label={catalogue.search.clear} onClick={()=>changeFilters({...filters,query:''})}><IconX size={20}/></ActionIcon>:<Kbd className="search-shortcut" size="md" aria-hidden="true">{catalogue.search.shortcut}</Kbd>} value={filters.query} onChange={e=>changeFilters({...filters,query:e.currentTarget.value})}/>
       <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setToastShown(false);setDraft(filters);setSheetShown(true);setOpened(true)}}>{catalogue.filtersButton}</Button><WrappingSelect aria-label={catalogue.sort.label} value={sort} onChange={next=>execute({type:'changeSort',sort:next})} data={catalogue.sort.options}/></div>
       <ActiveFilters filters={filters} onChange={changeFilters}/>
      </div>
@@ -210,17 +235,20 @@ function AtlasApp({kitaplik}) {
     {view==='fairs'&&<React.Suspense fallback={<PageLoading>{shell.loading.fairs}</PageLoading>}><BookFairsPage/></React.Suspense>}
     <Tabs.Panel value="bookstores">{view==='bookstores'&&<React.Suspense fallback={<PageLoading>{shell.loading.bookstores}</PageLoading>}><BookstoresPage/></React.Suspense>}</Tabs.Panel>
     {view==='notes'&&<section aria-labelledby="notes-heading"><Title id="notes-heading" order={1} className="visually-hidden">{shell.headings.notes}</Title><React.Suspense fallback={<PageLoading>{shell.loading.notes}</PageLoading>}><NotesPage states={states} personal={personal} onRestore={(marks,input)=>execute({type:'restoreBackup',marks,input})} sync={githubSync}/></React.Suspense></section>}
-   </main>
-   <FooterMenu covered={asking} current={shell.footer.current} groups={footerGroups} meta={<><Text fw={600}>{shell.footer.meta.name}</Text><Text>{shell.footer.meta.created}</Text><Text>{shell.footer.meta.updated}</Text></>}/>
+   </AppShell.Main>
+   <AppShell.Footer className="site-footer"><FooterMenu covered={asking} current={shell.footer.current} groups={footerGroups} meta={<><Text fw={600}>{shell.footer.meta.name}</Text><Text>{shell.footer.meta.created}</Text><Text>{shell.footer.meta.updated}</Text></>}/></AppShell.Footer>
   </Container>
+   </AppShell>
   </Tabs>
+  <BackToTop label={shell.backToTop}/>
+  {paletteRequest>0&&<QuietBoundary><React.Suspense fallback={null}><CommandPalette request={paletteRequest} books={books} views={VIEWS} icons={VIEW_ICONS} onBook={paletteBook} onPage={palettePage} onDismiss={leavePalette} covered={asking}/></React.Suspense></QuietBoundary>}
   <SyncMergeDialog sync={githubSync}/>
   {/* Opened from the book sheet too, so it sits above the sheet (Mantine's layer 200) and below the toast (310). */}
   <Modal opened={syncOpened} onClose={closeSync} closeOnEscape={!asking} zIndex={300} returnFocus={false} onExitTransitionEnd={syncClosed} title={shell.modals.sync} size="lg" centered className="sync-modal" closeButtonProps={{'aria-label':shell.modals.close}}><div inert={!syncOpened||undefined}><GitHubSyncPanel sync={githubSync} framed={false}/></div></Modal>
   <Modal opened={guideOpened} onClose={()=>setGuideOpened(false)} closeOnEscape={!asking} title={shell.modals.guide} size="lg" centered className="global-guide-modal" closeButtonProps={{'aria-label':shell.modals.close}}><TranslationCriteria/></Modal>
   <FilterSheet opened={opened} covered={asking} onClose={()=>setOpened(false)} onExited={()=>setSheetShown(false)} value={draft} onChange={setDraft} onReset={()=>setDraft({...emptyFilters(),query:filters.query})} onApply={()=>{changeFilters(draft);setOpened(false)}} count={draftCount} catalog={catalog} authors={authorOptions} shelf={draftListing?.shelf??shelfBooks}/>
   {!book&&transferNotice}
-  <BookDetail feedback={transferNotice} ranking={readingRanking.byId[book]} onOpen={onOpen} onBack={previousBook} hasBack={bookTrail.length>0} book={byId[book]} onClose={closeBook} states={states} onToggle={onToggle} onCollection={goCollection} onCategory={goCategory} personal={personal} onReading={onReading} onAdd={onAdd} onQueue={onQueue} storageError={!personalSaved} sync={githubSync} onSync={openSync} covered={syncCovering||asking}/>
+  <BookDetail feedback={transferNotice} ranking={readingRanking.byId[book]} onOpen={onOpen} onBack={previousBook} hasBack={bookTrail.length>0} book={byId[book]} onClose={closeBook} states={states} onToggle={onToggle} onCollection={goCollection} onCategory={goCategory} personal={personal} onReading={onReading} onAdd={onAdd} onQueue={onQueue} onShelf={goView} view={view} storageError={!personalSaved} sync={githubSync} onSync={openSync} covered={syncCovering||asking}/>
  </>;
 }
 export default function App({kitaplik}){return <MantineProvider theme={theme} cssVariablesResolver={cssVariablesResolver} defaultColorScheme="dark" colorSchemeManager={localStorageColorSchemeManager({key:'kitapatlasi:color-scheme'})}><AtlasApp kitaplik={kitaplik}/>{AccessibilityAudit&&<React.Suspense fallback={null}><AccessibilityAudit/></React.Suspense>}</MantineProvider>}

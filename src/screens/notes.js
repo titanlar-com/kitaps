@@ -26,15 +26,17 @@ const sectionOf = (text, index) => (index === 0
 
 export function notesScreen({ counts, total, notes }) {
  const row = coverageRow({ counts });
+ const parts = { coverage: 'Birleşimin kapsamı', backup: 'Kişisel kitaplığını yedekle', sync: 'Cihaz eşitleme', fullData: 'Tam veri ve kaynaklar', sources: 'Kaynak dosyanın tamamı' };
  return {
+  contents: { label: 'Bu sayfada', sync: parts.sync, items: [parts.coverage, parts.backup, parts.sync, parts.fullData, parts.sources] },
   coverage: {
-   title: 'Birleşimin kapsamı',
+   title: parts.coverage,
    rows: [...ALWAYS_LISTED.map(row), ...LISTED_WHEN_ANY.filter(([, count]) => counts[count] > 0).map(row), { id: 'merged', label: 'Birleşik katalog', value: `${total} benzersiz eser` }],
    badges: Object.keys(ORIGIN_LABELS),
   },
-  backup: { title: 'Kişisel kitaplığını yedekle', download: { text: 'Kişisel yedeğimi indir', file: 'kitaplik-kisisel-yedek.json' }, restore: 'Yedekten aktar' },
-  fullData: { title: 'Tam veri ve kaynaklar', catalog: { text: 'Tüm kataloğu indir', file: 'kitaplik-tum-veri.json' }, notes: { text: 'Kaynak notlarını indir', file: 'kitaps-kaynak-notlari.md' }, sourceLink: 'Kaynak kod ve veri arşivi' },
-  sources: { title: 'Kaynak dosyanın tamamı', sections: notes.split(/(?=^## )/m).map(sectionOf) },
+  backup: { title: parts.backup, download: { text: 'Kişisel yedeğimi indir', file: 'kitaplik-kisisel-yedek.json' }, restore: 'Yedekten aktar' },
+  fullData: { title: parts.fullData, catalog: { text: 'Tüm kataloğu indir', file: 'kitaplik-tum-veri.json' }, notes: { text: 'Kaynak notlarını indir', file: 'kitaps-kaynak-notlari.md' }, sourceLink: 'Kaynak kod ve veri arşivi' },
+  sources: { title: parts.sources, sections: notes.split(/(?=^## )/m).map(sectionOf) },
  };
 }
 

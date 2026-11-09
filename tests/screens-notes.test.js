@@ -85,3 +85,10 @@ test('long fields take the whole width of a card, and a field with no heading ha
  assert.equal(table.isWide(99), false);
  assert.equal(table.fallbackLabel, 'Bilgi');
 });
+
+test('the page lists its own parts, in the order they stand', () => {
+ const { contents, coverage, backup, fullData, sources } = screen();
+ assert.equal(contents.label, 'Bu sayfada');
+ assert.deepEqual(contents.items, [coverage.title, backup.title, contents.sync, fullData.title, sources.title]);
+ assert.equal(contents.sync, 'Cihaz eşitleme');
+});

@@ -1,7 +1,10 @@
 // Moved verbatim from App.jsx (architecture plan, phase 1, 7 November 2026).
 import { useEffect, useRef, useState } from 'react';
-import { Accordion, Alert, Anchor, Badge, Box, Button, Group, Paper, Stack, Text, Title } from '@mantine/core';
-import { IconArrowLeft, IconArrowRight, IconArrowUpRight, IconCheck } from '@tabler/icons-react';
+import { Accordion, ActionIcon, Alert, Anchor, Badge, Box, Breadcrumbs, Button, Group, Menu, Paper, Stack, Text, Title } from '@mantine/core';
+import { useReducedMotion } from '@mantine/hooks';
+import { IconArrowLeft, IconArrowRight, IconArrowUpRight, IconBooks, IconCheck, IconChevronRight, IconDots, IconHeart, IconLink, IconListNumbers } from '@tabler/icons-react';
+import { transition } from '../../../motion';
+import { useCoverFlight } from './useCoverFlight';
 import ReadingPanel, { QueueButton } from '../components/ReadingPanel';
 import ReadingJourney from '../components/ReadingJourney';
 import { FoldedNote } from '../components/FoldedNote';
@@ -21,18 +24,35 @@ import { bookDetailScreen } from '../../../screens/book.js';
 import { catalog, collectionMap, groupMap, categoryMap } from './catalogData';
 import { BookCover, ThumbCover } from './BookCover';
 
-export function BookDetail({book:current,ranking:currentRanking,onClose,onOpen,onBack,hasBack,states,onToggle,onCollection,onCategory,personal,onReading,onAdd,onQueue,storageError,feedback,sync,onSync,covered}) {
+// The sheet covers the header, so the reader's own shelves are offered here too.
+function BookMenu({words,onQueue,onShelf}) {
+ const [copied,setCopied]=useState(false);
+ const reducedMotion=useReducedMotion();
+ const copy=async()=>{try{await navigator.clipboard.writeText(window.location.href);setCopied(true);setTimeout(()=>setCopied(false),2000)}catch{setCopied(false)}};
+ return <Menu position="bottom-end" shadow="lg" transitionProps={transition('overlay',reducedMotion)}>
+  <Menu.Target><ActionIcon variant="subtle" aria-label={words.label}><IconDots size={22}/></ActionIcon></Menu.Target>
+  <Menu.Dropdown>
+   <Menu.Item closeMenuOnClick={false} leftSection={copied?<IconCheck size={18}/>:<IconLink size={18}/>} onClick={copy}>{copied?words.copied:words.copy}</Menu.Item>
+   <Menu.Item leftSection={<IconListNumbers size={18}/>} onClick={onQueue}>{words.queue}</Menu.Item>
+   <Menu.Item leftSection={<IconHeart size={18}/>} onClick={()=>onShelf('favorites')}>{words.favorites}</Menu.Item>
+   <Menu.Item leftSection={<IconBooks size={18}/>} onClick={()=>onShelf('owned')}>{words.owned}</Menu.Item>
+  </Menu.Dropdown>
+ </Menu>;
+}
+
+export function BookDetail({book:current,ranking:currentRanking,onClose,onOpen,onBack,hasBack,states,onToggle,onCollection,onCategory,personal,onReading,onAdd,onQueue,onShelf,view,storageError,feedback,sync,onSync,covered}) {
  // Closing changes the address at once; the pages stay, closed to the reader, until the sheet has gone (ADR 004, K6).
  const [last,setLast]=useState(null);
  if(current&&(last?.book!==current||last?.ranking!==currentRanking))setLast({book:current,ranking:currentRanking});
  const b=current??last?.book,ranking=current?currentRanking:last?.ranking;
  const topRef=useRef(null);
  const marks=b?states[b.id]||[]:[];
- const model=b?bookDetailScreen({book:b,marks,catalog,collections:collectionMap,groups:groupMap}):null;
+ const model=b?bookDetailScreen({book:b,marks,catalog,collections:collectionMap,groups:groupMap,view}):null;
+ useCoverFlight(current?.id);
  useEffect(()=>{if(b)topRef.current?.scrollIntoView({block:'start',behavior:'instant'})},[b?.id]);
  return <BookSheet opened={!!current} onClose={onClose} covered={covered}>
   {b&&<Stack gap="xl" pb="xl" key={b.id} className="detail-content" inert={!current||undefined}>
-   <div ref={topRef} className="detail-top">{hasBack&&<Button variant="subtle" leftSection={<IconArrowLeft size={18}/>} onClick={onBack}>{model.back}</Button>}</div>
+   <div ref={topRef} className="detail-top"><div className="detail-topbar"><nav aria-label={model.breadcrumbs.label}><Breadcrumbs className="detail-breadcrumbs" separator={<IconChevronRight size={16} aria-hidden="true"/>}><Anchor component="button" type="button" onClick={onClose}>{model.breadcrumbs.home}</Anchor>{model.breadcrumbs.category&&<Anchor component="button" type="button" onClick={()=>onCategory(model.breadcrumbs.category.id)}>{model.breadcrumbs.category.label}</Anchor>}<Text component="span" c="dimmed" aria-current="page">{model.breadcrumbs.current}</Text></Breadcrumbs></nav><BookMenu words={model.menu} onQueue={onQueue} onShelf={onShelf}/></div>{hasBack&&<Button variant="subtle" leftSection={<IconArrowLeft size={18}/>} onClick={onBack}>{model.back}</Button>}</div>
    <div className="detail-hero"><div className="detail-cover-block"><BookCover key={b.id} book={b} detail read={marks.includes('okundu')}/><div className="cover-marks"><StateRibbons marks={marks}/></div></div>
     <div className="detail-heading"><Title order={2}>{model.title}</Title><StateSummary marks={marks}/><Text className="detail-author">{model.author}</Text>{model.originalTitle&&<Text className="detail-original">{model.originalTitle}</Text>}<DataList orientation="horizontal" className="detail-facts">{model.facts.map(fact=><DataList.Item key={fact.label}><DataList.ItemLabel>{fact.label}</DataList.ItemLabel><DataList.ItemValue>{fact.value}</DataList.ItemValue></DataList.Item>)}</DataList><div className="detail-translation-status"><TranslationStatus book={b}/></div>
      <Group gap={8} mt="md">{b.categories.map(id=><CategoryPill key={id} id={id} label={categoryMap[id].label} onNavigate={onCategory}/>)}</Group>

@@ -332,3 +332,7 @@ test('a source badge says where the record came from', () => {
   assert.equal(sourceBadgeScreen('atlas').label, 'Kitap Atlası');
   assert.equal(sourceBadgeScreen('kitaps').label, 'Kitaps');
 });
+
+test('the search field names the key that reaches it', () => {
+  assert.equal(screen().search.shortcut, '/');
+});

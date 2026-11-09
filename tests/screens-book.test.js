@@ -409,3 +409,16 @@ test('the translation guide lists its five criteria and its basis', () => {
   assert.equal(model.steps[0].body, 'Yayınevi, ISBN, çevirmen ve baskı yılını aynı künye sayfasından kontrol et. Aynı kitabın farklı kapakları farklı çeviriler olabilir.');
   assert.deepEqual(model.basis, { before: 'Ölçütlerin dayanağı:', link: { href: 'https://www.atanet.org/certification/how-the-exam-is-graded/error-categories/', text: 'ATA anlam, terim ve üslup değerlendirme ölçütleri' }, after: '. Bu liste bir çevirmenin yeterliğini tek başına ölçmez.' });
 });
+
+test('the book page says where it stands: the catalogue, the book\'s first subject, the book', () => {
+  const { breadcrumbs } = bookDetailScreen({ book: book({ categories: ['sf', 'felsefe'] }), marks: [], catalog: { categories: [{ id: 'sf', label: 'Bilimkurgu' }, { id: 'felsefe', label: 'Felsefe' }], books: [], collections: [] }, collections: {}, groups: {} });
+  assert.deepEqual(breadcrumbs, { label: 'Konum', home: 'Kitaplar', category: { id: 'sf', label: 'Bilimkurgu' }, current: 'Dune' });
+});
+
+test('a book without a subject skips that step', () => {
+  assert.equal(detail().breadcrumbs.category, null);
+});
+
+test('the more menu names its own actions, and says when the link was copied', () => {
+  assert.deepEqual(detail().menu, { label: 'Diğer işlemler', copy: 'Bağlantıyı kopyala', copied: 'Bağlantı kopyalandı', queue: 'Sıram', favorites: 'Favoriler', owned: 'Kitaplığım' });
+});

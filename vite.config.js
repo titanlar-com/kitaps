@@ -15,6 +15,8 @@ const vendorChunk = id => {
   if (id.endsWith('/src/catalog.json')) return 'catalog';
   if (!id.includes('node_modules')) return undefined;
   if (/[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/.test(id)) return 'react';
+  // The quick search loads when it is asked for, so its package stays out of the first load.
+  if (id.includes('@mantine/spotlight')) return undefined;
   if (id.includes('@mantine')) return 'mantine';
   if (id.includes('@tabler')) return 'icons';
   return undefined;

@@ -74,6 +74,8 @@
  --card-text-inset:6px;
  /* The footer bar's height; the page keeps this much room at its foot and when it scrolls to a control. */
  --dock-height:56px;
+ /* What the back-to-top button takes above the footer bar, so focus never lands under it. */
+ --back-to-top-room:60px;
  --cover-mark-gap:6px;
  --cover-mark-font:.875rem;
  /* The space under an article's or essay's "Makale"/"Deneme" label on a cover placeholder. */
@@ -155,7 +157,7 @@
 
 /* ---------- Base ---------- */
 *{box-sizing:border-box}
-html{font-size:100%;scroll-padding-top:96px;scroll-padding-bottom:calc(var(--dock-height) + var(--focus-gap) + var(--focus-bar) + 12px);-webkit-text-size-adjust:100%}
+html{font-size:100%;scroll-padding-top:96px;scroll-padding-bottom:calc(var(--dock-height) + var(--back-to-top-room) + var(--focus-gap) + var(--focus-bar) + 12px);-webkit-text-size-adjust:100%}
 body{margin:0;padding-bottom:calc(var(--dock-height) + env(safe-area-inset-bottom));background:var(--paper);background-image:var(--grain);color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 #root{min-height:100vh}
 button,input,a,select{touch-action:manipulation}
@@ -165,7 +167,7 @@ h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);font-weight:600;letter-spa
 a{color:var(--accent)}
 small,sub,sup{font-size:.875rem}
 ::selection{background:var(--accent-soft);color:var(--ink)}
-main{outline:none;min-height:55vh}
+#main-content{outline:none;min-height:55vh}
 .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
 .skip-link{position:fixed;top:-200px;left:1rem;z-index:1000;padding:.75rem 1rem;border-radius:var(--radius);background:var(--accent);color:var(--accent-ink);font-weight:600}
 .skip-link:focus{top:1rem}
@@ -180,9 +182,12 @@ html[data-focus-mode="keyboard"] :is(button,a,summary,[role="button"],[role="tab
 html[data-focus-mode="keyboard"] .mantine-Input-wrapper:has(:is(input,textarea,select):focus-visible)::after,
 html[data-focus-mode="keyboard"] label:has(>input:focus-visible)::after,
 html[data-focus-mode="keyboard"] .mantine-SegmentedControl-input:focus-visible+.mantine-SegmentedControl-label::after,
+html[data-focus-mode="keyboard"] .mantine-Chip-input:focus-visible+.mantine-Chip-label::after,
 html[data-focus-mode="keyboard"] .mantine-Checkbox-inner:has(>input:focus-visible)::after,
 html[data-focus-mode="keyboard"] .mantine-Switch-body:has(.mantine-Switch-input:focus-visible)::after,
 html[data-focus-mode="keyboard"] .book-card h3:has(>.title-button:focus-visible)::after{content:"";position:absolute;z-index:3;inset-inline:max(4px,10%);bottom:calc(-1 * (var(--focus-gap) + var(--focus-bar)));height:var(--focus-bar);background:var(--focus);pointer-events:none}
+/* Mantine rings a focused chip whatever the theme says; the page's one focus bar takes its place. */
+.active-filters .mantine-Chip-input:focus-visible+.mantine-Chip-label{outline:none}
 /* A segmented choice's label clips its overflow; its bar is drawn inside it, above its lower edge. */
 html[data-focus-mode="keyboard"] .mantine-SegmentedControl-input:focus-visible+.mantine-SegmentedControl-label::after{inset-inline:20%;bottom:3px}
 /* Mantine clips a button's overflow, which would hide the bar; the card title keeps its two-line
@@ -209,7 +214,7 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
  html[data-focus-mode="keyboard"] :focus-visible::after,html[data-focus-mode="keyboard"] :is(.mantine-Input-wrapper,label,.book-card h3)::after,html[data-focus-mode="keyboard"] :is(#main-content,.mantine-Drawer-body):focus-visible::before{display:none}
  html[data-focus-mode="keyboard"] :is(p,li,dd,td,blockquote) a[href]:not(.mantine-Button-root,.mantine-ActionIcon-root):focus-visible{text-decoration-thickness:auto;text-underline-offset:auto}
  /* A hidden input has no outline to show; its option keeps the bar, in the system text colour. */
- html[data-focus-mode="keyboard"] :is(.filter-choice:has(input:focus-visible),.mantine-Switch-body:has(.mantine-Switch-input:focus-visible))::after{display:block;forced-color-adjust:none;background:CanvasText}
+ html[data-focus-mode="keyboard"] :is(.filter-choice:has(input:focus-visible),.mantine-Switch-body:has(.mantine-Switch-input:focus-visible),.mantine-Chip-input:focus-visible+.mantine-Chip-label)::after{display:block;forced-color-adjust:none;background:CanvasText}
  /* Edge lines keep their meaning: the system text colour, and the highlight on the active tab only. */
  [data-edge][data-edge]::before{forced-color-adjust:none;background:CanvasText}
  .main-tabs .mantine-Tabs-tab::before{background:transparent}
@@ -304,6 +309,32 @@ html[data-focus-mode="keyboard"] .mantine-Drawer-body:focus-visible::before{cont
 
 /* ---------- Page frame ---------- */
 .app-shell{width:100%;max-width:1200px!important}
+/* The page frame is Mantine's AppShell in its static mode. The header sticks and the window scrolls, so the frame draws no grid and no scroll area of its own. */
+.page-frame[data-mode]{display:block;height:auto;overflow:visible}
+.back-to-top{--affix-z-index:140}
+/* A key cap's thick lower edge would follow its rounded corners; one even line takes its place. */
+.search-shortcut{border-bottom-width:1px}
+@media (hover:none),(pointer:coarse){.search-shortcut{display:none}}
+.cover-ratio{width:100%}
+/* A cover on its way between its card and the book page (coverFlight.js): above the sheet, below dialogs and notices. */
+.cover-flight{position:fixed;z-index:250;object-fit:contain;transform-origin:0 0;pointer-events:none}
+.cover-stage[data-flying] img{visibility:hidden}
+.detail-topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--stack-gap)}
+.detail-topbar nav{flex:1 1 auto;min-width:0}
+/* One line: the book's full title stands right below, so the last step may end in an ellipsis. */
+.detail-breadcrumbs{flex-wrap:nowrap;align-items:center}
+.detail-breadcrumbs .mantine-Breadcrumbs-breadcrumb{flex:0 1 auto;min-width:0;white-space:normal;font-size:var(--text-md)}
+.detail-breadcrumbs .mantine-Breadcrumbs-breadcrumb:first-child{flex:none}
+.detail-breadcrumbs .mantine-Breadcrumbs-breadcrumb:last-child{flex:1 1 0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.detail-breadcrumbs .mantine-Breadcrumbs-separator{flex:none}
+/* On a phone the book's title stands just below, so the path stops at the subject. */
+@media (max-width:47.99em){.detail-breadcrumbs{flex-wrap:wrap}.detail-breadcrumbs .mantine-Breadcrumbs-breadcrumb{overflow-wrap:anywhere}.detail-breadcrumbs .mantine-Breadcrumbs-breadcrumb:last-child,.detail-breadcrumbs .mantine-Breadcrumbs-separator:nth-last-child(2){display:none}}
+.detail-breadcrumbs button.mantine-Breadcrumbs-breadcrumb{min-height:var(--touch-target)}
+.notes-layout{display:grid;gap:var(--card-gap)}
+.notes-contents-title{margin-bottom:var(--gap-xs);color:var(--ink-2);font-weight:600}
+.notes-contents .mantine-TableOfContents-control{display:block;width:100%;min-height:var(--touch-target);padding-block:.5rem;text-align:start}
+[data-toc]{scroll-margin-top:calc(var(--header-block,64px) + var(--stack-gap))}
+@media (min-width:64em){.notes-layout{grid-template-columns:15rem minmax(0,1fr);align-items:start}.notes-contents-nav{position:sticky;top:calc(var(--header-block,64px) + var(--stack-gap))}}
 .site-header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line);box-shadow:none;transition:box-shadow var(--motion-move) var(--motion-ease),border-color var(--motion-move) var(--motion-ease)}
 /* Once the page scrolls, the header lifts off it (docs/UI-REDESIGN.md, phase 2). */
 .site-header[data-scrolled]{border-bottom-color:transparent;box-shadow:var(--shadow-md)}
@@ -377,8 +408,8 @@ html[data-focus-mode="keyboard"] .main-tabs .mantine-Tabs-tab:focus-visible::aft
  .main-tabs .mantine-Tabs-tabSection{display:none}
  .main-tabs .mantine-Tabs-tab{flex:1 1 auto;padding:0 4px}
 }
-main{padding-top:20px;padding-bottom:32px}
-@media (max-width:39.99em){main{padding-top:12px}}
+#main-content{padding-top:20px;padding-bottom:32px}
+@media (max-width:39.99em){#main-content{padding-top:12px}}
 
 /* ---------- Catalog controls ---------- */
 .search-panel{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
@@ -390,8 +421,7 @@ main{padding-top:20px;padding-bottom:32px}
 .search-tools .mantine-Button-root{min-height:52px;padding-inline:16px;border-radius:var(--radius)}
 .search-tools .mantine-Input-input{min-height:52px;border-radius:var(--radius);font-weight:500}
 .active-filters{grid-column:1/-1}
-.active-filters .mantine-Button-root{height:auto;min-height:40px;padding:.4rem .75rem;border-radius:var(--radius);font-weight:600}
-.active-filters .mantine-Button-label{white-space:normal;text-align:left}
+.active-filters .mantine-Chip-label{height:auto;min-height:var(--touch-target);padding-block:.4rem;font-weight:600;white-space:normal;text-align:start}
 @media (min-width:40em){
  .search-panel{grid-template-columns:minmax(0,1fr) auto;align-items:start}
  .search-tools{grid-template-columns:auto 220px}
@@ -466,7 +496,7 @@ main{padding-top:20px;padding-bottom:32px}
    Size containment keeps WebKit from stretching the frame to a taller cover's own proportions, and lets
    the cover be capped at the frame's height (100cqh) in every engine; engines without container
    units keep the frame through max-height:100%, as Chromium and Firefox always have. */
-.cover-stage{position:relative;display:flex;align-items:flex-end;justify-content:center;width:100%;aspect-ratio:2/3;container-type:size;margin:0;padding:0;border:0;background:none;color:var(--muted)}
+.cover-stage{position:relative;display:flex;align-items:flex-end;justify-content:center;width:100%;container-type:size;margin:0;padding:0;border:0;background:none;color:var(--muted)}
 .cover-stage::before{content:"";position:absolute;inset:0;border-radius:var(--radius-xs) var(--radius-lg) var(--radius-lg) var(--radius-xs);background:var(--surface-2);opacity:0;pointer-events:none;transition:opacity var(--motion-move) var(--motion-ease)}
 .cover-stage:has(>img:not([data-loaded]))::before{opacity:1}
 .cover-open{cursor:pointer;border-radius:var(--radius-sm)}
@@ -818,7 +848,7 @@ main{padding-top:20px;padding-bottom:32px}
 }
 @media print{
  .cover-stage img{opacity:1}
- .site-header,.main-tabs,.search-panel,.site-footer,.catalog-pagination,.reading-route,.priority-summary,.book-actions{display:none}
+ .site-header,.main-tabs,.search-panel,.site-footer,.back-to-top,.catalog-pagination,.reading-route,.priority-summary,.book-actions{display:none}
  body{background:#fff}
  .books-grid{--books-columns:3}
  .book-card{break-inside:avoid}

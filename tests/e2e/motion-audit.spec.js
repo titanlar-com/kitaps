@@ -116,3 +116,16 @@ test('a saved route\'s check box takes the control timing', async ({ page, conte
   expect(await seenCount(page), 'the box moved').toBeGreaterThan(1);
   expect(await offenders(page)).toEqual([]);
 });
+
+test('the quick search opens and closes on the curve and durations of the table', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'A phone has no shortcut keys; the same panel opens from the footer menu.');
+  await page.goto('./?sort=title');
+  await expect(page.locator('.book-card').first()).toBeVisible();
+  await page.keyboard.press('Control+k');
+  await expect(page.getByRole('textbox', { name: 'Kitap ya da bölüm ara' })).toBeFocused();
+  await pause(page);
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('textbox', { name: 'Kitap ya da bölüm ara' })).toHaveCount(0);
+  expect(await seenCount(page)).toBeGreaterThan(0);
+  expect(await offenders(page)).toEqual([]);
+});
