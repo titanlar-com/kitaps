@@ -57,13 +57,13 @@ const VIEW_ICONS={books:IconBook2,queue:IconListNumbers,collections:IconLayersIn
 const TOAST_MOTION={in:{opacity:1,translate:'0 0'},out:{opacity:0,translate:`0 ${MOTION_PX.rise}px`,pointerEvents:'none'},transitionProperty:'opacity, translate'};
 
 function AtlasApp({kitaplik}) {
- const {commands:nav}=kitaplik.navigation;
+ // Everything this page asks of the core goes through one door (ADR 003, K7).
+ const {execute}=kitaplik;
  const {route}=useViewModel(kitaplik.navigation);
  const {filters,view,sort,book,pageSize}=route;
  // The reader's marks, records and queue have one owner (src/core/personal/library.ts).
  const library=kitaplik.personal;
  const {states,personal,saved:personalSaved}=useViewModel(library);
- const {commands:personalCommands}=library;
  const githubSync=useGitHubStateSync({bookIds,source:library});
  const [opened,setOpened]=useState(false);
  const [draft,setDraft]=useState(emptyFilters);
@@ -71,7 +71,7 @@ function AtlasApp({kitaplik}) {
  const [copied,setCopied]=useState(false);
  // "Satın aldıklarımı gösterme": on by default, remembered on this device.
  const {hideOwned}=useViewModel(kitaplik.settings);
- const setHideOwned=kitaplik.settings.commands.setHideOwned;
+ const setHideOwned=on=>execute({type:'setHideOwned',on});
  const [transfer,setTransfer]=useState(null);const [toastShown,setToastShown]=useState(false);
  // The sticky header's height, for the main content's focus bar just under it (styles.css).
  const headerRef=useRef(null);
@@ -108,11 +108,11 @@ function AtlasApp({kitaplik}) {
  },[]);
  const resultsRef=useRef(null);
  const openedFromCatalog=useRef(false);
- const navigate=nav.go;
- const closeBook=()=>{if(openedFromCatalog.current){openedFromCatalog.current=false;nav.back()}else nav.closeBook()};
+ const navigate=next=>execute({type:'go',route:next});
+ const closeBook=()=>{if(openedFromCatalog.current){openedFromCatalog.current=false;execute({type:'back'})}else execute({type:'closeBook'})};
 // The back button forgets the books walked through; the route itself follows in the Navigator.
  useEffect(()=>{const change=()=>{openedFromCatalog.current=false;setBookTrail([])};window.addEventListener('hashchange',change);window.addEventListener('popstate',change);return()=>{window.removeEventListener('hashchange',change);window.removeEventListener('popstate',change)}},[]);
- const changeFilters=nav.changeFilters;
+ const changeFilters=next=>execute({type:'changeFilters',filters:next});
  // The shelf, the filtered list and the page shown (src/core/catalog/listingViewModel.ts).
  const {shelf:shelfBooks,ownedCount,favoriteCount,total,pages,page:currentPage,books:displayed,showsHiddenPurchases,publicListing}=useViewModel(kitaplik.listing);
  useEffect(()=>applySeo(seoState({route:{...route,page:currentPage},catalog,count:publicListing.total,currentPage,totalPages:publicListing.pages,displayed:publicListing.books,base:addressBase(window.location)})),[route,currentPage,publicListing]);
@@ -138,20 +138,20 @@ function AtlasApp({kitaplik}) {
  const draftCount=draftListing?.filtered.length??0;
  const activeCount=filterCount({...filters,query:''});
  const onToggle=(id,key,trigger=document.activeElement)=>{
-  const {before,after}=personalCommands.toggleMark(id,key);
+  const {before,after}=execute({type:'toggleMark',id,key});
   const owned=after.includes('alindi');
   // A reading mark also puts the book on Kitaplığım (toggleState), and the reader is told so.
   if(key==='alindi'||(owned&&!before.includes('alindi'))){transferOrigin.current=trigger;setTransfer({id,owned});setToastShown(true);}
  };
- const onReading=personalCommands.editReading;
- const onAdd=personalCommands.addToQueue;
+ const onReading=(id,patch)=>execute({type:'editReading',id,patch});
+ const onAdd=id=>execute({type:'addToQueue',id});
  const onQueue=()=>{navigate({...route,view:'queue',book:null,page:1});window.scrollTo({top:0,behavior:'instant'})};
- const onOpen=id=>{setBookTrail(book?[...bookTrail,book]:[]);if(!book){openedFromCatalog.current=true;nav.openBook(id)}else nav.showBook(id)};
- const previousBook=()=>{const id=bookTrail.at(-1);if(id){setBookTrail(bookTrail.slice(0,-1));nav.showBook(id)}};
+ const onOpen=id=>{setBookTrail(book?[...bookTrail,book]:[]);if(!book){openedFromCatalog.current=true;execute({type:'openBook',id})}else execute({type:'showBook',id})};
+ const previousBook=()=>{const id=bookTrail.at(-1);if(id){setBookTrail(bookTrail.slice(0,-1));execute({type:'showBook',id})}};
  const goView=next=>{navigate({...route,view:next,book:null,page:1,...(viewById[next]?.shelf?{filters:emptyFilters()}:{})});window.scrollTo({top:0,behavior:'instant'})};
  const onBrowse=()=>{navigate({...route,view:'books',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})};
  const goCollection=(id,gid)=>{navigate({...route,view:'books',book:null,page:1,filters:{...emptyFilters(),collections:[id],groups:gid?[gid]:[]}});window.scrollTo({top:0,behavior:'instant'})};
- const goCategory=id=>{nav.openCategory(id);window.scrollTo({top:0,behavior:'instant'})};
+ const goCategory=id=>{execute({type:'openCategory',id});window.scrollTo({top:0,behavior:'instant'})};
  const changePage=p=>{navigate({...route,page:p,book:null});resultsRef.current?.scrollIntoView({behavior:'instant',block:'start'})};
  // The library toast sits above dialogs, so it closes before the connect dialog opens over it.
  const syncOpener=useRef(null);
@@ -171,11 +171,11 @@ function AtlasApp({kitaplik}) {
  const asking=Boolean(githubSync.mergePrompt);
  const copyLink=async()=>{try{await navigator.clipboard.writeText(window.location.href);setCopied(true);setTimeout(()=>setCopied(false),2000)}catch{setCopied(false)}};
  // The toast leaves the way it came: the last notice stays rendered while it fades out.
- const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true"><Transition mounted={toastShown&&Boolean(transfer)} duration={MOTION_MS.overlay} exitDuration={MOTION_MS.overlay} timingFunction={MOTION_EASE} transition={TOAST_MOTION} onExited={()=>setTransfer(null)}>{style=>transfer&&<LibraryToast key={`${transfer.id}-${transfer.owned}`} style={style} leaving={!toastShown} book={byId[transfer.id]} owned={transfer.owned} onClose={dismissTransfer} onUndo={()=>{personalCommands.toggleMark(transfer.id,'alindi');dismissTransfer()}}/>}</Transition></div>;
+ const transferNotice=<div className="library-toast-region" role="status" aria-live="polite" aria-atomic="true"><Transition mounted={toastShown&&Boolean(transfer)} duration={MOTION_MS.overlay} exitDuration={MOTION_MS.overlay} timingFunction={MOTION_EASE} transition={TOAST_MOTION} onExited={()=>setTransfer(null)}>{style=>transfer&&<LibraryToast key={`${transfer.id}-${transfer.owned}`} style={style} leaving={!toastShown} book={byId[transfer.id]} owned={transfer.owned} onClose={dismissTransfer} onUndo={()=>{execute({type:'toggleMark',id:transfer.id,key:'alindi'});dismissTransfer()}}/>}</Transition></div>;
  const activeTab=viewById[view]?.shelf?'books':HEADER_VIEWS.includes(view)?view:null;
  return <><a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();document.getElementById('main-content').focus()}}>İçeriğe geç</a>
   <Tabs className="main-section-tabs" value={activeTab} onChange={v=>v&&navigate({...route,view:v,book:null,page:1})}>
-    <header className="site-header" ref={headerRef}><div className="site-header-inner"><Group renderRoot={props=><a href="./" {...props}/>} className="brand-link" aria-label="Kitaplık · filtresiz ana sayfa" gap={6} wrap="nowrap" onClick={e=>{if(e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey){e.preventDefault();nav.goHome();setBookTrail([]);window.scrollTo({top:0,behavior:'instant'})}}}><ThemeIcon size={42} radius="md" color="brand"><BrandMark size={24}/></ThemeIcon></Group><Tabs.List ref={setTabList} className="main-tabs" aria-label="Kitaplık bölümleri">{HEADER_VIEWS.map(id=>{const Icon=VIEW_ICONS[id];return <Tabs.Tab key={id} ref={tabRefs[id]} value={id} data-edge="bottom" leftSection={<Icon size={19}/>}>{viewById[id].label}</Tabs.Tab>})}<FloatingIndicator className="main-tabs-indicator" data-edge="bottom" target={activeTab?tabNodes[activeTab]:null} parent={tabList} aria-hidden="true"/></Tabs.List><Tooltip label="Satın aldıklarımı gösterme" withArrow><Switch className="header-switch" label="Satın aldıklarımı gösterme" checked={hideOwned} onChange={e=>setHideOwned(e.currentTarget.checked)} thumbIcon={<IconShoppingBagX size={12} stroke={2.5} aria-hidden="true"/>}/></Tooltip><nav className="header-shortcuts" aria-label="Hızlı erişim"><Tooltip label="Kızım için"><ActionIcon className="header-children" size={48} variant={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'filled':'subtle'} aria-label="Kızım için" aria-current={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'page':undefined} onClick={()=>goCategory('children')}><GirlIcon size={29}/></ActionIcon></Tooltip><Tooltip label={`Favoriler: ${countText(favoriteCount)} kitap`}><ActionIcon className="header-favorites" size={48} variant={view==='favorites'?'filled':'subtle'} aria-label={`Favoriler: ${countText(favoriteCount)} kitap`} aria-current={view==='favorites'?'page':undefined} onClick={()=>{navigate({...route,view:'favorites',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><IconHeart size={29} fill={view==='favorites'?'currentColor':'none'}/>{favoriteCount>0&&<span className="shortcut-count" aria-hidden="true">{countText(favoriteCount)}</span>}</ActionIcon></Tooltip><Tooltip label={`Kitaplığım: ${countText(ownedCount)} kitap`}><ActionIcon className="header-library" size={48} variant={view==='owned'?'filled':'subtle'} aria-label={`Kitaplığım: ${countText(ownedCount)} kitap`} aria-current={view==='owned'?'page':undefined} onClick={()=>{navigate({...route,view:'owned',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><BookshelfIcon size={29}/>{ownedCount>0&&<span className="shortcut-count" aria-hidden="true">{countText(ownedCount)}</span>}</ActionIcon></Tooltip></nav><ThemeTweaker/></div></header>
+    <header className="site-header" ref={headerRef}><div className="site-header-inner"><Group renderRoot={props=><a href="./" {...props}/>} className="brand-link" aria-label="Kitaplık · filtresiz ana sayfa" gap={6} wrap="nowrap" onClick={e=>{if(e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey){e.preventDefault();execute({type:'goHome'});setBookTrail([]);window.scrollTo({top:0,behavior:'instant'})}}}><ThemeIcon size={42} radius="md" color="brand"><BrandMark size={24}/></ThemeIcon></Group><Tabs.List ref={setTabList} className="main-tabs" aria-label="Kitaplık bölümleri">{HEADER_VIEWS.map(id=>{const Icon=VIEW_ICONS[id];return <Tabs.Tab key={id} ref={tabRefs[id]} value={id} data-edge="bottom" leftSection={<Icon size={19}/>}>{viewById[id].label}</Tabs.Tab>})}<FloatingIndicator className="main-tabs-indicator" data-edge="bottom" target={activeTab?tabNodes[activeTab]:null} parent={tabList} aria-hidden="true"/></Tabs.List><Tooltip label="Satın aldıklarımı gösterme" withArrow><Switch className="header-switch" label="Satın aldıklarımı gösterme" checked={hideOwned} onChange={e=>setHideOwned(e.currentTarget.checked)} thumbIcon={<IconShoppingBagX size={12} stroke={2.5} aria-hidden="true"/>}/></Tooltip><nav className="header-shortcuts" aria-label="Hızlı erişim"><Tooltip label="Kızım için"><ActionIcon className="header-children" size={48} variant={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'filled':'subtle'} aria-label="Kızım için" aria-current={view==='books'&&filters.categories.length===1&&filters.categories[0]==='children'?'page':undefined} onClick={()=>goCategory('children')}><GirlIcon size={29}/></ActionIcon></Tooltip><Tooltip label={`Favoriler: ${countText(favoriteCount)} kitap`}><ActionIcon className="header-favorites" size={48} variant={view==='favorites'?'filled':'subtle'} aria-label={`Favoriler: ${countText(favoriteCount)} kitap`} aria-current={view==='favorites'?'page':undefined} onClick={()=>{navigate({...route,view:'favorites',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><IconHeart size={29} fill={view==='favorites'?'currentColor':'none'}/>{favoriteCount>0&&<span className="shortcut-count" aria-hidden="true">{countText(favoriteCount)}</span>}</ActionIcon></Tooltip><Tooltip label={`Kitaplığım: ${countText(ownedCount)} kitap`}><ActionIcon className="header-library" size={48} variant={view==='owned'?'filled':'subtle'} aria-label={`Kitaplığım: ${countText(ownedCount)} kitap`} aria-current={view==='owned'?'page':undefined} onClick={()=>{navigate({...route,view:'owned',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})}}><BookshelfIcon size={29}/>{ownedCount>0&&<span className="shortcut-count" aria-hidden="true">{countText(ownedCount)}</span>}</ActionIcon></Tooltip></nav><ThemeTweaker/></div></header>
   <Container size={1200} className="app-shell" px={{base:8,sm:24}}>
 
    <main id="main-content" tabIndex={-1}>
@@ -188,7 +188,7 @@ function AtlasApp({kitaplik}) {
      <div className="catalog-bar">
      <div className="search-panel" role="search">
       <TextInput className="catalog-search" label={view==='owned'?'Kitaplığımda ara':view==='favorites'?'Favorilerimde ara':'Katalogda ara'} placeholder="Kitap, yazar, çevirmen…" leftSection={<IconSearch size={21}/>} rightSectionWidth={44} rightSection={filters.query?<ActionIcon variant="subtle" aria-label="Aramayı temizle" onClick={()=>changeFilters({...filters,query:''})}><IconX size={20}/></ActionIcon>:null} value={filters.query} onChange={e=>changeFilters({...filters,query:e.currentTarget.value})}/>
-      <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setToastShown(false);setDraft(filters);setSheetShown(true);setOpened(true)}}>Filtreler{activeCount?` · ${activeCount}`:''}</Button><WrappingSelect aria-label="Kitapları sırala" value={sort} onChange={nav.changeSort} data={[{value:'reading',label:'Okuma önceliği'},{value:'shared',label:'En çok kesişen'},{value:'title',label:'Kitap adı · A–Z'},{value:'author',label:'Yazar · A–Z'},{value:'newest',label:'Yayın yılı · yeni'},{value:'added',label:'Eklenme · yeni'},{value:'saved',label:'Favoriler önce'}]}/></div>
+      <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setToastShown(false);setDraft(filters);setSheetShown(true);setOpened(true)}}>Filtreler{activeCount?` · ${activeCount}`:''}</Button><WrappingSelect aria-label="Kitapları sırala" value={sort} onChange={next=>execute({type:'changeSort',sort:next})} data={[{value:'reading',label:'Okuma önceliği'},{value:'shared',label:'En çok kesişen'},{value:'title',label:'Kitap adı · A–Z'},{value:'author',label:'Yazar · A–Z'},{value:'newest',label:'Yayın yılı · yeni'},{value:'added',label:'Eklenme · yeni'},{value:'saved',label:'Favoriler önce'}]}/></div>
       <ActiveFilters filters={filters} onChange={changeFilters}/>
      </div>
      {view==='books'&&!filterCount(filters)&&<ReadingSummary summary={summary} onSelect={onSummary}/>}
@@ -200,11 +200,11 @@ function AtlasApp({kitaplik}) {
      {total?<><div className="books-grid">{displayed.map(b=><BookCard key={b.id} book={b} ranking={readingRanking.byId[b.id]} states={states} onToggle={onToggle} onOpen={onOpen} queue={personal.queue} onAdd={onAdd} onQueue={onQueue}/>)}</div><CatalogPagination page={currentPage} total={pages} count={total} pageSize={pageSize} onChange={changePage} onPageSize={size=>navigate({...route,page:1,pageSize:size,book:null})} hrefForPage={p=>window.location.pathname+'?'+encodeRoute({...route,page:p,book:null},catalog)}/></>:(view==='owned'&&!ownedCount)||(view==='favorites'&&!favoriteCount)?<ShelfEmpty shelf={view} onBrowse={onBrowse}/>:<EmptyState icon={IconSearch} title="Bu seçimde kitap yok." action={<Button variant="light" onClick={()=>changeFilters(emptyFilters())}>Filtreleri temizle</Button>}>Bir filtreyi kaldırabilir veya aramanı değiştirebilirsin.</EmptyState>}
     </>}
     </Tabs.Panel>
-    <Tabs.Panel value="queue">{view==='queue'&&<><Title order={1} className="visually-hidden">Okuma sıram</Title><ReadingQueue queue={personal.queue} books={byId} reading={personal.reading} states={states} onMove={personalCommands.moveInQueue} onRemove={personalCommands.removeFromQueue} onOpen={onOpen} onBrowse={onBrowse} BookCover={ThumbCover}/><ReadingSummary summary={summary} onSelect={onSummary}/></>}</Tabs.Panel>
+    <Tabs.Panel value="queue">{view==='queue'&&<><Title order={1} className="visually-hidden">Okuma sıram</Title><ReadingQueue queue={personal.queue} books={byId} reading={personal.reading} states={states} onMove={(id,direction)=>execute({type:'moveInQueue',id,direction})} onRemove={id=>execute({type:'removeFromQueue',id})} onOpen={onOpen} onBrowse={onBrowse} BookCover={ThumbCover}/><ReadingSummary summary={summary} onSelect={onSummary}/></>}</Tabs.Panel>
     <Tabs.Panel value="collections">{view==='collections'&&<><Title order={1} className="visually-hidden">Kitap kümeleri</Title><Collections onCollection={goCollection} onGroup={goCollection} states={states}/></>}</Tabs.Panel>
     {view==='fairs'&&<React.Suspense fallback={<PageLoading>Kitap fuarları yükleniyor…</PageLoading>}><BookFairsPage/></React.Suspense>}
     <Tabs.Panel value="bookstores">{view==='bookstores'&&<React.Suspense fallback={<PageLoading>Kitapçılar yükleniyor…</PageLoading>}><BookstoresPage/></React.Suspense>}</Tabs.Panel>
-    {view==='notes'&&<section aria-labelledby="notes-heading"><Title id="notes-heading" order={1} className="visually-hidden">Kaynaklar ve notlar</Title><React.Suspense fallback={<PageLoading>Notlar yükleniyor…</PageLoading>}><NotesPage states={states} personal={personal} onRestore={personalCommands.restoreBackup} sync={githubSync}/></React.Suspense></section>}
+    {view==='notes'&&<section aria-labelledby="notes-heading"><Title id="notes-heading" order={1} className="visually-hidden">Kaynaklar ve notlar</Title><React.Suspense fallback={<PageLoading>Notlar yükleniyor…</PageLoading>}><NotesPage states={states} personal={personal} onRestore={(marks,input)=>execute({type:'restoreBackup',marks,input})} sync={githubSync}/></React.Suspense></section>}
    </main>
    <FooterMenu covered={asking} current={viewById[view]?.label} groups={[
     {id:'sections',title:'Bölümler',items:[

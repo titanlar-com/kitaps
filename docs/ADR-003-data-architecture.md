@@ -109,7 +109,8 @@ export interface ViewModel<S, C> extends ReadableStore<S> {
 
 ### K7. Komutlar türlü yöntemlerdir
 
-- Görünüm modelleri komutlarını türlü yöntemler olarak sunar: örneğin `toggleMark`, `editReading`, `addToQueue`, `openBook`, `setHideOwned`. Codex'in önerdiği tek bir `execute(command)` birleşimi seçilmedi. Bir komut dağıtıcısına ve komut günlüğüne ihtiyaç yok. Yöntemler okurken ve kullanırken daha açıktır.
+- Görünüm modelleri komutlarını türlü yöntemler olarak sunar: örneğin `toggleMark`, `editReading`, `addToQueue`, `openBook`, `setHideOwned`.
+- Ekranlar bu yöntemleri doğrudan çağırmaz. Her istek tek kapıdan geçer: `kitaplik.execute({ type: 'toggleMark', id, key })` (`src/core/commands.ts`). Bu kapıyı Codex önermişti, ilk kararda alınmamıştı, sahip 9 Kasım 2026'da istedi. Kapı yeni bir davranış eklemez, yöntemin sonucunu aynen döndürür. Her yöntemin bir komut türü vardır, bilinmeyen tür reddedilir ve `tests/core-execute.test.js` ekranların `.commands` alanına uzanmadığını denetler. `correctPage` çekirdeğin kendi düzeltmesidir. Eşitleme denetleyicisi cephenin parçası olmadığı için kendi görünüm modeliyle çalışır.
 - Bir komutun sonucu, değerin bellekte uygulandığını ve yerel kaydın başarılı olup olmadığını ayrı gösterir. GitHub'a gönderim yalnız eşitleme görünüm modelinde görünür. Hiçbir komut, gerçekten gönderilmeden "eşitlendi" demez.
 - Bileşenler ham `setState` fonksiyonu almaz. Notlar sayfasının yedek yüklemesi de bir komuttur.
 - Eşitleme, uzak okumayı tek ve bölünmez bir adımla uygular (`applyRemote`). Böylece uzaktan gelen bir değişiklik yeni bir yerel düzenleme sanılmaz.
@@ -198,7 +199,7 @@ Arayüzü yeniden tasarlayan iş, yeni türetilmiş veriyi bileşenlerin içine 
 Bu öneriler ilk kararda alınmamıştı. Sahip 9 Kasım 2026'da hepsinin yapılmasını istedi. Her maddenin durumu yanında yazılıdır.
 
 - **Codex:**
-  - Tek bir `execute(command)` birleşimi (K7).
+  - Tek bir `execute(command)` birleşimi (K7). **Yapıldı.**
   - Tarayıcıda tam katalog doğrulaması (K10). **Yapıldı.** `openCatalog` artık her yerde tam sözleşmeyi çalıştırır, yalnız sürüme bakan kip kaldırıldı.
   - Eski tasarım için ekran görüntüsü tabanları (K11).
   - Yedek yüklemenin sürüme göre ayrılması. **Yapıldı.** `src/core/personal/backup.js` her biçimi kendi okuyucusuyla okur. Daha yeni sürümden gelen dosyayı, eşitleme yedeğini ve yedek olmayan dosyayı bütünüyle reddeder ve okura nedenini söyler.

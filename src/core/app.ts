@@ -4,6 +4,7 @@ import { createCatalogListingViewModel, type CatalogListingSnapshot, type Listin
 import { createNavigator, type LocationPort, type NavigationCommands, type NavigationSnapshot, type RouteCodec } from './navigation/navigator.ts';
 import { createPersonalLibrary, type PersonalLibrary } from './personal/library.ts';
 import { createSettings, type KeyValueStore, type SettingsSnapshot } from './settings/settings.ts';
+import { createExecute, type Execute } from './commands.ts';
 
 /** What the composition root hands to any UI (ADR 003, K2): the feature view models. */
 export interface Kitaplik {
@@ -13,6 +14,8 @@ export interface Kitaplik {
   readonly listing: ViewModel<CatalogListingSnapshot, Record<string, never>>;
   /** The one owner of the reader's marks, reading records and queue. */
   readonly personal: PersonalLibrary;
+  /** The one door a screen uses to ask the core for anything (K7). */
+  readonly execute: Execute;
   dispose(): void;
 }
 
@@ -50,6 +53,7 @@ export function createKitaplik(ports: KitaplikPorts): Kitaplik {
   correct();
   return {
     catalog, navigation, settings, listing, personal,
+    execute: createExecute({ navigation: navigation.commands, personal: personal.commands, settings: settings.commands }),
     dispose() { for (const stop of stops) stop(); listing.dispose(); navigation.dispose(); settings.dispose(); personal.dispose(); },
   };
 }
