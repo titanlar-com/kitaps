@@ -1,0 +1,2 @@
+/* The cancelled rem scale is for the clip alone. What is inside the note keeps its own sizes. */
+.folded-note .mantine-Spoiler-content > div { --mantine-scale: 1; }

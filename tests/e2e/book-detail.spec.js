@@ -105,3 +105,44 @@ for (const width of [320, 390, 1280]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 }
+
+// Mantine folds a note in rem but decides whether to offer the control in pixels, so with the
+// browser's text doubled a note that fits whole used to get a control that opened nothing.
+const doubledText = async browser => {
+  const context = await browser.newContext({ viewport: { width: 320, height: 800 } });
+  await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.fulfill({ json: EMPTY }));
+  await context.route('https://api.github.com/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
+  await context.addInitScript(() => document.addEventListener('DOMContentLoaded', () => { document.documentElement.style.fontSize = '200%'; }));
+  return context;
+};
+const openNote = async (page, index) => {
+  await page.locator('.detail-drawer .mantine-Accordion-control', { hasText: 'Kaynaklar ve küme' }).click();
+  const note = page.locator('.detail-note').nth(index);
+  await expect(note).toBeVisible();
+  return { clip: note.locator('.mantine-Spoiler-content'), control: note.locator('.mantine-Spoiler-control') };
+};
+
+test('at 200% text a note that fits whole offers no control that would open nothing', async ({ browser }) => {
+  const context = await doubledText(browser);
+  const page = await context.newPage();
+  await page.goto('./?book=momtest');
+  const { clip, control } = await openNote(page, 0);
+  await expect.poll(() => clip.evaluate(node => node.firstElementChild.getBoundingClientRect().height)).toBeGreaterThan(132);
+  await expect.poll(() => clip.evaluate(node => node.scrollHeight - node.clientHeight)).toBeLessThanOrEqual(1);
+  await expect(control).toHaveCount(0);
+  await context.close();
+});
+
+test('at 200% text a long note still folds, at twice the height, and its control opens it', async ({ browser }) => {
+  const context = await doubledText(browser);
+  const page = await context.newPage();
+  await page.goto('./?book=thinkingsociologically');
+  const { clip, control } = await openNote(page, 1);
+  await expect(control).toBeVisible();
+  const folded = await clip.evaluate(node => node.clientHeight);
+  expect(folded).toBe(264);
+  expect(await clip.evaluate(node => node.scrollHeight)).toBeGreaterThan(folded + 1);
+  await control.click();
+  await expect.poll(() => clip.evaluate(node => node.clientHeight)).toBeGreaterThan(folded);
+  await context.close();
+});

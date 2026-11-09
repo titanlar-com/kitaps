@@ -1,9 +1,10 @@
 // Moved verbatim from App.jsx (architecture plan, phase 1, 7 November 2026).
 import { useEffect, useRef, useState } from 'react';
-import { Accordion, Alert, Anchor, Badge, Box, Button, Group, Paper, Spoiler, Stack, Text, Title } from '@mantine/core';
+import { Accordion, Alert, Anchor, Badge, Box, Button, Group, Paper, Stack, Text, Title } from '@mantine/core';
 import { IconArrowLeft, IconArrowRight, IconArrowUpRight, IconCheck } from '@tabler/icons-react';
 import ReadingPanel, { QueueButton } from '../components/ReadingPanel';
 import ReadingJourney from '../components/ReadingJourney';
+import { FoldedNote } from '../components/FoldedNote';
 import { DataList } from './dataList';
 import './BookDetail.css';
 import BookDiscovery, { ReadingPurpose } from '../components/BookDiscovery';
@@ -50,7 +51,7 @@ export function BookDetail({book:current,ranking:currentRanking,onClose,onOpen,o
    <Accordion multiple variant="separated" radius="lg" className="detail-sections">
     <Accordion.Item value="personal"><Accordion.Control>Okuma kaydım ve kişisel notlarım</Accordion.Control><Accordion.Panel><ReadingPanel book={b} record={personal.reading[b.id]} states={states[b.id]||[]} onToggle={onToggle} onChange={onReading} queue={personal.queue} onAdd={onAdd} onQueue={onQueue} storageError={storageError}/></Accordion.Panel></Accordion.Item>
     <Accordion.Item value="sources"><Accordion.Control>Kaynaklar ve küme üyelikleri · {b.collectionIds.length}</Accordion.Control><Accordion.Panel><Stack gap="md"><Group gap={8}>{b.origins.map(id=><SourceBadge id={id} key={id}/>)}</Group>
-     {b.notes.map((n,i)=><Box className="note-block" key={i}><Spoiler className="detail-note" maxHeight={132} showLabel="Devamını göster" hideLabel="Kısalt"><Text>{n.text}</Text></Spoiler><Text c="dimmed" mt={6}>{n.source}</Text></Box>)}
+     {b.notes.map((n,i)=><Box className="note-block" key={i}><FoldedNote className="detail-note" fold={132} showLabel="Devamını göster" hideLabel="Kısalt"><Text>{n.text}</Text></FoldedNote><Text c="dimmed" mt={6}>{n.source}</Text></Box>)}
      {b.collectionIds.map(id=>{const memberships=b.memberships.filter(m=>m.collectionId===id);return <div key={id} className="membership"><Button variant="subtle" className="membership-link" onClick={()=>onCollection(id)} rightSection={<IconArrowRight size={18}/>}>{collectionMap[id].title}</Button><Text c="dimmed" mt="sm">{[...new Set(memberships.map(m=>groupMap[m.groupId].title))].join(' · ')}</Text>{memberships.filter(m=>m.award).map(m=><Badge key={m.groupId} mt="sm">{m.awardYear} · {m.award}</Badge>)}{[...new Set(memberships.map(m=>m.role).filter(Boolean))].map(role=><Badge key={role} mt="sm" variant="light">{role}</Badge>)}{memberships.find(m=>m.source)&&<Anchor className="source-link" href={memberships.find(m=>m.source).source} target="_blank" rel="noreferrer">Özgün kaynağı aç <IconArrowUpRight size={17}/></Anchor>}</div>})}
      {b.tags.length>0&&<Text c="dimmed">Kaynak dosyanın etiketleri: {b.tags.map(t=>catalog.sourceTags[t]).join(' · ')}.</Text>}
     </Stack></Accordion.Panel></Accordion.Item>
