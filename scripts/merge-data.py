@@ -1,6 +1,6 @@
 """Merge the three supplied datasets, preserving source records and memberships."""
 from pathlib import Path
-import json,re,unicodedata,hashlib
+import json,re,sys,unicodedata,hashlib
 from datetime import date
 from translation_availability import validate_manifest
 from bibliographic_facts import validate_facts
@@ -515,6 +515,7 @@ def checked_dates():
 latest=max(value for value in checked_dates() if isinstance(value,str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}',value))
 updated=f"{int(latest[8:10])} {MONTHS[int(latest[5:7])-1]} {latest[:4]}"
 result={'schemaVersion':1,'updated':updated,'updatedOn':latest,'readingGuides':readingGuides,'books':list(books.values()),'collections':collections,'groups':groups,'categories':[{'id':k,'label':v,'count':sum(k in b['categories'] for b in books.values())} for k,v in categoryNames.items()],'sourceTags':local['tags'],'mapping':mapping,'sourceCounts':{'atlasEntries':sum(len(g['books']) for c in atlas['collections'] for g in c['groups']),'localBooks':len(local['books']),'kitapsRecords':len(kitaps['books']),'foundationalBooks':sum(len(group['books']) for group in foundations['groups']),'preparationRecommendations':len(preparation['books']),'entrepreneurshipBooks':sum(len(group['books']) for group in entrepreneurship['groups']),'childrenLibraryBooks':len(children['books']) if children else 0,'shelfReviewBooks':len(shelf['books']) if shelf else 0,'originalSourceWorks':len(reviews['originals']['books']) if 'originals' in reviews else 0,'managementFounderWorks':len(reviews['founders']['books']) if 'founders' in reviews else 0,'managerProgramBooks':len(reviews['managerprep']['books']) if 'managerprep' in reviews else 0,'managerAreaBooks':len(reviews['managerareas']['books']) if 'managerareas' in reviews else 0,'shelfPhotoBooks':len(reviews['shelfphotos']['books']) if 'shelfphotos' in reviews else 0,'pekerVideoBooks':len(reviews['peker']['books']) if 'peker' in reviews else 0,'stoicBooks':len(reviews['stoic']['books']) if 'stoic' in reviews else 0}}
-(ROOT/'src/catalog.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+# A path on the command line writes there instead: tests/catalog-fresh.test.js compares the result.
+(Path(sys.argv[1]) if len(sys.argv)>1 else ROOT/'src/catalog.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print(len(books),'books',len(collections),'collections',len(groups),'groups')
 print('Edition records',sum(len(b['editions']) for b in books.values()))
