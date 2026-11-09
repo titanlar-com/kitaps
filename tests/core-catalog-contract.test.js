@@ -4,8 +4,7 @@ import fs from 'node:fs';
 import { CATALOG_SCHEMA_VERSION, CatalogContractError, openCatalog, validateCatalog } from '../src/core/catalog/contract.ts';
 
 // The catalogue contract (ADR 003, K10). The Python build writes src/catalog.json. The core
-// opens it through one gate: the version is checked always, the full contract in Node (tests,
-// SEO scripts). Validation reports, it never cleans: uncertain evidence stays as it is.
+// opens it through one gate, the whole contract, in the browser as in Node. Validation reports, it never cleans: uncertain evidence stays as it is.
 const real = JSON.parse(fs.readFileSync(new URL('../src/catalog.json', import.meta.url), 'utf8'));
 
 const book = (id, extra = {}) => ({ id, title: id, titleTr: id, author: 'Yazar', aliases: [], years: [1999], categories: ['strateji'], memberships: [{ collectionId: 'c1' }], notes: [], editions: [], origins: ['atlas'], legacyKeys: [], tags: [], addedAt: '2026-11-08', collectionIds: ['c1'], groupIds: ['g1'], ...extra });
@@ -13,7 +12,7 @@ const small = (books = [book('a'), book('b')], extra = {}) => ({ updated: '8 Kas
 
 test('the real catalogue keeps the whole contract', () => {
   assert.deepEqual(validateCatalog(real), []);
-  assert.equal(openCatalog(real, { validate: 'full' }).document, real, 'opening does not copy or clean the document');
+  assert.equal(openCatalog(real).document, real, 'opening does not copy or clean the document');
 });
 
 test('today\'s unversioned file and version 1 open; any other version is refused with a clear reason', () => {
@@ -48,7 +47,7 @@ test('the full contract names each defect and keeps the data as it is', () => {
     const problems = validateCatalog(document);
     assert.ok(problems.some(problem => expected.test(problem)), `${expected}: ${problems.join(' | ')}`);
     assert.equal(JSON.stringify(document), before, 'validation changes nothing');
-    assert.throws(() => openCatalog(document, { validate: 'full' }), error => error instanceof CatalogContractError && expected.test(error.message));
+    assert.throws(() => openCatalog(document), error => error instanceof CatalogContractError && expected.test(error.message));
   }
   // Missing optional evidence is not a defect: an unknown page count or author stays unknown.
   assert.deepEqual(validateCatalog(small([book('a', { cover: undefined, pageCounts: undefined, author: '' })])), []);
@@ -59,7 +58,7 @@ test('the full contract names each defect and keeps the data as it is', () => {
 
 test('the catalogue Python writes names its schema version and its day (ADR 003, phase 2)', () => {
   const written = JSON.parse(fs.readFileSync(new URL('../src/catalog.json', import.meta.url), 'utf8'));
-  assert.equal(openCatalog(written, { validate: 'full' }).schemaVersion, 1);
+  assert.equal(openCatalog(written).schemaVersion, 1);
   assert.match(written.updatedOn, /^\d{4}-\d{2}-\d{2}$/);
   const [year, month, day] = written.updatedOn.split('-');
   const named = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${year}-${month}-${day}T00:00:00Z`));

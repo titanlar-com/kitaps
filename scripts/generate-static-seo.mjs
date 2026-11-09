@@ -13,7 +13,7 @@ const projectRoot=fileURLToPath(new URL('../',import.meta.url));
 // The catalogue passes the core's full contract before any page is written (ADR 003). A second
 // argument names another catalogue, as the characterization tests do with their frozen cut.
 const catalogPath=path.resolve(process.argv[3]||path.join(projectRoot,'src/catalog.json'));
-const catalog=openCatalog(JSON.parse(fs.readFileSync(catalogPath,'utf8')),{validate:'full'}).document;
+const catalog=openCatalog(JSON.parse(fs.readFileSync(catalogPath,'utf8'))).document;
 const outputRoot=path.resolve(process.argv[2]||path.join(projectRoot,'dist'));
 if(path.basename(outputRoot)!=='dist')throw new Error(`Static SEO output must be a dist directory: ${outputRoot}`);
 const catalogRoot=path.join(outputRoot,'catalog');

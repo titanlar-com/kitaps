@@ -142,8 +142,8 @@ Eklenmeyecekler: Redux, MobX, Zustand, RxJS, Zod gibi doğrulama kitaplıkları,
   - `openCatalog(input)` sürüm kapısıdır (`src/core/catalog/contract.ts`). Bugünkü dosyanın sürüm alanı yok ve bu dosya eski biçim (sürüm 0) olarak kabul edilir.
   - Sürüm 0 kalıcı olarak kabul edilir. Dondurulmuş test kesiti ve eski dışa aktarmalar bu biçimdedir.
   - Python ileride `schemaVersion: 1` ve ISO biçiminde `updatedOn` alanını ekler. `updated` bugünkü anlamını korur: en son kanıtın tarihidir, derleme tarihi değildir.
-  - Tam doğrulama Node'da yapılır: testlerde ve statik SEO üreticisinde. Bu üretici, her yayından önce kataloğu tam sözleşmeyle açar.
-  - Tarayıcı yalnız sürümü ve kaba yapıyı denetler. Kapı başarısız olursa uygulama açılmaz ve konsola nedeni yazılır. CI aynı kapıyı her yayından önce tam olarak çalıştırdığı için bu yalnız bozuk bir yayında olur.
+  - Tam doğrulama her yerde yapılır: testlerde, statik SEO üreticisinde ve tarayıcıda. Tarayıcıda da tam doğrulama yapılmasını sahip 9 Kasım 2026'da istedi. Gerçek katalog Node'da yaklaşık 2 milisaniyede doğrulanıyor.
+  - Kapı başarısız olursa uygulama açılmaz ve konsola nedeni yazılır. CI aynı kapıyı her yayından önce çalıştırdığı için bu yalnız bozuk bir yayında olur.
   - Node sözleşmesi Python'dan katı değildir. Örneğin Python tarihsiz bir kitabı yazar ve yalnız uyarır. Sözleşme bu yüzden eksik bir `addedAt` alanını kabul eder, yalnız biçimi bozuk bir tarihi reddeder.
 - **Sürüm kuralı.** Alan eklemek sürümü değiştirmez. Alan kaldırmak, yeniden adlandırmak ya da anlamını değiştirmek ana sürümü artırır. Şema sürümü, içerik revizyonu, sıralama politikası sürümü, dışa aktarma sürümü ve yedek sürümü ayrı kavramlardır.
 - **Eşitleme dosyaları.** `state.json` şema 2 ve `routes.json` şema 1 bu çalışma boyunca donar. Bu dosyalar ileride değişecekse, eski okuyucu ve eski yazıcıyla karma sürüm testleri önce yazılır. Bir göç fonksiyonu tek başına eski bir yazıcının yeni alanı silmesini önleyemez.
@@ -155,9 +155,9 @@ Eklenmeyecekler: Redux, MobX, Zustand, RxJS, Zod gibi doğrulama kitaplıkları,
 
 | Sınır | Doğrulama |
 | --- | --- |
-| Python çıktısı `catalog.json` | Python'un kendi değişmezleri, Node'da tam sözleşme testi ve statik SEO üreticisinde tam kapı |
+| Python çıktısı `catalog.json` | Python'un kendi değişmezleri, üretilen dosyanın depodakiyle bayt bayt aynı olması, Node'da tam sözleşme testi ve statik SEO üreticisinde tam kapı |
 | `bookstores.json`, `book-fairs.json` | Node sözleşme testleri (kısmen var) |
-| Tarayıcı kataloğu açarken | Sürüm kapısı ve kaba yapı |
+| Tarayıcı kataloğu açarken | Tam sözleşme |
 | `state.json`, `routes.json` | Çalışma anında tam doğrulama (zaten var, değişmez) |
 | Yerel depolama, yedek yükleme, adres | Çalışma anında temizleme (zaten var), çekirdeğe taşınır |
 | Çekirdekten arayüze | Yalnız türler |
@@ -193,14 +193,16 @@ Bu beş fark 8 Kasım 2026'da olduğu gibi sabitlenmişti. Sahip 9 Kasım 2026'd
 
 Arayüzü yeniden tasarlayan iş, yeni türetilmiş veriyi bileşenlerin içine değil, `src/core` içine testli bir sorgu olarak koyar. Bileşenler veriyi görünüm modelinden alır ve yalnız gösterir.
 
-## Önerilip alınmayanlar
+## Önce alınmayan öneriler
+
+Bu öneriler ilk kararda alınmamıştı. Sahip 9 Kasım 2026'da hepsinin yapılmasını istedi. Her maddenin durumu yanında yazılıdır.
 
 - **Codex:**
   - Tek bir `execute(command)` birleşimi (K7).
-  - Tarayıcıda tam katalog doğrulaması (K10).
+  - Tarayıcıda tam katalog doğrulaması (K10). **Yapıldı.** `openCatalog` artık her yerde tam sözleşmeyi çalıştırır, yalnız sürüme bakan kip kaldırıldı.
   - Eski tasarım için ekran görüntüsü tabanları (K11).
-  - Yedek yüklemenin sürüme göre ayrılması: kişisel kütüphane aşamasında (7a) yedek testleriyle ele alınır.
-  - CI'da kataloğun yeniden üretilip karşılaştırılması: CI'da Python ortamı gerektirdiği için açık bir karar olarak kalır.
+  - Yedek yüklemenin sürüme göre ayrılması. **Yapıldı.** `src/core/personal/backup.js` her biçimi kendi okuyucusuyla okur. Daha yeni sürümden gelen dosyayı, eşitleme yedeğini ve yedek olmayan dosyayı bütünüyle reddeder ve okura nedenini söyler.
+  - CI'da kataloğun yeniden üretilip karşılaştırılması. **Yapıldı.** `tests/catalog-fresh.test.js` veri dosyalarından kataloğu geçici bir yere üretir ve `src/catalog.json` ile bayt bayt karşılaştırır. Bu test `npm test` içinde çalışır, Python yalnız standart kitaplığı kullanır. Çıktı Python 3.9 ve 3.12'de aynıdır.
 - **Claude analizcisi:**
   - Ekran başına yaklaşık 11 görünüm modelinin şimdi yazılması (K6).
   - Ayrı bir çekirdek metin modülü (K8).

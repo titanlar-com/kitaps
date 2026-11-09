@@ -1,10 +1,9 @@
 import type { BookRecord, CatalogDocument } from './schema.ts';
 
 /**
- * The one gate the catalogue passes on its way into the core (ADR 003, K10). The version is
- * always checked. The full contract runs in Node (tests and SEO scripts); the browser gets the
- * catalogue in the same build CI has already checked, so it checks the version and the shape
- * only. The gate reports and refuses; it never cleans, so uncertain evidence stays as it is.
+ * The one gate the catalogue passes on its way into the core (ADR 003, K10). The browser, the
+ * tests and the SEO scripts all run the whole contract: on the real catalogue it takes about
+ * 2 ms in Node. The gate reports and refuses; it never cleans, so uncertain evidence stays as it is.
  */
 export const CATALOG_SCHEMA_VERSION = 1;
 
@@ -70,10 +69,9 @@ export function validateCatalog(input: unknown): string[] {
   return problems;
 }
 
-/** Opens a catalogue document after its gate: the version and shape always, the whole contract
- * with `validate: 'full'`. The document is used as it is, not copied. */
-export function openCatalog(input: unknown, { validate = 'version' }: { validate?: 'version' | 'full' } = {}): OpenedCatalog {
-  const problems = validate === 'full' ? validateCatalog(input) : shapeProblems(input);
+/** Opens a catalogue document after the whole contract. The document is used as it is, not copied. */
+export function openCatalog(input: unknown): OpenedCatalog {
+  const problems = validateCatalog(input);
   if (problems.length) throw new CatalogContractError(problems);
   const catalog = input as CatalogDocument;
   return { document: catalog, schemaVersion: catalog.schemaVersion === CATALOG_SCHEMA_VERSION ? 1 : 0 };
