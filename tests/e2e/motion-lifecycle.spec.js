@@ -95,33 +95,40 @@ test('a hover that is taken back continues from where the cover is', async ({ pa
   await page.goto('./');
   // The lift is only for a real pointer, which a phone does not report.
   test.skip(!(await page.evaluate(() => matchMedia('(hover: hover)').matches)), 'no hover here');
-  // A slow lift: CI's Linux WebKit paints so few frames that a 100 ms reversal could start and end
-  // between two of them (run 42497711401). What is checked does not depend on the length.
-  await page.addStyleTag({ content: ':root{--motion-move:2000ms}' });
+  // A very slow lift: Linux WebKit went three seconds with only two or three frames while this ran,
+  // so a reversal of about a second started and ended between two of them. What is checked does not
+  // depend on the length.
   const card = page.locator('.book-card').first();
   const img = card.locator('.cover-stage img');
-  await expect(img).toHaveCSS('opacity', '1');
+  // Before the slow lift goes in, because the cover's own fade runs on the same duration.
+  await expect(img).toHaveCSS('opacity', '1', { timeout: 20000 });
+  await page.addStyleTag({ content: ':root{--motion-move:60000ms}' });
   // The watcher is in place before the pointer arrives, so a busy machine cannot miss the lift.
-  // It stops the lift halfway, then notes where the transition that replaces it starts.
+  // It stops the lift halfway, then notes where the transition that replaces it starts. It runs on a
+  // timer because asking for the animations does not need a frame, and frames may not come.
   await img.evaluate(element => {
     window.__halfway = null; window.__from = null;
     const transform = other => element.getAnimations().find(item => item.transitionProperty === 'transform' && item !== other);
-    const start = () => {
+    const until = found => { if (!found()) setTimeout(until, 20, found); };
+    until(() => {
       const lift = transform();
-      if (!lift) { requestAnimationFrame(start); return; }
-      lift.pause(); lift.currentTime = 1000;
+      if (!lift) return false;
+      lift.pause(); lift.currentTime = 30000;
       window.__halfway = getComputedStyle(element).transform;
-      const watch = () => { const next = transform(lift); if (next) window.__from = next.effect.getKeyframes()[0].transform; else requestAnimationFrame(watch); };
-      watch();
-    };
-    start();
+      until(() => {
+        const next = transform(lift);
+        if (next) window.__from = next.effect.getKeyframes()[0].transform;
+        return Boolean(next);
+      });
+      return true;
+    });
   });
   await card.hover();
-  await page.waitForFunction(() => window.__halfway !== null);
+  await page.waitForFunction(() => window.__halfway !== null, null, { polling: 50 });
   const halfway = await page.evaluate(() => window.__halfway);
   expect(halfway).not.toBe('none');
   await page.mouse.move(0, 0);
-  await page.waitForFunction(() => window.__from !== null);
+  await page.waitForFunction(() => window.__from !== null, null, { polling: 50 });
   const from = await page.evaluate(() => window.__from);
   const height = value => page.evaluate(text => new DOMMatrix(text).m42, value);
   expect(await height(from)).toBeCloseTo(await height(halfway), 3);
