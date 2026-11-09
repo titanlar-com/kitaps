@@ -10,19 +10,14 @@ import GitHubSyncPanel from './GitHubSyncPanel';
 import SourceBadge from './SourceBadge';
 import {download} from '../download';
 import {createBackup,readBackup} from '../core/personal/backup.js';
+import {backupRefusedText,backupRestoredText,notesScreen} from '../screens/notes.js';
 import {SOURCE_URL} from '../site';
 import {ORIGIN_LABELS,plainTextMarkers} from '../library';
 
 const bookIds=catalog.books.map(book=>book.id);
-const counts=catalog.sourceCounts;
-const BACKUP_REFUSED={
- unreadable:'Dosya okunamadı. Bu siteden dışa aktarılmış bir JSON dosyası seç.',
- newer:'Bu yedek sitenin daha yeni bir sürümünde alınmış. Sayfayı yenileyip yeniden dene. Kayıtların değişmedi.',
- 'other-file':'Bu dosya kişisel yedek değil. "Kişisel yedeğimi indir" düğmesiyle aldığın dosyayı seç.',
-};
 
 // Raw source archives are only needed for the full download, so they load on demand.
-async function downloadEverything(){
+async function downloadEverything(file){
  const [atlas,okumaKumeleri,kitaps,kitapsCovers,entrepreneurship,foundations,preparation]=(await Promise.all([
   import('../../data/sources/atlas-v1.json'),
   import('../../data/sources/okuma-kumeleri.json'),
@@ -32,48 +27,33 @@ async function downloadEverything(){
   import('../../data/foundational-reading.json'),
   import('../../data/preparatory-reading-tr.json'),
  ])).map(module=>module.default);
- download('kitaplik-tum-veri.json',{catalog,sources:{atlas,okumaKumeleri,kitaps,kitapsCovers,entrepreneurship,foundations,preparation,kitapsNotes:readingNotes}});
+ download(file,{catalog,sources:{atlas,okumaKumeleri,kitaps,kitapsCovers,entrepreneurship,foundations,preparation,kitapsNotes:readingNotes}});
 }
 
 export default function NotesPage({states,personal,onRestore,sync}) {
  const [message,setMessage]=useState('');
- const sections=useMemo(()=>plainTextMarkers(readingNotes).split(/(?=^## )/m),[]);
+ const model=useMemo(()=>notesScreen({counts:catalog.sourceCounts,total:catalog.books.length,originLabels:ORIGIN_LABELS,notes:plainTextMarkers(readingNotes)}),[]);
  const importStates=async file=>{
   if(!file)return;
   try {
    const backup=readBackup(JSON.parse(await file.text()),bookIds);
    onRestore(backup.marks,backup.input);
-   setMessage(`${Object.keys(backup.marks).length} kitabın işaretleri ve ${Object.keys(backup.personal.reading).length} okuma kaydı içe aktarıldı.${backup.hasQueue?` Okuma sırası ${backup.personal.queue.length} kitapla geri yüklendi.`:''}`);
-  }catch(error){setMessage(BACKUP_REFUSED[error?.kind]??BACKUP_REFUSED.unreadable);}
+   setMessage(backupRestoredText(backup));
+  }catch(error){setMessage(backupRefusedText(error?.kind));}
  };
 
  return <Stack gap="xl">
-  <Paper p="lg" radius="lg" className="notes-panel"><Title order={3}>Birleşimin kapsamı</Title>
+  <Paper p="lg" radius="lg" className="notes-panel"><Title order={3}>{model.coverage.title}</Title>
    <dl className="source-counts">
-    <div><dt>{ORIGIN_LABELS.atlas}</dt><dd>{counts.atlasEntries} liste kaydı</dd></div>
-    <div><dt>{ORIGIN_LABELS.local}</dt><dd>{counts.localBooks} kitap</dd></div>
-    <div><dt>{ORIGIN_LABELS.kitaps}</dt><dd>{counts.kitapsRecords} künye kaydı</dd></div>
-    <div><dt>{ORIGIN_LABELS.entrepreneurship}</dt><dd>{counts.entrepreneurshipBooks} kitap</dd></div>
-    <div><dt>{ORIGIN_LABELS.foundations}</dt><dd>{counts.foundationalBooks} kitap</dd></div>
-    <div><dt>{ORIGIN_LABELS.preparation}</dt><dd>{counts.preparationRecommendations} kitap</dd></div>
-    {counts.childrenLibraryBooks>0&&<div><dt>{ORIGIN_LABELS.children}</dt><dd>{counts.childrenLibraryBooks} kitap</dd></div>}
-    {counts.shelfReviewBooks>0&&<div><dt>{ORIGIN_LABELS.shelf}</dt><dd>{counts.shelfReviewBooks} kitap</dd></div>}
-    {counts.originalSourceWorks>0&&<div><dt>{ORIGIN_LABELS.originals}</dt><dd>{counts.originalSourceWorks} kitap ve makale</dd></div>}
-    {counts.managementFounderWorks>0&&<div><dt>{ORIGIN_LABELS.founders}</dt><dd>{counts.managementFounderWorks} kitap</dd></div>}
-    {counts.managerProgramBooks>0&&<div><dt>{ORIGIN_LABELS.managerprep}</dt><dd>{counts.managerProgramBooks} kitap</dd></div>}
-    {counts.managerAreaBooks>0&&<div><dt>{ORIGIN_LABELS.managerareas}</dt><dd>{counts.managerAreaBooks} kitap</dd></div>}
-    {counts.shelfPhotoBooks>0&&<div><dt>{ORIGIN_LABELS.shelfphotos}</dt><dd>{counts.shelfPhotoBooks} kitap</dd></div>}
-    {counts.pekerVideoBooks>0&&<div><dt>{ORIGIN_LABELS.peker}</dt><dd>{counts.pekerVideoBooks} kitap</dd></div>}
-    {counts.stoicBooks>0&&<div><dt>{ORIGIN_LABELS.stoic}</dt><dd>{counts.stoicBooks} kitap</dd></div>}
-    <div><dt>Birleşik katalog</dt><dd>{catalog.books.length} benzersiz eser</dd></div>
+    {model.coverage.rows.map(row=><div key={row.id}><dt>{row.label}</dt><dd>{row.value}</dd></div>)}
    </dl>
-   <Group mt="md" gap={8}>{Object.keys(ORIGIN_LABELS).map(id=><SourceBadge id={id} key={id}/>)}</Group>
+   <Group mt="md" gap={8}>{model.coverage.badges.map(id=><SourceBadge id={id} key={id}/>)}</Group>
   </Paper>
-  <Paper p="lg" radius="lg" className="notes-panel"><Title order={3}>Kişisel kitaplığını yedekle</Title><Group mt="md"><Button variant="light" leftSection={<IconDownload size={19}/>} onClick={()=>download('kitaplik-kisisel-yedek.json',createBackup({states,personal}))}>Kişisel yedeğimi indir</Button><FileButton onChange={importStates} accept="application/json">{props=><Button {...props} variant="default" leftSection={<IconUpload size={19}/>}>Yedekten aktar</Button>}</FileButton></Group>{message&&<Text mt="md" role="status">{message}</Text>}</Paper>
+  <Paper p="lg" radius="lg" className="notes-panel"><Title order={3}>{model.backup.title}</Title><Group mt="md"><Button variant="light" leftSection={<IconDownload size={19}/>} onClick={()=>download(model.backup.download.file,createBackup({states,personal}))}>{model.backup.download.text}</Button><FileButton onChange={importStates} accept="application/json">{props=><Button {...props} variant="default" leftSection={<IconUpload size={19}/>}>{model.backup.restore}</Button>}</FileButton></Group>{message&&<Text mt="md" role="status">{message}</Text>}</Paper>
   <GitHubSyncPanel sync={sync}/>
-  <div><Title order={3}>Tam veri ve kaynaklar</Title><Group mt="md"><Button variant="light" leftSection={<IconDownload size={19}/>} onClick={()=>void downloadEverything()}>Tüm kataloğu indir</Button><Button variant="default" leftSection={<IconDownload size={19}/>} onClick={()=>download('kitaps-kaynak-notlari.md',plainTextMarkers(readingNotes),'text/markdown')}>Kaynak notlarını indir</Button></Group><Group mt="md"><Anchor href={SOURCE_URL} target="_blank" rel="noreferrer">Kaynak kod ve veri arşivi</Anchor></Group></div>
+  <div><Title order={3}>{model.fullData.title}</Title><Group mt="md"><Button variant="light" leftSection={<IconDownload size={19}/>} onClick={()=>void downloadEverything(model.fullData.catalog.file)}>{model.fullData.catalog.text}</Button><Button variant="default" leftSection={<IconDownload size={19}/>} onClick={()=>download(model.fullData.notes.file,plainTextMarkers(readingNotes),'text/markdown')}>{model.fullData.notes.text}</Button></Group><Group mt="md"><Anchor href={SOURCE_URL} target="_blank" rel="noreferrer">{model.fullData.sourceLink}</Anchor></Group></div>
   <Divider/>
-  <Title order={2}>Kaynak dosyanın tamamı</Title>
-  <Accordion variant="separated" radius="lg">{sections.map((s,i)=>{const title=i===0?'Dosyaya giriş':s.split('\n')[0].replace(/^## /,'').replace(/\*/g,'');return <Accordion.Item value={String(i)} key={i}><Accordion.Control>{title}</Accordion.Control><Accordion.Panel><div className="markdown"><ReactMarkdown remarkPlugins={[remarkGfm]} components={{table:NoteCards,blockquote:({children})=><blockquote data-edge="start">{children}</blockquote>,a:({href,children})=><Anchor href={href} target="_blank" rel="noreferrer">{children}</Anchor>}}>{i===0?s:s.slice(s.indexOf('\n')+1)}</ReactMarkdown></div></Accordion.Panel></Accordion.Item>})}</Accordion>
+  <Title order={2}>{model.sources.title}</Title>
+  <Accordion variant="separated" radius="lg">{model.sources.sections.map((section,i)=><Accordion.Item value={String(i)} key={i}><Accordion.Control>{section.title}</Accordion.Control><Accordion.Panel><div className="markdown"><ReactMarkdown remarkPlugins={[remarkGfm]} components={{table:NoteCards,blockquote:({children})=><blockquote data-edge="start">{children}</blockquote>,a:({href,children})=><Anchor href={href} target="_blank" rel="noreferrer">{children}</Anchor>}}>{section.body}</ReactMarkdown></div></Accordion.Panel></Accordion.Item>)}</Accordion>
  </Stack>
 }
