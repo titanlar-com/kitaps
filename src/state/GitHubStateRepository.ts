@@ -1,3 +1,4 @@
+import { createGitHubFileClient, decodeBase64, encodeBase64, responseHeader, type GitHubFileClient } from './githubFile.ts';
 import { fieldStamp } from './syncModel.ts';
 import { applyPendingMutations, assertBookStatePayload, assertMutationBasis, assertPendingMutation, assertQueue, assertStateDocument, emptyStateDocument, publicStateDocument, publicStatePayload, same, sameMarks, upgradeStateDocument } from './merge.ts';
 import {
@@ -47,10 +48,7 @@ export class GitHubStateRepositoryError extends Error {
   }
 }
 
-/** Only these request headers are sent. GitHub's CORS preflight rejects any
- * other custom header (Cache-Control included), which would block every
- * browser request; tests pin this list. */
-export const GITHUB_REQUEST_HEADERS = ['Accept', 'X-GitHub-Api-Version', 'Authorization', 'If-None-Match'] as const;
+export { GITHUB_REQUEST_HEADERS } from './githubFile.ts';
 
 /** Fine-grained personal access tokens can be limited to one repository and
  * one permission. Classic and OAuth tokens cannot, so they are refused. */
@@ -116,20 +114,6 @@ const memoryStorage = (): StorageLike => {
   };
 };
 
-const encodeBase64 = (value: string): string => {
-  const bytes = new TextEncoder().encode(value);
-  let binary = '';
-  for (const byte of bytes) binary += String.fromCharCode(byte);
-  return btoa(binary);
-};
-
-const decodeBase64 = (value: string): string => {
-  const binary = atob(value.replace(/\s/g, ''));
-  const bytes = Uint8Array.from(binary, character => character.charCodeAt(0));
-  return new TextDecoder().decode(bytes);
-};
-
-const header = (response: Response, name: string): string => response.headers?.get?.(name) ?? '';
 /** How many commits one history read lists; fewer means the whole history was read. */
 const HISTORY_PAGE_SIZE = 100;
 /** The history is read from this long before a write, as this device's clock may be off. */
@@ -163,6 +147,7 @@ export class GitHubStateRepository {
   private readonly storage: StorageLike;
   private readonly fetcher: typeof globalThis.fetch;
   private readonly clock: () => Date;
+  private readonly github: GitHubFileClient<GitHubStateRepositoryError>;
   private readonly maxConflictRetries: number;
   private lastMutationTime = 0;
   private cached?: { etag: string; file: RemoteFile };
@@ -199,6 +184,12 @@ export class GitHubStateRepository {
     if (!options.fetch && typeof globalThis.fetch !== 'function') throw new GitHubStateRepositoryError('network', 'Fetch is unavailable.');
     this.fetcher = options.fetch ?? globalThis.fetch.bind(globalThis);
     this.clock = options.clock ?? (() => new Date());
+    this.github = createGitHubFileClient({
+      owner: this.owner, repository: this.repository, branch: this.branch, path: this.path,
+      fetcher: () => this.fetcher, now: () => this.clock().getTime(), timeoutMs: REQUEST_TIMEOUT_MS,
+      makeError: (code, message, status, errorOptions) => new GitHubStateRepositoryError(code, message, status, errorOptions),
+      messages: { transport: 'GitHub state request failed.', unauthorized: 'GitHub rejected the credentials or repository write permission.', notFound: 'GitHub state repository or file was not found.', conflict: 'GitHub state changed during save. Reload and try again.', status: status => `GitHub state request failed with status ${status}.` },
+    });
     this.maxConflictRetries = Math.max(0, options.maxConflictRetries ?? 1);
     const kept = this.readKeptRemote();
     this.newest = kept?.document;
@@ -310,13 +301,13 @@ export class GitHubStateRepository {
   async validateToken(token: string): Promise<void> {
     const clean = token.trim();
     GitHubStateRepository.assertFineGrainedToken(clean);
-    const response = await this.request(this.contentsUrl(), { headers: this.headers(clean) });
-    if (!response.ok) throw this.errorForResponse(response);
-    if (header(response, 'X-OAuth-Scopes').trim()) throw new GitHubStateRepositoryError('token-type', 'The token carries classic OAuth scopes.');
+    const response = await this.github.request(this.github.contentsUrl(), { headers: this.github.headers(clean) });
+    if (!response.ok) throw this.github.errorFor(response);
+    if (responseHeader(response, 'X-OAuth-Scopes').trim()) throw new GitHubStateRepositoryError('token-type', 'The token carries classic OAuth scopes.');
     await this.parseContents(response);
-    const probe = await this.request(this.blobsUrl(), { method: 'POST', headers: this.headers(clean), body: JSON.stringify({ content: 'Kitaplık yazma denetimi', encoding: 'utf-8' }) });
+    const probe = await this.github.request(this.github.repositoryUrl('git/blobs'), { method: 'POST', headers: this.github.headers(clean), body: JSON.stringify({ content: 'Kitaplık yazma denetimi', encoding: 'utf-8' }) });
     if (probe.ok) return;
-    const error = this.errorForResponse(probe);
+    const error = this.github.errorFor(probe);
     if (error.code === 'unauthorized' || error.code === 'not-found') throw new GitHubStateRepositoryError('read-only', 'The token cannot write to the state repository.', probe.status);
     throw error;
   }
@@ -658,7 +649,7 @@ export class GitHubStateRepository {
     let messages: string[];
     let complete: boolean;
     try {
-      const response = await this.request(this.commitsUrl(new Date(oldest - HISTORY_CLOCK_MARGIN_MS).toISOString()), { headers: this.headers(token) }, HISTORY_TIMEOUT_MS);
+      const response = await this.github.request(this.commitsUrl(new Date(oldest - HISTORY_CLOCK_MARGIN_MS).toISOString()), { headers: this.github.headers(token) }, HISTORY_TIMEOUT_MS);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const list = await response.json() as unknown;
       if (!Array.isArray(list)) throw new Error('Not a commit list.');
@@ -727,7 +718,7 @@ export class GitHubStateRepository {
       for (const key of noted) this.sending.set(key, write.id);
       let response: Response;
       try {
-        response = await this.request(this.contentsUrl(), { method: 'PUT', headers: this.headers(token), body, keepalive: options.keepalive === true && body.length < KEEPALIVE_BODY_LIMIT });
+        response = await this.github.request(this.github.contentsUrl(), { method: 'PUT', headers: this.github.headers(token), body, keepalive: options.keepalive === true && body.length < KEEPALIVE_BODY_LIMIT });
       } catch (error) {
         // A request the browser refused while offline never left it.
         if (typeof navigator !== 'undefined' && navigator.onLine === false) this.forgetSending(noted, write.id);
@@ -742,7 +733,7 @@ export class GitHubStateRepository {
         remote = undefined;
         continue;
       }
-      if (!response.ok) throw this.errorForResponse(response);
+      if (!response.ok) throw this.github.errorFor(response);
       const written = await response.json().catch(() => null) as { content?: { sha?: unknown } } | null;
       const sha = typeof written?.content?.sha === 'string' ? written.content.sha : undefined;
       // No ETag: the next read is unconditional, but the next write can start here.
@@ -846,21 +837,21 @@ export class GitHubStateRepository {
   private async readApi(conditional: boolean, allowMissing = false, anonymous = false): Promise<RemoteFile> {
     const token = anonymous ? undefined : this.readStorage(GITHUB_STATE_TOKEN_KEY)?.trim();
     const etag = conditional ? this.cached?.etag : undefined;
-    const response = await this.request(`${this.contentsUrl()}?ref=${encodeURIComponent(this.branch)}`, { headers: this.headers(token, etag) });
+    const response = await this.github.request(this.github.readUrl(), { headers: this.github.headers(token, etag) });
     if (response.status === 304 && this.cached) return structuredClone(this.cached.file);
     if (response.status === 404 && allowMissing) { this.noteSha(''); return { document: emptyStateDocument() }; }
-    if (!response.ok) throw this.errorForResponse(response);
+    if (!response.ok) throw this.github.errorFor(response);
     const file = await this.parseContents(response);
     if (file.sha) this.noteSha(file.sha);
-    const nextEtag = header(response, 'ETag');
+    const nextEtag = responseHeader(response, 'ETag');
     this.cached = nextEtag ? { etag: nextEtag, file: structuredClone(file) } : undefined;
     return file;
   }
 
   private async readRaw(): Promise<RemoteFile> {
     // A plain GET without custom headers is a simple CORS request.
-    const response = await this.request(this.rawUrl(), {});
-    if (!response.ok) throw this.errorForResponse(response);
+    const response = await this.github.request(this.github.rawUrl(), {});
+    if (!response.ok) throw this.github.errorFor(response);
     try {
       return { document: this.parseDocument(await response.json()) };
     } catch (error) {
@@ -1070,10 +1061,6 @@ export class GitHubStateRepository {
     try { this.removeStorage(GITHUB_STATE_PENDING_BASIS_KEY); } catch { /* Pruned with the next queued edit. */ }
   }
 
-  private contentsUrl(): string {
-    return `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repository)}/contents/${this.path.split('/').map(encodeURIComponent).join('/')}`;
-  }
-
   private noteSha(sha: string): void {
     this.knownSha = sha;
     this.knownShaAt = this.clock().getTime();
@@ -1081,52 +1068,7 @@ export class GitHubStateRepository {
 
   /** state.json's commits on the branch, newest first. */
   private commitsUrl(since: string): string {
-    return `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repository)}/commits?path=${encodeURIComponent(this.path)}&sha=${encodeURIComponent(this.branch)}&since=${encodeURIComponent(since)}&per_page=${HISTORY_PAGE_SIZE}`;
-  }
-
-  private blobsUrl(): string {
-    return `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repository)}/git/blobs`;
-  }
-
-  private rawUrl(): string {
-    return `https://raw.githubusercontent.com/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repository)}/${encodeURIComponent(this.branch)}/${this.path.split('/').map(encodeURIComponent).join('/')}`;
-  }
-
-  private headers(token?: string, etag?: string): Record<string, string> {
-    return {
-      Accept: 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(etag ? { 'If-None-Match': etag } : {}),
-    };
-  }
-
-  private async request(url: string, init: RequestInit, timeout = REQUEST_TIMEOUT_MS): Promise<Response> {
-    const signal = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(timeout) : undefined;
-    try {
-      return await this.fetcher(url, { ...init, cache: 'no-store', ...(signal ? { signal } : {}) });
-    } catch (error) {
-      throw new GitHubStateRepositoryError('network', 'GitHub state request failed.', undefined, { cause: error });
-    }
-  }
-
-  private errorForResponse(response: Response): GitHubStateRepositoryError {
-    const remaining = header(response, 'X-RateLimit-Remaining');
-    // A secondary rate limit is a 403 with Retry-After while the primary quota remains.
-    if (response.status === 429 || (response.status === 403 && (remaining === '0' || header(response, 'Retry-After') !== ''))) {
-      const reset = Number(header(response, 'X-RateLimit-Reset'));
-      const retryAfter = Number(header(response, 'Retry-After'));
-      // Retry-After names the wait for this answer (a secondary limit); the reset time
-      // only applies once the hourly quota is used up. Without either, a minute.
-      const retryAt = header(response, 'Retry-After') !== '' && Number.isFinite(retryAfter) && retryAfter >= 0 ? Date.now() + retryAfter * 1000
-        : remaining === '0' && Number.isFinite(reset) && reset > 0 ? reset * 1000
-          : Date.now() + 60_000;
-      return new GitHubStateRepositoryError('rate-limited', 'GitHub rate limit reached.', response.status, { retryAt });
-    }
-    if (response.status === 401 || response.status === 403) return new GitHubStateRepositoryError('unauthorized', 'GitHub rejected the credentials or repository write permission.', response.status);
-    if (response.status === 404) return new GitHubStateRepositoryError('not-found', 'GitHub state repository or file was not found.', 404);
-    if (response.status === 409 || response.status === 422) return new GitHubStateRepositoryError('conflict', 'GitHub state changed during save. Reload and try again.', response.status);
-    return new GitHubStateRepositoryError('network', `GitHub state request failed with status ${response.status}.`, response.status);
+    return this.github.repositoryUrl(`commits?path=${encodeURIComponent(this.path)}&sha=${encodeURIComponent(this.branch)}&since=${encodeURIComponent(since)}&per_page=${HISTORY_PAGE_SIZE}`);
   }
 
   private readStorage(key: string): string | null {

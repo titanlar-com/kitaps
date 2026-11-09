@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {EXCLUSIVE_STATE_GROUPS,FINE_GRAINED_TOKEN,GITHUB_REQUEST_HEADERS,GitHubStateBatcher,GitHubStateRepository,GitHubStateRepositoryError,MIN_GITHUB_SYNC_DELAY_MS,applyPendingMutations,assertStateDocument,emptyStateDocument,fieldStamp,mergeQueue,mergeReading,mergeStates,planConnect,planFirstSync,projectPublicState,upgradeStateDocument} from '../src/state/index.ts';
+import {REQUEST_TIMEOUT_MS,EXCLUSIVE_STATE_GROUPS,FINE_GRAINED_TOKEN,GITHUB_REQUEST_HEADERS,GitHubStateBatcher,GitHubStateRepository,GitHubStateRepositoryError,MIN_GITHUB_SYNC_DELAY_MS,applyPendingMutations,assertStateDocument,emptyStateDocument,fieldStamp,mergeQueue,mergeReading,mergeStates,planConnect,planFirstSync,projectPublicState,upgradeStateDocument} from '../src/state/index.ts';
 import {toggleState} from '../src/library.js';
 
 // Copied from GitHub's live preflight response (Access-Control-Allow-Headers).
@@ -318,7 +318,7 @@ test('a token must prove it can write before it is stored, without committing an
  assertCorsSafe(probe.init,probe.url);
  assert.equal(requests.some(item=>item.init.method==='PUT'),false,'validation never writes the state file');
  // A secondary rate limit (403 with Retry-After while quota remains) is not a read-only key.
- for(const [status,headers,code] of [[403,{},'read-only'],[404,{},'read-only'],[403,{'X-RateLimit-Remaining':'0','X-RateLimit-Reset':'4102444800'},'rate-limited'],[403,{'X-RateLimit-Remaining':'4990','Retry-After':'60'},'rate-limited']]){
+ for(const [status,headers,code] of [[403,{},'read-only'],[403,{'X-RateLimit-Remaining':'4990'},'read-only'],[404,{},'read-only'],[403,{'X-RateLimit-Remaining':'0','X-RateLimit-Reset':'4102444800'},'rate-limited'],[403,{'X-RateLimit-Remaining':'4990','Retry-After':'60'},'rate-limited']]){
   const repository=new GitHubStateRepository({storage:storage(),fetch:async(url,init)=>init.method==='POST'?new Response('{"message":"Resource not accessible by personal access token"}',{status,headers}):contents(emptyStateDocument())});
   await assert.rejects(()=>repository.validateToken(TOKEN),error=>error.code===code,`${status} ${JSON.stringify(headers)}`);
   assert.equal(repository.hasToken(),false);
@@ -1280,4 +1280,24 @@ test('an edit queued by older code, without a basis, merges as before when a new
  const result=applyPendingMutations(remote,repository.pendingMutations(),basisOf(local));
  assert.deepEqual(result.books.a.value.states,['onemli'],'the newer shared marks win over the old edit');
  assert.deepEqual(result.books.a.value.reading,{page:3,why:'not'},'the new edit merges');
+});
+
+test('a write has the full time limit, and looking in the history a short one',async t=>{
+ const asked=[];
+ t.mock.method(AbortSignal,'timeout',ms=>{asked.push(ms);return new AbortController().signal;});
+ const server=writableGitHub();let now=Date.parse(timestamp(10));
+ const seen=[];
+ const fetch=async(url,init={})=>{seen.push({kind:init.method==='PUT'?'write':url.includes('/commits?')?'history':'read',limit:asked.at(-1)});return server.fetch(url,init);};
+ const local=withToken();
+ const repository=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch});
+ await repository.load();
+ repository.queueBookState('a',{states:['onemli']},undefined,{states:[]});
+ server.lose=true;
+ await assert.rejects(()=>repository.flushPending());
+ now+=1000;
+ const reopened=new GitHubStateRepository({storage:local,clock:()=>new Date(now),fetch});
+ await reopened.load();
+ await reopened.flushPending();
+ assert.deepEqual([...new Set(seen.filter(item=>item.kind==='write').map(item=>item.limit))],[REQUEST_TIMEOUT_MS]);
+ assert.deepEqual([...new Set(seen.filter(item=>item.kind==='history').map(item=>item.limit))],[5000],'the history is asked for, and with the short limit');
 });

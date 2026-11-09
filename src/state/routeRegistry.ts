@@ -1,3 +1,4 @@
+import { createGitHubFileClient, decodeBase64, encodeBase64, type GitHubFileClient } from './githubFile.ts';
 import { GitHubStateRepositoryError, REQUEST_TIMEOUT_MS, type GitHubStateErrorCode } from './GitHubStateRepository.ts';
 import { GITHUB_STATE_COMMIT_IDENTITY, GITHUB_STATE_OWNER, GITHUB_STATE_REPOSITORY, GITHUB_STATE_TOKEN_KEY, type StorageLike } from './types.ts';
 
@@ -223,20 +224,6 @@ const memoryStorage = (): StorageLike => {
   };
 };
 
-/** UTF-8 safe in Node and the browser: btoa/atob only take one byte per character. */
-const encodeBase64 = (value: string): string => {
-  let binary = '';
-  for (const byte of new TextEncoder().encode(value)) binary += String.fromCharCode(byte);
-  return btoa(binary);
-};
-
-const decodeBase64 = (value: string): string => {
-  const binary = atob(value.replace(/\s/g, ''));
-  return new TextDecoder().decode(Uint8Array.from(binary, character => character.charCodeAt(0)));
-};
-
-const header = (response: Response, name: string): string => response.headers?.get?.(name) ?? '';
-
 /** True when `written` already holds this record, as itself or as a newer one. */
 const holds = (written: RouteDocument, id: string, record: RouteRecord): boolean => {
   const saved = own(written.routes, id);
@@ -273,6 +260,7 @@ export class GitHubRouteRegistry {
   private readonly storage: StorageLike;
   private readonly fetcher?: typeof globalThis.fetch;
   private readonly clock: () => Date;
+  private readonly github: GitHubFileClient<RouteRegistryError>;
   private readonly maxConflictRetries: number;
   /** Writes from this page run one after another, so they never conflict with each other. */
   private writing: Promise<unknown> = Promise.resolve();
@@ -285,6 +273,13 @@ export class GitHubRouteRegistry {
     this.storage = options.storage ?? (typeof localStorage === 'undefined' ? memoryStorage() : localStorage);
     this.fetcher = options.fetch;
     this.clock = options.clock ?? (() => new Date());
+    this.github = createGitHubFileClient({
+      owner: this.owner, repository: this.repository, branch: this.branch, path: this.path,
+      fetcher: () => this.fetcher ?? (typeof globalThis.fetch === 'function' ? globalThis.fetch.bind(globalThis) : undefined),
+      now: () => this.clock().getTime(), timeoutMs: REQUEST_TIMEOUT_MS,
+      makeError: (code, message, status, errorOptions) => new RouteRegistryError(code, message, status, errorOptions),
+      messages: { transport: 'GitHub routes request failed.', unauthorized: 'GitHub rejected the token or its write permission.', notFound: 'The routes repository was not found.', conflict: 'routes.json changed during the save.', status: status => `GitHub routes request failed with status ${status}.` },
+    });
     this.maxConflictRetries = Math.max(0, options.maxConflictRetries ?? 3);
   }
 
@@ -344,9 +339,9 @@ export class GitHubRouteRegistry {
       }
       const merged = mergeRouteDocuments(remote.document, pending);
       merged.updatedAt = later(merged.updatedAt, this.clock().toISOString());
-      const response = await this.request(this.contentsUrl(), {
+      const response = await this.github.request(this.github.contentsUrl(), {
         method: 'PUT',
-        headers: this.headers(token),
+        headers: this.github.headers(token),
         body: JSON.stringify({
           message: ROUTES_COMMIT_MESSAGE,
           content: encodeBase64(`${JSON.stringify(merged, null, 2)}\n`),
@@ -358,7 +353,7 @@ export class GitHubRouteRegistry {
       });
       // Another device wrote in between: read the new file and merge again.
       if (response.status === 409 || response.status === 422) continue;
-      if (!response.ok) throw this.errorForResponse(response);
+      if (!response.ok) throw this.github.errorFor(response);
       const document = mergeRouteDocuments(merged, this.prunePending(merged));
       this.writeCache(document);
       return { document, saved: true };
@@ -380,9 +375,9 @@ export class GitHubRouteRegistry {
   }
 
   private async readApi(token: string): Promise<RemoteRoutes> {
-    const response = await this.request(`${this.contentsUrl()}?ref=${encodeURIComponent(this.branch)}`, { headers: this.headers(token) });
+    const response = await this.github.request(this.github.readUrl(), { headers: this.github.headers(token) });
     if (response.status === 404) return { document: emptyRouteDocument() };
-    if (!response.ok) throw this.errorForResponse(response);
+    if (!response.ok) throw this.github.errorFor(response);
     try {
       const payload = await response.json() as GitHubContentsResponse;
       if (payload.encoding !== 'base64' || typeof payload.content !== 'string' || typeof payload.sha !== 'string') throw new Error('Incomplete Contents API response.');
@@ -394,9 +389,9 @@ export class GitHubRouteRegistry {
 
   private async readRaw(): Promise<RemoteRoutes> {
     // A plain GET without custom headers needs no CORS preflight; the query skips stale CDN copies.
-    const response = await this.request(`${this.rawUrl()}?t=${this.clock().getTime()}`, {});
+    const response = await this.github.request(`${this.github.rawUrl()}?t=${this.clock().getTime()}`, {});
     if (response.status === 404) return { document: emptyRouteDocument() };
-    if (!response.ok) throw this.errorForResponse(response);
+    if (!response.ok) throw this.github.errorFor(response);
     try {
       return { document: parseRouteDocument(await response.json()) };
     } catch (error) {
@@ -446,47 +441,4 @@ export class GitHubRouteRegistry {
     return run;
   }
 
-  private contentsUrl(): string {
-    return `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repository)}/contents/${this.path.split('/').map(encodeURIComponent).join('/')}`;
-  }
-
-  private rawUrl(): string {
-    return `https://raw.githubusercontent.com/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repository)}/${encodeURIComponent(this.branch)}/${this.path.split('/').map(encodeURIComponent).join('/')}`;
-  }
-
-  /** The same three headers the state repository sends; GitHub's CORS preflight allows them. */
-  private headers(token: string): Record<string, string> {
-    return { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', Authorization: `Bearer ${token}` };
-  }
-
-  private async request(url: string, init: RequestInit): Promise<Response> {
-    const fetcher = this.fetcher ?? (typeof globalThis.fetch === 'function' ? globalThis.fetch.bind(globalThis) : undefined);
-    if (!fetcher) throw new RouteRegistryError('network', 'Fetch is unavailable.');
-    const signal = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(REQUEST_TIMEOUT_MS) : undefined;
-    try {
-      return await fetcher(url, { ...init, cache: 'no-store', ...(signal ? { signal } : {}) });
-    } catch (error) {
-      throw new RouteRegistryError('network', 'GitHub routes request failed.', undefined, { cause: error });
-    }
-  }
-
-  private errorForResponse(response: Response): RouteRegistryError {
-    const status = response.status;
-    const remaining = header(response, 'X-RateLimit-Remaining');
-    const retryAfter = header(response, 'Retry-After');
-    // GitHub also answers rate limits with 403; those are not a refused token.
-    if (status === 429 || (status === 403 && (remaining === '0' || retryAfter !== ''))) {
-      const seconds = Number(retryAfter);
-      const reset = Number(header(response, 'X-RateLimit-Reset'));
-      const now = this.clock().getTime();
-      const retryAt = retryAfter !== '' && Number.isFinite(seconds) && seconds >= 0 ? now + seconds * 1000
-        : remaining === '0' && Number.isFinite(reset) && reset > 0 ? reset * 1000
-          : now + 60_000;
-      return new RouteRegistryError('rate-limited', 'GitHub rate limit reached.', status, { retryAt });
-    }
-    if (status === 401 || status === 403) return new RouteRegistryError('unauthorized', 'GitHub rejected the token or its write permission.', status);
-    if (status === 404) return new RouteRegistryError('not-found', 'The routes repository was not found.', 404);
-    if (status === 409 || status === 422) return new RouteRegistryError('conflict', 'routes.json changed during the save.', status);
-    return new RouteRegistryError('network', `GitHub routes request failed with status ${status}.`, status);
-  }
 }

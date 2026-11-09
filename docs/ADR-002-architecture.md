@@ -62,9 +62,10 @@ Her aşama bütün testler geçerek kendi başına yayına çıkar. Taşımadan 
    - `src/features/{catalog,reading,bookstores,fairs,notes}` oluşacak.
    - Sınırları koruyan bir içe aktarma denetimi eklenecek.
    - Tokenlar ve katalog ızgarası `styles.css` içinde kalır.
-5. **Ortak GitHub bağlantısı.**
-   - `state.json` ve `routes.json` tek bir iç istemciyi paylaşacak.
-   - Veri kaybı riski en yüksek adım bu olduğu için ayrı incelemeden geçecek ve eşitleme testleri bütün profillerde çalışacak.
+5. **Ortak GitHub bağlantısı (tamamlandı, 9 Kasım 2026).**
+   - `state.json` ve `routes.json` tek bir iç istemciyi paylaşıyor: `src/state/githubFile.ts`.
+   - Veri kaybı riski en yüksek adım bu olduğu için ayrı incelemeden geçti ve eşitleme testleri Chromium, WebKit ve iPhone görünümünde çalıştı.
+   - Taşınan yalnız bağlantıdır. Tek davranış farkı şudur: `state.json` istemcisi hız sınırı zamanını artık kendi saatinden hesaplar. Uygulamada bu saat tarayıcının saatidir, yani okur için bir şey değişmedi.
 
 6. **Eşitleme deposunun sağlığı (başladı).**
    - `titanlar-com/kitaps-state` uygulamanın veritabanı gibi çalışıyor. Depo silinir, özel yapılır, arşivlenir ya da dosyası bozulursa cihazlar sessizce kendi kopyalarıyla kalıyordu.

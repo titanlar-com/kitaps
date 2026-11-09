@@ -257,6 +257,7 @@ test('401 becomes an unauthorized error and the change stays pending',async()=>{
  for(const [response,code] of [
   [()=>{throw new TypeError('Failed to fetch');},'network'],
   [()=>new Response('',{status:403}),'unauthorized'],
+  [()=>new Response('',{status:403,headers:{'X-RateLimit-Remaining':'4990'}}),'unauthorized'],
   [()=>new Response('',{status:403,headers:{'X-RateLimit-Remaining':'0','X-RateLimit-Reset':'1790600000'}}),'rate-limited'],
   [()=>new Response('',{status:500}),'network'],
  ]){

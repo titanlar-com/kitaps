@@ -188,7 +188,7 @@ Bu beş fark 8 Kasım 2026'da olduğu gibi sabitlenmişti. Sahip 9 Kasım 2026'd
 - **Özellik başına görünüm modeli artık açılır.** ADR 002 bunu "gerekçe çıkarsa" diye bekletmişti. Gerekçe, sahibin arayüzü değiştirilebilir kılma isteğidir.
 - **Statik veri için salt okunur bir yükleme portu vardır.** Node (SEO) ve React dışı bir arayüz, veriyi `React.lazy` olmadan yükleyebilmelidir. Bu bir Repository değildir.
 - **Özellik klasörleri çekirdeğin içindedir.** ADR 002'nin 4. aşaması JSX ile mantığı aynı klasörde topluyordu. Değiştirilebilir arayüz sınırı bir adlandırma alışkanlığı değil, bir klasör sınırı olmalıdır.
-- **Ortak GitHub bağlantısı (ADR 002'nin 5. aşaması) ertelenir.** İki farklı kalıcılık protokolünü birleştirir ve arayüzü değiştirilebilir kılmak için gerekmez. Yapılacaksa ayrı ve bağımsız incelenen bir değişiklik olur.
+- **Ortak GitHub bağlantısı (ADR 002'nin 5. aşaması) yapıldı.** Önce ertelenmişti, sahip 9 Kasım 2026'da istedi. `src/state/githubFile.ts` adresleri, başlıkları, base64 kodlamasını, zaman sınırını ve GitHub'ın her yanıtının anlamını tek yerde tutar. Birleştirme, yeniden deneme ve bekleyen yazma kuralları iki dosyada ayrı kalır, çünkü verdikleri sözler farklıdır. Değişiklik bağımsız incelendi ve veri kaybı riski bulunmadı.
 - **Korunanlar:** modüler monolit, yönlendirme ve durum kitaplığı olmaması, i18n olmaması, değişmeyen yollar, test önce kuralı ve ADR 002'nin "uygulayıcı kendi değişikliğinin tek onaylayıcısı olmaz" kuralı.
 
 ### K14. Yeniden tasarım için kural
