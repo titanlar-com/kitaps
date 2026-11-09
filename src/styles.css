@@ -862,7 +862,7 @@ main{padding-top:20px;padding-bottom:32px}
 .reading-summary-stat{display:grid;position:relative;grid-template-columns:auto 1fr;grid-template-areas:"icon value" "label label";align-items:center;gap:var(--radius) var(--gap-xs);width:100%;min-height:var(--touch-target);padding:var(--gap-xs);border:1px solid color-mix(in srgb,var(--control-border) 50%,transparent);border-radius:var(--radius);background:transparent;color:var(--ink);transition:background-color var(--motion-control) var(--motion-ease),border-color var(--motion-control) var(--motion-ease)}
 /* A count is known by its icon and words, with no filled box that would need a 3:1 boundary (WCAG 1.4.11). */
 /* The row scrolls, so its focus bar is drawn inside the count and cannot be cut off. */
-html[data-focus-mode="keyboard"] .reading-summary-stat:focus-visible::after{inset-inline:8px;bottom:3px}
+html[data-focus-mode="keyboard"] .reading-summary-stat.reading-summary-stat:focus-visible::after{inset-inline:8px;bottom:3px}
 .reading-summary-stat:hover{border-color:var(--control-border);background:var(--panel-hover)}
 .reading-summary-icon{grid-area:icon}
 /* Each mark has its own hue from the scheme, so the band is not one colour. */
@@ -905,11 +905,11 @@ html[data-focus-mode="keyboard"] .reading-summary-stat:focus-visible::after{inse
 /* A phone keeps the reading band to a title line, its share and the row of counts. */
 @media (max-width:47.99em){
  .reading-summary{gap:var(--gap-xs);padding:var(--stack-gap)}
- .reading-summary-head{flex-basis:100%;flex-wrap:nowrap;align-items:center}
- .reading-summary-text{flex:none}
+ .reading-summary-head{flex-basis:100%;align-items:center}
+ .reading-summary-text{flex:0 1 auto}
  .reading-summary-text .mantine-Text-root+.mantine-Text-root{display:none}
  .reading-summary-title{font-size:var(--text-md)}
- .reading-summary-share{display:flex;flex:1 1 auto;align-items:center}
+ .reading-summary-share{display:flex;flex:1 1 6rem;align-items:center}
  .reading-summary-share-value{font-size:var(--text-md)}
  .reading-summary-bar{flex:1 1 auto}
 }
