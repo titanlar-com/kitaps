@@ -3,28 +3,12 @@ import { transition } from '../motion';
 import { ActionIcon, Badge, Button, Drawer, NumberInput, TextInput } from '@mantine/core';
 import { useReducedMotion } from '@mantine/hooks';
 import { IconArrowLeft, IconArrowRight, IconBooks, IconCalendar, IconCalendarPlus, IconCheck, IconChevronRight, IconListCheck, IconSearch, IconTags, IconUser, IconWriting } from '@tabler/icons-react';
-import { STATE_LABELS, QUALITY_LABELS, ORIGIN_LABELS, formatDay, normalize } from '../library';
+import { QUALITY_LABELS, ORIGIN_LABELS, formatDay } from '../library';
+import { CHOICE_STEP, choicesScreen, filtersScreen } from '../screens/filters.js';
 import './FilterSheet.css';
 
-const entries = object => Object.entries(object).map(([value, label]) => ({ value, label }));
-// A year range said in words: both limits, or the one that was given.
-const yearRange = (from, to) => from !== '' && to !== '' ? `${from} ile ${to} arası` : from !== '' ? `${from} ve sonrası` : `${to} ve öncesi`;
 const toggle = (values, value) => values.includes(value) ? values.filter(v => v !== value) : [...values, value];
-const sections = [
- { id: 'categories', title: 'Kategoriler', hint: 'Konusuna göre keşfet', icon: IconTags },
- { id: 'authors', title: 'Yazarlar', hint: 'Bir yazarın kitaplarını bul', icon: IconUser },
- { id: 'collections', title: 'Kümeler', hint: 'Seçkiler ve okuma rotaları', icon: IconBooks },
- { id: 'states', title: 'Okuma durumum', hint: 'Favoriler ve okuma kayıtları', icon: IconListCheck },
- { id: 'editions', title: 'Baskı ve kaynak', hint: 'Künye bilgisi ve kaynaklar', icon: IconWriting },
- { id: 'years', title: 'Yıl ve ödül', hint: 'Yayın aralığı ve FT ödülleri', icon: IconCalendar },
- { id: 'added', title: 'Eklenme tarihi', hint: 'Kitaplığa hangi gün eklendi', icon: IconCalendarPlus },
-];
-// What the headings are about: the subject of a book, the reader's own records, and the book's details.
-const sectionGroups = [
- { id: 'topic', title: 'Konu', ids: ['categories', 'authors', 'collections'] },
- { id: 'reader', title: 'Okuma kayıtlarım', ids: ['states'] },
- { id: 'record', title: 'Künye ve tarih', ids: ['editions', 'years', 'added'] },
-];
+const SECTION_ICONS = { categories: IconTags, authors: IconUser, collections: IconBooks, states: IconListCheck, editions: IconWriting, years: IconCalendar, added: IconCalendarPlus };
 
 function Choice({ checked, onChange, children }) {
  return <label className="filter-choice" data-checked={checked || undefined}>
@@ -37,22 +21,19 @@ function Choice({ checked, onChange, children }) {
 function Choices({ title, options, value, onChange, searchable = false, compact = false }) {
  const [query, setQuery] = useState('');
  const searchRef = useRef(null);
- const [limit, setLimit] = useState(12);
- const matches = options.filter(option => normalize(option.label).includes(normalize(query)));
- const visible = searchable ? matches.slice(0, limit) : matches;
- // Keep selected items removable even when the search or result limit hides them.
- const retained = options.filter(option => value.includes(option.value) && !visible.some(v => v.value === option.value));
+ const [limit, setLimit] = useState(CHOICE_STEP);
+ const model = choicesScreen({ title, options, value, query, limit, searchable });
  const choice = (option, retainedSelection = false) => <Choice key={option.value} checked={value.includes(option.value)} onChange={() => {
   onChange(toggle(value, option.value));
   if (retainedSelection) searchRef.current?.focus({ preventScroll: true });
  }}>{option.label}</Choice>;
  return <fieldset className="filter-fieldset">
-  <legend><span>{title}</span><span className="filter-legend-count">{value.length ? `${value.length} seçili` : `${options.length} seçenek`}</span></legend>
-  {searchable && <TextInput ref={searchRef} className="filter-option-search" label={`${title} ara`} placeholder={`${title} ara`} autoComplete="off" autoCorrect="off" spellCheck={false} leftSection={<IconSearch size={19} aria-hidden="true" />} value={query} onChange={e => { setQuery(e.currentTarget.value); setLimit(12); }} />}
-  {retained.length > 0 && <div className="filter-retained"><p className="filter-hint">Diğer seçimlerin</p>{retained.map(option => choice(option, true))}</div>}
-  <div className={`filter-choices${compact ? ' filter-choices-compact' : ''}`}>{visible.map(option => choice(option))}</div>
-  {matches.length === 0 && <p className="filter-hint" role="status">Eşleşme yok. Aramayı kısaltmayı dene.</p>}
-  {searchable && matches.length > 12 && <Button className="filter-show-more" variant="subtle" onClick={() => setLimit(limit >= matches.length ? 12 : limit + 12)}>{matches.length > limit ? `${matches.length - limit} seçenek daha göster` : 'Daha az göster'}</Button>}
+  <legend><span>{model.title}</span><span className="filter-legend-count">{model.count}</span></legend>
+  {model.search && <TextInput ref={searchRef} className="filter-option-search" label={model.search.label} placeholder={model.search.placeholder} autoComplete="off" autoCorrect="off" spellCheck={false} leftSection={<IconSearch size={19} aria-hidden="true" />} value={query} onChange={e => { setQuery(e.currentTarget.value); setLimit(CHOICE_STEP); }} />}
+  {model.retained && <div className="filter-retained"><p className="filter-hint">{model.retained.hint}</p>{model.retained.options.map(option => choice(option, true))}</div>}
+  <div className={`filter-choices${compact ? ' filter-choices-compact' : ''}`}>{model.visible.map(option => choice(option))}</div>
+  {model.noMatch && <p className="filter-hint" role="status">{model.noMatch}</p>}
+  {model.more && <Button className="filter-show-more" variant="subtle" onClick={() => setLimit(model.more.limit)}>{model.more.text}</Button>}
  </fieldset>;
 }
 
@@ -65,23 +46,8 @@ export default function FilterSheet({ opened, covered = false, onClose, onExited
  const reducedMotion = useReducedMotion();
  const headingBase = useId();
  const set = (key, value) => onChange({ ...f, [key]: value });
- const categoryOptions = catalog.categories.map(c => ({ value: c.id, label: c.label }));
- const collectionOptions = catalog.collections.map(c => ({ value: c.id, label: c.short }));
- const groupOptions = catalog.groups.filter(g => !f.collections.length || f.collections.includes(g.collectionId)).map(g => ({ value: g.id, label: `${catalog.collections.find(c => c.id === g.collectionId)?.short} · ${g.title}` }));
- // Each day books entered the library, newest first, with how many of the books in this view arrived that day.
- const addedCounts = shelf.reduce((counts, book) => book.addedAt ? { ...counts, [book.addedAt]: (counts[book.addedAt] || 0) + 1 } : counts, {});
- const addedOptions = Object.keys(addedCounts).sort().reverse().map(day => ({ value: day, label: `${formatDay(day)} · ${addedCounts[day]} kitap` }));
- const labelFor = (options, values) => values.map(v => options.find(o => o.value === v)?.label || v);
- const selected = {
-  categories: labelFor(categoryOptions, f.categories), states: f.states.map(s => STATE_LABELS[s]), authors: f.authors,
-  collections: [...labelFor(collectionOptions, f.collections), ...f.groups.map(id => catalog.groups.find(g => g.id === id)?.title || id), ...(f.shared ? ['Birden fazla kümede'] : [])],
-  editions: [...f.qualities.map(v => QUALITY_LABELS[v]), ...f.origins.map(v => ORIGIN_LABELS[v]), ...(f.hasEdition ? ['Künye bilgisi var'] : [])],
-  years: [...f.awards, ...f.awardYears.map(y => `FT ${y}`), ...(f.yearMin !== '' || f.yearMax !== '' ? [yearRange(f.yearMin, f.yearMax)] : [])],
-  added: f.addedDates.map(formatDay),
- };
- const selectionCount = Object.values(selected).reduce((sum, values) => sum + values.length, 0);
- const invalidYears = f.yearMin !== '' && f.yearMax !== '' && Number(f.yearMin) > Number(f.yearMax);
- const current = sections.find(s => s.id === section);
+ const model = filtersScreen({ filters: f, section, count, catalog, authors, shelf, qualityLabels: QUALITY_LABELS, originLabels: ORIGIN_LABELS, formatDay });
+ const { categories, states, authors: authorList, collections, editions, years, added } = model.content;
 
  // The section stays on screen while the sheet leaves; opened again, it starts from the list (ADR 004, K6).
  useEffect(() => { if (opened) setSection(null); }, [opened]);
@@ -111,61 +77,61 @@ export default function FilterSheet({ opened, covered = false, onClose, onExited
   <Drawer.Overlay backgroundOpacity={.45} blur={3} />
   <Drawer.Content aria-describedby="filter-sheet-description">
    <Drawer.Header>
-    {section && <ActionIcon variant="subtle" aria-label="Filtre başlıklarına dön" onClick={() => { leftSection.current = section; setSection(null); }}><IconArrowLeft size={22} /></ActionIcon>}
-    <Drawer.Title ref={titleRef} tabIndex={-1} data-autofocus>{current?.title || 'Filtreler'}</Drawer.Title>
-    <Drawer.CloseButton aria-label="Filtreleri uygulamadan kapat" />
+    {model.header.back && <ActionIcon variant="subtle" aria-label={model.header.back} onClick={() => { leftSection.current = section; setSection(null); }}><IconArrowLeft size={22} /></ActionIcon>}
+    <Drawer.Title ref={titleRef} tabIndex={-1} data-autofocus>{model.header.title}</Drawer.Title>
+    <Drawer.CloseButton aria-label={model.header.close} />
    </Drawer.Header>
    <Drawer.Body ref={bodyRef}>
-    <p className="filter-hint filter-intro" id="filter-sheet-description">{section ? 'Birden fazla seçim yapabilirsin.' : 'Aradığın kitapları daralt.'}</p>
-    {f.query && <p className="filter-query">Araman: <strong>{f.query}</strong></p>}
-    {!section && <nav className="filter-groups" aria-label="Filtre başlıkları">{sectionGroups.map(group => {
-     const chosen = group.ids.reduce((sum, id) => sum + selected[id].length, 0);
-     return <div className="filter-group" role="group" aria-labelledby={`${headingBase}-${group.id}`} key={group.id}>
-      <div className="filter-group-heading"><span className="filter-group-title" id={`${headingBase}-${group.id}`}>{group.title}</span>{chosen > 0 && <span className="filter-group-count">{chosen} seçim</span>}</div>
-      <div className="filter-sections">{sections.filter(item => group.ids.includes(item.id)).map(({ id, title, hint, icon: Icon }) => <button type="button" className="filter-section-link" data-section={id} key={id} aria-label={selected[id].length ? `${title}: ${selected[id].join(", ")}. ${selected[id].length} seçim` : undefined} onClick={() => setSection(id)}>
+    <p className="filter-hint filter-intro" id="filter-sheet-description">{model.header.intro}</p>
+    {model.query && <p className="filter-query">{model.query.label} <strong>{model.query.value}</strong></p>}
+    {!section && <nav className="filter-groups" aria-label={model.nav}>{model.groups.map(group => <div className="filter-group" role="group" aria-labelledby={`${headingBase}-${group.id}`} key={group.id}>
+     <div className="filter-group-heading"><span className="filter-group-title" id={`${headingBase}-${group.id}`}>{group.title}</span>{group.chosen && <span className="filter-group-count">{group.chosen}</span>}</div>
+     <div className="filter-sections">{group.sections.map(row => {
+      const Icon = SECTION_ICONS[row.id];
+      return <button type="button" className="filter-section-link" data-section={row.id} key={row.id} aria-label={row.label} onClick={() => setSection(row.id)}>
        <span className="filter-section-icon" aria-hidden="true"><Icon size={22} stroke={1.6} /></span>
-       <span className="filter-section-copy"><strong>{title}</strong><span data-selected={selected[id].length > 0 || undefined}>{selected[id].length ? selected[id].join(', ') : hint}</span></span>
-       {selected[id].length > 0 && <Badge className="filter-section-count" variant="light">{selected[id].length}</Badge>}
+       <span className="filter-section-copy"><strong>{row.title}</strong><span data-selected={row.chosen || undefined}>{row.detail}</span></span>
+       {row.chosen && <Badge className="filter-section-count" variant="light">{row.count}</Badge>}
        <IconChevronRight className="filter-section-arrow" size={18} aria-hidden="true" />
-      </button>)}</div>
-     </div>;
-    })}</nav>}
+      </button>;
+     })}</div>
+    </div>)}</nav>}
     <div className="filter-section-content" key={section}>
      {section === 'categories' && <>
-      <Choices title="Kategoriler" options={categoryOptions} value={f.categories} onChange={v => set('categories', v)} />
-      {f.categories.length > 1 && <Choice checked={f.categoryMode === 'all'} onChange={() => set('categoryMode', f.categoryMode === 'all' ? 'any' : 'all')}>Seçili kategorilerin tümü eşleşsin</Choice>}
+      <Choices title={categories.choices.title} options={categories.choices.options} value={f.categories} onChange={v => set('categories', v)} />
+      {categories.allMatch && <Choice checked={categories.allMatch.checked} onChange={() => set('categoryMode', f.categoryMode === 'all' ? 'any' : 'all')}>{categories.allMatch.text}</Choice>}
      </>}
-     {section === 'states' && <Choices title="Okuma durumum" options={entries(STATE_LABELS)} value={f.states} onChange={v => set('states', v)} />}
-     {section === 'authors' && <Choices title="Yazar" options={authors.map(a => ({ value: a, label: a }))} value={f.authors} onChange={v => set('authors', v)} searchable />}
+     {section === 'states' && <Choices title={states.choices.title} options={states.choices.options} value={f.states} onChange={v => set('states', v)} />}
+     {section === 'authors' && <Choices title={authorList.choices.title} options={authorList.choices.options} value={f.authors} onChange={v => set('authors', v)} searchable />}
      {section === 'collections' && <>
-      <Choices title="Kitap kümesi" options={collectionOptions} value={f.collections} onChange={v => onChange({ ...f, collections: v, groups: f.groups.filter(id => !v.length || v.includes(catalog.groups.find(g => g.id === id)?.collectionId)) })} searchable />
-      {f.collections.length > 1 && <Choice checked={f.collectionMode === 'all'} onChange={() => set('collectionMode', f.collectionMode === 'all' ? 'any' : 'all')}>Seçili kümelerin tümünde bulunsun</Choice>}
-      <Choices title="Alt küme" options={groupOptions} value={f.groups} onChange={v => set('groups', v)} searchable />
-      <Choice checked={f.shared} onChange={() => set('shared', !f.shared)}>Birden fazla kitap kümesinde bulunanlar</Choice>
+      <Choices title={collections.collections.title} options={collections.collections.options} value={f.collections} onChange={v => onChange({ ...f, collections: v, groups: f.groups.filter(id => !v.length || v.includes(catalog.groups.find(g => g.id === id)?.collectionId)) })} searchable />
+      {collections.allMatch && <Choice checked={collections.allMatch.checked} onChange={() => set('collectionMode', f.collectionMode === 'all' ? 'any' : 'all')}>{collections.allMatch.text}</Choice>}
+      <Choices title={collections.groups.title} options={collections.groups.options} value={f.groups} onChange={v => set('groups', v)} searchable />
+      <Choice checked={collections.shared.checked} onChange={() => set('shared', !f.shared)}>{collections.shared.text}</Choice>
      </>}
      {section === 'editions' && <>
-      <Choices title="Kaynağın künye değerlendirmesi" options={entries(QUALITY_LABELS)} value={f.qualities} onChange={v => set('qualities', v)} />
-      <Choice checked={f.hasEdition} onChange={() => set('hasEdition', !f.hasEdition)}>Çevirmen veya yayınevi bilgisi bulunanlar</Choice>
-      <Choices title="Verinin kaynağı" options={entries(ORIGIN_LABELS)} value={f.origins} onChange={v => set('origins', v)} />
-      <p className="filter-hint">Künye değerlendirmeleri özgün kaynaktan aktarılır. Bu değerlendirmeler çevirinin kalitesini tek başına ölçmez.</p>
+      <Choices title={editions.qualities.title} options={editions.qualities.options} value={f.qualities} onChange={v => set('qualities', v)} />
+      <Choice checked={editions.hasEdition.checked} onChange={() => set('hasEdition', !f.hasEdition)}>{editions.hasEdition.text}</Choice>
+      <Choices title={editions.origins.title} options={editions.origins.options} value={f.origins} onChange={v => set('origins', v)} />
+      <p className="filter-hint">{editions.hint}</p>
      </>}
      {section === 'years' && <>
-      <fieldset className="filter-fieldset"><legend>İlk yayın yılı</legend><div className="filter-year-range">
-       <NumberInput label="En erken" placeholder="Sınır yok" value={f.yearMin} onChange={v => set('yearMin', v)} min={-3000} max={2100} allowDecimal={false} hideControls autoComplete="off" />
-       <NumberInput label="En geç" placeholder="Sınır yok" value={f.yearMax} onChange={v => set('yearMax', v)} min={-3000} max={2100} allowDecimal={false} hideControls autoComplete="off" aria-invalid={invalidYears || undefined} aria-describedby={invalidYears ? 'filter-year-error' : undefined} />
-      </div>{invalidYears && <p id="filter-year-error" className="filter-error" data-edge="start" role="alert">En geç yıl, en erken yıldan küçük olamaz.</p>}<p className="filter-hint">Aralık seçildiğinde yayın yılı bilinmeyen kitaplar gösterilmez.</p></fieldset>
-      <Choices title="FT ödülü" options={['Kazanan', 'Kısa liste', 'Uzun liste'].map(value => ({ value, label: value }))} value={f.awards} onChange={v => set('awards', v)} />
-      <Choices title="FT ödül yılı" options={Array.from({ length: 22 }, (_, i) => ({ value: String(2026 - i), label: String(2026 - i) }))} value={f.awardYears} onChange={v => set('awardYears', v)} compact />
+      <fieldset className="filter-fieldset"><legend>{years.range.legend}</legend><div className="filter-year-range">
+       <NumberInput label={years.range.from} placeholder={years.range.none} value={f.yearMin} onChange={v => set('yearMin', v)} min={-3000} max={2100} allowDecimal={false} hideControls autoComplete="off" />
+       <NumberInput label={years.range.to} placeholder={years.range.none} value={f.yearMax} onChange={v => set('yearMax', v)} min={-3000} max={2100} allowDecimal={false} hideControls autoComplete="off" aria-invalid={years.range.invalid ? true : undefined} aria-describedby={years.range.invalid ? 'filter-year-error' : undefined} />
+      </div>{years.range.invalid && <p id="filter-year-error" className="filter-error" data-edge="start" role="alert">{years.range.invalid}</p>}<p className="filter-hint">{years.range.hint}</p></fieldset>
+      <Choices title={years.awards.title} options={years.awards.options} value={f.awards} onChange={v => set('awards', v)} />
+      <Choices title={years.awardYears.title} options={years.awardYears.options} value={f.awardYears} onChange={v => set('awardYears', v)} compact />
      </>}
      {section === 'added' && <>
-      <Choices title="Kitaplığa eklendiği gün" options={addedOptions} value={f.addedDates} onChange={v => set('addedDates', v)} />
-      <p className="filter-hint">Tarihler, kitabın kitaplık verisine ilk girdiği kayıttan çıkarıldı.</p>
+      <Choices title={added.choices.title} options={added.choices.options} value={f.addedDates} onChange={v => set('addedDates', v)} />
+      <p className="filter-hint">{added.hint}</p>
      </>}
     </div>
    </Drawer.Body>
    <footer className="filter-sheet-footer">
-    <p className="filter-result" role="status" aria-live="polite" aria-atomic="true"><span className="filter-result-total">{invalidYears ? 'Yıl aralığını düzelt' : <><strong>{count}</strong> kitap eşleşiyor</>}</span>{selectionCount > 0 && <span className="filter-result-selection">{selectionCount} seçim</span>}</p>
-    <div className="filter-footer-actions"><Button variant="subtle" disabled={!selectionCount} onClick={onReset}>Temizle</Button><Button disabled={invalidYears} onClick={onApply} rightSection={<IconArrowRight size={19} aria-hidden="true" />}>Kitapları göster</Button></div>
+    <p className="filter-result" role="status" aria-live="polite" aria-atomic="true"><span className="filter-result-total">{model.result.fix || <><strong>{model.result.count}</strong> {model.result.unit}</>}</span>{model.result.selection && <span className="filter-result-selection">{model.result.selection}</span>}</p>
+    <div className="filter-footer-actions"><Button variant="subtle" disabled={model.footer.clear.disabled} onClick={onReset}>{model.footer.clear.text}</Button><Button disabled={model.footer.apply.disabled} onClick={onApply} rightSection={<IconArrowRight size={19} aria-hidden="true" />}>{model.footer.apply.text}</Button></div>
    </footer>
   </Drawer.Content>
  </Drawer.Root>;
