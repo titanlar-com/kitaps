@@ -28,8 +28,9 @@ export default function SyncMergeDialog({sync}){
   requestAnimationFrame(()=>{
    // A further question (a connect right after a first-sync choice) keeps the focus.
    if(latest.current)return;
-   // With the book sheet open, focus stays in it rather than behind it.
-   const target=document.querySelector('.sync-modal [role="status"]')??document.querySelector('.detail-drawer .sync-status-text')??document.getElementById('main-content');
+   // With the book sheet or another panel open, focus stays in it rather than behind it.
+   const panel=[...document.querySelectorAll('[role="dialog"]')].find(dialog=>!dialog.closest('.sync-merge-dialog'));
+   const target=document.querySelector('.sync-modal [role="status"]')??document.querySelector('.detail-drawer .sync-status-text')??panel??document.getElementById('main-content');
    if(target instanceof HTMLElement)target.focus({preventScroll:true});
   });
  },[prompt]);

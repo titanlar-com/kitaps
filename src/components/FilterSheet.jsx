@@ -56,7 +56,7 @@ function Choices({ title, options, value, onChange, searchable = false, compact 
  </fieldset>;
 }
 
-export default function FilterSheet({ opened, onClose, onExited, value: f, onChange, onReset, onApply, count, catalog, authors, shelf = catalog.books }) {
+export default function FilterSheet({ opened, covered = false, onClose, onExited, value: f, onChange, onReset, onApply, count, catalog, authors, shelf = catalog.books }) {
  const [section, setSection] = useState(null);
  const leftSection = useRef(null);
  const [viewport, setViewport] = useState(null);
@@ -107,7 +107,7 @@ export default function FilterSheet({ opened, onClose, onExited, value: f, onCha
   return () => { visual.removeEventListener('resize', resize); visual.removeEventListener('scroll', resize); };
  }, [opened]);
 
- return <Drawer.Root opened={opened} onClose={onClose} onExitTransitionEnd={() => { setSection(null); onExited?.(); }} position="bottom" size="90dvh" className="filter-sheet" padding={0} transitionProps={transition('sheet',reducedMotion)} styles={viewport ? { inner: { height: viewport.height, top: viewport.top, bottom: 'auto' }, content: { height: viewport.panelHeight } } : undefined}>
+ return <Drawer.Root opened={opened} onClose={onClose} closeOnEscape={!covered} onExitTransitionEnd={() => { setSection(null); onExited?.(); }} position="bottom" size="90dvh" className="filter-sheet" padding={0} transitionProps={transition('sheet',reducedMotion)} styles={viewport ? { inner: { height: viewport.height, top: viewport.top, bottom: 'auto' }, content: { height: viewport.panelHeight } } : undefined}>
   <Drawer.Overlay backgroundOpacity={.45} blur={3} />
   <Drawer.Content aria-describedby="filter-sheet-description">
    <Drawer.Header>

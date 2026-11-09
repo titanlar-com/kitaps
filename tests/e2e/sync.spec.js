@@ -25,8 +25,10 @@ test.afterEach(() => {
  * as the real one does for up to five minutes. */
 // refuseKey: GitHub answers every request made with the key with 401, as for an expired key.
 function fakeGitHub({ canWrite = true, cdnLags = false, refuseKey = false } = {}) {
-  const github = { file: structuredClone(EMPTY), sha: 'sha-0', puts: [], commits: [], probes: 0, elsewhere: [] };
+  const github = { file: structuredClone(EMPTY), sha: 'sha-0', puts: [], commits: [], probes: 0, elsewhere: [], held: null };
   fakes.push(github);
+  // Holds GitHub's answers back, so a page can be put in a known state before the answer lands.
+  github.hold = () => { github.held = new Promise(resolve => { github.release = () => { github.held = null; resolve(); }; }); };
   github.attach = async context => {
     // Registered first, so the state repository's own routes below take precedence.
     await context.route(/^https:\/\/(api\.github\.com|raw\.githubusercontent\.com)\//, route => {
@@ -34,8 +36,12 @@ function fakeGitHub({ canWrite = true, cdnLags = false, refuseKey = false } = {}
       return route.abort();
     });
     // Only state.json is this fake's file; routes.json is not made yet, as on a new repository.
-    await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', route => route.request().url().includes('/routes.json') ? route.fulfill({ status: 404, headers: CORS, json: {} }) : route.fulfill({ headers: CORS, json: cdnLags ? EMPTY : github.file }));
+    await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', async route => {
+      await github.held;
+      return route.request().url().includes('/routes.json') ? route.fulfill({ status: 404, headers: CORS, json: {} }) : route.fulfill({ headers: CORS, json: cdnLags ? EMPTY : github.file });
+    });
     await context.route('https://api.github.com/repos/titanlar-com/kitaps-state/**', async route => {
+      await github.held;
       const request = route.request();
       if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: CORS });
       if (request.url().includes('/contents/routes.json')) return route.fulfill({ status: 404, headers: CORS, json: { message: 'Not Found' } });
@@ -128,6 +134,68 @@ test('a mark made in the book sheet says there that it stays on this device, and
   await expect(line).toContainText('GitHub’a gönderildi');
   // The button that opened the dialog is gone; focus stays in the sheet, on its sync status.
   await expect(line.locator('.sync-status-text')).toBeFocused();
+});
+
+// The question can appear over anything: a connected device's first read answers while the reader is elsewhere.
+for (const [name, open] of [
+  ['Filtreler', page => page.getByRole('button', { name: /^Filtreler/ }).first().click()],
+  ['Menü', page => page.locator('.footer-dock').click()],
+  ['Çeviri seçme rehberi', async page => {
+    await page.locator('.footer-dock').click();
+    await page.getByRole('dialog', { name: 'Menü' }).getByRole('button', { name: 'Çeviri rehberi' }).click();
+  }],
+]) test(`the first-sync question leaves "${name}" open under it, and focus comes back to it`, async ({ browser }) => {
+  test.slow();
+  // The phone is connected and buys the book; the computer, not yet connected, marked it as being read.
+  const github = fakeGitHub();
+  const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  await github.attach(phone);
+  await phone.addInitScript(([key, token]) => localStorage.setItem(key, token), [TOKEN_KEY, TOKEN]);
+  const computer = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  await github.attach(computer);
+  // GitHub cannot be reached on the computer's first visit, so this device has never read the shared file.
+  const unreachable = /^https:\/\/(api\.github\.com|raw\.githubusercontent\.com)\//;
+  await computer.route(unreachable, route => route.abort());
+  const computerPage = await computer.newPage();
+  await computerPage.goto(`./?book=${BOOK.slug}`);
+  await computerPage.getByRole('button', { name: 'Okuma kaydım ve kişisel notlarım' }).click();
+  const reading = computerPage.getByRole('button', { name: 'Okunuyor', exact: true });
+  await reading.click();
+  await expect(reading).toHaveAttribute('aria-pressed', 'true');
+  const phonePage = await phone.newPage();
+  await markPurchased(phonePage);
+  await hidePage(phonePage);
+  await expect.poll(() => github.puts.length).toBe(1);
+  await phone.close();
+
+  // The computer now has the key: its first read answers only after the reader has opened the panel.
+  // It stays unreachable until the phone has written, or a retry would find the shared file still empty.
+  await computer.addInitScript(([key, token]) => localStorage.setItem(key, token), [TOKEN_KEY, TOKEN]);
+  github.hold();
+  await computer.unroute(unreachable);
+  await computerPage.goto('./');
+  await open(computerPage);
+  const layer = computerPage.getByRole('dialog', { name, exact: true });
+  await expect(layer).toBeVisible();
+  github.release();
+  const merge = computerPage.getByRole('dialog', { name: 'Bu cihazdaki kayıtlar farklı' });
+  await expect(merge).toContainText('1 kitabın kaydı', { timeout: 20000 });
+
+  await computerPage.waitForTimeout(400);
+  await computerPage.keyboard.press('Escape');
+  await computerPage.waitForTimeout(400);
+  await expect(merge).toBeVisible();
+  await expect(layer).toBeVisible();
+  await expect.poll(() => merge.evaluate(element => element.contains(document.activeElement)), { message: 'focus stays in the question' }).toBe(true);
+
+  // Linux WebKit paints a few frames a second under a blurred overlay, so a closing panel can take many seconds to leave.
+  await merge.getByRole('button', { name: 'GitHub’dakini kullan' }).click();
+  await expect(merge).toHaveCount(0, { timeout: 20000 });
+  await expect.poll(() => layer.evaluate(element => element.contains(document.activeElement)), { message: 'focus comes back to the panel, not behind it', timeout: 20000 }).toBe(true);
+  // With the question gone, Escape closes the panel as usual.
+  await computerPage.keyboard.press('Escape');
+  await expect(layer).toHaveCount(0, { timeout: 20000 });
+  await computer.close();
 });
 
 // AGENTS.md: large text is in place before the page opens, so the sheet's em container queries apply.
