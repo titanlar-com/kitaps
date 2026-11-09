@@ -9,13 +9,17 @@ import NoteCards from './NoteCards';
 import GitHubSyncPanel from './GitHubSyncPanel';
 import SourceBadge from './SourceBadge';
 import {download} from '../download';
-import {cleanPersonal} from '../reading';
+import {createBackup,readBackup} from '../core/personal/backup.js';
 import {SOURCE_URL} from '../site';
-import {ORIGIN_LABELS,STATE_LABELS,plainTextMarkers} from '../library';
+import {ORIGIN_LABELS,plainTextMarkers} from '../library';
 
 const bookIds=catalog.books.map(book=>book.id);
-const knownIds=new Set(bookIds);
 const counts=catalog.sourceCounts;
+const BACKUP_REFUSED={
+ unreadable:'Dosya okunamadı. Bu siteden dışa aktarılmış bir JSON dosyası seç.',
+ newer:'Bu yedek sitenin daha yeni bir sürümünde alınmış. Sayfayı yenileyip yeniden dene. Kayıtların değişmedi.',
+ 'other-file':'Bu dosya kişisel yedek değil. "Kişisel yedeğimi indir" düğmesiyle aldığın dosyayı seç.',
+};
 
 // Raw source archives are only needed for the full download, so they load on demand.
 async function downloadEverything(){
@@ -37,15 +41,10 @@ export default function NotesPage({states,personal,onRestore,sync}) {
  const importStates=async file=>{
   if(!file)return;
   try {
-   const input=JSON.parse(await file.text());
-   if(!input||typeof input!=='object'||Array.isArray(input))throw Error();
-   const supplied=input.states||(('queue' in input||'reading' in input)?{}:input);
-   if(!supplied||typeof supplied!=='object'||Array.isArray(supplied))throw Error();
-   const valid=Object.fromEntries(Object.entries(supplied).filter(([id,v])=>knownIds.has(id)&&Array.isArray(v)).map(([id,v])=>[id,v.filter(s=>s in STATE_LABELS)]));
-   onRestore(valid,input);
-   const clean=cleanPersonal(input,bookIds);
-   setMessage(`${Object.keys(valid).length} kitabın işaretleri ve ${Object.keys(clean.reading).length} okuma kaydı içe aktarıldı.${Array.isArray(input.queue)?` Okuma sırası ${clean.queue.length} kitapla geri yüklendi.`:''}`);
-  }catch{setMessage('Dosya okunamadı. Bu siteden dışa aktarılmış bir JSON dosyası seç.');}
+   const backup=readBackup(JSON.parse(await file.text()),bookIds);
+   onRestore(backup.marks,backup.input);
+   setMessage(`${Object.keys(backup.marks).length} kitabın işaretleri ve ${Object.keys(backup.personal.reading).length} okuma kaydı içe aktarıldı.${backup.hasQueue?` Okuma sırası ${backup.personal.queue.length} kitapla geri yüklendi.`:''}`);
+  }catch(error){setMessage(BACKUP_REFUSED[error?.kind]??BACKUP_REFUSED.unreadable);}
  };
 
  return <Stack gap="xl">
@@ -70,7 +69,7 @@ export default function NotesPage({states,personal,onRestore,sync}) {
    </dl>
    <Group mt="md" gap={8}>{Object.keys(ORIGIN_LABELS).map(id=><SourceBadge id={id} key={id}/>)}</Group>
   </Paper>
-  <Paper p="lg" radius="lg" className="notes-panel"><Title order={3}>Kişisel kitaplığını yedekle</Title><Group mt="md"><Button variant="light" leftSection={<IconDownload size={19}/>} onClick={()=>download('kitaplik-kisisel-yedek.json',{version:3,exportedAt:new Date().toISOString(),states,...personal})}>Kişisel yedeğimi indir</Button><FileButton onChange={importStates} accept="application/json">{props=><Button {...props} variant="default" leftSection={<IconUpload size={19}/>}>Yedekten aktar</Button>}</FileButton></Group>{message&&<Text mt="md" role="status">{message}</Text>}</Paper>
+  <Paper p="lg" radius="lg" className="notes-panel"><Title order={3}>Kişisel kitaplığını yedekle</Title><Group mt="md"><Button variant="light" leftSection={<IconDownload size={19}/>} onClick={()=>download('kitaplik-kisisel-yedek.json',createBackup({states,personal}))}>Kişisel yedeğimi indir</Button><FileButton onChange={importStates} accept="application/json">{props=><Button {...props} variant="default" leftSection={<IconUpload size={19}/>}>Yedekten aktar</Button>}</FileButton></Group>{message&&<Text mt="md" role="status">{message}</Text>}</Paper>
   <GitHubSyncPanel sync={sync}/>
   <div><Title order={3}>Tam veri ve kaynaklar</Title><Group mt="md"><Button variant="light" leftSection={<IconDownload size={19}/>} onClick={()=>void downloadEverything()}>Tüm kataloğu indir</Button><Button variant="default" leftSection={<IconDownload size={19}/>} onClick={()=>download('kitaps-kaynak-notlari.md',plainTextMarkers(readingNotes),'text/markdown')}>Kaynak notlarını indir</Button></Group><Group mt="md"><Anchor href={SOURCE_URL} target="_blank" rel="noreferrer">Kaynak kod ve veri arşivi</Anchor></Group></div>
   <Divider/>
