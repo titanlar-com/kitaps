@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { coreTexts, coreViolations, filesUnder, importGraph, hasRuntimeCode, uiDataImports } from './architecture/boundaries.js';
+import { boundToScreens, coreTexts, coreViolations, filesUnder, importGraph, hasRuntimeCode, shownWords, uiDataImports } from './architecture/boundaries.js';
 import os from 'node:os';
 
 // The data core stays free of any UI technology (ADR 003, "Sınır kapıları"), so a new design
@@ -31,6 +31,18 @@ test('that gate catches a shown word, and leaves code, comments and data values 
   } finally {
     fs.rmSync(folder, { recursive: true, force: true });
   }
+});
+
+// Screen models (ADR 003, K6) carry a screen's words and composition, and pass the core's own gate.
+const src = new URL('../src/', import.meta.url).pathname;
+test('screen models use no UI technology, no browser global and nothing but the core', () => {
+  assert.deepEqual(coreViolations(path.join(src, 'screens'), { alsoAllowed: [path.join(src, 'core')] }), []);
+});
+
+test('a component bound to a screen model keeps no Turkish word of its own', () => {
+  const words = boundToScreens(src).flatMap(file => shownWords(file).map(word => `${path.relative(src, file)}: ${word}`));
+  assert.deepEqual(words, []);
+  assert.ok(boundToScreens(src).length > 0, 'at least one component is bound, so the walk is real');
 });
 
 test('every module of the data core loads in plain Node', async () => {
@@ -82,6 +94,6 @@ test('screens do not import the catalogue, the data files or the GitHub reposito
 
 test('the screen gate reports each kind of direct import and leaves the facade alone', () => {
   const fixtures = new URL('./fixtures/architecture/ui/', import.meta.url).pathname;
-  assert.equal(uiDataImports(path.join(fixtures, 'reads-data.jsx')).length, 4);
+  assert.equal(uiDataImports(path.join(fixtures, 'reads-data.jsx')).length, 5);
   assert.deepEqual(uiDataImports(path.join(fixtures, 'keeps-the-rule.jsx')), []);
 });

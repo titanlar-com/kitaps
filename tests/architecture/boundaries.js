@@ -42,7 +42,7 @@ export function specifiers(source, { runtimeOnly = false } = {}) {
 
 /** What a screen imports past the facade: the catalogue, a data file or a GitHub repository. */
 export function uiDataImports(file) {
-  return specifiers(parse(file), { runtimeOnly: true }).filter(item => /catalog\.json$|(^|\/)data\/|GitHubStateRepository|routeRegistry/.test(item));
+  return specifiers(parse(file), { runtimeOnly: true }).filter(item => /catalog\.json$|(^|\/)data\/|GitHubStateRepository|routeRegistry|githubFile/.test(item));
 }
 
 /** Whether a file holds anything that runs: a file of types alone is never reached at run time. */
@@ -94,7 +94,7 @@ const usesImportMetaEnv = source => {
 };
 
 /** The rules each file under `coreRoot` breaks, as "file: rule" lines. */
-export function coreViolations(coreRoot) {
+export function coreViolations(coreRoot, { alsoAllowed = [] } = {}) {
   const root = path.resolve(coreRoot);
   const problems = [];
   const code = filesUnder(root).filter(file => /\.(js|ts)$/.test(file));
@@ -107,7 +107,7 @@ export function coreViolations(coreRoot) {
       if (/\.(jsx|tsx|css|scss|svg|png|md)(\?|$)|\?(raw|url|inline)/.test(specifier)) { problems.push(`${name}: imports a UI or bundler asset (${specifier})`); continue; }
       if (!specifier.startsWith('.')) { problems.push(`${name}: imports a package (${specifier})`); continue; }
       const target = path.resolve(path.dirname(file), specifier);
-      if (target.startsWith(root + path.sep) || ALLOWED_OUTSIDE.some(allowed => allowed(target))) continue;
+      if (target.startsWith(root + path.sep) || alsoAllowed.some(other => target.startsWith(path.resolve(other) + path.sep)) || ALLOWED_OUTSIDE.some(allowed => allowed(target))) continue;
       problems.push(`${name}: imports outside the core (${path.relative(SRC, target)})`);
     }
     for (const global of globals.get(path.resolve(file)) ?? []) problems.push(`${name}: uses the global ${global}, which plain JavaScript does not have`);
@@ -151,3 +151,18 @@ export function coreTexts(coreRoot, textModule = 'text.js') {
   }
   return found;
 }
+
+/** The Turkish words a UI file still holds itself: JSX text, strings and templates (ADR 003, K6). */
+export function shownWords(file) {
+  const found = [];
+  const visit = node => {
+    const word = ts.isJsxText(node) || ts.isStringLiteralLike(node) ? node.text : ts.isTemplateExpression(node) ? node.getText() : null;
+    if (word !== null && SHOWN_WORD.test(word) && !DATA_VALUES.has(word.trim())) found.push(word.trim().slice(0, 60));
+    else ts.forEachChild(node, visit);
+  };
+  visit(parse(file));
+  return found;
+}
+
+/** The files under `root` that take their words from a screen model. */
+export const boundToScreens = root => filesUnder(root).filter(file => /\.jsx$/.test(file) && specifiers(parse(file)).some(specifier => /(^|\/)screens\//.test(specifier)));
