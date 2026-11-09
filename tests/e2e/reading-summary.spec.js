@@ -36,6 +36,21 @@ test('a count shows a half-transparent border at rest and a solid one under the 
   expect(await count.boundingBox()).toEqual(before);
 });
 
+// Seen on 9 November 2026 at about 800 px: "Okuyorum" and "Kitaplığım" broke inside the word.
+for (const width of [768, 800, 900, 1024, 1280]) {
+  test(`at ${width} px no count label breaks inside a word`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('./');
+    await expect(band(page)).toBeVisible();
+    const lines = await page.locator('.reading-summary-label').evaluateAll(labels => labels.map(label => {
+      const range = document.createRange();
+      range.selectNodeContents(label);
+      return new Set([...range.getClientRects()].map(rect => Math.round(rect.top))).size;
+    }));
+    expect(lines).toEqual([1, 1, 1, 1, 1]);
+  });
+}
+
 // The owner, 8 November 2026: the band stood flush against the search field.
 for (const width of [768, 1024, 1280]) {
   test(`at ${width} px the reading band keeps its distance from the search field and from what follows`, async ({ page }) => {
