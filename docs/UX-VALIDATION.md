@@ -37,7 +37,7 @@ Son kontrol: 28 Eylül 2026. Kontrollerin çoğu otomatik testlere bağlıdır; 
 ## Okuma özeti ve satın alınanlar (8 Kasım 2026)
 
 - Okuma özeti bandı okunan oranını bir çubukla ve beş sayıyla gösterir: Okunan, Okuyorum, Sıramda, Kitaplığım, Favoriler. Her sayı kendi rafını açar ve odak ana içeriğe geçer.
-- Bant katalogda tablet ve masaüstünde (48em ve üstü) görünür. Telefonda, dik de yatay da tutulsa, ilk ekran kitap adlarına ayrıldığı için bant katalogda yoktur. Sıram sayfasında bant her genişlikte sıranın altındadır.
+- Bant katalogda her genişlikte görünür. Beş sayı her ekranda tek sıradadır ve aynı yüksekliktedir: sayı simgenin yanında, yazı simgenin altındadır (proje sahibinin 8 Kasım 2026 isteği). Beş kutunun sığmadığı telefonda satır kendi içinde kayar, sayfa genişlemez. Sıram sayfasında bant sıranın altındadır.
 - "Satın aldıklarımı gösterme" açıkken satın alınan kitaplar göz atarken katalogdan çıkar. Okur kataloğu bir okuma işaretine göre süzdüğünde (örneğin Okundu) o kitapları adıyla istemiş olur. Bu yüzden satın alınanlar listede kalır ve sonuç sayısının altında "Satın aldığın kitaplar da listede, çünkü okuma işaretine göre süzdün." yazar. Filtre panelindeki canlı sayı da aynı kuralla sayar. Testler: `tests/app-logic.test.js`, `tests/e2e/reading-summary.spec.js`.
 - Satın alınmamış bir kitap okunamaz. Okuma işareti (Okunuyor, Okundu, Ara verdim, Bıraktım) konunca kitap Kitaplığım'a da eklenir ve "Kitaplığa eklendi" bildirimi çıkar. İşaretlerden biri sonradan kaldırılırsa öteki değişmez. Testler: `tests/reading.test.js`, `tests/e2e/reading-marks.spec.js`.
 

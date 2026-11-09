@@ -25,7 +25,6 @@ import SyncNotice from './components/SyncNotice';
 import GitHubSyncPanel from './components/GitHubSyncPanel';
 import ReadingSummary from './components/ReadingSummary';
 import { useMediaQuery } from '@mantine/hooks';
-import { WIDE_QUERY, PHONE_LANDSCAPE_QUERY } from './app/media';
 import { useGitHubStateSync } from './state/useGitHubStateSync';
 import { useViewModel } from './adapters/react/useViewModel.js';
 import { readingSummary } from './reading';
@@ -121,8 +120,6 @@ function AtlasApp({kitaplik}) {
  const summary=useMemo(()=>readingSummary({books,states,queue:personal.queue}),[states,personal.queue]);
  // A phone keeps its first screen for book titles; there the band is on Sıram only.
  // A phone held sideways is a phone too (src/app/media.js, the grid's own rule).
- const wide=useMediaQuery(WIDE_QUERY,true,{getInitialValueInEffect:false});
- const phoneLandscape=useMediaQuery(PHONE_LANDSCAPE_QUERY,false,{getInitialValueInEffect:false});
  // A count opens its shelf and the band goes with the old page, so focus moves to the main
  // content instead of falling to the page (review, 8 November 2026). Sıram's own count stays put.
  const focusMain=()=>requestAnimationFrame(()=>document.getElementById('main-content')?.focus({preventScroll:true}));
@@ -191,7 +188,7 @@ function AtlasApp({kitaplik}) {
       <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setToastShown(false);setDraft(filters);setSheetShown(true);setOpened(true)}}>Filtreler{activeCount?` · ${activeCount}`:''}</Button><WrappingSelect aria-label="Kitapları sırala" value={sort} onChange={nav.changeSort} data={[{value:'reading',label:'Okuma önceliği'},{value:'shared',label:'En çok kesişen'},{value:'title',label:'Kitap adı · A–Z'},{value:'author',label:'Yazar · A–Z'},{value:'newest',label:'Yayın yılı · yeni'},{value:'added',label:'Eklenme · yeni'},{value:'saved',label:'Favoriler önce'}]}/></div>
       <ActiveFilters filters={filters} onChange={changeFilters}/>
      </div>
-     {wide&&!phoneLandscape&&view==='books'&&!filterCount(filters)&&<ReadingSummary summary={summary} onSelect={onSummary}/>}
+     {view==='books'&&!filterCount(filters)&&<ReadingSummary summary={summary} onSelect={onSummary}/>}
      {view==='books'&&!filterCount(filters)&&<section className="reading-route" aria-label="Nereden başlamalı?"><div><Text fw={500}>Nereden başlamalı?</Text><Text>{collectionMap.core?.count} kitaplık çekirdek, düşünceden uygulamaya.</Text></div><Button variant="white" color="brand" rightSection={<IconArrowRight size={19}/>} onClick={()=>goCollection('core')}>Seçkiye git</Button></section>}
      {view==='books'&&childrenShelf(filters)&&onlyFilters(filters,['categories'])&&<AgeLibrary onGroup={goCollection}/>}
      {view==='books'&&sort==='reading'&&<ReadingPrioritySummary ranking={readingRanking}/>}

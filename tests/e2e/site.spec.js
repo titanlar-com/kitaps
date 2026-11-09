@@ -112,14 +112,17 @@ test('the catalog opens sorted by reading priority with the compact summary', as
   expect(errors).toEqual([]);
 });
 
-test('a phone shows book titles on the first screen', async ({ browser }) => {
+// The owner, 8 November 2026: the reading band shows on a phone too, which moves the first titles
+// one short scroll down. The first covers stay on the first screen.
+test('a phone shows the first book covers on the first screen', async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 375, height: 812 }, isMobile: true, hasTouch: true });
   const page = await context.newPage();
   await page.goto('./');
-  const title = page.locator('.book-card .title-button').first();
-  await expect(title).toBeVisible();
-  const box = await title.boundingBox();
-  expect(box.y + box.height).toBeLessThanOrEqual(812);
+  const cover = page.locator('.book-card .cover-stage').first();
+  await expect(cover).toBeVisible();
+  const box = await cover.boundingBox();
+  const dock = await page.locator('.site-footer').boundingBox();
+  expect(box.y).toBeLessThan(dock.y - 120);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await context.close();
 });

@@ -36,8 +36,49 @@ test('a count shows a half-transparent border at rest and a solid one under the 
   expect(await count.boundingBox()).toEqual(before);
 });
 
+// The owner, 8 November 2026: the labels go under the icons, so the five counts stay in one row
+// and the component does not jump as the page narrows.
+const rowLayout = page => page.evaluate(() => {
+  const stats = [...document.querySelectorAll('.reading-summary-stat')];
+  const list = document.querySelector('.reading-summary-stats');
+  return {
+    tops: new Set(stats.map(stat => Math.round(stat.getBoundingClientRect().top))).size,
+    height: Math.round(stats[0].getBoundingClientRect().height),
+    labelsBelow: stats.every(stat => { const icon = stat.querySelector('.reading-summary-icon').getBoundingClientRect(); const label = stat.querySelector('.reading-summary-label').getBoundingClientRect(); return label.top >= icon.bottom && Math.abs(label.left - icon.left) <= 1; }),
+    valueBeside: stats.every(stat => { const icon = stat.querySelector('.reading-summary-icon').getBoundingClientRect(); const value = stat.querySelector('.reading-summary-value').getBoundingClientRect(); return value.left >= icon.right && value.top < icon.bottom; }),
+    pageFits: document.documentElement.scrollWidth <= window.innerWidth,
+    listScrolls: list.scrollWidth > list.clientWidth + 1,
+  };
+});
+test('the five counts stay in one row at the same height from a phone to a wide screen', async ({ page }) => {
+  const heights = [];
+  for (const width of [320, 360, 390, 576, 768, 1024, 1280, 1920]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('./');
+    await expect(band(page)).toBeVisible();
+    const row = await rowLayout(page);
+    expect(row.tops, `${width} px: one row`).toBe(1);
+    expect(row.labelsBelow, `${width} px: labels under the icons`).toBe(true);
+    expect(row.valueBeside, `${width} px: numbers beside the icons`).toBe(true);
+    expect(row.pageFits, `${width} px: the page does not widen`).toBe(true);
+    heights.push(row.height);
+  }
+  expect(new Set(heights).size, heights.join(', ')).toBe(1);
+});
+
+test('on the narrowest phone the row scrolls inside itself and the last count can be reached', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('./');
+  await expect(band(page)).toBeVisible();
+  expect((await rowLayout(page)).listScrolls).toBe(true);
+  const last = band(page).getByRole('button', { name: /^Favoriler/ });
+  await last.scrollIntoViewIfNeeded();
+  const box = await last.boundingBox();
+  expect(box.x + box.width).toBeLessThanOrEqual(320);
+});
+
 // Seen on 9 November 2026 at about 800 px: "Okuyorum" and "Kitaplığım" broke inside the word.
-for (const width of [768, 800, 900, 1024, 1280]) {
+for (const width of [320, 390, 768, 800, 900, 1024, 1280]) {
   test(`at ${width} px no count label breaks inside a word`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('./');
@@ -66,12 +107,13 @@ for (const width of [768, 1024, 1280]) {
   });
 }
 
-for (const [width, onCatalogue] of [[320, false], [390, false], [768, true], [1280, true]]) {
-  test(`at ${width} px the catalogue ${onCatalogue ? 'opens with' : 'leaves out'} the reading band, and Sıram shows it`, async ({ page }) => {
+// The owner, 8 November 2026: with the labels under the icons the band fits a phone too.
+for (const width of [320, 390, 768, 1280]) {
+  test(`at ${width} px the catalogue opens with the reading band, and Sıram shows it`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('./');
     await expect(page.locator('.book-card').first()).toBeVisible();
-    await expect(band(page)).toHaveCount(onCatalogue ? 1 : 0);
+    await expect(band(page)).toHaveCount(1);
     await page.getByRole('tab', { name: 'Sıram' }).click();
     await expect(band(page)).toBeVisible();
     await expect(band(page).getByRole('button', { name: 'Okunan: 1 kitap' })).toBeVisible();
@@ -95,7 +137,7 @@ test('a count in the band opens its shelf', async ({ page }) => {
 });
 
 // Review of 8 November 2026.
-for (const [width, height, shown] of [[844, 390, false], [915, 412, false], [767, 900, false], [768, 900, true]]) {
+for (const [width, height, shown] of [[844, 390, true], [915, 412, true], [767, 900, true], [768, 900, true]]) {
   test(`at ${width} x ${height} the catalogue ${shown ? 'opens with' : 'leaves out'} the band`, async ({ page }) => {
     await page.setViewportSize({ width, height });
     await page.goto('./');
