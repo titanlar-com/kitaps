@@ -31,7 +31,7 @@ test.beforeEach(async ({ page, context }) => {
 const settle = async (page, selector) => {
   await expect(page.locator(selector).first()).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
-  await expect(page.locator('.cover-skeleton:visible')).toHaveCount(0);
+  await expect(page.locator('.cover-skeleton:visible, .reading-summary-wait')).toHaveCount(0);
   // Covers in view have arrived, so none of them is caught on its way in.
   await page.waitForFunction(() => [...document.images].filter(image => image.getBoundingClientRect().top < innerHeight && image.getBoundingClientRect().bottom > 0).every(image => image.complete && image.naturalWidth > 0));
 };

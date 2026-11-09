@@ -126,15 +126,19 @@ const number = new Intl.NumberFormat('tr-TR');
 const percent = share => new Intl.NumberFormat('tr-TR', { style: 'percent', maximumFractionDigits: share > 0 && share < 0.01 ? 1 : 0 }).format(share);
 const SUMMARY_STATS = [['read', 'Okunan'], ['reading', 'Okuyorum'], ['queued', 'Sıramda'], ['owned', 'Kitaplığım'], ['favorites', 'Favoriler']];
 
-export const readingSummaryScreen = summary => ({
+/** Until the first read of the saved marks answers, a device with none of its own has no numbers to show. */
+export const marksAwaited = (sync, summary) => sync.status === 'loading' && !sync.lastReadAt && SUMMARY_STATS.every(([key]) => !summary[key]);
+
+export const readingSummaryScreen = (summary, waiting = false) => ({
   title: 'Okuma özetim',
-  sentence: summary.read ? `${number.format(summary.total)} kitaptan ${number.format(summary.read)} tanesi okundu.` : 'Henüz okundu işaretli kitap yok.',
+  waiting,
+  sentence: waiting ? 'Okuma kayıtların getiriliyor…' : summary.read ? `${number.format(summary.total)} kitaptan ${number.format(summary.read)} tanesi okundu.` : 'Henüz okundu işaretli kitap yok.',
   share: percent(summary.readShare),
   progress: Number((summary.readShare * 100).toFixed(1)),
   progressLabel: 'Okunan oranı',
   stats: SUMMARY_STATS.map(([key, label]) => {
     const value = number.format(summary[key]);
-    return { key, label, value, spoken: `${label}: ${value} kitap` };
+    return { key, label, value, spoken: waiting ? `${label}: yükleniyor` : `${label}: ${value} kitap` };
   }),
 });
 

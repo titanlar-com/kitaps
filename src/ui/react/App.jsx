@@ -34,7 +34,7 @@ import { cssVariablesResolver, theme } from './app/theme';
 import { catalog, books, bookIds, readingRanking, byId, collectionMap, groupMap, authorOptions, exportAllBooks } from './app/catalogData';
 import { GirlIcon, BookshelfIcon, BrandMark } from './app/icons';
 import { AgeLibrary } from './app/AgeLibrary';
-import { catalogScreen } from '../../screens/catalog.js';
+import { catalogScreen, marksAwaited } from '../../screens/catalog.js';
 import { shellScreen } from '../../screens/shell.js';
 import { ActiveFilters } from './app/ActiveFilters';
 import { BookCover, ThumbCover } from './app/BookCover';
@@ -196,7 +196,7 @@ function AtlasApp({kitaplik}) {
       <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setToastShown(false);setDraft(filters);setSheetShown(true);setOpened(true)}}>{catalogue.filtersButton}</Button><WrappingSelect aria-label={catalogue.sort.label} value={sort} onChange={next=>execute({type:'changeSort',sort:next})} data={catalogue.sort.options}/></div>
       <ActiveFilters filters={filters} onChange={changeFilters}/>
      </div>
-     {catalogue.showsReadingSummary&&<ReadingSummary summary={summary} onSelect={onSummary}/>}
+     {catalogue.showsReadingSummary&&<ReadingSummary summary={summary} waiting={marksAwaited(githubSync,summary)} onSelect={onSummary}/>}
      </div>
      {catalogue.route&&<section className="reading-route" aria-label={catalogue.route.label}><div><Text fw={500}>{catalogue.route.title}</Text><Text>{catalogue.route.body}</Text></div><Button variant="white" color="brand" rightSection={<IconArrowRight size={19}/>} onClick={()=>goCollection('core')}>{catalogue.route.action}</Button></section>}
      {catalogue.showsAgeLibrary&&<AgeLibrary onGroup={goCollection}/>}
@@ -205,7 +205,7 @@ function AtlasApp({kitaplik}) {
      {!catalogue.empty?<><div className="books-grid">{displayed.map(b=><BookCard key={b.id} book={b} ranking={readingRanking.byId[b.id]} states={states} onToggle={onToggle} onOpen={onOpen} queue={personal.queue} onAdd={onAdd} onQueue={onQueue}/>)}</div><CatalogPagination page={currentPage} total={pages} count={total} pageSize={pageSize} onChange={changePage} onPageSize={size=>navigate({...route,page:1,pageSize:size,book:null})} hrefForPage={p=>window.location.pathname+'?'+encodeRoute({...route,page:p,book:null},catalog)}/></>:catalogue.empty.shelf?<ShelfEmpty shelf={catalogue.empty.shelf} onBrowse={onBrowse}/>:<EmptyState icon={IconSearch} title={catalogue.empty.title} action={<Button variant="light" onClick={()=>changeFilters(emptyFilters())}>{catalogue.empty.clear}</Button>}>{catalogue.empty.body}</EmptyState>}
     </>}
     </Tabs.Panel>
-    <Tabs.Panel value="queue">{view==='queue'&&<><Title order={1} className="visually-hidden">{shell.headings.queue}</Title><ReadingQueue queue={personal.queue} books={byId} reading={personal.reading} states={states} onMove={(id,direction)=>execute({type:'moveInQueue',id,direction})} onRemove={id=>execute({type:'removeFromQueue',id})} onOpen={onOpen} onBrowse={onBrowse} BookCover={ThumbCover}/><ReadingSummary summary={summary} onSelect={onSummary}/></>}</Tabs.Panel>
+    <Tabs.Panel value="queue">{view==='queue'&&<><Title order={1} className="visually-hidden">{shell.headings.queue}</Title><ReadingQueue queue={personal.queue} books={byId} reading={personal.reading} states={states} onMove={(id,direction)=>execute({type:'moveInQueue',id,direction})} onRemove={id=>execute({type:'removeFromQueue',id})} onOpen={onOpen} onBrowse={onBrowse} BookCover={ThumbCover}/><ReadingSummary summary={summary} waiting={marksAwaited(githubSync,summary)} onSelect={onSummary}/></>}</Tabs.Panel>
     <Tabs.Panel value="collections">{view==='collections'&&<><Title order={1} className="visually-hidden">{shell.headings.collections}</Title><Collections onCollection={goCollection} onGroup={goCollection} states={states}/></>}</Tabs.Panel>
     {view==='fairs'&&<React.Suspense fallback={<PageLoading>{shell.loading.fairs}</PageLoading>}><BookFairsPage/></React.Suspense>}
     <Tabs.Panel value="bookstores">{view==='bookstores'&&<React.Suspense fallback={<PageLoading>{shell.loading.bookstores}</PageLoading>}><BookstoresPage/></React.Suspense>}</Tabs.Panel>

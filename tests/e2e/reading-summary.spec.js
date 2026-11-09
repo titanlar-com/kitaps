@@ -150,6 +150,52 @@ for (const width of [1024, 1199]) {
   });
 }
 
+// The owner, 8 November 2026: a reader waits only where the site says it is working. A new device
+// has no marks of its own, so until the saved ones arrive a 0 would be a wrong number.
+const holdingTheRead = async (browser, seed) => {
+  const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  let release;
+  const held = new Promise(resolve => { release = resolve; });
+  await context.route('https://raw.githubusercontent.com/titanlar-com/kitaps-state/**', async route => {
+    if (route.request().url().includes('routes.json')) return route.fulfill({ status: 404, json: {} });
+    const answer = await held;
+    return answer === 'fail' ? route.abort() : route.fulfill({ json: EMPTY });
+  });
+  await context.route('https://api.github.com/**', route => route.fulfill({ status: 404, json: { message: 'Not Found' } }));
+  if (seed) await context.addInitScript(() => localStorage.setItem('kitapatlasi:states:v2', JSON.stringify({ goal: ['alindi'] })));
+  const page = await context.newPage();
+  await page.goto('./');
+  await expect(band(page)).toBeVisible();
+  return { context, page, release };
+};
+
+test('on a new device the counts wait for the saved marks instead of showing 0', async ({ browser }) => {
+  const { context, page, release } = await holdingTheRead(browser, false);
+  await expect(band(page).getByRole('button', { name: 'Kitaplığım: yükleniyor' })).toBeVisible();
+  await expect(band(page).locator('.reading-summary-wait')).toHaveCount(6);
+  await expect(band(page).locator('.reading-summary-value')).toHaveCount(0);
+  release('ok');
+  await expect(band(page).getByRole('button', { name: 'Kitaplığım: 0 kitap' })).toBeVisible();
+  await expect(band(page).locator('.reading-summary-wait')).toHaveCount(0);
+  await context.close();
+});
+
+test('a device that has its own marks shows them while the read is under way', async ({ browser }) => {
+  const { context, page, release } = await holdingTheRead(browser, true);
+  await expect(band(page).getByRole('button', { name: 'Kitaplığım: 1 kitap' })).toBeVisible();
+  await expect(band(page).locator('.reading-summary-wait')).toHaveCount(0);
+  release('ok');
+  await context.close();
+});
+
+test('a read that fails ends the wait', async ({ browser }) => {
+  const { context, page, release } = await holdingTheRead(browser, false);
+  await expect(band(page).locator('.reading-summary-wait').first()).toBeVisible();
+  release('fail');
+  await expect(band(page).getByRole('button', { name: 'Kitaplığım: 0 kitap' })).toBeVisible({ timeout: 20_000 });
+  await context.close();
+});
+
 // The owner, 8 November 2026: with the labels under the icons the band fits a phone too.
 for (const width of [320, 390, 768, 1280]) {
   test(`at ${width} px the catalogue opens with the reading band, and Sıram shows it`, async ({ page }) => {
