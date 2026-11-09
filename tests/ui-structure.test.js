@@ -9,6 +9,8 @@ import { VIEWS as VIEWS_TABLE } from '../src/views.js';
 const app=shellFiles.map(file=>fs.readFileSync(new URL(`../src/${file}`,import.meta.url),'utf8')).join('\n');
 const badge=fs.readFileSync(new URL('../src/components/ReadingPriorityBadge.jsx',import.meta.url),'utf8');
 const card=fs.readFileSync(new URL('../src/components/ReadingPriorityCard.jsx',import.meta.url),'utf8');
+// The priority components take their words from the catalogue's screen model (ADR 003, K6).
+const catalogModel=fs.readFileSync(new URL('../src/screens/catalog.js',import.meta.url),'utf8');
 
 test('primary tabs always render a matching panel and Notes is outside the tabset',()=>{
  for(const value of ['books','queue','collections'])assert.match(app,new RegExp(`<Tabs\\.Panel value="${value}">`));
@@ -41,9 +43,11 @@ test('footer shows creation and catalog update dates separately in one format',(
 });
 
 test('priority summaries expose full text and labelled progress values',()=>{
- assert.match(badge,/className="visually-hidden">Okuma önceliği:/);
+ assert.match(badge,/className="visually-hidden">\{model\.spoken\}/);
+ assert.match(catalogModel,/spoken: `Okuma önceliği:/);
  assert.match(badge,/aria-hidden="true"/);
- assert.match(card,/aria-label=\{`\$\{item\.label\}: yüzde/);
+ assert.match(card,/aria-label=\{item\.progressLabel\}/);
+ assert.match(catalogModel,/progressLabel: `\$\{item\.label\}: yüzde/);
 });
 
 test('reading priority is built once from the catalog, with no personal or synced state',()=>{
@@ -53,10 +57,10 @@ test('reading priority is built once from the catalog, with no personal or synce
 });
 
 test('priority copy states that purchases and reading activity never change the score',()=>{
- assert.doesNotMatch(card,/okuma durumları değiştiğinde/);
- assert.match(card,/Satın alma, favori, okuma durumu, okuma kaydı ve kişisel sıra puanı değiştirmez/);
+ assert.doesNotMatch(card+catalogModel,/okuma durumları değiştiğinde/);
+ assert.match(catalogModel,/Satın alma, favori, okuma durumu, okuma kaydı ve kişisel sıra puanı değiştirmez/);
  const summary=fs.readFileSync(new URL('../src/components/ReadingPrioritySummary.jsx',import.meta.url),'utf8');
- assert.doesNotMatch(summary,/Şu an ilk/);
+ assert.doesNotMatch(summary+catalogModel,/Şu an ilk/);
  assert.match(app,/view==='books'&&sort==='reading'&&<ReadingPrioritySummary/,'personal shelves carry no priority paragraph');
 });
 

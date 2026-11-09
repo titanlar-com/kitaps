@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { Skeleton } from '@mantine/core';
 import { useInViewport } from '@mantine/hooks';
 import { IconBook2, IconFileText } from '@tabler/icons-react';
-import { displayTitle } from '../translation';
-import { workFormat } from '../workFormat';
+import { bookCoverScreen } from '../screens/catalog.js';
 import { books } from './catalogData';
 
 const COVER_SIZES={
@@ -17,15 +16,15 @@ export function BookCover({book:b,onOpen=null,detail=false,read=false,size=detai
  const [failed,setFailed]=useState(false);
  const [loaded,setLoaded]=useState(false);
  const {ref:frame,inViewport}=useInViewport();
- const cover=b.cover,format=workFormat(b);
+ const cover=b.cover,model=bookCoverScreen(b);
  // The single-file export embeds one copy of each cover instead.
  const embedded=cover&&globalThis.__KITAP_COVERS__?.[cover.src];
- const content=cover&&!failed?<img src={embedded||`./${cover.src}`} srcSet={embedded?undefined:`./${smallCover(cover.src)} 400w, ./${cover.src} 720w`} sizes={embedded?undefined:COVER_SIZES[size]} alt={`${cover.title}, ${cover.publisher}, ${cover.language==='tr'?'Türkçe':'Uluslararası'} baskı kapağı`} width="240" height="360" loading={detail?'eager':'lazy'} decoding="async" data-loaded={loaded||undefined} onLoad={()=>setLoaded(true)} onError={()=>setFailed(true)}/>:<span className="cover-placeholder" data-edge="start" aria-hidden="true">{format&&<span className="cover-placeholder-kind">{format.label}</span>}<span className="cover-placeholder-title">{displayTitle(b)}</span><span className="cover-placeholder-author">{b.author}</span><span className="cover-placeholder-note">{format?<IconFileText size={18} stroke={1.5}/>:<IconBook2 size={18} stroke={1.5}/>}</span></span>;
+ const content=cover&&!failed?<img src={embedded||`./${cover.src}`} srcSet={embedded?undefined:`./${smallCover(cover.src)} 400w, ./${cover.src} 720w`} sizes={embedded?undefined:COVER_SIZES[size]} alt={model.alt} width="240" height="360" loading={detail?'eager':'lazy'} decoding="async" data-loaded={loaded||undefined} onLoad={()=>setLoaded(true)} onError={()=>setFailed(true)}/>:<span className="cover-placeholder" data-edge="start" aria-hidden="true">{model.kind&&<span className="cover-placeholder-kind">{model.kind}</span>}<span className="cover-placeholder-title">{model.title}</span><span className="cover-placeholder-author">{model.author}</span><span className="cover-placeholder-note">{model.kind?<IconFileText size={18} stroke={1.5}/>:<IconBook2 size={18} stroke={1.5}/>}</span></span>;
  const stage=`cover-stage${read?' is-read':''}`;
  // A cover on the screen and still on its way shows a moving placeholder. A cover further down has
  // not been requested yet, and a loop nobody can see would only cost the phone its battery.
  const waiting=cover&&!failed&&!loaded&&inViewport&&<Skeleton className="cover-skeleton" aria-hidden="true"/>;
- return detail?<div ref={frame} className={`${stage} cover-stage-detail`}>{waiting}{content}</div>:<button ref={frame} className={`${stage} cover-open`} onClick={()=>onOpen(b.id)} aria-label={`${displayTitle(b)} ayrıntılarını aç`}>{waiting}{content}</button>;
+ return detail?<div ref={frame} className={`${stage} cover-stage-detail`}>{waiting}{content}</div>:<button ref={frame} className={`${stage} cover-open`} onClick={()=>onOpen(b.id)} aria-label={model.openLabel}>{waiting}{content}</button>;
 }
 // Small covers beside related books and in the reading queue.
 export const ThumbCover=props=><BookCover {...props} size="thumb"/>;

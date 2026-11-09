@@ -4,6 +4,9 @@
 
 export const STATE_LABELS = { onemli: 'Favori', alinacak: 'Alınacak', alindi: 'Satın alındı', okunuyor: 'Okunuyor', okundu: 'Okundu', araverildi: 'Ara verdim', birakildi: 'Bıraktım' };
 
+export const QUALITY_LABELS = { ok: 'Kaynakta doğrulanmış', warn: 'Baskı / çeviri uyarısı', unverified: 'Künye eksik', avoid: 'Kaçınılacak baskı notu' };
+export const ORIGIN_LABELS = { atlas: 'Kitap Atlası', local: 'Okuma Kümeleri', kitaps: 'Kitaps', entrepreneurship: 'Girişimcilik araştırması', foundations: 'Temel okumalar araştırması', preparation: 'Ön hazırlık araştırması', children: 'Çocuk kütüphanesi araştırması', shelf: 'Raf taraması değerlendirmesi', originals: 'Özgün kaynaklar araştırması', founders: 'Yönetim kurucuları araştırması', managerprep: 'Yönetici adayı programı', managerareas: 'Yöneticinin okuma alanları', shelfphotos: 'Raf fotoğrafları', peker: 'Sedat Peker videoları', stoic: 'Yönetici için Stoacılık' };
+
 export const VIEW_TEXT = {
  books: { label: 'Kitaplar', heading: 'Tüm kitaplar' },
  queue: { label: 'Sıram', heading: 'Okuma sıram' },
@@ -16,6 +19,15 @@ export const VIEW_TEXT = {
 };
 
 export const MONTHS = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+
+// A day such as "2026-10-04" read as "4 Ekim 2026", independent of the reader's time zone.
+const dayFormat = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+export function formatDay(day) {
+ if (!/^\d{4}-\d{2}-\d{2}$/.test(day || '')) return '';
+ const date = new Date(`${day}T00:00:00Z`);
+ // A day that does not exist (2026-02-30) is not shown rather than shown wrong.
+ return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === day ? dayFormat.format(date) : '';
+}
 
 export const READING_WARNINGS = {
  pageBeyondTotal: 'Kaldığın sayfa, toplam sayfadan büyük.',

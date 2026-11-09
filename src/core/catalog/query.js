@@ -3,6 +3,9 @@ import { displayTitle } from './translation.js';
 // The catalogue's query rules (ADR 003, phase 3), moved verbatim from src/library.js, which
 // re-exports them. Pure and framework-free: the browser, Node scripts and any UI use the same.
 export const emptyFilters = () => ({ query: '', categories: [], collections: [], groups: [], states: [], authors: [], origins: [], awards: [], awardYears: [], qualities: [], addedDates: [], categoryMode: 'any', collectionMode: 'any', hasEdition: false, shared: false, yearMin: '', yearMax: '' });
+export function filterCount(f) {
+ return Object.entries(f).reduce((n,[k,v])=>n + (k.endsWith('Mode') ? 0 : Array.isArray(v) ? v.length : v ? 1 : 0),0);
+}
 export const normalize = value => String(value ?? '').toLocaleLowerCase('tr-TR').replace(/ı/g, 'i').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[’‘]/g, "'");
 export function prepareBooks(books) {
  return books.map(book => ({ ...book, searchText: normalize([book.title, book.titleTr, book.cover?.title, book.cover?.publisher, book.cover?.isbn, book.author, ...book.aliases, ...(book.verifiedEdition?.translators||[]), book.verifiedEdition?.publisher, book.verifiedEdition?.isbn, ...book.editions.flatMap(e => [e.translator,e.publisher,e.turkish,e.original]), ...book.notes.map(n=>n.text)].join(' ')) }));

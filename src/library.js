@@ -1,25 +1,15 @@
 import { viewById, viewFromParam } from './views.js';
-import { booksForShelf, emptyFilters, filterBooks, normalize, prepareBooks, sortBooks } from './core/catalog/query.js';
+import { booksForShelf, emptyFilters, filterBooks, filterCount, normalize, prepareBooks, sortBooks } from './core/catalog/query.js';
 import { STATE_LABELS, migrateStates, toggleState } from './core/personal/marks.js';
+import { ORIGIN_LABELS, QUALITY_LABELS, formatDay } from './core/text.js';
 
 // The filter, sort and shelf rules live in the data core (ADR 003, phase 3).
-export { booksForShelf, emptyFilters, filterBooks, normalize, prepareBooks, sortBooks };
+export { booksForShelf, emptyFilters, filterBooks, filterCount, normalize, prepareBooks, sortBooks };
 // The rules of a reader's marks live with the personal library (ADR 003, phase 7a).
 export { STATE_LABELS, migrateStates, toggleState };
+// The names of a filter's values and of a day are words the core shows a reader (ADR 003, K8).
+export { ORIGIN_LABELS, QUALITY_LABELS, formatDay };
 
-export const QUALITY_LABELS = { ok: 'Kaynakta doğrulanmış', warn: 'Baskı / çeviri uyarısı', unverified: 'Künye eksik', avoid: 'Kaçınılacak baskı notu' };
-export const ORIGIN_LABELS = { atlas: 'Kitap Atlası', local: 'Okuma Kümeleri', kitaps: 'Kitaps', entrepreneurship: 'Girişimcilik araştırması', foundations: 'Temel okumalar araştırması', preparation: 'Ön hazırlık araştırması', children: 'Çocuk kütüphanesi araştırması', shelf: 'Raf taraması değerlendirmesi', originals: 'Özgün kaynaklar araştırması', founders: 'Yönetim kurucuları araştırması', managerprep: 'Yönetici adayı programı', managerareas: 'Yöneticinin okuma alanları', shelfphotos: 'Raf fotoğrafları', peker: 'Sedat Peker videoları', stoic: 'Yönetici için Stoacılık' };
-// A day such as "2026-10-04" read as "4 Ekim 2026", independent of the reader's time zone.
-const dayFormat = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-export function formatDay(day) {
- if (!/^\d{4}-\d{2}-\d{2}$/.test(day || '')) return '';
- const date = new Date(`${day}T00:00:00Z`);
- // A day that does not exist (2026-02-30) is not shown rather than shown wrong.
- return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === day ? dayFormat.format(date) : '';
-}
-export function filterCount(f) {
- return Object.entries(f).reduce((n,[k,v])=>n + (k.endsWith('Mode') ? 0 : Array.isArray(v) ? v.length : v ? 1 : 0),0);
-}
 const routeFields={categories:'category',collections:'collection',groups:'group',states:'status',authors:'author',origins:'source',awards:'award',awardYears:'award-year',qualities:'edition-status',addedDates:'added'};
 const englishValues={onemli:'important',alinacak:'wishlist',alindi:'purchased',okunuyor:'reading',araverildi:'paused',birakildi:'abandoned',okundu:'finished',Kazanan:'winner','Kısa liste':'shortlist','Uzun liste':'longlist'};
 const originalValues=Object.fromEntries(Object.entries(englishValues).map(([key,value])=>[value,key]));
