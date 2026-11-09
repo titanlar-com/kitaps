@@ -64,7 +64,7 @@ test('customer copy and icon requests stay applied',()=>{
  assert.doesNotMatch(app,/yıldız/i,'favorites use a heart');
  assert.doesNotMatch(app,/IconWoman/,'the daughter shortcut uses the girl icon');
  assert.match(app,/<GirlIcon size=\{29\}\/>/);
- const queue=fs.readFileSync(new URL('../src/components/ReadingQueue.jsx',import.meta.url),'utf8');
+ const queue=['components/ReadingQueue.jsx','screens/queue.js'].map(file=>fs.readFileSync(new URL(`../src/${file}`,import.meta.url),'utf8')).join('\n');
  assert.doesNotMatch(queue,/Sıradan çıkarmak okuma kaydını/,'the queue page has no explanatory footnote');
 });
 

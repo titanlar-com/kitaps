@@ -2,8 +2,7 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import { ActionIcon, Badge, Button, Group, Progress, Text, Title } from '@mantine/core';
 import { IconArrowDown, IconArrowUp, IconArrowUpRight, IconListNumbers, IconX } from '@tabler/icons-react';
 import { queueView } from '../core/personal/queue';
-import { STATE_LABELS } from '../library';
-import { displayTitle } from '../translation';
+import { queueScreen } from '../screens/queue.js';
 import EmptyState from './EmptyState';
 import './ReadingQueue.css';
 
@@ -12,7 +11,7 @@ import './ReadingQueue.css';
 // of the page, and a focused control that leaves the page or turns off loses focus. So after each
 // move or removal the focus is put back where the reader would expect it.
 export default function ReadingQueue({queue,books,reading,states,onMove,onRemove,onOpen,onBrowse,BookCover}) {
- const {rows,free,full}=queueView({queue,books,reading,states});
+ const model=queueScreen(queueView({queue,books,reading,states}));
  const [message,setMessage]=useState('');
  const desk=useRef(null);
  const pending=useRef(null);
@@ -30,42 +29,41 @@ export default function ReadingQueue({queue,books,reading,states,onMove,onRemove
  },[queue]);
  const move=(row,direction)=>{
   pending.current={kind:'move',id:row.id,direction};
-  setMessage(`${displayTitle(row.book)} ${row.position+direction}. sıraya taşındı.`);
+  setMessage(row.moved[direction]);
   onMove(row.id,direction);
  };
  const remove=(row,index)=>{
   pending.current={kind:'remove',index};
-  setMessage(`${displayTitle(row.book)} sıradan çıkarıldı.`);
+  setMessage(row.removed);
   onRemove(row.id);
  };
  return <div className="queue-desk" ref={desk}>
-  {rows.length===0?<EmptyState className="queue-empty" icon={IconListNumbers} title="Bir sonraki kitabına yer aç." action={<Button onClick={onBrowse}>Kitap seç</Button>}>Katalogdan en fazla beş kitap seç. Her kartta “Sırama ekle” düğmesi var.</EmptyState>:<>
+  {model.empty?<EmptyState className="queue-empty" icon={IconListNumbers} title={model.empty.title} action={<Button onClick={onBrowse}>{model.empty.browse}</Button>}>{model.empty.body}</EmptyState>:<>
    <div className="queue-head">
-    <Text className="queue-count tabular-nums">{full?`Sıran dolu. En çok ${rows.length} kitap sıraya girebilir.`:`Sırada ${rows.length} kitap var. ${free} kitaplık yerin kaldı.`}</Text>
-    <Button variant="default" onClick={onBrowse}>{full?'Kataloğa dön':'Sırama kitap seç'}</Button>
+    <Text className="queue-count tabular-nums">{model.count}</Text>
+    <Button variant="default" onClick={onBrowse}>{model.browse}</Button>
    </div>
-   <ol className="reading-queue" role="list">{rows.map((row,index)=>{
-    const title=displayTitle(row.book);
-    return <li key={row.id} className="queue-row" role="listitem" data-book-id={row.id} data-next={index===0||undefined}>
-     <Text component="div" className="queue-position tabular-nums"><span aria-hidden="true">{row.position}</span><span className="visually-hidden">{row.position}. sırada</span></Text>
+   <ol className="reading-queue" role="list">{model.rows.map((row,index)=>{
+    return <li key={row.id} className="queue-row" role="listitem" data-book-id={row.id} data-next={row.next||undefined}>
+     <Text component="div" className="queue-position tabular-nums"><span aria-hidden="true">{row.position}</span><span className="visually-hidden">{row.positionLabel}</span></Text>
      <div className="queue-cover"><BookCover book={row.book} onOpen={onOpen} read={row.read}/></div>
      <div className="queue-body">
-      {index===0&&<Text className="queue-eyebrow">Sıradaki kitabın</Text>}
-      <Title order={2} className="queue-title"><button className="title-button" onClick={()=>onOpen(row.id)}>{title}</button></Title>
-      <Text c="dimmed">{row.book.author}</Text>
-      {row.marks.length>0&&<Group gap={6} className="queue-marks">{row.marks.map(mark=><Badge key={mark}>{STATE_LABELS[mark]}</Badge>)}</Group>}
+      {row.eyebrow&&<Text className="queue-eyebrow">{row.eyebrow}</Text>}
+      <Title order={2} className="queue-title"><button className="title-button" onClick={()=>onOpen(row.id)}>{row.title}</button></Title>
+      <Text c="dimmed">{row.author}</Text>
+      {row.marks.length>0&&<Group gap={6} className="queue-marks">{row.marks.map(mark=><Badge key={mark.id}>{mark.label}</Badge>)}</Group>}
       {row.progress&&<div className="queue-progress">
-       <div className="queue-progress-line"><Text c="dimmed" className="tabular-nums">{row.progress.totalPages} sayfadan {row.progress.page} tanesi okundu.</Text><span className="queue-progress-share tabular-nums">%{row.progress.percent}</span></div>
-       <Progress value={row.progress.percent} size="sm" aria-label={`${title}: okuma ilerlemesi`}/>
+       <div className="queue-progress-line"><Text c="dimmed" className="tabular-nums">{row.progress.sentence}</Text><span className="queue-progress-share tabular-nums">{row.progress.share}</span></div>
+       <Progress value={row.progress.percent} size="sm" aria-label={row.progress.label}/>
       </div>}
      </div>
      <div className="queue-controls">
       <ActionIcon.Group>
-       <ActionIcon variant="default" data-move="-1" disabled={!row.canMoveUp} onClick={()=>move(row,-1)} aria-label={`${title}: sırada yukarı taşı`}><IconArrowUp size={20}/></ActionIcon>
-       <ActionIcon variant="default" data-move="1" disabled={!row.canMoveDown} onClick={()=>move(row,1)} aria-label={`${title}: sırada aşağı taşı`}><IconArrowDown size={20}/></ActionIcon>
-       <ActionIcon variant="default" data-remove="" onClick={()=>remove(row,index)} aria-label={`${title}: sıradan çıkar`}><IconX size={20}/></ActionIcon>
+       <ActionIcon variant="default" data-move="-1" disabled={row.moveUp.disabled} onClick={()=>move(row,-1)} aria-label={row.moveUp.label}><IconArrowUp size={20}/></ActionIcon>
+       <ActionIcon variant="default" data-move="1" disabled={row.moveDown.disabled} onClick={()=>move(row,1)} aria-label={row.moveDown.label}><IconArrowDown size={20}/></ActionIcon>
+       <ActionIcon variant="default" data-remove="" onClick={()=>remove(row,index)} aria-label={row.remove}><IconX size={20}/></ActionIcon>
       </ActionIcon.Group>
-      <Button variant="light" rightSection={<IconArrowUpRight size={18}/>} onClick={()=>onOpen(row.id)} aria-label={`Okuma kaydım: ${title}`}>Okuma kaydım</Button>
+      <Button variant="light" rightSection={<IconArrowUpRight size={18}/>} onClick={()=>onOpen(row.id)} aria-label={row.record.label}>{row.record.text}</Button>
      </div>
     </li>;
    })}</ol>
