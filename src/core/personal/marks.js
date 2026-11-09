@@ -1,6 +1,7 @@
+import { STATE_LABELS } from '../text.js';
 // A reader's marks on a book (ADR 003, phase 7a), moved verbatim from src/library.js, which
 // re-exports them. Pure and framework-free.
-export const STATE_LABELS = { onemli: 'Favori', alinacak: 'Alınacak', alindi: 'Satın alındı', okunuyor: 'Okunuyor', okundu: 'Okundu', araverildi: 'Ara verdim', birakildi: 'Bıraktım' };
+export { STATE_LABELS };
 export function toggleState(current, key) {
  const result = new Set(current || []);
  if (result.has(key)) result.delete(key);

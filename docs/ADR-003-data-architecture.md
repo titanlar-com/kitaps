@@ -117,8 +117,9 @@ export interface ViewModel<S, C> extends ReadableStore<S> {
 
 ### K8. Metinler
 
-- Çekirdek yalnız alanın kendi metinlerini taşır: işaret adları (`STATE_LABELS`), sayfa adları (`views.js`), okuma kaydı uyarıları ve eşitleme iletileri.
-- Ekranın geri kalan metinleri (başlıklar, boş durum cümleleri, düğme adları) ekran modellerine aittir. Ayrı bir çekirdek metin modülü bugün açılmaz. Yeni tasarım ihtiyaç gösterirse açılır.
+- Çekirdek yalnız alanın kendi metinlerini taşır: işaret adları (`STATE_LABELS`), sayfa adları, okuma kaydı uyarıları, çeviri durumları, kitapçı ve fuar sözleri, eşitleme iletileri.
+- Bu metinlerin hepsi tek dosyadadır: `src/core/text.js`. Sahip 9 Kasım 2026'da istedi. `tests/architecture.test.js`, çekirdeğin başka bir dosyasında okura gösterilen Türkçe metin bulursa başarısız olur. `'Türkiye'` veriyle karşılaştırılan bir değer olduğu için bu kuralın dışındadır.
+- Ekranın geri kalan metinleri (başlıklar, boş durum cümleleri, düğme adları) ekran modellerine aittir.
 - Ürün yalnız Türkçedir, i18n katmanı kurulmaz.
 
 ### K9. Desenler: nerede kullanılır, nerede kullanılmaz
@@ -206,7 +207,7 @@ Bu öneriler ilk kararda alınmamıştı. Sahip 9 Kasım 2026'da hepsinin yapıl
   - CI'da kataloğun yeniden üretilip karşılaştırılması. **Yapıldı.** `tests/catalog-fresh.test.js` veri dosyalarından kataloğu geçici bir yere üretir ve `src/catalog.json` ile bayt bayt karşılaştırır. Bu test `npm test` içinde çalışır, Python yalnız standart kitaplığı kullanır. Çıktı Python 3.9 ve 3.12'de aynıdır.
 - **Claude analizcisi:**
   - Ekran başına yaklaşık 11 görünüm modelinin şimdi yazılması (K6).
-  - Ayrı bir çekirdek metin modülü (K8).
+  - Ayrı bir çekirdek metin modülü (K8). **Yapıldı.**
   - Bileşenlerin şimdi `src/ui/react` altına taşınması: yeniden tasarım işine bırakıldı.
 
 ## Test önce geçiş planı

@@ -1,9 +1,10 @@
+import { WORK_TEXT } from '../text.js';
 // Most catalog works are books. A few recommended readings are journal articles
 // or essays: they are listed like books, but they have no edition or cover, and
 // their page names where they appeared and links to the text.
 export const WORK_FORMATS={
- article:{label:'Makale',schema:'ScholarlyArticle'},
- essay:{label:'Deneme',schema:'Article'},
+ article:{label:WORK_TEXT.article,schema:'ScholarlyArticle'},
+ essay:{label:WORK_TEXT.essay,schema:'Article'},
 };
 
 export const workFormat=book=>WORK_FORMATS[book?.format]||null;
@@ -17,8 +18,8 @@ export function publicationLine(publication){
 
 /** What the publication link opens, named the same on every page. */
 export function publicationLinkLabel(publication){
- if(publication?.readUrl)return 'Metni oku';
- return publication?.doi?'DOI kaydını aç':'Yayın sayfasını aç';
+ if(publication?.readUrl)return WORK_TEXT.read;
+ return publication?.doi?WORK_TEXT.doi:WORK_TEXT.publisher;
 }
 
 /** The text itself when it is free to read, otherwise its DOI record or the

@@ -1,3 +1,4 @@
+import { TRANSLATION_TEXT } from '../text.js';
 import {publicationUrl,workFormat} from './workFormat.js';
 import {SOURCE_URL} from '../../site.js';
 
@@ -52,14 +53,14 @@ export function recommendedTranslation(book){
 export function translationStatus(book) {
  const research=book.translationResearch;
  const researchSource=research?.stage1?.sources?.[0]?.url;
- if(isOriginalTurkish(book))return {status:'original',label:'Türkçe eser',description:'Türkçe yazılmış özgün eser. Bu baskı için çevirmen gerekmez.',source:book.verifiedEdition?.sourceUrl||researchSource};
- if(research?.status==='available'&&researchSource)return {status:'available',label:'Türkçe var',description:'Türkçe baskı iki bağımsız araştırma aşamasında doğrulandı. Künye bilgilerini kitap ayrıntısında karşılaştır.',source:researchSource};
- if(research?.status==='unavailable'&&researchSource)return {status:'unavailable',label:'Türkçe yok',description:research.scopeNote,source:researchSource};
+ if(isOriginalTurkish(book))return {status:'original',label:TRANSLATION_TEXT.original,description:TRANSLATION_TEXT.originalNote,source:book.verifiedEdition?.sourceUrl||researchSource};
+ if(research?.status==='available'&&researchSource)return {status:'available',label:TRANSLATION_TEXT.available,description:TRANSLATION_TEXT.availableResearched,source:researchSource};
+ if(research?.status==='unavailable'&&researchSource)return {status:'unavailable',label:TRANSLATION_TEXT.unavailable,description:research.scopeNote,source:researchSource};
  const edition=turkishEdition(book);
  const format=workFormat(book);
- if(format&&!edition)return {status:'unverified',label:'Türkçe belirsiz',description:`${format.label}: Türkçe çevirisi araştırılmadı. Özgün metin yayın bilgisindeki bağlantıda.`,source:publicationUrl(book.publication)};
- if(edition)return {status:'available',label:'Türkçe var',description:edition.basis==='source-note'?'Türkçe baskı, kaynak listesinin doğrulanmış çeviri notunda kayıtlı. Künye bilgilerini kitap ayrıntısında karşılaştır.':'Türkçe baskı kaydı bulundu. Çevirmen ve ISBN bilgilerini kitap ayrıntısında karşılaştır.',source:edition.sourceUrl||book.cover?.sourceUrl};
- return {status:'unverified',label:'Türkçe belirsiz',description:'Türkçe baskı henüz doğrulanamadı. Bu, çevirisi olmadığı anlamına gelmez. Varsa gösterilen kapak uluslararası baskıya aittir.',source:book.cover?.sourceUrl};
+ if(format&&!edition)return {status:'unverified',label:TRANSLATION_TEXT.uncertain,description:TRANSLATION_TEXT.formatNotResearched(format.label),source:publicationUrl(book.publication)};
+ if(edition)return {status:'available',label:TRANSLATION_TEXT.available,description:edition.basis==='source-note'?TRANSLATION_TEXT.availableFromNote:TRANSLATION_TEXT.availableFromRecord,source:edition.sourceUrl||book.cover?.sourceUrl};
+ return {status:'unverified',label:TRANSLATION_TEXT.uncertain,description:TRANSLATION_TEXT.notYetVerified,source:book.cover?.sourceUrl};
 }
 
 export function displayTitle(book){

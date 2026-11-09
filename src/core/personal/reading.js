@@ -1,3 +1,4 @@
+import { READING_WARNINGS } from '../text.js';
 export const PERSONAL_KEY = 'kitapatlasi:personal:v1';
 /** How many books the reading queue holds at most. */
 export const QUEUE_LIMIT = 5;
@@ -28,8 +29,8 @@ export function progressPercent(record) {
 }
 export function readingErrors(record) {
  const r=cleanReading(record),page=numberOrNull(r.page),total=numberOrNull(r.totalPages);return {
-  pages:total!==null&&total>0&&page!==null&&page>total?'Kaldığın sayfa, toplam sayfadan büyük.':total===0?'Toplam sayfa en az 1 olmalı.':null,
-  dates:r.startedAt&&r.finishedAt&&r.finishedAt<r.startedAt?'Bitiş tarihi, başlama tarihinden önce olamaz.':null
+  pages:total!==null&&total>0&&page!==null&&page>total?READING_WARNINGS.pageBeyondTotal:total===0?READING_WARNINGS.totalTooSmall:null,
+  dates:r.startedAt&&r.finishedAt&&r.finishedAt<r.startedAt?READING_WARNINGS.finishedBeforeStarted:null
  };
 }
 // What the book page shows of a reading at a glance: how far it is, and its days in date order.

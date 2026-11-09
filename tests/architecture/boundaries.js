@@ -131,3 +131,23 @@ export function importGraph(entry) {
   visit(path.resolve(entry));
   return [...seen];
 }
+
+// A word a reader sees, in Turkish, outside the core's one text module (ADR 003, K8). Read with
+// the compiler, so a comment is never counted. 'Türkiye' is a value the data holds, not a word
+// shown from here, so comparing a fair's country with it is not a text.
+const SHOWN_WORD = /[çğıöşüÇĞİÖŞÜ]/;
+const DATA_VALUES = new Set(['Türkiye']);
+export function coreTexts(coreRoot, textModule = 'text.js') {
+  const found = [];
+  for (const file of filesUnder(coreRoot)) {
+    if (path.relative(coreRoot, file) === textModule) continue;
+    const source = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
+    const visit = node => {
+      const word = ts.isStringLiteralLike(node) ? node.text : ts.isTemplateExpression(node) ? node.getText() : null;
+      if (word !== null && SHOWN_WORD.test(word) && !DATA_VALUES.has(word)) found.push(`${path.relative(coreRoot, file)}: ${word.slice(0, 60)}`);
+      else ts.forEachChild(node, visit);
+    };
+    visit(source);
+  }
+  return found;
+}

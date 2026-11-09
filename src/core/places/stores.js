@@ -1,11 +1,12 @@
+import { STORE_TEXT } from '../text.js';
 // What the bookstores and route screens show, worked out from data/bookstores.json and the saved
 // routes (ADR 003, K14). The screens draw these results and calculate nothing themselves. A tone
 // is a name the stylesheet turns into colour tokens; the core knows no colours.
 
 const STORE_BADGES = Object.freeze({
- open: Object.freeze({ label: 'Açık', tone: 'ok', icon: 'open' }),
- closed: Object.freeze({ label: 'Kapandı', tone: 'muted', icon: 'closed' }),
- unverified: Object.freeze({ label: 'Doğrulanmadı', tone: 'accent', icon: 'unverified' }),
+ open: Object.freeze({ label: STORE_TEXT.open, tone: 'ok', icon: 'open' }),
+ closed: Object.freeze({ label: STORE_TEXT.closed, tone: 'muted', icon: 'closed' }),
+ unverified: Object.freeze({ label: STORE_TEXT.unverified, tone: 'accent', icon: 'unverified' }),
 });
 
 /** The badge of a store's status, or null for a status the page does not know. */
@@ -36,9 +37,9 @@ export function routeTimeline(stopIds, storesById) {
 }
 
 const visitMark = (visit, index) => {
- if (visit.suggested) return { label: 'Öneri', tone: 'neutral' };
+ if (visit.suggested) return { label: STORE_TEXT.suggested, tone: 'neutral' };
  if (visit.date) return { date: visit.date, tone: 'accent' };
- return { label: `${index + 1}. gezi`, tone: 'accent' };
+ return { label: STORE_TEXT.trip(index + 1), tone: 'accent' };
 };
 
 /** The planned visits in the owner's order, each with what its badge says and its stops in order. */
@@ -46,7 +47,7 @@ export function planTimeline(plan, storesById) {
  return plan.map((visit, index) => ({ ...visit, mark: visitMark(visit, index), stops: routeTimeline(visit.stops, storesById) }));
 }
 
-const DRAFT_STEPS = Object.freeze(['Seç', 'Sırala', 'Kaydet']);
+const DRAFT_STEPS = Object.freeze(STORE_TEXT.draftSteps);
 
 /** Where a route being drawn up stands: stores first, then a name. Saving is the last step. */
 export function routeDraftSteps({ stops, title }) {

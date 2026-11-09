@@ -1,6 +1,6 @@
+import { FAIR_TEXT, MONTHS } from '../text.js';
 // The book fair calendar (data/book-fairs.json), worked out for its screen (ADR 003, K14). Dates
 // are calendar days in ISO form; "today" is the Istanbul calendar day, whatever zone the device is in.
-const MONTHS = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
 const parts = iso => { const [year, month, day] = iso.split('-').map(Number); return { year, month, day }; };
 
 export function todayInIstanbul(now = new Date()) {
@@ -9,7 +9,7 @@ export function todayInIstanbul(now = new Date()) {
 
 /** "12–20 Aralık 2026", "28 Kasım – 6 Aralık 2026" or "30 Aralık 2026 – 3 Ocak 2027". */
 export function formatRange(start, end) {
- if (!start) return 'Tarih açıklanmadı';
+ if (!start) return FAIR_TEXT.noDate;
  const a = parts(start), b = parts(end || start);
  const day = value => `${value.day} ${MONTHS[value.month - 1]}`;
  if (start === (end || start)) return `${day(a)} ${a.year}`;
@@ -40,9 +40,9 @@ export function groupByMonth(fairs) {
 }
 
 const FAIR_BADGES = Object.freeze({
- confirmed: Object.freeze({ label: 'Resmî kaynakta var', tone: 'ok' }),
- listed: Object.freeze({ label: 'Fuar listesinde var', tone: 'neutral' }),
- expected: Object.freeze({ label: 'Tarih bekleniyor', tone: 'accent' }),
+ confirmed: Object.freeze({ label: FAIR_TEXT.confirmed, tone: 'ok' }),
+ listed: Object.freeze({ label: FAIR_TEXT.listed, tone: 'neutral' }),
+ expected: Object.freeze({ label: FAIR_TEXT.expected, tone: 'accent' }),
 });
 
 /** Where a fair's date comes from, in words, or null for a status the page does not know. */
@@ -60,11 +60,11 @@ export function fairCountdown(fair, today) {
  if (end < today) return null;
  if (fair.start <= today) {
   const left = daysBetween(today, end);
-  return { kind: 'open', text: left === 0 ? 'Bugün son gün' : left === 1 ? 'Yarın kapanıyor' : `Kapanışa ${left} gün var` };
+  return { kind: 'open', text: left === 0 ? FAIR_TEXT.lastDay : left === 1 ? FAIR_TEXT.closesTomorrow : FAIR_TEXT.closesIn(left) };
  }
  const until = daysBetween(today, fair.start);
  if (until > NEAR_DAYS) return null;
- return { kind: 'soon', text: until === 1 ? 'Yarın başlıyor' : `${until} gün sonra başlıyor` };
+ return { kind: 'soon', text: until === 1 ? FAIR_TEXT.startsTomorrow : FAIR_TEXT.startsIn(until) };
 }
 
 const IN_SCOPE = {

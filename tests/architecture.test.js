@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { coreViolations, filesUnder, importGraph, hasRuntimeCode, uiDataImports } from './architecture/boundaries.js';
+import { coreTexts, coreViolations, filesUnder, importGraph, hasRuntimeCode, uiDataImports } from './architecture/boundaries.js';
+import os from 'node:os';
 
 // The data core stays free of any UI technology (ADR 003, "Sınır kapıları"), so a new design
 // or a new framework can use it as it is, and Node scripts (SEO) can too.
@@ -12,6 +13,24 @@ const fixtures = new URL('./fixtures/architecture/', import.meta.url).pathname;
 
 test('the data core imports no UI technology, no bundler asset and no browser global', () => {
   assert.deepEqual(coreViolations(core), []);
+});
+
+test('the words the core shows a reader live in one module', () => {
+  assert.deepEqual(coreTexts(core), []);
+});
+
+test('that gate catches a shown word, and leaves code, comments and data values alone', () => {
+  const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'kitaplik-texts-'));
+  try {
+    fs.writeFileSync(path.join(folder, 'text.js'), "export const A = 'Kitaplığım';\n");
+    fs.writeFileSync(path.join(folder, 'clean.js'), "// Kitaplığım\nexport const b = fair => fair.country === 'Türkiye' ? 'ok' : 'no';\n");
+    assert.deepEqual(coreTexts(folder), []);
+    fs.writeFileSync(path.join(folder, 'shown.js'), 'export const c = n => `${n} gün kaldı`;\n');
+    fs.writeFileSync(path.join(folder, 'plain.js'), "export const d = 'Türkçe var';\n");
+    assert.deepEqual(coreTexts(folder).map(line => line.split(':')[0]).sort(), ['plain.js', 'shown.js']);
+  } finally {
+    fs.rmSync(folder, { recursive: true, force: true });
+  }
 });
 
 test('every module of the data core loads in plain Node', async () => {
