@@ -1,8 +1,7 @@
 import React from 'react';
 import {Button,Text} from '@mantine/core';
 import {IconAlertTriangle,IconCloudCheck,IconCloudOff,IconCloudUpload} from '@tabler/icons-react';
-
-const clock=ms=>new Date(ms).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
+import {syncStatusScreen} from '../screens/sync.js';
 
 /** Where this device's marks stand, said beside the buttons that make them:
  * 'local' (they cannot leave this device), 'failed' (GitHub refused them or the
@@ -18,15 +17,6 @@ export function syncStatusKind(sync){
  return sync.lastSentAt?'sent':null;
 }
 
-const TEXT={
- local:sync=>`${sync.pending} değişiklik yalnız bu cihazda kayıtlı. Diğer cihazlarda görünmesi için bu cihazı bağla.`,
- failed:sync=>sync.pending?`GitHub’a gönderilemedi. ${sync.pending} değişiklik bu cihazda bekliyor.`:'GitHub bu cihazın anahtarını reddetti. Bu cihazı yeniden bağla.',
- saving:()=>'Değişiklikler GitHub’a gönderiliyor.',
- queued:sync=>sync.reviewPending?'Bu cihazın kayıtları GitHub’dakiyle karşılaştırıldıktan sonra gönderilecek.'
-  :sync.retryAt?`GitHub’ın istediği bekleme bitince, ${clock(sync.retryAt)} sonrasında gönderilecek.`
-   :'GitHub’a gönderilecek: ilk değişiklikten 30 saniye sonra ya da sayfadan ayrılınca.',
- sent:sync=>`GitHub’a gönderildi (saat ${clock(sync.lastSentAt)}).`,
-};
 const ICONS={local:IconCloudOff,failed:IconAlertTriangle,saving:IconCloudUpload,queued:IconCloudUpload,sent:IconCloudCheck};
 
 /** The text is a polite live region that is always present, so a mark that stays on
@@ -35,9 +25,9 @@ const ICONS={local:IconCloudOff,failed:IconAlertTriangle,saving:IconCloudUpload,
 export default function SyncStatusLine({sync,onOpen}){
  const kind=syncStatusKind(sync);
  const Icon=kind&&ICONS[kind];
- const action=kind==='local'?'Bu cihazı bağla':kind==='failed'?'Eşitleme ayrıntıları':null;
+ const model=syncStatusScreen({kind,sync});
  return <div className="sync-status-line" data-kind={kind||undefined}>
-  <Text className="sync-status-text" role="status" aria-live="polite" tabIndex={-1}>{kind&&<><Icon size={18} aria-hidden="true"/><span>{TEXT[kind](sync)}</span></>}</Text>
-  {action&&<Button variant="light" onClick={onOpen}>{action}</Button>}
+  <Text className="sync-status-text" role="status" aria-live="polite" tabIndex={-1}>{kind&&<><Icon size={18} aria-hidden="true"/><span>{model.text}</span></>}</Text>
+  {model.action&&<Button variant="light" onClick={onOpen}>{model.action}</Button>}
  </div>;
 }
