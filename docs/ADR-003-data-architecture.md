@@ -143,7 +143,7 @@ Eklenmeyecekler: Redux, MobX, Zustand, RxJS, Zod gibi doğrulama kitaplıkları,
   - Tam şema TypeScript türleriyle yazılır (`src/core/catalog/schema.ts`). `src/ranking/types.ts` içindeki daraltılmış tür bunun bir alt kümesidir.
   - `openCatalog(input)` sürüm kapısıdır (`src/core/catalog/contract.ts`). Bugünkü dosyanın sürüm alanı yok ve bu dosya eski biçim (sürüm 0) olarak kabul edilir.
   - Sürüm 0 kalıcı olarak kabul edilir. Dondurulmuş test kesiti ve eski dışa aktarmalar bu biçimdedir.
-  - Python ileride `schemaVersion: 1` ve ISO biçiminde `updatedOn` alanını ekler. `updated` bugünkü anlamını korur: en son kanıtın tarihidir, derleme tarihi değildir.
+  - Python `schemaVersion: 1` ve ISO biçiminde `updatedOn` alanını yazar (geçiş planının 2. aşaması). `updated` bugünkü anlamını korur: en son kanıtın tarihidir, derleme tarihi değildir.
   - Tam doğrulama her yerde yapılır: testlerde, statik SEO üreticisinde ve tarayıcıda. Tarayıcıda da tam doğrulama yapılmasını sahip 9 Kasım 2026'da istedi. Gerçek katalog Node'da yaklaşık 2 milisaniyede doğrulanıyor.
   - Kapı başarısız olursa uygulama açılmaz ve konsola nedeni yazılır. CI aynı kapıyı her yayından önce çalıştırdığı için bu yalnız bozuk bir yayında olur.
   - Node sözleşmesi Python'dan katı değildir. Örneğin Python tarihsiz bir kitabı yazar ve yalnız uyarır. Sözleşme bu yüzden eksik bir `addedAt` alanını kabul eder, yalnız biçimi bozuk bir tarihi reddeder.
