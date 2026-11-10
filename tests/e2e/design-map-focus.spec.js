@@ -83,12 +83,25 @@ test('a book closed and opened again in flight has one cover in the air, and it 
   await page.goto('./?sort=title');
   const cover = page.locator('.book-card .cover-open img[data-loaded]').first();
   await expect(cover).toBeVisible();
-  const flying = page.waitForFunction(() => document.querySelector('.cover-flight')?.getAnimations().length > 0, null, { polling: 'raf' });
+  // The flight is slowed as it starts, so the reader's two steps surely land while it is in the air
+  // even on CI's Linux WebKit, which paints few frames while the sheet opens.
+  await page.evaluate(() => {
+    window.__flights = 0;
+    new MutationObserver(records => {
+      for (const record of records) for (const node of record.addedNodes) {
+        if (!node.matches?.('.cover-flight')) continue;
+        window.__flights += 1;
+        node.getAnimations()[0].playbackRate = 0.05;
+      }
+    }).observe(document.body, { childList: true });
+  });
   await cover.click();
-  await flying;
+  await expect.poll(() => page.evaluate(() => window.__flights)).toBe(1);
   await page.goBack();
   await page.goForward();
+  await expect(page).toHaveURL(/[?&]book=/);
   expect(await page.locator('.cover-flight').count()).toBeLessThanOrEqual(1);
-  await expect(page.locator('.cover-flight')).toHaveCount(0);
+  await expect(page.locator('.cover-flight')).toHaveCount(0, { timeout: 20_000 });
+  expect(await page.evaluate(() => window.__flights), 'the same cover turned round, no second one took off').toBe(1);
   await expect(page.locator('.cover-stage-detail[data-flying]')).toHaveCount(0);
 });

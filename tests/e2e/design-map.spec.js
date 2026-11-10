@@ -8,6 +8,17 @@ test.beforeEach(async ({ context }) => {
 
 const firstCard = page => page.locator('.book-card').first();
 
+test('the page takes its new spacing at once when the window crosses a width', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('./');
+  await expect(firstCard(page)).toBeVisible();
+  const main = page.locator('#main-content');
+  expect(await main.evaluate(node => getComputedStyle(node).paddingTop)).toBe('20px');
+  await page.setViewportSize({ width: 320, height: 900 });
+  const after = await main.evaluate(node => ({ padding: getComputedStyle(node).paddingTop, moving: node.getAnimations().length, property: getComputedStyle(node).transitionProperty }));
+  expect(after).toEqual({ padding: '12px', moving: 0, property: 'none' });
+});
+
 test('the page frame is an AppShell and keeps its three landmarks', async ({ page }) => {
   await page.goto('./');
   await expect(page.locator('.mantine-AppShell-root')).toHaveCount(1);
@@ -99,23 +110,27 @@ test('the notes page lists its parts, and a part scrolls clear of the header', a
 });
 
 test.describe('the cover flight', () => {
-  const flight = page => page.evaluate(() => {
-    const ghost = document.querySelector('.cover-flight');
-    if (!ghost) return null;
-    const [animation] = ghost.getAnimations();
-    const timing = animation?.effect.getTiming();
-    return timing ? { duration: timing.duration, easing: timing.easing, hidden: ghost.getAttribute('aria-hidden') } : null;
+  // CI's Linux WebKit paints so few frames while the sheet opens that a poll can miss a whole
+  // 300 ms flight, so the page writes each flight down the moment it starts.
+  const watchFlights = page => page.evaluate(() => {
+    window.__flights = [];
+    new MutationObserver(records => {
+      for (const record of records) for (const node of record.addedNodes) {
+        if (!node.matches?.('.cover-flight')) continue;
+        const timing = node.getAnimations()[0]?.effect.getTiming();
+        window.__flights.push({ duration: timing?.duration, easing: timing?.easing, hidden: node.getAttribute('aria-hidden') });
+      }
+    }).observe(document.body, { childList: true });
   });
-  const waitForFlight = page => page.waitForFunction(() => document.querySelector('.cover-flight')?.getAnimations().length > 0, null, { polling: 'raf' });
+  const flights = page => page.evaluate(() => window.__flights);
   const openFirstWithCover = async page => { await page.locator('.book-card .cover-open img[data-loaded]').first().click(); };
 
   test('a cover flies from its card into the book, on the sheet\'s time and curve, and is gone after', async ({ page }) => {
     await page.goto('./?sort=title');
     await expect(page.locator('.book-card .cover-open img[data-loaded]').first()).toBeVisible();
-    const waiting = waitForFlight(page);
+    await watchFlights(page);
     await openFirstWithCover(page);
-    await waiting;
-    expect(await flight(page)).toEqual({ duration: 300, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', hidden: 'true' });
+    await expect.poll(() => flights(page)).toEqual([{ duration: 300, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', hidden: 'true' }]);
     await expect(page.locator('.detail-drawer .detail-content')).toBeVisible();
     await expect(page.locator('.cover-flight')).toHaveCount(0);
     await expect(page.locator('.cover-stage-detail[data-flying]')).toHaveCount(0);
@@ -128,9 +143,9 @@ test.describe('the cover flight', () => {
     await openFirstWithCover(page);
     await expect(page.locator('.cover-flight')).toHaveCount(0);
     await expect(page.locator('.cover-stage-detail img[data-loaded]')).toBeVisible();
-    const waiting = waitForFlight(page);
+    await watchFlights(page);
     await page.keyboard.press('Escape');
-    await waiting;
+    await expect.poll(() => flights(page)).toHaveLength(1);
     await expect(page.locator('.cover-flight')).toHaveCount(0);
   });
 

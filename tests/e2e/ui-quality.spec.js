@@ -345,7 +345,9 @@ const settle = page => page.evaluate(() => new Promise(done => { let last = '', 
 
 for (const [colorScheme, width] of [['light', 320], ['dark', 1280]]) {
   test(`every keyboard stop shows its focus bar whole and at 3:1, ${colorScheme} theme at ${width} px`, async ({ browser, browserName }) => {
-    test.setTimeout(420_000);
+    // About 300 stops, each waiting for the page to stand still. CI's Linux WebKit ran past 420 s in run
+    // 42678583217, a run twice as slow as the one before; the build before it measured the same on Linux.
+    test.setTimeout(900_000);
     const context = await browser.newContext({ colorScheme, viewport: { width, height: 800 } });
     await context.addInitScript(mode => { localStorage.setItem('kitapatlasi:wood', 'ceviz'); localStorage.setItem('kitapatlasi:color-scheme', mode); }, colorScheme);
     await isolate(context);

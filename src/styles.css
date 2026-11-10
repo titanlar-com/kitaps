@@ -408,7 +408,9 @@ html[data-focus-mode="keyboard"] .main-tabs .mantine-Tabs-tab:focus-visible::aft
  .main-tabs .mantine-Tabs-tabSection{display:none}
  .main-tabs .mantine-Tabs-tab{flex:1 1 auto;padding:0 4px}
 }
-#main-content{padding-top:20px;padding-bottom:32px}
+/* AppShell eases its main area's padding for side panels this page does not have; here it would only
+   make the page drift for a moment when the window crosses a width. */
+#main-content{padding-top:20px;padding-bottom:32px;transition-property:none}
 @media (max-width:39.99em){#main-content{padding-top:12px}}
 
 /* ---------- Catalog controls ---------- */
