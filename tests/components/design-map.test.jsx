@@ -1,6 +1,7 @@
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
+import { MantineProvider } from '@mantine/core';
 import { renderWithTheme } from './render';
 import { emptyFilters } from '../../src/library';
 import { ActiveFilters } from '../../src/ui/react/app/ActiveFilters';
@@ -70,5 +71,14 @@ describe('the command palette', () => {
     renderWithTheme(<CommandPalette request={1} books={books} views={views} onBook={() => {}} onPage={onPage} />);
     fireEvent.click(await screen.findByRole('button', { name: /Sıram/ }));
     expect(onPage).toHaveBeenCalledWith('queue');
+  });
+  it('stays closed when the reader moved on before it arrived, and opens on the next request', async () => {
+    const wanted = vi.fn(() => false);
+    const { rerender } = renderWithTheme(<CommandPalette request={1} books={books} views={views} onBook={() => {}} onPage={() => {}} wanted={wanted} />);
+    await waitFor(() => expect(wanted).toHaveBeenCalledTimes(1));
+    expect(screen.queryByRole('dialog')).toBeNull();
+    wanted.mockReturnValue(true);
+    rerender(<MantineProvider><CommandPalette request={2} books={books} views={views} onBook={() => {}} onPage={() => {}} wanted={wanted} /></MantineProvider>);
+    expect(await screen.findByRole('dialog', { name: 'Kitap ya da bölüm ara' })).toBeTruthy();
   });
 });

@@ -12,6 +12,7 @@ import EmptyState from './components/EmptyState';
 import CatalogPagination from './components/CatalogPagination';
 import { addressBase, applySeo, seoState } from '../../seo';
 import { catalogListing } from './app/listing';
+import { askForPalette, dropPaletteRequest, paletteStillWanted } from './app/paletteRequest.js';
 import { HEADER_VIEWS, VIEWS, viewById } from '../../views';
 import ThemeTweaker from './components/ThemeTweaker';
 import FooterMenu from './components/FooterMenu';
@@ -177,7 +178,14 @@ function AtlasApp({kitaplik}) {
  const [paletteRequest,setPaletteRequest]=useState(0);
  // The footer menu is gone by the time the quick search closes, so focus then returns to its bar.
  const paletteOpener=useRef(null);
- const openPalette=()=>{const active=document.activeElement;paletteOpener.current=active?.closest?.('.footer-menu')?document.querySelector('.footer-dock'):active;setPaletteRequest(request=>request+1)};
+ const paletteAsk=useRef(null);
+ const openPalette=()=>{const active=document.activeElement;paletteOpener.current=active?.closest?.('.footer-menu')?document.querySelector('.footer-dock'):active;paletteAsk.current=askForPalette();setPaletteRequest(request=>request+1)};
+ // An Escape or a press on the page before the quick search has arrived means the reader moved on.
+ useWindowEvent('keydown',event=>{if(event.key==='Escape')dropPaletteRequest(paletteAsk.current)},{capture:true});
+ useWindowEvent('pointerdown',()=>dropPaletteRequest(paletteAsk.current),{capture:true});
+ const paletteWanted=()=>{const wanted=paletteStillWanted(paletteAsk.current);paletteAsk.current=null;return wanted};
+ // Its code starts to load as the pointer or the keyboard reaches "Hızlı ara", so it is ready sooner.
+ const warmPalette=()=>{import('./components/CommandPalette').catch(()=>{})};
  const leavePalette=()=>{const opener=paletteOpener.current;(opener?.isConnected&&opener!==document.body?opener:document.getElementById('main-content'))?.focus({preventScroll:true})};
  // A sheet returns focus to what held it as it opened, so that must not be the quick search's own field.
  const paletteBook=id=>{document.getElementById('main-content')?.focus({preventScroll:true});onOpen(id)};
@@ -201,7 +209,7 @@ function AtlasApp({kitaplik}) {
  const catalogue=catalogScreen({view,filters,sort,total,page:currentPage,pageSize,showsHiddenPurchases,copied,ownedCount,favoriteCount,coreCount:collectionMap.core?.count,collections:collectionMap,groups:groupMap});
  // What each footer item does. Every other page, Notes included, opens through goView.
  const footerActions={books:onBrowse,queue:onQueue,children:()=>goCategory('children'),palette:openPalette,guide:()=>setGuideOpened(true),sync:()=>openSync(),export:exportAllBooks};
- const footerGroups=shell.footer.groups.map(group=>({...group,items:group.items.map(item=>({...item,icon:FOOTER_ICONS[item.id],onSelect:footerActions[item.id]??(()=>goView(item.id))}))}));
+ const footerGroups=shell.footer.groups.map(group=>({...group,items:group.items.map(item=>({...item,icon:FOOTER_ICONS[item.id],onSelect:footerActions[item.id]??(()=>goView(item.id)),onIntent:item.id==='palette'?warmPalette:undefined}))}));
  return <><a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();document.getElementById('main-content').focus()}}>{shell.skipLink}</a>
   <Tabs className="main-section-tabs" value={activeTab} onChange={v=>v&&navigate({...route,view:v,book:null,page:1})}>
    <AppShell mode="static" className="page-frame" withBorder={false} transitionDuration={MOTION_MS.move} transitionTimingFunction={MOTION_EASE}>
@@ -241,7 +249,7 @@ function AtlasApp({kitaplik}) {
    </AppShell>
   </Tabs>
   <BackToTop label={shell.backToTop}/>
-  {paletteRequest>0&&<QuietBoundary><React.Suspense fallback={null}><CommandPalette request={paletteRequest} books={books} views={VIEWS} icons={VIEW_ICONS} onBook={paletteBook} onPage={palettePage} onDismiss={leavePalette} covered={asking}/></React.Suspense></QuietBoundary>}
+  {paletteRequest>0&&<QuietBoundary><React.Suspense fallback={null}><CommandPalette request={paletteRequest} books={books} views={VIEWS} icons={VIEW_ICONS} onBook={paletteBook} onPage={palettePage} onDismiss={leavePalette} covered={asking} wanted={paletteWanted}/></React.Suspense></QuietBoundary>}
   <SyncMergeDialog sync={githubSync}/>
   {/* Opened from the book sheet too, so it sits above the sheet (Mantine's layer 200) and below the toast (310). */}
   <Modal opened={syncOpened} onClose={closeSync} closeOnEscape={!asking} zIndex={300} returnFocus={false} onExitTransitionEnd={syncClosed} title={shell.modals.sync} size="lg" centered className="sync-modal" closeButtonProps={{'aria-label':shell.modals.close}}><div inert={!syncOpened||undefined}><GitHubSyncPanel sync={githubSync} framed={false}/></div></Modal>

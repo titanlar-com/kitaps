@@ -8,6 +8,10 @@ test.beforeEach(async ({ context }) => {
 });
 
 const search = page => page.getByRole('textbox', { name: 'Kitap ya da bölüm ara' });
+// How long a closing dialog may take to leave the page where frames are scarce (measured up to 4.4 s).
+const FADE_OUT = 15_000;
+// Chooses "Hızlı ara" in the footer menu without waiting for the quick search to appear.
+const openFromFooterMenuOnly = async page => { await page.getByRole('button', { name: /Menü/ }).click(); await page.getByRole('button', { name: 'Hızlı ara' }).click(); };
 const openFromFooter = async page => { await page.getByRole('button', { name: /Menü/ }).click(); await page.getByRole('button', { name: 'Hızlı ara' }).click(); await expect(search(page)).toBeFocused(); };
 
 test('the quick search is a named dialog, and Escape returns the keyboard to where it was', async ({ page, isMobile }) => {
@@ -19,8 +23,10 @@ test('the quick search is a named dialog, and Escape returns the keyboard to whe
   await expect(page.getByRole('dialog', { name: 'Kitap ya da bölüm ara' })).toBeVisible();
   await expect(search(page)).toBeFocused();
   await page.keyboard.press('Escape');
-  await expect(search(page)).toHaveCount(0);
+  // The keyboard is back at once; the quick search then fades out, which takes CI's Linux WebKit,
+  // painting a frame or two a second, two to five seconds.
   await expect(page.locator('.catalog-search input')).toBeFocused();
+  await expect(search(page)).toHaveCount(0, { timeout: FADE_OUT });
 });
 
 test('opened from the footer menu a second time it keeps the keyboard, and gives it back to the footer bar', async ({ page, isMobile }) => {
@@ -32,8 +38,8 @@ test('opened from the footer menu a second time it keeps the keyboard, and gives
     await page.waitForTimeout(350);
     await expect(search(page)).toBeFocused();
     await page.keyboard.press('Escape');
-    await expect(search(page)).toHaveCount(0);
     await expect(page.locator('.footer-dock')).toBeFocused();
+    await expect(search(page)).toHaveCount(0, { timeout: FADE_OUT });
   }
 });
 
@@ -46,7 +52,7 @@ test('a book chosen in the quick search gives the keyboard back to the page when
   await page.locator('.mantine-Spotlight-action').first().click();
   await expect(page.locator('.detail-drawer .detail-content')).toBeVisible();
   await page.keyboard.press('Escape');
-  await expect(page.locator('.detail-drawer .detail-content')).toHaveCount(0);
+  await expect(page.locator('.detail-drawer .detail-content')).toHaveCount(0, { timeout: FADE_OUT });
   await expect.poll(() => page.evaluate(() => document.activeElement?.id)).toBe('main-content');
 });
 
@@ -61,6 +67,68 @@ test('over the footer menu neither shortcut reaches behind it', async ({ page, i
   await page.keyboard.press('Control+k');
   await page.waitForTimeout(200);
   await expect(search(page)).toHaveCount(0);
+});
+
+// The quick search's code arrives a moment after it is first asked for (about 0.3 s on the live
+// site). Whatever the reader does in that moment wins: after an Escape, or with a book opened on
+// top, the quick search must not appear once its code is in. These hold the code back to make the
+// moment as long as needed, and note every time the quick search shows.
+const PALETTE_CODE = /\/CommandPalette-[^/]*\.js$/;
+const holdPalette = async page => {
+  let release;
+  const held = new Promise(resolve => { release = resolve; });
+  await page.route(PALETTE_CODE, async route => { await held; await route.continue(); });
+  await page.evaluate(() => {
+    window.__paletteShown = 0;
+    new MutationObserver(() => { if (document.querySelector('.mantine-Spotlight-search')) window.__paletteShown += 1; }).observe(document.body, { childList: true, subtree: true });
+  });
+  return async () => {
+    const arrived = page.waitForResponse(PALETTE_CODE);
+    release();
+    await arrived;
+    // Nothing on the page says the code has run and chosen to stay closed, so give it time.
+    await page.waitForTimeout(1500);
+  };
+};
+const paletteShown = page => page.evaluate(() => window.__paletteShown);
+
+test('an Escape pressed before the quick search arrives keeps it from opening', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'A phone has no Escape key.');
+  await page.goto('./');
+  await expect(page.locator('.book-card').first()).toBeVisible();
+  const release = await holdPalette(page);
+  await page.locator('.catalog-search input').focus();
+  await page.keyboard.press('Control+k');
+  await page.keyboard.press('Escape');
+  await release();
+  expect(await paletteShown(page)).toBe(0);
+  await expect(page.locator('.catalog-search input')).toBeFocused();
+  // Asked again, it opens at once.
+  await page.keyboard.press('Control+k');
+  await expect(search(page)).toBeFocused();
+});
+
+test('a book opened before the quick search arrives is not covered by it', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('.book-card').first()).toBeVisible();
+  const release = await holdPalette(page);
+  await openFromFooterMenuOnly(page);
+  await page.locator('.book-card .cover-open').first().click();
+  await expect(page.locator('.detail-drawer .detail-content')).toBeVisible();
+  await release();
+  expect(await paletteShown(page)).toBe(0);
+  await page.getByRole('button', { name: 'Diğer işlemler' }).click();
+  await expect(page.getByRole('menu')).toBeVisible();
+});
+
+test('asked for from the footer menu, the quick search opens once its code is in', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('.book-card').first()).toBeVisible();
+  const release = await holdPalette(page);
+  await openFromFooterMenuOnly(page);
+  await expect(page.locator('.footer-menu .mantine-Drawer-content')).toHaveCount(0, { timeout: FADE_OUT });
+  await release();
+  await expect(search(page)).toBeVisible();
 });
 
 test('a filter chip shows the one focus bar and no ring around itself', async ({ page, isMobile }) => {
@@ -97,6 +165,9 @@ test('a book closed and opened again in flight has one cover in the air, and it 
   });
   await cover.click();
   await expect.poll(() => page.evaluate(() => window.__flights)).toBe(1);
+  // Back only once the cover is a third of the way: turned round right after take-off it is home
+  // again within a few frames, and the step forward would then rightly start a new flight.
+  await page.waitForFunction(() => document.querySelector('.cover-flight')?.getAnimations()[0]?.currentTime > 100, null, { polling: 50 });
   await page.goBack();
   await page.goForward();
   await expect(page).toHaveURL(/[?&]book=/);

@@ -22,7 +22,7 @@ export default function FooterMenu({ groups, current, meta, covered = false }) {
     {groups.map(group => <section key={group.title} className="footer-menu-group" aria-labelledby={`footer-${group.id}`}>
      <Text className="footer-menu-heading" id={`footer-${group.id}`}>{group.title}</Text>
      <ul>{group.items.map(item => <li key={item.label}>
-      <NavLink component="button" type="button" className="footer-menu-item" label={item.label} leftSection={item.icon && <item.icon size={20} aria-hidden="true" />} active={Boolean(item.current)} aria-current={item.current ? 'page' : undefined} onClick={choose(item.onSelect)} />
+      <NavLink component="button" type="button" className="footer-menu-item" label={item.label} leftSection={item.icon && <item.icon size={20} aria-hidden="true" />} active={Boolean(item.current)} aria-current={item.current ? 'page' : undefined} onClick={choose(item.onSelect)} onPointerEnter={item.onIntent} onFocus={item.onIntent} />
      </li>)}</ul>
     </section>)}
    </nav>

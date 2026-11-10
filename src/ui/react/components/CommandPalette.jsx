@@ -7,13 +7,15 @@ import { transition } from '../../../motion';
 import { paletteScreen } from '../../../screens/palette.js';
 
 // The quick search (Ctrl K or Cmd K, and "Hızlı ara" in the footer menu). The page loads it the
-// first time it is asked for; `request` goes up each time the reader asks.
-export default function CommandPalette({ request, books, views, icons = {}, onBook, onPage, onDismiss = () => {}, covered = false }) {
+// first time it is asked for; `request` goes up each time the reader asks. `wanted` says whether the
+// reader is still waiting for it when it arrives (src/ui/react/app/paletteRequest.js).
+export default function CommandPalette({ request, books, views, icons = {}, onBook, onPage, onDismiss = () => {}, covered = false, wanted = () => true }) {
   const [[store, actions]] = useState(() => createSpotlight());
   const [query, setQuery] = useState('');
   const reducedMotion = useReducedMotion();
   const model = useMemo(() => paletteScreen({ query, books, views }), [query, books, views]);
-  useEffect(() => { actions.open(); }, [request, actions]);
+  // Runs once for each request, however late its code arrived.
+  useEffect(() => { if (wanted()) actions.open(); }, [request, actions]);
   // Focus goes back only when the reader left without choosing; a choice moves it on its own.
   const chose = useRef(false);
   const choose = action => () => { chose.current = true; action(); };
