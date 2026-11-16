@@ -22374,6 +22374,293 @@
           }
         ]
       }
+    },
+    "diplomacy": {
+      "firstPublicationYear": 1994,
+      "firstPublisher": "Simon & Schuster",
+      "originalLanguage": "en",
+      "originalTitle": "Diplomacy",
+      "stage1": {
+        "reviewer": "claude-stage1-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Diplomacy_(Kissinger_book)",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.iskultur.com.tr/diplomasi.html",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://www.goodreads.com/work/editions/767204-diplomacy",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://openlibrary.org/books/OL7649227M/Diplomacy",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://archive.org/details/diplomacy00kiss",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "grandchessboardamericanprimacyanditsgeostrategicimperatives": {
+      "firstPublicationYear": 1997,
+      "firstPublisher": "Basic Books",
+      "originalLanguage": "en",
+      "originalTitle": "The Grand Chessboard: American Primacy and Its Geostrategic Imperatives",
+      "stage1": {
+        "reviewer": "claude-stage1-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Grand_Chessboard",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://openlibrary.org/books/OL668050M/The_Grand_Chessboard",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.abebooks.com/9780465027255/Grand-Chessboard-American-Primacy-Geostrategic-0465027253/plp",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "grandstrategiesinwarandpeace": {
+      "firstPublicationYear": 1991,
+      "firstPublisher": "Yale University Press",
+      "originalLanguage": "en",
+      "originalTitle": "Grand Strategies in War and Peace",
+      "stage1": {
+        "reviewer": "claude-stage1-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://cambridge.org/core/journals/american-political-science-review/article/abs/grand-strategies-in-war-and-peace-edited-by-paul-kennedy-new-haven-yale-university-press-1991-228p-2500/ED2F996C2B20DCBDE5B1B9DBB1278CA3",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://yalebooks.yale.edu/9780300056662/grand-strategies-in-war-and-peace",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://nla.gov.au/nla.cat-vn2670048",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://search.worldcat.org/title/Grand-strategies-in-war-and-peace/oclc/22762609",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://www.abebooks.com/9780300049442/Grand-Strategies-Peace-0300049447/plp",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "newmakersofmodernstrategyfromtheancientworldtothedigitalage": {
+      "firstPublicationYear": 2023,
+      "firstPublisher": "Princeton University Press",
+      "originalLanguage": "en",
+      "originalTitle": "The New Makers of Modern Strategy: From the Ancient World to the Digital Age",
+      "stage1": {
+        "reviewer": "claude-stage1-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://press.princeton.edu/books/hardcover/9780691204383/the-new-makers-of-modern-strategy",
+            "type": "publisher"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://bookshop.org/p/books/the-new-makers-of-modern-strategy-from-the-ancient-world-to-the-digital-age-ahmed-s-hashim/d61805e3fb976322?ean=9780691204383&next=t",
+            "type": "retailer"
+          },
+          {
+            "url": "https://books.google.com/books/about/The_New_Makers_of_Modern_Strategy.html?id=BsyZEAAAQBAJ",
+            "type": "bibliographic"
+          }
+        ]
+      }
+    },
+    "ongrandstrategy": {
+      "firstPublicationYear": 2018,
+      "firstPublisher": "Penguin Press",
+      "originalLanguage": "en",
+      "originalTitle": "On Grand Strategy",
+      "stage1": {
+        "reviewer": "claude-stage1-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://publishersweekly.com/9781594203510",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://www.penguinrandomhouse.com/books/529363/on-grand-strategy-by-john-lewis-gaddis/",
+            "type": "rights-holder"
+          },
+          {
+            "url": "https://www.politics-prose.com/book/9781594203510",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.abebooks.com/9781594203510/Grand-Strategy-Gaddis-John-Lewis-1594203512/plp",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "riseandfallofthegreatpowers": {
+      "firstPublicationYear": 1987,
+      "firstPublisher": "Random House",
+      "originalLanguage": "en",
+      "originalTitle": "The Rise and Fall of the Great Powers",
+      "stage1": {
+        "reviewer": "claude-stage1-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/The_Rise_and_Fall_of_the_Great_Powers",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://www.abebooks.com/9780394546742/Rise-Fall-Great-Powers-Economic-0394546741/plp",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.abebooks.com/first-edition/Rise-Fall-Great-Powers-Economic-Change/30739806049/bd",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.amazon.com/Rise-Fall-Great-Powers-Economic/dp/0394546741",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "worldorder": {
+      "firstPublicationYear": 2014,
+      "firstPublisher": "Penguin Press",
+      "originalLanguage": "en",
+      "originalTitle": "World Order",
+      "stage1": {
+        "reviewer": "claude-stage1-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://www.publishersweekly.com/9781594206146",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/World_Order_(book)",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-strateji-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://www.abebooks.com/9781594206146/World-Order-Kissinger-Henry-1594206147/plp",
+            "type": "retailer"
+          },
+          {
+            "url": "https://www.allbookstores.com/World-Order-Kissinger-Henry/9781594206146",
+            "type": "retailer"
+          }
+        ]
+      }
+    },
+    "ιστοριαιpeloponnesossavasitarihi": {
+      "firstPublicationYear": -400,
+      "originalLanguage": "grc",
+      "originalTitle": "Ἱστορίαι",
+      "stage1": {
+        "reviewer": "claude-stage1-strateji-2-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://el.wikipedia.org/wiki/Ιστορία_του_Πελοποννησιακού_Πολέμου",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/History_of_the_Peloponnesian_War",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Thucydides",
+            "type": "bibliographic"
+          }
+        ]
+      },
+      "stage2": {
+        "reviewer": "claude-stage2-strateji-2-2026-11-16",
+        "checkedAt": "2026-11-16",
+        "sources": [
+          {
+            "url": "https://data.bnf.fr/fr/12320504/thucydide_histoire_de_la_guerre_du_peloponnese/fr.pdf",
+            "type": "national-bibliography"
+          },
+          {
+            "url": "https://catalog.perseus.org/catalog/urn:cts:greekLit:tlg0003.tlg001",
+            "type": "library-catalog"
+          },
+          {
+            "url": "https://encyclopedia.com/humanities/culture-magazines/thucydides",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.livius.org/sources/content/thucydides-historian/",
+            "type": "bibliographic"
+          },
+          {
+            "url": "https://www.britannica.com/summary/Thucydides-Greek-historian",
+            "type": "bibliographic"
+          }
+        ]
+      }
     }
   }
 }

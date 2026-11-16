@@ -205,6 +205,7 @@ test('the preview lists the facts it has and leaves out the others', () => {
   assert.deepEqual(bookPreviewScreen({ purpose: 'Amaç', year: undefined, pages: { pages: 300 } }).facts, [{ label: 'Sayfa', value: 300 }]);
   assert.deepEqual(bookPreviewScreen({ purpose: 'Amaç', year: 1999, pages: null }).facts, [{ label: 'İlk yayın', value: 1999 }]);
   assert.deepEqual(bookPreviewScreen({ purpose: 'Amaç', year: undefined, pages: null }).facts, []);
+  assert.deepEqual(bookPreviewScreen({ purpose: 'Amaç', year: -400, pages: null }).facts, [{ label: 'İlk yayın', value: 'MÖ 400' }]);
 });
 
 test('a cover says whose it is and which edition, and its button names the book', () => {

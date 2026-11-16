@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {translationStatus,displayTitle} from '../src/translation.js';
+import {ReadingGraph} from '../src/ranking/readingGraph.ts';
 
 // The owner's grand strategy list (16 November 2026): nine works in three groups. The owner named
 // each Turkish edition; the catalog shows that edition only after two independent sites agree.
@@ -14,6 +15,13 @@ const resolve=reference=>catalog.mapping[`strategy:${reference}`]||reference;
 const inGroup=group=>catalog.books
  .filter(book=>book.memberships.some(entry=>entry.groupId===`${source.id}:${group}`))
  .map(book=>book.id).sort();
+const inOrder=group=>catalog.books
+ .map(book=>({id:book.id,membership:book.memberships.find(entry=>entry.groupId===`${source.id}:${group}`)}))
+ .filter(entry=>entry.membership)
+ .sort((left,right)=>left.membership.order-right.membership.order)
+ .map(entry=>entry.id);
+const graph=new ReadingGraph(catalog);
+const ids=list=>list.map(link=>link.id).sort();
 
 test('the nine works sit in their three groups, and the two already in the catalog join without a copy',()=>{
  const collection=catalog.collections.find(entry=>entry.id===source.id);
@@ -55,10 +63,54 @@ test('each new edition shows the page count printed on a page of that same ISBN'
  assert.equal(pageCounts.records['9789754581119'].sourceName,'iskultur.com.tr');
 });
 
-test('Thukydides keeps the Furkan Akderin translation from Belge Yayınları, as the owner chose',()=>{
+test('Thukydides keeps the Furkan Akderin translation from Belge Yayınları, as the owner chose, now verified and dated',()=>{
  const book=byId['ιστοριαιpeloponnesossavasitarihi'];
- assert.equal(book.cover.publisher,'Belge Yayınları');
+ assert.equal(book.verifiedEdition.publisher,'Belge Yayınları');
+ assert.equal(book.verifiedEdition.isbn,'9789753440530');
+ assert.deepEqual(book.verifiedEdition.translators,['Furkan Akderin']);
  assert.equal(book.cover.isbn,'9789753440530');
- assert.match(book.editions[0].translator,/Furkan Akderin/);
+ assert.deepEqual(book.years,[-400],'about 400 BC, written as a negative year');
+ assert.equal(book.originalLanguage,'grc');
  assert.ok(book.origins.includes('strategy'));
+});
+
+test('Freedman’s Alfa edition names both translators the owner’s note abbreviated',()=>{
+ const book=byId.strategyahistory;
+ assert.equal(book.verifiedEdition.publisher,'Alfa Yayınları');
+ assert.equal(book.verifiedEdition.isbn,'9786051710815');
+ assert.deepEqual(book.verifiedEdition.translators,['Belkıs Çorakçı Dişbudak','Taciser Belge']);
+ assert.equal(book.pageCounts['9786051710815'].pages,1100,'the printed count of this ISBN, not the 1096 in the owner’s note');
+});
+
+test('every new work names who first published it and when',()=>{
+ for(const key of ['ongrandstrategy','diplomacy','worldorder','grandstrategiesinwarandpeace','riseandfallofthegreatpowers','grandchessboard','newmakersofmodernstrategy']){
+  const book=byId[resolve(key)];
+  assert.ok(book.originalPublisher,key);
+  assert.equal(book.originalLanguage,'en',key);
+  assert.equal(book.years.length,1,key);
+ }
+});
+
+test('the reading order starts with Gaddis’s short introduction and leaves the two long reference books for last',()=>{
+ assert.deepEqual(inOrder('sira'),[resolve('ongrandstrategy'),'ιστοριαιpeloponnesossavasitarihi',resolve('grandstrategiesinwarandpeace'),resolve('riseandfallofthegreatpowers'),resolve('diplomacy'),resolve('worldorder'),resolve('grandchessboard'),'strategyahistory',resolve('newmakersofmodernstrategy')]);
+ assert.match(source.context.verdict,/^Önce Gaddis/);
+ assert.deepEqual(graph.relations(resolve('ongrandstrategy')).before,[],'the first book needs nothing before it');
+});
+
+test('every book says what to read before or after it, in both directions',()=>{
+ const after=id=>ids(graph.relations(id).after),before=id=>ids(graph.relations(id).before),companions=id=>ids(graph.relations(id).companions);
+ assert.deepEqual(after(resolve('ongrandstrategy')),['strategyahistory','vomkriege','ιστοριαιpeloponnesossavasitarihi'].sort());
+ assert.ok(before('ιστοριαιpeloponnesossavasitarihi').includes(resolve('ongrandstrategy')));
+ assert.deepEqual(after('strategyahistory').includes(resolve('newmakersofmodernstrategy')),true);
+ assert.deepEqual(after(resolve('grandstrategiesinwarandpeace')),[resolve('riseandfallofthegreatpowers')]);
+ assert.deepEqual(after(resolve('diplomacy')),[resolve('grandchessboard'),resolve('worldorder')].sort());
+ assert.ok(companions(resolve('worldorder')).includes(resolve('grandchessboard')));
+ assert.ok(companions(resolve('grandchessboard')).includes(resolve('worldorder')));
+ assert.ok(companions(resolve('riseandfallofthegreatpowers')).includes('whynationsfail'));
+ assert.ok(companions('prisonersofgeography').includes(resolve('grandchessboard')));
+ for(const id of inOrder('sira')){
+  const relation=graph.relations(id);
+  assert.ok(relation.before.length+relation.after.length+relation.companions.length>0,`${id} is not linked to any book`);
+  for(const link of [...relation.before,...relation.after,...relation.companions])assert.ok(link.reason?.trim(),`${id} → ${link.id} has a reason`);
+ }
 });

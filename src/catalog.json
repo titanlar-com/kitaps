@@ -1268,6 +1268,10 @@
           {
             "id": "askeristratejinintemellerikuramcilar",
             "reason": "Kuramcıların kavramlarını ve dönemlerini önce karşılaştırmak, yoğun birincil metni bağlamıyla okumayı kolaylaştırır."
+          },
+          {
+            "id": "ongrandstrategy",
+            "reason": "Gaddis Clausewitz’in savaş üzerine düşüncelerini bir bölümde örnekleriyle anlatır. Bu giriş, Savaş Üzerine’nin kuramsal metnine geçmeyi kolaylaştırır."
           }
         ],
         "after": [
@@ -1402,6 +1406,10 @@
           {
             "id": "ilprincipe",
             "reason": "Biri kurumların güç dağılımı ve refah üzerindeki etkisini, öteki iktidarın kurulmasını ve sürdürülmesini anlatır; Hükümdar tarihsel bağlamıyla okunur."
+          },
+          {
+            "id": "riseandfallofthegreatpowers",
+            "reason": "İki kitap da ulusların neden güçlenip zayıfladığını sorar. Kennedy ekonomik güç ile askerî yükü, Acemoğlu ve Robinson kurumları öne çıkarır."
           }
         ]
       },
@@ -1672,6 +1680,12 @@
           {
             "id": "disorder",
             "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          }
+        ],
+        "companions": [
+          {
+            "id": "grandchessboardamericanprimacyanditsgeostrategicimperatives",
+            "reason": "İki kitap da dünya siyasetini haritaya bakarak anlatır. Brzezinski Avrasya’yı bir satranç tahtası gibi görür, Marshall coğrafyanın devletlere koyduğu sınırları anlatır."
           }
         ]
       },
@@ -2073,7 +2087,12 @@
         "after": []
       },
       "strategyahistory": {
-        "before": [],
+        "before": [
+          {
+            "id": "ongrandstrategy",
+            "reason": "Gaddis büyük stratejiyi kısa ve örneklerle tanımlar. Freedman stratejinin askerî, siyasi ve iş dünyasındaki tarihini uzun anlatır."
+          }
+        ],
         "after": [
           {
             "id": "strategyofconflict",
@@ -2090,6 +2109,10 @@
           {
             "id": "strategytheindirectapproach",
             "reason": "Bu temel okumadaki çerçeveyi katalogdaki bu eser üzerinde uygulayarak derinleştirebilirsin."
+          },
+          {
+            "id": "newmakersofmodernstrategyfromtheancientworldtothedigitalage",
+            "reason": "Genel tarihten sonra düşünürleri ve uygulayıcıları tek tek tanımak için."
           }
         ]
       },
@@ -2129,9 +2152,19 @@
           {
             "id": "ancientgreece",
             "reason": "Atina ve Sparta bağlamını kurarak Thukydides ve Perikles okumalarını kolaylaştırır."
+          },
+          {
+            "id": "ongrandstrategy",
+            "reason": "Gaddis kitabın başında Atina ile Sparta arasındaki savaşı Perikles ve Thukydides üzerinden anlatır. Bu kısa çerçeve, uzun kaynak metni izlemeyi kolaylaştırır."
           }
         ],
-        "after": []
+        "after": [],
+        "companions": [
+          {
+            "id": "riseandfallofthegreatpowers",
+            "reason": "İki kitap da yükselen bir gücün öteki güçlerle çatışmasını anlatır. Biri antik Yunan’ı, öteki 1500’den sonraki dünyayı inceler."
+          }
+        ]
       },
       "perikles": {
         "before": [
@@ -4967,6 +5000,119 @@
           {
             "id": "epistulaemoralesadlucilium",
             "reason": "İkisi de Seneca’nın: diyaloglar zaman ve mutluluğu kısa bir tartışmada, mektuplar aynı konuları uzun bir düşünme pratiğinde işler."
+          }
+        ]
+      },
+      "ongrandstrategy": {
+        "before": [],
+        "after": [
+          {
+            "id": "ιστοριαιpeloponnesossavasitarihi",
+            "reason": "Gaddis’in anlattığı Atina ile Sparta savaşını kaynağından okumak için."
+          },
+          {
+            "id": "strategyahistory",
+            "reason": "Kısa girişten sonra stratejinin bütün tarihini okumak için."
+          },
+          {
+            "id": "vomkriege",
+            "reason": "Gaddis’in anlattığı Clausewitz’i kendi metninden okumak için."
+          }
+        ],
+        "companions": [
+          {
+            "id": "grandstrategiesinwarandpeace",
+            "reason": "İki kitap da büyük stratejiyi yalnız savaşla sınırlamaz. Gaddis amaçlarla imkânları dengelemeyi, Kennedy barış dönemini de kapsayan geniş tanımı anlatır."
+          }
+        ]
+      },
+      "newmakersofmodernstrategyfromtheancientworldtothedigitalage": {
+        "before": [
+          {
+            "id": "strategyahistory",
+            "reason": "Freedman stratejinin genel tarihini verir. Brands’in derlediği makaleler aynı tarihi tek tek düşünürler ve uygulayıcılar üzerinden ayrıntılandırır."
+          }
+        ],
+        "after": []
+      },
+      "riseandfallofthegreatpowers": {
+        "before": [
+          {
+            "id": "grandstrategiesinwarandpeace",
+            "reason": "Kennedy’nin derlemesi büyük stratejinin barışta da sürdüğünü savunur. Bu kısa tanım, ekonomik güç ile askerî yük arasındaki uzun tarihi izlemeyi kolaylaştırır."
+          }
+        ],
+        "after": [],
+        "companions": [
+          {
+            "id": "ιστοριαιpeloponnesossavasitarihi",
+            "reason": "İki kitap da yükselen bir gücün öteki güçlerle çatışmasını anlatır. Biri antik Yunan’ı, öteki 1500’den sonraki dünyayı inceler."
+          },
+          {
+            "id": "whynationsfail",
+            "reason": "İki kitap da ulusların neden güçlenip zayıfladığını sorar. Kennedy ekonomik güç ile askerî yükü, Acemoğlu ve Robinson kurumları öne çıkarır."
+          }
+        ]
+      },
+      "grandstrategiesinwarandpeace": {
+        "before": [],
+        "after": [
+          {
+            "id": "riseandfallofthegreatpowers",
+            "reason": "Büyük stratejinin geniş tanımını büyük güçlerin tarihinde görmek için."
+          }
+        ],
+        "companions": [
+          {
+            "id": "ongrandstrategy",
+            "reason": "İki kitap da büyük stratejiyi yalnız savaşla sınırlamaz. Gaddis amaçlarla imkânları dengelemeyi, Kennedy barış dönemini de kapsayan geniş tanımı anlatır."
+          }
+        ]
+      },
+      "worldorder": {
+        "before": [
+          {
+            "id": "diplomacy",
+            "reason": "Diplomasi güç dengesinin Richelieu’den Soğuk Savaş’ın sonuna tarihini anlatır. Dünya Düzeni bu tarihi bilen okura bugünkü düzeni sorar."
+          }
+        ],
+        "after": [],
+        "companions": [
+          {
+            "id": "grandchessboardamericanprimacyanditsgeostrategicimperatives",
+            "reason": "İki kitap da Soğuk Savaş’tan sonraki dünyada Amerika’nın yerini sorar. Kissinger düzen kavramından, Brzezinski Avrasya haritasından bakar."
+          }
+        ]
+      },
+      "diplomacy": {
+        "before": [],
+        "after": [
+          {
+            "id": "worldorder",
+            "reason": "Kissinger’ın tarih anlatısından sonra bugünkü dünya düzeni üzerine görüşlerini okumak için."
+          },
+          {
+            "id": "grandchessboardamericanprimacyanditsgeostrategicimperatives",
+            "reason": "Soğuk Savaş’tan sonraki jeostratejiyi okumak için."
+          }
+        ]
+      },
+      "grandchessboardamericanprimacyanditsgeostrategicimperatives": {
+        "before": [
+          {
+            "id": "diplomacy",
+            "reason": "Büyük Satranç Tahtası Soğuk Savaş’ın bittiği dünyadan başlar. Diplomasi bu savaşın ve güç dengesinin tarihini verir."
+          }
+        ],
+        "after": [],
+        "companions": [
+          {
+            "id": "worldorder",
+            "reason": "İki kitap da Soğuk Savaş’tan sonraki dünyada Amerika’nın yerini sorar. Kissinger düzen kavramından, Brzezinski Avrasya haritasından bakar."
+          },
+          {
+            "id": "prisonersofgeography",
+            "reason": "İki kitap da dünya siyasetini haritaya bakarak anlatır. Brzezinski Avrasya’yı bir satranç tahtası gibi görür, Marshall coğrafyanın devletlere koyduğu sınırları anlatır."
           }
         ]
       },
@@ -44340,7 +44486,9 @@
       "aliases": [
         "Peloponnesos Savaşları"
       ],
-      "years": [],
+      "years": [
+        -400
+      ],
       "categories": [
         "strategy",
         "history"
@@ -44357,11 +44505,22 @@
           "groupId": "buyuk-strateji:tarih",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
           "note": "Atina ile Sparta arasındaki savaşı, savaşın tanığı olan Atinalı bir komutan anlatır. Güç dengesi üzerine en eski temel metinlerden biridir. Sahip Furkan Akderin çevirisini, Belge Yayınları baskısını seçti. Katalog bu baskıyı gösteriyor."
+        },
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:sira",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Okuma sırasında 2. kitap. Gaddis’in de anlattığı Atina ile Sparta savaşını kaynağından okumak için.",
+          "order": 2
         }
       ],
       "notes": [
         {
           "text": "Atina ile Sparta arasındaki savaşı, savaşın tanığı olan Atinalı bir komutan anlatır. Güç dengesi üzerine en eski temel metinlerden biridir. Sahip Furkan Akderin çevirisini, Belge Yayınları baskısını seçti. Katalog bu baskıyı gösteriyor.",
+          "source": "Büyük strateji"
+        },
+        {
+          "text": "Okuma sırasında 2. kitap. Gaddis’in de anlattığı Atina ile Sparta savaşını kaynağından okumak için.",
           "source": "Büyük strateji"
         }
       ],
@@ -44412,7 +44571,19 @@
         "language": "tr",
         "checkedAt": "2026-09-28"
       },
+      "verifiedEdition": {
+        "title": "Peloponnesos Savaşları",
+        "publisher": "Belge Yayınları",
+        "isbn": "9789753440530",
+        "translators": [
+          "Furkan Akderin"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/peloponnessos-savaslari/248081.html",
+        "sourceType": "retailer",
+        "checkedAt": "2026-11-16"
+      },
       "originalTitle": "Ἱστορίαι",
+      "originalLanguage": "grc",
       "addedAt": "2026-09-02",
       "collectionIds": [
         "kitaps-B",
@@ -44420,7 +44591,8 @@
       ],
       "groupIds": [
         "kitaps-B:liste",
-        "buyuk-strateji:tarih"
+        "buyuk-strateji:tarih",
+        "buyuk-strateji:sira"
       ],
       "pageCounts": {
         "9789753440530": {
@@ -61935,6 +62107,13 @@
           "groupId": "buyuk-strateji:kavram",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
           "note": "Stratejinin savaştan siyasete ve iş dünyasına uzanan tarihini tek kitapta anlatır. Sahibin andığı Alfa Yayınları baskısı katalogda zaten gösteriliyor."
+        },
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:sira",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Okuma sırasında 8. kitap. Stratejinin bütün tarihini derinleştiren uzun bir kitap. Önceki kitaplardan sonra daha kolay izlenir.",
+          "order": 8
         }
       ],
       "notes": [
@@ -61944,6 +62123,10 @@
         },
         {
           "text": "Stratejinin savaştan siyasete ve iş dünyasına uzanan tarihini tek kitapta anlatır. Sahibin andığı Alfa Yayınları baskısı katalogda zaten gösteriliyor.",
+          "source": "Büyük strateji"
+        },
+        {
+          "text": "Okuma sırasında 8. kitap. Stratejinin bütün tarihini derinleştiren uzun bir kitap. Önceki kitaplardan sonra daha kolay izlenir.",
           "source": "Büyük strateji"
         }
       ],
@@ -61966,6 +62149,18 @@
         "scope": "Türkçe baskı kapağı",
         "isbn": "9786051710815"
       },
+      "verifiedEdition": {
+        "title": "Strateji: Bir Tarih",
+        "publisher": "Alfa Yayınları",
+        "isbn": "9786051710815",
+        "translators": [
+          "Belkıs Çorakçı Dişbudak",
+          "Taciser Belge"
+        ],
+        "sourceUrl": "https://www.alfakitap.com/strateji-ciltli-lawrence-freedman-kitabi-158789-9786051710815-1",
+        "sourceType": "publisher",
+        "checkedAt": "2026-11-16"
+      },
       "originalLanguage": "en",
       "originalPublisher": "Oxford University Press",
       "addedAt": "2026-09-28",
@@ -61976,7 +62171,8 @@
       "groupIds": [
         "foundations:strategy",
         "foundations:baslangic",
-        "buyuk-strateji:kavram"
+        "buyuk-strateji:kavram",
+        "buyuk-strateji:sira"
       ],
       "pageCounts": {
         "9786051710815": {
@@ -85335,11 +85531,22 @@
           "groupId": "buyuk-strateji:kavram",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
           "note": "Yale Üniversitesi’nin büyük strateji dersinden doğan kitap. Heredot’tan Sun Tzu’ya liderlerin büyük amaçlarını sınırlı imkânlarla nasıl dengelediğini anlatır."
+        },
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:sira",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Okuma sırasında 1. kitap. İlk kitap. Kısa ve örnekli bir giriştir. Sonraki kitaplarda geçen düşünürleri ve kavramları tanıtır.",
+          "order": 1
         }
       ],
       "notes": [
         {
           "text": "Yale Üniversitesi’nin büyük strateji dersinden doğan kitap. Heredot’tan Sun Tzu’ya liderlerin büyük amaçlarını sınırlı imkânlarla nasıl dengelediğini anlatır.",
+          "source": "Büyük strateji"
+        },
+        {
+          "text": "Okuma sırasında 1. kitap. İlk kitap. Kısa ve örnekli bir giriştir. Sonraki kitaplarda geçen düşünürleri ve kavramları tanıtır.",
           "source": "Büyük strateji"
         }
       ],
@@ -85379,12 +85586,14 @@
         "scope": "Türkçe baskı kapağı"
       },
       "originalTitle": "On Grand Strategy",
+      "originalPublisher": "Penguin Press",
       "addedAt": "2026-11-16",
       "collectionIds": [
         "buyuk-strateji"
       ],
       "groupIds": [
-        "buyuk-strateji:kavram"
+        "buyuk-strateji:kavram",
+        "buyuk-strateji:sira"
       ],
       "pageCounts": {
         "9786254143137": {
@@ -85416,11 +85625,22 @@
           "groupId": "buyuk-strateji:kavram",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
           "note": "Paul Kennedy’nin derlediği makaleler. Büyük stratejinin yalnız savaşı değil, barış dönemini de kapsadığını savunur ve farklı dönemlerden devletleri inceler."
+        },
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:sira",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Okuma sırasında 3. kitap. Büyük stratejinin barış dönemini de kapsayan geniş tanımını öğrenmek için.",
+          "order": 3
         }
       ],
       "notes": [
         {
           "text": "Paul Kennedy’nin derlediği makaleler. Büyük stratejinin yalnız savaşı değil, barış dönemini de kapsadığını savunur ve farklı dönemlerden devletleri inceler.",
+          "source": "Büyük strateji"
+        },
+        {
+          "text": "Okuma sırasında 3. kitap. Büyük stratejinin barış dönemini de kapsayan geniş tanımını öğrenmek için.",
           "source": "Büyük strateji"
         }
       ],
@@ -85460,12 +85680,14 @@
         "scope": "Türkçe baskı kapağı"
       },
       "originalTitle": "Grand Strategies in War and Peace",
+      "originalPublisher": "Yale University Press",
       "addedAt": "2026-11-16",
       "collectionIds": [
         "buyuk-strateji"
       ],
       "groupIds": [
-        "buyuk-strateji:kavram"
+        "buyuk-strateji:kavram",
+        "buyuk-strateji:sira"
       ],
       "pageCounts": {
         "9786259894911": {
@@ -85496,11 +85718,22 @@
           "groupId": "buyuk-strateji:kavram",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
           "note": "Antik çağdan dijital çağa strateji düşünürlerini ve uygulayıcılarını anlatan makaleler. 1943 ve 1986’da çıkan Modern Stratejinin Ustaları kitabının yeni sürümüdür."
+        },
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:sira",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Okuma sırasında 9. kitap. Düşünürleri ve uygulayıcıları tek tek tanıtan, başvuru kitabı gibi kullanılan geniş bir derleme. En sona kalır.",
+          "order": 9
         }
       ],
       "notes": [
         {
           "text": "Antik çağdan dijital çağa strateji düşünürlerini ve uygulayıcılarını anlatan makaleler. 1943 ve 1986’da çıkan Modern Stratejinin Ustaları kitabının yeni sürümüdür.",
+          "source": "Büyük strateji"
+        },
+        {
+          "text": "Okuma sırasında 9. kitap. Düşünürleri ve uygulayıcıları tek tek tanıtan, başvuru kitabı gibi kullanılan geniş bir derleme. En sona kalır.",
           "source": "Büyük strateji"
         }
       ],
@@ -85540,12 +85773,14 @@
         "scope": "Türkçe baskı kapağı"
       },
       "originalTitle": "The New Makers of Modern Strategy: From the Ancient World to the Digital Age",
+      "originalPublisher": "Princeton University Press",
       "addedAt": "2026-11-16",
       "collectionIds": [
         "buyuk-strateji"
       ],
       "groupIds": [
-        "buyuk-strateji:kavram"
+        "buyuk-strateji:kavram",
+        "buyuk-strateji:sira"
       ],
       "pageCounts": {
         "9786259264875": {
@@ -85577,11 +85812,22 @@
           "groupId": "buyuk-strateji:tarih",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
           "note": "1500’den 1980’lere büyük güçlerin yükselişini ve çöküşünü inceler. Ekonomik güç ile askerî yük arasındaki dengeyi anlatır."
+        },
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:sira",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Okuma sırasında 4. kitap. Bu geniş tanımı büyük güçlerin beş yüz yıllık tarihinde görmek için.",
+          "order": 4
         }
       ],
       "notes": [
         {
           "text": "1500’den 1980’lere büyük güçlerin yükselişini ve çöküşünü inceler. Ekonomik güç ile askerî yük arasındaki dengeyi anlatır.",
+          "source": "Büyük strateji"
+        },
+        {
+          "text": "Okuma sırasında 4. kitap. Bu geniş tanımı büyük güçlerin beş yüz yıllık tarihinde görmek için.",
           "source": "Büyük strateji"
         }
       ],
@@ -85621,12 +85867,14 @@
         "scope": "Türkçe baskı kapağı"
       },
       "originalTitle": "The Rise and Fall of the Great Powers",
+      "originalPublisher": "Random House",
       "addedAt": "2026-11-16",
       "collectionIds": [
         "buyuk-strateji"
       ],
       "groupIds": [
-        "buyuk-strateji:tarih"
+        "buyuk-strateji:tarih",
+        "buyuk-strateji:sira"
       ],
       "pageCounts": {
         "9789754580303": {
@@ -85657,11 +85905,22 @@
           "groupId": "buyuk-strateji:diplomasi",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
           "note": "Richelieu’den Soğuk Savaş’ın sonuna Batı diplomasisinin tarihi. Kitabın Panama Yayıncılık’tan Elif Berktaş çevirisi de var. Sitede sahibin seçtiği İş Bankası baskısı gösterilir."
+        },
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:sira",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Okuma sırasında 5. kitap. Güç dengesinin ve diplomasinin Richelieu’den Soğuk Savaş’ın sonuna tarihini okumak için.",
+          "order": 5
         }
       ],
       "notes": [
         {
           "text": "Richelieu’den Soğuk Savaş’ın sonuna Batı diplomasisinin tarihi. Kitabın Panama Yayıncılık’tan Elif Berktaş çevirisi de var. Sitede sahibin seçtiği İş Bankası baskısı gösterilir.",
+          "source": "Büyük strateji"
+        },
+        {
+          "text": "Okuma sırasında 5. kitap. Güç dengesinin ve diplomasinin Richelieu’den Soğuk Savaş’ın sonuna tarihini okumak için.",
           "source": "Büyük strateji"
         }
       ],
@@ -85701,12 +85960,14 @@
         "scope": "Türkçe baskı kapağı"
       },
       "originalTitle": "Diplomacy",
+      "originalPublisher": "Simon & Schuster",
       "addedAt": "2026-11-16",
       "collectionIds": [
         "buyuk-strateji"
       ],
       "groupIds": [
-        "buyuk-strateji:diplomasi"
+        "buyuk-strateji:diplomasi",
+        "buyuk-strateji:sira"
       ],
       "pageCounts": {
         "9789754581119": {
@@ -85737,11 +85998,22 @@
           "groupId": "buyuk-strateji:diplomasi",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
           "note": "Avrupa, İslam dünyası, Asya ve Amerika’nın düzen anlayışlarını karşılaştırır. Bugünkü uluslararası düzenin nasıl korunabileceğini sorar."
+        },
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:sira",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Okuma sırasında 6. kitap. Diplomasi’deki tarihten sonra bugünkü dünya düzenini düşünmek için.",
+          "order": 6
         }
       ],
       "notes": [
         {
           "text": "Avrupa, İslam dünyası, Asya ve Amerika’nın düzen anlayışlarını karşılaştırır. Bugünkü uluslararası düzenin nasıl korunabileceğini sorar.",
+          "source": "Büyük strateji"
+        },
+        {
+          "text": "Okuma sırasında 6. kitap. Diplomasi’deki tarihten sonra bugünkü dünya düzenini düşünmek için.",
           "source": "Büyük strateji"
         }
       ],
@@ -85781,12 +86053,14 @@
         "scope": "Türkçe baskı kapağı"
       },
       "originalTitle": "World Order",
+      "originalPublisher": "Penguin Press",
       "addedAt": "2026-11-16",
       "collectionIds": [
         "buyuk-strateji"
       ],
       "groupIds": [
-        "buyuk-strateji:diplomasi"
+        "buyuk-strateji:diplomasi",
+        "buyuk-strateji:sira"
       ],
       "pageCounts": {
         "9789757004745": {
@@ -85817,11 +86091,22 @@
           "groupId": "buyuk-strateji:diplomasi",
           "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
           "note": "Soğuk Savaş’tan sonra Amerika’nın Avrasya’daki üstünlüğünü nasıl koruyacağını anlatan jeostrateji kitabı."
+        },
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:sira",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Okuma sırasında 7. kitap. Soğuk Savaş’tan sonraki jeostratejiyi Avrasya haritası üzerinden okumak için.",
+          "order": 7
         }
       ],
       "notes": [
         {
           "text": "Soğuk Savaş’tan sonra Amerika’nın Avrasya’daki üstünlüğünü nasıl koruyacağını anlatan jeostrateji kitabı.",
+          "source": "Büyük strateji"
+        },
+        {
+          "text": "Okuma sırasında 7. kitap. Soğuk Savaş’tan sonraki jeostratejiyi Avrasya haritası üzerinden okumak için.",
           "source": "Büyük strateji"
         }
       ],
@@ -85861,12 +86146,14 @@
         "scope": "Türkçe baskı kapağı"
       },
       "originalTitle": "The Grand Chessboard: American Primacy and Its Geostrategic Imperatives",
+      "originalPublisher": "Basic Books",
       "addedAt": "2026-11-16",
       "collectionIds": [
         "buyuk-strateji"
       ],
       "groupIds": [
-        "buyuk-strateji:diplomasi"
+        "buyuk-strateji:diplomasi",
+        "buyuk-strateji:sira"
       ],
       "pageCounts": {
         "9789751023278": {
@@ -87483,14 +87770,16 @@
       "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
       "context": {
         "purpose": "Büyük stratejiyi anlamak için okumak. Gaddis’e göre büyük strateji, sınırsız olabilen amaçları ister istemez sınırlı olan imkânlarla uyumlu hale getirmektir. Kitaplar bu dengeyi kavram, tarih ve diplomasi yönünden anlatır.",
-        "criterion": "Liste proje sahibinindir. Sahip her kitap için bir Türkçe baskı adı verdi. Bu baskı iki ayrı sitede doğrulandığında gösterilir. Sahibin verdiği bilgi eksikse doğru çevirmen gösterilir ve baskı notunda yazılır."
+        "criterion": "Liste proje sahibinindir. Sahip her kitap için bir Türkçe baskı adı verdi. Bu baskı iki ayrı sitede doğrulandığında gösterilir. Sahibin verdiği bilgi eksikse doğru çevirmen gösterilir ve baskı notunda yazılır.",
+        "verdict": "Önce Gaddis’in Büyük Strateji’si okunur, çünkü kısa bir giriştir ve sonraki kitaplarda geçen düşünürleri tanıtır. Sonra Thukydides ile kaynağa dönülür. Kennedy’nin iki kitabı büyük stratejinin tanımını ve büyük güçlerin tarihini verir. Kissinger’ın Diplomasi’si Dünya Düzeni’nden ve Büyük Satranç Tahtası’ndan önce okunur. Freedman ile Brands’in uzun kitapları en sona kalır ve okunanları derinleştirir."
       },
       "origin": "strategy",
       "mark": "BS",
       "tag": "Büyük strateji",
-      "note": "Liste ve baskı seçimleri proje sahibinindir. Gruplar konuya göre ayrılır, okuma sırası ya da puan değildir.",
+      "note": "Liste ve baskı seçimleri proje sahibinindir. Okuma sırası ve kitaplar arasındaki bağlar editoryal öneridir, zorunlu önkoşul değildir. Sıra puana eklenmez.",
       "count": 9,
       "groupIds": [
+        "buyuk-strateji:sira",
         "buyuk-strateji:kavram",
         "buyuk-strateji:tarih",
         "buyuk-strateji:diplomasi"
@@ -88725,6 +89014,12 @@
       "collectionId": "yonetici-icin-stoacilik",
       "title": "Açıklayıcı başlangıç",
       "count": 1
+    },
+    {
+      "id": "buyuk-strateji:sira",
+      "collectionId": "buyuk-strateji",
+      "title": "Önerilen okuma sırası",
+      "count": 9
     },
     {
       "id": "buyuk-strateji:kavram",

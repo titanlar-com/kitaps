@@ -7,6 +7,7 @@ import { displayTitle,recommendedTranslation,translationStatus,turkishEdition } 
 import { readingGuide } from '../src/recommendations.js';
 import { publicationLine,publicationLinkLabel,publicationUrl,workFormat } from '../src/workFormat.js';
 import { SITE_URL } from '../src/site.js';
+import { yearText } from '../src/core/text.js';
 import { openCatalog } from '../src/core/catalog/contract.ts';
 
 const projectRoot=fileURLToPath(new URL('../',import.meta.url));
@@ -89,7 +90,7 @@ function renderBook(book) {
  const categories=book.categories.map(id=>catalog.categories.find(item=>item.id===id)).filter(Boolean);
  const facts=[
   book.originalTitle&&book.originalTitle!==shown?`Özgün ad: ${book.originalTitle}`:'',
-  book.years.length?`İlk yayın: ${book.years.join(' / ')}`:'',
+  book.years.length?`İlk yayın: ${book.years.map(yearText).join(' / ')}`:'',
   format?`${format.label}: ${publicationLine(book.publication)}`:'',
   `Türkçe baskı: ${status.label}`,
   edition?.publisher?`Yayınevi: ${edition.publisher}`:'',

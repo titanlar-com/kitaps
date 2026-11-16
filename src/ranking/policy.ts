@@ -7,7 +7,7 @@ import type { CriterionId, ReadingRankingPolicy } from './types.ts';
 // v2.1 ranks children's books among themselves (see readingAudience); weights
 // and thresholds are unchanged.
 export const DEFAULT_READING_POLICY: ReadingRankingPolicy = {
-  version: 'reading-priority-v2.1.0',
+  version: 'reading-priority-v2.1.1',
   weights: {
     editorialConsensus: 0.17,
     learningLeverage: 0.29,

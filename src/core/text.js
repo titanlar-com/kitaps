@@ -22,6 +22,9 @@ export const MONTHS = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', '
 
 // A day such as "2026-10-04" read as "4 Ekim 2026", independent of the reader's time zone.
 const dayFormat = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+/** A first publication year as a reader reads it: a year before the common era says so ("MÖ 400"). */
+export const yearText = year => (year < 0 ? `MÖ ${-year}` : year);
+
 export function formatDay(day) {
  if (!/^\d{4}-\d{2}-\d{2}$/.test(day || '')) return '';
  const date = new Date(`${day}T00:00:00Z`);

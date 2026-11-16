@@ -2,7 +2,7 @@ import { viewById } from '../views.js';
 import { displayTitle, isOriginalTurkish, recommendedTranslation, translationStatus, turkishEdition, turkishMeaning } from '../core/catalog/translation.js';
 import { publicationLine, publicationLinkLabel, workFormat } from '../core/catalog/workFormat.js';
 import { QUEUE_LIMIT, emptyReading, progressPercent, readingErrors, readingJourney } from '../core/personal/reading.js';
-import { STATE_LABELS, WORK_TEXT, formatDay } from '../core/text.js';
+import { STATE_LABELS, WORK_TEXT, formatDay, yearText } from '../core/text.js';
 
 // The book page: its words and what each part shows (ADR 003, K6). Plain functions of the core's
 // facts, so a new design can keep them or write its own without touching the core. What still
@@ -46,7 +46,7 @@ export function bookDetailScreen({ book, marks, catalog, collections, groups, vi
     // Only a known original title is shown under a Turkish title.
     originalTitle: translationStatus(book).status === 'available' && book.originalTitle && book.originalTitle !== title ? book.originalTitle : '',
     author: book.author || 'Yazar bilgisi belirtilmemiş',
-    facts: [['İlk yayın', book.years.join(', ')], ['Önerilen yaş', book.childAge], ['Kitaplığa eklendi', formatDay(book.addedAt)]].filter(([, value]) => value).map(([label, value]) => ({ label, value })),
+    facts: [['İlk yayın', book.years.map(yearText).join(', ')], ['Önerilen yaş', book.childAge], ['Kitaplığa eklendi', formatDay(book.addedAt)]].filter(([, value]) => value).map(([label, value]) => ({ label, value })),
     coverCaption: book.cover ? { text: book.cover.scope || (book.cover.language === 'tr' ? 'Türkçe baskı kapağı' : 'Uluslararası baskı kapağı'), link: { href: book.cover.sourceUrl, text: 'Kapaktaki baskıyı incele' } } : null,
     marks: markButtons(PAGE_MARKS, marks),
     childCaution: book.childCaution ? { title: 'Ebeveyn notu', text: book.childCaution } : null,

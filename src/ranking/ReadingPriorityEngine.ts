@@ -123,10 +123,12 @@ export class CatalogReadingProfile {
   }
 
   private durability(book: CatalogBook): number {
-    const latest = Math.max(0, ...(book.years ?? []));
+    // A year before the common era is negative, and still a known year.
+    const years = book.years ?? [];
     const tactical = (book.categories ?? [])
       .some((id) => ['technology', 'marketing'].includes(id));
-    if (!latest) return 0.55;
+    if (!years.length) return 0.55;
+    const latest = Math.max(...years);
     if (!tactical) return 0.85;
     return clamp(0.35 + (latest - 1990) / 60);
   }

@@ -1,7 +1,7 @@
 import { filterCount } from '../core/catalog/query.js';
 import { displayTitle, translationStatus, turkishEdition } from '../core/catalog/translation.js';
 import { workFormat } from '../core/catalog/workFormat.js';
-import { ORIGIN_LABELS, QUALITY_LABELS, STATE_LABELS, formatDay } from '../core/text.js';
+import { ORIGIN_LABELS, QUALITY_LABELS, STATE_LABELS, formatDay, yearText } from '../core/text.js';
 import { viewById } from '../views.js';
 
 // The catalogue screen and its parts: their words and what each one shows (ADR 003, K6). Plain
@@ -99,7 +99,7 @@ export function bookCardScreen({ book, marks }) {
 
 export const bookPreviewScreen = ({ purpose, year, pages }) => ({
   purpose,
-  facts: [...(year ? [{ label: 'İlk yayın', value: year }] : []), ...(pages ? [{ label: 'Sayfa', value: pages.pages }] : [])],
+  facts: [...(year ? [{ label: 'İlk yayın', value: yearText(year) }] : []), ...(pages ? [{ label: 'Sayfa', value: pages.pages }] : [])],
 });
 
 export function bookCoverScreen(book) {

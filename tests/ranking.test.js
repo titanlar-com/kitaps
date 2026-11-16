@@ -45,6 +45,17 @@ test('reading priority scores every catalog book once and assigns dense ranks pl
  assert.deepEqual(new Set(ranked.map(item=>item.bookId)),new Set(catalog.books.map(book=>book.id)));
 });
 
+test('a year before the common era is a known year, so a classic is not scored as undated',()=>{
+ const books=[fixtureBook('ancient',{years:[-400],categories:['history']}),fixtureBook('modern',{years:[2018],categories:['history']}),fixtureBook('undated',{years:[],categories:['history']})];
+ const engine=new ReadingPriorityEngine(fixtureCatalog(books));
+ const byBook=Object.fromEntries(engine.rank().map(item=>[item.bookId,item]));
+ const durability=id=>byBook[id].criteria.find(criterion=>criterion.id==='durability');
+ assert.equal(durability('ancient').raw,durability('modern').raw);
+ assert.ok(durability('ancient').raw>durability('undated').raw);
+ assert.doesNotMatch(durability('ancient').evidence,/katalogda yok/);
+ assert.equal(durability('ancient').confidence,durability('modern').confidence);
+});
+
 test('the engine has no personal input: purchase, wishlist, favorites, reading states, records and queue cannot reach it',()=>{
  const engine=new ReadingPriorityEngine(catalog);
  assert.equal(engine.rank.length,0,'rank() takes no user context');

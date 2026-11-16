@@ -1381,5 +1381,28 @@
     "sourceType": "publisher",
     "checkedAt": "2026-09-28",
     "originalLanguage": "tr"
+  },
+  "strategyahistory": {
+    "title": "Strateji: Bir Tarih",
+    "publisher": "Alfa Yayınları",
+    "isbn": "9786051710815",
+    "translators": [
+      "Belkıs Çorakçı Dişbudak",
+      "Taciser Belge"
+    ],
+    "sourceUrl": "https://www.alfakitap.com/strateji-ciltli-lawrence-freedman-kitabi-158789-9786051710815-1",
+    "sourceType": "publisher",
+    "checkedAt": "2026-11-16"
+  },
+  "ιστοριαιpeloponnesossavasitarihi": {
+    "title": "Peloponnesos Savaşları",
+    "publisher": "Belge Yayınları",
+    "isbn": "9789753440530",
+    "translators": [
+      "Furkan Akderin"
+    ],
+    "sourceUrl": "https://www.kitapyurdu.com/kitap/peloponnessos-savaslari/248081.html",
+    "sourceType": "retailer",
+    "checkedAt": "2026-11-16"
   }
 }

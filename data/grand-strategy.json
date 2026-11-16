@@ -7,10 +7,15 @@
   "checkedAt": "2026-11-16",
   "context": {
     "purpose": "Büyük stratejiyi anlamak için okumak. Gaddis’e göre büyük strateji, sınırsız olabilen amaçları ister istemez sınırlı olan imkânlarla uyumlu hale getirmektir. Kitaplar bu dengeyi kavram, tarih ve diplomasi yönünden anlatır.",
-    "criterion": "Liste proje sahibinindir. Sahip her kitap için bir Türkçe baskı adı verdi. Bu baskı iki ayrı sitede doğrulandığında gösterilir. Sahibin verdiği bilgi eksikse doğru çevirmen gösterilir ve baskı notunda yazılır."
+    "criterion": "Liste proje sahibinindir. Sahip her kitap için bir Türkçe baskı adı verdi. Bu baskı iki ayrı sitede doğrulandığında gösterilir. Sahibin verdiği bilgi eksikse doğru çevirmen gösterilir ve baskı notunda yazılır.",
+    "verdict": "Önce Gaddis’in Büyük Strateji’si okunur, çünkü kısa bir giriştir ve sonraki kitaplarda geçen düşünürleri tanıtır. Sonra Thukydides ile kaynağa dönülür. Kennedy’nin iki kitabı büyük stratejinin tanımını ve büyük güçlerin tarihini verir. Kissinger’ın Diplomasi’si Dünya Düzeni’nden ve Büyük Satranç Tahtası’ndan önce okunur. Freedman ile Brands’in uzun kitapları en sona kalır ve okunanları derinleştirir."
   },
-  "note": "Liste ve baskı seçimleri proje sahibinindir. Gruplar konuya göre ayrılır, okuma sırası ya da puan değildir.",
+  "note": "Liste ve baskı seçimleri proje sahibinindir. Okuma sırası ve kitaplar arasındaki bağlar editoryal öneridir, zorunlu önkoşul değildir. Sıra puana eklenmez.",
   "groups": [
+    {
+      "id": "sira",
+      "title": "Önerilen okuma sırası"
+    },
     {
       "id": "kavram",
       "title": "Büyük strateji nedir?"
@@ -65,13 +70,27 @@
         "language": "tr",
         "checkedAt": "2026-11-16",
         "scope": "Türkçe baskı kapağı"
-      }
+      },
+      "extraGroups": [
+        {
+          "id": "sira",
+          "order": 1,
+          "reason": "Okuma sırasında 1. kitap. İlk kitap. Kısa ve örnekli bir giriştir. Sonraki kitaplarda geçen düşünürleri ve kavramları tanıtır."
+        }
+      ]
     },
     {
       "key": "strategyahistory",
       "group": "kavram",
       "existingId": "strategyahistory",
-      "reason": "Stratejinin savaştan siyasete ve iş dünyasına uzanan tarihini tek kitapta anlatır. Sahibin andığı Alfa Yayınları baskısı katalogda zaten gösteriliyor."
+      "reason": "Stratejinin savaştan siyasete ve iş dünyasına uzanan tarihini tek kitapta anlatır. Sahibin andığı Alfa Yayınları baskısı katalogda zaten gösteriliyor.",
+      "extraGroups": [
+        {
+          "id": "sira",
+          "order": 8,
+          "reason": "Okuma sırasında 8. kitap. Stratejinin bütün tarihini derinleştiren uzun bir kitap. Önceki kitaplardan sonra daha kolay izlenir."
+        }
+      ]
     },
     {
       "key": "grandstrategiesinwarandpeace",
@@ -114,7 +133,14 @@
         "language": "tr",
         "checkedAt": "2026-11-16",
         "scope": "Türkçe baskı kapağı"
-      }
+      },
+      "extraGroups": [
+        {
+          "id": "sira",
+          "order": 3,
+          "reason": "Okuma sırasında 3. kitap. Büyük stratejinin barış dönemini de kapsayan geniş tanımını öğrenmek için."
+        }
+      ]
     },
     {
       "key": "newmakersofmodernstrategy",
@@ -156,13 +182,27 @@
         "language": "tr",
         "checkedAt": "2026-11-16",
         "scope": "Türkçe baskı kapağı"
-      }
+      },
+      "extraGroups": [
+        {
+          "id": "sira",
+          "order": 9,
+          "reason": "Okuma sırasında 9. kitap. Düşünürleri ve uygulayıcıları tek tek tanıtan, başvuru kitabı gibi kullanılan geniş bir derleme. En sona kalır."
+        }
+      ]
     },
     {
       "key": "peloponnesos",
       "group": "tarih",
       "existingId": "ιστοριαιpeloponnesossavasitarihi",
-      "reason": "Atina ile Sparta arasındaki savaşı, savaşın tanığı olan Atinalı bir komutan anlatır. Güç dengesi üzerine en eski temel metinlerden biridir. Sahip Furkan Akderin çevirisini, Belge Yayınları baskısını seçti. Katalog bu baskıyı gösteriyor."
+      "reason": "Atina ile Sparta arasındaki savaşı, savaşın tanığı olan Atinalı bir komutan anlatır. Güç dengesi üzerine en eski temel metinlerden biridir. Sahip Furkan Akderin çevirisini, Belge Yayınları baskısını seçti. Katalog bu baskıyı gösteriyor.",
+      "extraGroups": [
+        {
+          "id": "sira",
+          "order": 2,
+          "reason": "Okuma sırasında 2. kitap. Gaddis’in de anlattığı Atina ile Sparta savaşını kaynağından okumak için."
+        }
+      ]
     },
     {
       "key": "riseandfallofthegreatpowers",
@@ -205,7 +245,14 @@
         "language": "tr",
         "checkedAt": "2026-11-16",
         "scope": "Türkçe baskı kapağı"
-      }
+      },
+      "extraGroups": [
+        {
+          "id": "sira",
+          "order": 4,
+          "reason": "Okuma sırasında 4. kitap. Bu geniş tanımı büyük güçlerin beş yüz yıllık tarihinde görmek için."
+        }
+      ]
     },
     {
       "key": "diplomacy",
@@ -247,7 +294,14 @@
         "language": "tr",
         "checkedAt": "2026-11-16",
         "scope": "Türkçe baskı kapağı"
-      }
+      },
+      "extraGroups": [
+        {
+          "id": "sira",
+          "order": 5,
+          "reason": "Okuma sırasında 5. kitap. Güç dengesinin ve diplomasinin Richelieu’den Soğuk Savaş’ın sonuna tarihini okumak için."
+        }
+      ]
     },
     {
       "key": "worldorder",
@@ -289,7 +343,14 @@
         "language": "tr",
         "checkedAt": "2026-11-16",
         "scope": "Türkçe baskı kapağı"
-      }
+      },
+      "extraGroups": [
+        {
+          "id": "sira",
+          "order": 6,
+          "reason": "Okuma sırasında 6. kitap. Diplomasi’deki tarihten sonra bugünkü dünya düzenini düşünmek için."
+        }
+      ]
     },
     {
       "key": "grandchessboard",
@@ -331,7 +392,105 @@
         "language": "tr",
         "checkedAt": "2026-11-16",
         "scope": "Türkçe baskı kapağı"
-      }
+      },
+      "extraGroups": [
+        {
+          "id": "sira",
+          "order": 7,
+          "reason": "Okuma sırasında 7. kitap. Soğuk Savaş’tan sonraki jeostratejiyi Avrasya haritası üzerinden okumak için."
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "type": "sequence",
+      "first": "ongrandstrategy",
+      "then": "peloponnesos",
+      "why": "Gaddis kitabın başında Atina ile Sparta arasındaki savaşı Perikles ve Thukydides üzerinden anlatır. Bu kısa çerçeve, uzun kaynak metni izlemeyi kolaylaştırır.",
+      "next": "Gaddis’in anlattığı Atina ile Sparta savaşını kaynağından okumak için."
+    },
+    {
+      "type": "sequence",
+      "first": "ongrandstrategy",
+      "then": "strategyahistory",
+      "why": "Gaddis büyük stratejiyi kısa ve örneklerle tanımlar. Freedman stratejinin askerî, siyasi ve iş dünyasındaki tarihini uzun anlatır.",
+      "next": "Kısa girişten sonra stratejinin bütün tarihini okumak için."
+    },
+    {
+      "type": "sequence",
+      "first": "ongrandstrategy",
+      "then": "vomkriege",
+      "why": "Gaddis Clausewitz’in savaş üzerine düşüncelerini bir bölümde örnekleriyle anlatır. Bu giriş, Savaş Üzerine’nin kuramsal metnine geçmeyi kolaylaştırır.",
+      "next": "Gaddis’in anlattığı Clausewitz’i kendi metninden okumak için."
+    },
+    {
+      "type": "sequence",
+      "first": "strategyahistory",
+      "then": "newmakersofmodernstrategy",
+      "why": "Freedman stratejinin genel tarihini verir. Brands’in derlediği makaleler aynı tarihi tek tek düşünürler ve uygulayıcılar üzerinden ayrıntılandırır.",
+      "next": "Genel tarihten sonra düşünürleri ve uygulayıcıları tek tek tanımak için."
+    },
+    {
+      "type": "sequence",
+      "first": "grandstrategiesinwarandpeace",
+      "then": "riseandfallofthegreatpowers",
+      "why": "Kennedy’nin derlemesi büyük stratejinin barışta da sürdüğünü savunur. Bu kısa tanım, ekonomik güç ile askerî yük arasındaki uzun tarihi izlemeyi kolaylaştırır.",
+      "next": "Büyük stratejinin geniş tanımını büyük güçlerin tarihinde görmek için."
+    },
+    {
+      "type": "sequence",
+      "first": "diplomacy",
+      "then": "worldorder",
+      "why": "Diplomasi güç dengesinin Richelieu’den Soğuk Savaş’ın sonuna tarihini anlatır. Dünya Düzeni bu tarihi bilen okura bugünkü düzeni sorar.",
+      "next": "Kissinger’ın tarih anlatısından sonra bugünkü dünya düzeni üzerine görüşlerini okumak için."
+    },
+    {
+      "type": "sequence",
+      "first": "diplomacy",
+      "then": "grandchessboard",
+      "why": "Büyük Satranç Tahtası Soğuk Savaş’ın bittiği dünyadan başlar. Diplomasi bu savaşın ve güç dengesinin tarihini verir.",
+      "next": "Soğuk Savaş’tan sonraki jeostratejiyi okumak için."
+    },
+    {
+      "type": "companion",
+      "books": [
+        "ongrandstrategy",
+        "grandstrategiesinwarandpeace"
+      ],
+      "reason": "İki kitap da büyük stratejiyi yalnız savaşla sınırlamaz. Gaddis amaçlarla imkânları dengelemeyi, Kennedy barış dönemini de kapsayan geniş tanımı anlatır."
+    },
+    {
+      "type": "companion",
+      "books": [
+        "peloponnesos",
+        "riseandfallofthegreatpowers"
+      ],
+      "reason": "İki kitap da yükselen bir gücün öteki güçlerle çatışmasını anlatır. Biri antik Yunan’ı, öteki 1500’den sonraki dünyayı inceler."
+    },
+    {
+      "type": "companion",
+      "books": [
+        "worldorder",
+        "grandchessboard"
+      ],
+      "reason": "İki kitap da Soğuk Savaş’tan sonraki dünyada Amerika’nın yerini sorar. Kissinger düzen kavramından, Brzezinski Avrasya haritasından bakar."
+    },
+    {
+      "type": "companion",
+      "books": [
+        "riseandfallofthegreatpowers",
+        "whynationsfail"
+      ],
+      "reason": "İki kitap da ulusların neden güçlenip zayıfladığını sorar. Kennedy ekonomik güç ile askerî yükü, Acemoğlu ve Robinson kurumları öne çıkarır."
+    },
+    {
+      "type": "companion",
+      "books": [
+        "grandchessboard",
+        "prisonersofgeography"
+      ],
+      "reason": "İki kitap da dünya siyasetini haritaya bakarak anlatır. Brzezinski Avrasya’yı bir satranç tahtası gibi görür, Marshall coğrafyanın devletlere koyduğu sınırları anlatır."
     }
   ]
 }

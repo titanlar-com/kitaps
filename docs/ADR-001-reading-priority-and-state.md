@@ -10,7 +10,7 @@ Uygulama mevcut React görünüm katmanını korur. İş kuralları TypeScript s
 - **Repository:** `GitHubStateRepository`, `kitaps-state/state.json` dosyasını okur ve yazar.
 - **Batcher:** `GitHubStateBatcher`, her değişikliği önce kalıcı yerel kuyruğa alır; uzak yazımı ilk değişiklikten en az 30 saniye sonra yapar.
 
-## Okuma önceliği politikası (reading-priority-v2.1.0)
+## Okuma önceliği politikası (reading-priority-v2.1.1)
 
 Varsayılan sıralama okuma önceliğidir. Motor beş katalog ölçütü kullanır:
 
@@ -35,6 +35,12 @@ Katalog değişince bütün ölçütler yeniden normalize edilir ve bütün kita
 Gerekçe: 10 yaşına kadar temel kütüphane eklenince çocuk kitapları ebeveyn listeleri ve çocuk kitabı listeleri üzerinden birden çok seçkiye girdi. Tek bir sıralamada genel kataloğun ilk 50 kitabının 23'ü çocuk kitabı oluyordu; bir çocuk kitabını *Rekabet Stratejisi* ile aynı ölçekte karşılaştırmak okura anlamlı bir sıra vermiyordu. Aynı katalog yine her cihazda aynı puanı üretir ve kişisel eylemler puana girmez.
 
 Çocuk kitabı listeleri (BookTrust, TIME, School Library Journal, Scholastic, MEB 100 Temel Eser) bu kütüphane için tek bir araştırma adımında birlikte incelendi. Bu yüzden tek bir küme olarak modellenir ve editoryal kesişimde bir seçki sayılır; hangi listelerde geçtiği alt kümelerde görünür.
+
+### Milattan önceki yıllar (v2.1.1)
+
+Milattan önceki bir ilk yayın yılı eksi sayıyla tutulur. Örneğin Thukydides'in Peloponnesos Savaşları için yıl -400'dür. Bu yıl, eserin yazarın ölümünden sonra yayılmaya başladığı geleneksel tarihtir.
+
+Kalıcılık ölçütü eksi yılı da bilinen bir yıl sayar. Önceki sürüm eksi yılı "yıl yok" saymış, eseri yılı bilinmeyen kitaplarla aynı puanlamıştı. Ekranda bu yıl "MÖ 400" diye görünür. Ağırlıklar ve eşikler değişmedi.
 
 ### Hazırlık ilişkileri
 

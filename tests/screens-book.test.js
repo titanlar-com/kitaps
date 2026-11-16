@@ -42,6 +42,7 @@ test('the original title is shown only under a known Turkish title that differs 
 
 test('the facts list holds only what is known', () => {
   assert.deepEqual(detail().facts, [{ label: 'İlk yayın', value: '1965, 1984' }]);
+  assert.deepEqual(detail({ years: [-400] }).facts, [{ label: 'İlk yayın', value: 'MÖ 400' }]);
   assert.deepEqual(detail({ years: [], childAge: '8+', addedAt: '2026-10-04' }).facts, [{ label: 'Önerilen yaş', value: '8+' }, { label: 'Kitaplığa eklendi', value: '4 Ekim 2026' }]);
 });
 
