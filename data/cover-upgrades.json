@@ -1,6 +1,6 @@
 {
  "note": "Each cover's real resolution and, where one existed, the larger copy of the same image from the same source that replaced it. Written by scripts/upgrade-covers.py.",
- "checkedAt": "2026-10-22",
+ "checkedAt": "2026-11-16",
  "target": 540,
  "covers": {
   "covers/00300821ba7a54b2.jpg": {
@@ -11145,6 +11145,88 @@
     "effective": 1106
    },
    "status": "kept"
+  },
+  "covers/strategy-diplomacy.jpg": {
+   "bookId": "diplomacy",
+   "from": {
+    "width": 366,
+    "effective": 366
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/strategy-grandchessboard.jpg": {
+   "bookId": "grandchessboardamericanprimacyanditsgeostrategicimperatives",
+   "from": {
+    "width": 125,
+    "effective": 125,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1600,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:286401/wi:1600",
+    "hashDistance": 0
+   }
+  },
+  "covers/strategy-grandstrategiesinwarandpeace.jpg": {
+   "bookId": "grandstrategiesinwarandpeace",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
+  },
+  "covers/strategy-newmakersofmodernstrategy.jpg": {
+   "bookId": "newmakersofmodernstrategyfromtheancientworldtothedigitalage",
+   "from": {
+    "width": 270,
+    "effective": 270,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 672,
+    "effective": 672,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:12236264/wi:1600",
+    "hashDistance": 2
+   }
+  },
+  "covers/strategy-ongrandstrategy.jpg": {
+   "bookId": "ongrandstrategy",
+   "from": {
+    "width": 500,
+    "effective": 500,
+    "watermark": true
+   },
+   "status": "upgraded",
+   "to": {
+    "width": 720,
+    "effective": 1600,
+    "source": "kaynağın büyük kopyası",
+    "url": "https://img.kitapyurdu.com/v1/getImage/fn:11685064/wi:1600",
+    "hashDistance": 0
+   }
+  },
+  "covers/strategy-riseandfallofthegreatpowers.jpg": {
+   "bookId": "riseandfallofthegreatpowers",
+   "from": {
+    "width": 1370,
+    "effective": 685
+   },
+   "status": "kept"
+  },
+  "covers/strategy-worldorder.jpg": {
+   "bookId": "worldorder",
+   "from": {
+    "width": 500,
+    "effective": 350,
+    "watermark": true
+   },
+   "status": "kept-no-larger-copy"
   },
   "covers/tr-enchiridion.jpg": {
    "bookId": "enchiridion",

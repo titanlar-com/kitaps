@@ -4,7 +4,7 @@ import { backupRefusedText, backupRestoredText, noteTable, notesScreen } from '.
 import { ORIGIN_LABELS } from '../src/core/text.js';
 
 // A screen model is a plain function: facts in, the screen's words and composition out (ADR 003, K6).
-const counts = { atlasEntries: 10, localBooks: 11, kitapsRecords: 12, entrepreneurshipBooks: 13, foundationalBooks: 14, preparationRecommendations: 15, childrenLibraryBooks: 16, shelfReviewBooks: 17, originalSourceWorks: 18, managementFounderWorks: 19, managerProgramBooks: 20, managerAreaBooks: 21, shelfPhotoBooks: 22, pekerVideoBooks: 23, stoicBooks: 24 };
+const counts = { atlasEntries: 10, localBooks: 11, kitapsRecords: 12, entrepreneurshipBooks: 13, foundationalBooks: 14, preparationRecommendations: 15, childrenLibraryBooks: 16, shelfReviewBooks: 17, originalSourceWorks: 18, managementFounderWorks: 19, managerProgramBooks: 20, managerAreaBooks: 21, shelfPhotoBooks: 22, pekerVideoBooks: 23, stoicBooks: 24, grandStrategyBooks: 25 };
 const screen = (extra = {}) => notesScreen({ counts, total: 500, notes: 'Giriş\n\n## Bir *vurgu*\nBirinci gövde\n\n## İki\nİkinci', ...extra });
 
 test('the coverage panel lists every source, then the merged catalogue', () => {
@@ -12,14 +12,14 @@ test('the coverage panel lists every source, then the merged catalogue', () => {
  assert.equal(coverage.title, 'Birleşimin kapsamı');
  assert.deepEqual(coverage.rows.map(row => [row.label, row.value]), [
   ['Kitap Atlası', '10 liste kaydı'], ['Okuma Kümeleri', '11 kitap'], ['Kitaps', '12 künye kaydı'], ['Girişimcilik araştırması', '13 kitap'], ['Temel okumalar araştırması', '14 kitap'], ['Ön hazırlık araştırması', '15 kitap'],
-  [ORIGIN_LABELS.children, '16 kitap'], [ORIGIN_LABELS.shelf, '17 kitap'], [ORIGIN_LABELS.originals, '18 kitap ve makale'], [ORIGIN_LABELS.founders, '19 kitap'], [ORIGIN_LABELS.managerprep, '20 kitap'], [ORIGIN_LABELS.managerareas, '21 kitap'], [ORIGIN_LABELS.shelfphotos, '22 kitap'], [ORIGIN_LABELS.peker, '23 kitap'], [ORIGIN_LABELS.stoic, '24 kitap'],
+  [ORIGIN_LABELS.children, '16 kitap'], [ORIGIN_LABELS.shelf, '17 kitap'], [ORIGIN_LABELS.originals, '18 kitap ve makale'], [ORIGIN_LABELS.founders, '19 kitap'], [ORIGIN_LABELS.managerprep, '20 kitap'], [ORIGIN_LABELS.managerareas, '21 kitap'], [ORIGIN_LABELS.shelfphotos, '22 kitap'], [ORIGIN_LABELS.peker, '23 kitap'], [ORIGIN_LABELS.stoic, '24 kitap'], [ORIGIN_LABELS.strategy, '25 kitap'],
   ['Birleşik katalog', '500 benzersiz eser'],
  ]);
  assert.deepEqual(coverage.badges, Object.keys(ORIGIN_LABELS));
 });
 
 test('a later source with no books leaves its line out, and an early one keeps it', () => {
- const later = Object.fromEntries(['childrenLibraryBooks', 'shelfReviewBooks', 'originalSourceWorks', 'managementFounderWorks', 'managerProgramBooks', 'managerAreaBooks', 'shelfPhotoBooks', 'pekerVideoBooks', 'stoicBooks'].map(key => [key, 0]));
+ const later = Object.fromEntries(['childrenLibraryBooks', 'shelfReviewBooks', 'originalSourceWorks', 'managementFounderWorks', 'managerProgramBooks', 'managerAreaBooks', 'shelfPhotoBooks', 'pekerVideoBooks', 'stoicBooks', 'grandStrategyBooks'].map(key => [key, 0]));
  const labels = screen({ counts: { ...counts, ...later, atlasEntries: 0 } }).coverage.rows.map(row => row.label);
  assert.deepEqual(labels, ['Kitap Atlası', 'Okuma Kümeleri', 'Kitaps', 'Girişimcilik araştırması', 'Temel okumalar araştırması', 'Ön hazırlık araştırması', 'Birleşik katalog']);
  assert.equal(screen({ counts: { ...counts, atlasEntries: 0 } }).coverage.rows[0].value, '0 liste kaydı');

@@ -4,7 +4,7 @@ import { normalize } from '../core/catalog/query.js';
 // The notes and sources screen: its words and what its panels show (ADR 003, K6). The source file
 // itself (data/sources/kitaplar.md) stays data. Each line below is [origin, count, what is counted].
 const ALWAYS_LISTED = [['atlas', 'atlasEntries', 'liste kaydı'], ['local', 'localBooks', 'kitap'], ['kitaps', 'kitapsRecords', 'künye kaydı'], ['entrepreneurship', 'entrepreneurshipBooks', 'kitap'], ['foundations', 'foundationalBooks', 'kitap'], ['preparation', 'preparationRecommendations', 'kitap']];
-const LISTED_WHEN_ANY = [['children', 'childrenLibraryBooks', 'kitap'], ['shelf', 'shelfReviewBooks', 'kitap'], ['originals', 'originalSourceWorks', 'kitap ve makale'], ['founders', 'managementFounderWorks', 'kitap'], ['managerprep', 'managerProgramBooks', 'kitap'], ['managerareas', 'managerAreaBooks', 'kitap'], ['shelfphotos', 'shelfPhotoBooks', 'kitap'], ['peker', 'pekerVideoBooks', 'kitap'], ['stoic', 'stoicBooks', 'kitap']];
+const LISTED_WHEN_ANY = [['children', 'childrenLibraryBooks', 'kitap'], ['shelf', 'shelfReviewBooks', 'kitap'], ['originals', 'originalSourceWorks', 'kitap ve makale'], ['founders', 'managementFounderWorks', 'kitap'], ['managerprep', 'managerProgramBooks', 'kitap'], ['managerareas', 'managerAreaBooks', 'kitap'], ['shelfphotos', 'shelfPhotoBooks', 'kitap'], ['peker', 'pekerVideoBooks', 'kitap'], ['stoic', 'stoicBooks', 'kitap'], ['strategy', 'grandStrategyBooks', 'kitap']];
 
 const BACKUP_REFUSED = {
  unreadable: 'Dosya okunamadı. Bu siteden dışa aktarılmış bir JSON dosyası seç.',

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updated": "22 Ekim 2026",
-  "updatedOn": "2026-10-22",
+  "updated": "16 Kasım 2026",
+  "updatedOn": "2026-11-16",
   "readingGuides": {
     "note": "Kitap Atlası için hazırlanmış editoryal okuma amaçları ve isteğe bağlı sıralar. Kaynakların zorunlu önkoşul iddiası değildir. Kitaba özel not bulunmayan eserler için mevcut konu etiketlerinden açıkça belirtilen bir çalışma amacı üretilir.",
     "purposes": {
@@ -44351,9 +44351,20 @@
           "groupId": "kitaps-B:liste",
           "source": "https://titanlar-com.github.io/kitaps/",
           "note": "Antik Yunanca aslından, çeviri iyi; editörlük/dizgi zayıf."
+        },
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:tarih",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Atina ile Sparta arasındaki savaşı, savaşın tanığı olan Atinalı bir komutan anlatır. Güç dengesi üzerine en eski temel metinlerden biridir. Sahip Furkan Akderin çevirisini, Belge Yayınları baskısını seçti. Katalog bu baskıyı gösteriyor."
         }
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "Atina ile Sparta arasındaki savaşı, savaşın tanığı olan Atinalı bir komutan anlatır. Güç dengesi üzerine en eski temel metinlerden biridir. Sahip Furkan Akderin çevirisini, Belge Yayınları baskısını seçti. Katalog bu baskıyı gösteriyor.",
+          "source": "Büyük strateji"
+        }
+      ],
       "editions": [
         {
           "id": "B1",
@@ -44382,7 +44393,8 @@
         }
       ],
       "origins": [
-        "kitaps"
+        "kitaps",
+        "strategy"
       ],
       "legacyKeys": [
         "peloponnesos-savasi-tarihi-thukydides"
@@ -44403,10 +44415,12 @@
       "originalTitle": "Ἱστορίαι",
       "addedAt": "2026-09-02",
       "collectionIds": [
-        "kitaps-B"
+        "kitaps-B",
+        "buyuk-strateji"
       ],
       "groupIds": [
-        "kitaps-B:liste"
+        "kitaps-B:liste",
+        "buyuk-strateji:tarih"
       ],
       "pageCounts": {
         "9789753440530": {
@@ -61915,17 +61929,28 @@
           "source": "https://github.com/titanlar-com/kitaps",
           "note": "Baştan okunması önerilen, kataloğun her yerini açan kitaplardan; yaklaşık dört aylık bir başlangıç. Geri kalan anahtarlar kümeye gelince okunur.",
           "order": 12
+        },
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:kavram",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Stratejinin savaştan siyasete ve iş dünyasına uzanan tarihini tek kitapta anlatır. Sahibin andığı Alfa Yayınları baskısı katalogda zaten gösteriliyor."
         }
       ],
       "notes": [
         {
           "text": "Askerî, siyasi ve iş stratejisini tarihsel bir çizgide bağlayarak parçalı strateji rafını bütünler.",
           "source": "Temel okumalar araştırması"
+        },
+        {
+          "text": "Stratejinin savaştan siyasete ve iş dünyasına uzanan tarihini tek kitapta anlatır. Sahibin andığı Alfa Yayınları baskısı katalogda zaten gösteriliyor.",
+          "source": "Büyük strateji"
         }
       ],
       "editions": [],
       "origins": [
-        "foundations"
+        "foundations",
+        "strategy"
       ],
       "legacyKeys": [],
       "tags": [],
@@ -61945,11 +61970,13 @@
       "originalPublisher": "Oxford University Press",
       "addedAt": "2026-09-28",
       "collectionIds": [
-        "foundations"
+        "foundations",
+        "buyuk-strateji"
       ],
       "groupIds": [
         "foundations:strategy",
-        "foundations:baslangic"
+        "foundations:baslangic",
+        "buyuk-strateji:kavram"
       ],
       "pageCounts": {
         "9786051710815": {
@@ -85288,6 +85315,568 @@
       ]
     },
     {
+      "id": "ongrandstrategy",
+      "title": "On Grand Strategy",
+      "titleTr": "Büyük Strateji",
+      "author": "John Lewis Gaddis",
+      "aliases": [
+        "Büyük Strateji"
+      ],
+      "years": [
+        2018
+      ],
+      "categories": [
+        "strategy",
+        "history"
+      ],
+      "memberships": [
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:kavram",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Yale Üniversitesi’nin büyük strateji dersinden doğan kitap. Heredot’tan Sun Tzu’ya liderlerin büyük amaçlarını sınırlı imkânlarla nasıl dengelediğini anlatır."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Yale Üniversitesi’nin büyük strateji dersinden doğan kitap. Heredot’tan Sun Tzu’ya liderlerin büyük amaçlarını sınırlı imkânlarla nasıl dengelediğini anlatır.",
+          "source": "Büyük strateji"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "strategy"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Büyük Strateji",
+        "isbn": "9786254143137",
+        "publisher": "Epsilon Yayınevi",
+        "translators": [
+          "Özgür Umut Hoşafçı"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/buyuk-strateji/643531.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.imge.com.tr/urun/buyuk-strateji-john-lewis-gaddis-9786254143137",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-11-16",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve imge.com.tr aynı ISBN’i (9786254143137) ve Epsilon Yayınevi’ni gösteriyor. Çevirmen: Özgür Umut Hoşafçı. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/strategy-ongrandstrategy.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11685064/wi:500/wh:e59bff218",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/buyuk-strateji/643531.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Büyük Strateji",
+        "author": "John Lewis Gaddis",
+        "publisher": "Epsilon Yayınevi",
+        "isbn": "9786254143137",
+        "language": "tr",
+        "checkedAt": "2026-11-16",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "originalTitle": "On Grand Strategy",
+      "addedAt": "2026-11-16",
+      "collectionIds": [
+        "buyuk-strateji"
+      ],
+      "groupIds": [
+        "buyuk-strateji:kavram"
+      ],
+      "pageCounts": {
+        "9786254143137": {
+          "pages": 392,
+          "sourceUrl": "https://www.kitapyurdu.com/kitap/buyuk-strateji/643531.html",
+          "sourceName": "kitapyurdu.com"
+        }
+      }
+    },
+    {
+      "id": "grandstrategiesinwarandpeace",
+      "title": "Grand Strategies in War and Peace",
+      "titleTr": "Savaşta ve Barışta Büyük Stratejiler",
+      "author": "Paul Kennedy (editör)",
+      "aliases": [
+        "Savaşta ve Barışta Büyük Stratejiler"
+      ],
+      "years": [
+        1991
+      ],
+      "categories": [
+        "strategy",
+        "history",
+        "politics"
+      ],
+      "memberships": [
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:kavram",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Paul Kennedy’nin derlediği makaleler. Büyük stratejinin yalnız savaşı değil, barış dönemini de kapsadığını savunur ve farklı dönemlerden devletleri inceler."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Paul Kennedy’nin derlediği makaleler. Büyük stratejinin yalnız savaşı değil, barış dönemini de kapsadığını savunur ve farklı dönemlerden devletleri inceler.",
+          "source": "Büyük strateji"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "strategy"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Savaşta ve Barışta Büyük Stratejiler",
+        "isbn": "9786259894911",
+        "publisher": "Totem Yayıncılık",
+        "translators": [
+          "Ahmet Fethi"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/savasta-ve-barista-buyuk-stratejiler/343631.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.hepsiburada.com/savasta-ve-barista-buyuk-stratejiler-paul-kennedy-pm-HBC00005CFW2H",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-11-16",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com bu ISBN’in (9786259894911) Totem baskısını ve çevirmen Ahmet Fethi’yi gösteriyor. Kapakta da “Çeviri: Ahmet Fethi” yazıyor. hepsiburada.com aynı ISBN’i Totem’e bağlıyor. Totem’in daha eski baskısı (ISBN 9789944330091) çevirmen adı göstermediği için seçilmedi. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/strategy-grandstrategiesinwarandpeace.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:11796349/wi:500/wh:685d6f679",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/savasta-ve-barista-buyuk-stratejiler/343631.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Savaşta ve Barışta Büyük Stratejiler",
+        "author": "Paul Kennedy (editör)",
+        "publisher": "Totem Yayıncılık",
+        "isbn": "9786259894911",
+        "language": "tr",
+        "checkedAt": "2026-11-16",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "originalTitle": "Grand Strategies in War and Peace",
+      "addedAt": "2026-11-16",
+      "collectionIds": [
+        "buyuk-strateji"
+      ],
+      "groupIds": [
+        "buyuk-strateji:kavram"
+      ],
+      "pageCounts": {
+        "9786259894911": {
+          "pages": 280,
+          "sourceUrl": "https://www.kitapyurdu.com/kitap/savasta-ve-barista-buyuk-stratejiler/343631.html",
+          "sourceName": "kitapyurdu.com"
+        }
+      }
+    },
+    {
+      "id": "newmakersofmodernstrategyfromtheancientworldtothedigitalage",
+      "title": "The New Makers of Modern Strategy: From the Ancient World to the Digital Age",
+      "titleTr": "Yeni Modern Stratejinin Ustaları: Antik Çağdan Dijital Çağa",
+      "author": "Hal Brands (editör)",
+      "aliases": [
+        "Yeni Modern Stratejinin Ustaları: Antik Çağdan Dijital Çağa"
+      ],
+      "years": [
+        2023
+      ],
+      "categories": [
+        "strategy",
+        "history"
+      ],
+      "memberships": [
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:kavram",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Antik çağdan dijital çağa strateji düşünürlerini ve uygulayıcılarını anlatan makaleler. 1943 ve 1986’da çıkan Modern Stratejinin Ustaları kitabının yeni sürümüdür."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Antik çağdan dijital çağa strateji düşünürlerini ve uygulayıcılarını anlatan makaleler. 1943 ve 1986’da çıkan Modern Stratejinin Ustaları kitabının yeni sürümüdür.",
+          "source": "Büyük strateji"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "strategy"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Yeni Modern Stratejinin Ustaları: Antik Çağdan Dijital Çağa",
+        "isbn": "9786259264875",
+        "publisher": "Doruk Yayınları",
+        "translators": [
+          "Hakan Baş"
+        ],
+        "sourceUrl": "https://www.dorukyayinlari.com/kitap/yeni-modern-stratejinin-ustalari",
+        "sourceType": "publisher",
+        "secondSourceUrl": "https://www.kitapyurdu.com/kitap/yeni-modern-stratejinin-ustalari-antik-cagdan-dijital-caga/756540.html",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-11-16",
+        "basis": "two-stage check",
+        "note": "Doruk Yayınları’nın sayfası ve kitapyurdu.com aynı kitabı, çevirmen Hakan Baş’ı ve ISBN 9786259264875’i gösteriyor. Bir kitapçının adını andığı Doruk Can Koçak kapak tasarımcısıdır. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/strategy-newmakersofmodernstrategy.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:12236264/mh:1000/wh:b2b6f7b79",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/yeni-modern-stratejinin-ustalari-antik-cagdan-dijital-caga/756540.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Yeni Modern Stratejinin Ustaları: Antik Çağdan Dijital Çağa",
+        "author": "Hal Brands (editör)",
+        "publisher": "Doruk Yayınları",
+        "isbn": "9786259264875",
+        "language": "tr",
+        "checkedAt": "2026-11-16",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "originalTitle": "The New Makers of Modern Strategy: From the Ancient World to the Digital Age",
+      "addedAt": "2026-11-16",
+      "collectionIds": [
+        "buyuk-strateji"
+      ],
+      "groupIds": [
+        "buyuk-strateji:kavram"
+      ],
+      "pageCounts": {
+        "9786259264875": {
+          "pages": 1240,
+          "sourceUrl": "https://www.kitapyurdu.com/kitap/yeni-modern-stratejinin-ustalari-antik-cagdan-dijital-caga/756540.html",
+          "sourceName": "kitapyurdu.com"
+        }
+      }
+    },
+    {
+      "id": "riseandfallofthegreatpowers",
+      "title": "The Rise and Fall of the Great Powers",
+      "titleTr": "Büyük Güçlerin Yükseliş ve Çöküşleri",
+      "author": "Paul Kennedy",
+      "aliases": [
+        "Büyük Güçlerin Yükseliş ve Çöküşleri"
+      ],
+      "years": [
+        1987
+      ],
+      "categories": [
+        "history",
+        "economy",
+        "politics"
+      ],
+      "memberships": [
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:tarih",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "1500’den 1980’lere büyük güçlerin yükselişini ve çöküşünü inceler. Ekonomik güç ile askerî yük arasındaki dengeyi anlatır."
+        }
+      ],
+      "notes": [
+        {
+          "text": "1500’den 1980’lere büyük güçlerin yükselişini ve çöküşünü inceler. Ekonomik güç ile askerî yük arasındaki dengeyi anlatır.",
+          "source": "Büyük strateji"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "strategy"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Büyük Güçlerin Yükseliş ve Çöküşleri",
+        "isbn": "9789754580303",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "translators": [
+          "Birtane Karanakçı"
+        ],
+        "sourceUrl": "https://www.iskultur.com.tr/buyuk-guclerin-yukselis-ve-cokusleri.html",
+        "sourceType": "publisher",
+        "secondSourceUrl": "https://www.dr.com.tr/kitap/buyuk-guclerin-yukselis-ve-cokusler-clz/arastirma-tarih/tarih/dunya-tarihi/urunno=0000000024946",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-11-16",
+        "basis": "two-stage check",
+        "note": "iskultur.com.tr ve dr.com.tr aynı ISBN’i (9789754580303) ve Türkiye İş Bankası Kültür Yayınları’nı gösteriyor. Çevirmen: Birtane Karanakçı. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/strategy-riseandfallofthegreatpowers.jpg",
+        "imageUrl": "https://img.iskultur.com.tr/webp/1989/01/buyuk-guclerin-yukselis-ve-cokusleri-1.jpg",
+        "sourceUrl": "https://www.iskultur.com.tr/buyuk-guclerin-yukselis-ve-cokusleri.html",
+        "sourceName": "iskultur.com.tr",
+        "title": "Büyük Güçlerin Yükseliş ve Çöküşleri",
+        "author": "Paul Kennedy",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9789754580303",
+        "language": "tr",
+        "checkedAt": "2026-11-16",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "originalTitle": "The Rise and Fall of the Great Powers",
+      "addedAt": "2026-11-16",
+      "collectionIds": [
+        "buyuk-strateji"
+      ],
+      "groupIds": [
+        "buyuk-strateji:tarih"
+      ],
+      "pageCounts": {
+        "9789754580303": {
+          "pages": 768,
+          "sourceUrl": "https://www.iskultur.com.tr/buyuk-guclerin-yukselis-ve-cokusleri.html",
+          "sourceName": "iskultur.com.tr"
+        }
+      }
+    },
+    {
+      "id": "diplomacy",
+      "title": "Diplomacy",
+      "titleTr": "Diplomasi",
+      "author": "Henry Kissinger",
+      "aliases": [
+        "Diplomasi"
+      ],
+      "years": [
+        1994
+      ],
+      "categories": [
+        "history",
+        "politics"
+      ],
+      "memberships": [
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:diplomasi",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Richelieu’den Soğuk Savaş’ın sonuna Batı diplomasisinin tarihi. Kitabın Panama Yayıncılık’tan Elif Berktaş çevirisi de var. Sitede sahibin seçtiği İş Bankası baskısı gösterilir."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Richelieu’den Soğuk Savaş’ın sonuna Batı diplomasisinin tarihi. Kitabın Panama Yayıncılık’tan Elif Berktaş çevirisi de var. Sitede sahibin seçtiği İş Bankası baskısı gösterilir.",
+          "source": "Büyük strateji"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "strategy"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Diplomasi",
+        "isbn": "9789754581119",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "translators": [
+          "İbrahim H. Kurt"
+        ],
+        "sourceUrl": "https://www.iskultur.com.tr/diplomasi.html",
+        "sourceType": "publisher",
+        "secondSourceUrl": "https://www.pandora.com.tr/urun/diplomasi/40341",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-11-16",
+        "basis": "two-stage check",
+        "note": "iskultur.com.tr ve pandora.com.tr aynı ISBN’i (9789754581119) ve Türkiye İş Bankası Kültür Yayınları’nı gösteriyor. Çevirmen: İbrahim H. Kurt. Panama Yayıncılık’ın 2022 baskısı (çeviren Elif Berktaş, ISBN 9786258488364) ayrı bir çeviridir. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/strategy-diplomacy.jpg",
+        "imageUrl": "https://img.iskultur.com.tr/webp/2004/01/diplomasi_17.jpg",
+        "sourceUrl": "https://www.iskultur.com.tr/diplomasi.html",
+        "sourceName": "iskultur.com.tr",
+        "title": "Diplomasi",
+        "author": "Henry Kissinger",
+        "publisher": "Türkiye İş Bankası Kültür Yayınları",
+        "isbn": "9789754581119",
+        "language": "tr",
+        "checkedAt": "2026-11-16",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "originalTitle": "Diplomacy",
+      "addedAt": "2026-11-16",
+      "collectionIds": [
+        "buyuk-strateji"
+      ],
+      "groupIds": [
+        "buyuk-strateji:diplomasi"
+      ],
+      "pageCounts": {
+        "9789754581119": {
+          "pages": 856,
+          "sourceUrl": "https://www.iskultur.com.tr/diplomasi.html",
+          "sourceName": "iskultur.com.tr"
+        }
+      }
+    },
+    {
+      "id": "worldorder",
+      "title": "World Order",
+      "titleTr": "Dünya Düzeni",
+      "author": "Henry Kissinger",
+      "aliases": [
+        "Dünya Düzeni"
+      ],
+      "years": [
+        2014
+      ],
+      "categories": [
+        "history",
+        "politics"
+      ],
+      "memberships": [
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:diplomasi",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Avrupa, İslam dünyası, Asya ve Amerika’nın düzen anlayışlarını karşılaştırır. Bugünkü uluslararası düzenin nasıl korunabileceğini sorar."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Avrupa, İslam dünyası, Asya ve Amerika’nın düzen anlayışlarını karşılaştırır. Bugünkü uluslararası düzenin nasıl korunabileceğini sorar.",
+          "source": "Büyük strateji"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "strategy"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Dünya Düzeni",
+        "isbn": "9789757004745",
+        "publisher": "Boyner Yayınları",
+        "translators": [
+          "Sinem Sultan Gül"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/dunya-duzeni/395931.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.taksimkitabevi.com/urun/dunya-duzeni-henry-kissinger-9789757004745",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-11-16",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve taksimkitabevi.com aynı ISBN’i (9789757004745) ve Boyner Yayınları’nı gösteriyor. Çevirmen: Sinem Sultan Gül. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/strategy-worldorder.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:1188001/wi:500/wh:0a4ff4993",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/dunya-duzeni/395931.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Dünya Düzeni",
+        "author": "Henry Kissinger",
+        "publisher": "Boyner Yayınları",
+        "isbn": "9789757004745",
+        "language": "tr",
+        "checkedAt": "2026-11-16",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "originalTitle": "World Order",
+      "addedAt": "2026-11-16",
+      "collectionIds": [
+        "buyuk-strateji"
+      ],
+      "groupIds": [
+        "buyuk-strateji:diplomasi"
+      ],
+      "pageCounts": {
+        "9789757004745": {
+          "pages": 448,
+          "sourceUrl": "https://www.kitapyurdu.com/kitap/dunya-duzeni/395931.html",
+          "sourceName": "kitapyurdu.com"
+        }
+      }
+    },
+    {
+      "id": "grandchessboardamericanprimacyanditsgeostrategicimperatives",
+      "title": "The Grand Chessboard: American Primacy and Its Geostrategic Imperatives",
+      "titleTr": "Büyük Satranç Tahtası",
+      "author": "Zbigniew Brzezinski",
+      "aliases": [
+        "Büyük Satranç Tahtası"
+      ],
+      "years": [
+        1997
+      ],
+      "categories": [
+        "politics",
+        "strategy"
+      ],
+      "memberships": [
+        {
+          "collectionId": "buyuk-strateji",
+          "groupId": "buyuk-strateji:diplomasi",
+          "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+          "note": "Soğuk Savaş’tan sonra Amerika’nın Avrasya’daki üstünlüğünü nasıl koruyacağını anlatan jeostrateji kitabı."
+        }
+      ],
+      "notes": [
+        {
+          "text": "Soğuk Savaş’tan sonra Amerika’nın Avrasya’daki üstünlüğünü nasıl koruyacağını anlatan jeostrateji kitabı.",
+          "source": "Büyük strateji"
+        }
+      ],
+      "editions": [],
+      "origins": [
+        "strategy"
+      ],
+      "legacyKeys": [],
+      "tags": [],
+      "originalLanguage": "en",
+      "verifiedEdition": {
+        "title": "Büyük Satranç Tahtası: Amerika’nın Küresel Üstünlüğü ve Bunun Jeostratejik Gereklilikleri",
+        "isbn": "9789751023278",
+        "publisher": "İnkılâp Kitabevi",
+        "translators": [
+          "Yelda Türedi"
+        ],
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/buyuk-satranc-tahtasiamerikanin-kuresel-ustunlugu-ve-bunun-jeostratejik-gereklilikleri/70544.html",
+        "sourceType": "retailer",
+        "secondSourceUrl": "https://www.imge.com.tr/urun/buyuk-satranc-tahtasi-amerika-nin-kuresel-ustunlugu-ve-bunun-jeostratejik-gereklilikleri-zbigniew-brzezinski-9789751023278",
+        "secondSourceType": "retailer",
+        "checkedAt": "2026-11-16",
+        "basis": "two-stage check",
+        "note": "kitapyurdu.com ve imge.com.tr aynı ISBN’i (9789751023278) ve İnkılâp Kitabevi’ni gösteriyor. Çevirmen: Yelda Türedi. İkinci aşamada birinci aşamanın kullanmadığı sitelerle bağımsız olarak doğrulandı."
+      },
+      "cover": {
+        "src": "covers/strategy-grandchessboard.jpg",
+        "imageUrl": "https://img.kitapyurdu.com/v1/getImage/fn:286401/mh:1000/wh:525c4b14f",
+        "sourceUrl": "https://www.kitapyurdu.com/kitap/buyuk-satranc-tahtasiamerikanin-kuresel-ustunlugu-ve-bunun-jeostratejik-gereklilikleri/70544.html",
+        "sourceName": "kitapyurdu.com",
+        "title": "Büyük Satranç Tahtası: Amerika’nın Küresel Üstünlüğü ve Bunun Jeostratejik Gereklilikleri",
+        "author": "Zbigniew Brzezinski",
+        "publisher": "İnkılâp Kitabevi",
+        "isbn": "9789751023278",
+        "language": "tr",
+        "checkedAt": "2026-11-16",
+        "scope": "Türkçe baskı kapağı"
+      },
+      "originalTitle": "The Grand Chessboard: American Primacy and Its Geostrategic Imperatives",
+      "addedAt": "2026-11-16",
+      "collectionIds": [
+        "buyuk-strateji"
+      ],
+      "groupIds": [
+        "buyuk-strateji:diplomasi"
+      ],
+      "pageCounts": {
+        "9789751023278": {
+          "pages": 293,
+          "sourceUrl": "https://www.kitapyurdu.com/kitap/buyuk-satranc-tahtasiamerikanin-kuresel-ustunlugu-ve-bunun-jeostratejik-gereklilikleri/70544.html",
+          "sourceName": "kitapyurdu.com"
+        }
+      }
+    },
+    {
       "id": "elestirelokuma",
       "title": "Eleştirel Okuma",
       "titleTr": "Eleştirel Okuma",
@@ -86887,6 +87476,27 @@
       ]
     },
     {
+      "id": "buyuk-strateji",
+      "title": "Büyük strateji",
+      "short": "Büyük strateji",
+      "description": "Devletlerin amaçlarını imkânlarıyla nasıl dengelediğini anlatan dokuz kitap. Kitaplar üç grupta: büyük stratejinin ne olduğu, tarihte güç ve çöküş, diplomasi ve dünya düzeni.",
+      "source": "https://github.com/titanlar-com/kitaps/blob/main/data/grand-strategy.json",
+      "context": {
+        "purpose": "Büyük stratejiyi anlamak için okumak. Gaddis’e göre büyük strateji, sınırsız olabilen amaçları ister istemez sınırlı olan imkânlarla uyumlu hale getirmektir. Kitaplar bu dengeyi kavram, tarih ve diplomasi yönünden anlatır.",
+        "criterion": "Liste proje sahibinindir. Sahip her kitap için bir Türkçe baskı adı verdi. Bu baskı iki ayrı sitede doğrulandığında gösterilir. Sahibin verdiği bilgi eksikse doğru çevirmen gösterilir ve baskı notunda yazılır."
+      },
+      "origin": "strategy",
+      "mark": "BS",
+      "tag": "Büyük strateji",
+      "note": "Liste ve baskı seçimleri proje sahibinindir. Gruplar konuya göre ayrılır, okuma sırası ya da puan değildir.",
+      "count": 9,
+      "groupIds": [
+        "buyuk-strateji:kavram",
+        "buyuk-strateji:tarih",
+        "buyuk-strateji:diplomasi"
+      ]
+    },
+    {
       "id": "preparation",
       "title": "Ön hazırlık okuma rotası",
       "short": "Ön hazırlık",
@@ -88117,6 +88727,24 @@
       "count": 1
     },
     {
+      "id": "buyuk-strateji:kavram",
+      "collectionId": "buyuk-strateji",
+      "title": "Büyük strateji nedir?",
+      "count": 4
+    },
+    {
+      "id": "buyuk-strateji:tarih",
+      "collectionId": "buyuk-strateji",
+      "title": "Tarihte güç ve çöküş",
+      "count": 2
+    },
+    {
+      "id": "buyuk-strateji:diplomasi",
+      "collectionId": "buyuk-strateji",
+      "title": "Diplomasi ve dünya düzeni",
+      "count": 3
+    },
+    {
       "id": "preparation:1",
       "collectionId": "preparation",
       "title": "1 — Temel okuma ve düşünme becerileri",
@@ -88139,7 +88767,7 @@
     {
       "id": "strategy",
       "label": "Strateji ve rekabet",
-      "count": 83
+      "count": 87
     },
     {
       "id": "management",
@@ -88184,7 +88812,7 @@
     {
       "id": "economy",
       "label": "Ekonomi ve toplum",
-      "count": 158
+      "count": 159
     },
     {
       "id": "technology",
@@ -88199,7 +88827,7 @@
     {
       "id": "history",
       "label": "Tarih",
-      "count": 128
+      "count": 134
     },
     {
       "id": "biography",
@@ -88209,7 +88837,7 @@
     {
       "id": "politics",
       "label": "Siyaset ve jeopolitik",
-      "count": 61
+      "count": 66
     },
     {
       "id": "ethics",
@@ -89550,6 +90178,15 @@
     "stoic:deira": "deira",
     "stoic:epistulae": "epistulaemoralesadlucilium",
     "stoic:howtobeastoic": "howtobeastoic",
+    "strategy:ongrandstrategy": "ongrandstrategy",
+    "strategy:strategyahistory": "strategyahistory",
+    "strategy:grandstrategiesinwarandpeace": "grandstrategiesinwarandpeace",
+    "strategy:newmakersofmodernstrategy": "newmakersofmodernstrategyfromtheancientworldtothedigitalage",
+    "strategy:peloponnesos": "ιστοριαιpeloponnesossavasitarihi",
+    "strategy:riseandfallofthegreatpowers": "riseandfallofthegreatpowers",
+    "strategy:diplomacy": "diplomacy",
+    "strategy:worldorder": "worldorder",
+    "strategy:grandchessboard": "grandchessboardamericanprimacyanditsgeostrategicimperatives",
     "preparation:hazirlik-01": "elestirelokuma",
     "preparation:hazirlik-02": "dusunmeninalfabesi",
     "preparation:hazirlik-03": "adimadimmatematikessizbirgorselrehber",
@@ -89578,6 +90215,7 @@
     "managerAreaBooks": 27,
     "shelfPhotoBooks": 14,
     "pekerVideoBooks": 31,
-    "stoicBooks": 6
+    "stoicBooks": 6,
+    "grandStrategyBooks": 9
   }
 }

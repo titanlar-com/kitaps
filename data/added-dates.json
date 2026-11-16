@@ -641,8 +641,8 @@
   "birguntekbasina": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "birseftalibinseftali": {
    "date": "2026-09-02",
@@ -1181,8 +1181,8 @@
   "crazyladiesofpearlstreet": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "creativedestruction": {
    "date": "2026-09-26",
@@ -1235,8 +1235,8 @@
   "cyranodebergerac": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "damagedgoods": {
    "date": "2026-09-26",
@@ -1295,8 +1295,8 @@
   "deira": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "deltaproject": {
    "date": "2026-09-26",
@@ -1337,8 +1337,8 @@
   "devitabeatadebrevitatevitae": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "devletialiyyeosmanliimparatorluguuzerinearastirmalari": {
    "date": "2026-09-28",
@@ -1381,6 +1381,12 @@
    "repository": "kitaplik",
    "commit": "521ff1d",
    "matchedBy": "id"
+  },
+  "diplomacy": {
+   "date": "2026-11-16",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "direct": {
    "date": "2026-09-26",
@@ -1559,8 +1565,8 @@
   "eigersanction": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "einsteinyasamiveevreni": {
    "date": "2026-09-02",
@@ -1805,8 +1811,8 @@
   "family": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "fantasticmrfox": {
    "date": "2026-09-28",
@@ -1859,8 +1865,8 @@
   "fiftyyearsinthesystem": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "financialintelligence": {
    "date": "2026-09-26",
@@ -1943,8 +1949,8 @@
   "foolsdie": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "force": {
    "date": "2026-09-26",
@@ -2159,8 +2165,8 @@
   "godfatherreturns": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "godnattalfonsaberg": {
    "date": "2026-09-28",
@@ -2204,11 +2210,23 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "grandchessboardamericanprimacyanditsgeostrategicimperatives": {
+   "date": "2026-11-16",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "grandpursuit": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "grandstrategiesinwarandpeace": {
+   "date": "2026-11-16",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "gravenewworld": {
    "date": "2026-09-26",
@@ -2255,8 +2273,8 @@
   "greywolfmustafakemalanintimatestudyofadictator": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "grimmmasallari": {
    "date": "2026-09-02",
@@ -2327,8 +2345,8 @@
   "halilkutpasakutulamareninmuzafferkomutani": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "halimekaptan": {
    "date": "2026-09-28",
@@ -2435,8 +2453,8 @@
   "herseyseninlebaslar": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "hetachterhuis": {
    "date": "2026-09-28",
@@ -2489,8 +2507,8 @@
   "hotnightinthecity": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "hourbetweendogandwolf": {
    "date": "2026-09-26",
@@ -2573,8 +2591,8 @@
   "howtobeastoic": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "howtobecomearainmaker": {
    "date": "2026-09-26",
@@ -2663,8 +2681,8 @@
   "hzaliislamindogusuveilkayriliklar": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "ifthen": {
    "date": "2026-09-26",
@@ -2717,8 +2735,8 @@
   "incidentattwentymile": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "indispensable": {
    "date": "2026-09-26",
@@ -2909,8 +2927,8 @@
   "josephfouchebildniseinespolitischenmenschen": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "jumpstartyourbusinessbrain": {
    "date": "2026-09-26",
@@ -3149,8 +3167,8 @@
   "lespardaillan": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "letourdumondeenquatrevingtsjours": {
    "date": "2026-09-28",
@@ -3245,8 +3263,8 @@
   "loosanction": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "lordsoffinance": {
    "date": "2026-09-26",
@@ -3323,8 +3341,8 @@
   "main": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "makeitstickthescienceofsuccessfullearning": {
    "date": "2026-09-28",
@@ -3389,8 +3407,8 @@
   "manualdoguerreirodaluz": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "manualforwritersofresearchpapersthesesanddissertations": {
    "date": "2026-10-04",
@@ -3734,6 +3752,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "newmakersofmodernstrategyfromtheancientworldtothedigitalage": {
+   "date": "2026-11-16",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "newnewproductdevelopmentgame": {
    "date": "2026-10-21",
    "repository": "kitaplik",
@@ -3881,8 +3905,8 @@
   "omerta": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "onbecomingaleader": {
    "date": "2026-09-26",
@@ -3907,6 +3931,12 @@
    "repository": "kitap-atlasi",
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
+  },
+  "ongrandstrategy": {
+   "date": "2026-11-16",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "onlytheparanoidsurvive": {
    "date": "2026-09-02",
@@ -4319,8 +4349,8 @@
   "prophetoutcasttrotsky19291940": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "psych101": {
    "date": "2026-09-28",
@@ -4538,6 +4568,12 @@
    "commit": "b0324f5",
    "matchedBy": "atlas-key"
   },
+  "riseandfallofthegreatpowers": {
+   "date": "2026-11-16",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
+  },
   "riseandfalloftheneoliberalorder": {
    "date": "2026-09-26",
    "repository": "kitap-atlasi",
@@ -4589,8 +4625,8 @@
   "safahat": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "saleseffectivenesstraining": {
    "date": "2026-10-22",
@@ -4769,8 +4805,8 @@
   "shibumi": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "shockdoctrine": {
    "date": "2026-09-02",
@@ -4841,8 +4877,8 @@
   "sixgravestomunich": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "sixsigmaway": {
    "date": "2026-09-26",
@@ -4913,8 +4949,8 @@
   "soncuret": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "sonsofwichita": {
    "date": "2026-09-26",
@@ -5093,8 +5129,8 @@
   "summerofkatya": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "supercorp": {
    "date": "2026-09-26",
@@ -5795,8 +5831,8 @@
   "wickedmessengerbobdylanandthe1960s": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "wikinomics": {
    "date": "2026-09-26",
@@ -5905,6 +5941,12 @@
    "repository": "kitaplik",
    "commit": "1176650",
    "matchedBy": "id"
+  },
+  "worldorder": {
+   "date": "2026-11-16",
+   "repository": "kitaplik",
+   "commit": null,
+   "matchedBy": "working-tree"
   },
   "yasasincharfikardesligi": {
    "date": "2026-09-28",
@@ -6059,8 +6101,8 @@
   "униженныеиоскорбленные": {
    "date": "2026-10-22",
    "repository": "kitaplik",
-   "commit": null,
-   "matchedBy": "working-tree"
+   "commit": "9fe9aa6",
+   "matchedBy": "id"
   },
   "чемлюдиживы": {
    "date": "2026-09-02",
