@@ -314,6 +314,23 @@ test.describe('the Kümeler tab', () => {
   });
 });
 
+// A list with the editor's order opens in that order, and the sort field says so (owner's request, 16 November 2026).
+test('an ordered list opens in its own order from the Kümeler tab', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.goto('./?view=collections');
+  const accordion = page.locator('.collections-accordion');
+  await accordion.getByRole('button', { name: /Büyük strateji/ }).first().click();
+  await page.getByRole('button', { name: 'Önerilen okuma sırası: 9 kitap' }).click();
+  await expect(page).toHaveURL(/sort=list/);
+  const titles = page.locator('main .book-card h3');
+  await expect(titles.first()).toHaveText('Büyük Strateji');
+  await expect(titles.nth(1)).toHaveText('Peloponnesos Savaşları');
+  await expect(page.getByRole('combobox', { name: 'Kitapları sırala' })).toContainText('Listedeki sıra');
+  // Leaving the list keeps the field honest: the whole catalogue reads by priority again.
+  await page.goto('./?sort=list');
+  await expect(page.getByRole('combobox', { name: 'Kitapları sırala' })).toContainText('Okuma önceliği');
+});
+
 // The page numbers replace the compact "Sayfa x / y" only when the bar has room for them at the current text size.
 // At the default size the bar switches at 400 and 640 px screens; that assumes the 8 px phone
 // gutter and overlay scrollbars, as in headless browsers.

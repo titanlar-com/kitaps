@@ -111,6 +111,22 @@ test('purchased works stay in catalog and appear in the library; favorites remai
  assert.equal(filterBooks(owned,route.filters,states).length,1);
 });
 
+test('a list with its own order can be read in that order, and a book without a place follows by priority',()=>{
+ const group='buyuk-strateji:sira';
+ const members=filterBooks(books,{...emptyFilters(),groups:[group]});
+ const place=book=>book.memberships.find(entry=>entry.groupId===group)?.order;
+ const listed=sortBooks(members,'list',{},{},{groups:[group]});
+ assert.equal(listed.length,9);
+ assert.deepEqual(listed.map(place),[1,2,3,4,5,6,7,8,9]);
+ assert.equal(listed[0].id,'ongrandstrategy');
+ // Without one ordered list in the filters, the list order is the reading priority.
+ const rankings={b:{rank:1,audience:'general'},a:{rank:2,audience:'general'}};
+ const two=[{...books[0],id:'a',memberships:[]},{...books[1],id:'b',memberships:[]}];
+ assert.deepEqual(sortBooks(two,'list',{},rankings,{groups:[]}).map(book=>book.id),sortBooks(two,'reading',{},rankings).map(book=>book.id));
+ const route={view:'books',sort:'list',book:null,page:1,pageSize:DEFAULT_PAGE_SIZE,filters:{...emptyFilters(),collections:['buyuk-strateji'],groups:[group]}};
+ assert.deepEqual(decodeRoute('#'+encodeRoute(route),catalog),route);
+});
+
 test('books can be filtered by the day they were added and sorted by the latest additions',()=>{
  const day=books.find(b=>b.addedAt)?.addedAt;
  const added=filterBooks(books,{...emptyFilters(),addedDates:[day]});

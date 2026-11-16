@@ -36,6 +36,12 @@ Gerekçe: 10 yaşına kadar temel kütüphane eklenince çocuk kitapları ebevey
 
 Çocuk kitabı listeleri (BookTrust, TIME, School Library Journal, Scholastic, MEB 100 Temel Eser) bu kütüphane için tek bir araştırma adımında birlikte incelendi. Bu yüzden tek bir küme olarak modellenir ve editoryal kesişimde bir seçki sayılır; hangi listelerde geçtiği alt kümelerde görünür.
 
+### Listedeki sıra
+
+Bazı listelerin kendi sırası vardır. Örneğin Büyük strateji koleksiyonundaki "Önerilen okuma sırası" ve Stoacılık koleksiyonundaki "Öncelik sırası" böyledir. Bu sıra kaynak veride kitabın o listedeki `order` değeridir. Sıra puana eklenmez.
+
+Kümeler sayfasından sıralı bir liste açılınca kitaplar "Listedeki sıra" ile dizilir. Okur sıralama alanından başka bir sıra seçebilir. "Listedeki sıra" seçeneği yalnız tek bir sıralı liste açıkken görünür. Başka bir sayfada bu seçenek okuma önceliği gibi çalışır ve alan "Okuma önceliği" gösterir. Varsayılan sıralama okuma önceliği olarak kalır.
+
 ### Milattan önceki yıllar (v2.1.1)
 
 Milattan önceki bir ilk yayın yılı eksi sayıyla tutulur. Örneğin Thukydides'in Peloponnesos Savaşları için yıl -400'dür. Bu yıl, eserin yazarın ölümünden sonra yayılmaya başladığı geleneksel tarihtir.

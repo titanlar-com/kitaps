@@ -33,7 +33,7 @@ import { readingSummary } from '../../reading';
 import { emptyFilters, encodeRoute } from '../../library';
 import { MOTION_EASE, MOTION_MS, MOTION_PX } from '../../motion';
 import { cssVariablesResolver, theme } from './app/theme';
-import { catalog, books, bookIds, readingRanking, byId, collectionMap, groupMap, authorOptions, exportAllBooks } from './app/catalogData';
+import { catalog, books, bookIds, readingRanking, byId, collectionMap, groupMap, orderedGroups, authorOptions, exportAllBooks } from './app/catalogData';
 import { GirlIcon, BookshelfIcon, BrandMark } from './app/icons';
 import { AgeLibrary } from './app/AgeLibrary';
 import { catalogScreen, marksAwaited } from '../../screens/catalog.js';
@@ -156,7 +156,7 @@ function AtlasApp({kitaplik}) {
  const previousBook=()=>{const id=bookTrail.at(-1);if(id){setBookTrail(bookTrail.slice(0,-1));execute({type:'showBook',id})}};
  const goView=next=>{navigate({...route,view:next,book:null,page:1,...(viewById[next]?.shelf?{filters:emptyFilters()}:{})});window.scrollTo({top:0,behavior:'instant'})};
  const onBrowse=()=>{navigate({...route,view:'books',book:null,filters:emptyFilters(),page:1});window.scrollTo({top:0,behavior:'instant'})};
- const goCollection=(id,gid)=>{navigate({...route,view:'books',book:null,page:1,filters:{...emptyFilters(),collections:[id],groups:gid?[gid]:[]}});window.scrollTo({top:0,behavior:'instant'})};
+ const goCollection=(id,gid)=>{navigate({...route,view:'books',book:null,page:1,sort:gid&&orderedGroups.has(gid)?'list':route.sort,filters:{...emptyFilters(),collections:[id],groups:gid?[gid]:[]}});window.scrollTo({top:0,behavior:'instant'})};
  const goCategory=id=>{execute({type:'openCategory',id});window.scrollTo({top:0,behavior:'instant'})};
  const changePage=p=>{navigate({...route,page:p,book:null});resultsRef.current?.scrollIntoView({behavior:'instant',block:'start'})};
  // The library toast sits above dialogs, so it closes before the connect dialog opens over it.
@@ -206,7 +206,7 @@ function AtlasApp({kitaplik}) {
  const activeTab=viewById[view]?.shelf?'books':HEADER_VIEWS.includes(view)?view:null;
  // This page's words and what it shows come from its screen models (ADR 003, K6).
  const shell=shellScreen({view,filters,favoriteCount,ownedCount,updated:catalog.updated,personalSaved});
- const catalogue=catalogScreen({view,filters,sort,total,page:currentPage,pageSize,showsHiddenPurchases,copied,ownedCount,favoriteCount,coreCount:collectionMap.core?.count,collections:collectionMap,groups:groupMap});
+ const catalogue=catalogScreen({view,filters,sort,total,page:currentPage,pageSize,showsHiddenPurchases,copied,ownedCount,favoriteCount,coreCount:collectionMap.core?.count,collections:collectionMap,groups:groupMap,listOrder:filters.groups.length===1&&orderedGroups.has(filters.groups[0])});
  // What each footer item does. Every other page, Notes included, opens through goView.
  const footerActions={books:onBrowse,queue:onQueue,children:()=>goCategory('children'),palette:openPalette,guide:()=>setGuideOpened(true),sync:()=>openSync(),export:exportAllBooks};
  const footerGroups=shell.footer.groups.map(group=>({...group,items:group.items.map(item=>({...item,icon:FOOTER_ICONS[item.id],onSelect:footerActions[item.id]??(()=>goView(item.id)),onIntent:item.id==='palette'?warmPalette:undefined}))}));
@@ -226,7 +226,7 @@ function AtlasApp({kitaplik}) {
      <div className="catalog-bar">
      <div className="search-panel" role="search">
       <TextInput className="catalog-search" label={catalogue.search.label} placeholder={catalogue.search.placeholder} ref={searchField} leftSection={<IconSearch size={21}/>} rightSectionWidth={catalogue.search.clear?44:36} rightSectionPointerEvents={catalogue.search.clear?'all':'none'} rightSection={catalogue.search.clear?<ActionIcon variant="subtle" aria-label={catalogue.search.clear} onClick={()=>changeFilters({...filters,query:''})}><IconX size={20}/></ActionIcon>:<Kbd className="search-shortcut" size="md" aria-hidden="true">{catalogue.search.shortcut}</Kbd>} value={filters.query} onChange={e=>changeFilters({...filters,query:e.currentTarget.value})}/>
-      <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setToastShown(false);setDraft(filters);setSheetShown(true);setOpened(true)}}>{catalogue.filtersButton}</Button><WrappingSelect aria-label={catalogue.sort.label} value={sort} onChange={next=>execute({type:'changeSort',sort:next})} data={catalogue.sort.options}/></div>
+      <div className="search-tools"><Button variant="light" leftSection={<IconFilter size={20}/>} onClick={()=>{setToastShown(false);setDraft(filters);setSheetShown(true);setOpened(true)}}>{catalogue.filtersButton}</Button><WrappingSelect aria-label={catalogue.sort.label} value={catalogue.sort.value} onChange={next=>execute({type:'changeSort',sort:next})} data={catalogue.sort.options}/></div>
       <ActiveFilters filters={filters} onChange={changeFilters}/>
      </div>
      {catalogue.showsReadingSummary&&<ReadingSummary summary={summary} waiting={marksAwaited(githubSync,summary)} onSelect={onSummary}/>}

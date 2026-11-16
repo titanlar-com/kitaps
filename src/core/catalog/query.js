@@ -32,7 +32,10 @@ export function filterBooks(books, filters, states = {}) {
   return true;
  });
 }
-export function sortBooks(books, sort, states = {}, rankings = {}) {
+/** A list's own order: with exactly one list (group) in the filters, a book's place in it. */
+const listPlace = (book, group) => book.memberships?.find(entry => entry.groupId === group)?.order ?? Infinity;
+export function sortBooks(books, sort, states = {}, rankings = {}, filters = {}) {
+ const group = filters.groups?.length === 1 ? filters.groups[0] : null;
  const collator = new Intl.Collator('tr', { sensitivity: 'base', numeric: true });
  const title = b => displayTitle(b);
  return [...books].sort((a,b) => {
@@ -44,6 +47,8 @@ export function sortBooks(books, sort, states = {}, rankings = {}) {
   const audience = id => rankings[id]?.audience === 'children' ? 1 : 0;
   const byReading = () => audience(a.id)-audience(b.id)||(rankings[a.id]?.rank??Number.MAX_SAFE_INTEGER)-(rankings[b.id]?.rank??Number.MAX_SAFE_INTEGER)||tie();
   if (sort === 'reading') return byReading();
+  // A list read in its editor's order; a book without a place, or no single list, reads by priority.
+  if (sort === 'list') return (group ? listPlace(a, group) - listPlace(b, group) : 0) || byReading();
   // Latest additions first; books added on the same day keep their reading order.
   if (sort === 'added') return (b.addedAt||'').localeCompare(a.addedAt||'') || byReading();
   if (sort === 'shared') return b.collectionIds.length - a.collectionIds.length || tie();

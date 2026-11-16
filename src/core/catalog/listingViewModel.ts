@@ -3,7 +3,7 @@ import type { Catalog, IndexedBook } from './catalog.ts';
 import { catalogListing } from './listing.js';
 
 export type ShelfView = 'books' | 'favorites' | 'owned';
-export type SortId = 'reading' | 'title' | 'author' | 'shared' | 'newest' | 'added' | 'saved';
+export type SortId = 'reading' | 'title' | 'author' | 'shared' | 'newest' | 'added' | 'saved' | 'list';
 /** The reader's marks by book id ("onemli", "alindi", …). */
 export type Marks = Readonly<Record<string, readonly string[]>>;
 

@@ -16,6 +16,8 @@ export const readingRanking=catalogIndex.ranking;
 export const byId=catalogIndex.byId;
 export const collectionMap=catalogIndex.collectionById;
 export const groupMap=catalogIndex.groupById;
+/** Lists whose books carry the editor's order; they open in that order. */
+export const orderedGroups=catalogIndex.orderedGroupIds;
 export const categoryMap=catalogIndex.categoryById;
 export const authorOptions=catalogIndex.authors;
 export const exportAllBooks=()=>download('kitaplik-tum-kitaplar.json',createBooksExport(catalog));

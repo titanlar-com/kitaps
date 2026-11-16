@@ -15,6 +15,7 @@ const SORT_OPTIONS = [
   { value: 'added', label: 'Eklenme · yeni' },
   { value: 'saved', label: 'Favoriler önce' },
 ];
+const LIST_ORDER = { value: 'list', label: 'Listedeki sıra' };
 const SEARCH_LABELS = { owned: 'Kitaplığımda ara', favorites: 'Favorilerimde ara' };
 const SHELF_TITLES = { owned: 'Kitaplığımdakiler', favorites: 'Favorilerim' };
 const isShelf = view => view === 'owned' || view === 'favorites';
@@ -37,7 +38,10 @@ function resultsTitle({ filters, view, collections, groups }) {
 const countSentence = ({ total, page, pageSize }) => `${total} eser${total ? `, ${((page - 1) * pageSize) + 1}–${Math.min(page * pageSize, total)} arası gösteriliyor` : ''}`;
 const neverFilled = ({ view, ownedCount, favoriteCount }) => (view === 'owned' && !ownedCount) || (view === 'favorites' && !favoriteCount);
 
-export function catalogScreen({ view, filters, sort, total, page, pageSize, showsHiddenPurchases, copied, ownedCount, favoriteCount, coreCount, collections, groups }) {
+/** `listOrder`: exactly one list is filtered and its books carry the editor's order. */
+export function catalogScreen({ view, filters, sort: chosen, total, page, pageSize, showsHiddenPurchases, copied, ownedCount, favoriteCount, coreCount, collections, groups, listOrder = false }) {
+  // Without one ordered list, the list order is the reading priority, and the field says so.
+  const sort = chosen === 'list' && !listOrder ? 'reading' : chosen;
   const anyFilter = filterCount(filters) > 0;
   const activeCount = filterCount({ ...filters, query: '' });
   const wholeCatalogue = view === 'books' && !anyFilter;
@@ -45,7 +49,7 @@ export function catalogScreen({ view, filters, sort, total, page, pageSize, show
     shelfHeading: isShelf(view) ? viewById[view].heading : null,
     search: { label: SEARCH_LABELS[view] ?? 'Katalogda ara', placeholder: 'Kitap, yazar, çevirmen…', clear: filters.query ? 'Aramayı temizle' : null, shortcut: '/' },
     filtersButton: `Filtreler${activeCount ? ` · ${activeCount}` : ''}`,
-    sort: { label: 'Kitapları sırala', options: SORT_OPTIONS },
+    sort: { label: 'Kitapları sırala', options: listOrder ? [...SORT_OPTIONS, LIST_ORDER] : SORT_OPTIONS, value: sort },
     showsReadingSummary: wholeCatalogue,
     route: wholeCatalogue ? { label: 'Nereden başlamalı?', title: 'Nereden başlamalı?', body: `${coreCount ?? ''} kitaplık çekirdek, düşünceden uygulamaya.`, action: 'Seçkiye git' } : null,
     showsAgeLibrary: view === 'books' && childrenShelf(filters) && onlyFilters(filters, ['categories']),

@@ -46,6 +46,16 @@ test('the sort field lists its seven orders in the order the reader has always s
   ]);
 });
 
+test('one list with its own order adds “Listedeki sıra”, and without such a list the order falls back to priority', () => {
+  const ordered = screen({ sort: 'list', listOrder: true, filters: filters({ groups: ['g'] }) }).sort;
+  assert.deepEqual(ordered.options.at(-1), { value: 'list', label: 'Listedeki sıra' });
+  assert.equal(ordered.value, 'list');
+  const plain = screen({ sort: 'list', listOrder: false }).sort;
+  assert.equal(plain.options.some(option => option.value === 'list'), false);
+  assert.equal(plain.value, 'reading');
+  assert.equal(screen({ sort: 'title' }).sort.value, 'title');
+});
+
 test('the reading band and the route appear only on the whole catalogue', () => {
   const start = screen();
   assert.equal(start.showsReadingSummary, true);

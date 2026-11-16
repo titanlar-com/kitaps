@@ -12,14 +12,14 @@ export function catalogListing({ books, states, view, filters, sort, page, pageS
  const ownedCount = booksForShelf(books, states, 'owned').length;
  // The header's counters: every favourite and every purchase, whatever the view hides.
  const favoriteCount = booksForShelf(books, states, 'favorites').length;
- const filtered = sortBooks(filterBooks(shelf, filters, states), sort, states, rankings);
+ const filtered = sortBooks(filterBooks(shelf, filters, states), sort, states, rankings, filters);
  const pages = Math.max(1, Math.ceil(filtered.length / pageSize));
  const currentPage = Math.min(page, pages);
  const displayed = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
  // The page says so when a reading-mark filter brings back purchases the switch hides while browsing.
  const showsHiddenPurchases = hideOwned && view === 'books' && Boolean(filters.states?.length) && filtered.some(book => (states[book.id] || []).includes('alindi'));
  // The list without the switch: what search engines are told cannot depend on what this reader bought.
- const open = shelf.length === all.length ? filtered : sortBooks(filterBooks(all, filters, states), sort, states, rankings);
+ const open = shelf.length === all.length ? filtered : sortBooks(filterBooks(all, filters, states), sort, states, rankings, filters);
  const publicListing = { total: open.length, pages: Math.max(1, Math.ceil(open.length / pageSize)), books: open.slice((currentPage - 1) * pageSize, currentPage * pageSize) };
  return { shelf, ownedCount, favoriteCount, filtered, pages, currentPage, displayed, showsHiddenPurchases, publicListing };
 }

@@ -61,7 +61,7 @@ export function decodeRoute(location, catalog) {
   const requestedSize=Number(p.get('page-size')),legacySize=LEGACY_PAGE_SIZES[requestedSize];
   const pageSize=PAGE_SIZES.includes(requestedSize)?requestedSize:legacySize||DEFAULT_PAGE_SIZE;
   const page=legacySize?Math.floor((requestedPage-1)*requestedSize/pageSize)+1:requestedPage;
-  return {...defaults,view,sort:['reading','title','author','shared','newest','added','saved'].includes(p.get('sort'))?p.get('sort'):'reading',book:selected?.id||null,page,pageSize};
+  return {...defaults,view,sort:['reading','title','author','shared','newest','added','saved','list'].includes(p.get('sort'))?p.get('sort'):'reading',book:selected?.id||null,page,pageSize};
  }catch{return defaults}
 }
 export function encodeRoute(route,catalog) {

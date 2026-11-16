@@ -17,6 +17,8 @@ export interface Catalog {
   readonly byId: Readonly<Record<string, IndexedBook>>;
   readonly collectionById: Readonly<Record<string, CollectionRecord>>;
   readonly groupById: Readonly<Record<string, GroupRecord>>;
+  /** Lists (groups) whose books carry the editor's order, read with the "list" sort. */
+  readonly orderedGroupIds: ReadonlySet<string>;
   readonly categoryById: Readonly<Record<string, CategoryRecord>>;
   /** Author credits as written, in Turkish order. Not author entities (ADR 003, K3). */
   readonly authors: readonly string[];
@@ -32,6 +34,7 @@ export function indexCatalog(opened: OpenedCatalog, { now = () => new Date() }: 
     byId: Object.fromEntries(books.map(book => [book.id, book])),
     collectionById: Object.fromEntries(source.collections.map(item => [item.id, item])),
     groupById: Object.fromEntries(source.groups.map(item => [item.id, item])),
+    orderedGroupIds: new Set(books.flatMap(book => book.memberships.flatMap(entry => (entry.order != null && entry.groupId ? [entry.groupId] : [])))),
     categoryById: Object.fromEntries(source.categories.map(item => [item.id, item])),
     authors: [...new Set(books.map(book => book.author).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'tr')),
     ranking: new ReadingRankingViewModel(new ReadingPriorityEngine(source as never), now).build(),
