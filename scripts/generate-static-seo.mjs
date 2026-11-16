@@ -24,6 +24,8 @@ const pageSize=DEFAULT_PAGE_SIZE;
 const byTitle=sortBooks(catalog.books,'title');
 const byId=Object.fromEntries(catalog.books.map(book=>[book.id,book]));
 const collectionMap=Object.fromEntries(catalog.collections.map(item=>[item.id,item]));
+// A list whose books carry the editor's order opens in that order on the running page (ADR-001, Listedeki sıra).
+const orderedGroups=new Set(catalog.books.flatMap(book=>(book.memberships||[]).filter(entry=>entry.order!=null&&entry.groupId).map(entry=>entry.groupId)));
 const summary=(value,limit=158)=>{const clean=String(value||'').replace(/\s+/g,' ').trim();return clean.length>limit?`${clean.slice(0,limit-1).replace(/\s+\S*$/,'')}…`:clean;};
 
 export const escapeHtml=value=>String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
@@ -34,6 +36,7 @@ const interactiveFor=({category,collection,group,book}={})=>{
  if(category)query.set('category',category);
  if(collection)query.set('collection',collection);
  if(group)query.set('group',group);
+ if(group&&orderedGroups.has(group))query.set('sort','list');
  if(book)query.set('book',bookSlug(book));
  return `${appBase}${query.size?`?${query}`:''}`;
 };

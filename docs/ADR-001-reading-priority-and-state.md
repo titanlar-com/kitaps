@@ -40,7 +40,7 @@ Gerekçe: 10 yaşına kadar temel kütüphane eklenince çocuk kitapları ebevey
 
 Bazı listelerin kendi sırası vardır. Örneğin Büyük strateji koleksiyonundaki "Önerilen okuma sırası" ve Stoacılık koleksiyonundaki "Öncelik sırası" böyledir. Bu sıra kaynak veride kitabın o listedeki `order` değeridir. Sıra puana eklenmez.
 
-Kümeler sayfasından sıralı bir liste açılınca kitaplar "Listedeki sıra" ile dizilir. Okur sıralama alanından başka bir sıra seçebilir. "Listedeki sıra" seçeneği yalnız tek bir sıralı liste açıkken görünür. Başka bir sayfada bu seçenek okuma önceliği gibi çalışır ve alan "Okuma önceliği" gösterir. Varsayılan sıralama okuma önceliği olarak kalır.
+Kümeler sayfasından sıralı bir liste açılınca kitaplar "Listedeki sıra" ile dizilir. Sabit liste sayfasındaki "Etkileşimli katalogda aç" bağlantısı da sıralı listeyi bu sırayla açar. Sabit sayfanın kendisi başlığa göre sıralı kalır. Okur sıralama alanından başka bir sıra seçebilir. "Listedeki sıra" seçeneği yalnız tek bir sıralı liste açıkken görünür. Başka bir sayfada bu seçenek okuma önceliği gibi çalışır ve alan "Okuma önceliği" gösterir. Varsayılan sıralama okuma önceliği olarak kalır.
 
 ### Milattan önceki yıllar (v2.1.1)
 

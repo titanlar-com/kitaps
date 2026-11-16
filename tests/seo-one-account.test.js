@@ -89,6 +89,16 @@ test('a group page names itself in the spelling the running page and the sitemap
   assert.equal(html.includes(`/group/${group.id}/`), false, 'no raw spelling is left in the page');
 });
 
+test('the static page of a list with its own order opens the running page in that order', () => {
+  const ordered = 'yonetici-icin-stoacilik:oncelik';
+  const plain = catalog.groups.find(item => item.id.includes(':') && anyBook(book => book.groupIds.includes(item.id)) && !catalog.books.some(book => book.memberships.some(entry => entry.groupId === item.id && entry.order != null)));
+  const link = html => /<a href="([^"]+)">Etkileşimli katalogda aç<\/a>/.exec(html)[1].replaceAll('&amp;', '&');
+  const orderedLink = new URL(link(staticHtml(`group/${ordered}`)));
+  assert.equal(orderedLink.searchParams.get('group'), ordered);
+  assert.equal(orderedLink.searchParams.get('sort'), 'list');
+  assert.equal(new URL(link(staticHtml(`group/${plain.id}`))).searchParams.get('sort'), null, 'a list without an order keeps the default');
+});
+
 test('what a page tells search engines does not depend on the reader hiding purchases', () => {
   const states = Object.fromEntries(books.slice(0, 40).map(book => [book.id, ['alindi']]));
   const query = { books, states, rankings: {}, view: 'books', filters: emptyFilters(), sort: 'title', page: 2, pageSize: 24 };
